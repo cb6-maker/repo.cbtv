@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addons>
+<addon id="repository.cbtv" name="CB TV Repo" version="1.0.1" provider-name="Christian">
+    <extension point="xbmc.addon.repository" name="CB TV Repo">
+        <dir>
+            <info compressed="false">https://raw.githubusercontent.com/cb6-maker/repo.cbtv/master/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/cb6-maker/repo.cbtv/master/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/cb6-maker/repo.cbtv/master/</datadir>
+        </dir>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>Official Repository for CB TV</summary>
+        <description>Install and auto-update CB TV Addon.</description>
+        <platform>all</platform>
+        <assets>
+            <icon>icon.png</icon>
+        </assets>
+    </extension>
+</addon>
+<addon id="plugin.video.cbtv" name="CB TV" version="1.3.4" provider-name="Christian">
+    <requires>
+        <import addon="xbmc.python" version="3.0.0"/>
+        <import addon="script.module.requests"/>
+        <import addon="inputstream.adaptive"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="addon.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary lang="it_IT">CB TV - Live Sports &amp; Movies</summary>
+        <description lang="it_IT">Eventi sportivi live, cinema e serie TV premium.</description>
+        <platform>all</platform>
+        <assets>
+            <icon>icon.png</icon>
+            <fanart>fanart.jpg</fanart>
+        </assets>
+    </extension>
+</addon>
+</addons>
