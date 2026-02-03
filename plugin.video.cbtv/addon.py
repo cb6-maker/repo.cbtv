@@ -237,10 +237,15 @@ def resolve_agenda_event(event_data):
     ev = json.loads(event_data)
     
     # --- 1. PREMIUM CHANNELS FETCH & MATCH ---
-    # --- 1. PREMIUM CHANNELS FETCH & MATCH ---
     try:
         import requests
-        required_channels = [c.lower().strip() for c in ev.get('channels_raw', [])]
+        channels_raw = ev.get('channels_raw', [])
+        
+        # Fix: if channels_raw is a string, wrap it in a list
+        if isinstance(channels_raw, str):
+            channels_raw = [channels_raw]
+        
+        required_channels = [c.lower().strip() for c in channels_raw if c]
         
         url = f"{PREMIUM_URL}?numTest=A1A260"
         headers = {"User-Agent": PREMIUM_UA}
@@ -255,28 +260,75 @@ def resolve_agenda_event(event_data):
                 
             for p_item in sec.get("items", []):
                 p_title = p_item.get("title", "")
-                p_title_clean = p_title.replace("[COLOR lime]", "").replace("[/COLOR]", "").strip().lower()
                 
-                # MATCHING MIGLIORATO (l'unica modifica necessaria)
+                # CLEAN PRO: Via TUTTI i tag [COLOR...] e simili con regex
+                p_title_clean = re.sub(r'\[.*?\]', '', p_title).strip().lower()
+                
+                
+                # --- MATCHING LOGIV (SMART SPORT FILTER) ---
                 is_match = False
+                
+                # 1. STRICT MATCH (Se il nome è EXACTLY quello richiesto)
                 for req in required_channels:
-                    # Exact match
-                    if req == p_title_clean:
-                        is_match = True
-                        break
-                    # Partial match con controllo parole intere
-                    if req in p_title_clean:
-                        req_words = set(req.split())
-                        title_words = set(p_title_clean.split())
-                        if req_words.issubset(title_words):
+                    req_words = req.split()
+                    title_words = p_title_clean.split()
+                    if all(word in title_words for word in req_words):
+                         is_match = True
+                         break
+                
+                # 2. CONTEXT FALLBACK (Se non c'è match esatto, usa la logica dello sport)
+                if not is_match:
+                    sport_type = ev.get('sport', '').lower()
+                    
+                    # ESCLUSIONE GLOBALE: Sport 24 è un TG, non una partita
+                    if "sport 24" in p_title_clean:
+                        continue
+                    
+                    # LOGICA CALCIO
+                    if "calcio" in sport_type or "serie" in sport_type or "champions" in sport_type:
+                        # Includi canali calcistici probabili
+                        if any(k in p_title_clean for k in ["calcio", "sport uno", "dazn", "sport 1", "sport 25", "sport 2", "diretta"]):
                             is_match = True
-                            break
+                        # MA escludi categoricamente altri sport
+                        if any(k in p_title_clean for k in ["tennis", "basket", "f1", "motogp", "golf", "rugby", "cricket", "nba", "volley"]):
+                            is_match = False
+                            
+                    # LOGICA MOTORI
+                    elif "motor" in sport_type or "f1" in sport_type or "moto" in sport_type:
+                        if any(k in p_title_clean for k in ["f1", "motogp", "motor", "race"]):
+                            is_match = True
+                        if any(k in p_title_clean for k in ["calcio", "basket", "tennis"]):
+                            is_match = False
+
+                    # LOGICA TENNIS    
+                    elif "tennis" in sport_type:
+                        if any(k in p_title_clean for k in ["tennis", "eurosport", "sport uno"]):
+                            is_match = True
+                        if any(k in p_title_clean for k in ["calcio", "motogp", "f1", "basket"]):
+                            is_match = False
+                            
+                    # LOGICA BASKET
+                    elif "basket" in sport_type:
+                         if any(k in p_title_clean for k in ["basket", "nba", "euroleague"]):
+                            is_match = True
+                         if any(k in p_title_clean for k in ["calcio", "tennis"]):
+                            is_match = False
+                            
+                    # FALLBACK GENERICO (Se non è uno sport specifico sopra)
+                    else:
+                        # Mostra tutto ciò che è Sport generico ma non specifico di altri
+                        if "sport" in p_title_clean:
+                             is_match = True
+
+
                 
                 if is_match:
                     resolve_val = p_item.get("myresolve", "")
                     if PROTECTION_KEY in resolve_val:
                         payload = resolve_val.split("@@")[1]
-                        display_title = f"[COLOR gold][PREMIUM][/COLOR] {p_title.replace('[COLOR lime]', '').replace('[/COLOR]', '')}"
+                        # Remove color tags for display
+                        display_name = re.sub(r'\[.*?\]', '', p_title).strip()
+                        display_title = f"[COLOR gold][PREMIUM][/COLOR] {display_name}"
                         
                         add_directory_item(
                             display_title, 
@@ -285,6 +337,9 @@ def resolve_agenda_event(event_data):
                             is_playable=True,
                             icon=p_item.get("thumbnail")
                         )
+
+
+
 
     except Exception as e:
         # Silently fail on premium fetch to allow standard channels to load
