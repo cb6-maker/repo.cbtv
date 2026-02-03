@@ -248,8 +248,10 @@ def resolve_agenda_event(event_data):
         data = r.json()
         
         for sec in data.get("channels", []):
-            if any(x in sec.get("name", "").upper() for x in ["CINEMA", "PRIMAFILA", "BAMBINI", "DOCUMENTARI"]):
-                continue
+            # WHITELIST: Mostra SOLO le sezioni SPORT (invece di blacklist)
+            section_name = sec.get("name", "").upper()
+            if "SPORT" not in section_name:
+                continue  # Salta tutto ciò che non ha "SPORT" nel nome
                 
             for p_item in sec.get("items", []):
                 p_title = p_item.get("title", "")
