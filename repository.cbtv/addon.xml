@@ -2,9 +2,9 @@
 <addon id="repository.cbtv" name="CB TV Repo" version="1.0.1" provider-name="Christian">
     <extension point="xbmc.addon.repository" name="CB TV Repo">
         <dir>
-            <info compressed="false">https://raw.githubusercontent.com/cb6-maker/repo.cbtv/master/addons.xml</info>
-            <checksum>https://raw.githubusercontent.com/cb6-maker/repo.cbtv/master/addons.xml.md5</checksum>
-            <datadir zip="true">https://raw.githubusercontent.com/cb6-maker/repo.cbtv/master/</datadir>
+            <info compressed="false">https://cb6-maker.github.io/repo.cbtv/addons.xml</info>
+            <checksum>https://cb6-maker.github.io/repo.cbtv/addons.xml.md5</checksum>
+            <datadir zip="true">https://cb6-maker.github.io/repo.cbtv/</datadir>
         </dir>
     </extension>
     <extension point="xbmc.addon.metadata">
