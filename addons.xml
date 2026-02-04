@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addons>
-<addon id="repository.cbtv" name="CB TV Repo" version="1.0.2" provider-name="Christian">
+<addon id="repository.cbtv" name="CB TV Repo" version="1.0.3" provider-name="CB6-maker">
     <extension point="xbmc.addon.repository" name="CB TV Repo">
         <dir>
             <info compressed="false">https://cb6-maker.github.io/repo.cbtv/addons.xml</info>
@@ -17,7 +17,7 @@
         </assets>
     </extension>
 </addon>
-<addon id="plugin.video.cbtv" name="CB TV" version="1.4.18" provider-name="Christian">
+<addon id="plugin.video.cbtv" name="CB TV" version="1.5.0" provider-name="CB6-maker">
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
         <import addon="script.module.requests"/>
