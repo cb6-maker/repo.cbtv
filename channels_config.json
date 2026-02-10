@@ -1,5 +1,20 @@
 {
-    "version": 1,
+    "version": 3,
+    "sky_it_api_base": "https://apid.sky.it/gtv/v1/events",
+    "foreign_epg_sources": [
+        {
+            "name": "Spain",
+            "url": "https://iptv-org.github.io/epg/guides/es/movistarplus.es.xml"
+        },
+        {
+            "name": "France",
+            "url": "https://iptv-org.github.io/epg/guides/fr/canalplus.fr.xml"
+        },
+        {
+            "name": "Poland",
+            "url": "https://iptv-org.github.io/epg/guides/pl/plusworld.pl.xml"
+        }
+    ],
     "freeshot": {
         "player_base_url": "https://popcdn.day/player/",
         "stream_base_url": "https://planetary.lovecdn.ru/",
@@ -9,47 +24,58 @@
         "channels": [
             {
                 "name": "Sky Sport 24",
-                "code": "SkySport24IT"
+                "code": "SkySport24IT",
+                "sky_id": 9094
             },
             {
                 "name": "Sky Sport Uno",
-                "code": "SkySportUnoIT"
+                "code": "SkySportUnoIT",
+                "sky_id": 9097
             },
             {
                 "name": "Sky Sport Calcio",
-                "code": "SkySportCalcioIT"
+                "code": "SkySportCalcioIT",
+                "sky_id": 9113
             },
             {
                 "name": "Sky Sport Arena",
-                "code": "SkySportArenaIT"
+                "code": "SkySportArenaIT",
+                "sky_id": 9093
             },
             {
                 "name": "Sky Sport Max",
-                "code": "SkySportMaxIT"
+                "code": "SkySportMaxIT",
+                "sky_id": 9103
             },
             {
                 "name": "Sky Sport Tennis",
-                "code": "SkySportTennisIT"
+                "code": "SkySportTennisIT",
+                "sky_id": 11237
             },
             {
                 "name": "Sky Sport F1",
-                "code": "SkySportF1IT"
+                "code": "SkySportF1IT",
+                "sky_id": 9096
             },
             {
                 "name": "Sky Sport MotoGP",
-                "code": "SkySportMotoGPIT"
+                "code": "SkySportMotoGPIT",
+                "sky_id": 9102
             },
             {
                 "name": "Sky Sport Basket",
-                "code": "SkySportBasketIT"
+                "code": "SkySportBasketIT",
+                "sky_id": 9116
             },
             {
                 "name": "Sky Sport Golf",
-                "code": "SkySportGolfIT"
+                "code": "SkySportGolfIT",
+                "sky_id": 10254
             },
             {
                 "name": "DAZN",
-                "code": "ZonaDAZN"
+                "code": "ZonaDAZN",
+                "sky_id": 11402
             }
         ]
     },
@@ -60,48 +86,98 @@
         "channels": [
             {
                 "name": "Sky Sport 24",
-                "code": "238"
+                "code": "238",
+                "sky_id": 9094
             },
             {
                 "name": "Sky Sport Uno",
-                "code": "230"
+                "code": "230",
+                "sky_id": 9097
             },
             {
                 "name": "Sky Sport Calcio",
-                "code": "232"
+                "code": "232",
+                "sky_id": 9113
             },
             {
                 "name": "Sky Sport Arena",
-                "code": "235"
+                "code": "235",
+                "sky_id": 9093
             },
             {
                 "name": "Sky Sport Max",
-                "code": "236"
+                "code": "236",
+                "sky_id": 9103
             },
             {
                 "name": "Sky Sport Tennis",
-                "code": "233"
+                "code": "233",
+                "sky_id": 11237
             },
             {
                 "name": "Sky Sport F1",
-                "code": "231"
+                "code": "231",
+                "sky_id": 9096
             },
             {
                 "name": "Sky Sport MotoGP",
-                "code": "234"
+                "code": "234",
+                "sky_id": 9102
             },
             {
                 "name": "Sky Sport Basket",
-                "code": "239"
+                "code": "239",
+                "sky_id": 9116
             },
             {
                 "name": "Sky Sport Golf",
-                "code": "237"
+                "code": "237",
+                "sky_id": 10254
             },
             {
                 "name": "DAZN",
-                "code": "229"
+                "code": "229",
+                "sky_id": 11402
             }
         ]
-    }
+    },
+    "mpd_matching": [
+        {
+            "name": "DAZN F1 ES",
+            "match": [
+                "DAZN F1",
+                "F1",
+                "FORMULA 1"
+            ],
+            "country": "Spain"
+        },
+        {
+            "name": "M+ LALIGA",
+            "match": [
+                "LALIGA",
+                "CALCIO",
+                "REAL MADRID",
+                "BARCELONA"
+            ],
+            "country": "Spain"
+        },
+        {
+            "name": "CANAL+ SPORT",
+            "match": [
+                "SPORT",
+                "FOOTBALL",
+                "PREMIER LEAGUE"
+            ],
+            "country": "France"
+        },
+        {
+            "name": "POLSAT SPORT",
+            "match": [
+                "VOLLEY",
+                "TENNIS",
+                "SPORT"
+            ],
+            "country": "Poland"
+        }
+    ]
 }
