@@ -1,0 +1,107 @@
+{
+    "version": 1,
+    "freeshot": {
+        "player_base_url": "https://popcdn.day/player/",
+        "stream_base_url": "https://planetary.lovecdn.ru/",
+        "stream_path": "/tracks-v1a1/mono.m3u8",
+        "referer": "https://thisnot.business/",
+        "token_regex": "currentToken: \"([^\"]+)\"",
+        "channels": [
+            {
+                "name": "Sky Sport 24",
+                "code": "SkySport24IT"
+            },
+            {
+                "name": "Sky Sport Uno",
+                "code": "SkySportUnoIT"
+            },
+            {
+                "name": "Sky Sport Calcio",
+                "code": "SkySportCalcioIT"
+            },
+            {
+                "name": "Sky Sport Arena",
+                "code": "SkySportArenaIT"
+            },
+            {
+                "name": "Sky Sport Max",
+                "code": "SkySportMaxIT"
+            },
+            {
+                "name": "Sky Sport Tennis",
+                "code": "SkySportTennisIT"
+            },
+            {
+                "name": "Sky Sport F1",
+                "code": "SkySportF1IT"
+            },
+            {
+                "name": "Sky Sport MotoGP",
+                "code": "SkySportMotoGPIT"
+            },
+            {
+                "name": "Sky Sport Basket",
+                "code": "SkySportBasketIT"
+            },
+            {
+                "name": "Sky Sport Golf",
+                "code": "SkySportGolfIT"
+            },
+            {
+                "name": "DAZN",
+                "code": "ZonaDAZN"
+            }
+        ]
+    },
+    "mediahosting": {
+        "embed_base_url": "https://mediahosting.space/embed/player?stream=",
+        "referer": "https://mediahosting.space/",
+        "source_regex": "<source src=\"(.*?)\"",
+        "channels": [
+            {
+                "name": "Sky Sport 24",
+                "code": "238"
+            },
+            {
+                "name": "Sky Sport Uno",
+                "code": "230"
+            },
+            {
+                "name": "Sky Sport Calcio",
+                "code": "232"
+            },
+            {
+                "name": "Sky Sport Arena",
+                "code": "235"
+            },
+            {
+                "name": "Sky Sport Max",
+                "code": "236"
+            },
+            {
+                "name": "Sky Sport Tennis",
+                "code": "233"
+            },
+            {
+                "name": "Sky Sport F1",
+                "code": "231"
+            },
+            {
+                "name": "Sky Sport MotoGP",
+                "code": "234"
+            },
+            {
+                "name": "Sky Sport Basket",
+                "code": "239"
+            },
+            {
+                "name": "Sky Sport Golf",
+                "code": "237"
+            },
+            {
+                "name": "DAZN",
+                "code": "229"
+            }
+        ]
+    }
+}
