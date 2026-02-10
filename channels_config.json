@@ -1,20 +1,7 @@
 {
-    "version": 3,
+    "version": 4,
     "sky_it_api_base": "https://apid.sky.it/gtv/v1/events",
-    "foreign_epg_sources": [
-        {
-            "name": "Spain",
-            "url": "https://iptv-org.github.io/epg/guides/es/movistarplus.es.xml"
-        },
-        {
-            "name": "France",
-            "url": "https://iptv-org.github.io/epg/guides/fr/canalplus.fr.xml"
-        },
-        {
-            "name": "Poland",
-            "url": "https://iptv-org.github.io/epg/guides/pl/plusworld.pl.xml"
-        }
-    ],
+    "foreign_epg_sources": [],
     "freeshot": {
         "player_base_url": "https://popcdn.day/player/",
         "stream_base_url": "https://planetary.lovecdn.ru/",
