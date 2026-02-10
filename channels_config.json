@@ -1,7 +1,36 @@
 {
-    "version": 4,
+    "version": 6,
     "sky_it_api_base": "https://apid.sky.it/gtv/v1/events",
-    "foreign_epg_sources": [],
+    "foreign_epg_sources": [
+        {
+            "name": "Spain",
+            "url": "https://iptv-epg.org/files/epg-es.xml"
+        },
+        {
+            "name": "France",
+            "url": "https://iptv-epg.org/files/epg-fr.xml"
+        },
+        {
+            "name": "Poland",
+            "url": "https://iptv-epg.org/files/epg-pl.xml"
+        },
+        {
+            "name": "Germany",
+            "url": "https://iptv-epg.org/files/epg-de.xml"
+        },
+        {
+            "name": "UK",
+            "url": "https://iptv-epg.org/files/epg-gb.xml"
+        },
+        {
+            "name": "USA",
+            "url": "https://iptv-epg.org/files/epg-us.xml"
+        },
+        {
+            "name": "Portugal",
+            "url": "https://iptv-epg.org/files/epg-pt.xml"
+        }
+    ],
     "freeshot": {
         "player_base_url": "https://popcdn.day/player/",
         "stream_base_url": "https://planetary.lovecdn.ru/",
