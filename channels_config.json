@@ -1,7 +1,11 @@
 {
-    "version": 6,
+    "version": 7,
     "sky_it_api_base": "https://apid.sky.it/gtv/v1/events",
     "foreign_epg_sources": [
+        {
+            "name": "Italy",
+            "url": "https://iptv-epg.org/files/epg-it.xml"
+        },
         {
             "name": "Spain",
             "url": "https://iptv-epg.org/files/epg-es.xml"
