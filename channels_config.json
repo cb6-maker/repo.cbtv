@@ -4,7 +4,7 @@
     "foreign_epg_sources": [
         {
             "name": "Italy",
-            "url": "https://iptv-epg.org/files/epg-it.xml"
+            "url": "https://epgshare01.online/epgshare01/epg_ripper_IT1.xml.gz"
         },
         {
             "name": "Spain",
