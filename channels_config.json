@@ -1,5 +1,5 @@
 {
-    "version": 7,
+    "version": 10,
     "sky_it_api_base": "https://apid.sky.it/gtv/v1/events",
     "foreign_epg_sources": [
         {
@@ -35,129 +35,175 @@
             "url": "https://iptv-epg.org/files/epg-pt.xml"
         }
     ],
-    "freeshot": {
-        "player_base_url": "https://popcdn.day/player/",
-        "stream_base_url": "https://planetary.lovecdn.ru/",
-        "stream_path": "/tracks-v1a1/mono.m3u8",
-        "referer": "https://thisnot.business/",
-        "token_regex": "currentToken: \"([^\"]+)\"",
-        "channels": [
-            {
-                "name": "Sky Sport 24",
-                "code": "SkySport24IT",
-                "sky_id": 9094
-            },
-            {
-                "name": "Sky Sport Uno",
-                "code": "SkySportUnoIT",
-                "sky_id": 9097
-            },
-            {
-                "name": "Sky Sport Calcio",
-                "code": "SkySportCalcioIT",
-                "sky_id": 9113
-            },
-            {
-                "name": "Sky Sport Arena",
-                "code": "SkySportArenaIT",
-                "sky_id": 9093
-            },
-            {
-                "name": "Sky Sport Max",
-                "code": "SkySportMaxIT",
-                "sky_id": 9103
-            },
-            {
-                "name": "Sky Sport Tennis",
-                "code": "SkySportTennisIT",
-                "sky_id": 11237
-            },
-            {
-                "name": "Sky Sport F1",
-                "code": "SkySportF1IT",
-                "sky_id": 9096
-            },
-            {
-                "name": "Sky Sport MotoGP",
-                "code": "SkySportMotoGPIT",
-                "sky_id": 9102
-            },
-            {
-                "name": "Sky Sport Basket",
-                "code": "SkySportBasketIT",
-                "sky_id": 9116
-            },
-            {
-                "name": "Sky Sport Golf",
-                "code": "SkySportGolfIT",
-                "sky_id": 10254
-            },
-            {
-                "name": "DAZN",
-                "code": "ZonaDAZN",
-                "sky_id": 11402
-            }
-        ]
-    },
     "mediahosting": {
         "embed_base_url": "https://mediahosting.space/embed/player?stream=",
+        "no_register_param": "&no_register=true",
         "referer": "https://mediahosting.space/",
         "source_regex": "<source src=\"(.*?)\"",
         "channels": [
             {
                 "name": "Sky Sport 24",
-                "code": "238",
+                "code": "334",
                 "sky_id": 9094
             },
             {
                 "name": "Sky Sport Uno",
-                "code": "230",
+                "code": "326",
                 "sky_id": 9097
             },
             {
                 "name": "Sky Sport Calcio",
-                "code": "232",
+                "code": "328",
                 "sky_id": 9113
             },
             {
                 "name": "Sky Sport Arena",
-                "code": "235",
+                "code": "331",
                 "sky_id": 9093
             },
             {
                 "name": "Sky Sport Max",
-                "code": "236",
+                "code": "332",
                 "sky_id": 9103
             },
             {
                 "name": "Sky Sport Tennis",
-                "code": "233",
+                "code": "329",
                 "sky_id": 11237
             },
             {
                 "name": "Sky Sport F1",
-                "code": "231",
+                "code": "327",
                 "sky_id": 9096
             },
             {
                 "name": "Sky Sport MotoGP",
-                "code": "234",
+                "code": "330",
                 "sky_id": 9102
             },
             {
                 "name": "Sky Sport Basket",
-                "code": "239",
+                "code": "335",
                 "sky_id": 9116
             },
             {
                 "name": "Sky Sport Golf",
-                "code": "237",
+                "code": "333",
                 "sky_id": 10254
             },
             {
-                "name": "DAZN",
-                "code": "229",
+                "name": "DAZN 1",
+                "code": "325",
                 "sky_id": 11402
+            },
+            {
+                "name": "Sky Sport Mix",
+                "code": "337",
+                "sky_id": 12345
+            }
+        ]
+    },
+    "mediahosting_intl": {
+        "channels": [
+            {
+                "name": "Premier Sports 1",
+                "code": "300"
+            },
+            {
+                "name": "Premier Sports 2",
+                "code": "301"
+            },
+            {
+                "name": "Movistar Sport 1",
+                "code": "303"
+            },
+            {
+                "name": "Movistar Sport 2",
+                "code": "304"
+            },
+            {
+                "name": "Movistar Sport 3",
+                "code": "305"
+            },
+            {
+                "name": "Movistar Sport 4",
+                "code": "306"
+            },
+            {
+                "name": "Movistar Sport 5",
+                "code": "307"
+            },
+            {
+                "name": "Nova Sport Premier 1",
+                "code": "338"
+            },
+            {
+                "name": "Nova Sport Premier 2",
+                "code": "339"
+            },
+            {
+                "name": "Cosmote Sports 1",
+                "code": "340"
+            },
+            {
+                "name": "Cosmote Sports 2",
+                "code": "341"
+            },
+            {
+                "name": "Cosmote Sports 3",
+                "code": "342"
+            },
+            {
+                "name": "Eurosport 1",
+                "code": "343"
+            },
+            {
+                "name": "Eurosport 2",
+                "code": "344"
+            },
+            {
+                "name": "Nova Sports 1",
+                "code": "345"
+            },
+            {
+                "name": "Nova Sports 2",
+                "code": "346"
+            },
+            {
+                "name": "Nova Sports 3",
+                "code": "347"
+            },
+            {
+                "name": "Nova Sports 4",
+                "code": "348"
+            },
+            {
+                "name": "Nova Sports 5",
+                "code": "349"
+            },
+            {
+                "name": "Nova Sports 6",
+                "code": "350"
+            },
+            {
+                "name": "Nova Sports Extra 1",
+                "code": "351"
+            },
+            {
+                "name": "Nova Sports Extra 2",
+                "code": "352"
+            },
+            {
+                "name": "Nova Sports Extra",
+                "code": "353"
+            },
+            {
+                "name": "Nova Sports Start",
+                "code": "357"
+            },
+            {
+                "name": "Canal+",
+                "code": "370"
             }
         ]
     },
