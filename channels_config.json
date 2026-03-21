@@ -437,6 +437,46 @@
                 "code": "ZiggoSport6"
             }
         ],
+        "Albania": [
+            {
+                "name": "Tring Sport 1",
+                "code": "TringSport1"
+            },
+            {
+                "name": "Tring Sport 2",
+                "code": "TringSport2"
+            },
+            {
+                "name": "Tring Sport 3",
+                "code": "TringSport3"
+            },
+            {
+                "name": "Art Sport 1",
+                "code": "ArtSport1"
+            },
+            {
+                "name": "Art Sport 2",
+                "code": "ArtSport2"
+            },
+            {
+                "name": "Art Sport 3",
+                "code": "ArtSport3"
+            },
+            {
+                "name": "RTSH Sport",
+                "code": "RTSHSport"
+            }
+        ],
+        "Repubblica Ceca": [
+            {
+                "name": "Sport 1 CZ",
+                "code": "Sport1CZ"
+            },
+            {
+                "name": "Sport 2 CZ",
+                "code": "Sport2CZ"
+            }
+        ],
         "USA": [
             {
                 "name": "ESPN",
