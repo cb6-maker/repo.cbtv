@@ -1,5 +1,5 @@
 {
-    "version": 12,
+    "version": 31,
     "sky_it_api_base": "https://apid.sky.it/gtv/v1/events",
     "foreign_epg_sources": [
         {
