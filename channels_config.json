@@ -411,6 +411,32 @@
                 "code": "SPT6"
             }
         ],
+        "Olanda": [
+            {
+                "name": "Ziggo Sport",
+                "code": "ZiggoSport"
+            },
+            {
+                "name": "Ziggo Sport 2",
+                "code": "ZiggoSport2"
+            },
+            {
+                "name": "Ziggo Sport 3",
+                "code": "ZiggoSport3"
+            },
+            {
+                "name": "Ziggo Sport 4",
+                "code": "ZiggoSport4"
+            },
+            {
+                "name": "Ziggo Sport 5",
+                "code": "ZiggoSport5"
+            },
+            {
+                "name": "Ziggo Sport 6",
+                "code": "ZiggoSport6"
+            }
+        ],
         "USA": [
             {
                 "name": "ESPN",
