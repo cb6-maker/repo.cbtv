@@ -1,5 +1,5 @@
 {
-    "version": 31,
+    "version": 32,
     "sky_it_api_base": "https://apid.sky.it/gtv/v1/events",
     "foreign_epg_sources": [
         {
@@ -565,64 +565,6 @@
                 "SPORT"
             ],
             "country": "Poland"
-        }
-    ],
-    "entertainment": [
-        {
-            "name": "Sky Cinema Uno",
-            "sky_id": 9044
-        },
-        {
-            "name": "Sky Cinema Due",
-            "sky_id": 9034
-        },
-        {
-            "name": "Sky Cinema Action",
-            "sky_id": 9050
-        },
-        {
-            "name": "Sky Cinema Family",
-            "sky_id": 9042
-        },
-        {
-            "name": "Sky Cinema Romance",
-            "sky_id": 9055
-        },
-        {
-            "name": "Sky Cinema Suspense",
-            "sky_id": 10515
-        },
-        {
-            "name": "Sky Cinema Drama",
-            "sky_id": 10518
-        },
-        {
-            "name": "Sky Cinema Comedy",
-            "sky_id": 9039
-        },
-        {
-            "name": "Sky Atlantic",
-            "sky_id": 9095
-        },
-        {
-            "name": "Sky Serie",
-            "sky_id": 11244
-        },
-        {
-            "name": "Sky Investigation",
-            "sky_id": 11246
-        },
-        {
-            "name": "Sky Uno",
-            "sky_id": 9115
-        },
-        {
-            "name": "Sky Documentaries",
-            "sky_id": 11239
-        },
-        {
-            "name": "Sky Nature",
-            "sky_id": 11242
         }
     ]
 }
