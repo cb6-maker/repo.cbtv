@@ -115,7 +115,7 @@ def build(target_addon=None):
              html += f'<li><a href="{z}">{z}</a></li>\n'
         elif "plugin.video.cbtv" in z:
              # Plugin zip -> nella cartella plugin.video.cbtv/ (questo lo gestisce Kodi in automatico dopo)
-             html += f'<li><a href="plugin.video.cbtv/{z}">{z}</a></li>\n'
+             html += f'<li><a href="{z}">{z}</a></li>\n'
     
     html += """</ul>
 </body>
