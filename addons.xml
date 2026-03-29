@@ -17,10 +17,11 @@
         </assets>
     </extension>
 </addon>
-<addon id="plugin.video.cbtv" name="CBTV" version="2.39" provider-name="Christian">
+<addon id="plugin.video.cbtv" name="CBTV" version="2.45" provider-name="Christian">
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
         <import addon="script.module.requests"/>
+        <import addon="script.module.beautifulsoup4"/>
         <import addon="inputstream.adaptive"/>
     </requires>
     <extension point="xbmc.python.pluginsource" library="addon.py">
