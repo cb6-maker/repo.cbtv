@@ -150,41 +150,11 @@ def get_oasport_events():
                     })
         
         import xbmc
-        xbmc.log(f"CDNLive Scraper: Successfully parsed {len(events)} events", xbmc.LOGINFO)
+        xbmc.log(f"OASport Scraper: Successfully parsed {len(events)} events", xbmc.LOGINFO)
         return events
     except Exception as e:
         import xbmc
-        xbmc.log(f"CDNLive Scraper Fatal Error: {str(e)}", xbmc.LOGERROR)
+        xbmc.log(f"OASport Scraper Fatal Error: {str(e)}", xbmc.LOGERROR)
         return []
 
-def map_channels(raw_str, all_cdn_channels):
-    """
-    Search for mention of channels in the raw string and match them with CDN Live channels.
-    """
-    found = []
-    # Key channel names to look for
-    keywords = [
-        "Eurosport 1", "Eurosport 2", "Sky Sport Uno", "Sky Sport Arena", 
-        "Sky Sport Tennis", "Sky Sport F1", "Sky Sport MotoGP", "Sky Sport Calcio",
-        "Sky Sport 251", "Sky Sport 252", "Sky Sport 253", "Sky Sport 254", 
-        "Sky Sport 255", "Sky Sport 256", "Sky Sport 257", "Sky Sport 258",
-        "Rai 1", "Rai 2", "Rai Sport", "SuperTennis", "DAZN", "Nove", "TNT Sports",
-        "BeIN Sports", "ESPN", "Canale 5", "Italia 1", "Rete 4", "TV8", "Prime Video"
-    ]
-    
-    raw_lower = raw_str.lower()
-    for kw in keywords:
-        if kw.lower() in raw_lower:
-            # Try to find a match in all_cdn_channels
-            # We look for a suffix match or flexible match
-            matches = [ch for ch in all_cdn_channels if kw.lower() in ch.get("name", "").lower()]
-            found.extend(matches)
-    
-    # Deduplicate by URL
-    seen = set()
-    unique = []
-    for f in found:
-        if f['url'] not in seen:
-            unique.append(f)
-            seen.add(f['url'])
-    return unique
+

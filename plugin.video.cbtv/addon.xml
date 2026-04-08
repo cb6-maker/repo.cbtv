@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.cbtv" name="CB TV" version="1.4.2" provider-name="Christian">
+<addon id="plugin.video.cbtv" name="CBTV" version="2.6.5" provider-name="Christian">
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
         <import addon="script.module.requests"/>
+        <import addon="script.module.beautifulsoup4"/>
         <import addon="inputstream.adaptive"/>
     </requires>
     <extension point="xbmc.python.pluginsource" library="addon.py">
