@@ -1,819 +1,185 @@
 {
-    "version": 55,
+    "version": 100,
     "sky_it_api_base": "https://apid.sky.it/gtv/v1/events",
     "foreign_epg_sources": [
-        {
-            "name": "Italy",
-            "url": "https://epgshare01.online/epgshare01/epg_ripper_IT1.xml.gz"
-        },
-        {
-            "name": "Spain",
-            "url": "https://iptv-epg.org/files/epg-es.xml"
-        },
-        {
-            "name": "France",
-            "url": "https://iptv-epg.org/files/epg-fr.xml"
-        },
-        {
-            "name": "Poland",
-            "url": "https://iptv-epg.org/files/epg-pl.xml"
-        },
-        {
-            "name": "Germany",
-            "url": "https://iptv-epg.org/files/epg-de.xml"
-        },
-        {
-            "name": "UK",
-            "url": "https://iptv-epg.org/files/epg-gb.xml"
-        },
-        {
-            "name": "USA",
-            "url": "https://iptv-epg.org/files/epg-us.xml"
-        },
-        {
-            "name": "Portugal",
-            "url": "https://iptv-epg.org/files/epg-pt.xml"
-        }
+        { "name": "Italy", "url": "https://epgshare01.online/epgshare01/epg_ripper_IT1.xml.gz" },
+        { "name": "Spain", "url": "https://iptv-epg.org/files/epg-es.xml" },
+        { "name": "France", "url": "https://iptv-epg.org/files/epg-fr.xml" },
+        { "name": "Poland", "url": "https://iptv-epg.org/files/epg-pl.xml" },
+        { "name": "Germany", "url": "https://iptv-epg.org/files/epg-de.xml" },
+        { "name": "UK", "url": "https://iptv-epg.org/files/epg-gb.xml" },
+        { "name": "USA", "url": "https://iptv-epg.org/files/epg-us.xml" },
+        { "name": "Portugal", "url": "https://iptv-epg.org/files/epg-pt.xml" }
     ],
-    "mediahosting": {
-        "embed_base_url": "https://mediahosting.space/embed/player?stream=",
-        "no_register_param": "&no_register=true",
-        "referer": "https://mediahosting.space/",
-        "source_regex": "<source src=\"(.*?)\"",
-        "channels": [
-            {
-                "name": "Sky Sport 24",
-                "code": "334",
-                "sky_id": 9094
-            },
-            {
-                "name": "Sky Sport Uno",
-                "code": "326",
-                "sky_id": 9097
-            },
-            {
-                "name": "Sky Sport Calcio",
-                "code": "333",
-                "sky_id": 9113
-            },
-            {
-                "name": "Sky Sport Arena",
-                "code": "331",
-                "sky_id": 9093
-            },
-            {
-                "name": "Sky Sport Max",
-                "code": "332",
-                "sky_id": 9103
-            },
-            {
-                "name": "Sky Sport Tennis",
-                "code": "329",
-                "sky_id": 11237
-            },
-            {
-                "name": "Sky Sport F1",
-                "code": "327",
-                "sky_id": 9096
-            },
-            {
-                "name": "Sky Sport MotoGP",
-                "code": "330",
-                "sky_id": 9102
-            },
-            {
-                "name": "Sky Sport Basket",
-                "code": "335",
-                "sky_id": 9116
-            },
-            {
-                "name": "Sky Sport Golf",
-                "code": "237",
-                "sky_id": 10254
-            },
-            {
-                "name": "Sky Sport Mix",
-                "code": "337",
-                "sky_id": 12345
-            },
-            {
-                "name": "DAZN 1",
-                "code": "325",
-                "sky_id": 11402
-            }
-        ]
-    },
-    "mediahosting_intl": {
-        "channels": [
-            {
-                "name": "Premier Sports 1",
-                "code": "300"
-            },
-            {
-                "name": "Premier Sports 2",
-                "code": "301"
-            },
-            {
-                "name": "Movistar Sport 1",
-                "code": "303"
-            },
-            {
-                "name": "Movistar Sport 2",
-                "code": "304"
-            },
-            {
-                "name": "Movistar Sport 3",
-                "code": "305"
-            },
-            {
-                "name": "Movistar Sport 4",
-                "code": "306"
-            },
-            {
-                "name": "Movistar Sport 5",
-                "code": "307"
-            },
-            {
-                "name": "Nova Sport Premier 1",
-                "code": "338"
-            },
-            {
-                "name": "Nova Sport Premier 2",
-                "code": "339"
-            },
-            {
-                "name": "Cosmote Sports 1",
-                "code": "340"
-            },
-            {
-                "name": "Cosmote Sports 2",
-                "code": "341"
-            },
-            {
-                "name": "Cosmote Sports 3",
-                "code": "342"
-            },
-            {
-                "name": "Eurosport 1",
-                "code": "343"
-            },
-            {
-                "name": "Eurosport 2",
-                "code": "344"
-            },
-            {
-                "name": "Nova Sports 1",
-                "code": "345"
-            },
-            {
-                "name": "Nova Sports 2",
-                "code": "346"
-            },
-            {
-                "name": "Nova Sports 3",
-                "code": "347"
-            },
-            {
-                "name": "Nova Sports 4",
-                "code": "348"
-            },
-            {
-                "name": "Nova Sports 5",
-                "code": "349"
-            },
-            {
-                "name": "Nova Sports 6",
-                "code": "350"
-            },
-            {
-                "name": "Nova Sports Extra 1",
-                "code": "351"
-            },
-            {
-                "name": "Nova Sports Extra 2",
-                "code": "352"
-            },
-            {
-                "name": "Nova Sports Extra",
-                "code": "353"
-            },
-            {
-                "name": "Nova Sports Start",
-                "code": "357"
-            },
-            {
-                "name": "Canal+",
-                "code": "370"
-            }
-        ]
-    },
     "freeshot_v3": {
         "player_base_url": "https://lovetier.bz/player/",
-        "stream_base_url": "https://beautifulpeople.lovecdn.ru/",
+        "stream_base_url": "https://beautifulpeople.lovetier.bz/",
         "stream_path": "/tracks-v1a1/mono.m3u8",
         "referer": "https://lovetier.bz/",
         "token_regex": "currentToken: \"([^\"]+)\"",
         "channels": [
-            {
-                "name": "Sky Sport Max",
-                "code": "715",
-                "sky_id": 9103
-            },
-            {
-                "name": "Sky Sport Mix",
-                "code": "700",
-                "sky_id": 12345
-            }
+            {"name": "Sky Sport 24", "code": "SkySport24IT", "sky_id": 9094},
+            {"name": "Sky Sport Uno", "code": "SkySportUnoIT", "sky_id": 9097},
+            {"name": "Sky Sport Calcio", "code": "SkySportCalcioIT", "sky_id": 9113},
+            {"name": "Sky Sport Arena", "code": "SkySportArenaIT", "sky_id": 9093},
+            {"name": "Sky Sport Max", "code": "SkySportMaxIT", "sky_id": 9103},
+            {"name": "Sky Sport Tennis", "code": "SkySportTennisIT", "sky_id": 11237},
+            {"name": "Sky Sport F1", "code": "SkySportF1IT", "sky_id": 9096},
+            {"name": "Sky Sport MotoGP", "code": "SkySportMotoGPIT", "sky_id": 9102},
+            {"name": "Sky Sport Basket", "code": "SkySportBasketIT", "sky_id": 9116},
+            {"name": "Sky Sport Golf", "code": "SkySportGolfIT", "sky_id": 10254},
+            {"name": "Sky Sport Mix", "code": "SkySportMixIT", "sky_id": 12345},
+            {"name": "DAZN 1", "code": "ZonaDAZN", "sky_id": 11402}
         ]
     },
     "international_sport_fs": {
-        "Albania": [
-            {
-                "name": "EUROSPORT 1",
-                "code": "564"
-            },
-            {
-                "name": "EUROSPORT 2",
-                "code": "626"
-            },
-            {
-                "name": "RTSH Sport",
-                "code": "629"
-            },
-            {
-                "name": "Super Sport 1",
-                "code": "640"
-            },
-            {
-                "name": "Super Sport 2",
-                "code": "656"
-            },
-            {
-                "name": "Super Sport 3",
-                "code": "657"
-            },
-            {
-                "name": "Super Sport 4",
-                "code": "658"
-            },
-            {
-                "name": "Super Sport 5",
-                "code": "659"
-            },
-            {
-                "name": "Super Sport 6",
-                "code": "660"
-            },
-            {
-                "name": "Super Sport 7",
-                "code": "661"
-            },
-            {
-                "name": "Tring Sport 1",
-                "code": "663"
-            },
-            {
-                "name": "Tring Sport 2",
-                "code": "870"
-            },
-            {
-                "name": "Tring Sport 3",
-                "code": "881"
-            },
-            {
-                "name": "Tring Sport News",
-                "code": "882"
-            }
+        "Arabia (beIN)": [
+            {"name": "beIN Arabia 1", "code": "beINAR1"},
+            {"name": "beIN Arabia 2", "code": "beINAR2"},
+            {"name": "beIN Arabia 3", "code": "beINAR3"},
+            {"name": "beIN Arabia 4", "code": "beINAR4"},
+            {"name": "beIN Arabia 5", "code": "beINAR5"},
+            {"name": "beIN Arabia 6", "code": "beINAR6"},
+            {"name": "beIN Arabia 7", "code": "beINAR7"},
+            {"name": "beIN Arabia 8", "code": "beINAR8"},
+            {"name": "beIN Arabia 9", "code": "beINAR9"}
         ],
-        "Australia": [
-            {
-                "name": "Fox Sports 507",
-                "code": "576"
-            }
+        "Croazia (Arena)": [
+            {"name": "Arena Sport 1 HR", "code": "ARENASPORT1HR"},
+            {"name": "Arena Sport 2 HR", "code": "ARENASPORT2HR"},
+            {"name": "Arena Sport 3 HR", "code": "ARENASPORT3HR"},
+            {"name": "Arena Sport 4 HR", "code": "ARENASPORT4HR"},
+            {"name": "Arena Sport 5 HR", "code": "ARENASPORT5HR"},
+            {"name": "Arena Sport 6 HR", "code": "ARENASPORT6HR"},
+            {"name": "Arena Sport 7 HR", "code": "ARENASPORT7HR"},
+            {"name": "Arena Sport 8 HR", "code": "ARENASPORT8HR"}
         ],
-        "BE": [
-            {
-                "name": "Play Sports 1",
-                "code": "687"
-            },
-            {
-                "name": "Play Sports 2",
-                "code": "688"
-            },
-            {
-                "name": "Play Sports 3",
-                "code": "689"
-            },
-            {
-                "name": "Play Sports 4",
-                "code": "690"
-            }
-        ],
-        "Bulgaria": [
-            {
-                "name": "EUROSPORT 1",
-                "code": "685"
-            },
-            {
-                "name": "EUROSPORT 2",
-                "code": "686"
-            },
-            {
-                "name": "MAX SPORT 1",
-                "code": "671"
-            },
-            {
-                "name": "MAX SPORT 2",
-                "code": "681"
-            },
-            {
-                "name": "MAX SPORT 3",
-                "code": "682"
-            },
-            {
-                "name": "MAX SPORT 4",
-                "code": "683"
-            },
-            {
-                "name": "NOVA SPORT",
-                "code": "684"
-            }
+        "Regno Unito": [
+            {"name": "Sky Sports F1 UK", "code": "SkySportsF1"},
+            {"name": "Sky Sports Racing UK", "code": "SkySportsRacing"},
+            {"name": "Sky Sports Tennis UK", "code": "skysportstennisuk"},
+            {"name": "TNT Sports 1 UK", "code": "TNT1UK"},
+            {"name": "TNT Sports 2 UK", "code": "tntsports2"},
+            {"name": "TNT Sports 3 UK", "code": "tntsports3"},
+            {"name": "TNT Sports 4 UK", "code": "tntsports4"}
         ],
         "Francia": [
-            {
-                "name": "CANAL+",
-                "code": "852"
-            }
+            {"name": "Foot+ FR", "code": "FOOTPLUSFR"},
+            {"name": "Canal+ Sport 360", "code": "CANALS360"},
+            {"name": "BeIN Sports 1 FR", "code": "BEINSPORT1FR"},
+            {"name": "BeIN Sports 2 FR", "code": "BEINSPORT2FR"},
+            {"name": "BeIN Sports 3 FR", "code": "BEINSPORT3FR"},
+            {"name": "BeIN MAX 4 FR", "code": "beINMAX4FR"},
+            {"name": "BeIN MAX 5 FR", "code": "beINMAX5FR"},
+            {"name": "BeIN MAX 6 FR", "code": "beINMAX6FR"},
+            {"name": "BeIN MAX 7 FR", "code": "beINMAX7FR"},
+            {"name": "BeIN MAX 8 FR", "code": "beINMAX8FR"},
+            {"name": "BeIN MAX 9 FR", "code": "beINMAX9FR"}
         ],
-        "Germania": [
-            {
-                "name": "Sky Sport Mix",
-                "code": "519"
-            },
-            {
-                "name": "Sport1",
-                "code": "520"
-            }
+        "Grecia (Cosmote)": [
+            {"name": "Cosmote Sport 1", "code": "COSMOTESPORT1"},
+            {"name": "Cosmote Sport 2", "code": "COSMOTESPORT2"},
+            {"name": "Cosmote Sport 3", "code": "COSMOTESPORT3"},
+            {"name": "Cosmote Sport 4", "code": "COSMOTESPORT4"},
+            {"name": "Cosmote Sport 5", "code": "COSMOTESPORT5"},
+            {"name": "Cosmote Sport 6", "code": "COSMOTESPORT6"},
+            {"name": "Cosmote Sport 7", "code": "COSMOTESPORT7"},
+            {"name": "Cosmote Sport 8", "code": "COSMOTESPORT8"},
+            {"name": "Cosmote Sport 9", "code": "COSMOTESPORT9"}
         ],
-        "Grecia": [
-            {
-                "name": "Cablenet Sports 3",
-                "code": "869"
-            },
-            {
-                "name": "Cosmote Sport 4",
-                "code": "853"
-            },
-            {
-                "name": "Cosmote Sport 5",
-                "code": "854"
-            },
-            {
-                "name": "Cosmote Sport 6",
-                "code": "855"
-            },
-            {
-                "name": "Cosmote Sport 7",
-                "code": "856"
-            },
-            {
-                "name": "Cosmote Sport 8",
-                "code": "857"
-            },
-            {
-                "name": "Cosmote Sport 9",
-                "code": "858"
-            },
-            {
-                "name": "NOVA SPORTS 1",
-                "code": "859"
-            },
-            {
-                "name": "NOVA SPORTS 2",
-                "code": "860"
-            },
-            {
-                "name": "NOVA SPORTS 3",
-                "code": "861"
-            },
-            {
-                "name": "NOVA SPORTS 4",
-                "code": "862"
-            },
-            {
-                "name": "NOVA SPORTS 5",
-                "code": "863"
-            },
-            {
-                "name": "NOVA SPORTS 6",
-                "code": "864"
-            },
-            {
-                "name": "NOVA SPORTS PRIME",
-                "code": "865"
-            },
-            {
-                "name": "NOVA SPORTS START",
-                "code": "867"
-            }
+        "Olanda (Ziggo)": [
+            {"name": "Ziggo Sport", "code": "ZiggoSport"},
+            {"name": "Ziggo Sport 2", "code": "ZiggoSport2"},
+            {"name": "Ziggo Sport 3", "code": "ZiggoSport3"},
+            {"name": "Ziggo Sport 4", "code": "ZiggoSport4"},
+            {"name": "Ziggo Sport 5", "code": "ZiggoSport5"},
+            {"name": "Ziggo Sport 6", "code": "ZiggoSport6"}
         ],
-        "KZ": [
-            {
-                "name": "Setanta Sports",
-                "code": "765"
-            }
+        "Romania (Digi/Prima)": [
+            {"name": "Prima Sport 1 RO", "code": "PrimaSport1"},
+            {"name": "Prima Sport 2 RO", "code": "PrimaSport2"},
+            {"name": "Prima Sport 3 RO", "code": "PrimaSport3"},
+            {"name": "Prima Sport 4 RO", "code": "PrimaSport4"},
+            {"name": "Prima Sport 5 RO", "code": "PrimaSport5"},
+            {"name": "Digi Sport 1 RO", "code": "DIGISPORT1"},
+            {"name": "Digi Sport 2 RO", "code": "DIGISPORT2"},
+            {"name": "Digi Sport 3 RO", "code": "DIGISPORT3"},
+            {"name": "Digi Sport 4 RO", "code": "DIGISPORT4"}
         ],
-        "MX": [
-            {
-                "name": "ESPN 1",
-                "code": "538"
-            },
-            {
-                "name": "ESPN 2",
-                "code": "539"
-            },
-            {
-                "name": "ESPN 3",
-                "code": "540"
-            },
-            {
-                "name": "FOX SPORTS 1",
-                "code": "535"
-            },
-            {
-                "name": "FOX SPORTS 2",
-                "code": "536"
-            },
-            {
-                "name": "FOX SPORTS 3",
-                "code": "537"
-            }
+        "Serbia (Sport Klub)": [
+            {"name": "Sport Klub 1 RS", "code": "SPORTKLUB1RS"},
+            {"name": "Sport Klub 2 RS", "code": "SPORTKLUB2RS"},
+            {"name": "Sport Klub 3 RS", "code": "SPORTKLUB3RS"},
+            {"name": "Sport Klub 4 RS", "code": "SPORTKLUB4RS"}
         ],
-        "NZ": [
-            {
-                "name": "Sky Sport Select",
-                "code": "733"
-            }
+        "Albania": [
+            {"name": "Tring Sport 1", "code": "TringSport1"},
+            {"name": "Tring Sport 2", "code": "TringSport2"},
+            {"name": "Tring Sport 3", "code": "TringSport3"},
+            {"name": "Super Sport 1", "code": "SSport1"},
+            {"name": "Super Sport 2", "code": "SSport2"},
+            {"name": "Super Sport 3", "code": "SSport3"},
+            {"name": "Super Sport 4", "code": "SSport4"},
+            {"name": "Super Sport 5", "code": "SSport5"},
+            {"name": "Super Sport 6", "code": "SSport6"},
+            {"name": "Super Sport 7", "code": "SSport7"}
         ],
-        "Other": [
-            {
-                "name": "Arena Sport 1 Slovak...",
-                "code": "631"
-            },
-            {
-                "name": "Arena Sport 2 Slovak...",
-                "code": "632"
-            },
-            {
-                "name": "CANAL+ SPORT 1 Afriq...",
-                "code": "692"
-            },
-            {
-                "name": "CANAL+ SPORT 2 Afriq...",
-                "code": "693"
-            },
-            {
-                "name": "CANAL+ SPORT 3 Afriq...",
-                "code": "694"
-            },
-            {
-                "name": "CANAL+ SPORT 4 Afriq...",
-                "code": "695"
-            },
-            {
-                "name": "CANAL+ SPORT 5 Afriq...",
-                "code": "697"
-            },
-            {
-                "name": "DIEMA SPORT",
-                "code": "667"
-            },
-            {
-                "name": "DIEMA SPORT 2",
-                "code": "668"
-            },
-            {
-                "name": "DIEMA SPORT 3",
-                "code": "669"
-            },
-            {
-                "name": "ELEVEN PRO LEAGUE 1...",
-                "code": "850"
-            },
-            {
-                "name": "ELEVEN PRO LEAGUE 2...",
-                "code": "851"
-            },
-            {
-                "name": "ESPN 2 ARG",
-                "code": "872"
-            },
-            {
-                "name": "ESPN 3 ARG",
-                "code": "873"
-            },
-            {
-                "name": "ESPN ARG",
-                "code": "871"
-            },
-            {
-                "name": "ESPN EXTRA ARG",
-                "code": "874"
-            },
-            {
-                "name": "ESPN EXTRA Brasil",
-                "code": "646"
-            },
-            {
-                "name": "ESPNU USA",
-                "code": "541"
-            },
-            {
-                "name": "EUROSPORT 1 Denmark",
-                "code": "830"
-            },
-            {
-                "name": "EUROSPORT 1 Iceland",
-                "code": "802"
-            },
-            {
-                "name": "EUROSPORT 1 Sweden",
-                "code": "815"
-            },
-            {
-                "name": "EUROSPORT 1 Turkey",
-                "code": "790"
-            },
-            {
-                "name": "EUROSPORT 2 Denmark",
-                "code": "831"
-            },
-            {
-                "name": "EUROSPORT 2 Iceland",
-                "code": "803"
-            },
-            {
-                "name": "EUROSPORT 2 Sweden",
-                "code": "816"
-            },
-            {
-                "name": "EUROSPORT 2 Turkey",
-                "code": "791"
-            },
-            {
-                "name": "EUROSPORT Norge",
-                "code": "820"
-            },
-            {
-                "name": "Extreme Sports",
-                "code": "774"
-            },
-            {
-                "name": "FOX COMEDY",
-                "code": "528"
-            },
-            {
-                "name": "FOX CRIME",
-                "code": "530"
-            },
-            {
-                "name": "FOX Life",
-                "code": "529"
-            },
-            {
-                "name": "FOX MOVIES",
-                "code": "521"
-            },
-            {
-                "name": "FOX SPORTS 2 ARG",
-                "code": "876"
-            },
-            {
-                "name": "FOX SPORTS 3 ARG",
-                "code": "877"
-            },
-            {
-                "name": "FOX SPORTS ARG",
-                "code": "875"
-            },
-            {
-                "name": "NOVA SPORTS PREMIER...",
-                "code": "866"
-            },
-            {
-                "name": "Polsat Sport Fight P...",
-                "code": "714"
-            },
-            {
-                "name": "Polsat Sport Premium...",
-                "code": "800"
-            },
-            {
-                "name": "Polsat Sport Premium...",
-                "code": "799"
-            },
-            {
-                "name": "SPORT LIVE Denmark",
-                "code": "829"
-            },
-            {
-                "name": "Sky Cinema Premiere...",
-                "code": "735"
-            },
-            {
-                "name": "Sport 1 Czech",
-                "code": "647"
-            },
-            {
-                "name": "Sport 2 Czech",
-                "code": "649"
-            },
-            {
-                "name": "SuperSport Golf",
-                "code": "732"
-            },
-            {
-                "name": "SuperSport Rugby",
-                "code": "601"
-            },
-            {
-                "name": "SuperSport Tennis",
-                "code": "731"
-            },
-            {
-                "name": "Síminn Sport 1 Icela...",
-                "code": "804"
-            },
-            {
-                "name": "Síminn Sport 2 Icela...",
-                "code": "805"
-            },
-            {
-                "name": "Síminn Sport 3 Icela...",
-                "code": "806"
-            },
-            {
-                "name": "Síminn Sport 4 Icela...",
-                "code": "807"
-            },
-            {
-                "name": "TNT SPORTS ARG",
-                "code": "878"
-            },
-            {
-                "name": "TV 2 Sport 1 Norway",
-                "code": "822"
-            },
-            {
-                "name": "TV 2 Sport 2 Norway",
-                "code": "823"
-            },
-            {
-                "name": "TV 2 Sport Denmark",
-                "code": "826"
-            },
-            {
-                "name": "TV 2 Sport Premium 2...",
-                "code": "825"
-            },
-            {
-                "name": "TV 2 Sport Premium N...",
-                "code": "824"
-            },
-            {
-                "name": "TV 2 Sport X Denmark",
-                "code": "827"
-            },
-            {
-                "name": "TV3 Sport Denmark",
-                "code": "828"
-            },
-            {
-                "name": "Trace Sports",
-                "code": "610"
-            },
-            {
-                "name": "TyC Sports ARG",
-                "code": "880"
-            },
-            {
-                "name": "Viasat Sport 1 Swede...",
-                "code": "817"
-            },
-            {
-                "name": "Viasat Sport 2 Norwa...",
-                "code": "813"
-            },
-            {
-                "name": "Viasat Sport 3 Norwa...",
-                "code": "812"
-            },
-            {
-                "name": "Viasat Sport Extra S...",
-                "code": "808"
-            },
-            {
-                "name": "Viasat Sport Footbal...",
-                "code": "810"
-            },
-            {
-                "name": "Viasat Sport Motor S...",
-                "code": "819"
-            },
-            {
-                "name": "Viasat Sport Norway",
-                "code": "814"
-            },
-            {
-                "name": "Viasat Sport Plus No...",
-                "code": "811"
-            },
-            {
-                "name": "Viasat Sport Premium...",
-                "code": "818"
-            },
-            {
-                "name": "Viasat Sport Vinter...",
-                "code": "809"
-            },
-            {
-                "name": "sports tv Turkey",
-                "code": "713"
-            }
+        "Bulgaria": [
+            {"name": "Diema Sport", "code": "DiemaSport"},
+            {"name": "Diema Sport 2", "code": "DiemaSport2"},
+            {"name": "Diema Sport 3", "code": "DiemaSport3"},
+            {"name": "Max Sport 1 BG", "code": "MaxSportBG"},
+            {"name": "Max Sport 2 BG", "code": "MaxSport2BG"},
+            {"name": "Max Sport 3 BG", "code": "MaxSport3BG"},
+            {"name": "Max Sport 4 BG", "code": "MaxSport4BG"},
+            {"name": "Eurosport 1 BG", "code": "EURO1BG"},
+            {"name": "Eurosport 2 BG", "code": "EURO2BG"}
         ],
         "Polonia": [
-            {
-                "name": "ELEVEN SPORTS 3",
-                "code": "797"
-            },
-            {
-                "name": "ELEVEN SPORTS 4",
-                "code": "798"
-            }
+            {"name": "Polsat Sport", "code": "POLSATSPORTPL"},
+            {"name": "Polsat Sport 2", "code": "POLSATSPORTEXTRA"},
+            {"name": "Polsat Sport 3", "code": "POLSATSPORTNEWS"},
+            {"name": "Polsat Sport Fight", "code": "PolsatSportFight"},
+            {"name": "Polsat Sport Premium 1", "code": "PolsatSportPremium1"},
+            {"name": "Polsat Sport Premium 2", "code": "PolsatSportPremium2"},
+            {"name": "Eleven Sports 1 PL", "code": "ElevenSports1PL"},
+            {"name": "Eleven Sports 2 PL", "code": "ElevenSports2PL"},
+            {"name": "Eleven Sports 3 PL", "code": "ElevenSports3PL"},
+            {"name": "Eleven Sports 4 PL", "code": "ElevenSports4PL"}
         ],
         "Portogallo": [
-            {
-                "name": "FOX",
-                "code": "527"
-            }
+            {"name": "Sport TV 1", "code": "SPT1"},
+            {"name": "Sport TV 2", "code": "SPT2"},
+            {"name": "Sport TV 3", "code": "SPT3"},
+            {"name": "Sport TV 4", "code": "SPT4"},
+            {"name": "Sport TV 5", "code": "SPT5"},
+            {"name": "Sport TV 6", "code": "SPT6"}
         ],
-        "RS": [
-            {
-                "name": "EUROSPORT 1",
-                "code": "605"
-            },
-            {
-                "name": "EUROSPORT 2",
-                "code": "794"
-            }
+        "USA": [
+            {"name": "Tennis Channel", "code": "TENNISCHANNEL"},
+            {"name": "Fox Deportes", "code": "FOXDEPORTES"},
+            {"name": "ESPN", "code": "ESPN"},
+            {"name": "Fox Sports 1", "code": "FoxSports1"},
+            {"name": "Golf Channel", "code": "GolfChannel"}
         ],
-        "RU": [
-            {
-                "name": "EUROSPORT 1",
-                "code": "716"
-            },
-            {
-                "name": "EUROSPORT 2",
-                "code": "718"
-            }
+        "Repubblica Ceca": [
+            {"name": "Sport 1 CZ", "code": "SPORT1CZ"},
+            {"name": "Sport 2 CZ", "code": "SPORT2CZ"}
         ],
-        "Romania": [
-            {
-                "name": "Sport Extra",
-                "code": "722"
-            }
+        "Svezia (TV4)": [
+            {"name": "TV4 Sport Live 1", "code": "TV4SportLive1"},
+            {"name": "TV4 Sport Live 2", "code": "TV4SportLive2"},
+            {"name": "TV4 Sport Live 3", "code": "TV4SportLive3"},
+            {"name": "TV4 Sport Live 4", "code": "TV4SportLive4"},
+            {"name": "TV4 Sportkanalen", "code": "TV4Sportkanalen"},
+            {"name": "TV4 Tennis", "code": "TV4Tennis"},
+            {"name": "TV4 Fotball", "code": "TV4Fotball"}
         ],
-        "TV": [
-            {
-                "name": "Sharjah Sports",
-                "code": "701"
-            }
-        ],
-        "XK": [
-            {
-                "name": "ART Sport 1",
-                "code": "634"
-            },
-            {
-                "name": "ART Sport 2",
-                "code": "635"
-            },
-            {
-                "name": "ART Sport 3",
-                "code": "636"
-            },
-            {
-                "name": "ART Sport 4",
-                "code": "637"
-            },
-            {
-                "name": "ART Sport 5",
-                "code": "638"
-            },
-            {
-                "name": "ART Sport 6",
-                "code": "639"
-            }
+        "Spagna": [
+            {"name": "DAZN F1 ES", "code": "DAZNF1ES"},
+            {"name": "DAZN MotoGP ES", "code": "DAZNGPES"},
+            {"name": "Vamos ES", "code": "VamosES"},
+            {"name": "Movistar Deportes ES", "code": "MDEPORTES"}
         ]
     }
 }
