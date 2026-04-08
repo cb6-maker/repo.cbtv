@@ -1,5 +1,5 @@
 {
-    "version": 100,
+    "version": 103,
     "sky_it_api_base": "https://apid.sky.it/gtv/v1/events",
     "foreign_epg_sources": [
         { "name": "Italy", "url": "https://epgshare01.online/epgshare01/epg_ripper_IT1.xml.gz" },
