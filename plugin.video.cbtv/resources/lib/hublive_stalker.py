@@ -207,7 +207,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "2.8.7"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "2.8.8"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _get_cache(self, key):
         f = os.path.join(self.cache_dir, f"hl_{key}.json")
