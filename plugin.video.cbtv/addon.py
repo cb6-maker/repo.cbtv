@@ -8,11 +8,13 @@ import xbmc
 import base64
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta
+# pyrefly: ignore [missing-import]
 import xbmcvfs
 import gzip
 # from resources.lib.scraper import get_oasport_events # Rimosso in favore di EPG reale
 from resources.lib.epg_client import EPGClient
-from resources.lib.eagle_stalker import EagleStalkerClient
+# eagle_stalker rimosso — tutto gestito da hublive_stalker
+from resources.lib.hublive_stalker import HubliveStalkerClient
 import time
 import threading
 import hashlib
@@ -57,7 +59,51 @@ def _sc_decode(data_b64, key):
         return out.decode("utf-8")
     except: return ""
 
-SC_DOMAIN = "streamingcommunityz.nl"
+def get_sc_domain():
+    default_domain = "streamingcommunityz.organic"
+    try:
+        try:
+            s4me_path = xbmcvfs.translatePath("special://home/addons/plugin.video.s4me/channels.json")
+        except AttributeError:
+            s4me_path = xbmc.translatePath("special://home/addons/plugin.video.s4me/channels.json")
+            
+        if xbmcvfs.exists(s4me_path):
+            with xbmcvfs.File(s4me_path) as f:
+                content = f.read()
+                if isinstance(content, bytes):
+                    content = content.decode('utf-8')
+                data = json.loads(content)
+                domain = data.get("direct", {}).get("streamingcommunity", "")
+                if domain:
+                    from urllib.parse import urlparse
+                    parsed = urlparse(domain)
+                    if parsed.netloc:
+                        return parsed.netloc
+    except Exception as e:
+        xbmc.log(f"[CBTV] Errore lettura dominio locale da stream4me: {e}", xbmc.LOGWARNING)
+        
+    try:
+        import requests
+        r = requests.get("https://raw.githubusercontent.com/stream4me/addon/master/channels.json", timeout=5)
+        if r.status_code == 200:
+            data = r.json()
+            domain = data.get("direct", {}).get("streamingcommunity", "")
+            if domain:
+                from urllib.parse import urlparse
+                parsed = urlparse(domain)
+                if parsed.netloc:
+                    return parsed.netloc
+    except Exception as e:
+        xbmc.log(f"[CBTV] Errore lettura dominio remoto di stream4me: {e}", xbmc.LOGWARNING)
+
+    try:
+        remote_cfg = get_remote_config()
+        if remote_cfg and "sc_domain" in remote_cfg:
+            return remote_cfg["sc_domain"]
+    except Exception as e:
+        pass
+
+    return default_domain
 CIPHERS = "ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384"
 
 class SCAdapter(HTTPAdapter):
@@ -98,7 +144,7 @@ def extract_data_page(html):
 def sc_search(query, filter_type=None):
     scraper = get_scraper()
     if not scraper: return []
-    url = f"https://{SC_DOMAIN}/it/search?q={quote(query)}"
+    url = f"https://{get_sc_domain()}/it/search?q={quote(query)}"
     try:
         r = scraper.get(url, timeout=10)
         data = extract_data_page(r.text)
@@ -107,16 +153,47 @@ def sc_search(query, filter_type=None):
         results = []
         for i in titles:
             thumb = ''
+            fanart = ''
             if i.get('images'):
-                img_obj = next((img for img in i['images'] if img.get('type') == 'poster'), None)
-                if not img_obj: img_obj = i['images'][0]
-                if img_obj and img_obj.get('filename'):
-                    thumb = f"https://cdn.{SC_DOMAIN}/images/{img_obj['filename']}"
+                poster_obj = next((img for img in i['images'] if img.get('type') == 'poster'), None)
+                cover_obj = next((img for img in i['images'] if img.get('type') == 'cover'), None)
+                if not poster_obj: poster_obj = i['images'][0]
+                if poster_obj and poster_obj.get('filename'):
+                    thumb = f"https://cdn.{get_sc_domain()}/images/{poster_obj['filename']}"
+                if cover_obj and cover_obj.get('filename'):
+                    fanart = f"https://cdn.{get_sc_domain()}/images/{cover_obj['filename']}"
             
             type_val = "tvshow" if "tv" in i.get('type','').lower() else "movie"
             if filter_type and type_val != filter_type: continue
-                
-            results.append({"id": i.get('id'), "title": i.get('name') or i.get('title'), "slug": i.get('slug'), "type": type_val, "thumb": thumb})
+            
+            # Metadati extra (come stream4me)
+            lang = 'Sub-ITA' if i.get('sub_ita', 0) == 1 else 'ITA'
+            
+            # Plot, anno e runtime sono dentro 'translations', non nei campi root
+            translations = {tr['key']: tr['value'] for tr in i.get('translations', []) if tr.get('key')}
+            plot = translations.get('plot', '') or i.get('plot', '')
+            
+            year = ''
+            date_str = translations.get('last_air_date', '') or i.get('release_date', '') or i.get('last_air_date', '')
+            if date_str and '-' in str(date_str):
+                year = str(date_str).split('-')[0]
+            
+            runtime = translations.get('runtime', '')
+            
+            results.append({
+                "id": i.get('id'),
+                "title": translations.get('name', '') or i.get('name') or i.get('title'),
+                "slug": i.get('slug'),
+                "type": type_val,
+                "thumb": thumb,
+                "fanart": fanart or thumb,
+                "lang": lang,
+                "year": year,
+                "plot": plot,
+                "score": i.get('score', ''),
+                "seasons_count": i.get('seasons_count', 0),
+                "runtime": runtime,
+            })
         return results
     except Exception as e:
         xbmc.log(f"[CBTV] SC_SEARCH Error: {e}", xbmc.LOGERROR)
@@ -125,7 +202,7 @@ def sc_search(query, filter_type=None):
 def sc_get_seasons_episodes(sc_id, slug):
     scraper = get_scraper()
     if not scraper: return []
-    url = f"https://{SC_DOMAIN}/it/titles/{sc_id}-{slug}"
+    url = f"https://{get_sc_domain()}/it/titles/{sc_id}-{slug}"
     try:
         r = scraper.get(url, timeout=10)
         data = extract_data_page(r.text)
@@ -146,7 +223,7 @@ def sc_get_seasons_episodes(sc_id, slug):
                         img_obj = next((img for img in e['images'] if img.get('type') == 'cover'), None)
                         if not img_obj: img_obj = e['images'][0]
                         if img_obj and img_obj.get('filename'):
-                            thumb = f"https://cdn.{SC_DOMAIN}/images/{img_obj['filename']}"
+                            thumb = f"https://cdn.{get_sc_domain()}/images/{img_obj['filename']}"
                     
                     parsed_eps.append({"number": e['number'], "title": e.get('name', f"Ep {e['number']}"), "id": e['id'], "plot": e.get('plot', ''), "thumb": thumb})
                 
@@ -158,7 +235,7 @@ def sc_resolve(sc_id, ep_id=None):
     import html
     scraper = get_scraper()
     if not scraper: return None
-    iframe_url = f"https://{SC_DOMAIN}/it/iframe/{sc_id}"
+    iframe_url = f"https://{get_sc_domain()}/it/iframe/{sc_id}"
     if ep_id: iframe_url += f"?episode_id={ep_id}"
     try:
         r = scraper.get(iframe_url, timeout=15)
@@ -269,37 +346,27 @@ def get_remote_config():
 # Default hardcoded (usato se GitHub non risponde)
 # Default hardcoded (usato se GitHub non risponde)
 DEFAULT_CONFIG = {
-    "version": 54,
+    "version": 101,
     "sky_it_api_base": "https://apid.sky.it/gtv/v1/events",
-    "mediahosting": {
-        "embed_base_url": "https://mediahosting.space/embed/player?stream=",
-        "no_register_param": "&no_register=true",
-        "referer": "https://mediahosting.space/",
-        "source_regex": "<source src=\"(.*?)\"",
-        "channels": [
-            {"name": "Sky Sport 24", "code": "334", "sky_id": 9094},
-            {"name": "Sky Sport Uno", "code": "326", "sky_id": 9097},
-            {"name": "Sky Sport Calcio", "code": "333", "sky_id": 9113},
-            {"name": "Sky Sport Arena", "code": "331", "sky_id": 9093},
-            {"name": "Sky Sport Max", "code": "332", "sky_id": 9103},
-            {"name": "Sky Sport Tennis", "code": "329", "sky_id": 11237},
-            {"name": "Sky Sport F1", "code": "327", "sky_id": 9096},
-            {"name": "Sky Sport MotoGP", "code": "330", "sky_id": 9102},
-            {"name": "Sky Sport Basket", "code": "335", "sky_id": 9116},
-            {"name": "Sky Sport Golf", "code": "237", "sky_id": 10254},
-            {"name": "Sky Sport Mix", "code": "337", "sky_id": 12345},
-            {"name": "DAZN 1", "code": "325", "sky_id": 11402}
-        ]
-    },
     "freeshot_v3": {
         "player_base_url": "https://lovetier.bz/player/",
-        "stream_base_url": "https://beautifulpeople.lovecdn.ru/",
+        "stream_base_url": "https://beautifulpeople.lovetier.bz/",
         "stream_path": "/tracks-v1a1/mono.m3u8",
         "referer": "https://lovetier.bz/",
         "token_regex": "currentToken: \"([^\"]+)\"",
         "channels": [
-            {"name": "Sky Sport Max", "code": "715", "sky_id": 9103},
-            {"name": "Sky Sport Mix", "code": "700", "sky_id": 12345}
+            {"name": "Sky Sport 24", "code": "SkySport24IT", "sky_id": 9094},
+            {"name": "Sky Sport Uno", "code": "SkySportUnoIT", "sky_id": 9097},
+            {"name": "Sky Sport Calcio", "code": "SkySportCalcioIT", "sky_id": 9113},
+            {"name": "Sky Sport Arena", "code": "SkySportArenaIT", "sky_id": 9093},
+            {"name": "Sky Sport Max", "code": "SkySportMaxIT", "sky_id": 9103},
+            {"name": "Sky Sport Tennis", "code": "SkySportTennisIT", "sky_id": 11237},
+            {"name": "Sky Sport F1", "code": "SkySportF1IT", "sky_id": 9096},
+            {"name": "Sky Sport MotoGP", "code": "SkySportMotoGPIT", "sky_id": 9102},
+            {"name": "Sky Sport Basket", "code": "SkySportBasketIT", "sky_id": 9116},
+            {"name": "Sky Sport Golf", "code": "SkySportGolfIT", "sky_id": 10254},
+            {"name": "Sky Sport Mix", "code": "SkySportMixIT", "sky_id": 12345},
+            {"name": "DAZN 1", "code": "ZonaDAZN", "sky_id": 11402}
         ]
     },
     "international_sport_fs": {
@@ -605,19 +672,24 @@ def search_live_channels(query=None):
     except Exception as e:
         xbmc.log(f"[CBTV] Search Premium Error: {e}", xbmc.LOGERROR)
 
-    # 4. Canali da EAGLE STALKER (EB)
+    # 4. Canali da Hublive (HB)
     try:
-        eb_client = EagleStalkerClient()
+        from resources.lib.hublive_stalker import HubliveStalkerClient
+        hl_client = HubliveStalkerClient()
         # Sky TV/Cinema
-        for ch in eb_client.get_sky_tv_channels():
+        for ch in hl_client.get_sky_tv_channels():
             if q in ch['name'].lower():
-                results.append((f"{ch['name']} [COLOR lightblue](EB Cinema)[/COLOR]", {"action": "play_eagle_stalker", "cmd": ch['cmd'], "title": ch['name']}, None, False))
+                results.append((f"{ch['name']} [COLOR lightblue](HB Cinema)[/COLOR]", {"action": "play_hublive_stalker", "cmd": ch['cmd'], "title": ch['name']}, None, False))
         # DAZN
-        for ch in eb_client.get_dazn_channels():
+        for ch in hl_client.get_dazn_channels():
             if q in ch['name'].lower():
-                results.append((f"{ch['name']} [COLOR orange](EB Dazn)[/COLOR]", {"action": "play_eagle_stalker", "cmd": ch['cmd'], "title": ch['name']}, None, False))
+                results.append((f"{ch['name']} [COLOR orange](HB Dazn)[/COLOR]", {"action": "play_hublive_stalker", "cmd": ch['cmd'], "title": ch['name']}, None, False))
+        # Sky Sport
+        for ch in hl_client.get_sky_sport_channels():
+            if q in ch['name'].lower():
+                results.append((f"{ch['name']} [COLOR cyan](HB Sport)[/COLOR]", {"action": "play_hublive_stalker", "cmd": ch['cmd'], "title": ch['name']}, None, False))
     except Exception as e:
-        xbmc.log(f"[CBTV] EB Search Error: {e}", xbmc.LOGERROR)
+        xbmc.log(f"[CBTV] HB Search Error: {e}", xbmc.LOGERROR)
 
     # 5. Mostra i risultati
     if not results:
@@ -635,7 +707,9 @@ def list_sport():
 
     add_directory_item("[COLOR cyan][B]Sky Sport (Lista FS)[/B][/COLOR]", {"action": "list_freeshot_v3"})
     add_directory_item("[COLOR cyan][B]Sky Sport (Premium)[/B][/COLOR]", {"action": "list_premium_sport"})
-    add_directory_item("[COLOR orange][B]Dazn (EB)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "dazn_only"})
+    add_directory_item("[COLOR cyan][B]Sky Sport (HB)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_sport"})
+    add_directory_item("[COLOR orange][B]Dazn (HB)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "dazn_only"})
+    add_directory_item("[COLOR orange][B]Dazn (MH)[/B][/COLOR]", {"action": "list_dazn_mh"})
     
     add_directory_item("[COLOR violet][B]Canali Internazionali[/B][/COLOR]", {"action": "list_international_sport"})
     
@@ -650,7 +724,53 @@ def list_international_sport():
     xbmcplugin.endOfDirectory(HANDLE)
 
 
+def list_dazn_mh():
+    """Lista canali Dazn da fonte MediaHosting"""
+    xbmcplugin.setContent(HANDLE, 'videos')
+    
+    # Canali forniti dall'utente
+    channels = [
+        {"name": "DAZN 1 (MH 1)", "url": "https://1nyaler.screenistream.xyz/stream/5/index.m3u8?token=aN7QrmHIoz60HOhI"},
+        {"name": "DAZN 1 (MH 2)", "url": "https://1nyaler.screenistream.xyz/stream/136/index.m3u8?token=aN7QrmHIoz60HOhI"}
+    ]
+    
+    for ch in channels:
+        add_directory_item(
+            f"[COLOR orange]{ch['name']}[/COLOR]",
+            {"action": "play_dazn_mh", "url": ch["url"], "title": ch["name"]},
+            is_folder=False,
+            is_playable=True
+        )
+    
+    xbmcplugin.endOfDirectory(HANDLE)
 
+def play_dazn_mh(url, title):
+    """Riproduce stream MH con gli header necessari"""
+    try:
+        li = xbmcgui.ListItem(path=url)
+        li.setInfo('video', {'title': title})
+        
+        # Headers necessari per questa fonte
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
+            'Origin': 'https://mediahosting.space',
+            'Referer': 'https://mediahosting.space/'
+        }
+        
+        # Costruiamo la stringa degli header per Kodi
+        header_str = "|".join([f"{k}={quote(v)}" for k, v in headers.items()])
+        full_url = f"{url}|{header_str}"
+        
+        li.setPath(full_url)
+        li.setProperty('inputstream', 'inputstream.adaptive')
+        li.setProperty('inputstream.adaptive.manifest_type', 'hls')
+        li.setMimeType('application/x-mpegURL')
+        li.setContentLookup(False)
+        
+        xbmcplugin.setResolvedUrl(HANDLE, True, listitem=li)
+    except Exception as e:
+        xbmc.log(f"[CBTV] Error play_dazn_mh: {e}", xbmc.LOGERROR)
+        xbmcgui.Dialog().notification("Errore Play", str(e), xbmcgui.NOTIFICATION_ERROR)
 
 
 def list_international_country(country):
@@ -1136,183 +1256,155 @@ def play_mpd(resolve_data):
         xbmcplugin.setResolvedUrl(HANDLE, False, xbmcgui.ListItem())
 
 def list_eagle_genres(eb_type):
-    """Elenca le categorie o i canali di Eagle Black secondo la struttura ESATTA richiesta"""
+    """Elenca le categorie o i canali di Hublive"""
     xbmcplugin.setContent(HANDLE, 'videos')
-    from resources.lib.eagle_stalker import clean_text
-    client = EagleStalkerClient()
+    from resources.lib.hublive_stalker import HubliveStalkerClient
+    hl_client = HubliveStalkerClient()
     
     if eb_type == "sky_tv":
         # Canali Intrattenimento: Sostituito con Fonte Premium Stabile
-        list_premium_live("A1A260")
+        list_premium_live("A1A260", end_dir=False)
+        
+        # Aggiunta Canali Intrattenimento e Cinema da Hublive
+        hl_channels = hl_client.get_sky_tv_channels()
+        for ch in hl_channels:
+            title = f"{ch['name']} [COLOR yellow](HB)[/COLOR]"
+            add_directory_item(title, {"action": "play_hublive_stalker", "cmd": ch['cmd']}, is_folder=False, is_playable=True)
             
     elif eb_type == "dazn_only":
-        # DAZN: Mostriamo i canali DIRETTAMENTE
-        channels = client.get_dazn_channels()
-        for ch in channels:
-            title = f"{ch['name']} [COLOR orange](EB)[/COLOR]"
-            add_directory_item(title, {"action": "play_eagle_stalker", "cmd": ch['cmd']}, is_folder=False, is_playable=True)
-            
+        # DAZN Hublive
+        hl_channels = hl_client.get_dazn_channels()
+        for ch in hl_channels:
+            title = f"{ch['name']} [COLOR orange](HB)[/COLOR]"
+            add_directory_item(title, {"action": "play_hublive_stalker", "cmd": ch['cmd']}, is_folder=False, is_playable=True)
             
     elif eb_type == "sky_sport":
-        # Sky Sport: Mostriamo i canali DIRETTAMENTE
-        channels = client.get_sky_sport_channels()
-        for ch in channels:
-            title = f"{ch['name']} [COLOR cyan](EB)[/COLOR]"
-            add_directory_item(title, {"action": "play_eagle_stalker", "cmd": ch['cmd']}, is_folder=False, is_playable=True)
+        # Sky Sport Hublive
+        hl_channels = hl_client.get_sky_sport_channels()
+        for ch in hl_channels:
+            title = f"{ch['name']} [COLOR cyan](HB)[/COLOR]"
+            add_directory_item(title, {"action": "play_hublive_stalker", "cmd": ch['cmd']}, is_folder=False, is_playable=True)
         
     xbmcplugin.endOfDirectory(HANDLE)
 
 
-def list_eagle_stalker(genre_id):
-    """Elenca i canali di una specifica categoria Eagle Black (Lista de-emoticonizzata)"""
-    xbmcplugin.setContent(HANDLE, 'videos')
-    from resources.lib.eagle_stalker import clean_text
-    client = EagleStalkerClient()
-    
-    # Carichiamo i canali (1-10 pagine per sicurezza se necessario, limitato a 3)
-    all_ch = []
-    for p in range(1, 4):
-        res = client.get_channels_by_genre(genre_id, p)
-        if res and 'data' in res and res['data']:
-            all_ch.extend(res['data'])
-        else:
-            break
-        
-    for ch in all_ch:
-        name = clean_text(ch.get('name', 'Unknown'))
-        title = f"{name} [COLOR lightblue](EB)[/COLOR]"
-        add_directory_item(title, {"action": "play_eagle_stalker", "cmd": ch['cmd']}, is_folder=False, is_playable=True)
-        
-    xbmcplugin.endOfDirectory(HANDLE)
 
-class EaglePlayer(xbmc.Player):
-    def __init__(self, client, mac, cmd):
+
+
+
+class HBPlayer(xbmc.Player):
+    """Player con callback per distinguere stop manuale da caduta stream."""
+    def __init__(self):
         super().__init__()
-        self.client = client
-        self.mac = mac
-        self.cmd = cmd
-        self.active = True
-        self.av_started = False
-        self.start_time = time.time()
-        xbmc.log(f"[CBTV] EaglePlayer monitor avviato per MAC {mac}", xbmc.LOGINFO)
+        self.stopped_by_user = False  # True se l'utente preme stop
+        self.playback_error = False   # True se errore stream
+        self.playback_ended = False   # True se stream finisce
+        self.av_started = False       # True quando il video parte davvero
 
     def onAVStarted(self):
         self.av_started = True
-        self.start_time = time.time()
-        xbmc.log("[CBTV] EaglePlayer AV Started OK", xbmc.LOGINFO)
-        # Avvia il loop di heartbeat in un thread separato
-        threading.Thread(target=self._heartbeat_loop, daemon=True).start()
-
-    def _heartbeat_loop(self):
-        """Invia un segnale ogni 15 secondi per mantenere viva la sessione API (fondamentale per DAZN)"""
-        while self.active and not xbmc.Monitor().abortRequested():
-            if self.isPlaying():
-                success = self.client.send_heartbeat(self.mac, self.cmd)
-                xbmc.log(f"[CBTV] Eagle Heartbeat (MAC {self.mac}): {'OK' if success else 'FAIL'}", xbmc.LOGDEBUG)
-            else:
-                break
-            # Dorme 5-15 secondi (intervallo più aggressivo)
-            for _ in range(15):
-                if not self.active or xbmc.Monitor().abortRequested(): break
-                time.sleep(1)
 
     def onPlayBackStopped(self):
-        self.active = False
-        xbmc.log("[CBTV] EaglePlayer Playback Stopped", xbmc.LOGINFO)
+        # L'utente ha premuto stop/back
+        self.stopped_by_user = True
+
+    def onPlayBackError(self):
+        # Errore nello stream (MAC bloccato, server down)
+        self.playback_error = True
 
     def onPlayBackEnded(self):
-        self.active = False
+        # Stream terminato (spesso = caduta per MAC esaurito)
+        self.playback_ended = True
 
-def play_eagle_stalker(cmd):
-    """Riproduce Eagle Stalker con rotazione MAC aggressiva e scarto dei falliti index"""
-    client = EagleStalkerClient()
-    
-    # Creiamo una copia del pool e la mescoliamo per distribuire il carico tra gli utenti
-    working_pool = list(client._MAC_POOL)
-    random.shuffle(working_pool)
-    
-    attempts = 0
-    max_attempts = len(working_pool) # Proviamo tutti i MAC disponibili se necessario
-    
-    while working_pool and attempts < 3: # Limitiamo a 3 tentativi totali per non tediare l'utente
-        attempts += 1
-        current_mac = working_pool.pop(0) # Prendi il primo MAC e rimuovilo dal pool attuale
-        
-        xbmc.log(f"[CBTV] Play EB Tentativo {attempts} con MAC: {current_mac}", xbmc.LOGINFO)
-        client.update_mac_headers(current_mac)
-        
-        # 1. Ottieni stream per questo specifico MAC
-        res = client._call("create_link", {'cmd': cmd, 'forced_storage': '0', 'download': '0'})
-        url = res.get('cmd', '')
-        
-        if not url:
-            xbmc.log(f"[CBTV] MAC {current_mac} rifiutato dal server (handshake/link fail)", xbmc.LOGWARNING)
-            continue
 
-        stream_url = url.split(" ")[1] if " " in url else url
+def play_hublive_stalker(cmd):
+    """Riproduce un canale Hublive con auto-riconnessione e rotazione MAC completa."""
+    client = HubliveStalkerClient()
+    failed_macs = set()       # MAC che hanno fallito (handshake, play o stream caduto)
+    max_attempts = len(client._MAC_POOL)  # Prova tutti i MAC disponibili
+    reconnect_delay = 2
+    first_attempt = True      # Per gestire setResolvedUrl vs Player.play()
+    
+    for attempt in range(max_attempts):
+        if not first_attempt:
+            xbmc.log(f"[CBTV-HB] Tentativo {attempt + 1}, MAC esclusi: {len(failed_macs)}/{max_attempts}", xbmc.LOGINFO)
+            if attempt <= 3:  # Notifica solo i primi tentativi per non spammare
+                xbmcgui.Dialog().notification("HB", f"Cambio canale... ({attempt + 1})", xbmcgui.NOTIFICATION_INFO, 1500)
+            xbmc.sleep(reconnect_delay * 1000)
         
-        # Segnale di START visione (indispensabile)
-        try:
-            ch_id = "0"
-            if "ch/" in cmd: ch_id = cmd.split("ch/")[1].split("_")[0]
-            client._call("log", {
-                'type': 'stb', 
-                'action': 'log',
-                'real_action': 'play', 
-                'param': stream_url,
-                'content_id': ch_id
-            })
-        except: pass
-
-        # 2. Configura l'URL con gli headers MAG completi (X-STB inclusi)
-        sn = client.serial
-        ua = client.headers.get('User-Agent', '')
-        xua = client.headers.get('X-User-Agent', '')
-        did = client.device_id
+        final_url, mac = client.resolve_stream(cmd, exclude_macs=failed_macs)
         
-        # Aggiungiamo SN, X-STB-Serial e X-STB-ID anche al player video
-        final_url = f"{stream_url}|User-Agent={quote(ua)}&X-User-Agent={quote(xua)}&SN={quote(sn)}&X-STB-Serial={quote(sn)}&X-STB-ID={quote(did)}"
+        if not final_url:
+            xbmc.log(f"[CBTV-HB] Nessun MAC rimasto dopo {len(failed_macs)} falliti", xbmc.LOGWARNING)
+            break
         
+        # Crea player con tracking eventi
+        hb_player = HBPlayer()
         list_item = xbmcgui.ListItem(path=final_url)
         list_item.setArt({'fanart': FANART})
-
         
-        # Disattiviamo adaptive per i flussi TS nativi (molto più stabili)
-        if ".m3u8" in final_url and "extension=ts" not in final_url:
-            list_item.setMimeType('application/x-mpegURL')
-            list_item.setProperty('inputstream', 'inputstream.adaptive')
-            list_item.setProperty('inputstream.adaptive.manifest_type', 'hls')
-
+        if first_attempt:
+            xbmcplugin.setResolvedUrl(HANDLE, True, list_item)
+            first_attempt = False
+        else:
+            hb_player.play(final_url, list_item)
         
-        # 3. Avvia il Player Monitor
-        player = EaglePlayer(client, current_mac, cmd)
-        xbmcplugin.setResolvedUrl(HANDLE, True, list_item)
+        xbmc.log(f"[CBTV-HB] Stream avviato con MAC {mac}", xbmc.LOGINFO)
         
-        # 4. Monitoraggio critico (primi 20 secondi)
-        success_threshold = 20 
-        time.sleep(3) # Tempo di buffering
+        monitor = xbmc.Monitor()
         
-        stable = True
-        while time.time() - player.start_time < success_threshold:
-            if xbmc.Monitor().abortRequested(): return
-            if not player.isPlaying() and time.time() - player.start_time > 8:
-                xbmc.log(f"[CBTV] MAC {current_mac} instabile (chiuso dopo {int(time.time()-player.start_time)}s). Provo il prossimo...", xbmc.LOGWARNING)
-                player.active = False
-                stable = False
+        # Fase 1: Attendi avvio (max 10 secondi)
+        start_time = time.time()
+        while time.time() - start_time < 10:
+            if monitor.abortRequested():
+                return
+            if hb_player.av_started or hb_player.isPlaying():
                 break
-            time.sleep(1)
+            if hb_player.playback_error or hb_player.stopped_by_user:
+                break
+            xbmc.sleep(500)
         
-        if stable:
-            xbmc.log(f"[CBTV] Sessione stabilizzata con MAC {current_mac}", xbmc.LOGINFO)
+        if not hb_player.isPlaying() and not hb_player.av_started:
+            if hb_player.stopped_by_user:
+                xbmc.log("[CBTV-HB] Utente ha fermato prima dell'avvio", xbmc.LOGINFO)
+                return
+            # MAC non ha funzionato — escludilo e riprova
+            xbmc.log(f"[CBTV-HB] Stream non partito con MAC {mac}, escludo e riprovo", xbmc.LOGWARNING)
+            failed_macs.add(mac)
+            continue
+        
+        # Fase 2: Monitora playback — distingui stop manuale da crash
+        while hb_player.isPlaying():
+            if monitor.abortRequested():
+                return
+            xbmc.sleep(1000)
+        
+        # Playback terminato — perché?
+        if hb_player.stopped_by_user:
+            xbmc.log("[CBTV-HB] Stop manuale dell'utente. Nessuna riconnessione.", xbmc.LOGINFO)
             return
+        
+        if hb_player.playback_error or hb_player.playback_ended:
+            xbmc.log(f"[CBTV-HB] Stream caduto con MAC {mac}, escludo e riprovo", xbmc.LOGWARNING)
+            failed_macs.add(mac)
+            continue
+        
+        # Nessun evento specifico catturato — non riconnettersi
+        xbmc.log("[CBTV-HB] Playback terminato senza eventi specifici", xbmc.LOGINFO)
+        return
+    
+    # Tutti i MAC esauriti
+    xbmcgui.Dialog().notification("Play HB", "Tutti i MAC esauriti. Riprova più tardi.", xbmcgui.NOTIFICATION_ERROR)
 
-    xbmcgui.Dialog().notification("Play EB", "Tutti i tentativi falliti. Server saturo.", xbmcgui.NOTIFICATION_ERROR)
-    xbmcplugin.setResolvedUrl(HANDLE, False, xbmcgui.ListItem())
 
 
 
 
-def list_premium_live(num_test):
+
+
+
+
+def list_premium_live(num_test, end_dir=True):
     """Carica lista canali da fonte premium remota (Compatibile con formati piatti e sezioni)"""
     xbmcplugin.setContent(HANDLE, 'videos')
     try:
@@ -1347,7 +1439,8 @@ def list_premium_live(num_test):
                     )
     except Exception as e:
         xbmc.log(f"[CBTV] Errore Lista Premium: {e}", xbmc.LOGERROR)
-    xbmcplugin.endOfDirectory(HANDLE)
+    if end_dir:
+        xbmcplugin.endOfDirectory(HANDLE)
 
 def play_premium(ch_id, title):
     """Risolve e riproduce canale premium con ClearKey DRM"""
@@ -1395,45 +1488,7 @@ def play_premium(ch_id, title):
         xbmcgui.Dialog().notification("CBTv", "Canale non disponibile al momento", xbmcgui.NOTIFICATION_ERROR)
         xbmcplugin.setResolvedUrl(HANDLE, False, xbmcgui.ListItem())
 
-def list_sky_now_on_air():
-    """Mostra Guida TV Sky (Ora in onda) interrogando l'EPG per i canali Eagle Stalker"""
-    xbmcplugin.setContent(HANDLE, 'videos')
-    p_dialog = xbmcgui.DialogProgress()
-    p_dialog.create('CBTV', 'Associazioni EPG in corso...')
-    
-    eb_client = EagleStalkerClient()
-    # Recupera i canali Sky da Eagle (Cinema, Serie, Intrattenimento)
-    channels = eb_client.get_sky_tv_channels()
-    
-    epg = EPGClient()
-    epg.get_data() # Scarica se necessario
-    
-    for ch in channels:
-        name = ch['name']
-        
-        # Filtro EPG: Escludiamo le varianti FHD per mostrare una guida più snella e canali più stabili
-        if "FHD" in name.upper():
-            continue
-            
-        epg_info = epg.get_program(name)
-        
-        if epg_info:
-            # Formatto etichetta: [08:30 - 10:00] Sky Cinema Uno | Titolo Film
-            label = f"[COLOR white][B][{epg_info['start']} - {epg_info['stop']}][/B][/COLOR] [COLOR yellow][B]{name}[/B][/COLOR] | {epg_info['title']}"
-            plot = f"In onda ora: {epg_info['title']}\nProssimamente su questo canale."
-        else:
-            label = f"{name} [COLOR gray](Nessuna info EPG)[/COLOR]"
-            plot = "Dati palinsesto non disponibili per questo canale."
-            
-        list_item = xbmcgui.ListItem(label=label)
-        list_item.setInfo('video', {'title': name, 'plot': plot})
-        list_item.setProperty('IsPlayable', 'true')
-        
-        url = build_url({"action": "play_eagle_stalker", "cmd": ch['cmd']})
-        xbmcplugin.addDirectoryItem(handle=HANDLE, url=url, listitem=list_item, isFolder=False)
-        
-    p_dialog.close()
-    xbmcplugin.endOfDirectory(HANDLE)
+
 
 
 
@@ -1446,8 +1501,7 @@ if __name__ == '__main__':
         main_menu()
     elif action == 'search_channels':
         search_live_channels(params.get('query'))
-    elif action == 'list_sky_now_on_air':
-        list_sky_now_on_air()
+
 
     elif action == 'list_agenda':
         list_agenda()
@@ -1480,12 +1534,14 @@ if __name__ == '__main__':
         play_internal(params.get('url'), params.get('title'))
     elif action == 'list_eagle_genres':
         list_eagle_genres(params.get('eb_type'))
-    elif action == 'list_eagle_stalker':
-        list_eagle_stalker(params.get('genre_id'))
-    elif action == 'play_eagle_stalker':
-        play_eagle_stalker(params.get('cmd'))
+    elif action == 'play_hublive_stalker':
+        play_hublive_stalker(params.get('cmd'))
     elif action == 'list_premium_sport':
         list_premium_live("A1A165")
+    elif action == 'list_dazn_mh':
+        list_dazn_mh()
+    elif action == 'play_dazn_mh':
+        play_dazn_mh(params.get('url'), params.get('title'))
     elif action == 'play_premium':
         play_premium(params.get('ch_id'), params.get('title'))
     elif action == 'sc_search':
@@ -1494,18 +1550,50 @@ if __name__ == '__main__':
         query = xbmcgui.Dialog().input(prompt, type=xbmcgui.INPUT_ALPHANUM)
         if query:
             results = sc_search(query, search_type)
+            xbmcplugin.setContent(HANDLE, 'movies' if search_type == 'movie' else 'tvshows')
             for res in results:
-                li = xbmcgui.ListItem(label=res['title'])
-                li.setArt({'thumb': res['thumb'], 'icon': res['thumb'], 'fanart': FANART})
+                # Titolo formattato come stream4me: Nome [ITA] (2024)
+                lang_tag = f"[COLOR dodgerblue][{res.get('lang', 'ITA')}][/COLOR]"
+                year_tag = f"[COLOR gray]({res.get('year', '')})[/COLOR]" if res.get('year') else ""
+                type_icon = "[COLOR orange]Serie[/COLOR]" if res['type'] == 'tvshow' else "[COLOR lime]Film[/COLOR]"
+                label = f"[B]{res['title']}[/B] {lang_tag} {year_tag}"
+                label2 = f"{type_icon}"
+                if res.get('seasons_count') and res['type'] == 'tvshow':
+                    label2 += f" - {res['seasons_count']} stagion{'e' if res['seasons_count'] == 1 else 'i'}"
+                
+                li = xbmcgui.ListItem(label=label, label2=label2)
+                li.setArt({
+                    'thumb': res['thumb'],
+                    'poster': res['thumb'],
+                    'icon': res['thumb'],
+                    'fanart': res.get('fanart', FANART),
+                    'banner': res.get('fanart', ''),
+                })
+                
+                # Metadati video per la vista info di Kodi
+                info = {'title': res['title'], 'mediatype': 'movie' if res['type'] == 'movie' else 'tvshow'}
+                if res.get('plot'): info['plot'] = res['plot']
+                if res.get('year'): info['year'] = int(res['year'])
+                if res.get('score'): 
+                    try: info['rating'] = float(res['score'])
+                    except: pass
+                if res.get('runtime'):
+                    try: info['duration'] = int(res['runtime']) * 60  # minuti -> secondi
+                    except: pass
+                li.setInfo('video', info)
+                
                 u = f"{BASE_URL}?action=sc_list_seasons&sc_id={res['id']}&slug={res['slug']}&title={quote(res['title'])}" if res['type'] == 'tvshow' else f"{BASE_URL}?action=play_sc&sc_id={res['id']}"
                 if res['type'] == 'movie': li.setProperty('IsPlayable', 'true')
                 
-                # Context Menu for Library
+                # Context Menu
                 cm = []
                 cm.append(("Salva in Libreria", f"RunPlugin({BASE_URL}?action=sc_save_library&title={quote(res['title'])}&type={res['type']}&sc_id={res['id']}&slug={res['slug']}&thumb={quote(res['thumb'])})"))
                 li.addContextMenuItems(cm)
                 
                 xbmcplugin.addDirectoryItem(handle=HANDLE, url=u, listitem=li, isFolder=(res['type'] == 'tvshow'))
+            
+            # Imposta la vista 'WideList' o 'Wall' per un look premium
+            xbmcplugin.addSortMethod(HANDLE, xbmcplugin.SORT_METHOD_UNSORTED)
             xbmcplugin.endOfDirectory(HANDLE)
     elif action == 'sc_list_seasons':
         sc_id, slug, title = params.get('sc_id'), params.get('slug'), params.get('title')

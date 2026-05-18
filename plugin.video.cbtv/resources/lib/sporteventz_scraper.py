@@ -1,6 +1,9 @@
 import requests
 import re
 import datetime
+import urllib3
+
+urllib3.disable_warnings()
 
 # ─── CONFIG FILTRI ────────────────────────────────────────────────
 
@@ -45,7 +48,7 @@ def _create_session():
 
 def _fetch_page_json(session, page_url):
     try:
-        resp = session.get(page_url, timeout=15)
+        resp = session.get(page_url, timeout=15, verify=False)
         if resp.status_code != 200:
             return None
         m = re.search(r"listAction:\s*'(.*?)'", resp.text)
@@ -59,7 +62,7 @@ def _fetch_page_json(session, page_url):
             "Accept": "application/json, text/javascript, */*; q=0.01",
             "X-Requested-With": "XMLHttpRequest",
             "Referer": page_url
-        }, timeout=15)
+        }, timeout=15, verify=False)
         
         if not resp_json.text.strip():
             return {"Records": []}
@@ -170,8 +173,9 @@ def get_sporteventz_schedule():
     
     # Prepariamo il filtro per oggi
     now = datetime.datetime.now()
-    today_num = now.strftime("%d").lstrip("0")
-    today_month = now.strftime("%B")
+    today_num = str(now.day)
+    mesi_eng = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    today_month = mesi_eng[now.month]
 
     # 1. Calcio
     fb_data = _fetch_page_json(session, "https://www.sporteventz.com/en/")

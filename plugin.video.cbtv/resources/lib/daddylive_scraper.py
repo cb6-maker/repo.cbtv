@@ -2,6 +2,9 @@ import requests
 import re
 from datetime import datetime, timedelta
 import concurrent.futures
+import urllib3
+
+urllib3.disable_warnings()
 
 # Squadre di volley italiane (femminili e maschili principali + nazionale)
 ITALIAN_VOLLEY_TEAMS = [
@@ -22,9 +25,9 @@ def scrape_daddylive_page(cat_name, url):
     try:
         # Assicurati che l'URL sia completo
         if url.startswith('/'):
-            url = f"https://dlstreams.top{url}"
+            url = f"https://dlhd.pk{url}"
             
-        resp = requests.get(url, headers=headers, timeout=10)
+        resp = requests.get(url, headers=headers, timeout=10, verify=False)
         if resp.status_code != 200:
             return []
         
@@ -33,8 +36,9 @@ def scrape_daddylive_page(cat_name, url):
         
         # Oggi per il confronto (es: "25 March")
         now = datetime.now()
-        today_num = now.strftime("%d").lstrip("0")
-        today_month = now.strftime("%B")
+        today_num = str(now.day)
+        mesi_eng = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+        today_month = mesi_eng[now.month]
         
         # Divisione in blocchi per data: <div class="schedule__day">
         day_blocks = re.split(r'<div class="schedule__day">', html)
@@ -52,7 +56,15 @@ def scrape_daddylive_page(cat_name, url):
             
             # 2. Verifica se è oggi (rimuovi suffissi ordinali come 'st', 'nd', 'rd', 'th')
             clean_date = re.sub(r'(\d+)(st|nd|rd|th)', r'\1', date_text).lower()
-            is_today = today_num in clean_date and today_month.lower() in clean_date
+            day_val = today_num.zfill(2)
+            today_month_short = today_month[:3].lower()
+            this_year = datetime.now().strftime("%Y")
+            
+            has_day = (today_num in clean_date or day_val in clean_date)
+            has_month = (today_month.lower() in clean_date or today_month_short in clean_date)
+            has_year = (this_year in clean_date)
+            
+            is_today = has_day and (has_month or has_year)
             
             # Se la pagina ha eventi di più giorni, prendiamo solo quelli di oggi
             if not is_today:
@@ -78,6 +90,9 @@ def scrape_daddylive_page(cat_name, url):
                 
                 time_str = time_m.group(1)
                 title = title_m.group(1).strip()
+                # Rimuovi emoji (come le bandiere) che causano il troncamento del testo nell'interfaccia di Kodi
+                title = re.sub(r'[^\x00-\uFFFF]', '', title)
+                title = title.replace('  ', ' ').strip()
                 
                 # --- FILTRAGGIO AGGIUNTIVO ---
                 t_low = title.lower()
@@ -168,13 +183,13 @@ def scrape_daddylive_page(cat_name, url):
 
 def get_daddylive_schedule():
     """Recupera l'agenda da DaddyLive."""
-    base_url = "https://dlstreams.top/"
+    base_url = "https://dlhd.pk/"
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
     }
     
     try:
-        resp = requests.get(base_url, headers=headers, timeout=10)
+        resp = requests.get(base_url, headers=headers, timeout=10, verify=False)
         if resp.status_code != 200:
             return []
         
@@ -189,7 +204,7 @@ def get_daddylive_schedule():
         for url, name in cat_links:
             name_low = name.lower()
             if any(kw in name_low for kw in KEYWORDS) and "table tennis" not in name_low:
-                full_url = f"https://dlstreams.top{url}"
+                full_url = f"https://dlhd.pk{url}"
                 if full_url not in seen_urls:
                     to_scrape.append((name, full_url))
                     seen_urls.add(full_url)
