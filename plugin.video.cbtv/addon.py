@@ -612,6 +612,9 @@ def main_menu():
     # NOVITÀ: Canali Intrattenimento (Fonte Premium Stabile)
     add_directory_item("[COLOR lightblue][B]Canali Intrattenimento[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_tv"})
     
+    # Nuova cartella Primafila in Home (sotto Intrattenimento)
+    add_directory_item("[COLOR pink][B]Primafila[/B][/COLOR]", {"action": "list_primafila"})
+    
     add_directory_item("[COLOR lime][B]Cerca Film[/B][/COLOR]", {"action": "sc_search", "search_type": "movie"}, icon=FANART)
     add_directory_item("[COLOR lime][B]Cerca Serie TV[/B][/COLOR]", {"action": "sc_search", "search_type": "tvshow"}, icon=FANART)
     # Impostiamo is_folder=False per far sì che agisca come un comando, non come una cartella vuota
@@ -1264,9 +1267,6 @@ def list_eagle_genres(eb_type):
     if eb_type == "sky_tv":
         # Canali Intrattenimento: Sostituito con Fonte Premium Stabile
         list_premium_live("A1A260", end_dir=False)
-        
-        # Nuova cartella Primafila
-        add_directory_item("[COLOR pink][B]Primafila[/B][/COLOR]", {"action": "list_primafila"}, is_folder=True)
         
         # Aggiunta Canali Intrattenimento e Cinema da Hublive
         hl_channels = hl_client.get_sky_tv_channels()
