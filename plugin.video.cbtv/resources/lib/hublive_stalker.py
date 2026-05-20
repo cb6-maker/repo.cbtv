@@ -207,7 +207,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "2.8.9"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "2.9.1"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _get_cache(self, key):
         f = os.path.join(self.cache_dir, f"hl_{key}.json")
@@ -304,4 +304,23 @@ class HubliveStalkerClient:
 
     def get_primafila_channels(self):
         # 156=IT| PRIMAFILA LIVE
-        return self._fetch_channels_for_genres([156], "primafila")
+        channels = self._fetch_channels_for_genres([156], "primafila")
+        
+        def primafila_sort_key(ch):
+            name = ch.get('name', '').upper().strip()
+            # Metti VETRINA per prima
+            is_vetrina = 0 if "VETRINA" in name else 1
+            # Raggruppa per tipo: prima PRIMAFILA, poi CINEPLAY, poi altro
+            if "PRIMAFILA" in name:
+                group = 0
+            elif "CINEPLAY" in name:
+                group = 1
+            else:
+                group = 2
+            # Estrai il numero per l'ordinamento numerico
+            num_match = re.search(r'\d+', name)
+            num = int(num_match.group()) if num_match else 999999
+            return (is_vetrina, group, num, name)
+            
+        channels.sort(key=primafila_sort_key)
+        return channels
