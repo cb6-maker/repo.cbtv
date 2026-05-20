@@ -1265,6 +1265,9 @@ def list_eagle_genres(eb_type):
         # Canali Intrattenimento: Sostituito con Fonte Premium Stabile
         list_premium_live("A1A260", end_dir=False)
         
+        # Nuova cartella Primafila
+        add_directory_item("[COLOR pink][B]Primafila[/B][/COLOR]", {"action": "list_primafila"}, is_folder=True)
+        
         # Aggiunta Canali Intrattenimento e Cinema da Hublive
         hl_channels = hl_client.get_sky_tv_channels()
         for ch in hl_channels:
@@ -1284,6 +1287,24 @@ def list_eagle_genres(eb_type):
         for ch in hl_channels:
             title = f"{ch['name']} [COLOR cyan](HB)[/COLOR]"
             add_directory_item(title, {"action": "play_hublive_stalker", "cmd": ch['cmd']}, is_folder=False, is_playable=True)
+        
+    xbmcplugin.endOfDirectory(HANDLE)
+
+
+def list_primafila():
+    """Elenca i canali Primafila e Cineplay da Hublive"""
+    xbmcplugin.setContent(HANDLE, 'videos')
+    from resources.lib.hublive_stalker import HubliveStalkerClient
+    hl_client = HubliveStalkerClient()
+    
+    try:
+        channels = hl_client.get_primafila_channels()
+        for ch in channels:
+            title = f"{ch['name']} [COLOR pink](HB)[/COLOR]"
+            add_directory_item(title, {"action": "play_hublive_stalker", "cmd": ch['cmd']}, is_folder=False, is_playable=True)
+    except Exception as e:
+        xbmc.log(f"[CBTV] Errore caricamento Primafila: {e}", xbmc.LOGERROR)
+        xbmcgui.Dialog().notification("Errore", "Impossibile caricare canali Primafila", xbmcgui.NOTIFICATION_ERROR)
         
     xbmcplugin.endOfDirectory(HANDLE)
 
@@ -1534,6 +1555,8 @@ if __name__ == '__main__':
         play_internal(params.get('url'), params.get('title'))
     elif action == 'list_eagle_genres':
         list_eagle_genres(params.get('eb_type'))
+    elif action == 'list_primafila':
+        list_primafila()
     elif action == 'play_hublive_stalker':
         play_hublive_stalker(params.get('cmd'))
     elif action == 'list_premium_sport':

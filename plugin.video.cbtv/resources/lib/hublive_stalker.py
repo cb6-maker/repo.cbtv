@@ -207,7 +207,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "2.8.8"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "2.8.9"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _get_cache(self, key):
         f = os.path.join(self.cache_dir, f"hl_{key}.json")
@@ -301,3 +301,7 @@ class HubliveStalkerClient:
         return self._fetch_channels_for_genres([364, 41], "dazn",
             keywords=["SERIE A", "ZONA DAZN", "DAZN WEB", "DAZN BAR", "DAZN CHANNEL", "VETRINA DAZN"],
             negatives=["WOMEN", "SERIE B", "SKY SPORT", "SKY CALCIO", "EUROSPORT"])
+
+    def get_primafila_channels(self):
+        # 156=IT| PRIMAFILA LIVE
+        return self._fetch_channels_for_genres([156], "primafila")
