@@ -207,7 +207,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "2.9.1"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "2.9.2"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _get_cache(self, key):
         f = os.path.join(self.cache_dir, f"hl_{key}.json")
@@ -308,17 +308,19 @@ class HubliveStalkerClient:
         
         def primafila_sort_key(ch):
             name = ch.get('name', '').upper().strip()
+            # Normalizza rimuovendo spazi per trovare "PRIMA FILA" come "PRIMAFILA"
+            norm = name.replace(" ", "")
             # Metti VETRINA per prima
-            is_vetrina = 0 if "VETRINA" in name else 1
+            is_vetrina = 0 if "VETRINA" in norm else 1
             # Raggruppa per tipo: prima PRIMAFILA, poi CINEPLAY, poi altro
-            if "PRIMAFILA" in name:
+            if "PRIMAFILA" in norm:
                 group = 0
-            elif "CINEPLAY" in name:
+            elif "CINEPLAY" in norm:
                 group = 1
             else:
                 group = 2
             # Estrai il numero per l'ordinamento numerico
-            num_match = re.search(r'\d+', name)
+            num_match = re.search(r'\d+', norm)
             num = int(num_match.group()) if num_match else 999999
             return (is_vetrina, group, num, name)
             
