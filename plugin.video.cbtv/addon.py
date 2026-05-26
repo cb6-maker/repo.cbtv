@@ -606,14 +606,14 @@ def main_menu():
     # Il parametro 'reload' con timestamp forza Kodi a NON usare la cache della cartella
     reload_salt = str(int(time.time()))
     
-    add_directory_item("[COLOR lime][B]Agenda Sportiva (Eventi di Oggi)[/B][/COLOR]", {"action": "list_agenda"})
-    add_directory_item("[COLOR gold][B]Canali Sport[/B][/COLOR]", {"action": "list_sport"})
+    add_directory_item("[COLOR lime][B]Agenda Sportiva (Eventi di Oggi)[/B][/COLOR]", {"action": "list_agenda", "reload": reload_salt})
+    add_directory_item("[COLOR gold][B]Canali Sport[/B][/COLOR]", {"action": "list_sport", "reload": reload_salt})
     
     # NOVITÀ: Canali Intrattenimento (Fonte Premium Stabile)
-    add_directory_item("[COLOR lightblue][B]Canali Intrattenimento[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_tv"})
+    add_directory_item("[COLOR lightblue][B]Canali Intrattenimento[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_tv", "reload": reload_salt})
     
     # Nuova cartella Primafila in Home (sotto Intrattenimento)
-    add_directory_item("[COLOR pink][B]Primafila[/B][/COLOR]", {"action": "list_primafila"})
+    add_directory_item("[COLOR pink][B]Primafila[/B][/COLOR]", {"action": "list_primafila", "reload": reload_salt})
     
     add_directory_item("[COLOR lime][B]Cerca Film[/B][/COLOR]", {"action": "sc_search", "search_type": "movie"}, icon=FANART)
     add_directory_item("[COLOR lime][B]Cerca Serie TV[/B][/COLOR]", {"action": "sc_search", "search_type": "tvshow"}, icon=FANART)
@@ -707,21 +707,22 @@ def list_sport():
     """Sottomenu Sport con tutte le sorgenti"""
     xbmcplugin.setContent(HANDLE, 'videos')
     
+    import time
+    reload_salt = str(int(time.time()))
 
-    add_directory_item("[COLOR cyan][B]Sky Sport (Lista FS)[/B][/COLOR]", {"action": "list_freeshot_v3"})
-    add_directory_item("[COLOR cyan][B]Sky Sport (Premium)[/B][/COLOR]", {"action": "list_premium_sport"})
-    add_directory_item("[COLOR cyan][B]Sky Sport (HB)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_sport"})
-    add_directory_item("[COLOR orange][B]Dazn (HB)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "dazn_only"})
-    add_directory_item("[COLOR orange][B]Dazn (MH)[/B][/COLOR]", {"action": "list_dazn_mh"})
+    add_directory_item("[COLOR cyan][B]Sky Sport (Lista FS)[/B][/COLOR]", {"action": "list_freeshot_v3", "reload": reload_salt})
+    add_directory_item("[COLOR cyan][B]Sky Sport (Premium)[/B][/COLOR]", {"action": "list_premium_sport", "reload": reload_salt})
+    add_directory_item("[COLOR cyan][B]Sky Sport (HB)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_sport", "reload": reload_salt})
+    add_directory_item("[COLOR orange][B]Dazn (HB)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "dazn_only", "reload": reload_salt})
+    add_directory_item("[COLOR orange][B]Dazn (MH)[/B][/COLOR]", {"action": "list_dazn_mh", "reload": reload_salt})
     
-    add_directory_item("[COLOR violet][B]Canali Internazionali[/B][/COLOR]", {"action": "list_international_sport"})
+    add_directory_item("[COLOR violet][B]Canali Internazionali[/B][/COLOR]", {"action": "list_international_sport", "reload": reload_salt})
     
     xbmcplugin.endOfDirectory(HANDLE)
 
 def list_international_sport():
     """Menu principale Canali Internazionali"""
     xbmcplugin.setContent(HANDLE, 'videos')
-    add_directory_item("[COLOR cyan][B]Canali Esteri (Lista 1 FS)[/B][/COLOR]", {"action": "list_international_fs"})
     add_directory_item("[COLOR gold][B]Canali Esteri (Lista 2 MPD)[/B][/COLOR]", {"action": "list_mpd_nazioni"})
     
     xbmcplugin.endOfDirectory(HANDLE)

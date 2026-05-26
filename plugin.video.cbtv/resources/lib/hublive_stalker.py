@@ -27,14 +27,14 @@ def clean_text(text):
 
 
 class HubliveStalkerClient:
-    """Client Stalker aggiornato per Server 12 di Hublive (204.52.191.254) - Server 9 è stato disattivato/bloccato."""
+    """Client Stalker aggiornato per Server 28 di Hublive (pro.most8knew.com) - Server 12 / Server 9 sono disattivati/bloccati."""
 
-    PORTAL_URL = "http://204.52.191.254:80"   # NO trailing /c/
+    PORTAL_URL = "http://pro.most8knew.com:80"   # NO trailing /c/
     UA = ("Mozilla/5.0 (QtEmbedded; U; Linux; C) AppleWebKit/533.3 "
           "(KHTML, like Gecko) MAG200 stbapp ver: 2 rev: 250 Safari/533.3")
 
     _MAC_POOL = [
-        "00:1A:79:00:1E:6C", "00:1A:79:C3:54:34"
+        "00:1A:79:81:F3:59"
     ]
 
     # ---- inizializzazione ----
@@ -203,7 +203,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "2.9.5"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "2.9.7"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _get_cache(self, key):
         f = os.path.join(self.cache_dir, f"hl_{key}.json")
