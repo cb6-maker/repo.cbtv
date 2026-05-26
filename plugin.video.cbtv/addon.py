@@ -1,4 +1,23 @@
 import sys
+import os
+import shutil
+
+# ─── PULIZIA BYTECODE: Previene il bug "versione fantasma" su Fire Stick ───
+# Quando Kodi aggiorna un addon, estrae i nuovi .py sopra i vecchi ma NON
+# cancella i file .pyc in __pycache__. Python carica i .pyc vecchi se il loro
+# timestamp embedded è più recente del .py appena estratto.
+# Soluzione: ad ogni avvio cancelliamo tutti i __pycache__ dell'addon.
+_ADDON_ROOT = os.path.dirname(os.path.abspath(__file__))
+for _dirpath, _dirnames, _ in os.walk(_ADDON_ROOT):
+    for _d in list(_dirnames):
+        if _d == '__pycache__':
+            _cache_path = os.path.join(_dirpath, _d)
+            try:
+                shutil.rmtree(_cache_path)
+            except Exception:
+                pass
+del _ADDON_ROOT
+# ─── FINE PULIZIA ───
 from urllib.parse import parse_qsl, urlencode
 import xbmcgui
 import xbmcplugin
