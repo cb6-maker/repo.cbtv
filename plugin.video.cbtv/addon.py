@@ -733,8 +733,8 @@ def list_dazn_mh():
     
     # Canali forniti dall'utente
     channels = [
-        {"name": "DAZN 1 (MH 1)", "url": "https://1nyaler.screenistream.xyz/stream/5/index.m3u8?token=aN7QrmHIoz60HOhI"},
-        {"name": "DAZN 1 (MH 2)", "url": "https://1nyaler.screenistream.xyz/stream/136/index.m3u8?token=aN7QrmHIoz60HOhI"}
+        {"name": "DAZN 1 (MH 1)", "url": "https://1nyaler.streamhostingcdn.top/stream/5/index.m3u8?token=aN7QrmHIoz60HOhI"},
+        {"name": "DAZN 1 (MH 2)", "url": "https://1nyaler.streamhostingcdn.top/stream/136/index.m3u8?token=aN7QrmHIoz60HOhI"}
     ]
     
     for ch in channels:

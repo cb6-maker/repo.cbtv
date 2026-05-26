@@ -27,18 +27,14 @@ def clean_text(text):
 
 
 class HubliveStalkerClient:
-    """Client Stalker aggiornato per Server 9 di Hublive (esogalaxiusnext.tech) - Server 2 è stato bloccato da AGCOM."""
+    """Client Stalker aggiornato per Server 12 di Hublive (204.52.191.254) - Server 9 è stato disattivato/bloccato."""
 
-    PORTAL_URL = "http://700730.org:80"   # NO trailing /c/
+    PORTAL_URL = "http://204.52.191.254:80"   # NO trailing /c/
     UA = ("Mozilla/5.0 (QtEmbedded; U; Linux; C) AppleWebKit/533.3 "
           "(KHTML, like Gecko) MAG200 stbapp ver: 2 rev: 250 Safari/533.3")
 
     _MAC_POOL = [
-        "00:1A:79:02:6F:67", "00:1A:79:09:F3:00", "00:1A:79:0A:B0:CF",
-        "00:1A:79:17:20:28", "00:1A:79:17:2E:C3", "00:1A:79:22:19:B4",
-        "00:1A:79:27:BA:8C", "00:1A:79:3D:20:82", "00:1A:79:41:E9:BC",
-        "00:1A:79:43:2F:C4", "00:1A:79:45:AA:4E", "00:1A:79:46:99:67",
-        "00:1A:79:4B:03:00", "00:1A:79:4C:C5:92", "00:1A:79:4F:2F:BC"
+        "00:1A:79:00:1E:6C", "00:1A:79:C3:54:34"
     ]
 
     # ---- inizializzazione ----
@@ -145,7 +141,7 @@ class HubliveStalkerClient:
         if not returned_cmd:
             return None, None
 
-        # Server 9 restituisce GIÀ l'URL completo (es. ffmpeg http://esogalaxiusnext.tech:80/play/live.php?...)
+        # Server 12 restituisce GIÀ l'URL completo (es. ffmpeg http://204.52.191.254:80/play/live.php?...)
         url_match = re.search(r"http[^\s]+", returned_cmd)
         if url_match and "live.php" in url_match.group(0):
             return url_match.group(0), None
@@ -207,7 +203,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "2.9.2"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "2.9.4"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _get_cache(self, key):
         f = os.path.join(self.cache_dir, f"hl_{key}.json")
@@ -283,7 +279,7 @@ class HubliveStalkerClient:
             self._set_cache(cache_key, unique)
         return unique
 
-    # ---- API pubblica (Server 9) ----
+    # ---- API pubblica (Server 12) ----
     def get_sky_tv_channels(self):
         # 37=Italia, 38=Intrattenimento, 39=Cinema
         return self._fetch_channels_for_genres([37, 38, 39], "sky_tv",
