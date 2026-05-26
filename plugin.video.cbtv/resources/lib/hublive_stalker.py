@@ -203,7 +203,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "2.9.4"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "2.9.5"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _get_cache(self, key):
         f = os.path.join(self.cache_dir, f"hl_{key}.json")
@@ -281,26 +281,26 @@ class HubliveStalkerClient:
 
     # ---- API pubblica (Server 12) ----
     def get_sky_tv_channels(self):
-        # 37=Italia, 38=Intrattenimento, 39=Cinema
-        return self._fetch_channels_for_genres([37, 38, 39], "sky_tv",
+        # Generi Server 12: 18=Generale, 295=Cinema, 420=Cinema VIP, 417=Platinum TV, 419=Gold TV, 1775=24/7 Movies
+        return self._fetch_channels_for_genres([18, 295, 420, 417, 419, 1775], "sky_tv",
             keywords=["SKY"],
-            negatives=["SPORT", "DAZN", "CALCIO", "F1", "MOTOGP"])
+            negatives=["SPORT", "DAZN", "CALCIO", "F1", "MOTOGP", "PRIMAFILA"])
 
     def get_sky_sport_channels(self):
-        # 41=Sport
-        return self._fetch_channels_for_genres([41], "sky_sport", 
+        # Generi Server 12: 265=Sport, 467=Formula 1 / MotoGP
+        return self._fetch_channels_for_genres([265, 467], "sky_sport", 
             keywords=["SKY SPORT", "SKY CALCIO", "EUROSPORT"],
             negatives=["SERIE C", "SERIE D", "LEGA PRO", "DAZN BAR", "DAZN CHANNEL", "VETRINA DAZN"])
 
     def get_dazn_channels(self):
-        # 364=DAZN, 41=Sport (per estrarre i canali DAZN Bar e DAZN Channel dal genere Sport)
-        return self._fetch_channels_for_genres([364, 41], "dazn",
+        # Generi Server 12: 476=DAZN VIP, 2242=DAZN PP, 265=Sport
+        return self._fetch_channels_for_genres([476, 2242, 265], "dazn",
             keywords=["SERIE A", "ZONA DAZN", "DAZN WEB", "DAZN BAR", "DAZN CHANNEL", "VETRINA DAZN"],
             negatives=["WOMEN", "SERIE B", "SKY SPORT", "SKY CALCIO", "EUROSPORT"])
 
     def get_primafila_channels(self):
-        # 156=IT| PRIMAFILA LIVE
-        channels = self._fetch_channels_for_genres([156], "primafila")
+        # Generi Server 12: I canali Primafila sono inclusi all'interno di Cinema VIP (420) e Cinema HD (295)
+        channels = self._fetch_channels_for_genres([420, 295], "primafila", keywords=["PRIMAFILA"])
         
         def primafila_sort_key(ch):
             name = ch.get('name', '').upper().strip()
