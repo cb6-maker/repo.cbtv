@@ -2,12 +2,14 @@ import sys
 import os
 import shutil
 
-# ─── PULIZIA BYTECODE: Previene il bug "versione fantasma" su Fire Stick ───
-# Quando Kodi aggiorna un addon, estrae i nuovi .py sopra i vecchi ma NON
-# cancella i file .pyc in __pycache__. Python carica i .pyc vecchi se il loro
-# timestamp embedded è più recente del .py appena estratto.
-# Soluzione: ad ogni avvio cancelliamo tutti i __pycache__ dell'addon.
+# ─── PULIZIA COMPLETA: Previene il bug "versione fantasma" su Fire Stick ───
+# Problema 1: __pycache__ con .pyc vecchi che Python carica al posto dei nuovi .py
+# Problema 2: Kodi tiene in cache le directory listing e i vecchi ZIP in packages/
+# Soluzione: ad ogni avvio puliamo __pycache__, e al cambio versione forziamo
+#            Kodi a invalidare tutte le sue cache interne per l'addon.
 _ADDON_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+# 1. Cancella sempre tutti i __pycache__
 for _dirpath, _dirnames, _ in os.walk(_ADDON_ROOT):
     for _d in list(_dirnames):
         if _d == '__pycache__':
@@ -16,6 +18,93 @@ for _dirpath, _dirnames, _ in os.walk(_ADDON_ROOT):
                 shutil.rmtree(_cache_path)
             except Exception:
                 pass
+
+# 2. Rileva cambio versione e purga cache Kodi
+try:
+    import xml.etree.ElementTree as _ET
+    _addon_xml = os.path.join(_ADDON_ROOT, 'addon.xml')
+    _current_ver = _ET.parse(_addon_xml).getroot().attrib.get('version', '0')
+
+    # File marker nella cartella dell'addon (NON in profile, che potrebbe essere cached)
+    _ver_marker = os.path.join(_ADDON_ROOT, '.last_version')
+    _old_ver = ''
+    if os.path.exists(_ver_marker):
+        try:
+            with open(_ver_marker, 'r') as _f:
+                _old_ver = _f.read().strip()
+        except Exception:
+            pass
+
+    if _old_ver != _current_ver:
+        # Versione cambiata! Purga aggressiva di tutte le cache Kodi
+        import xbmcvfs as _xvfs
+
+        # a) Cancella vecchi ZIP dalla cartella packages/ di Kodi
+        try:
+            _packages_dir = _xvfs.translatePath('special://home/addons/packages/')
+            if os.path.isdir(_packages_dir):
+                for _fname in os.listdir(_packages_dir):
+                    if _fname.startswith('plugin.video.cbtv-') and _fname.endswith('.zip'):
+                        _pkg_path = os.path.join(_packages_dir, _fname)
+                        try:
+                            os.remove(_pkg_path)
+                        except Exception:
+                            pass
+        except Exception:
+            pass
+
+        # b) Cancella la cache delle directory listing di Kodi per il nostro addon
+        try:
+            _temp_dir = _xvfs.translatePath('special://temp/')
+            if os.path.isdir(_temp_dir):
+                for _fname in os.listdir(_temp_dir):
+                    if 'plugin.video.cbtv' in _fname:
+                        _tmp_path = os.path.join(_temp_dir, _fname)
+                        try:
+                            if os.path.isdir(_tmp_path):
+                                shutil.rmtree(_tmp_path)
+                            else:
+                                os.remove(_tmp_path)
+                        except Exception:
+                            pass
+        except Exception:
+            pass
+
+        # c) Cancella la cache del profilo addon (dati di listing HB vecchi, ecc.)
+        try:
+            _profile_dir = _xvfs.translatePath('special://profile/addon_data/plugin.video.cbtv/')
+            if os.path.isdir(_profile_dir):
+                # Cancella solo file di cache, NON le impostazioni dell'utente
+                for _sub in os.listdir(_profile_dir):
+                    _sub_path = os.path.join(_profile_dir, _sub)
+                    # Cancella la cartella hublive (cache canali) e file temporanei
+                    if _sub in ('hublive', 'cache') or _sub.endswith('.json'):
+                        try:
+                            if os.path.isdir(_sub_path):
+                                shutil.rmtree(_sub_path)
+                            else:
+                                os.remove(_sub_path)
+                        except Exception:
+                            pass
+        except Exception:
+            pass
+
+        # d) Forza Kodi a riscansionare gli addon locali
+        try:
+            import xbmc as _xbmc
+            _xbmc.executebuiltin('UpdateLocalAddons()')
+        except Exception:
+            pass
+
+        # Scrivi il marker della nuova versione
+        try:
+            with open(_ver_marker, 'w') as _f:
+                _f.write(_current_ver)
+        except Exception:
+            pass
+except Exception:
+    pass
+
 del _ADDON_ROOT
 # ─── FINE PULIZIA ───
 from urllib.parse import parse_qsl, urlencode
