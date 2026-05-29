@@ -225,7 +225,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "2.9.10"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "2.9.11"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _get_cache(self, key):
         f = os.path.join(self.cache_dir, f"hl_{key}.json")
@@ -310,9 +310,29 @@ class HubliveStalkerClient:
 
     def get_sky_sport_channels(self):
         # Generi Server 12: 265=Sport, 467=Formula 1 / MotoGP
-        return self._fetch_channels_for_genres([265, 467], "sky_sport", 
+        channels = self._fetch_channels_for_genres([265, 467], "sky_sport", 
             keywords=["SKY SPORT", "SKY CALCIO", "EUROSPORT"],
             negatives=["SERIE C", "SERIE D", "LEGA PRO", "DAZN BAR", "DAZN CHANNEL", "VETRINA DAZN"])
+
+        def sky_sport_sort_key(ch):
+            name = ch.get('name', '').upper().strip()
+            # Gruppi di priorità:
+            # 0: Sky Sport (es. Sky Sport Uno, Sky Sport Calcio, ecc.)
+            # 1: Sky Calcio (es. Sky Calcio 1, Sky Calcio 2, ecc.)
+            # 2: Eurosport / Sky Eurosport
+            # 3: Altro
+            if "SKY SPORT" in name:
+                group = 0
+            elif "SKY CALCIO" in name:
+                group = 1
+            elif "EUROSPORT" in name:
+                group = 2
+            else:
+                group = 3
+            return (group, name)
+
+        channels.sort(key=sky_sport_sort_key)
+        return channels
 
     def get_dazn_channels(self):
         # Generi Server 12: 476=DAZN VIP, 2242=DAZN PP, 265=Sport
