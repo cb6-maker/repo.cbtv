@@ -1025,29 +1025,47 @@ def list_agenda():
     xbmcplugin.setContent(HANDLE, 'videos')
     p_dialog = xbmcgui.DialogProgress()
     p_dialog.create('CBTV', 'Caricamento agenda...')
-    
     p_dialog.update(30, "Scarico palinsesti sportivi...")
     
     import concurrent.futures
     from resources.lib.sporteventz_scraper import get_sporteventz_schedule
-    from resources.lib.daddylive_scraper import get_daddylive_schedule
+    from resources.lib.oasport_scraper import get_oasport_schedule
+    from resources.lib.tennisexplorer_scraper import get_tennisexplorer_schedule
     
     events = []
     try:
         # Recupero in parallelo per velocità
-        with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
             se_future = executor.submit(get_sporteventz_schedule)
-            dl_future = executor.submit(get_daddylive_schedule)
+            oa_future = executor.submit(get_oasport_schedule)
+            te_future = executor.submit(get_tennisexplorer_schedule)
             
             se_events = se_future.result() or []
-            dl_events = dl_future.result() or []
+            oa_events = oa_future.result() or []
+            te_events = te_future.result() or []
     except Exception as e:
         xbmc.log(f"[CBTV] Errore caricamento agenda: {e}", xbmc.LOGERROR)
         se_events = []
-        dl_events = []
+        oa_events = []
+        te_events = []
     
     # Parole chiave per evidenziare eventi Top (Sincronizzate con WebApp)
-    W_TOP = ["PAOLINI", "SINNER", "MUSETTI", "CEV", "COPPA ITALIA", "SERIE A", "CHAMPIONS", "EUROPA LEAGUE", "FERRARI", "BAGNAIA", "ITALIA", "ITALY", "JUVE", "INTER", "MILAN", "NAPOLI", "MOTOGP", "FORMULA 1", "F1", "LEWIS HAMILTON", "LECLERC"]
+    W_TOP = [
+        # Calcio - Tornei elite (sempre top)
+        "CHAMPIONS LEAGUE", "EUROPA LEAGUE", "CONFERENCE", "COPPA ITALIA",
+        # Calcio - Solo squadre top italiane + Cagliari
+        "JUVE", "INTER", "MILAN", "NAPOLI", "ROMA", "LAZIO", "FIORENTINA", "ATALANTA",
+        "BOLOGNA", "CAGLIARI", "ITALIA", "ITALY",
+        # Calcio - Top club esteri
+        "REAL MADRID", "BARCELONA", "CITY", "LIVERPOOL", "ARSENAL", "BAYERN", "PSG",
+        # Tennis - Italiani
+        "SINNER", "PAOLINI", "MUSETTI", "BERRETTINI", "ARNALDI", "COBOLLI", "ALCARAZ",
+        # Motorsport
+        "MOTOGP", "F1", "FORMULA 1", "FERRARI", "BAGNAIA", "LECLERC",
+        # Volley - Italiane + CEV
+        "CEV", "CIVITANOVA", "PERUGIA", "TRENTO", "CONEGLIANO", "MILANO", "MONZA", "MODENA",
+        "SCANDICCI", "NOVARA", "BUSTO",
+    ]
     
     p_dialog.update(70, "Deduplicazione eventi...")
     
@@ -1056,20 +1074,24 @@ def list_agenda():
     
     # 1. Priorità a SportEventz (metadati più ricchi)
     for ev in se_events:
-        # Chiave per deduplicazione: ora e inizio titolo
         key = (ev["time"], ev["title"].lower().strip()[:15], ev["sport"].lower().strip())
         if key not in seen_keys:
             combined.append(ev)
             seen_keys.add(key)
             
-    # 2. Aggiungi Eventi DaddyLive se non duplicati
-    for ev in dl_events:
+    # 2. Aggiungi TennisExplorer
+    for ev in te_events:
         key = (ev["time"], ev["title"].lower().strip()[:15], ev["sport"].lower().strip())
         if key not in seen_keys:
             combined.append(ev)
             seen_keys.add(key)
             
-
+    # 3. Aggiungi OA Sport
+    for ev in oa_events:
+        key = (ev["time"], ev["title"].lower().strip()[:15], ev["sport"].lower().strip())
+        if key not in seen_keys:
+            combined.append(ev)
+            seen_keys.add(key)
             
     # Ordina cronologicamente
     combined.sort(key=lambda x: x["time"])
@@ -1170,18 +1192,57 @@ def play_daddy_direct():
 MPD_NAZIONI_URL = "https://test34344.herokuapp.com/filter.php?numTest=A1A134A"
 MPD_UA = "MandraKodi2@@1.2.78@@MandraKodi3@@S63TDC"
 
+WORKING_MPD_CHANNELS = {
+    "ITALY": [
+        "EuroSport 6 (ITA)", "EuroSport 1 (ITA)", "EuroSport 4K (ITA)", "EuroSport 4 (ITA)",
+        "EuroSport 3 (ITA)", "EuroSport 2 (ITA)", "EuroSport 5 (ITA)", "MILAN TV (ITA)", "INTER TV (ITA)"
+    ],
+    "CECHIA": [
+        "SPORT 1 (CZ)", "SPORT 2 (CZ)"
+    ],
+    "AUSTRIA": [
+        "Sky Sports 1 (AT)"
+    ],
+    "CROATIA": [
+        "ARENA SPORT 1 (HRV)", "ARENA SPORT 2 (HRV)", "ARENA SPORT 4 (HRV)", "ARENA SPORT 3 (HRV)",
+        "ARENA SPORT 5 (HRV)", "ARENA SPORT 8 (HRV)", "ARENA SPORT 7 (HRV)", "SPORT KLUB 1 (HRV)",
+        "ARENA SPORT 6 (HRV)", "SPORT KLUB 4 (HRV)", "SPORT KLUB 2 (HRV)", "SPORT KLUB 3 (HRV)",
+        "SPORT KLUB 5 (HRV)", "SPORT KLUB 6 (HRV)"
+    ],
+    "GERMANY": [
+        "Bundesliga 3 (GER)", "Bundesliga 5 (GER)", "Bundesliga 6 (GER)", "Bundesliga 4 (GER)",
+        "Bundesliga 7 (GER)", "Bundesliga 1 (GER)", "Bundesliga 2 (GER)", "Sky Sports F1 (GER)",
+        "MAGENTA 1 (GER)", "MAGENTA 5 (GER)", "MAGENTA 8 (GER)"
+    ],
+    "LITUANIA": [
+        "GO3 Sport 2 (LT)", "GO3 Sport Open (LT)", "GO3 Sport 1 (LT)"
+    ],
+    "POLAND": [
+        "Eleven Sport 1 4K (PL)", "Eleven Sport 2 (PL)", "Eleven Sport 4 (PL)",
+        "Eleven Sport 1 (PL)", "Eleven Sport 3 (PL)"
+    ],
+    "SWEDEN": [
+        "TV4 Sport Live 2 (SWE)", "TV4 Sport Live 1 (SWE)", "TV4 Sport Live 4 (SWE)", "TV4 Sport Live 3 (SWE)"
+    ],
+    "UNITED KINDOM": [
+        "TNT Sport 2 (ENG)", "TNT Sport 1 (ENG)", "TNT Sport 3 (ENG)", "TNT Sport 4 (ENG)", "EuroSport (ENG)"
+    ],
+    "SOUTH COREA": [
+        "SPOTV 2 (ENG)", "SPOTV (ENG)"
+    ],
+    "UKRAINA": [
+        "Setanta Sport 1 (UA)", "Setanta Sport 2 (UA)"
+    ],
+    "USA": [
+        "CBS SPORT (ENG)", "NBC KTVB (ENG/SPA)", "FUBOTV 1 (ENG)", "SCRIPPS NEWS (ENG)",
+        "FUBOTV 2 (ENG)", "NBC UNIVERSO (ENG/SPA)", "NBC (ENG)"
+    ]
+}
+
 def list_mpd_nazioni():
-    """Show list of countries from MPD Nazioni"""
+    """Show list of countries from MPD Nazioni containing working channels"""
     import requests
     xbmcplugin.setContent(HANDLE, 'videos')
-    
-    # Blacklist di nazioni da nascondere (non funzionanti o non desiderate)
-    BLACKLIST = [
-        "argentina", "australia", "belgium", "brasile", "canada", "colombia",
-        "germania", "grecia", "portugal", "serbia", "spain", "south korea",
-        "united arab emirated", "united arab emirates", "united kindom", 
-        "united kingdom", "usa", "other"
-    ]
     
     try:
         headers = {"User-Agent": MPD_UA}
@@ -1191,20 +1252,16 @@ def list_mpd_nazioni():
         
         for country in countries:
             name = country.get("name", "Unknown")
-            # Clean color tags for display
             clean_name = re.sub(r'\[.*?\]', '', name).strip()
             
-            # Filtro blacklist
-            if clean_name.lower() in BLACKLIST:
-                continue
-                
-            thumb = country.get("thumbnail")
-            
-            add_directory_item(
-                clean_name,
-                {"action": "list_mpd_channels", "country_data": json.dumps(country)},
-                icon=thumb
-            )
+            # Show only countries with known working channels
+            if clean_name.upper() in WORKING_MPD_CHANNELS:
+                thumb = country.get("thumbnail")
+                add_directory_item(
+                    clean_name,
+                    {"action": "list_mpd_channels", "country_data": json.dumps(country)},
+                    icon=thumb
+                )
     except Exception as e:
         xbmc.log(f"[CBTV] Errore MPD Nazioni: {str(e)}", xbmc.LOGERROR)
         xbmcgui.Dialog().notification("MPD Nazioni", f"Errore: {str(e)}", xbmcgui.NOTIFICATION_ERROR)
@@ -1212,31 +1269,37 @@ def list_mpd_nazioni():
     xbmcplugin.endOfDirectory(HANDLE)
 
 def list_mpd_channels(country_data):
-    """Show channels for selected country"""
-    import requests
+    """Show working channels for selected country"""
     xbmcplugin.setContent(HANDLE, 'videos')
     
     try:
         country = json.loads(country_data)
+        country_name = re.sub(r'\[.*?\]', '', country.get("name", "Unknown")).strip().upper()
+        
+        if country_name not in WORKING_MPD_CHANNELS:
+            xbmcplugin.endOfDirectory(HANDLE)
+            return
+            
+        allowed_channels = WORKING_MPD_CHANNELS[country_name]
         items = country.get("items", [])
         
         for ch in items:
             title = ch.get("title", "No Title")
-            # Clean color tags
             clean_title = re.sub(r'\[.*?\]', '', title).strip()
-            thumb = ch.get("thumbnail")
-            myresolve = ch.get("myresolve", "")
             
-            # Check if this is an MPD channel (has amstaff@@ prefix)
-            if myresolve and "@@" in myresolve:
-                # Make it a FOLDER that opens a submenu (like Mandrakodi)
-                add_directory_item(
-                    f"[COLOR cyan]{clean_title}[/COLOR]",
-                    {"action": "show_mpd_play", "resolve_data": myresolve, "channel_name": clean_title},
-                    is_folder=True,  # Changed to True - opens submenu
-                    is_playable=False,
-                    icon=thumb
-                )
+            # Check if this clean title matches any of the working channel names (case-insensitive)
+            if any(clean_title.lower() == ac.lower() for ac in allowed_channels):
+                thumb = ch.get("thumbnail")
+                myresolve = ch.get("myresolve", "")
+                
+                if myresolve and "@@" in myresolve:
+                    add_directory_item(
+                        f"[COLOR cyan]{clean_title}[/COLOR]",
+                        {"action": "show_mpd_play", "resolve_data": myresolve, "channel_name": clean_title},
+                        is_folder=True,
+                        is_playable=False,
+                        icon=thumb
+                    )
     except Exception as e:
         xbmcgui.Dialog().notification("MPD Canali", f"Errore: {str(e)}", xbmcgui.NOTIFICATION_ERROR)
     

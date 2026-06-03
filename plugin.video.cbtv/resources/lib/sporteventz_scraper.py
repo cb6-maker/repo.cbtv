@@ -55,8 +55,15 @@ def _fetch_page_json(session, page_url):
         if not m:
             return None
         
-        # client_tz_offset=%2B0100 -> fuso orario Europa/Roma (+01:00)
-        list_url = "https://www.sporteventz.com" + m.group(1) + "&client_tz_offset=%2B0100"
+        import time
+        is_dst = time.localtime().tm_isdst > 0
+        offset_seconds = -time.timezone if not is_dst else -time.altzone
+        offset_hours = offset_seconds // 3600
+        offset_minutes = (offset_seconds % 3600) // 60
+        tz_sign = "%2B" if offset_hours >= 0 else "-"
+        tz_str = f"{tz_sign}{abs(offset_hours):02d}{abs(offset_minutes):02d}"
+        
+        list_url = "https://www.sporteventz.com" + m.group(1) + f"&client_tz_offset={tz_str}"
         
         resp_json = session.get(list_url, headers={
             "Accept": "application/json, text/javascript, */*; q=0.01",
