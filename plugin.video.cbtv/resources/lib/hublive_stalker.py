@@ -328,15 +328,24 @@ class HubliveStalkerClient:
             # 3: Altro
             if "SKY SPORT" in name:
                 group = 0
+                if "SKY SPORT 24" in name:
+                    subgroup = 0
+                elif "SKY SPORT UNO" in name:
+                    subgroup = 1
+                else:
+                    subgroup = 2
             elif "SKY CALCIO" in name:
                 group = 1
+                subgroup = 0
             elif "EUROSPORT" in name:
                 group = 2
+                subgroup = 0
             else:
                 group = 3
+                subgroup = 0
             import re
             parts = [int(text) if text.isdigit() else text.lower() for text in re.split(r'(\d+)', name)]
-            return (group, parts)
+            return (group, subgroup, parts)
 
         channels.sort(key=sky_sport_sort_key)
         return channels
