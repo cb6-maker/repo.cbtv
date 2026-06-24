@@ -818,11 +818,8 @@ def list_sport():
     import time
     reload_salt = str(int(time.time()))
 
-    add_directory_item("[COLOR cyan][B]Sky Sport (Lista FS)[/B][/COLOR]", {"action": "list_freeshot_v3", "reload": reload_salt})
-    add_directory_item("[COLOR cyan][B]Sky Sport (Premium)[/B][/COLOR]", {"action": "list_premium_sport", "reload": reload_salt})
     add_directory_item("[COLOR cyan][B]Sky Sport (HB)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_sport", "reload": reload_salt})
     add_directory_item("[COLOR orange][B]Dazn (HB)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "dazn_only", "reload": reload_salt})
-    add_directory_item("[COLOR orange][B]Dazn (MH)[/B][/COLOR]", {"action": "list_dazn_mh", "reload": reload_salt})
     
     add_directory_item("[COLOR violet][B]Canali Internazionali[/B][/COLOR]", {"action": "list_international_sport", "reload": reload_salt})
     
@@ -1387,6 +1384,7 @@ def list_mpd_channels(country_data):
         allowed_channels = WORKING_MPD_CHANNELS[country_name]
         items = country.get("items", [])
         
+        matched_channels = []
         for ch in items:
             title = ch.get("title", "No Title")
             clean_title = re.sub(r'\[.*?\]', '', title).strip()
@@ -1397,13 +1395,26 @@ def list_mpd_channels(country_data):
                 myresolve = ch.get("myresolve", "")
                 
                 if myresolve and "@@" in myresolve:
-                    add_directory_item(
-                        f"[COLOR cyan]{clean_title}[/COLOR]",
-                        {"action": "show_mpd_play", "resolve_data": myresolve, "channel_name": clean_title},
-                        is_folder=True,
-                        is_playable=False,
-                        icon=thumb
-                    )
+                    matched_channels.append({
+                        "clean_title": clean_title,
+                        "myresolve": myresolve,
+                        "thumb": thumb
+                    })
+                    
+        # Natural sort by clean_title
+        def natural_sort_key(s):
+            return [int(text) if text.isdigit() else text.lower() for text in re.split(r'(\d+)', s)]
+            
+        matched_channels.sort(key=lambda x: natural_sort_key(x["clean_title"]))
+        
+        for ch in matched_channels:
+            add_directory_item(
+                f"[COLOR cyan]{ch['clean_title']}[/COLOR]",
+                {"action": "show_mpd_play", "resolve_data": ch['myresolve'], "channel_name": ch['clean_title']},
+                is_folder=True,
+                is_playable=False,
+                icon=ch['thumb']
+            )
     except Exception as e:
         xbmcgui.Dialog().notification("MPD Canali", f"Errore: {str(e)}", xbmcgui.NOTIFICATION_ERROR)
     
@@ -1714,6 +1725,7 @@ def list_premium_live(num_test, end_dir=True):
             # Caso lista PATTA: creiamo una sezione "General" fittizia
             sections = [{"items": data["items"]}]
             
+        collected_items = []
         for section in sections:
             items = section.get("items", [])
             for it in items:
@@ -1726,14 +1738,27 @@ def list_premium_live(num_test, end_dir=True):
                 resolve_val = it.get("myresolve", "")
                 if "sky@@" in resolve_val:
                     ch_id = resolve_val.split("@@")[1]
-                    display_title = f"{clean_title} [COLOR lightblue](Premium)[/COLOR]"
-                    add_directory_item(
-                        display_title,
-                        {"action": "play_premium", "ch_id": ch_id, "title": clean_title},
-                        is_folder=False,
-                        icon=it.get("thumbnail"),
-                        is_playable=True
-                    )
+                    collected_items.append({
+                        "title": clean_title,
+                        "ch_id": ch_id,
+                        "icon": it.get("thumbnail")
+                    })
+                    
+        # Natural sort by title
+        def natural_sort_key(s):
+            return [int(text) if text.isdigit() else text.lower() for text in re.split(r'(\d+)', s)]
+            
+        collected_items.sort(key=lambda x: natural_sort_key(x["title"]))
+        
+        for item in collected_items:
+            display_title = f"{item['title']} [COLOR lightblue](Premium)[/COLOR]"
+            add_directory_item(
+                display_title,
+                {"action": "play_premium", "ch_id": item['ch_id'], "title": item['title']},
+                is_folder=False,
+                icon=item['icon'],
+                is_playable=True
+            )
     except Exception as e:
         xbmc.log(f"[CBTV] Errore Lista Premium: {e}", xbmc.LOGERROR)
     if end_dir:

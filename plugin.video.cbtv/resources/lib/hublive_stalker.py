@@ -295,7 +295,12 @@ class HubliveStalkerClient:
 
         # Deduplica e ordina
         unique = list({v['cmd']: v for v in found}.values())
-        unique.sort(key=lambda x: x['name'])
+        
+        import re
+        def natural_sort_key(s):
+            return [int(text) if text.isdigit() else text.lower() for text in re.split(r'(\d+)', s)]
+            
+        unique.sort(key=lambda x: natural_sort_key(x['name']))
 
         if unique:
             self._set_cache(cache_key, unique)
@@ -329,7 +334,9 @@ class HubliveStalkerClient:
                 group = 2
             else:
                 group = 3
-            return (group, name)
+            import re
+            parts = [int(text) if text.isdigit() else text.lower() for text in re.split(r'(\d+)', name)]
+            return (group, parts)
 
         channels.sort(key=sky_sport_sort_key)
         return channels
