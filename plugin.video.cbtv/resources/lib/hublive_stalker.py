@@ -34,12 +34,18 @@ class HubliveStalkerClient:
           "(KHTML, like Gecko) MAG200 stbapp ver: 2 rev: 250 Safari/533.3")
 
     _MAC_POOL = [
+        # --- Totalmente attive (MPEG-TS immediato nel test) ---
         "A0:BB:3E:00:0A:CD", "A0:BB:3E:00:0A:CB", "A0:BB:3E:00:5A:E4",
         "00:1A:79:20:65:CB", "00:1A:79:81:F3:59", "00:1A:79:B5:B6:D5",
         "00:1A:79:7B:20:DE", "00:1A:79:14:57:6A", "00:1A:79:36:33:37",
         "00:1A:79:B6:E1:AD", "00:1A:79:B6:E1:AB", "00:1A:79:B6:E1:B0",
         "00:1A:79:B6:CB:B8", "00:1A:79:B6:CB:C1", "00:1A:79:85:7E:E6",
-        "00:1A:79:B6:E6:77", "00:1A:79:7E:27:6C"
+        "00:1A:79:B6:E6:77", "00:1A:79:7E:27:6C",
+        # --- Attive ma temporaneamente occupate (restituiscono HTTP 458 ma valide) ---
+        "00:1A:79:00:18:F8", "00:1A:79:4C:CF:19", "00:1A:79:49:70:7F",
+        "00:1A:79:7E:6F:9E", "00:1A:79:4D:8C:76", "00:1A:79:B4:F1:DD",
+        "00:1A:79:B5:B6:30", "00:1A:79:B5:B6:31", "00:1A:79:B5:B6:DC",
+        "00:1A:79:B6:E3:F9"
     ]
 
     # ---- inizializzazione ----
@@ -209,7 +215,7 @@ class HubliveStalkerClient:
             # 4. Verifica se lo stream è realmente attivo (evita i black screen / GZIP vuoti)
             try:
                 # Esegui una richiesta di test veloce con timeout corto
-                r_play = requests.get(final_url, headers=self._headers(mac), cookies=self._cookies(mac, token), timeout=2.5, stream=True)
+                r_play = requests.get(final_url, headers=self._headers(mac), cookies=self._cookies(mac, token), timeout=1.8, stream=True)
                 if r_play.status_code == 200:
                     head = r_play.raw.read(100)
                     r_play.close()
