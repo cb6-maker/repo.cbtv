@@ -1187,96 +1187,20 @@ def play_daddy_direct():
 
 # --- CANALI ESTERI HUBLIVE (LISTA 1 HB) ---
 
-HB_FOREIGN_CHANNELS = {
-    "COSMOTE / GR SPORT": [
-        {"name": "GR: COSMOTE SPORT 1 ᴴᴰ ◉", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=842765&extension=ts&play_token=qv003z5Aja"},
-        {"name": "GR: COSMOTE SPORT 1 ᵁᴴᴰ ◉", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=842747&extension=ts&play_token=TD5SpaNrsn"},
-        {"name": "GR: COSMOTE SPORT 2 ᴴᴰ ◉", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=842764&extension=ts&play_token=r2CleZGZjV"},
-        {"name": "GR: COSMOTE SPORT 2 ᵁᴴᴰ ◉", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=842746&extension=ts&play_token=yG02dO981T"},
-        {"name": "GR: COSMOTE SPORT 3 ᴴᴰ ◉", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=842763&extension=ts&play_token=g5Q4Pt2gwW"},
-        {"name": "GR: COSMOTE SPORT 3 ᵁᴴᴰ ◉", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=842745&extension=ts&play_token=bh65e2AudC"},
-        {"name": "GR: COSMOTE SPORT 4 ᴴᴰ ◉", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=842762&extension=ts&play_token=VtBWgIazML"},
-        {"name": "GR: COSMOTE SPORT 4 ᵁᴴᴰ ◉", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=842744&extension=ts&play_token=yxmNrXUwpy"},
-        {"name": "GR: COSMOTE SPORT 5 ᴴᴰ ◉", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=842761&extension=ts&play_token=RzY38DYbve"},
-        {"name": "GR: COSMOTE SPORT 5 ᵁᴴᴰ ◉", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=842743&extension=ts&play_token=hcJMpjs1Vt"},
-        {"name": "GR: COSMOTE SPORT 6 ᴴᴰ ◉", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=842760&extension=ts&play_token=1LHBPOUzFF"},
-        {"name": "GR: COSMOTE SPORT 6 ᵁᴴᴰ ◉", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=842742&extension=ts&play_token=4pVyNJpXCT"},
-    ],
-    "MAX SPORT / BG SPORT": [
-        {"name": "BG: DIEMA SPORT 1 ᴴᴰ", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=441543&extension=ts&play_token=w1I3LY5zPZ"},
-        {"name": "BG: DIEMA SPORT 1 ⱽᴵᴾ ᴿᴬᵂ", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1460981&extension=ts&play_token=LYbJGX96sb"},
-        {"name": "BG: DIEMA SPORT 2", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=441542&extension=ts&play_token=PJeYK0xl55"},
-        {"name": "BG: DIEMA SPORT 2 ⱽᴵᴾ ᴿᴬᵂ", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1460980&extension=ts&play_token=ZCIqaDkMBf"},
-        {"name": "BG: DIEMA SPORT 3 ⱽᴵᴾ ᴿᴬᵂ", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1460979&extension=ts&play_token=AMb9wIPS4w"},
-        {"name": "BG: DIEMA SPORT 4K", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=441540&extension=ts&play_token=nZRy8GRDwn"},
-        {"name": "BG: MAX SPORT 1 HD", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=441489&extension=ts&play_token=nip4ziQAgF"},
-        {"name": "BG: MAX SPORT 1 ⱽᴵᴾ ᴿᴬᵂ", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1460978&extension=ts&play_token=oV2Pt2Qhjk"},
-        {"name": "BG: MAX SPORT 2 HD", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=441488&extension=ts&play_token=UsYsKfDacv"},
-        {"name": "BG: MAX SPORT 2 ⱽᴵVIP ᴿᴬᵂ", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1460977&extension=ts&play_token=FjCuHsYZTr"},
-        {"name": "BG: MAX SPORT 3 HD", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=441487&extension=ts&play_token=q42ZqxpR55"},
-        {"name": "BG: MAX SPORT 3 ⱽᴵVIP ᴿᴬᵂ", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1460976&extension=ts&play_token=MTcLMJ8Wdr"},
-    ],
-    "POLSAT / PL SPORT": [
-        {"name": "PL: ELEVEN SPORTS 1 4K+", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1991992&extension=ts&play_token=och2G1haE5"},
-        {"name": "PL: ELEVEN SPORTS 1 4K/UHD", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1991993&extension=ts&play_token=k9eblBZqGA"},
-        {"name": "PL: ELEVEN SPORTS 1 ᴴᴰ", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1991990&extension=ts&play_token=GC4BjWJqeM"},
-        {"name": "PL: ELEVEN SPORTS 1 ᴿᴬᵂ", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1991991&extension=ts&play_token=zoJOz1s058"},
-        {"name": "PL: ELEVEN SPORTS 2 ᴴᴰ", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1991988&extension=ts&play_token=V3jtB3ojp2"},
-        {"name": "PL: ELEVEN SPORTS 2 ᴿᴬᵂ", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1991989&extension=ts&play_token=2ZHoieRu0O"},
-        {"name": "PL: ELEVEN SPORTS 3 ᴴᴰ", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1991986&extension=ts&play_token=gRyLMhA0Dh"},
-        {"name": "PL: ELEVEN SPORTS 4 ᴿᴬᵂ", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1991985&extension=ts&play_token=eCb1B6Et8w"},
-        {"name": "PL: POLSAT SPORT 1 ᴴᴰ", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1991964&extension=ts&play_token=hGMwbdnVH5"},
-        {"name": "PL: POLSAT SPORT 2 ᴴᴰ", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1991962&extension=ts&play_token=FUej3VLrzt"},
-        {"name": "PL: POLSAT SPORT 2 ᴿᴬᵂ", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1991963&extension=ts&play_token=A2npcCSQqA"},
-        {"name": "PL: POLSAT SPORT 3 ᴿᴬᵂ", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1991961&extension=ts&play_token=yZTuK1aWew"},
-    ],
-    "TNT / UK SPORT": [
-        {"name": "VIP: TNT SPORT 1 ᴴᴰ", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1290377&extension=ts&play_token=kOclCSbieP"},
-        {"name": "VIP: TNT SPORT 1 ᴴᴰ ʰᵉᵛᶜ", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1290372&extension=ts&play_token=xDNWuZxLtP"},
-        {"name": "VIP: TNT SPORT 1 ᴿᴬᵂ", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1290332&extension=ts&play_token=4cyl0l7QLh"},
-        {"name": "VIP: TNT SPORT 2 ᴴᴰ", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1290376&extension=ts&play_token=mU5Xq8UMqe"},
-        {"name": "VIP: TNT SPORT 2 ᴿᴬᵂ", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1290331&extension=ts&play_token=LzV70m6ZdS"},
-        {"name": "VIP: TNT SPORT 3 ᴴᴰ", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1290375&extension=ts&play_token=YaEBDHmaXc"},
-        {"name": "VIP: TNT SPORT 3 ᴴᴰ ʰᵉᵛᶜ", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1290370&extension=ts&play_token=6smbOtUrV4"},
-        {"name": "VIP: TNT SPORT 4 ᴴᴰ", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1290374&extension=ts&play_token=J1cmAwezrV"},
-        {"name": "VIP: TNT SPORTS 1 ᴿᴬᵂ ⁵⁰ FPS", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1290337&extension=ts&play_token=WCo8shfVGd"},
-        {"name": "VIP: TNT SPORTS 2 ᴿᴬᵂ ⁵⁰ FPS", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1290336&extension=ts&play_token=1LdKCa2fYq"},
-        {"name": "VIP: TNT SPORTS 3 ᴿᴬᵂ ⁵⁰ FPS", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1290335&extension=ts&play_token=TCqHjVwjwC"},
-        {"name": "VIP: TNT SPORTS 4 ᴿᴬᵂ ⁵⁰ FPS", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1290334&extension=ts&play_token=u9C4VfnlmD"},
-    ],
-    "ZIGGO / NL SPORT": [
-        {"name": "NL: ZIGGO LIVE EVENT 1 ᴿᴬᵂ", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1537599&extension=ts&play_token=mJJAWtpz0g"},
-        {"name": "NL: ZIGGO SPORT 2 ᴿᴬᵂ ◉", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1537610&extension=ts&play_token=tCF9yzbsh3"},
-        {"name": "NL: ZIGGO SPORT 5 ᴿᴬᵂ ◉", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1537607&extension=ts&play_token=wAErGwHws2"},
-        {"name": "NL: ZIGGO SPORT TOTTAL ᴿᴬᵂ", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1537598&extension=ts&play_token=BjatiODAVe"},
-        {"name": "NL: ZIGGO SPORT ᴿᴬᵂ ◉", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1537611&extension=ts&play_token=CDISuox2Ul"},
-        {"name": "NL: ZIGGO TV ᴿᴬᵂ ◉", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1537605&extension=ts&play_token=ECDxKwEKZM"},
-        {"name": "ZG: ZIGGO SPORT 2 ᴿᴬᵂ", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1980749&extension=ts&play_token=48pTgT2q5L"},
-        {"name": "ZG: ZIGGO SPORT 3 ᴿᴬᵂ", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1980748&extension=ts&play_token=AJQTshZhQh"},
-        {"name": "ZG: ZIGGO SPORT 4 ᴿᴬᵂ", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1980747&extension=ts&play_token=0HnULPT4M2"},
-        {"name": "ZG: ZIGGO SPORT 5 ᴿᴬᵂ", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1980746&extension=ts&play_token=eGk6WE6NX8"},
-        {"name": "ZG: ZIGGO SPORT 6 ᴿᴬᵂ", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1980745&extension=ts&play_token=gFBHdIMjt7"},
-        {"name": "ZG: ZIGGO SPORT ᴿᴬᵂ", "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?mac=00:1A:79:81:F3:59&stream=1980750&extension=ts&play_token=qePfhmnMUo"},
-    ]
-}
-
-def list_hb_esteri_nazioni():
-    """Elenca le nazioni/fornitori disponibili in Lista 1 HB"""
-    xbmcplugin.setContent(HANDLE, 'videos')
-    
-    add_directory_item("[COLOR yellow]UK / TNT Sports & Sky (Inghilterra)[/COLOR]", {"action": "list_hb_esteri_channels", "group": "TNT / UK SPORT"})
-    add_directory_item("[COLOR yellow]NL / Ziggo Sport (Olanda)[/COLOR]", {"action": "list_hb_esteri_channels", "group": "ZIGGO / NL SPORT"})
-    add_directory_item("[COLOR yellow]GR / Cosmote Sport (Grecia)[/COLOR]", {"action": "list_hb_esteri_channels", "group": "COSMOTE / GR SPORT"})
-    add_directory_item("[COLOR yellow]PL / Polsat Sport & Eleven (Polonia)[/COLOR]", {"action": "list_hb_esteri_channels", "group": "POLSAT / PL SPORT"})
-    add_directory_item("[COLOR yellow]BG / Max Sport & Diema (Bulgaria)[/COLOR]", {"action": "list_hb_esteri_channels", "group": "MAX SPORT / BG SPORT"})
-    
-    xbmcplugin.endOfDirectory(HANDLE)
-
 def list_hb_esteri_channels(group):
-    """Elenca i canali per il gruppo selezionato di Lista 1 HB"""
+    """Elenca i canali per il gruppo selezionato di Lista 1 HB in modo dinamico"""
     xbmcplugin.setContent(HANDLE, 'videos')
     
-    channels = HB_FOREIGN_CHANNELS.get(group, [])
+    from resources.lib.hublive_stalker import HubliveStalkerClient
+    client = HubliveStalkerClient()
+    
+    p_dialog = xbmcgui.DialogProgress()
+    p_dialog.create("CBTV", "Caricamento canali...")
+    
+    channels = client.get_foreign_sport_channels(group)
+    
+    p_dialog.close()
+    
     for ch in channels:
         title = f"{ch['name']} [COLOR yellow](HB)[/COLOR]"
         add_directory_item(

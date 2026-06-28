@@ -29,23 +29,15 @@ def clean_text(text):
 class HubliveStalkerClient:
     """Client Stalker aggiornato per Server 28 di Hublive (pro.most8knew.com) - Server 12 / Server 9 sono disattivati/bloccati."""
 
-    PORTAL_URL = "http://pro.most8knew.com:80"   # NO trailing /c/
+    PORTAL_URL = "http://mag.jee-ott.xyz:80"   # NO trailing /c/
     UA = ("Mozilla/5.0 (QtEmbedded; U; Linux; C) AppleWebKit/533.3 "
           "(KHTML, like Gecko) MAG200 stbapp ver: 2 rev: 250 Safari/533.3")
 
     _MAC_POOL = [
-        # --- Totalmente attive (MPEG-TS immediato nel test) ---
-        "A0:BB:3E:00:0A:CD", "A0:BB:3E:00:0A:CB", "A0:BB:3E:00:5A:E4",
-        "00:1A:79:20:65:CB", "00:1A:79:81:F3:59", "00:1A:79:B5:B6:D5",
-        "00:1A:79:7B:20:DE", "00:1A:79:14:57:6A", "00:1A:79:36:33:37",
-        "00:1A:79:B6:E1:AD", "00:1A:79:B6:E1:AB", "00:1A:79:B6:E1:B0",
-        "00:1A:79:B6:CB:B8", "00:1A:79:B6:CB:C1", "00:1A:79:85:7E:E6",
-        "00:1A:79:B6:E6:77", "00:1A:79:7E:27:6C",
-        # --- Attive ma temporaneamente occupate (restituiscono HTTP 458 ma valide) ---
-        "00:1A:79:00:18:F8", "00:1A:79:4C:CF:19", "00:1A:79:49:70:7F",
-        "00:1A:79:7E:6F:9E", "00:1A:79:4D:8C:76", "00:1A:79:B4:F1:DD",
-        "00:1A:79:B5:B6:30", "00:1A:79:B5:B6:31", "00:1A:79:B5:B6:DC",
-        "00:1A:79:B6:E3:F9"
+        "00:1A:79:98:AE:D7", "00:1A:79:1D:0B:A9", "00:1A:79:B6:C1:69", "00:1A:79:16:E3:9E",
+        "00:1A:79:F0:15:24", "00:1A:79:00:20:3F", "00:1A:79:00:02:6A", "00:1A:79:00:1A:79",
+        "00:1A:79:00:1D:F9", "00:1A:79:00:15:CE", "00:1A:79:00:21:79", "00:1A:79:00:24:3B",
+        "00:1A:79:00:1F:68", "00:1A:79:00:21:82", "00:1A:79:00:14:D5", "00:1A:79:00:1E:B5"
     ]
 
     # ---- inizializzazione ----
@@ -253,7 +245,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "2.9.11"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.0.0"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _get_cache(self, key):
         f = os.path.join(self.cache_dir, f"hl_{key}.json")
@@ -275,6 +267,30 @@ class HubliveStalkerClient:
             with open(f, 'w', encoding='utf-8') as fh:
                 json.dump({'ts': time.time(), 'v': self.CACHE_VERSION, 'data': data}, fh)
         except: pass
+
+    # ---- get_genres / lookup ----
+    def get_genres(self):
+        """Scarica e memorizza in cache le categorie (genres) del portale."""
+        cached = self._get_cache("genres")
+        if cached:
+            return cached
+
+        mac = random.choice(self._MAC_POOL)
+        token = self._handshake(mac)
+        if not token:
+            xbmc.log("[CBTV-HB] Handshake fallito per get_genres", xbmc.LOGWARNING)
+            return []
+
+        res = self._api_call(mac, token, "get_genres")
+        if isinstance(res, list):
+            self._set_cache("genres", res)
+            return res
+        return []
+
+    def _find_genre_ids_by_titles(self, target_titles):
+        """Trova gli ID dei generi in base ai titoli cercati."""
+        genres = self.get_genres()
+        return [g["id"] for g in genres if g.get("title") in target_titles]
 
     # ---- scaricamento lista canali per genere ----
     def _fetch_channels_for_genres(self, genre_ids, cache_key, keywords=None, negatives=None):
@@ -335,15 +351,18 @@ class HubliveStalkerClient:
         return unique
 
     # ---- API pubblica (Server 12) ----
+    # ---- API pubblica dinamica ----
     def get_sky_tv_channels(self):
-        # Generi Server 12: 18=Generale, 295=Cinema, 420=Cinema VIP, 417=Platinum TV, 419=Gold TV, 1775=24/7 Movies
-        return self._fetch_channels_for_genres([18, 295, 420, 417, 419, 1775], "sky_tv",
+        target_titles = ["IT| GENERALE", "IT| CINEMA", "IT| REGIONALI", "IT| PRIME ᴿᴬᵂ ⁶⁰ᶠᵖˢ", "IT| 24/7 MOVIES & SERIES", "IT| ITALY FHD/HEVC", "IT| ITALY UHD/4K"]
+        gids = self._find_genre_ids_by_titles(target_titles)
+        return self._fetch_channels_for_genres(gids, "sky_tv",
             keywords=["SKY"],
             negatives=["SPORT", "DAZN", "CALCIO", "F1", "MOTOGP", "PRIMAFILA"])
 
     def get_sky_sport_channels(self):
-        # Generi Server 12: 265=Sport, 467=Formula 1 / MotoGP
-        channels = self._fetch_channels_for_genres([265, 467], "sky_sport", 
+        target_titles = ["IT| SPORT", "IT| FORMULA 1 / MOTOGP", "IT| SERIE A/B/C", "IT| ITALY FHD/HEVC", "IT| ITALY UHD/4K"]
+        gids = self._find_genre_ids_by_titles(target_titles)
+        channels = self._fetch_channels_for_genres(gids, "sky_sport", 
             keywords=["SKY SPORT", "SKY CALCIO", "EUROSPORT"],
             negatives=["SERIE C", "SERIE D", "LEGA PRO", "DAZN BAR", "DAZN CHANNEL", "VETRINA DAZN"])
 
@@ -379,14 +398,16 @@ class HubliveStalkerClient:
         return channels
 
     def get_dazn_channels(self):
-        # Generi Server 12: 476=DAZN VIP, 2242=DAZN PP, 265=Sport
-        return self._fetch_channels_for_genres([476, 2242, 265], "dazn",
+        target_titles = ["IT| DAZN", "IT| DAZN PPV", "IT| SPORT", "IT| ITALY FHD/HEVC"]
+        gids = self._find_genre_ids_by_titles(target_titles)
+        return self._fetch_channels_for_genres(gids, "dazn",
             keywords=["SERIE A", "ZONA DAZN", "DAZN WEB", "DAZN BAR", "DAZN CHANNEL", "VETRINA DAZN"],
             negatives=["WOMEN", "SERIE B", "SKY SPORT", "SKY CALCIO", "EUROSPORT"])
 
     def get_primafila_channels(self):
-        # Generi Server 12: I canali Primafila sono inclusi all'interno di Cinema VIP (420) e Cinema HD (295)
-        channels = self._fetch_channels_for_genres([420, 295], "primafila", keywords=["PRIMAFILA"])
+        target_titles = ["IT| CINEMA", "IT| SPORT", "IT| ITALY FHD/HEVC"]
+        gids = self._find_genre_ids_by_titles(target_titles)
+        channels = self._fetch_channels_for_genres(gids, "primafila", keywords=["PRIMAFILA"])
         
         def primafila_sort_key(ch):
             name = ch.get('name', '').upper().strip()
@@ -407,4 +428,64 @@ class HubliveStalkerClient:
             return (is_vetrina, group, num, name)
             
         channels.sort(key=primafila_sort_key)
+        return channels
+
+    def get_foreign_sport_channels(self, group):
+        """Ritorna la lista dei canali sportivi esteri in base al gruppo (COSMOTE, ZIGGO, POLSAT, TNT, MAX SPORT)"""
+        target_titles = []
+        filter_keywords = []
+        
+        if group == "COSMOTE / GR SPORT":
+            target_titles = ["GR| ΑΘΛΗΤΙΚΆ/SPORTS"]
+            filter_keywords = ["COSMOTE"]
+        elif group == "MAX SPORT / BG SPORT":
+            target_titles = ["BG| BULGARIA", "BG| BULGARIA ⱽᴵᴾ ᴿᴬᵂ"]
+            filter_keywords = ["DIEMA", "MAX SPORT"]
+        elif group == "POLSAT / PL SPORT":
+            target_titles = ["PL| SPORTOWE", "PL| CANAL+ ONLINE SPORT ᴿᴬᵂ"]
+            filter_keywords = ["POLSAT", "ELEVEN", "CANAL+"]
+        elif group == "TNT / UK SPORT":
+            target_titles = ["UK| TNT SPORTS EVENT"]
+            filter_keywords = ["TNT"]
+        elif group == "ZIGGO / NL SPORT":
+            target_titles = ["NL| SPORT"]
+            filter_keywords = ["ZIGGO"]
+            
+        # Trova gli ID delle categorie
+        gids = self._find_genre_ids_by_titles(target_titles)
+        if not gids and group == "TNT / UK SPORT":
+            # Fallback se non trovato per titolo esatto
+            genres = self.get_genres()
+            gids = [g["id"] for g in genres if "TNT" in g.get("title", "").upper()]
+
+        if not gids:
+            xbmc.log(f"[CBTV-HB] Nessuna categoria trovata per il gruppo estero: {group}", xbmc.LOGWARNING)
+            return []
+            
+        # Scarica i canali dalle categorie mappate
+        channels = []
+        seen_cmds = set()
+        
+        ch_list = self._fetch_channels_for_genres(gids, f"foreign_{group.replace(' ', '_').replace('/', '_')}")
+        for ch in ch_list:
+            name = ch.get("name", "")
+            cmd = ch.get("cmd", "")
+            if not cmd:
+                continue
+            
+            # Filtra per le parole chiave corrispondenti
+            if not filter_keywords or any(kw in name.upper() for kw in filter_keywords):
+                if cmd not in seen_cmds:
+                    seen_cmds.add(cmd)
+                    channels.append({
+                        "name": clean_text(name),
+                        "cmd": cmd
+                    })
+                    
+        # Ordina naturalmente per nome
+        import re
+        def natural_sort_key(s):
+            return [int(text) if text.isdigit() else text.lower() for text in re.split(r'(\d+)', s)]
+            
+        channels.sort(key=lambda x: natural_sort_key(x["name"]))
         return channels
