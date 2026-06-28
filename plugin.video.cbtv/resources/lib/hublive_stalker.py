@@ -174,6 +174,9 @@ class HubliveStalkerClient:
             xbmc.log("[CBTV-HB] Tutti i MAC sono stati esauriti", xbmc.LOGWARNING)
             return None, None
 
+        first_fallback_url = None
+        first_fallback_mac = None
+
         for attempt, mac in enumerate(pool, 1):
             xbmc.log(f"[CBTV-HB] Tentativo {attempt}/{len(pool)} con MAC: {mac}", xbmc.LOGINFO)
 
@@ -197,6 +200,11 @@ class HubliveStalkerClient:
                 # Formato Server 2 (ricostruzione manuale)
                 final_url = (f"{self.PORTAL_URL}/play/live.php"
                              f"?mac={mac}&stream={stream_id_out}&extension=ts&play_token={url_or_token}")
+
+            # Salva il primo come fallback nel caso in cui tutti falliscano il test dello stream
+            if not first_fallback_url:
+                first_fallback_url = f"{final_url}|User-Agent={quote_plus(self.UA)}"
+                first_fallback_mac = mac
 
             # 4. Verifica se lo stream è realmente attivo (evita i black screen / GZIP vuoti)
             try:
@@ -227,6 +235,11 @@ class HubliveStalkerClient:
             final_url_with_ua = f"{final_url}|User-Agent={quote_plus(self.UA)}"
             xbmc.log(f"[CBTV-HB] Stream risolto con successo usando MAC {mac}", xbmc.LOGINFO)
             return final_url_with_ua, mac
+
+        # Se tutti i MAC hanno fallito la validazione dello stream, ma abbiamo un fallback che ha fatto create_link
+        if first_fallback_url:
+            xbmc.log(f"[CBTV-HB] Tutti i MAC hanno fallito la validazione dello stream. Uso fallback: {first_fallback_mac}", xbmc.LOGWARNING)
+            return first_fallback_url, first_fallback_mac
 
         return None, None
 

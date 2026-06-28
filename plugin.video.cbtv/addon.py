@@ -1644,6 +1644,8 @@ def play_hublive_stalker(cmd):
         
         if not final_url:
             xbmc.log(f"[CBTV-HB] Nessun MAC rimasto dopo {len(failed_macs)} falliti", xbmc.LOGWARNING)
+            if first_attempt:
+                xbmcplugin.setResolvedUrl(HANDLE, False, xbmcgui.ListItem())
             break
         
         # Crea player con tracking eventi
