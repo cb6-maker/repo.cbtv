@@ -176,6 +176,9 @@ class HubliveStalkerClient:
         if exclude_macs:
             pool = [m for m in pool if m not in exclude_macs]
         
+        # Limita a massimo 6 MAC casuali per evitare timeout di Kodi durante la scansione
+        pool = pool[:6]
+        
         if not pool:
             xbmc.log("[CBTV-HB] Tutti i MAC sono stati esauriti", xbmc.LOGWARNING)
             return None, None
