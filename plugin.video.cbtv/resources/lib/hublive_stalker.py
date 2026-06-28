@@ -269,20 +269,29 @@ class HubliveStalkerClient:
         except: pass
 
     # ---- get_genres / lookup ----
+    def _get_working_token_and_mac(self):
+        """Ruota i MAC finché non ne trova uno che esegue l'handshake con successo."""
+        pool = list(self._MAC_POOL)
+        random.shuffle(pool)
+        for mac in pool:
+            token = self._handshake(mac)
+            if token:
+                return token, mac
+        return None, None
+
     def get_genres(self):
         """Scarica e memorizza in cache le categorie (genres) del portale."""
         cached = self._get_cache("genres")
         if cached:
             return cached
 
-        mac = random.choice(self._MAC_POOL)
-        token = self._handshake(mac)
+        token, mac = self._get_working_token_and_mac()
         if not token:
-            xbmc.log("[CBTV-HB] Handshake fallito per get_genres", xbmc.LOGWARNING)
+            xbmc.log("[CBTV-HB] Impossibile trovare un MAC funzionante per get_genres", xbmc.LOGWARNING)
             return []
 
         res = self._api_call(mac, token, "get_genres")
-        if isinstance(res, list):
+        if isinstance(res, list) and len(res) > 0:
             self._set_cache("genres", res)
             return res
         return []
@@ -298,11 +307,9 @@ class HubliveStalkerClient:
         if cached:
             return cached
 
-        # Usa un MAC qualsiasi per il listing
-        mac = random.choice(self._MAC_POOL)
-        token = self._handshake(mac)
+        token, mac = self._get_working_token_and_mac()
         if not token:
-            xbmc.log("[CBTV-HB] Handshake fallito per listing canali", xbmc.LOGWARNING)
+            xbmc.log("[CBTV-HB] Impossibile trovare un MAC funzionante per listing canali", xbmc.LOGWARNING)
             return []
 
         found = []
