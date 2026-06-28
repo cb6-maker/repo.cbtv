@@ -29,15 +29,20 @@ def clean_text(text):
 class HubliveStalkerClient:
     """Client Stalker aggiornato per Server 28 di Hublive (pro.most8knew.com) - Server 12 / Server 9 sono disattivati/bloccati."""
 
-    PORTAL_URL = "http://mag.jee-ott.xyz:80"   # NO trailing /c/
+    PORTAL_URL = "http://pro.most8knew.com:80"   # NO trailing /c/
     UA = ("Mozilla/5.0 (QtEmbedded; U; Linux; C) AppleWebKit/533.3 "
           "(KHTML, like Gecko) MAG200 stbapp ver: 2 rev: 250 Safari/533.3")
 
     _MAC_POOL = [
-        "00:1A:79:98:AE:D7", "00:1A:79:1D:0B:A9", "00:1A:79:B6:C1:69", "00:1A:79:16:E3:9E",
-        "00:1A:79:F0:15:24", "00:1A:79:00:20:3F", "00:1A:79:00:02:6A", "00:1A:79:00:1A:79",
-        "00:1A:79:00:1D:F9", "00:1A:79:00:15:CE", "00:1A:79:00:21:79", "00:1A:79:00:24:3B",
-        "00:1A:79:00:1F:68", "00:1A:79:00:21:82", "00:1A:79:00:14:D5", "00:1A:79:00:1E:B5"
+        "00:1A:79:23:3D:04", "00:1A:79:36:33:37", "00:1A:79:14:57:6A", "00:1A:79:14:04:DD",
+        "00:1A:79:5E:34:36", "00:1A:79:00:14:D5", "00:1A:79:4B:73:63", "00:1A:79:4D:10:EA",
+        "00:1A:79:4D:8C:76", "00:1A:79:7B:20:DE", "00:1A:79:6E:E5:9C", "00:1A:79:6A:39:61",
+        "00:1A:79:7E:27:6C", "00:1A:79:7E:6F:9E", "00:1A:79:4C:CF:19", "00:1A:79:7F:A3:C4",
+        "00:1A:79:84:CF:92", "00:1A:79:81:F3:59", "00:1A:79:80:89:90", "00:1A:79:82:BC:40",
+        "00:1A:79:81:62:A4", "00:1A:79:82:D2:6F", "00:1A:79:85:7E:E6", "00:1A:79:82:F8:27",
+        "00:1A:79:85:72:2E", "00:1A:79:B0:43:BC", "00:1A:79:B2:23:F8", "00:1A:79:B2:69:01",
+        "00:1A:79:B5:B6:31", "00:1A:79:B5:B6:DC", "00:1A:79:B6:CB:B8", "00:1A:79:B6:E1:7F",
+        "00:1A:79:B6:E3:F9", "00:1A:79:B6:E6:77", "00:1A:79:D6:71:FF", "00:1A:79:B9:E7:A7"
     ]
 
     # ---- inizializzazione ----
@@ -245,7 +250,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.0.0"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.1.0"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _get_cache(self, key):
         f = os.path.join(self.cache_dir, f"hl_{key}.json")
@@ -360,14 +365,27 @@ class HubliveStalkerClient:
     # ---- API pubblica (Server 12) ----
     # ---- API pubblica dinamica ----
     def get_sky_tv_channels(self):
-        target_titles = ["IT| GENERALE", "IT| CINEMA", "IT| REGIONALI", "IT| PRIME ᴿᴬᵂ ⁶⁰ᶠᵖˢ", "IT| 24/7 MOVIES & SERIES", "IT| ITALY FHD/HEVC", "IT| ITALY UHD/4K"]
+        target_titles = [
+            "IT| GENERALE", "IT| GENERALE HD/4K", 
+            "IT| CINEMA", "IT| CINEMA HD/4K", "IT| CINEMA VIP HD/4K",
+            "IT| REGIONALI", "IT| REGIONALI HD/4K",
+            "IT| PRIME ᴿᴬᵂ ⁶⁰ᶠᵖˢ", 
+            "IT| 24/7 MOVIES & SERIES", "IT| 24/7 MOVIES & SERIES HD/4K",
+            "IT| ITALY FHD/HEVC", "IT| ITALY UHD/4K",
+            "IT| PLATINUM TV UHD/4K", "IT| GOLD TV HEVC"
+        ]
         gids = self._find_genre_ids_by_titles(target_titles)
         return self._fetch_channels_for_genres(gids, "sky_tv",
             keywords=["SKY"],
             negatives=["SPORT", "DAZN", "CALCIO", "F1", "MOTOGP", "PRIMAFILA"])
 
     def get_sky_sport_channels(self):
-        target_titles = ["IT| SPORT", "IT| FORMULA 1 / MOTOGP", "IT| SERIE A/B/C", "IT| ITALY FHD/HEVC", "IT| ITALY UHD/4K"]
+        target_titles = [
+            "IT| SPORT", "IT| SPORT HD/4K",
+            "IT| FORMULA 1 / MOTOGP", "IT| SERIE A/B/C",
+            "IT| ITALY FHD/HEVC", "IT| ITALY UHD/4K",
+            "IT| PLATINUM TV UHD/4K", "IT| GOLD TV HEVC"
+        ]
         gids = self._find_genre_ids_by_titles(target_titles)
         channels = self._fetch_channels_for_genres(gids, "sky_sport", 
             keywords=["SKY SPORT", "SKY CALCIO", "EUROSPORT"],
@@ -405,14 +423,22 @@ class HubliveStalkerClient:
         return channels
 
     def get_dazn_channels(self):
-        target_titles = ["IT| DAZN", "IT| DAZN PPV", "IT| SPORT", "IT| ITALY FHD/HEVC"]
+        target_titles = [
+            "IT| DAZN", "IT| DAZN VIP HD/4K", "IT| DAZN PPV",
+            "IT| SPORT", "IT| SPORT HD/4K",
+            "IT| ITALY FHD/HEVC", "IT| PLATINUM TV UHD/4K"
+        ]
         gids = self._find_genre_ids_by_titles(target_titles)
         return self._fetch_channels_for_genres(gids, "dazn",
             keywords=["SERIE A", "ZONA DAZN", "DAZN WEB", "DAZN BAR", "DAZN CHANNEL", "VETRINA DAZN"],
             negatives=["WOMEN", "SERIE B", "SKY SPORT", "SKY CALCIO", "EUROSPORT"])
 
     def get_primafila_channels(self):
-        target_titles = ["IT| CINEMA", "IT| SPORT", "IT| ITALY FHD/HEVC"]
+        target_titles = [
+            "IT| CINEMA", "IT| CINEMA VIP HD/4K", "IT| CINEMA HD/4K",
+            "IT| SPORT", "IT| SPORT HD/4K",
+            "IT| ITALY FHD/HEVC", "IT| PLATINUM TV UHD/4K"
+        ]
         gids = self._find_genre_ids_by_titles(target_titles)
         channels = self._fetch_channels_for_genres(gids, "primafila", keywords=["PRIMAFILA"])
         
@@ -443,19 +469,19 @@ class HubliveStalkerClient:
         filter_keywords = []
         
         if group == "COSMOTE / GR SPORT":
-            target_titles = ["GR| ΑΘΛΗΤΙΚΆ/SPORTS"]
+            target_titles = ["GR| ΑΘΛΗΤΙΚΆ/SPORTS", "GR| ΑΘΛΗΤΙΚΑ/SPORTS", "GR| ΑΘΛΗΤΙΚΑ/SPORTS VIP"]
             filter_keywords = ["COSMOTE"]
         elif group == "MAX SPORT / BG SPORT":
-            target_titles = ["BG| BULGARIA", "BG| BULGARIA ⱽᴵᴾ ᴿᴬᵂ"]
+            target_titles = ["BG| BULGARIA", "BG| BULGARIA ⱽᴵᴾ ᴿᴬᵂ", "BG| BULGARIA ᴴᴰ/ᴿᴬᵂ"]
             filter_keywords = ["DIEMA", "MAX SPORT"]
         elif group == "POLSAT / PL SPORT":
-            target_titles = ["PL| SPORTOWE", "PL| CANAL+ ONLINE SPORT ᴿᴬᵂ"]
+            target_titles = ["PL| SPORTOWE", "PL| CANAL+ ONLINE SPORT ᴿᴬᵂ", "PL| SPORTOWE ᴴᴰ/ᴿᴬᵂ", "PL| CANAL+ ONLINE SPORT ᴿᴬᵂ"]
             filter_keywords = ["POLSAT", "ELEVEN", "CANAL+"]
         elif group == "TNT / UK SPORT":
-            target_titles = ["UK| TNT SPORTS EVENT"]
+            target_titles = ["UK| TNT SPORTS EVENT", "UK| TNT SPORT EVENT", "UK| TNT SPORT ᴴᴰ ⱽᴵᴾ", "UK| TNT SPORT ᴿᴬᵂ ⱽᴵᴾ ᴰᴼᴸᴮʸ ᴬᵁᴰᴵᴼ"]
             filter_keywords = ["TNT"]
         elif group == "ZIGGO / NL SPORT":
-            target_titles = ["NL| SPORT"]
+            target_titles = ["NL| SPORT", "NL| SPORT HD/4K", "NL| ZIGGO SPORTS ᴿᴬᵂ", "NL| ZIGGO ᴿᴬᵂ"]
             filter_keywords = ["ZIGGO"]
             
         # Trova gli ID delle categorie
