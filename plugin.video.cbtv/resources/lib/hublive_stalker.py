@@ -34,6 +34,7 @@ class HubliveStalkerClient:
           "(KHTML, like Gecko) MAG200 stbapp ver: 2 rev: 250 Safari/533.3")
 
     _MAC_POOL = [
+        "A0:BB:3E:00:0A:CD", "A0:BB:3E:00:0A:CB", "A0:BB:3E:00:5A:E4",
         "00:1A:79:00:10:0C", "00:1A:79:00:00:00", "00:1A:79:00:18:59", "00:1A:79:00:14:D5",
         "00:1A:79:00:18:F8", "00:1A:79:00:1D:84", "00:1A:79:00:1E:6C", "00:1A:79:00:23:D6",
         "00:1A:79:00:25:1F", "00:1A:79:00:29:76", "00:1A:79:13:AB:0C", "00:1A:79:14:04:DD",
@@ -215,11 +216,34 @@ class HubliveStalkerClient:
                 final_url = (f"{self.PORTAL_URL}/play/live.php"
                              f"?mac={mac}&stream={stream_id_out}&extension=ts&play_token={url_or_token}")
 
-            # 4. Aggiungi User-Agent per Kodi (come Hublive Server 2, riga 3775)
-            final_url_with_ua = f"{final_url}|User-Agent={quote_plus(self.UA)}"
+            # 4. Verifica se lo stream è realmente attivo (evita i black screen / GZIP vuoti)
+            try:
+                # Esegui una richiesta di test veloce con timeout corto
+                r_play = requests.get(final_url, headers=self._headers(mac), cookies=self._cookies(mac, token), timeout=2.5, stream=True)
+                if r_play.status_code == 200:
+                    head = r_play.raw.read(100)
+                    r_play.close()
+                    if not head:
+                        xbmc.log(f"[CBTV-HB] MAC {mac} ha restituito uno stream vuoto (0 bytes)", xbmc.LOGWARNING)
+                        continue
+                    if head.startswith(b'\x1f\x8b\x08'):
+                        xbmc.log(f"[CBTV-HB] MAC {mac} non autorizzato (stream GZIP vuoto)", xbmc.LOGWARNING)
+                        continue
+                    if b"Sito Illegale" in head or b"AGCOM" in head or b"html" in head:
+                        xbmc.log(f"[CBTV-HB] MAC {mac} reindirizzato a pagina di blocco AGCOM o HTML", xbmc.LOGWARNING)
+                        continue
+                    # Se non è vuoto, GZIP o HTML, lo stream è valido!
+                else:
+                    xbmc.log(f"[CBTV-HB] MAC {mac} ha restituito errore HTTP {r_play.status_code}", xbmc.LOGWARNING)
+                    r_play.close()
+                    continue
+            except Exception as e:
+                xbmc.log(f"[CBTV-HB] Eccezione durante il test dello stream con MAC {mac}: {e}", xbmc.LOGWARNING)
+                continue
 
-            # 5. Passa a Kodi senza probe
-            xbmc.log(f"[CBTV-HB] Stream risolto con MAC {mac}", xbmc.LOGINFO)
+            # 5. Aggiungi User-Agent per Kodi (come Hublive Server 2, riga 3775)
+            final_url_with_ua = f"{final_url}|User-Agent={quote_plus(self.UA)}"
+            xbmc.log(f"[CBTV-HB] Stream risolto con successo usando MAC {mac}", xbmc.LOGINFO)
             return final_url_with_ua, mac
 
         return None, None
