@@ -1553,7 +1553,7 @@ def play_hublive_stalker(cmd):
     """Riproduce un canale Hublive con auto-riconnessione e rotazione MAC completa."""
     client = HubliveStalkerClient()
     failed_macs = set()       # MAC che hanno fallito (handshake, play o stream caduto)
-    max_attempts = len(client._MAC_POOL)  # Prova tutti i MAC disponibili
+    max_attempts = min(12, len(client._MAC_POOL))  # Prova al massimo 12 MAC per non fare attendere troppo l'utente in caso di errore
     reconnect_delay = 2
     first_attempt = True      # Per gestire setResolvedUrl vs Player.play()
     
