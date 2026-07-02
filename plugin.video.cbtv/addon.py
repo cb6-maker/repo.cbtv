@@ -1567,10 +1567,14 @@ def play_hublive_stalker(cmd):
         final_url, mac = client.resolve_stream(cmd, exclude_macs=failed_macs)
         
         if not final_url:
-            xbmc.log(f"[CBTV-HB] Nessun MAC rimasto dopo {len(failed_macs)} falliti", xbmc.LOGWARNING)
-            if first_attempt:
-                xbmcplugin.setResolvedUrl(HANDLE, False, xbmcgui.ListItem())
-            break
+            if len(failed_macs) >= max_attempts:
+                xbmc.log(f"[CBTV-HB] Tutti i {max_attempts} MAC hanno fallito.", xbmc.LOGWARNING)
+                if first_attempt:
+                    xbmcplugin.setResolvedUrl(HANDLE, False, xbmcgui.ListItem())
+                break
+            else:
+                xbmc.log(f"[CBTV-HB] Batch di MAC fallito, provo il prossimo batch... (esclusi: {len(failed_macs)}/{max_attempts})", xbmc.LOGINFO)
+                continue
         
         # Crea player con tracking eventi
         hb_player = HBPlayer()

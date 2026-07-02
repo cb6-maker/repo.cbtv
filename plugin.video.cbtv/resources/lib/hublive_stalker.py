@@ -52,6 +52,24 @@ class HubliveStalkerClient:
         if not os.path.exists(self.cache_dir):
             os.makedirs(self.cache_dir)
 
+    def _get_last_working_mac(self):
+        f = os.path.join(self.cache_dir, "hl_last_mac.json")
+        if os.path.exists(f):
+            try:
+                with open(f, 'r', encoding='utf-8') as fh:
+                    return json.load(fh).get("mac")
+            except:
+                pass
+        return None
+
+    def _set_last_working_mac(self, mac):
+        f = os.path.join(self.cache_dir, "hl_last_mac.json")
+        try:
+            with open(f, 'w', encoding='utf-8') as fh:
+                json.dump({"mac": mac}, fh)
+        except:
+            pass
+
     # ---- headers / cookies come Hublive originale ----
     @staticmethod
     def _headers(mac=None):
@@ -73,7 +91,7 @@ class HubliveStalkerClient:
 
     # ---- handshake (copia esatta da Hublive) ----
     @staticmethod
-    def _handshake(mac):
+    def _handshake(mac, timeout=5):
         """Esegue l'handshake Stalker e restituisce il token (o None)."""
         session = requests.Session()
         session.cookies.clear()
@@ -83,7 +101,7 @@ class HubliveStalkerClient:
             r = session.get(url, params=params,
                             headers=HubliveStalkerClient._headers(),
                             cookies=HubliveStalkerClient._cookies(mac),
-                            timeout=5)
+                            timeout=timeout)
             r.raise_for_status()
             data = r.json()
             if isinstance(data, dict):
@@ -97,7 +115,7 @@ class HubliveStalkerClient:
 
     # ---- chiamata API generica ----
     @staticmethod
-    def _api_call(mac, token, action, extra_params=None):
+    def _api_call(mac, token, action, extra_params=None, timeout=12):
         """Chiamata a portal.php — restituisce il campo 'js' della risposta."""
         session = requests.Session()
         url = f"{HubliveStalkerClient.PORTAL_URL}/portal.php"
@@ -113,7 +131,7 @@ class HubliveStalkerClient:
         cookies = HubliveStalkerClient._cookies(mac, token)
 
         try:
-            r = session.get(url, params=params, headers=headers, cookies=cookies, timeout=12)
+            r = session.get(url, params=params, headers=headers, cookies=cookies, timeout=timeout)
             r.raise_for_status()
             data = r.json()
             if isinstance(data, dict):
@@ -124,7 +142,7 @@ class HubliveStalkerClient:
             return {}
 
     # ---- create_link (copia da Hublive play_channel_server1) ----
-    def create_link(self, mac, token, cmd):
+    def create_link(self, mac, token, cmd, timeout=12):
         """Chiama create_link e restituisce (play_token, stream_id) o (None, None)."""
         # Estrai lo stream_id dal cmd ORIGINALE (non dal returned_cmd!)
         # Formato cmd: ffmpeg http://…/play/live.php?mac=…&stream=177655&extension=ts&play_token=…
@@ -141,7 +159,7 @@ class HubliveStalkerClient:
             stream_id = sid_match.group(1)
 
         clean_cmd = f"ffmpeg http://localhost/ch/{stream_id}_"
-        res = self._api_call(mac, token, "create_link", {"cmd": clean_cmd, "forced_storage": "0", "download": "0"})
+        res = self._api_call(mac, token, "create_link", {"cmd": clean_cmd, "forced_storage": "0", "download": "0"}, timeout=timeout)
         if not isinstance(res, dict):
             return None, None
 
@@ -160,12 +178,14 @@ class HubliveStalkerClient:
 
         return play_token_match.group(1), stream_id
 
-    # ---- risoluzione stream con rotazione MAC (come Hublive) ----
     def resolve_stream(self, cmd, exclude_macs=None):
         """
         Prova i MAC disponibili (escludendo quelli già falliti) per ottenere un URL di stream.
         Restituisce (final_url, mac_usato) o (None, None).
         """
+        if exclude_macs is None:
+            exclude_macs = set()
+
         pool = list(self._MAC_POOL)
         random.shuffle(pool)
         
@@ -173,6 +193,12 @@ class HubliveStalkerClient:
         if exclude_macs:
             pool = [m for m in pool if m not in exclude_macs]
         
+        # Inserisci il Last Working MAC in cima al pool (priorità assoluta)
+        last_working = self._get_last_working_mac()
+        if last_working and last_working in pool:
+            pool.remove(last_working)
+            pool.insert(0, last_working)
+
         # Limita a massimo 6 MAC casuali per evitare timeout di Kodi durante la scansione
         pool = pool[:6]
         
@@ -180,22 +206,21 @@ class HubliveStalkerClient:
             xbmc.log("[CBTV-HB] Tutti i MAC sono stati esauriti", xbmc.LOGWARNING)
             return None, None
 
-        first_fallback_url = None
-        first_fallback_mac = None
-
         for attempt, mac in enumerate(pool, 1):
             xbmc.log(f"[CBTV-HB] Tentativo {attempt}/{len(pool)} con MAC: {mac}", xbmc.LOGINFO)
 
-            # 1. Handshake
-            token = self._handshake(mac)
+            # 1. Handshake (con timeout ridotto a 2.0s per velocizzare)
+            token = self._handshake(mac, timeout=2.0)
             if not token:
                 xbmc.log(f"[CBTV-HB] Handshake fallito per MAC {mac}", xbmc.LOGWARNING)
+                exclude_macs.add(mac)
                 continue
 
-            # 2. create_link
-            url_or_token, stream_id_out = self.create_link(mac, token, cmd)
+            # 2. create_link (con timeout ridotto a 2.5s per velocizzare)
+            url_or_token, stream_id_out = self.create_link(mac, token, cmd, timeout=2.5)
             if not url_or_token:
                 xbmc.log(f"[CBTV-HB] create_link fallito per MAC {mac}", xbmc.LOGWARNING)
+                exclude_macs.add(mac)
                 continue
 
             # 3. Costruisci URL finale
@@ -207,45 +232,52 @@ class HubliveStalkerClient:
                 final_url = (f"{self.PORTAL_URL}/play/live.php"
                              f"?mac={mac}&stream={stream_id_out}&extension=ts&play_token={url_or_token}")
 
-            # Salva il primo come fallback nel caso in cui tutti falliscano il test dello stream
-            if not first_fallback_url:
-                first_fallback_url = f"{final_url}|User-Agent={quote_plus(self.UA)}"
-                first_fallback_mac = mac
-
             # 4. Verifica se lo stream è realmente attivo (evita i black screen / GZIP vuoti)
             try:
                 # Esegui una richiesta di test veloce con timeout corto
                 r_play = requests.get(final_url, headers=self._headers(mac), cookies=self._cookies(mac, token), timeout=1.8, stream=True)
+                
+                # Controllo anti black.ts (video di segnaposto nero del server in caso di occupato/non autorizzato)
+                if "black.ts" in r_play.url.lower():
+                    xbmc.log(f"[CBTV-HB] MAC {mac} reindirizzato a video nero (black.ts)", xbmc.LOGWARNING)
+                    r_play.close()
+                    exclude_macs.add(mac)
+                    continue
+
                 if r_play.status_code == 200:
                     head = r_play.raw.read(100)
                     r_play.close()
                     if not head:
                         xbmc.log(f"[CBTV-HB] MAC {mac} ha restituito uno stream vuoto (0 bytes)", xbmc.LOGWARNING)
+                        exclude_macs.add(mac)
                         continue
                     if head.startswith(b'\x1f\x8b\x08'):
                         xbmc.log(f"[CBTV-HB] MAC {mac} non autorizzato (stream GZIP vuoto)", xbmc.LOGWARNING)
+                        exclude_macs.add(mac)
                         continue
                     if b"Sito Illegale" in head or b"AGCOM" in head or b"html" in head:
                         xbmc.log(f"[CBTV-HB] MAC {mac} reindirizzato a pagina di blocco AGCOM o HTML", xbmc.LOGWARNING)
+                        exclude_macs.add(mac)
                         continue
-                    # Se non è vuoto, GZIP o HTML, lo stream è valido!
+                    # Se non è vuoto, GZIP, HTML o black.ts, lo stream è valido!
                 else:
                     xbmc.log(f"[CBTV-HB] MAC {mac} ha restituito errore HTTP {r_play.status_code}", xbmc.LOGWARNING)
                     r_play.close()
+                    exclude_macs.add(mac)
                     continue
             except Exception as e:
                 xbmc.log(f"[CBTV-HB] Eccezione durante il test dello stream con MAC {mac}: {e}", xbmc.LOGWARNING)
+                exclude_macs.add(mac)
                 continue
 
             # 5. Aggiungi User-Agent per Kodi (come Hublive Server 2, riga 3775)
             final_url_with_ua = f"{final_url}|User-Agent={quote_plus(self.UA)}"
             xbmc.log(f"[CBTV-HB] Stream risolto con successo usando MAC {mac}", xbmc.LOGINFO)
+            
+            # Salva come Last Working MAC per gli avvii futuri
+            self._set_last_working_mac(mac)
+            
             return final_url_with_ua, mac
-
-        # Se tutti i MAC hanno fallito la validazione dello stream, ma abbiamo un fallback che ha fatto create_link
-        if first_fallback_url:
-            xbmc.log(f"[CBTV-HB] Tutti i MAC hanno fallito la validazione dello stream. Uso fallback: {first_fallback_mac}", xbmc.LOGWARNING)
-            return first_fallback_url, first_fallback_mac
 
         return None, None
 
