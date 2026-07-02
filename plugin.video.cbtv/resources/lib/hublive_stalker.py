@@ -34,6 +34,7 @@ class HubliveStalkerClient:
           "(KHTML, like Gecko) MAG200 stbapp ver: 2 rev: 250 Safari/533.3")
 
     _MAC_POOL = [
+        "00:1A:79:20:65:CB",
         "00:1A:79:23:3D:04", "00:1A:79:36:33:37", "00:1A:79:14:57:6A", "00:1A:79:14:04:DD",
         "00:1A:79:5E:34:36", "00:1A:79:00:14:D5", "00:1A:79:4B:73:63", "00:1A:79:4D:10:EA",
         "00:1A:79:4D:8C:76", "00:1A:79:7B:20:DE", "00:1A:79:6E:E5:9C", "00:1A:79:6A:39:61",
@@ -73,12 +74,10 @@ class HubliveStalkerClient:
     # ---- headers / cookies come Hublive originale ----
     @staticmethod
     def _headers(mac=None):
-        parsed = urlparse(HubliveStalkerClient.PORTAL_URL)
         h = {
             "User-Agent": HubliveStalkerClient.UA,
             "X-User-Agent": "Model: MAG250; Link: WiFi",
             "Referer": f"{HubliveStalkerClient.PORTAL_URL}/stalker_portal/c/index.html",
-            "Host": parsed.netloc,
         }
         return h
 
