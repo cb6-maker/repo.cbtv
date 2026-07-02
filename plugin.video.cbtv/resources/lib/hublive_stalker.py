@@ -306,9 +306,15 @@ class HubliveStalkerClient:
 
     # ---- get_genres / lookup ----
     def _get_working_token_and_mac(self):
-        """Ruota i MAC finché non ne trova uno che esegue l'handshake con successo."""
+        """Ruota i MAC finché non ne trova uno che esegue l'handshake con successo, prioritizzando il Last Working MAC."""
         pool = list(self._MAC_POOL)
         random.shuffle(pool)
+        
+        last_working = self._get_last_working_mac()
+        if last_working and last_working in pool:
+            pool.remove(last_working)
+            pool.insert(0, last_working)
+
         for mac in pool:
             token = self._handshake(mac)
             if token:
@@ -349,7 +355,10 @@ class HubliveStalkerClient:
             return []
 
         found = []
-        for gid in genre_ids:
+        from concurrent.futures import ThreadPoolExecutor, as_completed
+
+        def fetch_genre(gid):
+            genre_found = []
             for page in range(1, 35):
                 res = self._api_call(mac, token, "get_ordered_list",
                                      {"genre": str(gid), "force_ch_link_check": "0", "p": str(page)})
@@ -378,7 +387,16 @@ class HubliveStalkerClient:
                     if negatives and any(nk in name_up for nk in negatives):
                         continue
 
-                    found.append({'name': clean_text(name_raw), 'cmd': cmd})
+                    genre_found.append({'name': clean_text(name_raw), 'cmd': cmd})
+            return genre_found
+
+        with ThreadPoolExecutor(max_workers=min(len(genre_ids), 8)) as executor:
+            futures = {executor.submit(fetch_genre, gid): gid for gid in genre_ids}
+            for future in as_completed(futures):
+                try:
+                    found.extend(future.result())
+                except Exception as e:
+                    xbmc.log(f"[CBTV-HB] Errore scaricamento canali per genere: {e}", xbmc.LOGWARNING)
 
         # Deduplica e ordina
         unique = list({v['cmd']: v for v in found}.values())
