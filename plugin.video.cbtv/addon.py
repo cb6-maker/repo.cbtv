@@ -1187,6 +1187,27 @@ def play_daddy_direct():
 
 # --- CANALI ESTERI HUBLIVE (LISTA 1 HB) ---
 
+def list_hb_esteri_nazioni():
+    """Elenca i gruppi/nazioni disponibili per i canali sportivi esteri HB."""
+    xbmcplugin.setContent(HANDLE, 'videos')
+    
+    groups = [
+        ("COSMOTE / GR SPORT", "[COLOR cyan]🇬🇷 COSMOTE (Grecia)[/COLOR]"),
+        ("MAX SPORT / BG SPORT", "[COLOR cyan]🇧🇬 MAX SPORT / DIEMA (Bulgaria)[/COLOR]"),
+        ("POLSAT / PL SPORT", "[COLOR cyan]🇵🇱 POLSAT / CANAL+ (Polonia)[/COLOR]"),
+        ("TNT / UK SPORT", "[COLOR cyan]🇬🇧 TNT SPORTS (UK)[/COLOR]"),
+        ("ZIGGO / NL SPORT", "[COLOR cyan]🇳🇱 ZIGGO (Olanda)[/COLOR]"),
+    ]
+    
+    for group_id, label in groups:
+        add_directory_item(
+            label,
+            {"action": "list_hb_esteri_channels", "group": group_id},
+            is_folder=True
+        )
+    
+    xbmcplugin.endOfDirectory(HANDLE)
+
 def list_hb_esteri_channels(group):
     """Elenca i canali per il gruppo selezionato di Lista 1 HB in modo dinamico"""
     xbmcplugin.setContent(HANDLE, 'videos')
