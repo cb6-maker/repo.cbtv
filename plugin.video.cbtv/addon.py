@@ -1192,11 +1192,12 @@ def list_hb_esteri_nazioni():
     xbmcplugin.setContent(HANDLE, 'videos')
     
     groups = [
-        ("COSMOTE / GR SPORT", "[COLOR cyan]🇬🇷 COSMOTE (Grecia)[/COLOR]"),
-        ("MAX SPORT / BG SPORT", "[COLOR cyan]🇧🇬 MAX SPORT / DIEMA (Bulgaria)[/COLOR]"),
-        ("POLSAT / PL SPORT", "[COLOR cyan]🇵🇱 POLSAT / CANAL+ (Polonia)[/COLOR]"),
-        ("TNT / UK SPORT", "[COLOR cyan]🇬🇧 TNT SPORTS (UK)[/COLOR]"),
-        ("ZIGGO / NL SPORT", "[COLOR cyan]🇳🇱 ZIGGO (Olanda)[/COLOR]"),
+        ("COSMOTE / GR SPORT", "[COLOR cyan]COSMOTE (Grecia)[/COLOR]"),
+        ("MAX SPORT / BG SPORT", "[COLOR cyan]MAX SPORT / DIEMA (Bulgaria)[/COLOR]"),
+        ("POLSAT / PL SPORT", "[COLOR cyan]POLSAT / CANAL+ (Polonia)[/COLOR]"),
+        ("S SPORT / TR SPORT", "[COLOR cyan]S SPORT (Turchia)[/COLOR]"),
+        ("TNT / UK SPORT", "[COLOR cyan]TNT SPORTS (UK)[/COLOR]"),
+        ("ZIGGO / NL SPORT", "[COLOR cyan]ZIGGO (Olanda)[/COLOR]"),
     ]
     
     for group_id, label in groups:

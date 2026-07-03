@@ -532,6 +532,9 @@ class HubliveStalkerClient:
         elif group == "ZIGGO / NL SPORT":
             target_titles = ["NL| SPORT", "NL| SPORT HD/4K", "NL| ZIGGO SPORTS ᴿᴬᵂ", "NL| ZIGGO ᴿᴬᵂ"]
             filter_keywords = ["ZIGGO"]
+        elif group == "S SPORT / TR SPORT":
+            target_titles = ["TR| SPOR KANALI GOLD", "TR| SPOR KANALI VIP", "TR| SPOR KANALI LOCAL"]
+            filter_keywords = ["S SPORT"]
             
         # Trova gli ID delle categorie
         gids = self._find_genre_ids_by_titles(target_titles)
