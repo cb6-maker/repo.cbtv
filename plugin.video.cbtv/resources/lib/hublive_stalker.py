@@ -355,7 +355,6 @@ class HubliveStalkerClient:
             return []
 
         found = []
-        from concurrent.futures import ThreadPoolExecutor, as_completed
 
         def fetch_genre(gid):
             genre_found = []
@@ -390,13 +389,19 @@ class HubliveStalkerClient:
                     genre_found.append({'name': clean_text(name_raw), 'cmd': cmd})
             return genre_found
 
-        with ThreadPoolExecutor(max_workers=min(len(genre_ids), 8)) as executor:
-            futures = {executor.submit(fetch_genre, gid): gid for gid in genre_ids}
-            for future in as_completed(futures):
-                try:
-                    found.extend(future.result())
-                except Exception as e:
-                    xbmc.log(f"[CBTV-HB] Errore scaricamento canali per genere: {e}", xbmc.LOGWARNING)
+        try:
+            from concurrent.futures import ThreadPoolExecutor, as_completed
+            with ThreadPoolExecutor(max_workers=min(len(genre_ids), 8)) as executor:
+                futures = {executor.submit(fetch_genre, gid): gid for gid in genre_ids}
+                for future in as_completed(futures):
+                    try:
+                        found.extend(future.result())
+                    except Exception as e:
+                        xbmc.log(f"[CBTV-HB] Errore scaricamento canali per genere: {e}", xbmc.LOGWARNING)
+        except ImportError:
+            xbmc.log("[CBTV-HB] concurrent.futures non disponibile, scaricamento sequenziale", xbmc.LOGWARNING)
+            for gid in genre_ids:
+                found.extend(fetch_genre(gid))
 
         # Deduplica e ordina
         unique = list({v['cmd']: v for v in found}.values())
