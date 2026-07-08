@@ -43,14 +43,15 @@ class HubliveStalkerClient:
         "00:1A:79:B6:E3:F9", "00:1A:79:B6:E6:77", "00:1A:79:D6:71:FF", "00:1A:79:B9:E7:A7"
     ]
 
-    # Server 11 (Fallback)
-    PORTAL_2_URL = "http://line.vueott.com:80"
+    # Server 50 (Fallback)
+    PORTAL_2_URL = "http://line.tvdsz.cc:80"
     PORTAL_2_MACS = [
-        '00:1A:79:02:A0:0F', '00:1A:79:02:A1:DD', '00:1A:79:0E:1F:CC', '00:1A:79:18:22:6F',
-        '00:1A:79:1F:61:01', '00:1A:79:26:38:6B', '00:1A:79:2E:4A:1A', '00:1A:79:3C:5F:A7',
-        '00:1A:79:3D:58:83', '00:1A:79:47:06:E2', '00:1A:79:4A:6F:7C', '00:1A:79:4E:F8:74',
-        '00:1A:79:4F:24:BF', '00:1A:79:5E:5E:AD', '00:1A:79:66:60:8D', '00:1A:79:6C:A6:05',
-        '00:1A:79:71:73:69', '00:1A:79:73:BE:C0', '00:1A:79:78:FB:56', '00:1A:79:7A:7E:C4'
+        "00:1A:79:02:99:38", "00:1A:79:07:C8:28", "00:1A:79:3D:88:09", "00:1A:79:18:1C:1E",
+        "00:1A:79:17:04:D7", "00:1A:79:00:00:00", "00:1A:79:F5:CE:C6", "00:1A:79:18:15:1D",
+        "00:1A:79:18:20:E2", "00:1A:79:18:1E:7D", "00:1A:79:18:24:F4", "00:1A:79:18:24:DA",
+        "00:1A:79:18:1E:C5", "00:1A:79:18:1F:B4", "00:1A:79:18:25:70", "00:1A:79:18:1D:64",
+        "00:1A:79:18:1E:5E", "00:1A:79:02:4B:B2", "00:1A:79:02:9C:2F", "00:1A:79:07:C8:25",
+        "00:1A:79:02:A0:03", "00:1A:79:32:0C:08", "00:1A:79:02:9E:4B"
     ]
 
     UA = ("Mozilla/5.0 (QtEmbedded; U; Linux; C) AppleWebKit/533.3 "
@@ -59,7 +60,7 @@ class HubliveStalkerClient:
     # ---- inizializzazione ----
     def __init__(self, server_id="s28"):
         self.server_id = server_id
-        if server_id == "s11":
+        if server_id == "s50":
             self.portal_url = self.PORTAL_2_URL
             self.mac_pool = self.PORTAL_2_MACS
         else:
@@ -288,7 +289,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.1.1"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.1.2"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _get_cache(self, key):
         f = os.path.join(self.cache_dir, f"hl_{self.server_id}_{key}.json")
@@ -347,10 +348,13 @@ class HubliveStalkerClient:
     def _find_genre_ids_by_titles(self, target_titles):
         """Trova gli ID dei generi in base ai titoli cercati."""
         genres = self.get_genres()
-        return [g["id"] for g in genres if g.get("title") in target_titles]
+        return [g["id"] for g in genres if (g.get("title") or g.get("name") or "").strip() in target_titles]
 
     # ---- scaricamento lista canali per genere ----
     def _fetch_channels_for_genres(self, genre_ids, cache_key, keywords=None, negatives=None):
+        if not genre_ids:
+            return []
+            
         cached = self._get_cache(cache_key)
         if cached:
             return cached
@@ -441,14 +445,16 @@ class HubliveStalkerClient:
             if channels:
                 return channels
             
-            # Fallback su Server 11
-            xbmc.log("[CBTV-HB] get_sky_tv_channels su s28 fallito/vuoto, provo s11 fallback", xbmc.LOGWARNING)
-            client_s11 = HubliveStalkerClient("s11")
-            return client_s11.get_sky_tv_channels()
+            # Fallback su Server 50
+            xbmc.log("[CBTV-HB] get_sky_tv_channels su s28 fallito/vuoto, provo s50 fallback", xbmc.LOGWARNING)
+            client_s50 = HubliveStalkerClient("s50")
+            return client_s50.get_sky_tv_channels()
         else:
             target_titles = [
                 "IT| ITALY UHD/4K", "IT| ITALY FHD/HEVC", "IT| GENERALE", "IT| REGIONALI",
-                "IT| PRIME ᴿᴬᵂ ⁶⁰ᶠᵖˢ", "IT| CINEMA", "IT| 24/7 MOVIES & SERIES", "IT| AMAZON PRIME"
+                "IT| PRIME ᴿᴬᵂ ⁶⁰ᶠᵖˢ", "IT| CINEMA", "IT| 24/7 MOVIES & SERIES", "IT| AMAZON PRIME",
+                "┃IT┃ ITALIA HD | RIGIOCARE ⏺", "┃IT┃ GENERALE", "┃IT┃ INTRATTENIMENTO",
+                "┃IT┃ FILM E SERIE", "┃IT┃ CINEMA", "┃IT┃ 24/7 MOVIES & SERIES"
             ]
             gids = self._find_genre_ids_by_titles(target_titles)
             return self._fetch_channels_for_genres(gids, "sky_tv",
@@ -468,12 +474,14 @@ class HubliveStalkerClient:
                 keywords=["SKY SPORT", "SKY CALCIO", "EUROSPORT"],
                 negatives=["SERIE C", "SERIE D", "LEGA PRO", "DAZN BAR", "DAZN CHANNEL", "VETRINA DAZN"])
             if not channels:
-                xbmc.log("[CBTV-HB] get_sky_sport_channels su s28 vuoto, provo s11 fallback", xbmc.LOGWARNING)
-                client_s11 = HubliveStalkerClient("s11")
-                channels = client_s11.get_sky_sport_channels()
+                xbmc.log("[CBTV-HB] get_sky_sport_channels su s28 vuoto, provo s50 fallback", xbmc.LOGWARNING)
+                client_s50 = HubliveStalkerClient("s50")
+                channels = client_s50.get_sky_sport_channels()
         else:
             target_titles = [
-                "IT| SPORT", "IT| SERIE A/B/C", "IT| FORMULA 1 / MOTOGP", "IT| LNP PASS PPV"
+                "IT| SPORT", "IT| SERIE A/B/C", "IT| FORMULA 1 / MOTOGP", "IT| LNP PASS PPV",
+                "┃IT┃ SPORT", "┃IT┃ SKY SPORT", "┃IT┃ SKY CALCIO", "┃IT┃ DAZN SERIE A",
+                "┃IT┃ ZONA DAZN", "┃IT┃ DAZN SERIE B", "┃IT┃ SERIE A | B | C", "┃IT┃ BASKET"
             ]
             gids = self._find_genre_ids_by_titles(target_titles)
             channels = self._fetch_channels_for_genres(gids, "sky_sport", 
@@ -520,12 +528,13 @@ class HubliveStalkerClient:
             if channels:
                 return channels
             
-            xbmc.log("[CBTV-HB] get_dazn_channels su s28 vuoto, provo s11 fallback", xbmc.LOGWARNING)
-            client_s11 = HubliveStalkerClient("s11")
-            return client_s11.get_dazn_channels()
+            xbmc.log("[CBTV-HB] get_dazn_channels su s28 vuoto, provo s50 fallback", xbmc.LOGWARNING)
+            client_s50 = HubliveStalkerClient("s50")
+            return client_s50.get_dazn_channels()
         else:
             target_titles = [
-                "IT| DAZN", "IT| DAZN PPV", "IT| SPORT", "IT| SERIE A/B/C"
+                "IT| DAZN", "IT| DAZN PPV", "IT| SPORT", "IT| SERIE A/B/C",
+                "┃IT┃ DAZN SERIE A", "┃IT┃ ZONA DAZN", "┃IT┃ DAZN SERIE B", "┃IT┃ DAZN", "┃IT┃ SERIE A | B | C"
             ]
             gids = self._find_genre_ids_by_titles(target_titles)
             return self._fetch_channels_for_genres(gids, "dazn",
@@ -542,12 +551,13 @@ class HubliveStalkerClient:
             gids = self._find_genre_ids_by_titles(target_titles)
             channels = self._fetch_channels_for_genres(gids, "primafila", keywords=["PRIMAFILA"])
             if not channels:
-                xbmc.log("[CBTV-HB] get_primafila_channels su s28 vuoto, provo s11 fallback", xbmc.LOGWARNING)
-                client_s11 = HubliveStalkerClient("s11")
-                channels = client_s11.get_primafila_channels()
+                xbmc.log("[CBTV-HB] get_primafila_channels su s28 vuoto, provo s50 fallback", xbmc.LOGWARNING)
+                client_s50 = HubliveStalkerClient("s50")
+                channels = client_s50.get_primafila_channels()
         else:
             target_titles = [
-                "IT| CINEMA", "IT| SPORT", "IT| ITALY FHD/HEVC", "IT| ITALY UHD/4K"
+                "IT| CINEMA", "IT| SPORT", "IT| ITALY FHD/HEVC", "IT| ITALY UHD/4K",
+                "┃IT┃ OD SKY PRIMAFILA ESCLUSIVO", "┃IT┃ OD SKY PRIMAFILA", "┃IT┃ OD PRIMAFILA", "┃IT┃ OD PRIMA", "┃IT┃ OD MESCOLA"
             ]
             gids = self._find_genre_ids_by_titles(target_titles)
             channels = self._fetch_channels_for_genres(gids, "primafila", keywords=["PRIMAFILA"])
@@ -605,32 +615,35 @@ class HubliveStalkerClient:
             if channels:
                 return channels
 
-            # Fallback su Server 11
-            xbmc.log(f"[CBTV-HB] {group} su s28 vuoto, provo s11 fallback", xbmc.LOGWARNING)
-            client_s11 = HubliveStalkerClient("s11")
-            return client_s11.get_foreign_sport_channels(group)
+            # Fallback su Server 50
+            xbmc.log(f"[CBTV-HB] {group} su s28 vuoto, provo s50 fallback", xbmc.LOGWARNING)
+            client_s50 = HubliveStalkerClient("s50")
+            return client_s50.get_foreign_sport_channels(group)
         else:
-            # Server 11
+            # Server 50
             target_titles = []
             filter_keywords = []
             
             if group == "COSMOTE / GR SPORT":
-                target_titles = ["GR| ΑΘΛΗΤΙΚΆ/SPORTS"]
+                target_titles = ["GR| ΑΘΛΗΤΙΚΆ/SPORTS", "┃GR┃ COSMOTE SPORTS", "┃GR┃ SPORTS | ΑΘΛΗΤΙΚΑ"]
                 filter_keywords = ["COSMOTE"]
             elif group == "MAX SPORT / BG SPORT":
-                target_titles = ["BG| BULGARIA", "BG| BULGARIA ⱽᴵᴾ ᴿᴬᵂ"]
+                target_titles = ["BG| BULGARIA", "BG| BULGARIA ⱽᴵᴾ ᴿᴬᵂ", "┃BG┃ BULGARIA", "┃BG┃ BULGARIA ⱽᴵᴾ ᴿᴬᵂ"]
                 filter_keywords = ["DIEMA", "MAX SPORT"]
             elif group == "POLSAT / PL SPORT":
-                target_titles = ["PL| SPORTOWE", "PL| CANAL+ ONLINE SPORT ᴿᴬᵂ"]
+                target_titles = ["PL| SPORTOWE", "PL| CANAL+ ONLINE SPORT ᴿᴬᵂ", "┃PL┃ CANAL+ SPORT", "┃PL┃ POLSAT SPORT", "┃PL┃ ELEVEN SPORTS"]
                 filter_keywords = ["POLSAT", "ELEVEN", "CANAL+"]
             elif group == "TNT / UK SPORT":
-                target_titles = ["UK| TNT SPORTS EVENT", "UK| SPORTS", "UK| SPORTS HEVC", "UK| SKY SPORT+ VIP"]
+                target_titles = [
+                    "UK| TNT SPORTS EVENT", "UK| SPORTS", "UK| SPORTS HEVC", "UK| SKY SPORT+ VIP",
+                    "┃UK┃ TNT SPORTS EVENT", "┃UK┃ TNT SPORTS RAW DOLBY", "┃UK┃ TNT SPORTS HEVC", "┃UK┃ TNT SPORTS FHD", "┃UK┃ TNT SPORTS HD"
+                ]
                 filter_keywords = ["TNT"]
             elif group == "ZIGGO / NL SPORT":
-                target_titles = ["NL| SPORT", "NL| ZIGGO SPORTS ᴿᴬᵂ", "NL| VIAPLAY SPORT"]
+                target_titles = ["NL| SPORT", "NL| ZIGGO SPORTS ᴿᴬᵂ", "NL| VIAPLAY SPORT", "┃NL┃ SPORT TV+", "┃NL┃ ZIGGO ᴿᴬᵂ", "┃NL┃ ZIGGO SPORTS ᴿᴬᵂ"]
                 filter_keywords = ["ZIGGO"]
             elif group == "S SPORT / TR SPORT":
-                target_titles = ["TR| SPOR KANALLARI", "TR| TABII SPORT"]
+                target_titles = ["TR| SPOR KANALLARI", "TR| TABII SPORT", "┃TR┃ BEIN SPORTS HEVC", "┃TR┃ BEIN SPORTS FHD", "┃TR┃ BEIN SPORTS", "┃TR┃ EXXEN SPORTS", "┃TR┃ S SPORTS"]
                 filter_keywords = ["S SPORT"]
                 
             gids = self._find_genre_ids_by_titles(target_titles)
@@ -658,13 +671,34 @@ class HubliveStalkerClient:
         channels.sort(key=lambda x: natural_sort_key(x["name"]))
         return channels
 
+    def _normalize_channel_name(self, name):
+        if not name:
+            return ""
+        name = name.upper()
+        # Rimuove tag colore e box drawing
+        name = re.sub(r'\[COLOR[^\]]*\]', '', name)
+        name = re.sub(r'\[/COLOR\]', '', name)
+        name = re.sub(r'[\u2500-\u259F]', '', name)
+        
+        # Rimuove prefissi paese comuni (IT, ITA, ecc.) seguiti da spazi, due punti o pipe
+        name = re.sub(r'^(IT|ITA|ITALIA|ITALY)\s*[:| ]\s*', '', name)
+        
+        # Rimuove suffissi di qualità/formato alla fine del nome o come parole isolate
+        name = re.sub(r'\b(4K|2K|HD|FHD|UHD|SD|HEVC|H265|RAW|50FPS|60FPS|VIP|BACKUP|NEW|PORTUGAL|SPAIN)\b', '', name)
+        
+        # Rimuove tutti i caratteri non alfanumerici e gli spazi
+        name = re.sub(r'[^A-Z0-9]', '', name)
+        return name.strip()
+
     # ---- Ricerca fallback canale per nome ----
     def find_channel_cmd_by_name(self, name):
-        """Cerca un canale per nome su Server 11, caricando le cache se necessario."""
+        """Cerca un canale per nome su Server 50, caricando le cache se necessario."""
         if not name:
             return None
-        norm_target = name.upper().strip()
-        
+        norm_target = self._normalize_channel_name(name)
+        if not norm_target:
+            return None
+            
         # 1. Trova a quale categoria s28 apparteneva questo canale analizzando le cache esistenti
         category_key = None
         cache_files = []
@@ -679,7 +713,7 @@ class HubliveStalkerClient:
                     with open(os.path.join(self.cache_dir, fn), 'r', encoding='utf-8') as fh:
                         d = json.load(fh)
                         for ch in d.get('data', []):
-                            if ch.get('name', '').upper().strip() == norm_target:
+                            if self._normalize_channel_name(ch.get('name', '')) == norm_target:
                                 category_key = fn.replace("hl_s28_", "").replace(".json", "")
                                 break
                 except:
@@ -688,50 +722,50 @@ class HubliveStalkerClient:
                     break
                     
         if not category_key:
-            # Fallback: cerca in tutte le cache s11 già caricate
+            # Fallback: cerca in tutte le cache s50 già caricate
             for fn in cache_files:
-                if fn.startswith("hl_s11_") and fn.endswith(".json") and "genres" not in fn:
+                if fn.startswith("hl_s50_") and fn.endswith(".json") and "genres" not in fn:
                     try:
                         with open(os.path.join(self.cache_dir, fn), 'r', encoding='utf-8') as fh:
                             d = json.load(fh)
                             for ch in d.get('data', []):
-                                if ch.get('name', '').upper().strip() == norm_target:
+                                if self._normalize_channel_name(ch.get('name', '')) == norm_target:
                                     return ch.get('cmd')
                     except:
                         pass
             return None
             
-        # 2. Cerca nella cache s11 specifica
-        s11_fn = f"hl_s11_{category_key}.json"
-        if s11_fn in cache_files:
+        # 2. Cerca nella cache s50 specifica
+        s50_fn = f"hl_s50_{category_key}.json"
+        if s50_fn in cache_files:
             try:
-                with open(os.path.join(self.cache_dir, s11_fn), 'r', encoding='utf-8') as fh:
+                with open(os.path.join(self.cache_dir, s50_fn), 'r', encoding='utf-8') as fh:
                     d = json.load(fh)
                     for ch in d.get('data', []):
-                        if ch.get('name', '').upper().strip() == norm_target:
+                        if self._normalize_channel_name(ch.get('name', '')) == norm_target:
                             return ch.get('cmd')
             except:
                 pass
                 
-        # 3. Cache s11 non presente, caricala al volo
-        xbmc.log(f"[CBTV-HB] Fallback cache s11 per {category_key} mancante, avvio fetch dinamico...", xbmc.LOGINFO)
-        client_s11 = HubliveStalkerClient("s11")
-        channels_s11 = []
+        # 3. Cache s50 non presente, caricala al volo
+        xbmc.log(f"[CBTV-HB] Fallback cache s50 per {category_key} mancante, avvio fetch dinamico...", xbmc.LOGINFO)
+        client_s50 = HubliveStalkerClient("s50")
+        channels_s50 = []
         
         if category_key == "sky_tv":
-            channels_s11 = client_s11.get_sky_tv_channels()
+            channels_s50 = client_s50.get_sky_tv_channels()
         elif category_key == "sky_sport":
-            channels_s11 = client_s11.get_sky_sport_channels()
+            channels_s50 = client_s50.get_sky_sport_channels()
         elif category_key == "dazn":
-            channels_s11 = client_s11.get_dazn_channels()
+            channels_s50 = client_s50.get_dazn_channels()
         elif category_key == "primafila":
-            channels_s11 = client_s11.get_primafila_channels()
+            channels_s50 = client_s50.get_primafila_channels()
         elif category_key.startswith("foreign_"):
             group_name = category_key.replace("foreign_", "").replace("_", " ")
-            channels_s11 = client_s11.get_foreign_sport_channels(group_name)
+            channels_s50 = client_s50.get_foreign_sport_channels(group_name)
             
-        for ch in channels_s11:
-            if ch.get('name', '').upper().strip() == norm_target:
+        for ch in channels_s50:
+            if self._normalize_channel_name(ch.get('name', '')) == norm_target:
                 return ch.get('cmd')
                 
         return None
