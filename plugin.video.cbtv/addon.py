@@ -1227,7 +1227,7 @@ def list_hb_esteri_channels(group):
         title = f"{ch['name']} [COLOR yellow](HB)[/COLOR]"
         add_directory_item(
             title,
-            {"action": "play_hublive_stalker", "cmd": ch['cmd']},
+            {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name']},
             is_folder=False,
             is_playable=True
         )
@@ -1505,21 +1505,21 @@ def list_eagle_genres(eb_type):
         hl_channels = hl_client.get_sky_tv_channels()
         for ch in hl_channels:
             title = f"{ch['name']} [COLOR yellow](HB)[/COLOR]"
-            add_directory_item(title, {"action": "play_hublive_stalker", "cmd": ch['cmd']}, is_folder=False, is_playable=True)
+            add_directory_item(title, {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name']}, is_folder=False, is_playable=True)
             
     elif eb_type == "dazn_only":
         # DAZN Hublive
         hl_channels = hl_client.get_dazn_channels()
         for ch in hl_channels:
             title = f"{ch['name']} [COLOR orange](HB)[/COLOR]"
-            add_directory_item(title, {"action": "play_hublive_stalker", "cmd": ch['cmd']}, is_folder=False, is_playable=True)
+            add_directory_item(title, {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name']}, is_folder=False, is_playable=True)
             
     elif eb_type == "sky_sport":
         # Sky Sport Hublive
         hl_channels = hl_client.get_sky_sport_channels()
         for ch in hl_channels:
             title = f"{ch['name']} [COLOR cyan](HB)[/COLOR]"
-            add_directory_item(title, {"action": "play_hublive_stalker", "cmd": ch['cmd']}, is_folder=False, is_playable=True)
+            add_directory_item(title, {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name']}, is_folder=False, is_playable=True)
         
     xbmcplugin.endOfDirectory(HANDLE)
 
@@ -1534,7 +1534,7 @@ def list_primafila():
         channels = hl_client.get_primafila_channels()
         for ch in channels:
             title = f"{ch['name']} [COLOR pink](HB)[/COLOR]"
-            add_directory_item(title, {"action": "play_hublive_stalker", "cmd": ch['cmd']}, is_folder=False, is_playable=True)
+            add_directory_item(title, {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name']}, is_folder=False, is_playable=True)
     except Exception as e:
         xbmc.log(f"[CBTV] Errore caricamento Primafila: {e}", xbmc.LOGERROR)
         xbmcgui.Dialog().notification("Errore", "Impossibile caricare canali Primafila", xbmcgui.NOTIFICATION_ERROR)
@@ -1571,11 +1571,19 @@ class HBPlayer(xbmc.Player):
         self.playback_ended = True
 
 
-def play_hublive_stalker(cmd):
-    """Riproduce un canale Hublive con auto-riconnessione e rotazione MAC completa."""
-    client = HubliveStalkerClient()
+def play_hublive_stalker(cmd, name=None):
+    """Riproduce un canale Hublive con auto-riconnessione, rotazione MAC completa e fallback su Server 11."""
+    # Determiniamo il server iniziale in base al cmd
+    if "line.vueott.com" in cmd:
+        server_id = "s11"
+    else:
+        server_id = "s28"
+
+    xbmc.log(f"[CBTV-HB] Avvio play per '{name}' con server iniziale {server_id}", xbmc.LOGINFO)
+    
+    client = HubliveStalkerClient(server_id)
     failed_macs = set()       # MAC che hanno fallito (handshake, play o stream caduto)
-    max_attempts = min(12, len(client._MAC_POOL))  # Prova al massimo 12 MAC per non fare attendere troppo l'utente in caso di errore
+    max_attempts = min(12, len(client.mac_pool))  # Prova al massimo 12 MAC per non fare attendere troppo l'utente in caso di errore
     reconnect_delay = 2
     first_attempt = True      # Per gestire setResolvedUrl vs Player.play()
     
@@ -1589,13 +1597,30 @@ def play_hublive_stalker(cmd):
         final_url, mac = client.resolve_stream(cmd, exclude_macs=failed_macs)
         
         if not final_url:
+            # Fallback automatico su Server 11
+            if server_id == "s28" and name:
+                xbmc.log(f"[CBTV-HB] Tutti i MAC di s28 hanno fallito. Tento fallback su Server 11 per '{name}'...", xbmc.LOGWARNING)
+                xbmcgui.Dialog().notification("HB Fallback", "Tento server secondario...", xbmcgui.NOTIFICATION_WARNING, 2000)
+                
+                client_s11 = HubliveStalkerClient("s11")
+                fallback_cmd = client_s11.find_channel_cmd_by_name(name)
+                if fallback_cmd:
+                    xbmc.log(f"[CBTV-HB] Trovato cmd alternativo su s11: {fallback_cmd[:80]}...", xbmc.LOGINFO)
+                    server_id = "s11"
+                    client = client_s11
+                    cmd = fallback_cmd
+                    failed_macs = set()
+                    max_attempts = min(12, len(client.mac_pool))
+                    first_attempt = True
+                    continue
+            
             if len(failed_macs) >= max_attempts:
-                xbmc.log(f"[CBTV-HB] Tutti i {max_attempts} MAC hanno fallito.", xbmc.LOGWARNING)
+                xbmc.log(f"[CBTV-HB] Tutti i {max_attempts} MAC di {server_id} hanno fallito.", xbmc.LOGWARNING)
                 if first_attempt:
                     xbmcplugin.setResolvedUrl(HANDLE, False, xbmcgui.ListItem())
                 break
             else:
-                xbmc.log(f"[CBTV-HB] Batch di MAC fallito, provo il prossimo batch... (esclusi: {len(failed_macs)}/{max_attempts})", xbmc.LOGINFO)
+                xbmc.log(f"[CBTV-HB] Batch di MAC fallito su {server_id}, provo il prossimo batch... (esclusi: {len(failed_macs)}/{max_attempts})", xbmc.LOGINFO)
                 continue
         
         # Crea player con tracking eventi
@@ -1815,7 +1840,7 @@ if __name__ == '__main__':
     elif action == 'list_primafila':
         list_primafila()
     elif action == 'play_hublive_stalker':
-        play_hublive_stalker(params.get('cmd'))
+        play_hublive_stalker(params.get('cmd'), name=params.get('name') or params.get('title'))
     elif action == 'list_premium_sport':
         list_premium_live("A1A165")
     elif action == 'list_dazn_mh':
