@@ -1659,24 +1659,30 @@ def play_hublive_stalker(cmd, name=None):
             continue
         
         # Fase 2: Monitora playback — distingui stop manuale da crash
+        playback_start_time = time.time()
         while hb_player.isPlaying():
             if monitor.abortRequested():
                 return
             xbmc.sleep(1000)
         
-        # Playback terminato — perché?
-        if hb_player.stopped_by_user:
+        # Aspetta 800ms per permettere a Kodi di processare e notificare i callback asincroni di stop
+        xbmc.sleep(800)
+        
+        playback_duration = time.time() - playback_start_time - 0.8
+        xbmc.log(f"[CBTV-HB] Playback interrotto dopo {playback_duration:.1f} secondi. stopped_by_user={hb_player.stopped_by_user}, playback_error={hb_player.playback_error}, playback_ended={hb_player.playback_ended}", xbmc.LOGINFO)
+        
+        # Euristica: se lo stream si interrompe molto presto (es. entro 25 secondi dall'avvio),
+        # consideriamo lo stop come una caduta dello stream dovuta a sessione duplicata o instabilità.
+        is_early_termination = playback_duration < 25
+        
+        if hb_player.stopped_by_user and not is_early_termination:
             xbmc.log("[CBTV-HB] Stop manuale dell'utente. Nessuna riconnessione.", xbmc.LOGINFO)
             return
-        
-        if hb_player.playback_error or hb_player.playback_ended:
-            xbmc.log(f"[CBTV-HB] Stream caduto con MAC {mac}, escludo e riprovo", xbmc.LOGWARNING)
-            failed_macs.add(mac)
-            continue
-        
-        # Nessun evento specifico catturato — non riconnettersi
-        xbmc.log("[CBTV-HB] Playback terminato senza eventi specifici", xbmc.LOGINFO)
-        return
+            
+        # In tutti gli altri casi (errore, fine riproduzione o stop nei primi secondi) escludiamo il MAC e riproviamo
+        xbmc.log(f"[CBTV-HB] Stream caduto o terminato prematuramente con MAC {mac}, escludo e riprovo", xbmc.LOGWARNING)
+        failed_macs.add(mac)
+        continue
     
     # Tutti i MAC esauriti
     xbmcgui.Dialog().notification("Play HB", "Tutti i MAC esauriti. Riprova più tardi.", xbmcgui.NOTIFICATION_ERROR)

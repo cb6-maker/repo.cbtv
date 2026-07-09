@@ -220,15 +220,15 @@ class HubliveStalkerClient:
         for attempt, mac in enumerate(pool, 1):
             xbmc.log(f"[CBTV-HB] Tentativo {attempt}/{len(pool)} con MAC: {mac}", xbmc.LOGINFO)
 
-            # 1. Handshake (con timeout ridotto a 2.0s per velocizzare)
-            token = self._handshake(mac, timeout=2.0)
+            # 1. Handshake (con timeout ridotto per velocizzare)
+            token = self._handshake(mac, timeout=1.2)
             if not token:
                 xbmc.log(f"[CBTV-HB] Handshake fallito per MAC {mac}", xbmc.LOGWARNING)
                 exclude_macs.add(mac)
                 continue
 
-            # 2. create_link (con timeout ridotto a 2.5s per velocizzare)
-            url_or_token, stream_id_out = self.create_link(mac, token, cmd, timeout=2.5)
+            # 2. create_link (con timeout ridotto per velocizzare)
+            url_or_token, stream_id_out = self.create_link(mac, token, cmd, timeout=1.8)
             if not url_or_token:
                 xbmc.log(f"[CBTV-HB] create_link fallito per MAC {mac}", xbmc.LOGWARNING)
                 exclude_macs.add(mac)
@@ -243,7 +243,7 @@ class HubliveStalkerClient:
 
             # 4. Verifica se lo stream è realmente attivo (evita i black screen / GZIP vuoti)
             try:
-                r_play = requests.get(final_url, headers=self._headers(mac), cookies=self._cookies(mac, token), timeout=1.8, stream=True)
+                r_play = requests.get(final_url, headers=self._headers(mac), cookies=self._cookies(mac, token), timeout=1.2, stream=True)
                 
                 # Controllo anti black.ts
                 if "black.ts" in r_play.url.lower():
