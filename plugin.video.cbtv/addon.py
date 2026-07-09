@@ -1572,9 +1572,9 @@ class HBPlayer(xbmc.Player):
 
 
 def play_hublive_stalker(cmd, name=None):
-    """Riproduce un canale Hublive con auto-riconnessione, rotazione MAC completa e fallback su Server 50."""
+    """Riproduce un canale Hublive con auto-riconnessione, rotazione MAC completa e fallback su Server 29."""
     # Determiniamo il server iniziale in base al cmd
-    if "line.tvdsz.cc" in cmd:
+    if "line.watchtivo-8k.com" in cmd:
         server_id = "s50"
     else:
         server_id = "s28"
@@ -1597,15 +1597,15 @@ def play_hublive_stalker(cmd, name=None):
         final_url, mac = client.resolve_stream(cmd, exclude_macs=failed_macs)
         
         if not final_url:
-            # Fallback automatico su Server 50
+            # Fallback automatico su Server 29
             if server_id == "s28" and name:
-                xbmc.log(f"[CBTV-HB] Tutti i MAC di s28 hanno fallito. Tento fallback su Server 50 per '{name}'...", xbmc.LOGWARNING)
+                xbmc.log(f"[CBTV-HB] Tutti i MAC di s28 hanno fallito. Tento fallback su Server 29 per '{name}'...", xbmc.LOGWARNING)
                 xbmcgui.Dialog().notification("HB Fallback", "Tento server secondario...", xbmcgui.NOTIFICATION_WARNING, 2000)
                 
                 client_s50 = HubliveStalkerClient("s50")
                 fallback_cmd = client_s50.find_channel_cmd_by_name(name)
                 if fallback_cmd:
-                    xbmc.log(f"[CBTV-HB] Trovato cmd alternativo su s50: {fallback_cmd[:80]}...", xbmc.LOGINFO)
+                    xbmc.log(f"[CBTV-HB] Trovato cmd alternativo su s29: {fallback_cmd[:80]}...", xbmc.LOGINFO)
                     server_id = "s50"
                     client = client_s50
                     cmd = fallback_cmd
