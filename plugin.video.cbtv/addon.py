@@ -1671,9 +1671,9 @@ def play_hublive_stalker(cmd, name=None):
         playback_duration = time.time() - playback_start_time - 0.8
         xbmc.log(f"[CBTV-HB] Playback interrotto dopo {playback_duration:.1f} secondi. stopped_by_user={hb_player.stopped_by_user}, playback_error={hb_player.playback_error}, playback_ended={hb_player.playback_ended}", xbmc.LOGINFO)
         
-        # Euristica: se lo stream si interrompe molto presto (es. entro 25 secondi dall'avvio),
-        # consideriamo lo stop come una caduta dello stream dovuta a sessione duplicata o instabilità.
-        is_early_termination = playback_duration < 25
+        # Euristica: consideriamo lo stop come una caduta dello stream se non è mai partito l'audio/video
+        # o se si è interrotto nei primissimi secondi (es. meno di 6 secondi).
+        is_early_termination = (not hb_player.av_started) or (playback_duration < 6.0)
         
         if hb_player.stopped_by_user and not is_early_termination:
             xbmc.log("[CBTV-HB] Stop manuale dell'utente. Nessuna riconnessione.", xbmc.LOGINFO)
