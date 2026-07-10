@@ -521,14 +521,13 @@ class HubliveStalkerClient:
 
     def get_dazn_channels(self):
         target_titles = [
-            "IT| DAZN", "IT| DAZN VIP HD/4K", "IT| DAZN PPV", "IT| SPORT", "IT| SPORT HD/4K",
-            "IT| ITALY FHD/HEVC", "IT| PLATINUM TV UHD/4K", "IT| SERIE A/B/C",
-            "┃IT┃ DAZN SERIE A", "┃IT┃ ZONA DAZN", "┃IT┃ DAZN SERIE B", "┃IT┃ DAZN", "┃IT┃ SERIE A | B | C"
+            "IT| DAZN", "IT| DAZN VIP HD/4K", "IT| DAZN PPV",
+            "┃IT┃ DAZN SERIE A", "┃IT┃ ZONA DAZN", "┃IT┃ DAZN SERIE B", "┃IT┃ DAZN"
         ]
         gids = self._find_genre_ids_by_titles(target_titles)
         channels = self._fetch_channels_for_genres(gids, "dazn",
-            keywords=["SERIE A", "ZONA DAZN", "DAZN WEB", "DAZN BAR", "DAZN CHANNEL", "VETRINA DAZN"],
-            negatives=["WOMEN", "SERIE B", "SKY SPORT", "SKY CALCIO", "EUROSPORT"])
+            keywords=None,
+            negatives=["WOMEN", "SKY SPORT", "SKY CALCIO", "EUROSPORT", "PALLAVOLO", "PALLAMANO", "PALLANUOTO"])
             
         if self.server_id == "s28" and not channels:
             xbmc.log("[CBTV-HB] get_dazn_channels su s28 vuoto, provo s50 fallback", xbmc.LOGWARNING)
