@@ -532,7 +532,45 @@ class HubliveStalkerClient:
         if self.server_id == "s28" and not channels:
             xbmc.log("[CBTV-HB] get_dazn_channels su s28 vuoto, provo s50 fallback", xbmc.LOGWARNING)
             client_s50 = HubliveStalkerClient("s50")
-            return client_s50.get_dazn_channels()
+            channels = client_s50.get_dazn_channels()
+            
+        if channels:
+            import re
+            def dazn_sort_key(ch):
+                name = ch.get('name', '').upper()
+                # Gruppo 1: Zona DAZN (canali lineari principali)
+                if "ZONA DAZN" in name:
+                    group = 1
+                # Gruppo 2: DAZN Serie A (canali dedicati)
+                elif "SERIE A" in name:
+                    group = 2
+                # Gruppo 3: DAZN standard (DAZN 1, DAZN 2, ecc. senza la parola EVENT o SERIE B)
+                elif "DAZN" in name and "EVENT" not in name and "SERIE B" not in name:
+                    group = 3
+                # Gruppo 4: DAZN Event (i canali web/evento equivalenti ai vecchi dazn web)
+                elif "EVENT" in name:
+                    group = 4
+                # Gruppo 5: DAZN Serie B (calcio Serie B)
+                elif "SERIE B" in name:
+                    group = 5
+                else:
+                    group = 6
+                
+                # Numero del canale (se non specificato, è il canale 1)
+                num_match = re.search(r'\d+', name)
+                num = int(num_match.group()) if num_match else 1
+                
+                # Qualità della sorgente (preferisci HEVC/4K -> FHD -> HD -> SD)
+                res_val = 4
+                if "HEVC" in name or "4K" in name:
+                    res_val = 1
+                elif "FHD" in name:
+                    res_val = 2
+                elif "HD" in name:
+                    res_val = 3
+                return (group, num, res_val, name)
+                
+            channels.sort(key=dazn_sort_key)
             
         return channels
 
