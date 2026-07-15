@@ -1498,9 +1498,7 @@ def list_eagle_genres(eb_type):
     hl_client = HubliveStalkerClient()
     
     if eb_type == "sky_tv":
-        # Canali Intrattenimento: Sostituito con Fonte Premium Stabile
-        list_premium_live("A1A260", end_dir=False)
-        
+        # Rimossi i canali provenienti da Mandrakodi per questa sezione
         # Aggiunta Canali Intrattenimento e Cinema da Hublive
         hl_channels = hl_client.get_sky_tv_channels()
         for ch in hl_channels:
