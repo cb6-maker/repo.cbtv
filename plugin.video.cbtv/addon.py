@@ -1669,13 +1669,16 @@ def play_hublive_stalker(cmd, name=None):
         playback_duration = time.time() - playback_start_time - 0.8
         xbmc.log(f"[CBTV-HB] Playback interrotto dopo {playback_duration:.1f} secondi. stopped_by_user={hb_player.stopped_by_user}, playback_error={hb_player.playback_error}, playback_ended={hb_player.playback_ended}", xbmc.LOGINFO)
         
-        # Riconnettiamo solo se l'utente non ha premuto stop E lo stream non è mai riuscito a partire
-        if hb_player.stopped_by_user or hb_player.av_started:
-            xbmc.log(f"[CBTV-HB] Playback fermato (utente={hb_player.stopped_by_user}, avviato={hb_player.av_started}). Esco senza riconnettere.", xbmc.LOGINFO)
+        # Riconnettiamo se lo stream si è interrotto prematuramente (meno di 45 secondi)
+        # e NON è stato interrotto dall'utente premendo Stop.
+        is_early_kick = hb_player.av_started and (playback_duration < 45.0)
+        
+        if hb_player.stopped_by_user or (hb_player.av_started and not is_early_kick):
+            xbmc.log(f"[CBTV-HB] Playback fermato (utente={hb_player.stopped_by_user}, avviato={hb_player.av_started}, durata={playback_duration:.1f}s). Esco senza riconnettere.", xbmc.LOGINFO)
             return
             
-        # In tutti gli altri casi (lo stream non è mai partito ed è andato in errore) escludiamo il MAC e riproviamo
-        xbmc.log(f"[CBTV-HB] Stream non avviato con MAC {mac}, escludo e riprovo", xbmc.LOGWARNING)
+        # In tutti gli altri casi (lo stream non è mai partito o è caduto per kick nei primi secondi) escludiamo il MAC e riproviamo
+        xbmc.log(f"[CBTV-HB] Stream non avviato o caduto precocemente con MAC {mac} (durata={playback_duration:.1f}s), escludo e riprovo con altro MAC...", xbmc.LOGWARNING)
         failed_macs.add(mac)
         continue
     
