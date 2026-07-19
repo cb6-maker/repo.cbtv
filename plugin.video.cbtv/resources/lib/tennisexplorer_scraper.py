@@ -7,7 +7,7 @@ urllib3.disable_warnings()
 
 def get_tennisexplorer_schedule():
     """
-    Scrapes the complete daily tennis matches schedule from Tennis Explorer.
+    Scrapes the complete daily tennis matches schedule from Tennis Explorer (Synchronized with WebApp).
     Uses type=all to ensure 100% global tennis coverage including WTA, ATP, Singles and Doubles,
     and automatically maps the correct Italian broadcast sources based on the tournament.
     """
@@ -39,7 +39,6 @@ def get_tennisexplorer_schedule():
             if not tourn_m:
                 continue
                 
-            # Clean HTML tags and entities inside tournament name
             tourn_name = tourn_m.group(1)
             tourn_name = re.sub(r'<[^>]+>', '', tourn_name)
             tourn_name = tourn_name.replace('&nbsp;', ' ').replace('&#8211;', '–').replace('&amp;', '&').strip()
@@ -53,20 +52,17 @@ def get_tennisexplorer_schedule():
                 
             MAJOR_KEYWORDS = [
                 "french open", "roland garros", "wimbledon", "us open", "australian open",
-                "indian wells", "miami", "monte carlo", "madrid", "rose", "rome", "roma",
-                "montreal", "toronto", "canada", "cincinnati", "shanghai", "paris",
-                "beijing", "pechino", "doha", "dubai", "wuhan",
-                "rotterdam", "rio de janeiro", "acapulco", "barcelona", "barcellona",
-                "munich", "monaco", "halle", "queen", "london", "londra", "hamburg", "amburgo",
-                "washington", "tokyo", "basel", "basilea", "vienna", "abu dhabi",
-                "linz", "san diego", "strasbourg", "strasburgo", "berlin", "berlino",
-                "bad homburg", "eastbourne", "monterrey", "guadalajara", "ningbo",
-                "stuttgart", "stoccarda", "charleston", "zhengzhou", "brisbane",
-                "adelaide", "united cup", "davis cup", "billie jean", "bjk cup",
+                "indian wells", "miami", "monte carlo", "madrid", "internazionali d'italia", "italian open",
+                "montreal", "toronto", "cincinnati", "shanghai", "paris", "pechino", "beijing", "wuhan",
+                "united cup", "davis cup", "billie jean", "bjk cup",
                 "atp finals", "wta finals", "olympics", "olimpiadi"
             ]
             
-            if not any(mk in tourn_low for mk in MAJOR_KEYWORDS):
+            is_major_tourn = any(mk in tourn_low for mk in MAJOR_KEYWORDS)
+            if any(minor in tourn_low for minor in ["250", "125"]):
+                is_major_tourn = False
+            
+            if not is_major_tourn:
                 continue
             
             # Find all match rows inside this tournament block
@@ -101,10 +97,9 @@ def get_tennisexplorer_schedule():
                 p1 = p1.replace('&nbsp;', ' ').strip()
                 p2 = p2.replace('&nbsp;', ' ').strip()
                 
-                # Construct clean match title
                 match_title = f"Tennis, {tourn_name}: {p1} vs {p2}"
                 
-                # 4. Map appropriate Italian TV/Streaming channels based on the tournament name
+                # 4. Map appropriate Italian TV channels based on the tournament name
                 channels = []
                 tourn_low = tourn_name.lower()
                 
@@ -128,8 +123,6 @@ def get_tennisexplorer_schedule():
                         {"name": "NOW", "country": "Tennis Explorer"}
                     ]
                     
-                # Rimozione emoji per Kodi
-                match_title = "".join(c for c in match_title if ord(c) < 65536)
                 all_events.append({
                     "date": now.strftime("%d %B %Y"),
                     "time": time_str,
@@ -145,3 +138,8 @@ def get_tennisexplorer_schedule():
         
     except Exception:
         return []
+
+if __name__ == "__main__":
+    evs = get_tennisexplorer_schedule()
+    for e in evs[:10]:
+        print(f"[{e['time']}] ({e['tournament']}) {e['title']} -> Channels: {[c['name'] for c in e['sources']]}")

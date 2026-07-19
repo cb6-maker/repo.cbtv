@@ -1050,7 +1050,7 @@ def list_agenda():
     # Parole chiave per evidenziare eventi Top (Sincronizzate con WebApp)
     W_TOP = [
         # Calcio - Tornei elite (sempre top)
-        "CHAMPIONS LEAGUE", "EUROPA LEAGUE", "CONFERENCE", "COPPA ITALIA",
+        "WORLD CUP", "MONDIALI", "MONDIALE", "CHAMPIONS LEAGUE", "EUROPA LEAGUE", "CONFERENCE", "COPPA ITALIA",
         # Calcio - Solo squadre top italiane + Cagliari
         "JUVE", "INTER", "MILAN", "NAPOLI", "ROMA", "LAZIO", "FIORENTINA", "ATALANTA",
         "BOLOGNA", "CAGLIARI", "ITALIA", "ITALY",

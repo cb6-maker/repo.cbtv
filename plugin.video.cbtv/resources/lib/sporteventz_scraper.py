@@ -1,216 +1,211 @@
 import requests
 import re
 import datetime
+import concurrent.futures
 import urllib3
 
 urllib3.disable_warnings()
 
-# ─── CONFIG FILTRI ────────────────────────────────────────────────
+# ─── CONFIG FILTRI E CANALI ───────────────────────────────────────
 
-# Tornei di calcio desiderati (match esatto su Categoria e Torneo)
-FOOTBALL_FILTERS = [
-    # Italia
-    {"category": "italy", "tournament": "serie a"},
-    {"category": "italy", "tournament": "serie b"},
-    {"category": "italy", "tournament": "coppa italia"},
-    {"category": "italy", "tournament": "super cup"},
-    
-    # Coppe europee
-    {"category": "international clubs", "tournament": "champions league"},
-    {"category": "international clubs", "tournament": "europa league"},
-    {"category": "international clubs", "tournament": "conference league"},
-    {"category": "international clubs", "tournament": "super cup"},
-    
-    # Top campionati europei
-    {"category": "england", "tournament": "premier league"},
-    {"category": "spain", "tournament": "la liga"},
-    
-    # Nazionali
-    {"category": None, "tournament": "euro"},
-    {"category": None, "tournament": "world cup"},
-    {"category": None, "tournament": "wc qualification"},
-    {"category": None, "tournament": "world cup qualification"},
-    {"category": None, "tournament": "nations league"},
-    {"category": None, "tournament": "international friendly"},
+# Esclusioni per evitare match minori o giovanili
+FORBIDDEN_KEYWORDS = [
+    "women", "(w)", " (fem)", "femminile", "female", "ladies", 
+    "u21", "u19", "u17", "u20", "u23", "under 21", "youth"
 ]
 
-# Parole chiave per evidenziare eventi Top (Sincronizzate con WebApp)
-W_TOP = ["COPPA ITALIA", "SERIE A", "CHAMPIONS", "EUROPA LEAGUE", "ITALIA", "ITALY", "JUVE", "INTER", "MILAN", "NAPOLI"]
+# Canali Italiani suggeriti per competizione
+ITALIAN_BROADCASTERS = {
+    "world cup": [("Rai 1", "IT"), ("Sky Sport Calcio", "IT"), ("NOW", "IT")],
+    "mondiali": [("Rai 1", "IT"), ("Sky Sport Calcio", "IT"), ("NOW", "IT")],
+    "euro": [("Rai 1", "IT"), ("Sky Sport Calcio", "IT"), ("NOW", "IT")],
+    "serie a": [("DAZN", "IT"), ("Sky Sport Calcio", "IT"), ("NOW", "IT")],
+    "serie b": [("DAZN", "IT"), ("Sky Sport Calcio", "IT"), ("NOW", "IT")],
+    "coppa italia": [("Italia 1", "IT"), ("Canale 5", "IT"), ("Mediaset Infinity", "IT")],
+    "champions league": [("Sky Sport Uno", "IT"), ("Sky Sport Calcio", "IT"), ("NOW", "IT"), ("Prime Video", "IT"), ("TV8", "IT")],
+    "europa league": [("Sky Sport Uno", "IT"), ("Sky Sport Calcio", "IT"), ("NOW", "IT"), ("TV8", "IT")],
+    "conference league": [("Sky Sport Uno", "IT"), ("Sky Sport Calcio", "IT"), ("NOW", "IT"), ("TV8", "IT")],
+    "premier league": [("Sky Sport Uno", "IT"), ("Sky Sport Calcio", "IT"), ("NOW", "IT")],
+    "la liga": [("DAZN", "IT")],
+    "nations league": [("Rai 1", "IT"), ("Sky Sport Calcio", "IT"), ("NOW", "IT")],
+}
 
-# ─── FUNZIONI CORE ────────────────────────────────────────────────
+# Parole chiave per definire i TOP EVENT
+W_TOP = [
+    "WORLD CUP", "MONDIALI", "MONDIALE",
+    "COPPA ITALIA", "CHAMPIONS LEAGUE", "EUROPA LEAGUE", "CONFERENCE",
+    "ITALIA", "ITALY", "JUVE", "JUVENTUS", "INTER", "MILAN", "NAPOLI", "ROMA", "LAZIO",
+    "FIORENTINA", "ATALANTA", "BOLOGNA", "CAGLIARI",
+    "REAL MADRID", "BARCELONA", "CITY", "LIVERPOOL", "ARSENAL", "BAYERN", "PSG",
+]
 
-def _create_session():
-    session = requests.Session()
-    session.headers.update({
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-    })
-    return session
+# Squadre/Nazionali accettate nelle amichevoli
+TOP_FRIENDLY_TEAMS = [
+    "ITALY", "ITALIA", "JUVENTUS", "JUVE", "INTER", "MILAN", "NAPOLI", "ROMA", "LAZIO",
+    "FIORENTINA", "ATALANTA", "CAGLIARI", "BOLOGNA", "TORINO",
+    "REAL MADRID", "BARCELONA", "BARCA", "MANCHESTER CITY", "LIVERPOOL",
+    "ARSENAL", "CHELSEA", "BAYERN", "PSG", "PARIS"
+]
 
-def _fetch_page_json(session, page_url):
-    try:
-        resp = session.get(page_url, timeout=15, verify=False)
-        if resp.status_code != 200:
-            return None
-        m = re.search(r"listAction:\s*'(.*?)'", resp.text)
-        if not m:
-            return None
-        
-        import time
-        is_dst = time.localtime().tm_isdst > 0
-        offset_seconds = -time.timezone if not is_dst else -time.altzone
-        offset_hours = offset_seconds // 3600
-        offset_minutes = (offset_seconds % 3600) // 60
-        tz_sign = "%2B" if offset_hours >= 0 else "-"
-        tz_str = f"{tz_sign}{abs(offset_hours):02d}{abs(offset_minutes):02d}"
-        
-        list_url = "https://www.sporteventz.com" + m.group(1) + f"&client_tz_offset={tz_str}"
-        
-        resp_json = session.get(list_url, headers={
-            "Accept": "application/json, text/javascript, */*; q=0.01",
-            "X-Requested-With": "XMLHttpRequest",
-            "Referer": page_url
-        }, timeout=15, verify=False)
-        
-        if not resp_json.text.strip():
-            return {"Records": []}
-            
-        return resp_json.json()
-    except Exception:
-        return None
+# Endpoint ESPN per i principali tornei
+ESPN_LEAGUE_SLUGS = [
+    ("fifa.world", "FIFA World Cup"),
+    ("ita.1", "Serie A"),
+    ("uefa.champions", "UEFA Champions League"),
+    ("uefa.europa", "UEFA Europa League"),
+    ("uefa.ecoconference", "UEFA Conference League"),
+    ("ita.coppa_italia", "Coppa Italia"),
+    ("eng.1", "Premier League"),
+    ("esp.1", "La Liga"),
+    ("ger.1", "Bundesliga"),
+    ("fra.1", "Ligue 1"),
+    ("fifa.friendly", "Amichevole Internazionale"),
+    ("club.friendly", "Amichevole Club"),
+]
 
-def _parse_record(rec):
-    team1 = rec.get('Team1', {}).get('#text', '') if isinstance(rec.get('Team1'), dict) else ''
-    team2 = rec.get('Team2', {}).get('#text', '') if isinstance(rec.get('Team2'), dict) else ''
-    begin = rec.get('Begin', '')
-    sport = rec.get('Sport', {}).get('#text', '') if isinstance(rec.get('Sport'), dict) else ''
-    category = rec.get('Category', {}).get('#text', '') if isinstance(rec.get('Category'), dict) else ''
-    tournament = rec.get('Tournament', {}).get('#text', '') if isinstance(rec.get('Tournament'), dict) else ''
+def _get_suggested_it_channels(comp_name, title_name):
+    text = (comp_name + " " + title_name).lower()
+    suggested = []
+    for key, channels in ITALIAN_BROADCASTERS.items():
+        if key in text:
+            for ch_name, ch_country in channels:
+                suggested.append({"name": ch_name, "country": ch_country})
+            break
     
-    channels = []
-    ch_section = rec.get('Channels', {})
-    if isinstance(ch_section, dict):
-        for key in ch_section.keys():
-            ch_list = ch_section[key]
-            if isinstance(ch_list, dict):
-                ch_list = [ch_list]
-            
-            if isinstance(ch_list, list):
-                for ch in ch_list:
-                    if isinstance(ch, dict):
-                        ch_name = ch.get('Name', '') or ch.get('#text', '?')
-                        if ch_name and ch_name != '?':
-                            channels.append({
-                                "name": ch_name,
-                                "country": ch.get('Country', '?')
-                            })
-                            
-    # Rimuovi duplicati
-    seen_norm = set()
-    unique_channels = []
-    for c in channels:
-        name_clean = re.sub(r'\s*\(.*?\)', '', c["name"]).strip().lower()
-        if name_clean not in seen_norm:
-            unique_channels.append(c)
-            seen_norm.add(name_clean)
-            
-    channels = unique_channels
-            
-    # Estrai data e ora
-    date_str = ""
-    time_str = begin
-    date_m = re.search(r',\s*(\d{1,2}\s+\w+\s+\d{4})', begin)
-    if date_m:
-        date_str = date_m.group(1).strip()
-        
-    time_m = re.search(r'(\d{1,2}:\d{2})$', begin)
-    if time_m:
-        time_str = time_m.group(1)
-        
-    # Costruisci il titolo
-    title = f"{team1} - {team2}" if team2 else team1
-    if not title:
-        title = tournament
-        
-    # Rimuovi solo le Emoji per compatibilità Kodi
-    title = "".join(c for c in title if ord(c) < 65536).replace('  ', ' ').strip()
-        
-    return {
-        "date": date_str,
-        "time": time_str,
-        "title": title,
-        "sport": sport,
-        "category": category,
-        "tournament": tournament,
-        "sources": channels
+    if not suggested:
+        suggested.append({"name": "Sky Sport Calcio", "country": "IT"})
+        suggested.append({"name": "DAZN", "country": "IT"})
+    return suggested
+
+def _fetch_espn_league_matches(slug_info):
+    slug, default_comp_name = slug_info
+    url = f"https://site.api.espn.com/apis/site/v2/sports/soccer/{slug}/scoreboard"
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
     }
-
-def _filter_football(records):
-    filtered = []
-    for rec in records:
-        parsed = _parse_record(rec)
-        cat_lower = parsed["category"].lower()
-        tourn_lower = parsed["tournament"].lower()
-        
-        # Esclusione calcio femminile e categorie minori (WSL, ecc.)
-        forbidden = ["women", "woman", "women's", "wsl", "(w)", " (fem)", "femminile", "female", "ladies", "u21", "u19", "u17", "u20", "u23", "under 21", "youth"]
-        combined_text = (parsed["tournament"] + " " + parsed["title"] + " " + parsed["category"]).lower()
-        if any(x in combined_text for x in forbidden):
-            continue
-
-        match = False
-        for f in FOOTBALL_FILTERS:
-            cat_ok = f["category"] is None or f["category"] in cat_lower
-            tourn_ok = f["tournament"] is None or f["tournament"] in tourn_lower
+    
+    events_found = []
+    try:
+        resp = requests.get(url, headers=headers, timeout=8, verify=False)
+        if resp.status_code != 200:
+            return events_found
             
-            if cat_ok and tourn_ok:
-                if f.get("category") == "germany" and "amateur" in cat_lower:
-                    continue
-                match = True
-                break
-                
-        if match:
-            filtered.append(parsed)
-    return filtered
+        data = resp.json()
+        raw_events = data.get("events", [])
+        
+        # Fuso orario italiano
+        try:
+            from zoneinfo import ZoneInfo
+            rome_tz = ZoneInfo("Europe/Rome")
+        except ImportError:
+            rome_tz = datetime.timezone(datetime.timedelta(hours=2))
 
+        now_local = datetime.datetime.now(rome_tz)
+        
+        for ev in raw_events:
+            competitions = ev.get("competitions", [])
+            if not competitions:
+                continue
+                
+            comp = competitions[0]
+            start_date_iso = comp.get("startDate") or ev.get("date")
+            if not start_date_iso:
+                continue
+                
+            # Conversione data in fuso orario italiano
+            try:
+                dt_utc = datetime.datetime.fromisoformat(start_date_iso.replace("Z", "+00:00"))
+                dt_local = dt_utc.astimezone(rome_tz)
+            except Exception:
+                continue
+                
+            # Verifichiamo se l'evento è oggi (in ora locale italiana)
+            if dt_local.date() != now_local.date():
+                continue
+                
+            # Squadre
+            competitors = comp.get("competitors", [])
+            if len(competitors) < 2:
+                name_title = ev.get("name", "")
+            else:
+                t1 = competitors[0].get("team", {}).get("displayName", "")
+                t2 = competitors[1].get("team", {}).get("displayName", "")
+                if t1 and t2:
+                    name_title = f"{t1} vs {t2}"
+                else:
+                    name_title = ev.get("name", "")
+                    
+            if not name_title:
+                continue
+                
+            # Nome torneo / fase
+            league_name = default_comp_name
+            note_text = ""
+            notes = comp.get("notes", [])
+            if notes:
+                note_text = notes[0].get("headline", "")
+            alt_note = comp.get("altGameNote", "")
+            
+            tourn_label = alt_note or note_text or league_name
+            
+            # Filtro keyword vietate (femminili, under)
+            combined_text = (tourn_label + " " + name_title).lower()
+            if any(kw in combined_text for kw in FORBIDDEN_KEYWORDS):
+                continue
+                
+            # Filtro specifico per le AMICHEVOLI: vogliamo solo Italia, Juventus, o Big Club
+            if "friendly" in slug.lower():
+                is_top_friendly = any(tf in combined_text.upper() for tf in TOP_FRIENDLY_TEAMS)
+                if not is_top_friendly:
+                    continue
+                    
+            local_time_str = dt_local.strftime("%H:%M")
+            date_str = dt_local.strftime("%d %B %Y")
+            
+            # Canali italiani suggeriti
+            it_channels = _get_suggested_it_channels(tourn_label, name_title)
+            
+            # Calcolo flag is_top
+            title_up = name_title.upper()
+            tourn_up = tourn_label.upper()
+            is_top = any(w in title_up or w in tourn_up for w in W_TOP)
+            
+            events_found.append({
+                "date": date_str,
+                "time": local_time_str,
+                "title": name_title,
+                "sport": "Football",
+                "category": "Football",
+                "tournament": tourn_label,
+                "sources": it_channels,
+                "is_top": is_top
+            })
+            
+    except Exception:
+        pass
+        
+    return events_found
 
 def get_sporteventz_schedule():
-    """Recupera l'agenda sportiva (Sync con WebApp)."""
-    session = _create_session()
+    """
+    Recupera l'agenda CALCIO di oggi interrogando le API JSON pubbliche di ESPN in parallelo.
+    """
     all_events = []
+    seen = set()
     
-    # Prepariamo il filtro per oggi
-    now = datetime.datetime.now()
-    today_num = str(now.day)
-    mesi_eng = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-    today_month = mesi_eng[now.month]
+    with concurrent.futures.ThreadPoolExecutor(max_workers=6) as executor:
+        results = executor.map(_fetch_espn_league_matches, ESPN_LEAGUE_SLUGS)
+        for res in results:
+            for ev in res:
+                key = (ev["time"], ev["title"].lower())
+                if key not in seen:
+                    all_events.append(ev)
+                    seen.add(key)
+                    
+    all_events.sort(key=lambda x: x["time"])
+    return all_events
 
-    # 1. Calcio
-    fb_data = _fetch_page_json(session, "https://www.sporteventz.com/en/")
-    if fb_data and 'Records' in fb_data:
-        all_events.extend(_filter_football(fb_data['Records']))
-    
-    seen_events = set()
-    final_events = []
-    
-    for ev in all_events:
-        # Filtro data: prendiamo solo oggi
-        ev_date = (ev.get("date") or "").lower()
-        is_today = (today_num in ev_date and today_month.lower() in ev_date) or not ev_date or "today" in ev_date
-        
-        if is_today:
-            key = (ev["time"], ev["title"].lower().strip(), ev["sport"].lower().strip())
-            if key not in seen_events:
-                # Top Event identification
-                t_up = ev["title"].upper()
-                tr_up = ev["tournament"].upper()
-                ev["is_top"] = any(w in t_up or w in tr_up for w in W_TOP)
-                
-                # Escludi le amichevoli dai top event (anche se hanno parole chiave come 'ITALIA')
-                if "FRIENDLY" in tr_up or "AMICHEVOLE" in tr_up or "FRIENDLY" in t_up or "AMICHEVOLE" in t_up:
-                    ev["is_top"] = False
-                
-                final_events.append(ev)
-                seen_events.add(key)
-            
-    final_events.sort(key=lambda x: x["time"])
-    return final_events
+if __name__ == "__main__":
+    events = get_sporteventz_schedule()
+    for ev in events:
+        print(f"[{ev['time']}] ({ev['tournament']}) {ev['title']} -> {[s['name'] for s in ev['sources']]}")
