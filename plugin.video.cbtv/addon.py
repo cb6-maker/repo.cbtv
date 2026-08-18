@@ -1643,12 +1643,12 @@ def play_hublive_stalker(cmd, name=None):
                 return
             if hb_player.av_started or hb_player.isPlaying():
                 break
-            if hb_player.playback_error or hb_player.stopped_by_user:
+            if hb_player.playback_error or hb_player.stopped_by_user or hb_player.playback_ended:
                 break
             xbmc.sleep(500)
         
         if not hb_player.isPlaying() and not hb_player.av_started:
-            if hb_player.stopped_by_user:
+            if hb_player.stopped_by_user or hb_player.playback_ended:
                 xbmc.log("[CBTV-HB] Utente ha fermato prima dell'avvio", xbmc.LOGINFO)
                 return
             # MAC non ha funzionato — escludilo e riprova
@@ -1669,12 +1669,13 @@ def play_hublive_stalker(cmd, name=None):
         playback_duration = time.time() - playback_start_time - 0.8
         xbmc.log(f"[CBTV-HB] Playback interrotto dopo {playback_duration:.1f} secondi. stopped_by_user={hb_player.stopped_by_user}, playback_error={hb_player.playback_error}, playback_ended={hb_player.playback_ended}", xbmc.LOGINFO)
         
-        # Riconnettiamo se lo stream si è interrotto prematuramente (meno di 45 secondi)
-        # e NON è stato interrotto dall'utente premendo Stop.
-        is_early_kick = hb_player.av_started and (playback_duration < 45.0)
+        # Riconnettiamo solo se lo stream è caduto subito (mac esaurito / kick nei primissimi secondi)
+        # Su Android (es. Tablet Samsung), lo stop manuale invia onPlayBackEnded invece di onPlayBackStopped.
+        user_stopped = hb_player.stopped_by_user or (hb_player.playback_ended and (playback_duration >= 1.5 or hb_player.av_started))
+        is_early_kick = hb_player.av_started and (playback_duration < 45.0) and not user_stopped
         
-        if hb_player.stopped_by_user or (hb_player.av_started and not is_early_kick):
-            xbmc.log(f"[CBTV-HB] Playback fermato (utente={hb_player.stopped_by_user}, avviato={hb_player.av_started}, durata={playback_duration:.1f}s). Esco senza riconnettere.", xbmc.LOGINFO)
+        if user_stopped or (hb_player.av_started and not is_early_kick):
+            xbmc.log(f"[CBTV-HB] Playback fermato (utente={user_stopped}, avviato={hb_player.av_started}, durata={playback_duration:.1f}s). Esco senza riconnettere.", xbmc.LOGINFO)
             return
             
         # In tutti gli altri casi (lo stream non è mai partito o è caduto per kick nei primi secondi) escludiamo il MAC e riproviamo
