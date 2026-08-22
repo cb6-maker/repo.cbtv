@@ -46,6 +46,89 @@ TOP_FRIENDLY_TEAMS = [
     "ARSENAL", "CHELSEA", "BAYERN", "PSG", "PARIS"
 ]
 
+# Tornei e competizioni Top Ammessi (Scd / Ccd)
+TOP_COMPETITIONS = {
+    # Italia
+    ("italy", "serie-a"),
+    ("italy", "serie-b"),
+    ("italy", "coppa-italia"),
+    ("italy", "super-cup"),
+    ("italy", "supercoppa"),
+    # Europa / UEFA / FIFA
+    ("europe", "champions-league"),
+    ("europe", "europa-league"),
+    ("europe", "europa-conference-league"),
+    ("europe", "uefa-super-cup"),
+    ("europe", "nations-league"),
+    ("europe", "euro"),
+    ("international", "world-cup"),
+    ("international", "friendlies"),
+    ("international", "club-friendlies"),
+    # Inghilterra
+    ("england", "premier-league"),
+    ("england", "fa-cup"),
+    ("england", "efl-cup"),
+    ("england", "community-shield"),
+    # Spagna
+    ("spain", "laliga"),
+    ("spain", "laliga-ea-sports"),
+    ("spain", "primera-division"),
+    ("spain", "copa-del-rey"),
+    ("spain", "super-cup"),
+    # Germania
+    ("germany", "bundesliga"),
+    ("germany", "dfb-pokal"),
+    ("germany", "super-cup"),
+    # Francia
+    ("france", "ligue-1"),
+    ("france", "coupe-de-france"),
+    ("france", "super-cup"),
+    # Altri Top
+    ("saudi-arabia", "pro-league"),
+    ("usa", "mls"),
+}
+
+def _is_allowed_stage(ccd, scd, cnm, snm):
+    ccd = ccd.lower()
+    scd = scd.lower()
+    cnm = cnm.lower()
+    snm = snm.lower()
+    
+    # Escludi campionati minori/regionali inglesi o minori esteri
+    if "northern-premier" in scd or "southern-premier" in scd or "isthmian" in scd:
+        return False
+
+    # 1. Tupla esatta (Ccd, Scd)
+    if (ccd, scd) in TOP_COMPETITIONS:
+        return True
+        
+    # 2. Serie C italiana
+    if ccd == "italy" and "serie-c" in scd:
+        return True
+        
+    # 3. Match testuali per competizioni italiane
+    if ccd == "italy" and any(k in snm for k in ["serie a", "serie b", "coppa italia", "supercoppa"]):
+        return True
+        
+    # 4. Match testuali per UEFA / FIFA / Nazionali
+    if ccd in ("europe", "international") and any(k in snm for k in ["champions league", "europa league", "conference league", "nations league", "mondiale", "world cup"]):
+        return True
+
+    # 5. Top 5 campionati (solo 1ª divisione)
+    if ccd == "england" and scd == "premier-league":
+        return True
+
+    if ccd == "spain" and (scd == "laliga" or "laliga" in scd or "la liga" in snm) and "2" not in snm:
+        return True
+
+    if ccd == "germany" and (scd == "bundesliga" or "bundesliga" in scd) and "2" not in snm and "women" not in snm and "frauen" not in snm:
+        return True
+
+    if ccd == "france" and (scd == "ligue-1" or "ligue 1" in snm):
+        return True
+
+    return False
+
 def _get_suggested_it_channels(comp_name, title_name):
     text = (comp_name + " " + title_name).lower()
     suggested = []
@@ -63,7 +146,7 @@ def _get_suggested_it_channels(comp_name, title_name):
 def get_sporteventz_schedule():
     """
     Recupera l'agenda CALCIO di oggi dalle API veloci e complete di LiveScore (prod-public-api.livescore.com).
-    Mantiene tutti i filtri attuali (donne, giovanili, amichevoli top e canali italiani).
+    Filtra RIGOROSAMENTE solo i tornei ed i campionati TOP (Serie A, B, C, Champions, Europa League, Premier, LaLiga, Bundesliga, Ligue 1).
     """
     try:
         from zoneinfo import ZoneInfo
@@ -94,9 +177,15 @@ def get_sporteventz_schedule():
         stages = data.get("Stages", [])
         
         for stage in stages:
+            ccd = stage.get("Ccd", "")
+            scd = stage.get("Scd", "")
             country = stage.get("Cnm", "")
-            comp_name = stage.get("Snm", "") or stage.get("Cnm", "")
+            comp_name = stage.get("Snm", "") or country
             
+            # FILTRO TORNEI: Accetta SOLO le competizioni Top ammesse
+            if not _is_allowed_stage(ccd, scd, country, comp_name):
+                continue
+
             # Filtro keyword vietate (femminili, under) sul torneo/paese
             if any(kw in (country + " " + comp_name).lower() for kw in FORBIDDEN_KEYWORDS):
                 continue
@@ -117,7 +206,7 @@ def get_sporteventz_schedule():
                     continue
                     
                 # Filtro amichevoli: se è un'amichevole accettiamo solo i top team
-                is_friendly = "friendly" in (comp_name + " " + country).lower() or "amichevol" in (comp_name + " " + country).lower()
+                is_friendly = "friendly" in scd or "amichevol" in comp_name.lower()
                 if is_friendly:
                     is_top_friendly = any(tf in (name_title + " " + comp_name).upper() for tf in TOP_FRIENDLY_TEAMS)
                     if not is_top_friendly:
@@ -169,5 +258,6 @@ def get_sporteventz_schedule():
 
 if __name__ == "__main__":
     events = get_sporteventz_schedule()
-    for ev in events[:20]:
+    print(f"Trovate {len(events)} partite TOP filtrate:")
+    for ev in events:
         print(f"[{ev['time']}] ({ev['tournament']}) {ev['title']} -> {[s['name'] for s in ev['sources']]}")
