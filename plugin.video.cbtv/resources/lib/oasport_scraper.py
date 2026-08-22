@@ -61,7 +61,7 @@ def get_oasport_schedule():
         try:
             from zoneinfo import ZoneInfo
             rome_tz = ZoneInfo("Europe/Rome")
-        except ImportError:
+        except Exception:
             rome_tz = datetime.timezone(datetime.timedelta(hours=2))
 
         now = datetime.datetime.now(rome_tz)
