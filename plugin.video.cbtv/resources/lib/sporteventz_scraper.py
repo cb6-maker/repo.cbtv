@@ -1,7 +1,6 @@
 import requests
 import re
 import datetime
-import concurrent.futures
 import urllib3
 
 urllib3.disable_warnings()
@@ -47,22 +46,6 @@ TOP_FRIENDLY_TEAMS = [
     "ARSENAL", "CHELSEA", "BAYERN", "PSG", "PARIS"
 ]
 
-# Endpoint ESPN per i principali tornei
-ESPN_LEAGUE_SLUGS = [
-    ("fifa.world", "FIFA World Cup"),
-    ("ita.1", "Serie A"),
-    ("uefa.champions", "UEFA Champions League"),
-    ("uefa.europa", "UEFA Europa League"),
-    ("uefa.ecoconference", "UEFA Conference League"),
-    ("ita.coppa_italia", "Coppa Italia"),
-    ("eng.1", "Premier League"),
-    ("esp.1", "La Liga"),
-    ("ger.1", "Bundesliga"),
-    ("fra.1", "Ligue 1"),
-    ("fifa.friendly", "Amichevole Internazionale"),
-    ("club.friendly", "Amichevole Club"),
-]
-
 def _get_suggested_it_channels(comp_name, title_name):
     text = (comp_name + " " + title_name).lower()
     suggested = []
@@ -77,135 +60,114 @@ def _get_suggested_it_channels(comp_name, title_name):
         suggested.append({"name": "DAZN", "country": "IT"})
     return suggested
 
-def _fetch_espn_league_matches(slug_info):
-    slug, default_comp_name = slug_info
-    url = f"https://site.api.espn.com/apis/site/v2/sports/soccer/{slug}/scoreboard"
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-    }
+def get_sporteventz_schedule():
+    """
+    Recupera l'agenda CALCIO di oggi dalle API veloci e complete di LiveScore (prod-public-api.livescore.com).
+    Mantiene tutti i filtri attuali (donne, giovanili, amichevoli top e canali italiani).
+    """
+    try:
+        from zoneinfo import ZoneInfo
+        rome_tz = ZoneInfo("Europe/Rome")
+    except ImportError:
+        rome_tz = datetime.timezone(datetime.timedelta(hours=2))
+
+    now_local = datetime.datetime.now(rome_tz)
+    today_str = now_local.strftime("%Y%m%d")
     
-    events_found = []
+    url = f"https://prod-public-api.livescore.com/v1/api/app/date/soccer/{today_str}/0?locale=it"
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36",
+        "Accept": "application/json, text/plain, */*",
+        "Origin": "https://www.livescore.com",
+        "Referer": "https://www.livescore.com/"
+    }
+
+    events = []
+    seen = set()
+    
     try:
         resp = requests.get(url, headers=headers, timeout=8, verify=False)
         if resp.status_code != 200:
-            return events_found
+            return events
             
         data = resp.json()
-        raw_events = data.get("events", [])
+        stages = data.get("Stages", [])
         
-        # Fuso orario italiano
-        try:
-            from zoneinfo import ZoneInfo
-            rome_tz = ZoneInfo("Europe/Rome")
-        except ImportError:
-            rome_tz = datetime.timezone(datetime.timedelta(hours=2))
+        for stage in stages:
+            country = stage.get("Cnm", "")
+            comp_name = stage.get("Snm", "") or stage.get("Cnm", "")
+            
+            # Filtro keyword vietate (femminili, under) sul torneo/paese
+            if any(kw in (country + " " + comp_name).lower() for kw in FORBIDDEN_KEYWORDS):
+                continue
 
-        now_local = datetime.datetime.now(rome_tz)
-        
-        for ev in raw_events:
-            competitions = ev.get("competitions", [])
-            if not competitions:
-                continue
+            for ev in stage.get("Events", []):
+                t1_list = ev.get("T1", [{}])
+                t2_list = ev.get("T2", [{}])
+                t1 = t1_list[0].get("Nm", "") if t1_list else ""
+                t2 = t2_list[0].get("Nm", "") if t2_list else ""
                 
-            comp = competitions[0]
-            start_date_iso = comp.get("startDate") or ev.get("date")
-            if not start_date_iso:
-                continue
-                
-            # Conversione data in fuso orario italiano
-            try:
-                dt_utc = datetime.datetime.fromisoformat(start_date_iso.replace("Z", "+00:00"))
-                dt_local = dt_utc.astimezone(rome_tz)
-            except Exception:
-                continue
-                
-            # Verifichiamo se l'evento è oggi (in ora locale italiana)
-            if dt_local.date() != now_local.date():
-                continue
-                
-            # Squadre
-            competitors = comp.get("competitors", [])
-            if len(competitors) < 2:
-                name_title = ev.get("name", "")
-            else:
-                t1 = competitors[0].get("team", {}).get("displayName", "")
-                t2 = competitors[1].get("team", {}).get("displayName", "")
-                if t1 and t2:
-                    name_title = f"{t1} vs {t2}"
-                else:
-                    name_title = ev.get("name", "")
-                    
-            if not name_title:
-                continue
-                
-            # Nome torneo / fase
-            league_name = default_comp_name
-            note_text = ""
-            notes = comp.get("notes", [])
-            if notes:
-                note_text = notes[0].get("headline", "")
-            alt_note = comp.get("altGameNote", "")
-            
-            tourn_label = alt_note or note_text or league_name
-            
-            # Filtro keyword vietate (femminili, under)
-            combined_text = (tourn_label + " " + name_title).lower()
-            if any(kw in combined_text for kw in FORBIDDEN_KEYWORDS):
-                continue
-                
-            # Filtro specifico per le AMICHEVOLI: vogliamo solo Italia, Juventus, o Big Club
-            if "friendly" in slug.lower():
-                is_top_friendly = any(tf in combined_text.upper() for tf in TOP_FRIENDLY_TEAMS)
-                if not is_top_friendly:
+                if not t1 or not t2:
                     continue
                     
-            local_time_str = dt_local.strftime("%H:%M")
-            date_str = dt_local.strftime("%d %B %Y")
-            
-            # Canali italiani suggeriti
-            it_channels = _get_suggested_it_channels(tourn_label, name_title)
-            
-            # Calcolo flag is_top
-            title_up = name_title.upper()
-            tourn_up = tourn_label.upper()
-            is_top = any(w in title_up or w in tourn_up for w in W_TOP)
-            
-            events_found.append({
-                "date": date_str,
-                "time": local_time_str,
-                "title": name_title,
-                "sport": "Football",
-                "category": "Football",
-                "tournament": tourn_label,
-                "sources": it_channels,
-                "is_top": is_top
-            })
-            
-    except Exception:
-        pass
-        
-    return events_found
-
-def get_sporteventz_schedule():
-    """
-    Recupera l'agenda CALCIO di oggi interrogando le API JSON pubbliche di ESPN in parallelo.
-    """
-    all_events = []
-    seen = set()
-    
-    with concurrent.futures.ThreadPoolExecutor(max_workers=6) as executor:
-        results = executor.map(_fetch_espn_league_matches, ESPN_LEAGUE_SLUGS)
-        for res in results:
-            for ev in res:
-                key = (ev["time"], ev["title"].lower())
-                if key not in seen:
-                    all_events.append(ev)
-                    seen.add(key)
+                name_title = f"{t1} vs {t2}"
+                
+                # Filtro keyword vietate sul nome della partita
+                if any(kw in name_title.lower() for kw in FORBIDDEN_KEYWORDS):
+                    continue
                     
-    all_events.sort(key=lambda x: x["time"])
-    return all_events
+                # Filtro amichevoli: se è un'amichevole accettiamo solo i top team
+                is_friendly = "friendly" in (comp_name + " " + country).lower() or "amichevol" in (comp_name + " " + country).lower()
+                if is_friendly:
+                    is_top_friendly = any(tf in (name_title + " " + comp_name).upper() for tf in TOP_FRIENDLY_TEAMS)
+                    if not is_top_friendly:
+                        continue
+
+                # Parsing orario: Esd è nel formato YYYYMMDDHHMMSS UTC
+                esd_str = str(ev.get("Esd", ""))
+                if len(esd_str) >= 12:
+                    try:
+                        dt_utc = datetime.datetime.strptime(esd_str[:14], "%Y%m%d%H%M%S").replace(tzinfo=datetime.timezone.utc)
+                        dt_local = dt_utc.astimezone(rome_tz)
+                        local_time_str = dt_local.strftime("%H:%M")
+                        date_str = dt_local.strftime("%d %B %Y")
+                    except Exception:
+                        local_time_str = "00:00"
+                        date_str = now_local.strftime("%d %B %Y")
+                else:
+                    local_time_str = "00:00"
+                    date_str = now_local.strftime("%d %B %Y")
+
+                tourn_label = f"{country}: {comp_name}" if country and country.lower() not in comp_name.lower() else comp_name
+                it_channels = _get_suggested_it_channels(tourn_label, name_title)
+
+                title_up = name_title.upper()
+                tourn_up = tourn_label.upper()
+                is_top = any(w in title_up or w in tourn_up for w in W_TOP)
+
+                event_obj = {
+                    "date": date_str,
+                    "time": local_time_str,
+                    "title": name_title,
+                    "sport": "Football",
+                    "category": "Football",
+                    "tournament": tourn_label,
+                    "sources": it_channels,
+                    "is_top": is_top
+                }
+                
+                key = (local_time_str, name_title.lower())
+                if key not in seen:
+                    events.append(event_obj)
+                    seen.add(key)
+
+    except Exception as e:
+        pass
+
+    events.sort(key=lambda x: x["time"])
+    return events
 
 if __name__ == "__main__":
     events = get_sporteventz_schedule()
-    for ev in events:
+    for ev in events[:20]:
         print(f"[{ev['time']}] ({ev['tournament']}) {ev['title']} -> {[s['name'] for s in ev['sources']]}")
