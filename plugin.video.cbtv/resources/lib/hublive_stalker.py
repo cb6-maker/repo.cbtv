@@ -28,43 +28,15 @@ def clean_text(text):
 class HubliveStalkerClient:
     """Client Stalker con supporto multi-server e fallback automatico tra Server 28 e Server 11."""
 
-    # Server 31 (Primario - 121 MACs)
-    PORTAL_1_URL = "http://main.light-ott.net:80"
+    # Server 28 / Server 31 (Primario)
+    PORTAL_1_URL = "http://pro.most8knew.com:80"
     PORTAL_1_MACS = [
-        "00:1B:79:41:43:5D", "00:1B:79:48:4E:B4", "A0:BB:3E:00:02:2D", "A0:BB:3E:00:02:82",
-        "A0:BB:3E:00:06:87", "A0:BB:3E:00:07:36", "A0:BB:3E:00:09:28", "A0:BB:3E:00:0A:53",
-        "A0:BB:3E:00:0B:4D", "A0:BB:3E:00:0A:CF", "A0:BB:3E:00:0A:FD", "A0:BB:3E:00:0A:E9",
-        "A0:BB:3E:00:0C:EC", "A0:BB:3E:00:0C:EE", "A0:BB:3E:00:0D:3A", "A0:BB:3E:00:0D:EB",
-        "A0:BB:3E:00:0E:13", "A0:BB:3E:00:0E:E8", "A0:BB:3E:00:0E:F5", "A0:BB:3E:00:0F:0D",
-        "A0:BB:3E:00:0F:2F", "A0:BB:3E:00:0F:44", "A0:BB:3E:00:10:30", "A0:BB:3E:00:10:3E",
-        "A0:BB:3E:00:10:52", "A0:BB:3E:00:10:AC", "A0:BB:3E:00:10:C0", "A0:BB:3E:00:10:CB",
-        "A0:BB:3E:00:10:C3", "A0:BB:3E:00:10:BC", "A0:BB:3E:00:11:17", "A0:BB:3E:00:11:56",
-        "A0:BB:3E:00:11:41", "A0:BB:3E:00:11:A8", "A0:BB:3E:00:11:B6", "A0:BB:3E:00:11:45",
-        "A0:BB:3E:00:11:EE", "A0:BB:3E:00:12:32", "A0:BB:3E:00:12:8F", "A0:BB:3E:00:12:52",
-        "A0:BB:3E:00:12:7C", "A0:BB:3E:00:12:CF", "A0:BB:3E:00:12:B0", "A0:BB:3E:00:13:2B",
-        "A0:BB:3E:00:13:50", "A0:BB:3E:00:13:EE", "A0:BB:3E:00:13:F8", "A0:BB:3E:00:14:03",
-        "A0:BB:3E:00:14:44", "A0:BB:3E:00:14:D1", "A0:BB:3E:00:15:6F", "A0:BB:3E:00:14:F9",
-        "A0:BB:3E:00:15:DB", "A0:BB:3E:00:15:E9", "A0:BB:3E:00:15:E8", "A0:BB:3E:00:16:17",
-        "A0:BB:3E:00:15:EC", "A0:BB:3E:00:16:99", "A0:BB:3E:00:16:A5", "A0:BB:3E:00:16:9B",
-        "A0:BB:3E:00:16:F0", "A0:BB:3E:00:17:D3", "A0:BB:3E:00:17:DE", "A0:BB:3E:00:18:5C",
-        "A0:BB:3E:00:18:B2", "A0:BB:3E:00:19:3A", "A0:BB:3E:00:19:4A", "A0:BB:3E:00:20:9C",
-        "A0:BB:3E:00:04:E8", "A0:BB:3E:00:05:75", "A0:BB:3E:00:05:EB", "A0:BB:3E:00:06:D0",
-        "A0:BB:3E:00:07:0C", "A0:BB:3E:00:08:19", "A0:BB:3E:00:08:00", "A0:BB:3E:00:08:35",
-        "A0:BB:3E:00:08:E3", "A0:BB:3E:00:09:33", "A0:BB:3E:00:09:8F", "A0:BB:3E:00:09:BA",
-        "A0:BB:3E:00:0A:2E", "A0:BB:3E:00:0A:72", "A0:BB:3E:00:0B:FD", "A0:BB:3E:00:0C:C7",
-        "A0:BB:3E:00:0C:ED", "A0:BB:3E:00:0C:EF", "A0:BB:3E:00:0E:7C", "A0:BB:3E:00:0E:4D",
-        "A0:BB:3E:00:0E:78", "A0:BB:3E:00:0F:79", "A0:BB:3E:00:0F:BA", "A0:BB:3E:00:10:39",
-        "A0:BB:3E:00:10:C8", "A0:BB:3E:00:11:0F", "A0:BB:3E:00:11:5F", "A0:BB:3E:00:11:F3",
-        "A0:BB:3E:00:12:34", "A0:BB:3E:00:12:2A", "A0:BB:3E:00:12:C1", "A0:BB:3E:00:12:B7",
-        "A0:BB:3E:00:12:E5", "A0:BB:3E:00:13:3E", "A0:BB:3E:00:12:E6", "A0:BB:3E:00:13:3A",
-        "A0:BB:3E:00:13:A2", "A0:BB:3E:00:13:9E", "A0:BB:3E:00:13:BF", "A0:BB:3E:00:14:5F",
-        "A0:BB:3E:00:14:EA", "A0:BB:3E:00:15:73", "A0:BB:3E:00:17:65", "A0:BB:3E:00:18:60",
-        "A0:BB:3E:00:18:E8", "00:1A:79:17:04:D7", "00:1A:79:00:22:D5", "00:1A:79:B6:49:B7",
-        "00:1A:79:C8:B6:ED", "00:1A:79:A0:E1:74", "00:1A:79:B5:AC:98", "00:1A:79:BA:A6:65",
-        "00:1A:79:F0:9F:91"
+        "A0:BB:3E:00:08:9F", "A0:BB:3E:00:0A:CD", "A0:BB:3E:00:0A:CB", "00:1A:79:7B:20:DE",
+        "00:1A:79:36:33:37", "00:1A:79:B6:E1:AD", "00:1A:79:B6:CB:B8", "00:1A:79:B6:E6:77",
+        "A0:BB:3E:00:06:EE", "00:1A:79:B5:B6:D5", "00:1A:79:81:F3:59", "A0:BB:3E:00:0A:B5"
     ]
 
-    # Server 29 (Fallback - 52 MACs)
+    # Server 29 / Server 50 (Fallback)
     PORTAL_2_URL = "http://line.watchtivo-8k.com:80"
     PORTAL_2_MACS = [
         "00:1A:79:97:29:31", "00:1A:79:17:04:D7", "00:1A:79:00:00:00", "00:1A:79:00:22:D5",
@@ -82,6 +54,8 @@ class HubliveStalkerClient:
         "00:1A:79:1C:10:51", "00:1A:79:0B:C1:2A", "00:1A:79:B6:23:16", "00:1A:79:F1:B3:3D"
     ]
 
+    REMOTE_HUB_URL = "https://raw.githubusercontent.com/staycanuca/hub/main/servers.json"
+
     UA = ("Mozilla/5.0 (QtEmbedded; U; Linux; C) AppleWebKit/533.3 "
           "(KHTML, like Gecko) MAG200 stbapp ver: 2 rev: 250 Safari/533.3")
 
@@ -90,15 +64,76 @@ class HubliveStalkerClient:
         self.server_id = server_id
         if server_id == "s50":
             self.portal_url = self.PORTAL_2_URL
-            self.mac_pool = self.PORTAL_2_MACS
+            self.mac_pool = list(self.PORTAL_2_MACS)
         else:
             self.portal_url = self.PORTAL_1_URL
-            self.mac_pool = self.PORTAL_1_MACS
+            self.mac_pool = list(self.PORTAL_1_MACS)
 
         profile = xbmcvfs.translatePath(xbmcaddon.Addon().getAddonInfo('profile'))
         self.cache_dir = os.path.join(profile, "hublive")
         if not os.path.exists(self.cache_dir):
             os.makedirs(self.cache_dir)
+
+        # Sincronizzazione dinamica remota dei MAC
+        self._sync_remote_servers(force=False)
+
+    def _sync_remote_servers(self, force=False):
+        """Scarica e memorizza in cache i server e i MAC aggiornati da staycanuca/hub."""
+        cache_file = os.path.join(self.cache_dir, "hl_servers_remote.json")
+        servers_data = None
+
+        if not force and os.path.exists(cache_file):
+            try:
+                mtime = os.path.getmtime(cache_file)
+                # Cache valida per 6 ore (21600 secondi)
+                if time.time() - mtime < 21600:
+                    with open(cache_file, 'r', encoding='utf-8') as fh:
+                        servers_data = json.load(fh)
+            except Exception:
+                servers_data = None
+
+        if not servers_data:
+            try:
+                xbmc.log("[CBTV-HB] Download lista server e MAC aggiornati da staycanuca/hub...", xbmc.LOGINFO)
+                resp = requests.get(self.REMOTE_HUB_URL, headers={"User-Agent": "Mozilla/5.0"}, timeout=5)
+                if resp.status_code == 200:
+                    data = resp.json()
+                    servers_data = data.get("servers", [])
+                    with open(cache_file, 'w', encoding='utf-8') as fh:
+                        json.dump(servers_data, fh)
+            except Exception as e:
+                xbmc.log(f"[CBTV-HB] Impossibile scaricare servers.json remoto: {e}", xbmc.LOGWARNING)
+
+        if not servers_data or not isinstance(servers_data, list):
+            return
+
+        # Cerca il server corrispondente
+        target_server = None
+        for s in servers_data:
+            if not isinstance(s, dict):
+                continue
+            name = s.get("name", "")
+            portal = (s.get("portal_url") or s.get("portal") or s.get("url") or "").lower()
+
+            if self.server_id == "s50":
+                if name in ["Server 29", "Server 50"] or "watchtivo" in portal or "tvdsz" in portal:
+                    if s.get("macs") or s.get("mac_pool"):
+                        target_server = s
+                        break
+            else:
+                if name in ["Server 28", "Server 31"] or "most8k" in portal or "light-ott" in portal:
+                    if s.get("macs") or s.get("mac_pool"):
+                        target_server = s
+                        break
+
+        if target_server:
+            remote_macs = target_server.get("macs") or target_server.get("mac_pool") or []
+            remote_portal = target_server.get("portal_url") or target_server.get("portal") or target_server.get("url")
+            if remote_macs:
+                self.mac_pool = list(remote_macs)
+            if remote_portal:
+                self.portal_url = remote_portal
+            xbmc.log(f"[CBTV-HB] Sincronizzati {len(self.mac_pool)} MAC per {self.server_id} da {self.portal_url}", xbmc.LOGINFO)
 
     def _get_last_working_mac(self):
         f = os.path.join(self.cache_dir, f"hl_last_mac_{self.server_id}.json")
@@ -108,6 +143,7 @@ class HubliveStalkerClient:
                     return json.load(fh).get("mac")
             except:
                 pass
+        return None
         return None
 
     def _set_last_working_mac(self, mac):
@@ -262,16 +298,16 @@ class HubliveStalkerClient:
                 exclude_macs.add(mac)
                 continue
 
-            # 3. Costruisci URL finale
+            # 3. Costruisci URL finale assicurando il dominio attivo corretto
             if stream_id_out is None and url_or_token.startswith("http"):
-                final_url = url_or_token
+                final_url = re.sub(r"http[s]?://[^/]+", self.portal_url, url_or_token)
             else:
                 final_url = (f"{self.portal_url}/play/live.php"
                              f"?mac={mac}&stream={stream_id_out}&extension=ts&play_token={url_or_token}")
 
             # 4. Verifica se lo stream è realmente attivo (evita i black screen / GZIP vuoti)
             try:
-                r_play = requests.get(final_url, headers=self._headers(mac), cookies=self._cookies(mac, token), timeout=2.0, stream=True)
+                r_play = requests.get(final_url, headers={"User-Agent": self.UA}, timeout=2.0, stream=True)
                 
                 # Controllo anti black.ts
                 if "black.ts" in r_play.url.lower():
@@ -317,7 +353,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.1.2"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.2.0"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _get_cache(self, key):
         f = os.path.join(self.cache_dir, f"hl_{self.server_id}_{key}.json")
@@ -351,8 +387,9 @@ class HubliveStalkerClient:
             pool.insert(0, last_working)
 
         for mac in pool:
-            token = self._handshake(mac)
+            token = self._handshake(mac, timeout=1.5)
             if token:
+                self._set_last_working_mac(mac)
                 return token, mac
         return None, None
 
@@ -367,11 +404,33 @@ class HubliveStalkerClient:
             xbmc.log(f"[CBTV-HB] Impossibile trovare un MAC funzionante per get_genres ({self.server_id})", xbmc.LOGWARNING)
             return []
 
-        res = self._api_call(mac, token, "get_genres")
+        res = self._api_call(mac, token, "get_genres", timeout=6)
         if isinstance(res, list) and len(res) > 0:
             self._set_cache("genres", res)
             return res
-        return []
+
+        # Fallback integrato delle categorie note per evitare blocchi
+        if self.server_id == "s50":
+            fallback_genres = [
+                {"id": "1", "title": "┃IT┃ GENERALE"},
+                {"id": "2", "title": "┃IT┃ CINEMA"},
+                {"id": "3", "title": "┃IT┃ SPORT"},
+                {"id": "4", "title": "┃IT┃ DAZN SERIE A"},
+                {"id": "5", "title": "┃IT┃ SKY SPORT"},
+                {"id": "6", "title": "┃IT┃ SKY CALCIO"},
+                {"id": "7", "title": "┃IT┃ ZONA DAZN"}
+            ]
+        else:
+            fallback_genres = [
+                {"id": "11", "title": "IT| PRIME ᴿᴬᵂ ⁶⁰ᶠᵖˢ"},
+                {"id": "12", "title": "IT| PLATINUM TV UHD/4K"},
+                {"id": "13", "title": "IT| GENERALE"},
+                {"id": "14", "title": "IT| CINEMA"},
+                {"id": "15", "title": "IT| SPORT"},
+                {"id": "16", "title": "IT| GOLD TV HEVC"}
+            ]
+        self._set_cache("genres", fallback_genres)
+        return fallback_genres
 
     def _find_genre_ids_by_titles(self, target_titles):
         """Trova gli ID dei generi in base ai titoli cercati."""
@@ -396,16 +455,26 @@ class HubliveStalkerClient:
 
         def fetch_genre(gid):
             genre_found = []
-            for page in range(1, 35):
+            for page in range(1, 30):
                 res = self._api_call(mac, token, "get_ordered_list",
-                                     {"genre": str(gid), "force_ch_link_check": "0", "p": str(page)})
+                                     {"genre": str(gid), "force_ch_link_check": "0", "p": str(page)}, timeout=3.5)
 
                 if isinstance(res, dict) and 'data' in res:
                     ch_list = res['data']
                 elif isinstance(res, list):
                     ch_list = res
                 else:
-                    break
+                    # Prova get_ordered_channels se get_ordered_list non ha restituito dati
+                    if page == 1:
+                        res_alt = self._api_call(mac, token, "get_ordered_channels", {"genre": str(gid)}, timeout=3.5)
+                        if isinstance(res_alt, dict) and 'data' in res_alt:
+                            ch_list = res_alt['data']
+                        elif isinstance(res_alt, list):
+                            ch_list = res_alt
+                        else:
+                            break
+                    else:
+                        break
 
                 if not ch_list:
                     break
@@ -425,6 +494,10 @@ class HubliveStalkerClient:
                         continue
 
                     genre_found.append({'name': clean_text(name_raw), 'cmd': cmd})
+
+                # Se la pagina ha meno di 14 canali (dimensione pagina Stalker standard), non ci sono altre pagine
+                if len(ch_list) < 14:
+                    break
             return genre_found
 
         try:
