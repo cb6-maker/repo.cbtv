@@ -1,6 +1,6 @@
 {
-  "latest_version": "1.0.118",
-  "version_code": 118,
-  "changelog": "Fix completo streaming HLS: MAX Sport 1 video 1080p ripristinato, MAX Sport 3, Polsat Fight e Polsat Premium 1-2.",
+  "latest_version": "1.0.119",
+  "version_code": 119,
+  "changelog": "Sincronizzazione dinamica canali da repo.cbtv pubblico + Fix video 1080p MAX Sport 1 e Polsat.",
   "download_url": "https://github.com/cb6-maker/cbtv-android/releases/latest"
 }
