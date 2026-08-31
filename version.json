@@ -1,6 +1,6 @@
 {
-  "latest_version": "1.0.120",
-  "version_code": 120,
-  "changelog": "Fix definitivo HLS Referer + Hls.js error recovery per MAX Sport 3 e Polsat Premium 1-2.",
+  "latest_version": "1.0.121",
+  "version_code": 121,
+  "changelog": "Priorità Server 31 TS preservata al 100% per tutti i canali italiani (Sky/DAZN) + Web HLS primario per canali esteri.",
   "download_url": "https://github.com/cb6-maker/cbtv-android/releases/latest"
 }
