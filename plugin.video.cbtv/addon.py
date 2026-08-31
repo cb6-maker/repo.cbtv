@@ -802,7 +802,36 @@ def search_live_channels(query=None):
     except Exception as e:
         xbmc.log(f"[CBTV] HB Search Error: {e}", xbmc.LOGERROR)
 
-    # 5. Mostra i risultati
+    # 5. Canali HLS (Sky Sport & DAZN HLS)
+    hls_all = [
+        {"name": "Sky Sport 24 HD", "id": "869", "tag": "Sky HLS"},
+        {"name": "Sky Sport Uno HD", "id": "461", "tag": "Sky HLS"},
+        {"name": "Sky Sport Calcio HD", "id": "870", "tag": "Sky HLS"},
+        {"name": "Sky Sport Tennis HD", "id": "576", "tag": "Sky HLS"},
+        {"name": "Sky Sport F1 HD", "id": "577", "tag": "Sky HLS"},
+        {"name": "Sky Sport MotoGP HD", "id": "575", "tag": "Sky HLS"},
+        {"name": "Sky Sport Arena HD", "id": "462", "tag": "Sky HLS"},
+        {"name": "Sky Sport Max HD", "id": "460", "tag": "Sky HLS"},
+        {"name": "Sky Sport Basket HD", "id": "875", "tag": "Sky HLS"},
+        {"name": "Sky Sport Golf HD", "id": "574", "tag": "Sky HLS"},
+        {"name": "Sky Sport Calcio 251 HD", "id": "871", "tag": "Sky HLS"},
+        {"name": "Sky Sport Calcio 252 HD", "id": "872", "tag": "Sky HLS"},
+        {"name": "Sky Sport Calcio 253 HD", "id": "873", "tag": "Sky HLS"},
+        {"name": "Sky Sport Calcio 254 HD", "id": "874", "tag": "Sky HLS"},
+        {"name": "Eurosport 1 IT HD", "id": "878", "tag": "Sky HLS"},
+        {"name": "Eurosport 2 IT HD", "id": "879", "tag": "Sky HLS"},
+        {"name": "Zona DAZN 1 HD", "id": "877", "tag": "Dazn HLS"},
+        {"name": "Zona DAZN 2 HD", "id": "878", "tag": "Dazn HLS"},
+        {"name": "DAZN 1 (Spagna)", "id": "445", "tag": "Dazn HLS"},
+        {"name": "DAZN F1 (Spagna)", "id": "537", "tag": "Dazn HLS"},
+        {"name": "DAZN LaLiga (Spagna)", "id": "538", "tag": "Dazn HLS"},
+        {"name": "DAZN 1 UK", "id": "230", "tag": "Dazn HLS"},
+    ]
+    for ch in hls_all:
+        if q in ch["name"].lower():
+            results.append((f"{ch['name']} [COLOR lightblue]({ch['tag']})[/COLOR]", {"action": "play_hls_channel", "daddy_id": ch["id"], "title": ch["name"]}, None, False))
+
+    # 6. Mostra i risultati
     if not results:
         xbmcgui.Dialog().notification("Cerca Canale", f"Nessun canale trovato per '{query}'", xbmcgui.NOTIFICATION_WARNING)
     else:
@@ -819,11 +848,92 @@ def list_sport():
     reload_salt = str(int(time.time()))
 
     add_directory_item("[COLOR cyan][B]Sky Sport (HB)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_sport", "reload": reload_salt})
+    add_directory_item("[COLOR lightblue][B]Sky Sport (HLS)[/B][/COLOR]", {"action": "list_sky_sport_hls", "reload": reload_salt})
     add_directory_item("[COLOR orange][B]Dazn (HB)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "dazn_only", "reload": reload_salt})
+    add_directory_item("[COLOR yellow][B]Dazn (HLS)[/B][/COLOR]", {"action": "list_dazn_hls", "reload": reload_salt})
     
     add_directory_item("[COLOR violet][B]Canali Internazionali[/B][/COLOR]", {"action": "list_international_sport", "reload": reload_salt})
     
     xbmcplugin.endOfDirectory(HANDLE)
+
+def list_sky_sport_hls():
+    """Lista canali Sky Sport da sorgente HLS di riserva"""
+    xbmcplugin.setContent(HANDLE, 'videos')
+    channels = [
+        {"name": "Sky Sport 24 HD", "id": "869"},
+        {"name": "Sky Sport Uno HD", "id": "461"},
+        {"name": "Sky Sport Calcio HD", "id": "870"},
+        {"name": "Sky Sport Tennis HD", "id": "576"},
+        {"name": "Sky Sport F1 HD", "id": "577"},
+        {"name": "Sky Sport MotoGP HD", "id": "575"},
+        {"name": "Sky Sport Arena HD", "id": "462"},
+        {"name": "Sky Sport Max HD", "id": "460"},
+        {"name": "Sky Sport Basket HD", "id": "875"},
+        {"name": "Sky Sport Golf HD", "id": "574"},
+        {"name": "Sky Sport Calcio 251 HD", "id": "871"},
+        {"name": "Sky Sport Calcio 252 HD", "id": "872"},
+        {"name": "Sky Sport Calcio 253 HD", "id": "873"},
+        {"name": "Sky Sport Calcio 254 HD", "id": "874"},
+        {"name": "Eurosport 1 IT HD", "id": "878"},
+        {"name": "Eurosport 2 IT HD", "id": "879"},
+    ]
+    for ch in channels:
+        add_directory_item(
+            f"[COLOR lightblue]{ch['name']}[/COLOR]",
+            {"action": "play_hls_channel", "daddy_id": ch["id"], "title": ch["name"]},
+            is_folder=False,
+            is_playable=True
+        )
+    xbmcplugin.endOfDirectory(HANDLE)
+
+def list_dazn_hls():
+    """Lista canali DAZN da sorgente HLS di riserva"""
+    xbmcplugin.setContent(HANDLE, 'videos')
+    channels = [
+        {"name": "Zona DAZN 1 HD", "id": "877"},
+        {"name": "Zona DAZN 2 HD", "id": "878"},
+        {"name": "DAZN 1 (Spagna)", "id": "445"},
+        {"name": "DAZN F1 (Spagna)", "id": "537"},
+        {"name": "DAZN LaLiga (Spagna)", "id": "538"},
+        {"name": "DAZN 1 UK", "id": "230"},
+    ]
+    for ch in channels:
+        add_directory_item(
+            f"[COLOR yellow]{ch['name']}[/COLOR]",
+            {"action": "play_hls_channel", "daddy_id": ch["id"], "title": ch["name"]},
+            is_folder=False,
+            is_playable=True
+        )
+    xbmcplugin.endOfDirectory(HANDLE)
+
+def play_hls_channel(daddy_id, title):
+    """Risolve e riproduce lo stream HLS autenticato tramite web_hls_resolver"""
+    try:
+        from resources.lib.web_hls_resolver import resolve_daddylive_m3u8, UA
+        xbmc.log(f"[CBTV] Risoluzione HLS per {title} (ID {daddy_id})", xbmc.LOGINFO)
+        m3u8_url, referer = resolve_daddylive_m3u8(daddy_id)
+        if not m3u8_url:
+            xbmcgui.Dialog().notification("CBTV", f"Canale '{title}' non disponibile al momento", xbmcgui.NOTIFICATION_WARNING)
+            xbmcplugin.setResolvedUrl(HANDLE, False, xbmcgui.ListItem())
+            return
+
+        ref = referer or 'https://dlstreams.st/'
+        headers = f"User-Agent={quote(UA)}&Referer={quote(ref)}"
+        stream_url = f"{m3u8_url}|{headers}"
+
+        list_item = xbmcgui.ListItem(path=stream_url)
+        list_item.setInfo('video', {'title': title})
+        list_item.setProperty('inputstream', 'inputstream.ffmpegdirect')
+        list_item.setProperty('inputstream.ffmpegdirect.is_realtime_stream', 'true')
+        list_item.setProperty('inputstream.ffmpegdirect.manifest_type', 'hls')
+        list_item.setMimeType('application/x-mpegURL')
+        list_item.setContentLookup(False)
+
+        xbmcplugin.setResolvedUrl(HANDLE, True, list_item)
+    except Exception as e:
+        xbmc.log(f"[CBTV] Errore play_hls_channel: {e}", xbmc.LOGERROR)
+        xbmcgui.Dialog().notification("CBTV Errore", str(e), xbmcgui.NOTIFICATION_ERROR)
+        xbmcplugin.setResolvedUrl(HANDLE, False, xbmcgui.ListItem())
 
 def list_international_sport():
     """Menu principale Canali Internazionali"""
@@ -1850,6 +1960,12 @@ if __name__ == '__main__':
         play_internal(params.get('url'), params.get('title'))
     elif action == 'list_eagle_genres':
         list_eagle_genres(params.get('eb_type'))
+    elif action == 'list_sky_sport_hls':
+        list_sky_sport_hls()
+    elif action == 'list_dazn_hls':
+        list_dazn_hls()
+    elif action == 'play_hls_channel':
+        play_hls_channel(params.get('daddy_id'), params.get('title'))
     elif action == 'list_primafila':
         list_primafila()
     elif action == 'play_hublive_stalker':
