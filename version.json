@@ -1,6 +1,6 @@
 {
-  "latest_version": "1.0.117",
-  "version_code": 117,
-  "changelog": "Risoluzione primaria HLS per tutti i canali Polsat e MAX Sport + Fix visualizzazione video segmenti offuscati.",
+  "latest_version": "1.0.118",
+  "version_code": 118,
+  "changelog": "Fix completo streaming HLS: MAX Sport 1 video 1080p ripristinato, MAX Sport 3, Polsat Fight e Polsat Premium 1-2.",
   "download_url": "https://github.com/cb6-maker/cbtv-android/releases/latest"
 }
