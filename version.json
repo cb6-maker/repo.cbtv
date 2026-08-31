@@ -1,6 +1,6 @@
 {
-  "latest_version": "1.0.114",
-  "version_code": 114,
-  "changelog": "Sistema di aggiornamento automatico OTA privato integrato con download e installazione in-app.",
+  "latest_version": "1.0.115",
+  "version_code": 115,
+  "changelog": "Fix riproduzione video per dispositivi Samsung/One UI: ottimizzazione buffer mpegts e sblocco autoplay.",
   "download_url": "https://github.com/cb6-maker/cbtv-android/releases/latest"
 }
