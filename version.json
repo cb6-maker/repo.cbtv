@@ -1,6 +1,6 @@
 {
-  "latest_version": "1.0.112",
-  "version_code": 112,
-  "changelog": "Ottimizzazione Server 31: avvio canali istantaneo (<1.0s) e rimozione Tring Sport.",
+  "latest_version": "1.0.113",
+  "version_code": 113,
+  "changelog": "Versione stabile: aggiornamenti in-app dinamici e canali sportivi ottimizzati.",
   "download_url": "https://github.com/cb6-maker/cbtv-android/releases/latest"
 }
