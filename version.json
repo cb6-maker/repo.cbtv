@@ -1,6 +1,6 @@
 {
-  "latest_version": "1.0.113",
-  "version_code": 113,
-  "changelog": "Versione stabile: aggiornamenti in-app dinamici e canali sportivi ottimizzati.",
+  "latest_version": "1.0.114",
+  "version_code": 114,
+  "changelog": "Sistema di aggiornamento automatico OTA privato integrato con download e installazione in-app.",
   "download_url": "https://github.com/cb6-maker/cbtv-android/releases/latest"
 }
