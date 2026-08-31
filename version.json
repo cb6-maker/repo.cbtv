@@ -1,6 +1,6 @@
 {
-  "latest_version": "1.0.121",
-  "version_code": 121,
-  "changelog": "Priorità Server 31 TS preservata al 100% per tutti i canali italiani (Sky/DAZN) + Web HLS primario per canali esteri.",
+  "latest_version": "1.0.122",
+  "version_code": 122,
+  "changelog": "Priorità assoluta Server 31 TS blindata per TUTTI i canali Sky (Sport, Cinema, Serie, TG24), DAZN ed Eurosport.",
   "download_url": "https://github.com/cb6-maker/cbtv-android/releases/latest"
 }
