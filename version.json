@@ -1,6 +1,6 @@
 {
-  "latest_version": "1.0.129",
-  "version_code": 129,
-  "changelog": "Ottimizzazione endpoint di risoluzione diretta senza controlli TLS per MAX Sport 1-4 e Polsat.",
+  "latest_version": "1.0.130",
+  "version_code": 130,
+  "changelog": "Integrazione Server 29 (Watchtivo) e Server 31 per flussi Stalker TS nativi di MAX Sport 1-4 Bulgaria e Polsat Sport.",
   "download_url": "https://github.com/cb6-maker/cbtv-android/releases/latest"
 }
