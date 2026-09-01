@@ -1,6 +1,6 @@
 {
-  "latest_version": "1.0.133",
-  "version_code": 133,
-  "changelog": "Risolto definitivamente audio Polsat Sport con flussi AAC HD e fallback resiliente MSE; estesi timeout per MAX Sport 1-4.",
+  "latest_version": "1.0.134",
+  "version_code": 134,
+  "changelog": "Aggiornato demuxer m2ts nativo, invalidazione cache frontend e supporto completo audio/video per MAX Sport e Polsat Sport.",
   "download_url": "https://github.com/cb6-maker/cbtv-android/releases/latest"
 }
