@@ -1,6 +1,6 @@
 {
-  "latest_version": "1.0.123",
-  "version_code": 123,
-  "changelog": "Ripristino fedele architettura: Server 31 TS primario per i 59 canali mappati su S31 e Web HLS solo per i 17 non presenti su S31.",
+  "latest_version": "1.0.125",
+  "version_code": 125,
+  "changelog": "Fix Refresh: sincronizzazione istantanea da GitHub in memoria RAM per canali, Server 31 e mappe Web HLS con bypass cache.",
   "download_url": "https://github.com/cb6-maker/cbtv-android/releases/latest"
 }
