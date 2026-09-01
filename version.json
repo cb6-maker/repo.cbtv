@@ -1,6 +1,6 @@
 {
-  "latest_version": "1.0.125",
-  "version_code": 125,
-  "changelog": "Fix Refresh: sincronizzazione istantanea da GitHub in memoria RAM per canali, Server 31 e mappe Web HLS con bypass cache.",
+  "latest_version": "1.0.126",
+  "version_code": 126,
+  "changelog": "Integrazione nuovo resolver ad altissima velocità TV247 per tutti i canali HLS esteri (MAX Sport 1-4, Polsat 1-3, Fight, Premium).",
   "download_url": "https://github.com/cb6-maker/cbtv-android/releases/latest"
 }
