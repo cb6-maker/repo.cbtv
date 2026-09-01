@@ -1,6 +1,6 @@
 {
-  "latest_version": "1.0.127",
-  "version_code": 127,
-  "changelog": "Fix riproduzione segmenti TV247 con propagazione Referer e decodifica MPEG-TS per MAX Sport 1-4 e Polsat Sport.",
+  "latest_version": "1.0.128",
+  "version_code": 128,
+  "changelog": "Fix riproduzione segmenti TV247 con propagazione Referer corretta e decodifica MPEG-TS per MAX Sport 1-4 e Polsat Sport.",
   "download_url": "https://github.com/cb6-maker/cbtv-android/releases/latest"
 }
