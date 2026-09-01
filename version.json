@@ -1,6 +1,6 @@
 {
-  "latest_version": "1.0.126",
-  "version_code": 126,
-  "changelog": "Integrazione nuovo resolver ad altissima velocità TV247 per tutti i canali HLS esteri (MAX Sport 1-4, Polsat 1-3, Fight, Premium).",
+  "latest_version": "1.0.127",
+  "version_code": 127,
+  "changelog": "Fix riproduzione segmenti TV247 con propagazione Referer e decodifica MPEG-TS per MAX Sport 1-4 e Polsat Sport.",
   "download_url": "https://github.com/cb6-maker/cbtv-android/releases/latest"
 }
