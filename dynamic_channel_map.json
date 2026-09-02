@@ -3,26 +3,26 @@
   "updated_at": "2026-08-21T15:37:35Z",
   "description": "CBTV Dynamic Cloud Channel Mapping for ALL Italian & International Channels (Server 31, Server 29 & Web HLS)",
   "s29_sport_map": {
-    "1917240": "228727",
+    "1917240": "228632",
     "83260": "228727",
     "472": "228727",
     "MAXSPORT1": "228727",
-    "1917239": "228726",
+    "1917239": "228631",
     "83259": "228726",
     "473": "228726",
     "MAXSPORT2": "228726",
-    "1917238": "228725",
+    "1917238": "228630",
     "83258": "228725",
     "474": "228725",
     "MAXSPORT3": "228725",
-    "1917237": "228724",
+    "1917237": "228629",
     "83257": "228724",
     "475": "228724",
     "MAXSPORT4": "228724",
     "880331": "1729163",
     "47": "1729163",
     "POLSATSPORT1": "1729163",
-    "1917613": "1729165",
+    "1917613": "1729164",
     "50": "1729165",
     "POLSATSPORT2": "1729165",
     "880468": "1729169",
@@ -36,7 +36,8 @@
     "POLSATPREMIUM1": "1729171",
     "880469": "1729173",
     "992": "1729173",
-    "POLSATPREMIUM2": "1729173"
+    "POLSATPREMIUM2": "1729173",
+    "880330": "1729164"
   },
   "s31_sport_map": {
     "1273579": "1158736",
@@ -1103,110 +1104,6 @@
       "status": "online"
     },
     {
-      "name": "ARENA SPORT 1",
-      "url": "ARENASPORT1HR",
-      "source_type": "hublive",
-      "code": "hr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "ARENA SPORT 2",
-      "url": "ARENASPORT2HR",
-      "source_type": "hublive",
-      "code": "hr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "ARENA SPORT 3",
-      "url": "ARENASPORT3HR",
-      "source_type": "hublive",
-      "code": "hr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "ARENA SPORT 4",
-      "url": "ARENASPORT4HR",
-      "source_type": "hublive",
-      "code": "hr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "ARENA SPORT 5",
-      "url": "ARENASPORT5HR",
-      "source_type": "hublive",
-      "code": "hr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "ARENA SPORT 6",
-      "url": "ARENASPORT6HR",
-      "source_type": "hublive",
-      "code": "hr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "ARENA SPORT 7",
-      "url": "ARENASPORT7HR",
-      "source_type": "freeshot_v3",
-      "code": "hr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "ARENA SPORT 8",
-      "url": "ARENASPORT8HR",
-      "source_type": "freeshot_v3",
-      "code": "hr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "ARENA SPORT 9",
-      "url": "ARENASPORT9HR",
-      "source_type": "freeshot_v3",
-      "code": "hr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "ARENA SPORT 10",
-      "url": "ARENASPORT10HR",
-      "source_type": "freeshot_v3",
-      "code": "hr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Arena Sport Premium 1",
-      "url": "http://hottest.plus:80/ch/801858_",
-      "source_type": "hublive",
-      "code": "hr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Arena Sport Premium 2",
-      "url": "http://hottest.plus:80/ch/801859_",
-      "source_type": "hublive",
-      "code": "hr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Arena Sport Premium 3",
-      "url": "http://hottest.plus:80/ch/801860_",
-      "source_type": "hublive",
-      "code": "hr",
-      "image": "",
-      "status": "online"
-    },
-    {
       "name": "Zona DAZN 1 HD",
       "url": "http://line.vueott.com:80/ch/1273579_",
       "source_type": "hublive",
@@ -2081,11 +1978,8 @@
     "228631": "473",
     "228629": "475",
     "228724": "475",
-    "1917240": "472",
     "83260": "472",
     "472": "472",
-    "MAXSPORT1": "472",
-    "MAX SPORT 1": "472",
     "maxsport1": "472",
     "1917239": "473",
     "83259": "473",
@@ -2110,5 +2004,20 @@
     "version_code": 109,
     "changelog": "Versione stabile: aggiornamenti in-app dinamici, failover 456 e canali sportivi ottimizzati.",
     "download_url": "https://github.com/cb6-maker/cbtv-android/releases/latest"
+  },
+  "server29_sport_map": {
+    "1917240": "228632",
+    "1917239": "228631",
+    "1917238": "228630",
+    "1917237": "228629",
+    "880331": "1729163",
+    "1917613": "1729164",
+    "880468": "1729169",
+    "880469": "1729166",
+    "880467": "1729170",
+    "880466": "1729172",
+    "880465": "1729174",
+    "880464": "1729176",
+    "880330": "1729164"
   }
 }
