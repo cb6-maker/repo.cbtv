@@ -1,53 +1,833 @@
 {
-  "version": 18,
-  "updated_at": "2026-09-04T16:20:00Z",
-  "description": "CBTV Dynamic Cloud Channel Mapping (Ordered Streams Priority, Server 31 Light-OTT, Server 29 Watchtivo & Web HLS Fallback)",
-  "s29_sport_map": {
-    "880331": "1729163",
-    "47": "1729163",
-    "POLSATSPORT1": "1729163",
-    "1917613": "1729165",
-    "50": "1729165",
-    "POLSATSPORT2": "1729165",
-    "880468": "1729169",
-    "129": "1729169",
-    "POLSATSPORT3": "1729169",
-    "1917614": "1729166",
-    "373": "1729166",
-    "POLSATSPORTFIGHT": "1729166",
-    "880467": "1729171",
-    "991": "1729171",
-    "POLSATPREMIUM1": "1729171",
-    "880469": "1729166",
-    "992": "1729173",
-    "POLSATPREMIUM2": "1729173",
-    "880330": "1729164",
-    "1729163": "1729163",
-    "1729165": "1729165",
-    "1729169": "1729169",
-    "1729166": "1729166",
-    "1729171": "1729171",
-    "880466": "1729173",
-    "1729173": "1729173",
-    "880465": "1729172",
-    "1729172": "1729172",
-    "POLSATPREMIUM3": "1729172",
-    "880464": "1729170",
-    "1729170": "1729170",
-    "POLSATPREMIUM4": "1729170",
-    "932999": "932999",
-    "932997": "932997",
-    "933001": "933001",
-    "933000": "933000",
-    "933002": "933002",
-    "932998": "932998",
-    "ZIGGOSPORT1": "932999",
-    "ZIGGOSPORT2": "932997",
-    "ZIGGOSPORT3": "933001",
-    "ZIGGOSPORT4": "933000",
-    "ZIGGOSPORT5": "933002",
-    "ZIGGOSPORT6": "932998"
-  },
+  "version": 19,
+  "updated_at": "2026-09-04T16:30:00Z",
+  "description": "CBTV Dynamic Cloud Channel Mapping (Clean Structured Streams Priority, Server 31 Light-OTT, Server 29 Watchtivo & Web HLS Fallback)",
+  "channels": [
+    {
+      "name": "Sky Sport 24 HD",
+      "url": "http://main.light-ott.net:80/ch/177690_",
+      "source_type": "hublive",
+      "code": "it",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Sky Sport Uno HD",
+      "url": "http://main.light-ott.net:80/ch/177687_",
+      "source_type": "hublive",
+      "code": "it",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Sky Sport Calcio HD",
+      "url": "http://main.light-ott.net:80/ch/177694_",
+      "source_type": "hublive",
+      "code": "it",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Sky Sport Tennis HD",
+      "url": "http://main.light-ott.net:80/ch/1167174_",
+      "source_type": "hublive",
+      "code": "it",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Sky Sport F1 HD",
+      "url": "http://main.light-ott.net:80/ch/177699_",
+      "source_type": "hublive",
+      "code": "it",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Sky Sport MotoGP HD",
+      "url": "http://main.light-ott.net:80/ch/177700_",
+      "source_type": "hublive",
+      "code": "it",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Sky Sport Max HD",
+      "url": "http://main.light-ott.net:80/ch/177697_",
+      "source_type": "hublive",
+      "code": "it",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Sky Sport Arena HD",
+      "url": "http://main.light-ott.net:80/ch/177696_",
+      "source_type": "hublive",
+      "code": "it",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Sky Sport Golf HD",
+      "url": "http://main.light-ott.net:80/ch/240463_",
+      "source_type": "hublive",
+      "code": "it",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Sky Sport NBA HD",
+      "url": "http://main.light-ott.net:80/ch/177701_",
+      "source_type": "hublive",
+      "code": "it",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Sky Sport Mix HD",
+      "url": "http://main.light-ott.net:80/ch/177701_",
+      "source_type": "hublive",
+      "code": "it",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Sky Sport Calcio 251 FHD",
+      "url": "http://main.light-ott.net:80/ch/177769_",
+      "source_type": "hublive",
+      "code": "it",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Sky Sport Calcio 252 FHD",
+      "url": "http://main.light-ott.net:80/ch/177770_",
+      "source_type": "hublive",
+      "code": "it",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Sky Sport Calcio 253 FHD",
+      "url": "http://main.light-ott.net:80/ch/177771_",
+      "source_type": "hublive",
+      "code": "it",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Sky Sport Calcio 254 FHD",
+      "url": "http://main.light-ott.net:80/ch/177772_",
+      "source_type": "hublive",
+      "code": "it",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Sky Sport Calcio 255 FHD",
+      "url": "http://main.light-ott.net:80/ch/177773_",
+      "source_type": "hublive",
+      "code": "it",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Sky Sport Calcio 256 FHD",
+      "url": "http://main.light-ott.net:80/ch/177774_",
+      "source_type": "hublive",
+      "code": "it",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Sky Sport Calcio 257 FHD",
+      "url": "http://main.light-ott.net:80/ch/704711_",
+      "source_type": "hublive",
+      "code": "it",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Sky Sport Calcio 258 HD",
+      "url": "http://main.light-ott.net:80/ch/1167347_",
+      "source_type": "hublive",
+      "code": "it",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Sky Sport Calcio 259 HD",
+      "url": "http://main.light-ott.net:80/ch/1167349_",
+      "source_type": "hublive",
+      "code": "it",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Eurosport 1 IT HD",
+      "url": "http://main.light-ott.net:80/ch/177964_",
+      "source_type": "hublive",
+      "code": "it",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Eurosport 2 IT HD",
+      "url": "http://main.light-ott.net:80/ch/177966_",
+      "source_type": "hublive",
+      "code": "it",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Rai Sport HD",
+      "url": "http://main.light-ott.net:80/ch/177718_",
+      "source_type": "hublive",
+      "code": "it",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "MAX Sport 1",
+      "url": "http://line.vueott.com:80/ch/1917240_",
+      "source_type": "hublive",
+      "streams": [
+        "hls:472",
+        "hublive:1917240"
+      ],
+      "code": "bg",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "MAX Sport 2",
+      "url": "http://line.vueott.com:80/ch/1917239_",
+      "source_type": "hublive",
+      "streams": [
+        "hls:473",
+        "hublive:1917239"
+      ],
+      "code": "bg",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "MAX Sport 3",
+      "url": "http://line.vueott.com:80/ch/1917238_",
+      "source_type": "hublive",
+      "streams": [
+        "hls:474",
+        "hublive:1917238"
+      ],
+      "code": "bg",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "MAX Sport 4",
+      "url": "http://line.vueott.com:80/ch/1917237_",
+      "source_type": "hublive",
+      "streams": [
+        "hls:475",
+        "hublive:1917237"
+      ],
+      "code": "bg",
+      "image": "https://via.placeholder.com/150/150f1f/9d4edd?text=Max+Sport+4+BG",
+      "status": "online"
+    },
+    {
+      "name": "Polsat Sport 1",
+      "url": "http://line.watchtivo-8k.com:80/ch/1729163_",
+      "source_type": "hublive",
+      "code": "pl",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Polsat Sport 2",
+      "url": "http://line.watchtivo-8k.com:80/ch/1729165_",
+      "source_type": "hublive",
+      "code": "pl",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Polsat Sport 3",
+      "url": "http://line.watchtivo-8k.com:80/ch/1729169_",
+      "source_type": "hublive",
+      "code": "pl",
+      "image": "https://via.placeholder.com/150/150f1f/9d4edd?text=Polsat+Sport+3",
+      "status": "online"
+    },
+    {
+      "name": "Polsat Sport Fight FHD",
+      "url": "http://line.watchtivo-8k.com:80/ch/1729166_",
+      "source_type": "hublive",
+      "code": "pl",
+      "image": "",
+      "status": "online",
+      "streams": [
+        "hls:997",
+        "hublive:1729166"
+      ]
+    },
+    {
+      "name": "Polsat Sport Premium 1 FHD",
+      "url": "http://line.watchtivo-8k.com:80/ch/1729171_",
+      "source_type": "hublive",
+      "code": "pl",
+      "image": "https://via.placeholder.com/150/150f1f/9d4edd?text=Polsat+Premium+1",
+      "status": "online",
+      "streams": [
+        "hls:991",
+        "hublive:1729171"
+      ]
+    },
+    {
+      "name": "Polsat Sport Premium 2 FHD",
+      "url": "http://line.watchtivo-8k.com:80/ch/1729173_",
+      "source_type": "hublive",
+      "code": "pl",
+      "image": "https://via.placeholder.com/150/150f1f/9d4edd?text=Polsat+Premium+2",
+      "status": "online",
+      "streams": [
+        "hls:992",
+        "hublive:1729173"
+      ]
+    },
+    {
+      "name": "TNT SPORTS 1 FHD",
+      "url": "http://main.light-ott.net:80/ch/1174236_",
+      "source_type": "hublive",
+      "code": "uk",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "TNT SPORTS 2 FHD",
+      "url": "http://main.light-ott.net:80/ch/1174237_",
+      "source_type": "hublive",
+      "code": "uk",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "TNT SPORTS 3 FHD",
+      "url": "http://main.light-ott.net:80/ch/1174238_",
+      "source_type": "hublive",
+      "code": "uk",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "TNT SPORTS 4 FHD",
+      "url": "http://main.light-ott.net:80/ch/1174239_",
+      "source_type": "hublive",
+      "code": "uk",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "M+ LaLiga TV RAW (Spagna)",
+      "url": "http://main.light-ott.net:80/ch/587357_",
+      "source_type": "hublive",
+      "code": "es",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "DAZN LaLiga HD (Spagna)",
+      "url": "http://main.light-ott.net:80/ch/587364_",
+      "source_type": "hublive",
+      "code": "es",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "M+ Liga de Campeones RAW (Spagna)",
+      "url": "http://main.light-ott.net:80/ch/587341_",
+      "source_type": "hublive",
+      "code": "es",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Movistar Deportes FHD (Spagna)",
+      "url": "http://main.light-ott.net:80/ch/897428_",
+      "source_type": "hublive",
+      "code": "es",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Movistar #Vamos FHD (Spagna)",
+      "url": "http://main.light-ott.net:80/ch/897398_",
+      "source_type": "hublive",
+      "code": "es",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "DAZN F1 RAW (Spagna)",
+      "url": "http://main.light-ott.net:80/ch/587361_",
+      "source_type": "hublive",
+      "code": "es",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "DAZN 1 FHD RAW (Spagna)",
+      "url": "http://main.light-ott.net:80/ch/587358_",
+      "source_type": "hublive",
+      "code": "es",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Teledeporte RAW (Spagna)",
+      "url": "http://main.light-ott.net:80/ch/897451_",
+      "source_type": "hublive",
+      "code": "es",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Zona DAZN 1 HD",
+      "url": "http://main.light-ott.net:80/ch/1158736_",
+      "source_type": "hublive",
+      "code": "it",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Zona DAZN 2 HD",
+      "url": "http://main.light-ott.net:80/ch/1158738_",
+      "source_type": "hublive",
+      "code": "it",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Zona DAZN 3 HD",
+      "url": "http://main.light-ott.net:80/ch/1158742_",
+      "source_type": "hublive",
+      "code": "it",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "DAZN Diretta Gol Serie A",
+      "url": "http://main.light-ott.net:80/ch/883849_",
+      "source_type": "hublive",
+      "code": "it",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Cosmote Sport 1 HD",
+      "url": "http://main.light-ott.net:80/ch/174426_",
+      "source_type": "hublive",
+      "code": "gr",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Cosmote Sport 2 HD",
+      "url": "http://main.light-ott.net:80/ch/174427_",
+      "source_type": "hublive",
+      "code": "gr",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Cosmote Sport 3 HD",
+      "url": "http://main.light-ott.net:80/ch/174428_",
+      "source_type": "hublive",
+      "code": "gr",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Cosmote Sport 4 HD",
+      "url": "http://main.light-ott.net:80/ch/174429_",
+      "source_type": "hublive",
+      "code": "gr",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Cosmote Sport 5 HD",
+      "url": "http://main.light-ott.net:80/ch/174430_",
+      "source_type": "hublive",
+      "code": "gr",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Cosmote Sport 6 HD",
+      "url": "http://main.light-ott.net:80/ch/174265_",
+      "source_type": "hublive",
+      "code": "gr",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Cosmote Sport 7 HD",
+      "url": "http://main.light-ott.net:80/ch/174264_",
+      "source_type": "hublive",
+      "code": "gr",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Cosmote Sport 8 HD",
+      "url": "http://main.light-ott.net:80/ch/174263_",
+      "source_type": "hublive",
+      "code": "gr",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Cosmote Sport 9 HD",
+      "url": "http://main.light-ott.net:80/ch/1882_",
+      "source_type": "hublive",
+      "code": "gr",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Ziggo Sport",
+      "url": "http://line.watchtivo-8k.com:80/ch/932999_",
+      "source_type": "hublive",
+      "code": "nl",
+      "image": "",
+      "status": "online",
+      "streams": [
+        "hls:393",
+        "hublive:932999"
+      ]
+    },
+    {
+      "name": "Ziggo Sport 2",
+      "url": "http://line.watchtivo-8k.com:80/ch/932997_",
+      "source_type": "hublive",
+      "code": "nl",
+      "image": "",
+      "status": "online",
+      "streams": [
+        "hls:398",
+        "hublive:932997"
+      ]
+    },
+    {
+      "name": "Ziggo Sport 3",
+      "url": "http://line.watchtivo-8k.com:80/ch/933001_",
+      "source_type": "hublive",
+      "code": "nl",
+      "image": "",
+      "status": "online",
+      "streams": [
+        "hls:919",
+        "hublive:933001"
+      ]
+    },
+    {
+      "name": "Ziggo Sport 4",
+      "url": "http://line.watchtivo-8k.com:80/ch/933000_",
+      "source_type": "hublive",
+      "code": "nl",
+      "image": "",
+      "status": "online",
+      "streams": [
+        "hls:396",
+        "hublive:933000"
+      ]
+    },
+    {
+      "name": "Ziggo Sport 5",
+      "url": "http://line.watchtivo-8k.com:80/ch/933002_",
+      "source_type": "hublive",
+      "code": "nl",
+      "image": "",
+      "status": "online",
+      "streams": [
+        "hls:383",
+        "hublive:933002"
+      ]
+    },
+    {
+      "name": "Ziggo Sport 6",
+      "url": "http://line.watchtivo-8k.com:80/ch/932998_",
+      "source_type": "hublive",
+      "code": "nl",
+      "image": "",
+      "status": "online",
+      "streams": [
+        "hls:901",
+        "hublive:932998"
+      ]
+    },
+    {
+      "name": "S Sport 1 4K (TR)",
+      "url": "http://main.light-ott.net:80/ch/712_",
+      "source_type": "hublive",
+      "code": "tr",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "S Sport HD (TR)",
+      "url": "http://main.light-ott.net:80/ch/703_",
+      "source_type": "hublive",
+      "code": "tr",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "S Sport 2 HD (TR)",
+      "url": "http://main.light-ott.net:80/ch/18638_",
+      "source_type": "hublive",
+      "code": "tr",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "S Sport Plus (TR)",
+      "url": "http://main.light-ott.net:80/ch/15562_",
+      "source_type": "hublive",
+      "code": "tr",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "S Sport Plus 1 (TR)",
+      "url": "http://main.light-ott.net:80/ch/15561_",
+      "source_type": "hublive",
+      "code": "tr",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "S Sport Plus 2 (TR)",
+      "url": "http://main.light-ott.net:80/ch/15560_",
+      "source_type": "hublive",
+      "code": "tr",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Sport Klub 1",
+      "url": "http://main.light-ott.net:80/ch/1108_",
+      "source_type": "hublive",
+      "code": "hr",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Sport Klub 2",
+      "url": "http://main.light-ott.net:80/ch/1107_",
+      "source_type": "hublive",
+      "code": "hr",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Sport Klub 3",
+      "url": "http://main.light-ott.net:80/ch/1106_",
+      "source_type": "hublive",
+      "code": "hr",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Sport Klub 4 HR",
+      "url": "http://main.light-ott.net:80/ch/1105_",
+      "source_type": "hublive",
+      "code": "hr",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Sport Klub 5 HR",
+      "url": "http://main.light-ott.net:80/ch/1104_",
+      "source_type": "hublive",
+      "code": "hr",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Sport Klub 6 HR",
+      "url": "http://main.light-ott.net:80/ch/1103_",
+      "source_type": "hublive",
+      "code": "hr",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Sport Klub Golf HR",
+      "url": "http://main.light-ott.net:80/ch/1102_",
+      "source_type": "hublive",
+      "code": "hr",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Sport Klub Fight HR",
+      "url": "http://main.light-ott.net:80/ch/559136_",
+      "source_type": "hublive",
+      "code": "hr",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Arena Sport 1 HR",
+      "url": "http://main.light-ott.net:80/ch/432_",
+      "source_type": "hublive",
+      "code": "hr",
+      "image": "",
+      "status": "online",
+      "streams": [
+        "hls:432",
+        "hublive:432"
+      ]
+    },
+    {
+      "name": "Arena Sport 2 HR",
+      "url": "http://main.light-ott.net:80/ch/433_",
+      "source_type": "hublive",
+      "code": "hr",
+      "image": "",
+      "status": "online",
+      "streams": [
+        "hls:433",
+        "hublive:433"
+      ]
+    },
+    {
+      "name": "Arena Sport 3 HR",
+      "url": "http://main.light-ott.net:80/ch/434_",
+      "source_type": "hublive",
+      "code": "hr",
+      "image": "",
+      "status": "online",
+      "streams": [
+        "hls:434",
+        "hublive:434"
+      ]
+    },
+    {
+      "name": "Arena Sport 4 HR",
+      "url": "http://main.light-ott.net:80/ch/580_",
+      "source_type": "hublive",
+      "code": "hr",
+      "image": "",
+      "status": "online",
+      "streams": [
+        "hls:580",
+        "hublive:580"
+      ]
+    },
+    {
+      "name": "Arena Sport 5 HR",
+      "url": "http://main.light-ott.net:80/ch/940_",
+      "source_type": "hublive",
+      "code": "hr",
+      "image": "",
+      "status": "online",
+      "streams": [
+        "hls:940",
+        "hublive:940"
+      ]
+    },
+    {
+      "name": "Arena Sport 6 HR",
+      "url": "http://main.light-ott.net:80/ch/941_",
+      "source_type": "hublive",
+      "code": "hr",
+      "image": "",
+      "status": "online",
+      "streams": [
+        "hls:941",
+        "hublive:941"
+      ]
+    },
+    {
+      "name": "Arena Sport 1 RS",
+      "url": "http://main.light-ott.net:80/ch/429_",
+      "source_type": "hublive",
+      "code": "rs",
+      "image": "",
+      "status": "online",
+      "streams": [
+        "hls:429",
+        "hublive:429"
+      ]
+    },
+    {
+      "name": "Sport TV 1 HD",
+      "url": "http://main.light-ott.net:80/ch/959340_",
+      "source_type": "hublive",
+      "code": "pt",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Sport TV 2 HD",
+      "url": "http://main.light-ott.net:80/ch/959344_",
+      "source_type": "hublive",
+      "code": "pt",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Sport TV 3 HD",
+      "url": "http://main.light-ott.net:80/ch/959348_",
+      "source_type": "hublive",
+      "code": "pt",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Sport TV 4 HD",
+      "url": "http://main.light-ott.net:80/ch/959352_",
+      "source_type": "hublive",
+      "code": "pt",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Sport TV 5 HD",
+      "url": "http://main.light-ott.net:80/ch/959356_",
+      "source_type": "hublive",
+      "code": "pt",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Sport TV 6 HD",
+      "url": "http://main.light-ott.net:80/ch/959360_",
+      "source_type": "hublive",
+      "code": "pt",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Sport TV 7 PT",
+      "url": "SPT7",
+      "source_type": "freeshot_v3",
+      "code": "pt",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Sport TV Plus",
+      "url": "SPTPlus",
+      "source_type": "freeshot_v3",
+      "code": "pt",
+      "image": "",
+      "status": "online"
+    }
+  ],
   "s31_sport_map": {
     "1273579": "1158736",
     "1273580": "1158736",
@@ -414,1108 +1194,52 @@
     "1102": "1102",
     "559136": "559136"
   },
-  "fast_sport_stream_ids": [
-    "1273579",
-    "1273580",
-    "1273581",
-    "495144",
-    "495145",
-    "1158736",
-    "1273582",
-    "1273583",
-    "1273584",
-    "1158738",
-    "692439",
-    "692438",
-    "692437",
-    "691530",
-    "691282",
-    "691283",
-    "692388",
-    "285265",
-    "1917724",
-    "285211",
-    "177690",
-    "177683",
-    "1167168",
-    "692393",
-    "692392",
-    "692391",
-    "691532",
-    "691278",
-    "691279",
-    "285257",
-    "1917704",
-    "177687",
-    "177685",
-    "1167167",
-    "692417",
-    "692416",
-    "692415",
-    "691523",
-    "691260",
-    "691261",
-    "285223",
-    "177694",
-    "177695",
-    "1167169",
-    "692429",
-    "692428",
-    "692427",
-    "691536",
-    "691270",
-    "691271",
-    "317778",
-    "317777",
-    "285217",
-    "1917711",
-    "1917634",
-    "177699",
-    "177693",
-    "1167173",
-    "692433",
-    "692432",
-    "692431",
-    "691535",
-    "285218",
-    "1917705",
-    "1917628",
-    "1167174",
-    "1167175",
-    "692423",
-    "692422",
-    "692421",
-    "691268",
-    "691269",
-    "1917706",
-    "285220",
-    "177700",
-    "177689",
-    "1167177",
-    "692436",
-    "692435",
-    "692434",
-    "691534",
-    "691274",
-    "691275",
-    "1917714",
-    "285215",
-    "177696",
-    "177686",
-    "1167171",
-    "692426",
-    "692425",
-    "692424",
-    "691537",
-    "691272",
-    "691273",
-    "1917713",
-    "285216",
-    "177697",
-    "177698",
-    "1167172",
-    "692405",
-    "692404",
-    "692403",
-    "691266",
-    "691267",
-    "1917707",
-    "285221",
-    "177701",
-    "177688",
-    "1167178",
-    "692402",
-    "692401",
-    "692400",
-    "177773",
-    "692399",
-    "692398",
-    "177774",
-    "692397",
-    "692396",
-    "704711",
-    "1917691",
-    "692365",
-    "692364",
-    "177964",
-    "1917690",
-    "692363",
-    "692362",
-    "177966",
-    "1917703",
-    "692382",
-    "177718",
-    "1917240",
-    "1917239",
-    "1917238",
-    "1917237",
-    "83260",
-    "83259",
-    "83258",
-    "83257",
-    "228727",
-    "228726",
-    "228725",
-    "228629",
-    "228724",
-    "1917351",
-    "1917350",
-    "1917349",
-    "1917348",
-    "1917347",
-    "1917346",
-    "1917345",
-    "1917344",
-    "1917343",
-    "174426",
-    "174427",
-    "174428",
-    "174429",
-    "174430",
-    "174265",
-    "174264",
-    "174263",
-    "1882",
-    "1890",
-    "1889",
-    "1888",
-    "1887",
-    "1886",
-    "1885",
-    "1884",
-    "1883",
-    "671507",
-    "588077",
-    "79485",
-    "588074",
-    "1002857",
-    "1174236",
-    "1174237",
-    "1174238",
-    "1174239",
-    "1917626",
-    "1917625",
-    "1917624",
-    "1917614",
-    "1917613",
-    "1917612",
-    "880471",
-    "880470",
-    "880468",
-    "880331",
-    "880330",
-    "880328",
-    "1729162",
-    "1729164",
-    "1729168",
-    "1917609",
-    "1729163",
-    "1729165",
-    "1729169",
-    "1729167",
-    "1729171",
-    "1729173",
-    "1729175",
-    "1729177",
-    "49",
-    "74",
-    "454",
-    "289",
-    "290",
-    "291",
-    "107436",
-    "107435",
-    "107434",
-    "107433",
-    "148667",
-    "712739",
-    "2090197",
-    "2090196",
-    "2090195",
-    "2090194",
-    "2090193",
-    "2090192",
-    "959340",
-    "959344",
-    "959348",
-    "959352",
-    "959356",
-    "959360",
-    "913381",
-    "913369",
-    "913380",
-    "913379",
-    "913378",
-    "913377",
-    "100",
-    "137",
-    "138",
-    "619",
-    "620",
-    "703",
-    "712",
-    "18638",
-    "15562",
-    "15561",
-    "15560",
-    "1954594",
-    "1887838",
-    "1954579",
-    "1954587",
-    "1683599",
-    "1887836",
-    "1887840",
-    "107533",
-    "587357",
-    "699395",
-    "587364",
-    "587365",
-    "587341",
-    "587342",
-    "897428",
-    "897427",
-    "897398",
-    "897397",
-    "587361",
-    "587367",
-    "587358",
-    "587359",
-    "897451",
-    "587506",
-    "1917287",
-    "1917286",
-    "1917285",
-    "1917284",
-    "1108",
-    "1107",
-    "1106",
-    "1105",
-    "1917245",
-    "1917244",
-    "1917243",
-    "1917242",
-    "1917241",
-    "1652483",
-    "1652484",
-    "1652485",
-    "1652486",
-    "1652489",
-    "1652487",
-    "1652488",
-    "1652482",
-    "317",
-    "318",
-    "319",
-    "320",
-    "308",
-    "309",
-    "310",
-    "311",
-    "697301",
-    "1652490",
-    "1652491",
-    "316",
-    "307",
-    "1917561",
-    "1917560",
-    "1917559",
-    "1917558",
-    "1917557",
-    "1917556",
-    "932999",
-    "932997",
-    "933001",
-    "933000",
-    "933002",
-    "932998"
-  ],
-  "fast_sport_keywords": [
-    "sky",
-    "dazn",
-    "polsat",
-    "sport tv",
-    "sporttv",
-    "s sport",
-    "ssport",
-    "ziggo",
-    "arena",
-    "max sport",
-    "maxsport",
-    "tnt",
-    "cosmote",
-    "laliga",
-    "movistar",
-    "teledeporte",
-    "campeones",
-    "vamos",
-    "deportes",
-    "sportklub",
-    "eurosport",
-    "rai sport"
-  ],
-  "channels": [
-    {
-      "name": "Sky Sport 24 HD",
-      "url": "http://main.light-ott.net:80/ch/177690_",
-      "source_type": "hublive",
-      "code": "it",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sky Sport Uno HD",
-      "url": "http://main.light-ott.net:80/ch/177687_",
-      "source_type": "hublive",
-      "code": "it",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sky Sport Calcio HD",
-      "url": "http://main.light-ott.net:80/ch/177694_",
-      "source_type": "hublive",
-      "code": "it",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sky Sport Tennis HD",
-      "url": "http://main.light-ott.net:80/ch/1167174_",
-      "source_type": "hublive",
-      "code": "it",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sky Sport F1 HD",
-      "url": "http://main.light-ott.net:80/ch/177699_",
-      "source_type": "hublive",
-      "code": "it",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sky Sport MotoGP HD",
-      "url": "http://main.light-ott.net:80/ch/177700_",
-      "source_type": "hublive",
-      "code": "it",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sky Sport Max HD",
-      "url": "http://main.light-ott.net:80/ch/177697_",
-      "source_type": "hublive",
-      "code": "it",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sky Sport Arena HD",
-      "url": "http://main.light-ott.net:80/ch/177696_",
-      "source_type": "hublive",
-      "code": "it",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sky Sport Golf HD",
-      "url": "http://main.light-ott.net:80/ch/240463_",
-      "source_type": "hublive",
-      "code": "it",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sky Sport NBA HD",
-      "url": "http://main.light-ott.net:80/ch/177701_",
-      "source_type": "hublive",
-      "code": "it",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sky Sport Mix HD",
-      "url": "http://main.light-ott.net:80/ch/177701_",
-      "source_type": "hublive",
-      "code": "it",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sky Sport Calcio 251 FHD",
-      "url": "http://main.light-ott.net:80/ch/177769_",
-      "source_type": "hublive",
-      "code": "it",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sky Sport Calcio 252 FHD",
-      "url": "http://main.light-ott.net:80/ch/177770_",
-      "source_type": "hublive",
-      "code": "it",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sky Sport Calcio 253 FHD",
-      "url": "http://main.light-ott.net:80/ch/177771_",
-      "source_type": "hublive",
-      "code": "it",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sky Sport Calcio 254 FHD",
-      "url": "http://main.light-ott.net:80/ch/177772_",
-      "source_type": "hublive",
-      "code": "it",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sky Sport Calcio 255 FHD",
-      "url": "http://main.light-ott.net:80/ch/177773_",
-      "source_type": "hublive",
-      "code": "it",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sky Sport Calcio 256 FHD",
-      "url": "http://main.light-ott.net:80/ch/177774_",
-      "source_type": "hublive",
-      "code": "it",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sky Sport Calcio 257 FHD",
-      "url": "http://main.light-ott.net:80/ch/704711_",
-      "source_type": "hublive",
-      "code": "it",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sky Sport Calcio 258 HD",
-      "url": "http://main.light-ott.net:80/ch/1167347_",
-      "source_type": "hublive",
-      "code": "it",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sky Sport Calcio 259 HD",
-      "url": "http://main.light-ott.net:80/ch/1167349_",
-      "source_type": "hublive",
-      "code": "it",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Eurosport 1 IT HD",
-      "url": "http://main.light-ott.net:80/ch/177964_",
-      "source_type": "hublive",
-      "code": "it",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Eurosport 2 IT HD",
-      "url": "http://main.light-ott.net:80/ch/177966_",
-      "source_type": "hublive",
-      "code": "it",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Rai Sport HD",
-      "url": "http://main.light-ott.net:80/ch/177718_",
-      "source_type": "hublive",
-      "code": "it",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "MAX Sport 1",
-      "url": "http://line.vueott.com:80/ch/1917240_",
-      "source_type": "hublive",
-      "streams": [
-        "hls:472",
-        "hublive:1917240"
-      ],
-      "code": "bg",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "MAX Sport 2",
-      "url": "http://line.vueott.com:80/ch/1917239_",
-      "source_type": "hublive",
-      "streams": [
-        "hls:473",
-        "hublive:1917239"
-      ],
-      "code": "bg",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "MAX Sport 3",
-      "url": "http://line.vueott.com:80/ch/1917238_",
-      "source_type": "hublive",
-      "streams": [
-        "hls:474",
-        "hublive:1917238"
-      ],
-      "code": "bg",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "MAX Sport 4",
-      "url": "http://line.vueott.com:80/ch/1917237_",
-      "source_type": "hublive",
-      "streams": [
-        "hls:475",
-        "hublive:1917237"
-      ],
-      "code": "bg",
-      "image": "https://via.placeholder.com/150/150f1f/9d4edd?text=Max+Sport+4+BG",
-      "status": "online"
-    },
-    {
-      "name": "Polsat Sport 1",
-      "url": "http://line.watchtivo-8k.com:80/ch/1729163_",
-      "source_type": "hublive",
-      "code": "pl",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Polsat Sport 2",
-      "url": "http://line.watchtivo-8k.com:80/ch/1729165_",
-      "source_type": "hublive",
-      "code": "pl",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Polsat Sport 3",
-      "url": "http://line.watchtivo-8k.com:80/ch/1729169_",
-      "source_type": "hublive",
-      "code": "pl",
-      "image": "https://via.placeholder.com/150/150f1f/9d4edd?text=Polsat+Sport+3",
-      "status": "online"
-    },
-    {
-      "name": "Polsat Sport Fight FHD",
-      "url": "http://line.watchtivo-8k.com:80/ch/1729166_",
-      "source_type": "hublive",
-      "code": "pl",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Polsat Sport Premium 1 FHD",
-      "url": "http://line.watchtivo-8k.com:80/ch/1729171_",
-      "source_type": "hublive",
-      "code": "pl",
-      "image": "https://via.placeholder.com/150/150f1f/9d4edd?text=Polsat+Premium+1",
-      "status": "online"
-    },
-    {
-      "name": "Polsat Sport Premium 2 FHD",
-      "url": "http://line.watchtivo-8k.com:80/ch/1729173_",
-      "source_type": "hublive",
-      "code": "pl",
-      "image": "https://via.placeholder.com/150/150f1f/9d4edd?text=Polsat+Premium+2",
-      "status": "online"
-    },
-    {
-      "name": "TNT SPORTS 1 FHD",
-      "url": "http://main.light-ott.net:80/ch/1174236_",
-      "source_type": "hublive",
-      "code": "uk",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "TNT SPORTS 2 FHD",
-      "url": "http://main.light-ott.net:80/ch/1174237_",
-      "source_type": "hublive",
-      "code": "uk",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "TNT SPORTS 3 FHD",
-      "url": "http://main.light-ott.net:80/ch/1174238_",
-      "source_type": "hublive",
-      "code": "uk",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "TNT SPORTS 4 FHD",
-      "url": "http://main.light-ott.net:80/ch/1174239_",
-      "source_type": "hublive",
-      "code": "uk",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "M+ LaLiga TV RAW (Spagna)",
-      "url": "http://main.light-ott.net:80/ch/587357_",
-      "source_type": "hublive",
-      "code": "es",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "DAZN LaLiga HD (Spagna)",
-      "url": "http://main.light-ott.net:80/ch/587364_",
-      "source_type": "hublive",
-      "code": "es",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "M+ Liga de Campeones RAW (Spagna)",
-      "url": "http://main.light-ott.net:80/ch/587341_",
-      "source_type": "hublive",
-      "code": "es",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Movistar Deportes FHD (Spagna)",
-      "url": "http://main.light-ott.net:80/ch/897428_",
-      "source_type": "hublive",
-      "code": "es",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Movistar #Vamos FHD (Spagna)",
-      "url": "http://main.light-ott.net:80/ch/897398_",
-      "source_type": "hublive",
-      "code": "es",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "DAZN F1 RAW (Spagna)",
-      "url": "http://main.light-ott.net:80/ch/587361_",
-      "source_type": "hublive",
-      "code": "es",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "DAZN 1 FHD RAW (Spagna)",
-      "url": "http://main.light-ott.net:80/ch/587358_",
-      "source_type": "hublive",
-      "code": "es",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Teledeporte RAW (Spagna)",
-      "url": "http://main.light-ott.net:80/ch/897451_",
-      "source_type": "hublive",
-      "code": "es",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Zona DAZN 1 HD",
-      "url": "http://main.light-ott.net:80/ch/1158736_",
-      "source_type": "hublive",
-      "code": "it",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Zona DAZN 2 HD",
-      "url": "http://main.light-ott.net:80/ch/1158738_",
-      "source_type": "hublive",
-      "code": "it",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Zona DAZN 3 HD",
-      "url": "http://main.light-ott.net:80/ch/1158742_",
-      "source_type": "hublive",
-      "code": "it",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "DAZN Diretta Gol Serie A",
-      "url": "http://main.light-ott.net:80/ch/883849_",
-      "source_type": "hublive",
-      "code": "it",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Cosmote Sport 1 HD",
-      "url": "http://main.light-ott.net:80/ch/174426_",
-      "source_type": "hublive",
-      "code": "gr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Cosmote Sport 2 HD",
-      "url": "http://main.light-ott.net:80/ch/174427_",
-      "source_type": "hublive",
-      "code": "gr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Cosmote Sport 3 HD",
-      "url": "http://main.light-ott.net:80/ch/174428_",
-      "source_type": "hublive",
-      "code": "gr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Cosmote Sport 4 HD",
-      "url": "http://main.light-ott.net:80/ch/174429_",
-      "source_type": "hublive",
-      "code": "gr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Cosmote Sport 5 HD",
-      "url": "http://main.light-ott.net:80/ch/174430_",
-      "source_type": "hublive",
-      "code": "gr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Cosmote Sport 6 HD",
-      "url": "http://main.light-ott.net:80/ch/174265_",
-      "source_type": "hublive",
-      "code": "gr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Cosmote Sport 7 HD",
-      "url": "http://main.light-ott.net:80/ch/174264_",
-      "source_type": "hublive",
-      "code": "gr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Cosmote Sport 8 HD",
-      "url": "http://main.light-ott.net:80/ch/174263_",
-      "source_type": "hublive",
-      "code": "gr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Cosmote Sport 9 HD",
-      "url": "http://main.light-ott.net:80/ch/1882_",
-      "source_type": "hublive",
-      "code": "gr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Ziggo Sport",
-      "url": "http://line.watchtivo-8k.com:80/ch/932999_",
-      "source_type": "hublive",
-      "code": "nl",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Ziggo Sport 2",
-      "url": "http://line.watchtivo-8k.com:80/ch/932997_",
-      "source_type": "hublive",
-      "code": "nl",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Ziggo Sport 3",
-      "url": "http://line.watchtivo-8k.com:80/ch/933001_",
-      "source_type": "hublive",
-      "code": "nl",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Ziggo Sport 4",
-      "url": "http://line.watchtivo-8k.com:80/ch/933000_",
-      "source_type": "hublive",
-      "code": "nl",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Ziggo Sport 5",
-      "url": "http://line.watchtivo-8k.com:80/ch/933002_",
-      "source_type": "hublive",
-      "code": "nl",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Ziggo Sport 6",
-      "url": "http://line.watchtivo-8k.com:80/ch/932998_",
-      "source_type": "hublive",
-      "code": "nl",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "S Sport 1 4K (TR)",
-      "url": "http://main.light-ott.net:80/ch/712_",
-      "source_type": "hublive",
-      "code": "tr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "S Sport HD (TR)",
-      "url": "http://main.light-ott.net:80/ch/703_",
-      "source_type": "hublive",
-      "code": "tr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "S Sport 2 HD (TR)",
-      "url": "http://main.light-ott.net:80/ch/18638_",
-      "source_type": "hublive",
-      "code": "tr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "S Sport Plus (TR)",
-      "url": "http://main.light-ott.net:80/ch/15562_",
-      "source_type": "hublive",
-      "code": "tr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "S Sport Plus 1 (TR)",
-      "url": "http://main.light-ott.net:80/ch/15561_",
-      "source_type": "hublive",
-      "code": "tr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "S Sport Plus 2 (TR)",
-      "url": "http://main.light-ott.net:80/ch/15560_",
-      "source_type": "hublive",
-      "code": "tr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sport Klub 1",
-      "url": "http://main.light-ott.net:80/ch/1108_",
-      "source_type": "hublive",
-      "code": "hr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sport Klub 2",
-      "url": "http://main.light-ott.net:80/ch/1107_",
-      "source_type": "hublive",
-      "code": "hr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sport Klub 3",
-      "url": "http://main.light-ott.net:80/ch/1106_",
-      "source_type": "hublive",
-      "code": "hr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sport Klub 4 HR",
-      "url": "http://main.light-ott.net:80/ch/1105_",
-      "source_type": "hublive",
-      "code": "hr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sport Klub 5 HR",
-      "url": "http://main.light-ott.net:80/ch/1104_",
-      "source_type": "hublive",
-      "code": "hr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sport Klub 6 HR",
-      "url": "http://main.light-ott.net:80/ch/1103_",
-      "source_type": "hublive",
-      "code": "hr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sport Klub Golf HR",
-      "url": "http://main.light-ott.net:80/ch/1102_",
-      "source_type": "hublive",
-      "code": "hr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sport Klub Fight HR",
-      "url": "http://main.light-ott.net:80/ch/559136_",
-      "source_type": "hublive",
-      "code": "hr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Arena Sport 1 HR",
-      "url": "http://main.light-ott.net:80/ch/432_",
-      "source_type": "hublive",
-      "code": "hr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Arena Sport 2 HR",
-      "url": "http://main.light-ott.net:80/ch/433_",
-      "source_type": "hublive",
-      "code": "hr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Arena Sport 3 HR",
-      "url": "http://main.light-ott.net:80/ch/434_",
-      "source_type": "hublive",
-      "code": "hr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Arena Sport 4 HR",
-      "url": "http://main.light-ott.net:80/ch/580_",
-      "source_type": "hublive",
-      "code": "hr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Arena Sport 5 HR",
-      "url": "http://main.light-ott.net:80/ch/940_",
-      "source_type": "hublive",
-      "code": "hr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Arena Sport 6 HR",
-      "url": "http://main.light-ott.net:80/ch/941_",
-      "source_type": "hublive",
-      "code": "hr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Arena Sport 1 RS",
-      "url": "http://main.light-ott.net:80/ch/429_",
-      "source_type": "hublive",
-      "code": "rs",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sport TV 1 HD",
-      "url": "http://main.light-ott.net:80/ch/959340_",
-      "source_type": "hublive",
-      "code": "pt",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sport TV 2 HD",
-      "url": "http://main.light-ott.net:80/ch/959344_",
-      "source_type": "hublive",
-      "code": "pt",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sport TV 3 HD",
-      "url": "http://main.light-ott.net:80/ch/959348_",
-      "source_type": "hublive",
-      "code": "pt",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sport TV 4 HD",
-      "url": "http://main.light-ott.net:80/ch/959352_",
-      "source_type": "hublive",
-      "code": "pt",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sport TV 5 HD",
-      "url": "http://main.light-ott.net:80/ch/959356_",
-      "source_type": "hublive",
-      "code": "pt",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sport TV 6 HD",
-      "url": "http://main.light-ott.net:80/ch/959360_",
-      "source_type": "hublive",
-      "code": "pt",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sport TV 7 PT",
-      "url": "SPT7",
-      "source_type": "freeshot_v3",
-      "code": "pt",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sport TV Plus",
-      "url": "SPTPlus",
-      "source_type": "freeshot_v3",
-      "code": "pt",
-      "image": "",
-      "status": "online"
-    }
-  ],
-  "total_channels": 107,
+  "s29_sport_map": {
+    "880331": "1729163",
+    "47": "1729163",
+    "POLSATSPORT1": "1729163",
+    "1917613": "1729165",
+    "50": "1729165",
+    "POLSATSPORT2": "1729165",
+    "880468": "1729169",
+    "129": "1729169",
+    "POLSATSPORT3": "1729169",
+    "1917614": "1729166",
+    "373": "1729166",
+    "POLSATSPORTFIGHT": "1729166",
+    "880467": "1729171",
+    "991": "1729171",
+    "POLSATPREMIUM1": "1729171",
+    "880469": "1729166",
+    "992": "1729173",
+    "POLSATPREMIUM2": "1729173",
+    "880330": "1729164",
+    "1729163": "1729163",
+    "1729165": "1729165",
+    "1729169": "1729169",
+    "1729166": "1729166",
+    "1729171": "1729171",
+    "880466": "1729173",
+    "1729173": "1729173",
+    "880465": "1729172",
+    "1729172": "1729172",
+    "POLSATPREMIUM3": "1729172",
+    "880464": "1729170",
+    "1729170": "1729170",
+    "POLSATPREMIUM4": "1729170",
+    "932999": "932999",
+    "932997": "932997",
+    "933001": "933001",
+    "933000": "933000",
+    "933002": "933002",
+    "932998": "932998",
+    "ZIGGOSPORT1": "932999",
+    "ZIGGOSPORT2": "932997",
+    "ZIGGOSPORT3": "933001",
+    "ZIGGOSPORT4": "933000",
+    "ZIGGOSPORT5": "933002",
+    "ZIGGOSPORT6": "932998"
+  },
   "daddylive_map": {
     "1917240": "472",
     "1562900": "472",
@@ -2054,79 +1778,5 @@
     "ZIGGOSPORT6": "901",
     "429": "429",
     "ARENASPORT1RS": "429"
-  },
-  "fast_sport_channel_ids": [],
-  "direct_web_hls_ids": [
-    "398",
-    "228724",
-    "580",
-    "433",
-    "933001",
-    "473",
-    "992",
-    "1917240",
-    "474",
-    "1729166",
-    "396",
-    "472",
-    "228727",
-    "1729171",
-    "901",
-    "1729173",
-    "475",
-    "1917237",
-    "941",
-    "393",
-    "991",
-    "434",
-    "933002",
-    "997",
-    "932998",
-    "432",
-    "933000",
-    "429",
-    "932999",
-    "919",
-    "940",
-    "228726",
-    "1917239",
-    "228725",
-    "383",
-    "1917238",
-    "932997"
-  ],
-  "app_release": {
-    "latest_version": "1.0.9",
-    "version_code": 173,
-    "changelog": "CBTV Release 1.0.9: Corretto playback HLS (Arena Sport, Ziggo Sport, Polsat Fight e Premium) tramite proxy locale con multi-endpoint Daddy e header Origin; ripristinato MAX Sport 1 su Server 29 TS.",
-    "download_url": "https://github.com/cb6-maker/cbtv-android/releases/latest"
-  },
-  "server29_sport_map": {
-    "880331": "1729163",
-    "1917613": "1729165",
-    "880468": "1729169",
-    "880469": "1729166",
-    "880467": "1729170",
-    "880466": "1729172",
-    "880465": "1729174",
-    "880464": "1729176",
-    "880330": "1729164",
-    "932999": "932999",
-    "932997": "932997",
-    "933001": "933001",
-    "933000": "933000",
-    "933002": "933002",
-    "932998": "932998",
-    "ZIGGOSPORT1": "932999",
-    "ZIGGOSPORT2": "932997",
-    "ZIGGOSPORT3": "933001",
-    "ZIGGOSPORT4": "933000",
-    "ZIGGOSPORT5": "933002",
-    "ZIGGOSPORT6": "932998"
-  },
-  "app_update": {
-    "latest_version": "1.0.10",
-    "version_code": 174,
-    "changelog": "CBTV 1.0.10: Motore a priorita dinamica basato sull'ordine degli stream nel JSON. Zero rebuild richiesti per configurare stream e fallback."
   }
 }
