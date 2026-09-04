@@ -2031,9 +2031,9 @@
   },
   "fast_sport_channel_ids": [],
   "app_release": {
-    "latest_version": "1.0.160",
-    "version_code": 160,
-    "changelog": "Risolto crash Cinema, Intrattenimento e Primafila: riproduzione nativa immediata.",
+    "latest_version": "1.0.2",
+    "version_code": 161,
+    "changelog": "CBTV Release 1.0.2: Canali Cinema, Intrattenimento e Primafila operativi al 100%.",
     "download_url": "https://github.com/cb6-maker/cbtv-android/releases/latest"
   },
   "server29_sport_map": {
