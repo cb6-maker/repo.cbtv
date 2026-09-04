@@ -1,6 +1,6 @@
 {
-  "version": 19,
-  "updated_at": "2026-09-04T16:30:00Z",
+  "version": 20,
+  "updated_at": "2026-09-04T16:35:00Z",
   "description": "CBTV Dynamic Cloud Channel Mapping (Clean Structured Streams Priority, Server 31 Light-OTT, Server 29 Watchtivo & Web HLS Fallback)",
   "channels": [
     {
@@ -1778,5 +1778,40 @@
     "ZIGGOSPORT6": "901",
     "429": "429",
     "ARENASPORT1RS": "429"
-  }
+  },
+  "direct_web_hls_ids": [
+    "472",
+    "473",
+    "474",
+    "475",
+    "1917240",
+    "1917239",
+    "1917238",
+    "1917237",
+    "393",
+    "398",
+    "919",
+    "396",
+    "383",
+    "901",
+    "932999",
+    "932997",
+    "933001",
+    "933000",
+    "933002",
+    "932998",
+    "432",
+    "433",
+    "434",
+    "580",
+    "940",
+    "941",
+    "429",
+    "997",
+    "991",
+    "992",
+    "1729166",
+    "1729171",
+    "1729173"
+  ]
 }
