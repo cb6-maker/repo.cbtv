@@ -1,5 +1,5 @@
 {
-  "version": 14,
+  "version": 15,
   "updated_at": "2026-09-04T14:40:00Z",
   "description": "CBTV Dynamic Cloud Channel Mapping (Server 31 Light-OTT, Server 29 Watchtivo & Web HLS Fallback)",
   "s29_sport_map": {
@@ -2065,27 +2065,31 @@
   },
   "fast_sport_channel_ids": [],
   "direct_web_hls_ids": [
-    "932999",
-    "373",
-    "433",
-    "1729171",
+    "901",
+    "932998",
+    "434",
+    "398",
+    "1729166",
     "933002",
+    "933000",
+    "383",
+    "429",
+    "992",
+    "941",
+    "1729173",
+    "393",
+    "932999",
+    "1729171",
+    "433",
+    "396",
+    "940",
     "933001",
+    "580",
     "991",
     "432",
-    "1729173",
-    "1729166",
-    "429",
-    "940",
-    "398",
-    "941",
-    "992",
-    "396",
-    "580",
-    "434",
-    "932997",
-    "393",
-    "383"
+    "919",
+    "373",
+    "932997"
   ],
   "app_release": {
     "latest_version": "1.0.6",
@@ -2141,8 +2145,8 @@
     "ZIGGOSPORT6": "932998"
   },
   "app_update": {
-    "latest_version": "1.0.7",
-    "version_code": 172,
-    "changelog": "CBTV Release 1.0.7: Sport Klub 1-6/Golf/Fight corretti su S31, Polsat Fight e Premium 1-2 su Web HLS, ripristinati Arena Sport Croazia (1-6) e Serbia su Phantemlis HLS, MAX Sport 1-4 prioritari su Server 29."
+    "latest_version": "1.0.8",
+    "version_code": 173,
+    "changelog": "CBTV 1.0.8: Canali Arena Sport HR/RS e Ziggo Sport ad avvio istantaneo HLS, Polsat ripulito, Sport Klub corretto."
   }
 }
