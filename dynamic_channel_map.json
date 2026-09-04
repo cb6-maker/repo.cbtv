@@ -2031,9 +2031,9 @@
   },
   "fast_sport_channel_ids": [],
   "app_release": {
-    "latest_version": "1.0.159",
-    "version_code": 159,
-    "changelog": "Consolidamento Server 31 e Server 29, bonifica server dismessi, Web HLS come fallback di emergenza.",
+    "latest_version": "1.0.160",
+    "version_code": 160,
+    "changelog": "Risolto crash Cinema, Intrattenimento e Primafila: riproduzione nativa immediata.",
     "download_url": "https://github.com/cb6-maker/cbtv-android/releases/latest"
   },
   "server29_sport_map": {
