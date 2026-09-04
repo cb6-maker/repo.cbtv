@@ -1,6 +1,6 @@
 {
-  "version": 12,
-  "updated_at": "2026-09-04T13:15:00Z",
+  "version": 14,
+  "updated_at": "2026-09-04T14:40:00Z",
   "description": "CBTV Dynamic Cloud Channel Mapping (Server 31 Light-OTT, Server 29 Watchtivo & Web HLS Fallback)",
   "s29_sport_map": {
     "1917240": "228727",
@@ -424,7 +424,19 @@
     "1917710": "240463",
     "240463": "240463",
     "1158742": "1158742",
-    "883849": "883849"
+    "883849": "883849",
+    "Sport Klub 1": "1108",
+    "Sport Klub 2": "1107",
+    "Sport Klub 3": "1106",
+    "Sport Klub 4 HR": "1105",
+    "Sport Klub 5 HR": "1104",
+    "Sport Klub 6 HR": "1103",
+    "Sport Klub Golf HR": "1102",
+    "Sport Klub Fight HR": "559136",
+    "1104": "1104",
+    "1103": "1103",
+    "1102": "1102",
+    "559136": "559136"
   },
   "fast_sport_stream_ids": [
     "1273579",
@@ -1031,22 +1043,6 @@
       "status": "online"
     },
     {
-      "name": "Polsat Sport Premium 3 FHD",
-      "url": "http://line.watchtivo-8k.com:80/ch/1729172_",
-      "source_type": "hublive",
-      "code": "pl",
-      "image": "https://via.placeholder.com/150/150f1f/9d4edd?text=Polsat+Premium+3",
-      "status": "online"
-    },
-    {
-      "name": "Polsat Sport Premium 4 FHD",
-      "url": "http://line.watchtivo-8k.com:80/ch/1729170_",
-      "source_type": "hublive",
-      "code": "pl",
-      "image": "https://via.placeholder.com/150/150f1f/9d4edd?text=Polsat+Premium+4",
-      "status": "online"
-    },
-    {
       "name": "TNT SPORTS 1 FHD",
       "url": "http://main.light-ott.net:80/ch/1174236_",
       "source_type": "hublive",
@@ -1376,7 +1372,7 @@
     },
     {
       "name": "Sport Klub 5 HR",
-      "url": "http://line.watchtivo-8k.com:80/ch/1917283_",
+      "url": "http://main.light-ott.net:80/ch/1104_",
       "source_type": "hublive",
       "code": "hr",
       "image": "",
@@ -1384,55 +1380,7 @@
     },
     {
       "name": "Sport Klub 6 HR",
-      "url": "http://line.watchtivo-8k.com:80/ch/1917282_",
-      "source_type": "hublive",
-      "code": "hr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sport Klub 7 HR",
-      "url": "http://line.watchtivo-8k.com:80/ch/1981111_",
-      "source_type": "hublive",
-      "code": "hr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sport Klub 8 HR",
-      "url": "http://line.watchtivo-8k.com:80/ch/1981110_",
-      "source_type": "hublive",
-      "code": "hr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sport Klub 9 HR",
-      "url": "http://line.watchtivo-8k.com:80/ch/1981109_",
-      "source_type": "hublive",
-      "code": "hr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sport Klub 10 HR",
-      "url": "http://line.watchtivo-8k.com:80/ch/1981108_",
-      "source_type": "hublive",
-      "code": "hr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sport Klub 11 HR",
-      "url": "http://line.watchtivo-8k.com:80/ch/1981107_",
-      "source_type": "hublive",
-      "code": "hr",
-      "image": "",
-      "status": "online"
-    },
-    {
-      "name": "Sport Klub 12 HR",
-      "url": "http://line.watchtivo-8k.com:80/ch/1981106_",
+      "url": "http://main.light-ott.net:80/ch/1103_",
       "source_type": "hublive",
       "code": "hr",
       "image": "",
@@ -1440,7 +1388,7 @@
     },
     {
       "name": "Sport Klub Golf HR",
-      "url": "http://line.watchtivo-8k.com:80/ch/1981105_",
+      "url": "http://main.light-ott.net:80/ch/1102_",
       "source_type": "hublive",
       "code": "hr",
       "image": "",
@@ -1448,9 +1396,65 @@
     },
     {
       "name": "Sport Klub Fight HR",
-      "url": "http://line.watchtivo-8k.com:80/ch/1981104_",
+      "url": "http://main.light-ott.net:80/ch/559136_",
       "source_type": "hublive",
       "code": "hr",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Arena Sport 1 HR",
+      "url": "http://main.light-ott.net:80/ch/432_",
+      "source_type": "hublive",
+      "code": "hr",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Arena Sport 2 HR",
+      "url": "http://main.light-ott.net:80/ch/433_",
+      "source_type": "hublive",
+      "code": "hr",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Arena Sport 3 HR",
+      "url": "http://main.light-ott.net:80/ch/434_",
+      "source_type": "hublive",
+      "code": "hr",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Arena Sport 4 HR",
+      "url": "http://main.light-ott.net:80/ch/580_",
+      "source_type": "hublive",
+      "code": "hr",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Arena Sport 5 HR",
+      "url": "http://main.light-ott.net:80/ch/940_",
+      "source_type": "hublive",
+      "code": "hr",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Arena Sport 6 HR",
+      "url": "http://main.light-ott.net:80/ch/941_",
+      "source_type": "hublive",
+      "code": "hr",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Arena Sport 1 RS",
+      "url": "http://main.light-ott.net:80/ch/429_",
+      "source_type": "hublive",
+      "code": "rs",
       "image": "",
       "status": "online"
     },
@@ -2055,19 +2059,38 @@
     "ZIGGOSPORT3": "396",
     "ZIGGOSPORT4": "919",
     "ZIGGOSPORT5": "383",
-    "ZIGGOSPORT6": "901"
+    "ZIGGOSPORT6": "901",
+    "429": "429",
+    "ARENASPORT1RS": "429"
   },
   "fast_sport_channel_ids": [],
   "direct_web_hls_ids": [
-    "228727",
-    "472",
-    "MAXSPORT1",
-    "MAX SPORT 1"
+    "932999",
+    "373",
+    "433",
+    "1729171",
+    "933002",
+    "933001",
+    "991",
+    "432",
+    "1729173",
+    "1729166",
+    "429",
+    "940",
+    "398",
+    "941",
+    "992",
+    "396",
+    "580",
+    "434",
+    "932997",
+    "393",
+    "383"
   ],
   "app_release": {
     "latest_version": "1.0.6",
-    "version_code": 171,
-    "changelog": "CBTV Release 1.0.6: ExoPlayer riattivato con controlli completi (PiP nativo, Aspect Ratio FIT/ZOOM), pre-validazione flussi e stabilità collaudata.",
+    "version_code": 172,
+    "changelog": "CBTV Release 1.0.6: Sport Klub 1-6/Golf/Fight corretti su S31, Polsat Fight e Premium 1-2 su Web HLS, ripristinati Arena Sport Croazia (1-6) e Serbia su Phantemlis HLS.",
     "download_url": "https://github.com/cb6-maker/cbtv-android/releases/latest"
   },
   "server29_sport_map": {
@@ -2116,5 +2139,10 @@
     "ZIGGOSPORT4": "933000",
     "ZIGGOSPORT5": "933002",
     "ZIGGOSPORT6": "932998"
+  },
+  "app_update": {
+    "latest_version": "1.0.7",
+    "version_code": 172,
+    "changelog": "CBTV Release 1.0.7: Sport Klub 1-6/Golf/Fight corretti su S31, Polsat Fight e Premium 1-2 su Web HLS, ripristinati Arena Sport Croazia (1-6) e Serbia su Phantemlis HLS, MAX Sport 1-4 prioritari su Server 29."
   }
 }
