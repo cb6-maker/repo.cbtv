@@ -1,7 +1,7 @@
 {
-  "version": 17,
-  "updated_at": "2026-09-04T16:05:00Z",
-  "description": "CBTV Dynamic Cloud Channel Mapping (Server 31 Light-OTT, Server 29 Watchtivo & Web HLS Fallback)",
+  "version": 18,
+  "updated_at": "2026-09-04T16:20:00Z",
+  "description": "CBTV Dynamic Cloud Channel Mapping (Ordered Streams Priority, Server 31 Light-OTT, Server 29 Watchtivo & Web HLS Fallback)",
   "s29_sport_map": {
     "880331": "1729163",
     "47": "1729163",
@@ -942,6 +942,10 @@
       "name": "MAX Sport 1",
       "url": "http://line.vueott.com:80/ch/1917240_",
       "source_type": "hublive",
+      "streams": [
+        "hls:472",
+        "hublive:1917240"
+      ],
       "code": "bg",
       "image": "",
       "status": "online"
@@ -950,6 +954,10 @@
       "name": "MAX Sport 2",
       "url": "http://line.vueott.com:80/ch/1917239_",
       "source_type": "hublive",
+      "streams": [
+        "hls:473",
+        "hublive:1917239"
+      ],
       "code": "bg",
       "image": "",
       "status": "online"
@@ -958,6 +966,10 @@
       "name": "MAX Sport 3",
       "url": "http://line.vueott.com:80/ch/1917238_",
       "source_type": "hublive",
+      "streams": [
+        "hls:474",
+        "hublive:1917238"
+      ],
       "code": "bg",
       "image": "",
       "status": "online"
@@ -966,6 +978,10 @@
       "name": "MAX Sport 4",
       "url": "http://line.vueott.com:80/ch/1917237_",
       "source_type": "hublive",
+      "streams": [
+        "hls:475",
+        "hublive:1917237"
+      ],
       "code": "bg",
       "image": "https://via.placeholder.com/150/150f1f/9d4edd?text=Max+Sport+4+BG",
       "status": "online"
@@ -2111,6 +2127,6 @@
   "app_update": {
     "latest_version": "1.0.10",
     "version_code": 174,
-    "changelog": "CBTV 1.0.10: MAX Sport 1-4 configurati su HLS (DaddyLive 472-475) identici a macOS, riproduzione ExoPlayer stabilizzata."
+    "changelog": "CBTV 1.0.10: Motore a priorita dinamica basato sull'ordine degli stream nel JSON. Zero rebuild richiesti per configurare stream e fallback."
   }
 }
