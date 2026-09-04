@@ -1,6 +1,6 @@
 {
-  "version": 21,
-  "updated_at": "2026-09-04T16:40:00Z",
+  "version": 22,
+  "updated_at": "2026-09-04T16:43:00Z",
   "description": "CBTV Dynamic Cloud Channel Mapping (Clean Structured Streams Priority, Server 31 Light-OTT, Server 29 Watchtivo & Web HLS Fallback)",
   "channels": [
     {
@@ -681,87 +681,59 @@
     },
     {
       "name": "Arena Sport 1 HR",
-      "url": "http://main.light-ott.net:80/ch/432_",
-      "source_type": "hublive",
+      "url": "hls:432",
+      "source_type": "web_hls",
       "code": "hr",
       "image": "",
-      "status": "online",
-      "streams": [
-        "hls:432",
-        "hublive:432"
-      ]
+      "status": "online"
     },
     {
       "name": "Arena Sport 2 HR",
-      "url": "http://main.light-ott.net:80/ch/433_",
-      "source_type": "hublive",
+      "url": "hls:433",
+      "source_type": "web_hls",
       "code": "hr",
       "image": "",
-      "status": "online",
-      "streams": [
-        "hls:433",
-        "hublive:433"
-      ]
+      "status": "online"
     },
     {
       "name": "Arena Sport 3 HR",
-      "url": "http://main.light-ott.net:80/ch/434_",
-      "source_type": "hublive",
+      "url": "hls:434",
+      "source_type": "web_hls",
       "code": "hr",
       "image": "",
-      "status": "online",
-      "streams": [
-        "hls:434",
-        "hublive:434"
-      ]
+      "status": "online"
     },
     {
       "name": "Arena Sport 4 HR",
-      "url": "http://main.light-ott.net:80/ch/580_",
-      "source_type": "hublive",
+      "url": "hls:580",
+      "source_type": "web_hls",
       "code": "hr",
       "image": "",
-      "status": "online",
-      "streams": [
-        "hls:580",
-        "hublive:580"
-      ]
+      "status": "online"
     },
     {
       "name": "Arena Sport 5 HR",
-      "url": "http://main.light-ott.net:80/ch/940_",
-      "source_type": "hublive",
+      "url": "hls:940",
+      "source_type": "web_hls",
       "code": "hr",
       "image": "",
-      "status": "online",
-      "streams": [
-        "hls:940",
-        "hublive:940"
-      ]
+      "status": "online"
     },
     {
       "name": "Arena Sport 6 HR",
-      "url": "http://main.light-ott.net:80/ch/941_",
-      "source_type": "hublive",
+      "url": "hls:941",
+      "source_type": "web_hls",
       "code": "hr",
       "image": "",
-      "status": "online",
-      "streams": [
-        "hls:941",
-        "hublive:941"
-      ]
+      "status": "online"
     },
     {
       "name": "Arena Sport 1 RS",
-      "url": "http://main.light-ott.net:80/ch/429_",
-      "source_type": "hublive",
+      "url": "hls:429",
+      "source_type": "web_hls",
       "code": "rs",
       "image": "",
-      "status": "online",
-      "streams": [
-        "hls:429",
-        "hublive:429"
-      ]
+      "status": "online"
     },
     {
       "name": "Sport TV 1 HD",
