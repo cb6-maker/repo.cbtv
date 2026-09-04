@@ -1,5 +1,5 @@
 {
-  "version": 10,
+  "version": 11,
   "updated_at": "2026-09-04T12:15:00Z",
   "description": "CBTV Dynamic Cloud Channel Mapping (Server 31 Light-OTT, Server 29 Watchtivo & Web HLS Fallback)",
   "s29_sport_map": {
@@ -1248,7 +1248,7 @@
     },
     {
       "name": "Ziggo Sport",
-      "url": "http://main.light-ott.net:80/ch/932999_",
+      "url": "http://line.watchtivo-8k.com:80/ch/932999_",
       "source_type": "hublive",
       "code": "nl",
       "image": "",
@@ -1256,7 +1256,7 @@
     },
     {
       "name": "Ziggo Sport 2",
-      "url": "http://main.light-ott.net:80/ch/932997_",
+      "url": "http://line.watchtivo-8k.com:80/ch/932997_",
       "source_type": "hublive",
       "code": "nl",
       "image": "",
@@ -1264,7 +1264,7 @@
     },
     {
       "name": "Ziggo Sport 3",
-      "url": "http://main.light-ott.net:80/ch/933001_",
+      "url": "http://line.watchtivo-8k.com:80/ch/933001_",
       "source_type": "hublive",
       "code": "nl",
       "image": "",
@@ -1272,7 +1272,7 @@
     },
     {
       "name": "Ziggo Sport 4",
-      "url": "http://main.light-ott.net:80/ch/933000_",
+      "url": "http://line.watchtivo-8k.com:80/ch/933000_",
       "source_type": "hublive",
       "code": "nl",
       "image": "",
@@ -1280,7 +1280,7 @@
     },
     {
       "name": "Ziggo Sport 5",
-      "url": "http://main.light-ott.net:80/ch/933002_",
+      "url": "http://line.watchtivo-8k.com:80/ch/933002_",
       "source_type": "hublive",
       "code": "nl",
       "image": "",
@@ -1288,7 +1288,7 @@
     },
     {
       "name": "Ziggo Sport 6",
-      "url": "http://main.light-ott.net:80/ch/932998_",
+      "url": "http://line.watchtivo-8k.com:80/ch/932998_",
       "source_type": "hublive",
       "code": "nl",
       "image": "",
@@ -2058,11 +2058,16 @@
     "ZIGGOSPORT6": "901"
   },
   "fast_sport_channel_ids": [],
-  "direct_web_hls_ids": [],
+  "direct_web_hls_ids": [
+    "228727",
+    "472",
+    "MAXSPORT1",
+    "MAX SPORT 1"
+  ],
   "app_release": {
     "latest_version": "1.0.6",
-    "version_code": 165,
-    "changelog": "CBTV Release 1.0.6: Risolti canali ZIGGO Sport con fallback Server 29 e DaddyLive, fix redirect cross-domain cookie e ridondanza completa MAX Sport 1-4.",
+    "version_code": 166,
+    "changelog": "CBTV Release 1.0.6: ZIGGO Sport su Server 29 nativo e MAX Sport 1 su Web HLS primario contro loop errore CDN.",
     "download_url": "https://github.com/cb6-maker/cbtv-android/releases/latest"
   },
   "server29_sport_map": {
