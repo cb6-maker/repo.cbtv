@@ -1,6 +1,6 @@
 {
-  "version": 20,
-  "updated_at": "2026-09-04T16:35:00Z",
+  "version": 21,
+  "updated_at": "2026-09-04T16:40:00Z",
   "description": "CBTV Dynamic Cloud Channel Mapping (Clean Structured Streams Priority, Server 31 Light-OTT, Server 29 Watchtivo & Web HLS Fallback)",
   "channels": [
     {
@@ -189,11 +189,11 @@
     },
     {
       "name": "MAX Sport 1",
-      "url": "http://line.vueott.com:80/ch/1917240_",
-      "source_type": "hublive",
+      "url": "hls:472",
+      "source_type": "web_hls",
       "streams": [
         "hls:472",
-        "hublive:1917240"
+        "hublive:228727"
       ],
       "code": "bg",
       "image": "",
@@ -201,11 +201,11 @@
     },
     {
       "name": "MAX Sport 2",
-      "url": "http://line.vueott.com:80/ch/1917239_",
-      "source_type": "hublive",
+      "url": "hls:473",
+      "source_type": "web_hls",
       "streams": [
         "hls:473",
-        "hublive:1917239"
+        "hublive:228726"
       ],
       "code": "bg",
       "image": "",
@@ -213,11 +213,11 @@
     },
     {
       "name": "MAX Sport 3",
-      "url": "http://line.vueott.com:80/ch/1917238_",
-      "source_type": "hublive",
+      "url": "hls:474",
+      "source_type": "web_hls",
       "streams": [
         "hls:474",
-        "hublive:1917238"
+        "hublive:228725"
       ],
       "code": "bg",
       "image": "",
@@ -225,11 +225,11 @@
     },
     {
       "name": "MAX Sport 4",
-      "url": "http://line.vueott.com:80/ch/1917237_",
-      "source_type": "hublive",
+      "url": "hls:475",
+      "source_type": "web_hls",
       "streams": [
         "hls:475",
-        "hublive:1917237"
+        "hublive:228724"
       ],
       "code": "bg",
       "image": "https://via.placeholder.com/150/150f1f/9d4edd?text=Max+Sport+4+BG",
