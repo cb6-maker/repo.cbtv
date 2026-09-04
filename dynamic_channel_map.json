@@ -1,6 +1,6 @@
 {
-  "version": 11,
-  "updated_at": "2026-09-04T12:15:00Z",
+  "version": 12,
+  "updated_at": "2026-09-04T13:15:00Z",
   "description": "CBTV Dynamic Cloud Channel Mapping (Server 31 Light-OTT, Server 29 Watchtivo & Web HLS Fallback)",
   "s29_sport_map": {
     "1917240": "228727",
@@ -2066,8 +2066,8 @@
   ],
   "app_release": {
     "latest_version": "1.0.6",
-    "version_code": 166,
-    "changelog": "CBTV Release 1.0.6: ZIGGO Sport su Server 29 nativo e MAX Sport 1 su Web HLS primario contro loop errore CDN.",
+    "version_code": 171,
+    "changelog": "CBTV Release 1.0.6: ExoPlayer riattivato con controlli completi (PiP nativo, Aspect Ratio FIT/ZOOM), pre-validazione flussi e stabilità collaudata.",
     "download_url": "https://github.com/cb6-maker/cbtv-android/releases/latest"
   },
   "server29_sport_map": {
