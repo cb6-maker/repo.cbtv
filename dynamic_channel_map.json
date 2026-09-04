@@ -1,6 +1,6 @@
 {
-  "version": 9,
-  "updated_at": "2026-09-04T09:42:00Z",
+  "version": 10,
+  "updated_at": "2026-09-04T12:15:00Z",
   "description": "CBTV Dynamic Cloud Channel Mapping (Server 31 Light-OTT, Server 29 Watchtivo & Web HLS Fallback)",
   "s29_sport_map": {
     "1917240": "228727",
@@ -58,7 +58,19 @@
     "228727": "228727",
     "228726": "228726",
     "228725": "228725",
-    "228724": "228724"
+    "228724": "228724",
+    "932999": "932999",
+    "932997": "932997",
+    "933001": "933001",
+    "933000": "933000",
+    "933002": "933002",
+    "932998": "932998",
+    "ZIGGOSPORT1": "932999",
+    "ZIGGOSPORT2": "932997",
+    "ZIGGOSPORT3": "933001",
+    "ZIGGOSPORT4": "933000",
+    "ZIGGOSPORT5": "933002",
+    "ZIGGOSPORT6": "932998"
   },
   "s31_sport_map": {
     "1273579": "1158736",
@@ -2031,13 +2043,26 @@
     "1729171": "991",
     "1729173": "992",
     "1158736": "634",
-    "1158738": "635"
+    "1158738": "635",
+    "932999": "393",
+    "932997": "398",
+    "933001": "396",
+    "933000": "919",
+    "933002": "383",
+    "932998": "901",
+    "ZIGGOSPORT1": "393",
+    "ZIGGOSPORT2": "398",
+    "ZIGGOSPORT3": "396",
+    "ZIGGOSPORT4": "919",
+    "ZIGGOSPORT5": "383",
+    "ZIGGOSPORT6": "901"
   },
   "fast_sport_channel_ids": [],
+  "direct_web_hls_ids": [],
   "app_release": {
-    "latest_version": "1.0.3",
-    "version_code": 162,
-    "changelog": "CBTV Release 1.0.3: Risolti MAX Sport 1-4 HD e Polsat Sport (ExoPlayer TS fix e keepalive attivo).",
+    "latest_version": "1.0.6",
+    "version_code": 165,
+    "changelog": "CBTV Release 1.0.6: Risolti canali ZIGGO Sport con fallback Server 29 e DaddyLive, fix redirect cross-domain cookie e ridondanza completa MAX Sport 1-4.",
     "download_url": "https://github.com/cb6-maker/cbtv-android/releases/latest"
   },
   "server29_sport_map": {
@@ -2073,6 +2098,18 @@
     "475": "228724",
     "MAXSPORT4": "228724",
     "228629": "228724",
-    "228724": "228724"
+    "228724": "228724",
+    "932999": "932999",
+    "932997": "932997",
+    "933001": "933001",
+    "933000": "933000",
+    "933002": "933002",
+    "932998": "932998",
+    "ZIGGOSPORT1": "932999",
+    "ZIGGOSPORT2": "932997",
+    "ZIGGOSPORT3": "933001",
+    "ZIGGOSPORT4": "933000",
+    "ZIGGOSPORT5": "933002",
+    "ZIGGOSPORT6": "932998"
   }
 }
