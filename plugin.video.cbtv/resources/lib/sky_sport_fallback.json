@@ -1,0 +1,334 @@
+[
+  {
+    "name": "SKY SPORT 24 FULL HD",
+    "cmd": "ffmpeg http://700730.org/ch/56592_"
+  },
+  {
+    "name": "SKY SPORT 24 HD",
+    "cmd": "ffmpeg http://700730.org/ch/56593_"
+  },
+  {
+    "name": "SKY SPORT 24 HEVC",
+    "cmd": "ffmpeg http://700730.org/ch/136692_"
+  },
+  {
+    "name": "SKY SPORT 24 SD",
+    "cmd": "ffmpeg http://700730.org/ch/56594_"
+  },
+  {
+    "name": "SKY SPORT UNO FULL HD",
+    "cmd": "ffmpeg http://700730.org/ch/56598_"
+  },
+  {
+    "name": "SKY SPORT UNO HD",
+    "cmd": "ffmpeg http://700730.org/ch/56599_"
+  },
+  {
+    "name": "SKY SPORT UNO HEVC",
+    "cmd": "ffmpeg http://700730.org/ch/136690_"
+  },
+  {
+    "name": "SKY SPORT UNO SD",
+    "cmd": "ffmpeg http://700730.org/ch/56600_"
+  },
+  {
+    "name": "SKY SPORT ACTION FULL HD",
+    "cmd": "ffmpeg http://700730.org/ch/337098_"
+  },
+  {
+    "name": "SKY SPORT ACTION HD",
+    "cmd": "ffmpeg http://700730.org/ch/337099_"
+  },
+  {
+    "name": "SKY SPORT ACTION HEVC",
+    "cmd": "ffmpeg http://700730.org/ch/337097_"
+  },
+  {
+    "name": "SKY SPORT ARENA FULL HD",
+    "cmd": "ffmpeg http://700730.org/ch/56618_"
+  },
+  {
+    "name": "SKY SPORT ARENA HD",
+    "cmd": "ffmpeg http://700730.org/ch/56619_"
+  },
+  {
+    "name": "SKY SPORT ARENA SD",
+    "cmd": "ffmpeg http://700730.org/ch/56620_"
+  },
+  {
+    "name": "SKY SPORT BAR DUE FULL HD (Only Event)",
+    "cmd": "ffmpeg http://700730.org/ch/365292_"
+  },
+  {
+    "name": "SKY SPORT BAR DUE HD (Only Event)",
+    "cmd": "ffmpeg http://700730.org/ch/365293_"
+  },
+  {
+    "name": "SKY SPORT BAR DUE SD (Only Event)",
+    "cmd": "ffmpeg http://700730.org/ch/365294_"
+  },
+  {
+    "name": "SKY SPORT BAR PRIMEVIDEO FULL HD (Only Event)",
+    "cmd": "ffmpeg http://700730.org/ch/365295_"
+  },
+  {
+    "name": "SKY SPORT BAR PRIMEVIDEO HD (Only Event)",
+    "cmd": "ffmpeg http://700730.org/ch/365296_"
+  },
+  {
+    "name": "SKY SPORT BAR PRIMEVIDEO SD (Only Event)",
+    "cmd": "ffmpeg http://700730.org/ch/365297_"
+  },
+  {
+    "name": "SKY SPORT BAR UNO FULL HD (Only Event)",
+    "cmd": "ffmpeg http://700730.org/ch/365289_"
+  },
+  {
+    "name": "SKY SPORT BAR UNO HD (Only Event)",
+    "cmd": "ffmpeg http://700730.org/ch/365290_"
+  },
+  {
+    "name": "SKY SPORT BAR UNO SD (Only Event)",
+    "cmd": "ffmpeg http://700730.org/ch/365291_"
+  },
+  {
+    "name": "SKY SPORT CALCIO FULL HD",
+    "cmd": "ffmpeg http://700730.org/ch/56621_"
+  },
+  {
+    "name": "SKY SPORT CALCIO HD",
+    "cmd": "ffmpeg http://700730.org/ch/56622_"
+  },
+  {
+    "name": "SKY SPORT CALCIO HEVC",
+    "cmd": "ffmpeg http://700730.org/ch/136740_"
+  },
+  {
+    "name": "SKY SPORT CALCIO SD",
+    "cmd": "ffmpeg http://700730.org/ch/56623_"
+  },
+  {
+    "name": "SKY SPORT COLLECTION HEVC",
+    "cmd": "ffmpeg http://700730.org/ch/136687_"
+  },
+  {
+    "name": "SKY SPORT F1 FULL HD",
+    "cmd": "ffmpeg http://700730.org/ch/56604_"
+  },
+  {
+    "name": "SKY SPORT F1 HD",
+    "cmd": "ffmpeg http://700730.org/ch/56605_"
+  },
+  {
+    "name": "SKY SPORT F1 HEVC",
+    "cmd": "ffmpeg http://700730.org/ch/136686_"
+  },
+  {
+    "name": "SKY SPORT F1 SD",
+    "cmd": "ffmpeg http://700730.org/ch/56606_"
+  },
+  {
+    "name": "SKY SPORT GOLF FULL HD",
+    "cmd": "ffmpeg http://700730.org/ch/56607_"
+  },
+  {
+    "name": "SKY SPORT GOLF HD",
+    "cmd": "ffmpeg http://700730.org/ch/56608_"
+  },
+  {
+    "name": "SKY SPORT GOLF SD",
+    "cmd": "ffmpeg http://700730.org/ch/56609_"
+  },
+  {
+    "name": "SKY SPORT MAX FULL HD",
+    "cmd": "ffmpeg http://700730.org/ch/56615_"
+  },
+  {
+    "name": "SKY SPORT MAX HD",
+    "cmd": "ffmpeg http://700730.org/ch/56616_"
+  },
+  {
+    "name": "SKY SPORT MAX SD",
+    "cmd": "ffmpeg http://700730.org/ch/56617_"
+  },
+  {
+    "name": "SKY SPORT MOTOGP FULL HD",
+    "cmd": "ffmpeg http://700730.org/ch/56601_"
+  },
+  {
+    "name": "SKY SPORT MOTOGP HD",
+    "cmd": "ffmpeg http://700730.org/ch/56602_"
+  },
+  {
+    "name": "SKY SPORT MOTOGP SD",
+    "cmd": "ffmpeg http://700730.org/ch/56603_"
+  },
+  {
+    "name": "SKY SPORT NBA FULL HD",
+    "cmd": "ffmpeg http://700730.org/ch/56610_"
+  },
+  {
+    "name": "SKY SPORT NBA HD",
+    "cmd": "ffmpeg http://700730.org/ch/56611_"
+  },
+  {
+    "name": "SKY SPORT NBA HEVC",
+    "cmd": "ffmpeg http://700730.org/ch/136691_"
+  },
+  {
+    "name": "SKY SPORT NBA SD",
+    "cmd": "ffmpeg http://700730.org/ch/56612_"
+  },
+  {
+    "name": "SKY SPORT TENNIS FHD",
+    "cmd": "ffmpeg http://700730.org/ch/890285_"
+  },
+  {
+    "name": "SKY SPORT TENNIS HD",
+    "cmd": "ffmpeg http://700730.org/ch/890286_"
+  },
+  {
+    "name": "SKY SPORT TENNIS SD",
+    "cmd": "ffmpeg http://700730.org/ch/890287_"
+  },
+  {
+    "name": "SKY CALCIO 1 FULL HD",
+    "cmd": "ffmpeg http://700730.org/ch/56650_"
+  },
+  {
+    "name": "SKY CALCIO 1 HD",
+    "cmd": "ffmpeg http://700730.org/ch/56651_"
+  },
+  {
+    "name": "SKY CALCIO 1 HEVC",
+    "cmd": "ffmpeg http://700730.org/ch/136734_"
+  },
+  {
+    "name": "SKY CALCIO 1 SD",
+    "cmd": "ffmpeg http://700730.org/ch/56652_"
+  },
+  {
+    "name": "SKY CALCIO 2 FULL HD",
+    "cmd": "ffmpeg http://700730.org/ch/56653_"
+  },
+  {
+    "name": "SKY CALCIO 2 HD",
+    "cmd": "ffmpeg http://700730.org/ch/56654_"
+  },
+  {
+    "name": "SKY CALCIO 2 HEVC",
+    "cmd": "ffmpeg http://700730.org/ch/136735_"
+  },
+  {
+    "name": "SKY CALCIO 2 SD",
+    "cmd": "ffmpeg http://700730.org/ch/56655_"
+  },
+  {
+    "name": "SKY CALCIO 3 FULL HD",
+    "cmd": "ffmpeg http://700730.org/ch/56656_"
+  },
+  {
+    "name": "SKY CALCIO 3 HD",
+    "cmd": "ffmpeg http://700730.org/ch/56657_"
+  },
+  {
+    "name": "SKY CALCIO 3 HEVC",
+    "cmd": "ffmpeg http://700730.org/ch/136736_"
+  },
+  {
+    "name": "SKY CALCIO 3 SD",
+    "cmd": "ffmpeg http://700730.org/ch/56658_"
+  },
+  {
+    "name": "SKY CALCIO 4 FULL HD",
+    "cmd": "ffmpeg http://700730.org/ch/56659_"
+  },
+  {
+    "name": "SKY CALCIO 4 HD",
+    "cmd": "ffmpeg http://700730.org/ch/56660_"
+  },
+  {
+    "name": "SKY CALCIO 4 HEVC",
+    "cmd": "ffmpeg http://700730.org/ch/136737_"
+  },
+  {
+    "name": "SKY CALCIO 4 SD",
+    "cmd": "ffmpeg http://700730.org/ch/56661_"
+  },
+  {
+    "name": "SKY CALCIO 5 FULL HD",
+    "cmd": "ffmpeg http://700730.org/ch/56662_"
+  },
+  {
+    "name": "SKY CALCIO 5 HD",
+    "cmd": "ffmpeg http://700730.org/ch/56663_"
+  },
+  {
+    "name": "SKY CALCIO 5 HEVC",
+    "cmd": "ffmpeg http://700730.org/ch/136738_"
+  },
+  {
+    "name": "SKY CALCIO 6 FULL HD",
+    "cmd": "ffmpeg http://700730.org/ch/56664_"
+  },
+  {
+    "name": "SKY CALCIO 6 HD",
+    "cmd": "ffmpeg http://700730.org/ch/56665_"
+  },
+  {
+    "name": "SKY CALCIO 6 HEVC",
+    "cmd": "ffmpeg http://700730.org/ch/136739_"
+  },
+  {
+    "name": "SKY CALCIO 7 FULL HD",
+    "cmd": "ffmpeg http://700730.org/ch/56666_"
+  },
+  {
+    "name": "SKY CALCIO 7 HD",
+    "cmd": "ffmpeg http://700730.org/ch/56667_"
+  },
+  {
+    "name": "EUROSPORT PLAYER LIVE 1 (attivo per evento )",
+    "cmd": "ffmpeg http://700730.org/ch/320165_"
+  },
+  {
+    "name": "EUROSPORT PLAYER LIVE 2 (attivo per evento )",
+    "cmd": "ffmpeg http://700730.org/ch/320166_"
+  },
+  {
+    "name": "EUROSPORT PLAYER LIVE 3 (attivo per evento )",
+    "cmd": "ffmpeg http://700730.org/ch/320167_"
+  },
+  {
+    "name": "EUROSPORT PLAYER LIVE 4 (attivo per evento )",
+    "cmd": "ffmpeg http://700730.org/ch/320168_"
+  },
+  {
+    "name": "EUROSPORT PLAYER LIVE 5 (attivo per evento )",
+    "cmd": "ffmpeg http://700730.org/ch/320169_"
+  },
+  {
+    "name": "SKY EUROSPORT1 HEVC",
+    "cmd": "ffmpeg http://700730.org/ch/136684_"
+  },
+  {
+    "name": "SKY EUROSPORT2 HEVC",
+    "cmd": "ffmpeg http://700730.org/ch/136683_"
+  },
+  {
+    "name": "SKY EUROSPORT 1 FULL HD",
+    "cmd": "ffmpeg http://700730.org/ch/56630_"
+  },
+  {
+    "name": "SKY EUROSPORT 1 HD",
+    "cmd": "ffmpeg http://700730.org/ch/56631_"
+  },
+  {
+    "name": "SKY EUROSPORT 2 FULL HD",
+    "cmd": "ffmpeg http://700730.org/ch/56632_"
+  },
+  {
+    "name": "SKY EUROSPORT 2 HD",
+    "cmd": "ffmpeg http://700730.org/ch/56633_"
+  }
+]

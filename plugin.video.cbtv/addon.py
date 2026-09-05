@@ -1603,31 +1603,46 @@ def play_mpd(resolve_data):
         xbmcgui.Dialog().notification("Play MPD", f"Errore: {str(e)}", xbmcgui.NOTIFICATION_ERROR)
         xbmcplugin.setResolvedUrl(HANDLE, False, xbmcgui.ListItem())
 
-def list_eagle_genres(eb_type):
-    """Elenca le categorie o i canali di Hublive"""
+def list_eagle_genres(eb_type, force_refresh=False):
+    """Elenca le categorie o i canali di Hublive con caricamento istantaneo e ricarica a comando"""
     xbmcplugin.setContent(HANDLE, 'videos')
     from resources.lib.hublive_stalker import HubliveStalkerClient
-    hl_client = HubliveStalkerClient()
     
     if eb_type == "sky_tv":
-        # Rimossi i canali provenienti da Mandrakodi per questa sezione
-        # Aggiunta Canali Intrattenimento e Cinema da Hublive
-        hl_channels = hl_client.get_sky_tv_channels()
+        # Canali Intrattenimento e Cinema da Hublive (NO canali sport)
+        add_directory_item("[COLOR yellow][B]↻ Ricarica lista dal server[/B][/COLOR]", 
+                           {"action": "list_eagle_genres", "eb_type": "sky_tv", "force_refresh": "1"}, 
+                           is_folder=True)
+        if force_refresh:
+            xbmcgui.Dialog().notification("CBTV", "Aggiornamento canali Sky TV...", xbmcgui.NOTIFICATION_INFO, 2000)
+        hl_client = HubliveStalkerClient("s28")
+        hl_channels = hl_client.get_sky_tv_channels(force_refresh=force_refresh)
         for ch in hl_channels:
             title = f"{ch['name']} [COLOR yellow](HB)[/COLOR]"
             add_directory_item(title, {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name']}, is_folder=False, is_playable=True)
             
     elif eb_type == "dazn_only":
-        # DAZN Hublive è ospitato nativamente su Server 50 (Watchtivo: Zona DAZN, DAZN 1-4, Serie A, Serie B)
+        # Canali DAZN (Zona DAZN 1-4, DAZN 1-4, Serie A, Serie B, Events)
+        add_directory_item("[COLOR yellow][B]↻ Ricarica lista dal server[/B][/COLOR]", 
+                           {"action": "list_eagle_genres", "eb_type": "dazn_only", "force_refresh": "1"}, 
+                           is_folder=True)
+        if force_refresh:
+            xbmcgui.Dialog().notification("CBTV", "Aggiornamento canali DAZN...", xbmcgui.NOTIFICATION_INFO, 2000)
         hl_client_dazn = HubliveStalkerClient("s50")
-        hl_channels = hl_client_dazn.get_dazn_channels()
+        hl_channels = hl_client_dazn.get_dazn_channels(force_refresh=force_refresh)
         for ch in hl_channels:
             title = f"{ch['name']} [COLOR orange](HB)[/COLOR]"
             add_directory_item(title, {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name']}, is_folder=False, is_playable=True)
             
     elif eb_type == "sky_sport":
-        # Sky Sport Hublive
-        hl_channels = hl_client.get_sky_sport_channels()
+        # Canali Sky Sport (Sky Sport 24, Uno, Calcio 1-7, Arena, Action, F1, MotoGP, Max, Tennis, Eurosport)
+        add_directory_item("[COLOR yellow][B]↻ Ricarica lista dal server[/B][/COLOR]", 
+                           {"action": "list_eagle_genres", "eb_type": "sky_sport", "force_refresh": "1"}, 
+                           is_folder=True)
+        if force_refresh:
+            xbmcgui.Dialog().notification("CBTV", "Aggiornamento canali Sky Sport...", xbmcgui.NOTIFICATION_INFO, 2000)
+        hl_client = HubliveStalkerClient("s28")
+        hl_channels = hl_client.get_sky_sport_channels(force_refresh=force_refresh)
         for ch in hl_channels:
             title = f"{ch['name']} [COLOR cyan](HB)[/COLOR]"
             add_directory_item(title, {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name']}, is_folder=False, is_playable=True)
@@ -1980,7 +1995,7 @@ if __name__ == '__main__':
     elif action == 'play_internal':
         play_internal(params.get('url'), params.get('title'))
     elif action == 'list_eagle_genres':
-        list_eagle_genres(params.get('eb_type'))
+        list_eagle_genres(params.get('eb_type'), force_refresh=(params.get('force_refresh') == '1'))
     elif action == 'list_sky_sport_hls':
         list_sky_sport_hls()
     elif action == 'list_dazn_hls':

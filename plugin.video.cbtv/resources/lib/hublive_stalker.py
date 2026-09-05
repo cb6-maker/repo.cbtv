@@ -74,11 +74,26 @@ class HubliveStalkerClient:
         if not os.path.exists(self.cache_dir):
             os.makedirs(self.cache_dir)
 
-        # Sincronizzazione dinamica remota dei MAC
-        self._sync_remote_servers(force=False)
+        # Applica subito i server/MAC dalla cache su disco se presenti (<1ms)
+        self._apply_cached_servers()
+
+        # Sincronizzazione remota in background per non bloccare mai la UI di Kodi
+        import threading
+        threading.Thread(target=self._sync_remote_servers, kwargs={"force": False}, daemon=True).start()
+
+    def _apply_cached_servers(self):
+        """Carica istantaneamente da disco i server/MAC memorizzati in precedenza."""
+        cache_file = os.path.join(self.cache_dir, "hl_servers_remote.json")
+        if os.path.exists(cache_file):
+            try:
+                with open(cache_file, 'r', encoding='utf-8') as fh:
+                    servers_data = json.load(fh)
+                    self._update_pool_from_servers(servers_data)
+            except Exception:
+                pass
 
     def _sync_remote_servers(self, force=False):
-        """Scarica e memorizza in cache i server e i MAC aggiornati da staycanuca/hub."""
+        """Scarica e memorizza in cache i server e i MAC aggiornati da staycanuca/hub in background."""
         cache_file = os.path.join(self.cache_dir, "hl_servers_remote.json")
         servers_data = None
 
@@ -87,27 +102,27 @@ class HubliveStalkerClient:
                 mtime = os.path.getmtime(cache_file)
                 # Cache valida per 6 ore (21600 secondi)
                 if time.time() - mtime < 21600:
-                    with open(cache_file, 'r', encoding='utf-8') as fh:
-                        servers_data = json.load(fh)
+                    return
             except Exception:
-                servers_data = None
+                pass
 
-        if not servers_data:
-            try:
-                xbmc.log("[CBTV-HB] Download lista server e MAC aggiornati da staycanuca/hub...", xbmc.LOGINFO)
-                resp = requests.get(self.REMOTE_HUB_URL, headers={"User-Agent": "Mozilla/5.0"}, timeout=5)
-                if resp.status_code == 200:
-                    data = resp.json()
-                    servers_data = data.get("servers", [])
-                    with open(cache_file, 'w', encoding='utf-8') as fh:
-                        json.dump(servers_data, fh)
-            except Exception as e:
-                xbmc.log(f"[CBTV-HB] Impossibile scaricare servers.json remoto: {e}", xbmc.LOGWARNING)
+        try:
+            xbmc.log("[CBTV-HB] Background sync lista server e MAC da staycanuca/hub...", xbmc.LOGINFO)
+            resp = requests.get(self.REMOTE_HUB_URL, headers={"User-Agent": "Mozilla/5.0"}, timeout=5)
+            if resp.status_code == 200:
+                data = resp.json()
+                servers_data = data.get("servers", [])
+                with open(cache_file, 'w', encoding='utf-8') as fh:
+                    json.dump(servers_data, fh)
+                self._update_pool_from_servers(servers_data)
+        except Exception as e:
+            xbmc.log(f"[CBTV-HB] Impossibile scaricare servers.json remoto: {e}", xbmc.LOGWARNING)
 
+    def _update_pool_from_servers(self, servers_data):
+        """Aggiorna il pool di MAC e URL del server in base ai dati scaricati."""
         if not servers_data or not isinstance(servers_data, list):
             return
 
-        # Cerca il server corrispondente
         target_server = None
         for s in servers_data:
             if not isinstance(s, dict):
@@ -435,7 +450,18 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.3.2"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.3.3"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+
+    def _load_fallback(self, filename):
+        """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""
+        fallback_path = os.path.join(os.path.dirname(__file__), filename)
+        if os.path.exists(fallback_path):
+            try:
+                with open(fallback_path, 'r', encoding='utf-8') as f:
+                    return json.load(f)
+            except Exception as e:
+                xbmc.log(f"[CBTV-HB] Errore lettura fallback {filename}: {e}", xbmc.LOGWARNING)
+        return []
 
     def _get_cache(self, key):
         f = os.path.join(self.cache_dir, f"hl_{self.server_id}_{key}.json")
@@ -527,13 +553,14 @@ class HubliveStalkerClient:
         return [g["id"] for g in genres if (g.get("title") or g.get("name") or "").strip() in target_titles]
 
     # ---- scaricamento lista canali per genere ----
-    def _fetch_channels_for_genres(self, genre_ids, cache_key, keywords=None, negatives=None):
+    def _fetch_channels_for_genres(self, genre_ids, cache_key, keywords=None, negatives=None, force=False):
         if not genre_ids:
             return []
             
-        cached = self._get_cache(cache_key)
-        if cached:
-            return cached
+        if not force:
+            cached = self._get_cache(cache_key)
+            if cached:
+                return cached
 
         token, mac = self._get_working_token_and_mac()
         if not token:
@@ -612,7 +639,18 @@ class HubliveStalkerClient:
         return unique
 
     # ---- API pubblica con logica Fallback ----
-    def get_sky_tv_channels(self):
+    def get_sky_tv_channels(self, force_refresh=False):
+        """Canali Sky Intrattenimento e Cinema (nessun canale sport). Caricamento istantaneo con ricarica opzionale."""
+        if not force_refresh:
+            cached = self._get_cache("sky_tv")
+            if cached and len(cached) > 5:
+                return cached
+            # Apertura istantanea da file locale pre-integrato (51 canali)
+            fallback = self._load_fallback("sky_tv_fallback.json")
+            if fallback:
+                self._set_cache("sky_tv", fallback)
+                return fallback
+
         target_titles = [
             "IT| GENERALE", "IT| GENERALE HD/4K", "IT| CINEMA", "IT| CINEMA HD/4K", "IT| CINEMA VIP HD/4K",
             "IT| REGIONALI", "IT| REGIONALI HD/4K", "IT| PRIME ᴿᴬᵂ ⁶⁰ᶠᵖˢ", "IT| 24/7 MOVIES & SERIES",
@@ -624,16 +662,33 @@ class HubliveStalkerClient:
         gids = self._find_genre_ids_by_titles(target_titles)
         channels = self._fetch_channels_for_genres(gids, "sky_tv",
             keywords=["SKY"],
-            negatives=["SPORT", "DAZN", "CALCIO", "F1", "MOTOGP", "PRIMAFILA"])
+            negatives=["SPORT", "DAZN", "CALCIO", "F1", "MOTOGP", "PRIMAFILA"],
+            force=force_refresh)
             
         if self.server_id == "s28" and not channels:
             xbmc.log("[CBTV-HB] get_sky_tv_channels su s28 fallito/vuoto, provo s50 fallback", xbmc.LOGWARNING)
             client_s50 = HubliveStalkerClient("s50")
-            return client_s50.get_sky_tv_channels()
+            channels = client_s50.get_sky_tv_channels(force_refresh=force_refresh)
+
+        if not channels:
+            channels = self._load_fallback("sky_tv_fallback.json")
+            if channels:
+                self._set_cache("sky_tv", channels)
             
         return channels
 
-    def get_sky_sport_channels(self):
+    def get_sky_sport_channels(self, force_refresh=False):
+        """Canali Sky Sport (83 canali sportivi). Caricamento istantaneo con ricarica opzionale."""
+        if not force_refresh:
+            cached = self._get_cache("sky_sport")
+            if cached and len(cached) > 10:
+                return cached
+            # Apertura istantanea da file locale pre-integrato (83 canali)
+            channels = self._load_fallback("sky_sport_fallback.json")
+            if channels:
+                self._set_cache("sky_sport", channels)
+                return channels
+
         target_titles = [
             "IT| SPORT", "IT| SPORT HD/4K", "IT| FORMULA 1 / MOTOGP", "IT| SERIE A/B/C",
             "IT| ITALY FHD/HEVC", "IT| ITALY UHD/4K", "IT| PLATINUM TV UHD/4K", "IT| GOLD TV HEVC", "IT| LNP PASS PPV",
@@ -643,12 +698,16 @@ class HubliveStalkerClient:
         gids = self._find_genre_ids_by_titles(target_titles)
         channels = self._fetch_channels_for_genres(gids, "sky_sport", 
             keywords=["SKY SPORT", "SKY CALCIO", "EUROSPORT"],
-            negatives=["SERIE C", "SERIE D", "LEGA PRO", "DAZN BAR", "DAZN CHANNEL", "VETRINA DAZN"])
+            negatives=["SERIE C", "SERIE D", "LEGA PRO", "DAZN BAR", "DAZN CHANNEL", "VETRINA DAZN"],
+            force=force_refresh)
             
         if self.server_id == "s28" and not channels:
             xbmc.log("[CBTV-HB] get_sky_sport_channels su s28 vuoto, provo s50 fallback", xbmc.LOGWARNING)
             client_s50 = HubliveStalkerClient("s50")
-            channels = client_s50.get_sky_sport_channels()
+            channels = client_s50.get_sky_sport_channels(force_refresh=force_refresh)
+
+        if not channels:
+            channels = self._load_fallback("sky_sport_fallback.json")
 
         def sky_sport_sort_key(ch):
             name = ch.get('name', '').upper().strip()
@@ -674,23 +733,47 @@ class HubliveStalkerClient:
             return (group, subgroup, parts)
 
         channels.sort(key=sky_sport_sort_key)
+        self._set_cache("sky_sport", channels)
         return channels
 
-    def _load_dazn_fallback(self):
-        """Carica la lista completa dei 56 canali DAZN (con Zona DAZN 1-4, DAZN 1-4, Serie A, Serie B)."""
-        fallback_path = os.path.join(os.path.dirname(__file__), "dazn_fallback.json")
-        if os.path.exists(fallback_path):
-            try:
-                with open(fallback_path, 'r', encoding='utf-8') as f:
-                    return json.load(f)
-            except Exception as e:
-                xbmc.log(f"[CBTV-HB] Errore lettura dazn_fallback.json: {e}", xbmc.LOGWARNING)
-        return []
+    def get_dazn_channels(self, force_refresh=False):
+        """Canali DAZN completi (56 canali con Zona DAZN 1-4 in testa). Caricamento istantaneo con ricarica opzionale."""
+        if not force_refresh:
+            cached = self._get_cache("dazn")
+            if cached and any("ZONA DAZN" in ch.get('name', '').upper() for ch in cached):
+                return cached
+            # Apertura istantanea da file locale pre-integrato (56 canali)
+            fallback = self._load_fallback("dazn_fallback.json")
+            if fallback:
+                import re
+                def dazn_sort_key(ch):
+                    name = ch.get('name', '').upper()
+                    if "ZONA DAZN" in name:
+                        group = 1
+                    elif "DAZN" in name and "EVENT" not in name and "SERIE" not in name:
+                        group = 2
+                    elif "SERIE A" in name:
+                        group = 3
+                    elif "SERIE B" in name:
+                        group = 4
+                    elif "EVENT" in name:
+                        group = 5
+                    else:
+                        group = 6
+                    num_match = re.search(r'\d+', name)
+                    num = int(num_match.group()) if num_match else 1
+                    res_val = 4
+                    if "HEVC" in name or "4K" in name:
+                        res_val = 1
+                    elif "FHD" in name:
+                        res_val = 2
+                    elif "HD" in name:
+                        res_val = 3
+                    return (group, num, res_val, name)
 
-    def get_dazn_channels(self):
-        cached = self._get_cache("dazn")
-        if cached and any("ZONA DAZN" in ch.get('name', '').upper() for ch in cached):
-            return cached
+                fallback.sort(key=dazn_sort_key)
+                self._set_cache("dazn", fallback)
+                return fallback
 
         target_titles = [
             "┃IT┃ ZONA DAZN", "┃IT┃ DAZN", "┃IT┃ DAZN SERIE A", "┃IT┃ DAZN SERIE B",
@@ -703,17 +786,18 @@ class HubliveStalkerClient:
 
         channels = self._fetch_channels_for_genres(gids, "dazn",
             keywords=None,
-            negatives=["WOMEN", "SKY SPORT", "SKY CALCIO", "EUROSPORT", "PALLAVOLO", "PALLAMANO", "PALLANUOTO"])
+            negatives=["WOMEN", "SKY SPORT", "SKY CALCIO", "EUROSPORT", "PALLAVOLO", "PALLAMANO", "PALLANUOTO"],
+            force=force_refresh)
             
         if self.server_id == "s28" and (not channels or not any("ZONA DAZN" in ch.get('name', '').upper() for ch in channels)):
             xbmc.log("[CBTV-HB] get_dazn_channels su s28 vuoto o senza Zona DAZN, carico s50", xbmc.LOGINFO)
             client_s50 = HubliveStalkerClient("s50")
-            channels = client_s50.get_dazn_channels()
+            channels = client_s50.get_dazn_channels(force_refresh=force_refresh)
 
         # Se il fetch remoto è incompleto (manca Zona DAZN) o fallito (502 Bad Gateway), usa il fallback integrato completo
         if not channels or not any("ZONA DAZN" in ch.get('name', '').upper() for ch in channels):
             xbmc.log("[CBTV-HB] Fetch remoto DAZN incompleto, carico dazn_fallback.json integrato (56 canali)", xbmc.LOGINFO)
-            channels = self._load_dazn_fallback()
+            channels = self._load_fallback("dazn_fallback.json")
 
         if channels:
             import re

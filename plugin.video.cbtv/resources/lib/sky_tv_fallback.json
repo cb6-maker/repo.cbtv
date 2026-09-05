@@ -1,0 +1,206 @@
+[
+  {
+    "name": "SKY ATLANTIC FULL HD",
+    "cmd": "ffmpeg http://700730.org/ch/56471_"
+  },
+  {
+    "name": "SKY ATLANTIC HD",
+    "cmd": "ffmpeg http://700730.org/ch/56472_"
+  },
+  {
+    "name": "SKY ATLANTIC SD",
+    "cmd": "ffmpeg http://700730.org/ch/56473_"
+  },
+  {
+    "name": "SKY CINEMA ACTION FULL HD",
+    "cmd": "ffmpeg http://700730.org/ch/56446_"
+  },
+  {
+    "name": "SKY CINEMA ACTION HD",
+    "cmd": "ffmpeg http://700730.org/ch/56447_"
+  },
+  {
+    "name": "SKY CINEMA ACTION HEVC",
+    "cmd": "ffmpeg http://700730.org/ch/136717_"
+  },
+  {
+    "name": "SKY CINEMA ACTION SD",
+    "cmd": "ffmpeg http://700730.org/ch/56448_"
+  },
+  {
+    "name": "SKY CINEMA COLLECTION FULL HD",
+    "cmd": "ffmpeg http://700730.org/ch/56443_"
+  },
+  {
+    "name": "SKY CINEMA COLLECTION HD",
+    "cmd": "ffmpeg http://700730.org/ch/56444_"
+  },
+  {
+    "name": "SKY CINEMA COLLECTION HEVC",
+    "cmd": "ffmpeg http://700730.org/ch/136716_"
+  },
+  {
+    "name": "SKY CINEMA COLLECTION SD",
+    "cmd": "ffmpeg http://700730.org/ch/56445_"
+  },
+  {
+    "name": "SKY CINEMA COMEDY FULL HD",
+    "cmd": "ffmpeg http://700730.org/ch/56440_"
+  },
+  {
+    "name": "SKY CINEMA COMEDY HD",
+    "cmd": "ffmpeg http://700730.org/ch/56441_"
+  },
+  {
+    "name": "SKY CINEMA COMEDY HEVC",
+    "cmd": "ffmpeg http://700730.org/ch/136715_"
+  },
+  {
+    "name": "SKY CINEMA COMEDY SD",
+    "cmd": "ffmpeg http://700730.org/ch/56442_"
+  },
+  {
+    "name": "SKY CINEMA DRAMA FULL HD",
+    "cmd": "ffmpeg http://700730.org/ch/56436_"
+  },
+  {
+    "name": "SKY CINEMA DRAMA HD",
+    "cmd": "ffmpeg http://700730.org/ch/56437_"
+  },
+  {
+    "name": "SKY CINEMA DRAMA HEVC",
+    "cmd": "ffmpeg http://700730.org/ch/136714_"
+  },
+  {
+    "name": "SKY CINEMA DRAMA SD",
+    "cmd": "ffmpeg http://700730.org/ch/56438_"
+  },
+  {
+    "name": "SKY CINEMA DUE 24 FULL HD",
+    "cmd": "ffmpeg http://700730.org/ch/56425_"
+  },
+  {
+    "name": "SKY CINEMA DUE 24 HD",
+    "cmd": "ffmpeg http://700730.org/ch/56426_"
+  },
+  {
+    "name": "SKY CINEMA DUE 24 HEVC",
+    "cmd": "ffmpeg http://700730.org/ch/136713_"
+  },
+  {
+    "name": "SKY CINEMA DUE FULL HD",
+    "cmd": "ffmpeg http://700730.org/ch/56422_"
+  },
+  {
+    "name": "SKY CINEMA DUE HD",
+    "cmd": "ffmpeg http://700730.org/ch/56423_"
+  },
+  {
+    "name": "SKY CINEMA DUE HEVC",
+    "cmd": "ffmpeg http://700730.org/ch/136712_"
+  },
+  {
+    "name": "SKY CINEMA DUE SD",
+    "cmd": "ffmpeg http://700730.org/ch/56424_"
+  },
+  {
+    "name": "SKY CINEMA FAMILY FULL HD",
+    "cmd": "ffmpeg http://700730.org/ch/56433_"
+  },
+  {
+    "name": "SKY CINEMA FAMILY HD",
+    "cmd": "ffmpeg http://700730.org/ch/56434_"
+  },
+  {
+    "name": "SKY CINEMA FAMILY SD",
+    "cmd": "ffmpeg http://700730.org/ch/56435_"
+  },
+  {
+    "name": "SKY CINEMA ROMANCE FULL HD",
+    "cmd": "ffmpeg http://700730.org/ch/56430_"
+  },
+  {
+    "name": "SKY CINEMA ROMANCE HD",
+    "cmd": "ffmpeg http://700730.org/ch/56431_"
+  },
+  {
+    "name": "SKY CINEMA ROMANCE HEVC",
+    "cmd": "ffmpeg http://700730.org/ch/136710_"
+  },
+  {
+    "name": "SKY CINEMA ROMANCE SD",
+    "cmd": "ffmpeg http://700730.org/ch/56432_"
+  },
+  {
+    "name": "SKY CINEMA SUSPENSE FULL HD",
+    "cmd": "ffmpeg http://700730.org/ch/56427_"
+  },
+  {
+    "name": "SKY CINEMA SUSPENSE HD",
+    "cmd": "ffmpeg http://700730.org/ch/56428_"
+  },
+  {
+    "name": "SKY CINEMA SUSPENSE HEVC",
+    "cmd": "ffmpeg http://700730.org/ch/136709_"
+  },
+  {
+    "name": "SKY CINEMA SUSPENSE SD",
+    "cmd": "ffmpeg http://700730.org/ch/56429_"
+  },
+  {
+    "name": "SKY CINEMA UNO 24 FULL HD",
+    "cmd": "ffmpeg http://700730.org/ch/56421_"
+  },
+  {
+    "name": "SKY CINEMA UNO 24 HD",
+    "cmd": "ffmpeg http://700730.org/ch/56420_"
+  },
+  {
+    "name": "SKY CINEMA UNO 24 HEVC",
+    "cmd": "ffmpeg http://700730.org/ch/136708_"
+  },
+  {
+    "name": "SKY CINEMA UNO FULL HD",
+    "cmd": "ffmpeg http://700730.org/ch/56417_"
+  },
+  {
+    "name": "SKY CINEMA UNO HD",
+    "cmd": "ffmpeg http://700730.org/ch/56418_"
+  },
+  {
+    "name": "SKY CINEMA UNO HEVC",
+    "cmd": "ffmpeg http://700730.org/ch/136707_"
+  },
+  {
+    "name": "SKY CINEMA UNO SD",
+    "cmd": "ffmpeg http://700730.org/ch/56419_"
+  },
+  {
+    "name": "SKY SERIE FULL HD",
+    "cmd": "ffmpeg http://700730.org/ch/337088_"
+  },
+  {
+    "name": "SKY SERIE HD",
+    "cmd": "ffmpeg http://700730.org/ch/337089_"
+  },
+  {
+    "name": "SKY SERIE HEVC",
+    "cmd": "ffmpeg http://700730.org/ch/337090_"
+  },
+  {
+    "name": "SKY UNO FULL HD",
+    "cmd": "ffmpeg http://700730.org/ch/56474_"
+  },
+  {
+    "name": "SKY UNO HD",
+    "cmd": "ffmpeg http://700730.org/ch/56475_"
+  },
+  {
+    "name": "SKY UNO HEVC",
+    "cmd": "ffmpeg http://700730.org/ch/136723_"
+  },
+  {
+    "name": "SKY UNO SD",
+    "cmd": "ffmpeg http://700730.org/ch/56476_"
+  }
+]
