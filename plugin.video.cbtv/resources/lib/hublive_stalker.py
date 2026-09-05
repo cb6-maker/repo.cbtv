@@ -435,7 +435,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.2.0"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.3.2"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _get_cache(self, key):
         f = os.path.join(self.cache_dir, f"hl_{self.server_id}_{key}.json")
@@ -496,16 +496,18 @@ class HubliveStalkerClient:
             self._set_cache("genres", res)
             return res
 
-        # Fallback integrato delle categorie note per evitare blocchi
+        # Fallback integrato delle categorie note reali per evitare blocchi
         if self.server_id == "s50":
             fallback_genres = [
-                {"id": "1", "title": "┃IT┃ GENERALE"},
-                {"id": "2", "title": "┃IT┃ CINEMA"},
-                {"id": "3", "title": "┃IT┃ SPORT"},
-                {"id": "4", "title": "┃IT┃ DAZN SERIE A"},
-                {"id": "5", "title": "┃IT┃ SKY SPORT"},
-                {"id": "6", "title": "┃IT┃ SKY CALCIO"},
-                {"id": "7", "title": "┃IT┃ ZONA DAZN"}
+                {"id": "2721", "title": "┃IT┃ GENERALE"},
+                {"id": "2723", "title": "┃IT┃ FILM E SERIE"},
+                {"id": "388", "title": "┃IT┃ SPORT"},
+                {"id": "2728", "title": "┃IT┃ SKY SPORT"},
+                {"id": "2729", "title": "┃IT┃ SKY CALCIO"},
+                {"id": "3331", "title": "┃IT┃ ZONA DAZN"},
+                {"id": "2731", "title": "┃IT┃ DAZN SERIE A"},
+                {"id": "2730", "title": "┃IT┃ DAZN"},
+                {"id": "3333", "title": "┃IT┃ DAZN SERIE B"}
             ]
         else:
             fallback_genres = [
@@ -544,7 +546,7 @@ class HubliveStalkerClient:
             genre_found = []
             for page in range(1, 30):
                 res = self._api_call(mac, token, "get_ordered_list",
-                                     {"genre": str(gid), "force_ch_link_check": "0", "p": str(page)}, timeout=3.5)
+                                     {"genre": str(gid), "force_ch_link_check": "0", "p": str(page)}, timeout=6.0)
 
                 if isinstance(res, dict) and 'data' in res:
                     ch_list = res['data']
@@ -553,7 +555,7 @@ class HubliveStalkerClient:
                 else:
                     # Prova get_ordered_channels se get_ordered_list non ha restituito dati
                     if page == 1:
-                        res_alt = self._api_call(mac, token, "get_ordered_channels", {"genre": str(gid)}, timeout=3.5)
+                        res_alt = self._api_call(mac, token, "get_ordered_channels", {"genre": str(gid)}, timeout=6.0)
                         if isinstance(res_alt, dict) and 'data' in res_alt:
                             ch_list = res_alt['data']
                         elif isinstance(res_alt, list):
@@ -587,19 +589,14 @@ class HubliveStalkerClient:
                     break
             return genre_found
 
-        try:
-            from concurrent.futures import ThreadPoolExecutor, as_completed
-            with ThreadPoolExecutor(max_workers=min(len(genre_ids), 8)) as executor:
-                futures = {executor.submit(fetch_genre, gid): gid for gid in genre_ids}
-                for future in as_completed(futures):
-                    try:
-                        found.extend(future.result())
-                    except Exception as e:
-                        xbmc.log(f"[CBTV-HB] Errore scaricamento canali per genere: {e}", xbmc.LOGWARNING)
-        except ImportError:
-            xbmc.log("[CBTV-HB] concurrent.futures non disponibile, scaricamento sequenziale", xbmc.LOGWARNING)
-            for gid in genre_ids:
-                found.extend(fetch_genre(gid))
+        # Scaricamento sequenziale per evitare disconnessioni/502 Bad Gateway del server Stalker
+        for gid in genre_ids:
+            try:
+                g_chans = fetch_genre(gid)
+                if g_chans:
+                    found.extend(g_chans)
+            except Exception as e:
+                xbmc.log(f"[CBTV-HB] Errore scaricamento canali per genere {gid}: {e}", xbmc.LOGWARNING)
 
         # Deduplica e ordina
         unique = list({v['cmd']: v for v in found}.values())
@@ -679,21 +676,45 @@ class HubliveStalkerClient:
         channels.sort(key=sky_sport_sort_key)
         return channels
 
+    def _load_dazn_fallback(self):
+        """Carica la lista completa dei 56 canali DAZN (con Zona DAZN 1-4, DAZN 1-4, Serie A, Serie B)."""
+        fallback_path = os.path.join(os.path.dirname(__file__), "dazn_fallback.json")
+        if os.path.exists(fallback_path):
+            try:
+                with open(fallback_path, 'r', encoding='utf-8') as f:
+                    return json.load(f)
+            except Exception as e:
+                xbmc.log(f"[CBTV-HB] Errore lettura dazn_fallback.json: {e}", xbmc.LOGWARNING)
+        return []
+
     def get_dazn_channels(self):
+        cached = self._get_cache("dazn")
+        if cached and any("ZONA DAZN" in ch.get('name', '').upper() for ch in cached):
+            return cached
+
         target_titles = [
-            "IT| DAZN", "IT| DAZN VIP HD/4K", "IT| DAZN PPV",
-            "┃IT┃ DAZN SERIE A", "┃IT┃ ZONA DAZN", "┃IT┃ DAZN SERIE B", "┃IT┃ DAZN"
+            "┃IT┃ ZONA DAZN", "┃IT┃ DAZN", "┃IT┃ DAZN SERIE A", "┃IT┃ DAZN SERIE B",
+            "IT| DAZN", "IT| DAZN VIP HD/4K", "IT| DAZN PPV"
         ]
         gids = self._find_genre_ids_by_titles(target_titles)
+        if not gids and self.server_id == "s50":
+            # ID reali certificati per Server 50
+            gids = ["3331", "2730", "2731", "3333"]
+
         channels = self._fetch_channels_for_genres(gids, "dazn",
             keywords=None,
             negatives=["WOMEN", "SKY SPORT", "SKY CALCIO", "EUROSPORT", "PALLAVOLO", "PALLAMANO", "PALLANUOTO"])
             
-        if self.server_id == "s28" and not channels:
-            xbmc.log("[CBTV-HB] get_dazn_channels su s28 vuoto, provo s50 fallback", xbmc.LOGWARNING)
+        if self.server_id == "s28" and (not channels or not any("ZONA DAZN" in ch.get('name', '').upper() for ch in channels)):
+            xbmc.log("[CBTV-HB] get_dazn_channels su s28 vuoto o senza Zona DAZN, carico s50", xbmc.LOGINFO)
             client_s50 = HubliveStalkerClient("s50")
             channels = client_s50.get_dazn_channels()
-            
+
+        # Se il fetch remoto è incompleto (manca Zona DAZN) o fallito (502 Bad Gateway), usa il fallback integrato completo
+        if not channels or not any("ZONA DAZN" in ch.get('name', '').upper() for ch in channels):
+            xbmc.log("[CBTV-HB] Fetch remoto DAZN incompleto, carico dazn_fallback.json integrato (56 canali)", xbmc.LOGINFO)
+            channels = self._load_dazn_fallback()
+
         if channels:
             import re
             def dazn_sort_key(ch):
@@ -701,17 +722,17 @@ class HubliveStalkerClient:
                 # Gruppo 1: Zona DAZN (canali lineari principali)
                 if "ZONA DAZN" in name:
                     group = 1
-                # Gruppo 2: DAZN Serie A (canali dedicati)
-                elif "SERIE A" in name:
+                # Gruppo 2: DAZN standard (DAZN 1, DAZN 2, ecc. senza la parola EVENT o SERIE)
+                elif "DAZN" in name and "EVENT" not in name and "SERIE" not in name:
                     group = 2
-                # Gruppo 3: DAZN standard (DAZN 1, DAZN 2, ecc. senza la parola EVENT o SERIE B)
-                elif "DAZN" in name and "EVENT" not in name and "SERIE B" not in name:
+                # Gruppo 3: DAZN Serie A (canali dedicati)
+                elif "SERIE A" in name:
                     group = 3
-                # Gruppo 4: DAZN Event (i canali web/evento equivalenti ai vecchi dazn web)
-                elif "EVENT" in name:
-                    group = 4
-                # Gruppo 5: DAZN Serie B (calcio Serie B)
+                # Gruppo 4: DAZN Serie B (calcio Serie B)
                 elif "SERIE B" in name:
+                    group = 4
+                # Gruppo 5: DAZN Event (i canali web/evento)
+                elif "EVENT" in name:
                     group = 5
                 else:
                     group = 6
@@ -731,6 +752,7 @@ class HubliveStalkerClient:
                 return (group, num, res_val, name)
                 
             channels.sort(key=dazn_sort_key)
+            self._set_cache("dazn", channels)
             
         return channels
 

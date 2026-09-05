@@ -1618,8 +1618,9 @@ def list_eagle_genres(eb_type):
             add_directory_item(title, {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name']}, is_folder=False, is_playable=True)
             
     elif eb_type == "dazn_only":
-        # DAZN Hublive
-        hl_channels = hl_client.get_dazn_channels()
+        # DAZN Hublive è ospitato nativamente su Server 50 (Watchtivo: Zona DAZN, DAZN 1-4, Serie A, Serie B)
+        hl_client_dazn = HubliveStalkerClient("s50")
+        hl_channels = hl_client_dazn.get_dazn_channels()
         for ch in hl_channels:
             title = f"{ch['name']} [COLOR orange](HB)[/COLOR]"
             add_directory_item(title, {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name']}, is_folder=False, is_playable=True)
