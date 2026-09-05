@@ -917,7 +917,7 @@ def play_hls_channel(daddy_id, title):
             xbmcplugin.setResolvedUrl(HANDLE, False, xbmcgui.ListItem())
             return
 
-        ref = referer or 'https://dlstreams.st/'
+        ref = referer or 'https://wideiptv.top/'
         headers = f"User-Agent={quote(UA)}&Referer={quote(ref)}"
         stream_url = f"{m3u8_url}|{headers}"
 
@@ -925,6 +925,8 @@ def play_hls_channel(daddy_id, title):
         list_item.setInfo('video', {'title': title})
         list_item.setProperty('inputstream', 'inputstream.ffmpegdirect')
         list_item.setProperty('inputstream.ffmpegdirect.is_realtime_stream', 'true')
+        list_item.setProperty('inputstream.ffmpegdirect.auto_reconnect', 'true')
+        list_item.setProperty('inputstream.ffmpegdirect.auto_reconnect_retry_limit', '10')
         list_item.setProperty('inputstream.ffmpegdirect.manifest_type', 'hls')
         list_item.setMimeType('application/x-mpegURL')
         list_item.setContentLookup(False)
@@ -1739,6 +1741,13 @@ def play_hublive_stalker(cmd, name=None):
         _CURRENT_HB_PLAYER = hb_player
         list_item = xbmcgui.ListItem(path=final_url)
         list_item.setArt({'fanart': FANART})
+        list_item.setProperty('inputstream', 'inputstream.ffmpegdirect')
+        list_item.setProperty('inputstream.ffmpegdirect.is_realtime_stream', 'true')
+        list_item.setProperty('inputstream.ffmpegdirect.auto_reconnect', 'true')
+        list_item.setProperty('inputstream.ffmpegdirect.auto_reconnect_retry_limit', '10')
+        list_item.setProperty('inputstream.ffmpegdirect.open_mode', 'ffmpeg')
+        list_item.setMimeType('video/mp2t')
+        list_item.setContentLookup(False)
         
         if first_attempt:
             xbmcplugin.setResolvedUrl(HANDLE, True, list_item)
@@ -1762,8 +1771,8 @@ def play_hublive_stalker(cmd, name=None):
             xbmc.sleep(500)
         
         if not hb_player.isPlaying() and not hb_player.av_started:
-            if hb_player.stopped_by_user or hb_player.playback_ended:
-                xbmc.log("[CBTV-HB] Utente ha fermato prima dell'avvio", xbmc.LOGINFO)
+            if hb_player.stopped_by_user:
+                xbmc.log("[CBTV-HB] Utente ha fermato prima dell'avvio con tasto Stop. Esco.", xbmc.LOGINFO)
                 return
             # MAC non ha funzionato — escludilo e riprova
             xbmc.log(f"[CBTV-HB] Stream non partito con MAC {mac}, escludo e riprovo", xbmc.LOGWARNING)
@@ -1777,27 +1786,20 @@ def play_hublive_stalker(cmd, name=None):
                 return
             xbmc.sleep(1000)
         
-        # Aspetta 800ms per permettere a Kodi di processare e notificare i callback asincroni di stop
-        xbmc.sleep(800)
+        # Breve attesa per permettere a Kodi di recapitare i callback asincroni dell'evento di stop
+        xbmc.sleep(500)
         
-        playback_duration = time.time() - playback_start_time - 0.8
+        playback_duration = time.time() - playback_start_time - 0.5
         xbmc.log(f"[CBTV-HB] Playback interrotto dopo {playback_duration:.1f} secondi. stopped_by_user={hb_player.stopped_by_user}, playback_error={hb_player.playback_error}, playback_ended={hb_player.playback_ended}", xbmc.LOGINFO)
         
-        # Determina se l'arresto è stato causato dall'utente (Stop / Indietro):
-        # 1. Se il callback onPlayBackStopped o onPlayBackEnded è scattato.
-        # 2. OPPURE se il flusso audio/video era regolarmente avviato (av_started o durata >= 2s) e si è fermato senza errori (playback_error == False).
-        user_stopped = (
-            hb_player.stopped_by_user or
-            hb_player.playback_ended or
-            (hb_player.av_started and not hb_player.playback_error and playback_duration >= 2.0)
-        )
-        
-        if user_stopped:
-            xbmc.log(f"[CBTV-HB] Playback fermato dall'utente (stopped_by_user={hb_player.stopped_by_user}, ended={hb_player.playback_ended}, durata={playback_duration:.1f}s). Esco senza riconnettere.", xbmc.LOGINFO)
+        # SE L'UTENTE HA PREMUTO STOP / INDIETRO (anche dopo pochi secondi!), USCIAMO SUBITO SENZA RICONNETTERE:
+        if hb_player.stopped_by_user or monitor.abortRequested():
+            xbmc.log(f"[CBTV-HB] Stop premuto manualmente dall'utente (durata={playback_duration:.1f}s). Esco definitivamente.", xbmc.LOGINFO)
             return
             
-        # In tutti gli altri casi (flusso mai partito o caduto con errore nei primissimi secondi) escludiamo il MAC e riproviamo
-        xbmc.log(f"[CBTV-HB] Stream non avviato o caduto per errore server con MAC {mac} (durata={playback_duration:.1f}s), escludo e riprovo con altro MAC...", xbmc.LOGWARNING)
+        # Altrimenti è stata una caduta di connessione / EOF socket: tentiamo auto-riconnessione
+        xbmc.log(f"[CBTV-HB] Caduta di linea con MAC {mac} dopo {playback_duration:.1f}s (stopped_by_user=False). Riconnessione automatica...", xbmc.LOGWARNING)
+        xbmcgui.Dialog().notification("CBTV", "Riconnessione in corso...", xbmcgui.NOTIFICATION_INFO, 2000)
         failed_macs.add(mac)
         continue
     
