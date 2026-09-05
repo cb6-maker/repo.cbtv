@@ -1741,11 +1741,6 @@ def play_hublive_stalker(cmd, name=None):
         _CURRENT_HB_PLAYER = hb_player
         list_item = xbmcgui.ListItem(path=final_url)
         list_item.setArt({'fanart': FANART})
-        list_item.setProperty('inputstream', 'inputstream.ffmpegdirect')
-        list_item.setProperty('inputstream.ffmpegdirect.is_realtime_stream', 'true')
-        list_item.setProperty('inputstream.ffmpegdirect.auto_reconnect', 'true')
-        list_item.setProperty('inputstream.ffmpegdirect.auto_reconnect_retry_limit', '10')
-        list_item.setProperty('inputstream.ffmpegdirect.open_mode', 'ffmpeg')
         list_item.setMimeType('video/mp2t')
         list_item.setContentLookup(False)
         
