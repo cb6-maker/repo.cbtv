@@ -357,6 +357,9 @@ class HubliveStalkerClient:
             xbmc.log(f"[CBTV-HB] Tutti i MAC sono stati esauriti per {self.server_id}", xbmc.LOGWARNING)
             return None, None
 
+        first_fallback_url = None
+        first_fallback_mac = None
+
         for attempt, mac in enumerate(pool, 1):
             is_top = mac in top_verified or mac == last_working
             xbmc.log(f"[CBTV-HB] Tentativo {attempt}/{len(pool)} con MAC: {mac} (Top: {is_top})", xbmc.LOGINFO)
@@ -386,6 +389,11 @@ class HubliveStalkerClient:
                 final_url = (f"{self.portal_url}/play/live.php"
                              f"?mac={mac}&stream={stream_id_out}&extension=ts&play_token={url_or_token}")
 
+            # Salva il primo come fallback nel caso in cui tutti falliscano il probe live
+            if not first_fallback_url:
+                first_fallback_url = f"{final_url}|User-Agent={quote_plus(self.UA)}"
+                first_fallback_mac = mac
+
             # 4. Verifica se lo stream è realmente attivo (evita blocchi/black.ts con gestione ReadTimeout live)
             try:
                 v_session = requests.Session()
@@ -393,7 +401,7 @@ class HubliveStalkerClient:
                 with v_session.get(final_url, headers={"User-Agent": self.UA}, timeout=(2.5, 3.5), stream=True, allow_redirects=True) as r_play:
                     if r_play.status_code >= 400:
                         xbmc.log(f"[CBTV-HB] MAC {mac} HTTP error {r_play.status_code}", xbmc.LOGWARNING)
-                        if is_top:
+                        if is_top and r_play.status_code in [401, 403, 404]:
                             self.remove_top_verified_mac(mac)
                         exclude_macs.add(mac)
                         continue
@@ -432,8 +440,6 @@ class HubliveStalkerClient:
                 xbmc.log(f"[CBTV-HB] MAC {mac} stream live verificato (ReadTimeout live)", xbmc.LOGINFO)
             except Exception as e:
                 xbmc.log(f"[CBTV-HB] MAC {mac} errore verifica stream: {e}", xbmc.LOGWARNING)
-                if is_top:
-                    self.remove_top_verified_mac(mac)
                 exclude_macs.add(mac)
                 continue
 
@@ -447,10 +453,15 @@ class HubliveStalkerClient:
             
             return final_url_with_ua, mac
 
+        # Se nessun MAC ha completato il probe live ma un create_link ha avuto successo, usa il fallback
+        if first_fallback_url:
+            xbmc.log(f"[CBTV-HB] Nessun MAC ha passato il probe live rapido. Uso il primo stream autorizzato: {first_fallback_mac}", xbmc.LOGINFO)
+            return first_fallback_url, first_fallback_mac
+
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.3.3"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.3.4"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""
@@ -776,8 +787,8 @@ class HubliveStalkerClient:
                 return fallback
 
         target_titles = [
-            "┃IT┃ ZONA DAZN", "┃IT┃ DAZN", "┃IT┃ DAZN SERIE A", "┃IT┃ DAZN SERIE B",
-            "IT| DAZN", "IT| DAZN VIP HD/4K", "IT| DAZN PPV"
+            "IT| SERIE A/B/C", "IT| DAZN VIP HD/4K", "IT| DAZN PPV", "IT| DAZN",
+            "┃IT┃ ZONA DAZN", "┃IT┃ DAZN", "┃IT┃ DAZN SERIE A", "┃IT┃ DAZN SERIE B"
         ]
         gids = self._find_genre_ids_by_titles(target_titles)
         if not gids and self.server_id == "s50":

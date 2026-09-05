@@ -1,226 +1,298 @@
 [
   {
-    "name": "IT DAZN 3 FHD",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=228860&extension=ts&play_token=oL3TGjTkgI"
+    "name": "ZONA DAZN SERIE A 1 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=495146"
   },
   {
-    "name": "IT DAZN 4 FHD",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=228859&extension=ts&play_token=BpX8IbWdap"
+    "name": "ZONA DAZN SERIE A 1 HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=495145"
   },
   {
-    "name": "IT DAZN 13 FHD",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=884017&extension=ts&play_token=Vr5wyNtNUM"
+    "name": "ZONA DAZN SERIE A 1 SD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=495144"
   },
   {
-    "name": "IT DAZN 14 FHD",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=884018&extension=ts&play_token=JQaEqe4lvE"
+    "name": "ZONA DAZN SERIE A 2 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=495149"
   },
   {
-    "name": "IT DAZN EVENT 1 FHD",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=228862&extension=ts&play_token=6gAjx5aZMr"
+    "name": "ZONA DAZN SERIE A 2 HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=495148"
   },
   {
-    "name": "IT DAZN EVENT 2 FHD",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=228861&extension=ts&play_token=3j4UJoYMKH"
+    "name": "ZONA DAZN SERIE A 2 SD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=495147"
   },
   {
-    "name": "IT DAZN EVENT 5",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=228858&extension=ts&play_token=38KZJGCpGP"
+    "name": "ZONA DAZN SERIE A 3 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=495152"
   },
   {
-    "name": "IT DAZN EVENT 6 FHD",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=228857&extension=ts&play_token=oF76FFAedZ"
+    "name": "ZONA DAZN SERIE A 3 HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=495151"
   },
   {
-    "name": "IT DAZN EVENT 7 FHD",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=228856&extension=ts&play_token=7KwGqQxJse"
+    "name": "ZONA DAZN SERIE A 3 SD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=495150"
   },
   {
-    "name": "IT DAZN EVENT 8 FHD",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=228855&extension=ts&play_token=k1aysRN7N4"
+    "name": "DAZN DIRETTA GOL SERIE A UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=300630"
   },
   {
-    "name": "IT DAZN EVENT 9 FHD",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=228854&extension=ts&play_token=13XWJWuPvQ"
+    "name": "DAZN DIRETTA GOL SERIE A HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351709"
   },
   {
-    "name": "IT DAZN EVENT 10 FHD",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=228853&extension=ts&play_token=6DFUqy2CpN"
+    "name": "DAZN DIRETTA GOL SERIE A",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351708"
   },
   {
-    "name": "IT DAZN EVENT 11 FHD",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=228849&extension=ts&play_token=q7gqb6XLON"
+    "name": "DAZN DIRETTA GOL SERIE A SD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=495140"
   },
   {
-    "name": "IT DAZN EVENT 12 FHD",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=228848&extension=ts&play_token=eaQlLSS3Y2"
+    "name": "DAZN DIRETTA GOL SERIE A 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351713"
   },
   {
-    "name": "IT DAZN SERIE A 1 FHD",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158714&extension=ts&play_token=kh4K0x1SNc"
+    "name": "DAZN DIRETTA GOL SERIE B UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=300631"
   },
   {
-    "name": "IT DAZN SERIE A 2 FHD",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158715&extension=ts&play_token=XiCyVIFaeJ"
+    "name": "DAZN DIRETTA GOL SERIE B HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351707"
   },
   {
-    "name": "IT DAZN SERIE A 3",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158716&extension=ts&play_token=dPumsJu5Jx"
+    "name": "DAZN DIRETTA GOL SERIE B",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351706"
   },
   {
-    "name": "IT DAZN SERIE A 4 FHD",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158717&extension=ts&play_token=hAiVmPWLxZ"
+    "name": "DAZN DIRETTA GOL SERIE B SD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=495138"
   },
   {
-    "name": "IT DAZN SERIE A 5",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158718&extension=ts&play_token=xUOsDPXFwm"
+    "name": "DAZN DIRETTA GOL SERIE B 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351712"
   },
   {
-    "name": "IT DAZN SERIE A 6",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158719&extension=ts&play_token=WMNTszU8sK"
+    "name": "DAZN DIRETTA GOL EUROPA LEAGUE HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351705"
   },
   {
-    "name": "IT DAZN SERIE A 7",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158720&extension=ts&play_token=xslmKsfgWG"
+    "name": "DAZN DIRETTA GOL EUROPA LEAGUE",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351704"
   },
   {
-    "name": "IT DAZN SERIE A 8",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158721&extension=ts&play_token=B2W3TnOqNe"
+    "name": "DAZN DIRETTA GOL EUROPA LEAGUE 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351711"
   },
   {
-    "name": "IT DAZN SERIE A 9",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158722&extension=ts&play_token=HPQFwO33bs"
+    "name": "DAZN CHANNEL HEVC",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351703"
   },
   {
-    "name": "IT DAZN SERIE A 10",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158723&extension=ts&play_token=wewamXGzFc"
+    "name": "DAZN CHANNEL HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351701"
   },
   {
-    "name": "IT DAZN SERIE A 11",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158724&extension=ts&play_token=q8YDR8PnUq"
+    "name": "DAZN CHANNEL",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351700"
   },
   {
-    "name": "IT DAZN SERIE A 12",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158725&extension=ts&play_token=DPk32Wmg3x"
+    "name": "DAZN CHANNEL 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351702"
   },
   {
-    "name": "IT DAZN SERIE A 13",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158726&extension=ts&play_token=MJjYmWwWk3"
+    "name": "DAZN REDBULL 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351795"
   },
   {
-    "name": "IT DAZN SERIE A 14",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158727&extension=ts&play_token=FbRgB1J5GN"
+    "name": "DAZN WEB 1 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351758"
   },
   {
-    "name": "IT DAZN SERIE B 1",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158802&extension=ts&play_token=pgvc7sYhKU"
+    "name": "DAZN WEB 1 HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351748"
   },
   {
-    "name": "IT DAZN SERIE B 2",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158803&extension=ts&play_token=IOLr8F5Nxu"
+    "name": "DAZN WEB 1",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351747"
   },
   {
-    "name": "IT DAZN SERIE B 3",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158804&extension=ts&play_token=9HRbGh4Lwc"
+    "name": "DAZN WEB 2 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351757"
   },
   {
-    "name": "IT DAZN SERIE B 4",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158805&extension=ts&play_token=o9gj1ExCHo"
+    "name": "DAZN WEB 2 HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351746"
   },
   {
-    "name": "IT DAZN SERIE B 5",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158806&extension=ts&play_token=zYihHAJF4K"
+    "name": "DAZN WEB 2",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351745"
   },
   {
-    "name": "IT DAZN SERIE B 6",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158807&extension=ts&play_token=RLbEHjSNcV"
+    "name": "DAZN WEB 3 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351756"
   },
   {
-    "name": "IT DAZN SERIE B 7",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158808&extension=ts&play_token=BqnujXtSeS"
+    "name": "DAZN WEB 3 HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351744"
   },
   {
-    "name": "IT DAZN SERIE B 8",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158809&extension=ts&play_token=Z3u0xTfxIi"
+    "name": "DAZN WEB 3",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351743"
   },
   {
-    "name": "IT DAZN SERIE B 9",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158810&extension=ts&play_token=iYa5lFKLch"
+    "name": "DAZN WEB 4 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351755"
   },
   {
-    "name": "IT DAZN SERIE B 10",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158811&extension=ts&play_token=QMmQEfacWL"
+    "name": "DAZN WEB 4 HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351742"
   },
   {
-    "name": "IT DAZN SERIE B 11",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158812&extension=ts&play_token=8w8t07QSwq"
+    "name": "DAZN WEB 4",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351741"
   },
   {
-    "name": "IT DAZN SERIE B 12",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158813&extension=ts&play_token=utF7fgglfS"
+    "name": "DAZN WEB 5 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351754"
   },
   {
-    "name": "IT DAZN SERIE B 13",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158814&extension=ts&play_token=ticqec0mPF"
+    "name": "DAZN WEB 5 HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351740"
   },
   {
-    "name": "IT DAZN SERIE B 14",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158815&extension=ts&play_token=vyDG1KljOq"
+    "name": "DAZN WEB 5",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351739"
   },
   {
-    "name": "IT ZONA DAZN",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158737&extension=ts&play_token=eFpjmiWr9H"
+    "name": "DAZN WEB 6 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351753"
   },
   {
-    "name": "IT ZONA DAZN 2",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158741&extension=ts&play_token=HXySs2bkVd"
+    "name": "DAZN WEB 6 HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351738"
   },
   {
-    "name": "IT ZONA DAZN 2 FHD",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158738&extension=ts&play_token=N80BnAtU7B"
+    "name": "DAZN WEB 6",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351737"
   },
   {
-    "name": "IT ZONA DAZN 2 HD",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158740&extension=ts&play_token=k8H5pdord3"
+    "name": "DAZN WEB 7 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351752"
   },
   {
-    "name": "IT ZONA DAZN 2 HEVC",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158739&extension=ts&play_token=h9Icm7iNL5"
+    "name": "DAZN WEB 7 HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351736"
   },
   {
-    "name": "IT ZONA DAZN 3",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158745&extension=ts&play_token=VxQE3tx3xt"
+    "name": "DAZN WEB 7",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351735"
   },
   {
-    "name": "IT ZONA DAZN 3 FHD",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158742&extension=ts&play_token=EHyHafNvd6"
+    "name": "DAZN WEB 8 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351751"
   },
   {
-    "name": "IT ZONA DAZN 3 HD",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158744&extension=ts&play_token=NIZzyJHQIi"
+    "name": "DAZN WEB 8 HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351734"
   },
   {
-    "name": "IT ZONA DAZN 3 HEVC",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158743&extension=ts&play_token=yVP66iCefb"
+    "name": "DAZN WEB 8",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351733"
   },
   {
-    "name": "IT ZONA DAZN 4 FHD",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158746&extension=ts&play_token=bnkli7n0Tk"
+    "name": "DAZN WEB 9 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351750"
   },
   {
-    "name": "IT ZONA DAZN 4 HEVC",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158747&extension=ts&play_token=YE2ULkPERN"
+    "name": "DAZN WEB 9 HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351732"
   },
   {
-    "name": "IT ZONA DAZN FHD",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158736&extension=ts&play_token=vlJqPRZ5lV"
+    "name": "DAZN WEB 9",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351731"
   },
   {
-    "name": "IT ZONA DAZN HD",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158735&extension=ts&play_token=fRVpWO3NET"
+    "name": "DAZN WEB 10 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351749"
   },
   {
-    "name": "IT ZONA DAZN HEVC",
-    "cmd": "ffmpeg http://line.watchtivo-8k.com:80/play/live.php?mac=00:1A:79:B6:26:F7&stream=1158734&extension=ts&play_token=SZKMxHDcQU"
+    "name": "DAZN WEB 10 HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351730"
+  },
+  {
+    "name": "DAZN WEB 10",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351729"
+  },
+  {
+    "name": "DAZN WEB 11 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351726"
+  },
+  {
+    "name": "DAZN WEB 11 HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351727"
+  },
+  {
+    "name": "DAZN WEB 11",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351728"
+  },
+  {
+    "name": "DAZN WEB 12 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351723"
+  },
+  {
+    "name": "DAZN WEB 12 HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351724"
+  },
+  {
+    "name": "DAZN WEB 12",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351725"
+  },
+  {
+    "name": "DAZN WEB 13 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351720"
+  },
+  {
+    "name": "DAZN WEB 13 HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351721"
+  },
+  {
+    "name": "DAZN WEB 13",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351722"
+  },
+  {
+    "name": "DAZN WEB 14 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351717"
+  },
+  {
+    "name": "DAZN WEB 14 HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351718"
+  },
+  {
+    "name": "DAZN WEB 14",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351719"
+  },
+  {
+    "name": "DAZN WEB 15 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351714"
+  },
+  {
+    "name": "DAZN WEB 15 HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351715"
+  },
+  {
+    "name": "DAZN WEB 15",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351716"
+  },
+  {
+    "name": "DAZN NFL",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351699"
+  },
+  {
+    "name": "VETRINA DAZN",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351698"
   }
 ]

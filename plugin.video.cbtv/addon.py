@@ -1628,7 +1628,7 @@ def list_eagle_genres(eb_type, force_refresh=False):
                            is_folder=True)
         if force_refresh:
             xbmcgui.Dialog().notification("CBTV", "Aggiornamento canali DAZN...", xbmcgui.NOTIFICATION_INFO, 2000)
-        hl_client_dazn = HubliveStalkerClient("s50")
+        hl_client_dazn = HubliveStalkerClient("s28")
         hl_channels = hl_client_dazn.get_dazn_channels(force_refresh=force_refresh)
         for ch in hl_channels:
             title = f"{ch['name']} [COLOR orange](HB)[/COLOR]"

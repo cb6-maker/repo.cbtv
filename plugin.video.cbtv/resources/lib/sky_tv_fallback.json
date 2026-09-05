@@ -1,206 +1,562 @@
 [
   {
-    "name": "SKY ATLANTIC FULL HD",
-    "cmd": "ffmpeg http://700730.org/ch/56471_"
+    "name": "SKY ADVENTURE 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=1492144"
+  },
+  {
+    "name": "SKY ADVENTURE HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=1492143"
+  },
+  {
+    "name": "SKY ADVENTURE SD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=1492142"
+  },
+  {
+    "name": "SKY ARTE 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284892"
+  },
+  {
+    "name": "SKY ARTE HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284893"
+  },
+  {
+    "name": "SKY ARTE HEVC",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284791"
+  },
+  {
+    "name": "SKY ARTE UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284725"
+  },
+  {
+    "name": "SKY ATLANTIC 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284894"
   },
   {
     "name": "SKY ATLANTIC HD",
-    "cmd": "ffmpeg http://700730.org/ch/56472_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284895"
+  },
+  {
+    "name": "SKY ATLANTIC HEVC",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284807"
   },
   {
     "name": "SKY ATLANTIC SD",
-    "cmd": "ffmpeg http://700730.org/ch/56473_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284896"
   },
   {
-    "name": "SKY CINEMA ACTION FULL HD",
-    "cmd": "ffmpeg http://700730.org/ch/56446_"
+    "name": "SKY ATLANTIC UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284656"
+  },
+  {
+    "name": "SKY BABY 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284757"
+  },
+  {
+    "name": "SKY BABY UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284756"
+  },
+  {
+    "name": "SKY BOOMERANG UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284753"
+  },
+  {
+    "name": "SKY CACCIA UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284702"
+  },
+  {
+    "name": "SKY CARTOON NETWORK 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284755"
+  },
+  {
+    "name": "SKY CARTOON NETWORK HEVC",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284798"
+  },
+  {
+    "name": "SKY CARTOON NETWORK UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284754"
+  },
+  {
+    "name": "SKY CIELO 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284889"
+  },
+  {
+    "name": "SKY CINEMA ACTION 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284858"
   },
   {
     "name": "SKY CINEMA ACTION HD",
-    "cmd": "ffmpeg http://700730.org/ch/56447_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284859"
   },
   {
     "name": "SKY CINEMA ACTION HEVC",
-    "cmd": "ffmpeg http://700730.org/ch/136717_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284820"
   },
   {
     "name": "SKY CINEMA ACTION SD",
-    "cmd": "ffmpeg http://700730.org/ch/56448_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284860"
   },
   {
-    "name": "SKY CINEMA COLLECTION FULL HD",
-    "cmd": "ffmpeg http://700730.org/ch/56443_"
+    "name": "SKY CINEMA ACTION UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284634"
+  },
+  {
+    "name": "SKY CINEMA COLLECTION 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284861"
   },
   {
     "name": "SKY CINEMA COLLECTION HD",
-    "cmd": "ffmpeg http://700730.org/ch/56444_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284862"
   },
   {
     "name": "SKY CINEMA COLLECTION HEVC",
-    "cmd": "ffmpeg http://700730.org/ch/136716_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284819"
   },
   {
     "name": "SKY CINEMA COLLECTION SD",
-    "cmd": "ffmpeg http://700730.org/ch/56445_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284863"
   },
   {
-    "name": "SKY CINEMA COMEDY FULL HD",
-    "cmd": "ffmpeg http://700730.org/ch/56440_"
+    "name": "SKY CINEMA COLLECTION UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284631"
+  },
+  {
+    "name": "SKY CINEMA COMEDY 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284864"
   },
   {
     "name": "SKY CINEMA COMEDY HD",
-    "cmd": "ffmpeg http://700730.org/ch/56441_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284865"
   },
   {
     "name": "SKY CINEMA COMEDY HEVC",
-    "cmd": "ffmpeg http://700730.org/ch/136715_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284818"
   },
   {
     "name": "SKY CINEMA COMEDY SD",
-    "cmd": "ffmpeg http://700730.org/ch/56442_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284866"
   },
   {
-    "name": "SKY CINEMA DRAMA FULL HD",
-    "cmd": "ffmpeg http://700730.org/ch/56436_"
+    "name": "SKY CINEMA COMEDY UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284642"
+  },
+  {
+    "name": "SKY CINEMA DRAMA 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284867"
   },
   {
     "name": "SKY CINEMA DRAMA HD",
-    "cmd": "ffmpeg http://700730.org/ch/56437_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284868"
   },
   {
     "name": "SKY CINEMA DRAMA HEVC",
-    "cmd": "ffmpeg http://700730.org/ch/136714_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284817"
   },
   {
     "name": "SKY CINEMA DRAMA SD",
-    "cmd": "ffmpeg http://700730.org/ch/56438_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284869"
   },
   {
-    "name": "SKY CINEMA DUE 24 FULL HD",
-    "cmd": "ffmpeg http://700730.org/ch/56425_"
+    "name": "SKY CINEMA DRAMA UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284639"
   },
   {
-    "name": "SKY CINEMA DUE 24 HD",
-    "cmd": "ffmpeg http://700730.org/ch/56426_"
+    "name": "SKY CINEMA DUE24 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284629"
+  },
+  {
+    "name": "SKY CINEMA DUE24 UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284628"
+  },
+  {
+    "name": "SKY CINEMA DUE 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284872"
   },
   {
     "name": "SKY CINEMA DUE 24 HEVC",
-    "cmd": "ffmpeg http://700730.org/ch/136713_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284816"
   },
   {
-    "name": "SKY CINEMA DUE FULL HD",
-    "cmd": "ffmpeg http://700730.org/ch/56422_"
+    "name": "SKY CINEMA DUE  24 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284870"
+  },
+  {
+    "name": "SKY CINEMA DUE  24 HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284871"
   },
   {
     "name": "SKY CINEMA DUE HD",
-    "cmd": "ffmpeg http://700730.org/ch/56423_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284873"
   },
   {
     "name": "SKY CINEMA DUE HEVC",
-    "cmd": "ffmpeg http://700730.org/ch/136712_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284815"
   },
   {
     "name": "SKY CINEMA DUE SD",
-    "cmd": "ffmpeg http://700730.org/ch/56424_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284874"
   },
   {
-    "name": "SKY CINEMA FAMILY FULL HD",
-    "cmd": "ffmpeg http://700730.org/ch/56433_"
+    "name": "SKY CINEMA DUE UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284626"
+  },
+  {
+    "name": "SKY CINEMA FAMILY 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284875"
   },
   {
     "name": "SKY CINEMA FAMILY HD",
-    "cmd": "ffmpeg http://700730.org/ch/56434_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284876"
+  },
+  {
+    "name": "SKY CINEMA FAMILY HEVC",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284814"
   },
   {
     "name": "SKY CINEMA FAMILY SD",
-    "cmd": "ffmpeg http://700730.org/ch/56435_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284877"
   },
   {
-    "name": "SKY CINEMA ROMANCE FULL HD",
-    "cmd": "ffmpeg http://700730.org/ch/56430_"
+    "name": "SKY CINEMA FAMILY UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284632"
+  },
+  {
+    "name": "SKY CINEMA ROMANCE 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284878"
   },
   {
     "name": "SKY CINEMA ROMANCE HD",
-    "cmd": "ffmpeg http://700730.org/ch/56431_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284879"
   },
   {
     "name": "SKY CINEMA ROMANCE HEVC",
-    "cmd": "ffmpeg http://700730.org/ch/136710_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284813"
   },
   {
     "name": "SKY CINEMA ROMANCE SD",
-    "cmd": "ffmpeg http://700730.org/ch/56432_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284880"
   },
   {
-    "name": "SKY CINEMA SUSPENSE FULL HD",
-    "cmd": "ffmpeg http://700730.org/ch/56427_"
+    "name": "SKY CINEMA ROMANCE UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284638"
+  },
+  {
+    "name": "SKY CINEMA SUSPENSE 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284881"
   },
   {
     "name": "SKY CINEMA SUSPENSE HD",
-    "cmd": "ffmpeg http://700730.org/ch/56428_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284882"
   },
   {
     "name": "SKY CINEMA SUSPENSE HEVC",
-    "cmd": "ffmpeg http://700730.org/ch/136709_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284812"
   },
   {
     "name": "SKY CINEMA SUSPENSE SD",
-    "cmd": "ffmpeg http://700730.org/ch/56429_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284883"
   },
   {
-    "name": "SKY CINEMA UNO 24 FULL HD",
-    "cmd": "ffmpeg http://700730.org/ch/56421_"
+    "name": "SKY CINEMA SUSPENSE UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284636"
+  },
+  {
+    "name": "SKY CINEMA UNO24 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284625"
+  },
+  {
+    "name": "SKY CINEMA UNO24 UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284624"
+  },
+  {
+    "name": "SKY CINEMA UNO 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284886"
+  },
+  {
+    "name": "SKY CINEMA UNO 24 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284884"
   },
   {
     "name": "SKY CINEMA UNO 24 HD",
-    "cmd": "ffmpeg http://700730.org/ch/56420_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284885"
   },
   {
     "name": "SKY CINEMA UNO 24 HEVC",
-    "cmd": "ffmpeg http://700730.org/ch/136708_"
-  },
-  {
-    "name": "SKY CINEMA UNO FULL HD",
-    "cmd": "ffmpeg http://700730.org/ch/56417_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284811"
   },
   {
     "name": "SKY CINEMA UNO HD",
-    "cmd": "ffmpeg http://700730.org/ch/56418_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284887"
   },
   {
     "name": "SKY CINEMA UNO HEVC",
-    "cmd": "ffmpeg http://700730.org/ch/136707_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284810"
   },
   {
     "name": "SKY CINEMA UNO SD",
-    "cmd": "ffmpeg http://700730.org/ch/56419_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284888"
   },
   {
-    "name": "SKY SERIE FULL HD",
-    "cmd": "ffmpeg http://700730.org/ch/337088_"
+    "name": "SKY CINEMA UNO UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284622"
   },
   {
-    "name": "SKY SERIE HD",
-    "cmd": "ffmpeg http://700730.org/ch/337089_"
+    "name": "SKY COMEDY CENTRAL 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284891"
+  },
+  {
+    "name": "SKY COMEDY CENTRAL HEVC",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284808"
+  },
+  {
+    "name": "SKY COMEDY CENTRAL UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284664"
+  },
+  {
+    "name": "SKY CRIME INVEST 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284663"
+  },
+  {
+    "name": "SKY CRIME INVEST UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284662"
+  },
+  {
+    "name": "SKY CRIME INVESTIGATION 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285392"
+  },
+  {
+    "name": "SKY CRIME INVESTIGATION HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285393"
+  },
+  {
+    "name": "SKY CRIME INVESTIGATION HEVC",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284805"
+  },
+  {
+    "name": "SKY DEAJUNIOR 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284746"
+  },
+  {
+    "name": "SKY DEAJUNIOR UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284745"
+  },
+  {
+    "name": "SKY DEAKIDS 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284748"
+  },
+  {
+    "name": "SKY DEAKIDS UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284747"
+  },
+  {
+    "name": "SKY DISCOVERY 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285394"
+  },
+  {
+    "name": "SKY DISCOVERY  4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284732"
+  },
+  {
+    "name": "SKY DISCOVERY  UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284731"
+  },
+  {
+    "name": "SKY DISCOVERY HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285395"
+  },
+  {
+    "name": "SKY DISCOVERY HEVC",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284792"
+  },
+  {
+    "name": "SKY DMAX 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285398"
+  },
+  {
+    "name": "SKY DOCUMENTARIES HEVC",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284855"
+  },
+  {
+    "name": "SKY EXPLORER TV 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=326075"
+  },
+  {
+    "name": "SKY EXPLORER TV HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=326074"
+  },
+  {
+    "name": "SKY FOOD NETWORK 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285399"
+  },
+  {
+    "name": "SKY FOOD NETWORK HEVC",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284797"
+  },
+  {
+    "name": "SKY HISTORY 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285400"
+  },
+  {
+    "name": "SKY HISTORY HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285401"
+  },
+  {
+    "name": "SKY HISTORY HEVC",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284794"
+  },
+  {
+    "name": "SKY HISTORY UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284735"
+  },
+  {
+    "name": "SKY HORSE TV 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285388"
+  },
+  {
+    "name": "SKY HORSE TV HEVC",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284804"
+  },
+  {
+    "name": "SKY INTER 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285327"
+  },
+  {
+    "name": "SKY INTER HEVC",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284851"
+  },
+  {
+    "name": "SKY INTER TV UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284720"
+  },
+  {
+    "name": "SKY INVESTIGATION HEVC",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284853"
+  },
+  {
+    "name": "SKY LAF 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284672"
+  },
+  {
+    "name": "SKY LAF UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284671"
+  },
+  {
+    "name": "SKY LAZIO 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285330"
+  },
+  {
+    "name": "SKY LAZIO HEVC",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284831"
+  },
+  {
+    "name": "SKY LAZIO UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284721"
+  },
+  {
+    "name": "SKY MILAN 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285331"
+  },
+  {
+    "name": "SKY MILAN HEVC",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284833"
+  },
+  {
+    "name": "SKY MILAN TV UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284719"
+  },
+  {
+    "name": "SKY MTV HEVC",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284809"
+  },
+  {
+    "name": "SKY NATURE HEVC",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284856"
+  },
+  {
+    "name": "SKY NICK JR HEVC",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284800"
+  },
+  {
+    "name": "SKY NICKELODEON 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284752"
+  },
+  {
+    "name": "SKY NICKELODEON HEVC",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284799"
+  },
+  {
+    "name": "SKY NICKELODEON UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284751"
+  },
+  {
+    "name": "SKY NICKJR 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284750"
+  },
+  {
+    "name": "SKY NICKJR UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284749"
+  },
+  {
+    "name": "SKY PESCA E CACCIA 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284897"
+  },
+  {
+    "name": "SKY PESCA UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284703"
+  },
+  {
+    "name": "SKY REAL TIME 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285469"
+  },
+  {
+    "name": "SKY RETE 7",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285470"
   },
   {
     "name": "SKY SERIE HEVC",
-    "cmd": "ffmpeg http://700730.org/ch/337090_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284854"
   },
   {
-    "name": "SKY UNO FULL HD",
-    "cmd": "ffmpeg http://700730.org/ch/56474_"
+    "name": "SKY SUPER TENNIS 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285262"
+  },
+  {
+    "name": "SKY SUPER TENNIS HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285263"
+  },
+  {
+    "name": "SKY TG24 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285473"
+  },
+  {
+    "name": "SKY TG24 HEVC",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284785"
+  },
+  {
+    "name": "SKY TG24 UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284770"
+  },
+  {
+    "name": "SKY TG 24 HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285472"
+  },
+  {
+    "name": "SKY UNO 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285474"
   },
   {
     "name": "SKY UNO HD",
-    "cmd": "ffmpeg http://700730.org/ch/56475_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285475"
   },
   {
     "name": "SKY UNO HEVC",
-    "cmd": "ffmpeg http://700730.org/ch/136723_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284825"
   },
   {
     "name": "SKY UNO SD",
-    "cmd": "ffmpeg http://700730.org/ch/56476_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285476"
+  },
+  {
+    "name": "SKY UNO UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284654"
   }
 ]

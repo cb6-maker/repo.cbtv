@@ -1,334 +1,558 @@
 [
   {
-    "name": "SKY SPORT 24 FULL HD",
-    "cmd": "ffmpeg http://700730.org/ch/56592_"
+    "name": "SKY SPORT 24 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284683"
   },
   {
     "name": "SKY SPORT 24 HD",
-    "cmd": "ffmpeg http://700730.org/ch/56593_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285211"
   },
   {
     "name": "SKY SPORT 24 HEVC",
-    "cmd": "ffmpeg http://700730.org/ch/136692_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284843"
   },
   {
     "name": "SKY SPORT 24 SD",
-    "cmd": "ffmpeg http://700730.org/ch/56594_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285212"
   },
   {
-    "name": "SKY SPORT UNO FULL HD",
-    "cmd": "ffmpeg http://700730.org/ch/56598_"
+    "name": "SKY SPORT 24 UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284682"
+  },
+  {
+    "name": "SKY SPORT UNO 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284687"
   },
   {
     "name": "SKY SPORT UNO HD",
-    "cmd": "ffmpeg http://700730.org/ch/56599_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285257"
   },
   {
     "name": "SKY SPORT UNO HEVC",
-    "cmd": "ffmpeg http://700730.org/ch/136690_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284841"
   },
   {
     "name": "SKY SPORT UNO SD",
-    "cmd": "ffmpeg http://700730.org/ch/56600_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285258"
   },
   {
-    "name": "SKY SPORT ACTION FULL HD",
-    "cmd": "ffmpeg http://700730.org/ch/337098_"
+    "name": "SKY SPORT UNO UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284686"
   },
   {
-    "name": "SKY SPORT ACTION HD",
-    "cmd": "ffmpeg http://700730.org/ch/337099_"
-  },
-  {
-    "name": "SKY SPORT ACTION HEVC",
-    "cmd": "ffmpeg http://700730.org/ch/337097_"
-  },
-  {
-    "name": "SKY SPORT ARENA FULL HD",
-    "cmd": "ffmpeg http://700730.org/ch/56618_"
-  },
-  {
-    "name": "SKY SPORT ARENA HD",
-    "cmd": "ffmpeg http://700730.org/ch/56619_"
-  },
-  {
-    "name": "SKY SPORT ARENA SD",
-    "cmd": "ffmpeg http://700730.org/ch/56620_"
-  },
-  {
-    "name": "SKY SPORT BAR DUE FULL HD (Only Event)",
-    "cmd": "ffmpeg http://700730.org/ch/365292_"
-  },
-  {
-    "name": "SKY SPORT BAR DUE HD (Only Event)",
-    "cmd": "ffmpeg http://700730.org/ch/365293_"
-  },
-  {
-    "name": "SKY SPORT BAR DUE SD (Only Event)",
-    "cmd": "ffmpeg http://700730.org/ch/365294_"
-  },
-  {
-    "name": "SKY SPORT BAR PRIMEVIDEO FULL HD (Only Event)",
-    "cmd": "ffmpeg http://700730.org/ch/365295_"
-  },
-  {
-    "name": "SKY SPORT BAR PRIMEVIDEO HD (Only Event)",
-    "cmd": "ffmpeg http://700730.org/ch/365296_"
-  },
-  {
-    "name": "SKY SPORT BAR PRIMEVIDEO SD (Only Event)",
-    "cmd": "ffmpeg http://700730.org/ch/365297_"
-  },
-  {
-    "name": "SKY SPORT BAR UNO FULL HD (Only Event)",
-    "cmd": "ffmpeg http://700730.org/ch/365289_"
-  },
-  {
-    "name": "SKY SPORT BAR UNO HD (Only Event)",
-    "cmd": "ffmpeg http://700730.org/ch/365290_"
-  },
-  {
-    "name": "SKY SPORT BAR UNO SD (Only Event)",
-    "cmd": "ffmpeg http://700730.org/ch/365291_"
-  },
-  {
-    "name": "SKY SPORT CALCIO FULL HD",
-    "cmd": "ffmpeg http://700730.org/ch/56621_"
+    "name": "SKY SPORT CALCIO 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284705"
   },
   {
     "name": "SKY SPORT CALCIO HD",
-    "cmd": "ffmpeg http://700730.org/ch/56622_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285233"
   },
   {
     "name": "SKY SPORT CALCIO HEVC",
-    "cmd": "ffmpeg http://700730.org/ch/136740_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284850"
   },
   {
     "name": "SKY SPORT CALCIO SD",
-    "cmd": "ffmpeg http://700730.org/ch/56623_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285234"
   },
   {
-    "name": "SKY SPORT COLLECTION HEVC",
-    "cmd": "ffmpeg http://700730.org/ch/136687_"
+    "name": "SKY SPORT CALCIO UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284704"
   },
   {
-    "name": "SKY SPORT F1 FULL HD",
-    "cmd": "ffmpeg http://700730.org/ch/56604_"
+    "name": "SKY SPORT SOLO CALCIO",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285254"
+  },
+  {
+    "name": "SKY SPORT F1 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284695"
   },
   {
     "name": "SKY SPORT F1 HD",
-    "cmd": "ffmpeg http://700730.org/ch/56605_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285221"
   },
   {
     "name": "SKY SPORT F1 HEVC",
-    "cmd": "ffmpeg http://700730.org/ch/136686_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284837"
   },
   {
     "name": "SKY SPORT F1 SD",
-    "cmd": "ffmpeg http://700730.org/ch/56606_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285222"
   },
   {
-    "name": "SKY SPORT GOLF FULL HD",
-    "cmd": "ffmpeg http://700730.org/ch/56607_"
+    "name": "SKY SPORT F1 UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284694"
   },
   {
-    "name": "SKY SPORT GOLF HD",
-    "cmd": "ffmpeg http://700730.org/ch/56608_"
+    "name": "SKY SPORT MOTO GP HEVC",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284836"
   },
   {
-    "name": "SKY SPORT GOLF SD",
-    "cmd": "ffmpeg http://700730.org/ch/56609_"
-  },
-  {
-    "name": "SKY SPORT MAX FULL HD",
-    "cmd": "ffmpeg http://700730.org/ch/56615_"
-  },
-  {
-    "name": "SKY SPORT MAX HD",
-    "cmd": "ffmpeg http://700730.org/ch/56616_"
-  },
-  {
-    "name": "SKY SPORT MAX SD",
-    "cmd": "ffmpeg http://700730.org/ch/56617_"
-  },
-  {
-    "name": "SKY SPORT MOTOGP FULL HD",
-    "cmd": "ffmpeg http://700730.org/ch/56601_"
+    "name": "SKY SPORT MOTOGP 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284697"
   },
   {
     "name": "SKY SPORT MOTOGP HD",
-    "cmd": "ffmpeg http://700730.org/ch/56602_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285227"
   },
   {
     "name": "SKY SPORT MOTOGP SD",
-    "cmd": "ffmpeg http://700730.org/ch/56603_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285228"
   },
   {
-    "name": "SKY SPORT NBA FULL HD",
-    "cmd": "ffmpeg http://700730.org/ch/56610_"
+    "name": "SKY SPORT MOTOGP UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284696"
   },
   {
-    "name": "SKY SPORT NBA HD",
-    "cmd": "ffmpeg http://700730.org/ch/56611_"
-  },
-  {
-    "name": "SKY SPORT NBA HEVC",
-    "cmd": "ffmpeg http://700730.org/ch/136691_"
-  },
-  {
-    "name": "SKY SPORT NBA SD",
-    "cmd": "ffmpeg http://700730.org/ch/56612_"
-  },
-  {
-    "name": "SKY SPORT TENNIS FHD",
-    "cmd": "ffmpeg http://700730.org/ch/890285_"
+    "name": "SKY SPORT TENNIS 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285216"
   },
   {
     "name": "SKY SPORT TENNIS HD",
-    "cmd": "ffmpeg http://700730.org/ch/890286_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285218"
+  },
+  {
+    "name": "SKY SPORT TENNIS HEVC",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284838"
   },
   {
     "name": "SKY SPORT TENNIS SD",
-    "cmd": "ffmpeg http://700730.org/ch/890287_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285217"
   },
   {
-    "name": "SKY CALCIO 1 FULL HD",
-    "cmd": "ffmpeg http://700730.org/ch/56650_"
+    "name": "SKY SPORT ARENA 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284691"
+  },
+  {
+    "name": "SKY SPORT ARENA HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285214"
+  },
+  {
+    "name": "SKY SPORT ARENA HEVC",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284839"
+  },
+  {
+    "name": "SKY SPORT ARENA SD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285215"
+  },
+  {
+    "name": "SKY SPORT ARENA UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284690"
+  },
+  {
+    "name": "SKY SPORT ACTION 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284661"
+  },
+  {
+    "name": "SKY SPORT ACTION HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285208"
+  },
+  {
+    "name": "SKY SPORT ACTION HEVC",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284829"
+  },
+  {
+    "name": "SKY SPORT ACTION SD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285209"
+  },
+  {
+    "name": "SKY SPORT ACTION UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284660"
+  },
+  {
+    "name": "SKY SPORT MAX 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=707917"
+  },
+  {
+    "name": "SKY SPORT MAX HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=707916"
+  },
+  {
+    "name": "SKY SPORT MAX SD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=707915"
+  },
+  {
+    "name": "SKY SPORT BAR DUE 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=287860"
+  },
+  {
+    "name": "SKY SPORT BAR DUE HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=287861"
+  },
+  {
+    "name": "SKY SPORT BAR DUE SD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=287862"
+  },
+  {
+    "name": "SKY SPORT BAR PRIMEVIDEO 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=287863"
+  },
+  {
+    "name": "SKY SPORT BAR PRIMEVIDEO HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=287864"
+  },
+  {
+    "name": "SKY SPORT BAR PRIMEVIDEO SD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=287865"
+  },
+  {
+    "name": "SKY SPORT BAR UNO 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=287857"
+  },
+  {
+    "name": "SKY SPORT BAR UNO HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=287858"
+  },
+  {
+    "name": "SKY SPORT BAR UNO SD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=287859"
+  },
+  {
+    "name": "SKY SPORT COLLECTION 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284693"
+  },
+  {
+    "name": "SKY SPORT COLLECTION UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284692"
+  },
+  {
+    "name": "SKY SPORT FOOTBALL 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284689"
+  },
+  {
+    "name": "SKY SPORT FOOTBALL HEVC",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284840"
+  },
+  {
+    "name": "SKY SPORT FOOTBALL UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284688"
+  },
+  {
+    "name": "SKY SPORT HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285260"
+  },
+  {
+    "name": "SKY SPORT ITALIA",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285259"
+  },
+  {
+    "name": "SKY SPORT LEGEND 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=1492147"
+  },
+  {
+    "name": "SKY SPORT LEGEND HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=1492146"
+  },
+  {
+    "name": "SKY SPORT LEGEND SD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=1492145"
+  },
+  {
+    "name": "SKY SPORT LIVE 24",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285261"
+  },
+  {
+    "name": "SKY SPORT MIX 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=1492150"
+  },
+  {
+    "name": "SKY SPORT MIX HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=1492149"
+  },
+  {
+    "name": "SKY SPORT MIX SD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=1492148"
+  },
+  {
+    "name": "SKY SPORT NBA 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284685"
+  },
+  {
+    "name": "SKY SPORT NBA HD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285230"
+  },
+  {
+    "name": "SKY SPORT NBA HEVC",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284842"
+  },
+  {
+    "name": "SKY SPORT NBA SD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285231"
+  },
+  {
+    "name": "SKY SPORT NBA UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284684"
+  },
+  {
+    "name": "SKY SPORT SOLO MOTORI",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285255"
+  },
+  {
+    "name": "SKY SPORTOUTDOOR.TV",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285326"
+  },
+  {
+    "name": "SKY SPORTPLUS",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285264"
+  },
+  {
+    "name": "SKY CALCIO 1 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284707"
   },
   {
     "name": "SKY CALCIO 1 HD",
-    "cmd": "ffmpeg http://700730.org/ch/56651_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285236"
   },
   {
     "name": "SKY CALCIO 1 HEVC",
-    "cmd": "ffmpeg http://700730.org/ch/136734_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284844"
   },
   {
     "name": "SKY CALCIO 1 SD",
-    "cmd": "ffmpeg http://700730.org/ch/56652_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285237"
   },
   {
-    "name": "SKY CALCIO 2 FULL HD",
-    "cmd": "ffmpeg http://700730.org/ch/56653_"
+    "name": "SKY CALCIO 1 UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284706"
+  },
+  {
+    "name": "SKY CALCIO 2 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284709"
   },
   {
     "name": "SKY CALCIO 2 HD",
-    "cmd": "ffmpeg http://700730.org/ch/56654_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285239"
   },
   {
     "name": "SKY CALCIO 2 HEVC",
-    "cmd": "ffmpeg http://700730.org/ch/136735_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284845"
   },
   {
     "name": "SKY CALCIO 2 SD",
-    "cmd": "ffmpeg http://700730.org/ch/56655_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285240"
   },
   {
-    "name": "SKY CALCIO 3 FULL HD",
-    "cmd": "ffmpeg http://700730.org/ch/56656_"
+    "name": "SKY CALCIO 2 UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284708"
+  },
+  {
+    "name": "SKY CALCIO 3 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284711"
   },
   {
     "name": "SKY CALCIO 3 HD",
-    "cmd": "ffmpeg http://700730.org/ch/56657_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285242"
   },
   {
     "name": "SKY CALCIO 3 HEVC",
-    "cmd": "ffmpeg http://700730.org/ch/136736_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284846"
   },
   {
     "name": "SKY CALCIO 3 SD",
-    "cmd": "ffmpeg http://700730.org/ch/56658_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285243"
   },
   {
-    "name": "SKY CALCIO 4 FULL HD",
-    "cmd": "ffmpeg http://700730.org/ch/56659_"
+    "name": "SKY CALCIO 3 UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284710"
+  },
+  {
+    "name": "SKY CALCIO 4 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284722"
   },
   {
     "name": "SKY CALCIO 4 HD",
-    "cmd": "ffmpeg http://700730.org/ch/56660_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285245"
   },
   {
     "name": "SKY CALCIO 4 HEVC",
-    "cmd": "ffmpeg http://700730.org/ch/136737_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284847"
   },
   {
     "name": "SKY CALCIO 4 SD",
-    "cmd": "ffmpeg http://700730.org/ch/56661_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285246"
   },
   {
-    "name": "SKY CALCIO 5 FULL HD",
-    "cmd": "ffmpeg http://700730.org/ch/56662_"
+    "name": "SKY CALCIO 4 UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284712"
+  },
+  {
+    "name": "SKY CALCIO 5 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284715"
   },
   {
     "name": "SKY CALCIO 5 HD",
-    "cmd": "ffmpeg http://700730.org/ch/56663_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285248"
   },
   {
     "name": "SKY CALCIO 5 HEVC",
-    "cmd": "ffmpeg http://700730.org/ch/136738_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284848"
   },
   {
-    "name": "SKY CALCIO 6 FULL HD",
-    "cmd": "ffmpeg http://700730.org/ch/56664_"
+    "name": "SKY CALCIO 5 SD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285249"
+  },
+  {
+    "name": "SKY CALCIO 5 UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284713"
+  },
+  {
+    "name": "SKY CALCIO 6 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284716"
   },
   {
     "name": "SKY CALCIO 6 HD",
-    "cmd": "ffmpeg http://700730.org/ch/56665_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285251"
   },
   {
     "name": "SKY CALCIO 6 HEVC",
-    "cmd": "ffmpeg http://700730.org/ch/136739_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284849"
   },
   {
-    "name": "SKY CALCIO 7 FULL HD",
-    "cmd": "ffmpeg http://700730.org/ch/56666_"
+    "name": "SKY CALCIO 6 UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284714"
+  },
+  {
+    "name": "SKY CALCIO 7 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284718"
   },
   {
     "name": "SKY CALCIO 7 HD",
-    "cmd": "ffmpeg http://700730.org/ch/56667_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285253"
   },
   {
-    "name": "EUROSPORT PLAYER LIVE 1 (attivo per evento )",
-    "cmd": "ffmpeg http://700730.org/ch/320165_"
+    "name": "SKY CALCIO 7 UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284717"
   },
   {
-    "name": "EUROSPORT PLAYER LIVE 2 (attivo per evento )",
-    "cmd": "ffmpeg http://700730.org/ch/320166_"
+    "name": "EUROSPORT PLAYER LIVE 1",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285288"
   },
   {
-    "name": "EUROSPORT PLAYER LIVE 3 (attivo per evento )",
-    "cmd": "ffmpeg http://700730.org/ch/320167_"
+    "name": "EUROSPORT PLAYER LIVE 2",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285289"
   },
   {
-    "name": "EUROSPORT PLAYER LIVE 4 (attivo per evento )",
-    "cmd": "ffmpeg http://700730.org/ch/320168_"
+    "name": "EUROSPORT PLAYER LIVE 3",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285290"
   },
   {
-    "name": "EUROSPORT PLAYER LIVE 5 (attivo per evento )",
-    "cmd": "ffmpeg http://700730.org/ch/320169_"
+    "name": "EUROSPORT PLAYER LIVE 4",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285291"
+  },
+  {
+    "name": "EUROSPORT PLAYER LIVE 5",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285292"
+  },
+  {
+    "name": "EUROSPORT PLAYER LIVE 6",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285293"
+  },
+  {
+    "name": "EUROSPORT PLAYER LIVE 7",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285294"
+  },
+  {
+    "name": "EUROSPORT PLAYER LIVE 8",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285295"
+  },
+  {
+    "name": "EUROSPORT PLAYER LIVE 9",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285296"
+  },
+  {
+    "name": "EUROSPORT PLAYER LIVE 10",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285297"
+  },
+  {
+    "name": "EUROSPORT PLAYER LIVE 11",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285298"
+  },
+  {
+    "name": "EUROSPORT PLAYER LIVE 12",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285299"
+  },
+  {
+    "name": "EUROSPORT PLAYER LIVE 13",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285300"
+  },
+  {
+    "name": "EUROSPORT PLAYER LIVE 14",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285301"
+  },
+  {
+    "name": "EUROSPORT PLAYER LIVE 15",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285302"
+  },
+  {
+    "name": "EUROSPORT PLAYER LIVE 16",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285303"
+  },
+  {
+    "name": "EUROSPORT PLAYER LIVE 17",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=304046"
+  },
+  {
+    "name": "EUROSPORT PLAYER LIVE 18",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=304047"
+  },
+  {
+    "name": "EUROSPORT PLAYER LIVE 19",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=304048"
+  },
+  {
+    "name": "EUROSPORT PLAYER LIVE 20",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=304049"
+  },
+  {
+    "name": "EUROSPORT PLAYER LIVE 21",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=304050"
+  },
+  {
+    "name": "EUROSPORT PLAYER LIVE 22",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=304051"
+  },
+  {
+    "name": "EUROSPORT PLAYER LIVE 23",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=304052"
+  },
+  {
+    "name": "EUROSPORT PLAYER LIVE 24",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=304053"
+  },
+  {
+    "name": "EUROSPORT PLAYER LIVE 25",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=304054"
   },
   {
     "name": "SKY EUROSPORT1 HEVC",
-    "cmd": "ffmpeg http://700730.org/ch/136684_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284834"
   },
   {
     "name": "SKY EUROSPORT2 HEVC",
-    "cmd": "ffmpeg http://700730.org/ch/136683_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284835"
   },
   {
-    "name": "SKY EUROSPORT 1 FULL HD",
-    "cmd": "ffmpeg http://700730.org/ch/56630_"
+    "name": "SKY EUROSPORT 1 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284699"
   },
   {
     "name": "SKY EUROSPORT 1 HD",
-    "cmd": "ffmpeg http://700730.org/ch/56631_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285285"
   },
   {
-    "name": "SKY EUROSPORT 2 FULL HD",
-    "cmd": "ffmpeg http://700730.org/ch/56632_"
+    "name": "SKY EUROSPORT 1 UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284698"
+  },
+  {
+    "name": "SKY EUROSPORT 2 4K",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284701"
   },
   {
     "name": "SKY EUROSPORT 2 HD",
-    "cmd": "ffmpeg http://700730.org/ch/56633_"
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=285287"
+  },
+  {
+    "name": "SKY EUROSPORT 2 UHD",
+    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=284700"
   }
 ]
