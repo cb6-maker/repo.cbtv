@@ -1778,8 +1778,9 @@ def play_hublive_stalker(cmd, name=None):
                 xbmc.log(f"[CBTV-HB] Utente ha fermato prima dell'avvio con telecomando (stopped_by_user={hb_player.stopped_by_user}, idle={idle_sec}s). Esco.", xbmc.LOGINFO)
                 return
 
-            # Altrimenti il MAC non ha risposto — escludilo e riprova
+            # Altrimenti il MAC non ha risposto — escludilo, rimuovilo dai Top MAC e riprova
             xbmc.log(f"[CBTV-HB] Stream non partito con MAC {mac} (idle={idle_sec}s), escludo e riprovo", xbmc.LOGWARNING)
+            client.remove_top_verified_mac(mac)
             failed_macs.add(mac)
             continue
         
@@ -1816,6 +1817,7 @@ def play_hublive_stalker(cmd, name=None):
         # È una reale caduta di linea / MAC bloccato dal server. Tentiamo auto-riconnessione automatica con nuovo MAC!
         xbmc.log(f"[CBTV-HB] Caduta di linea server con MAC {mac} dopo {playback_duration:.1f}s (idle={idle_sec}s). Riconnessione automatica con nuovo MAC...", xbmc.LOGWARNING)
         xbmcgui.Dialog().notification("CBTV", "Riconnessione in corso...", xbmcgui.NOTIFICATION_INFO, 2000)
+        client.remove_top_verified_mac(mac)
         failed_macs.add(mac)
         continue
     

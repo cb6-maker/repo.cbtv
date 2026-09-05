@@ -144,7 +144,6 @@ class HubliveStalkerClient:
             except:
                 pass
         return None
-        return None
 
     def _set_last_working_mac(self, mac):
         f = os.path.join(self.cache_dir, f"hl_last_mac_{self.server_id}.json")
@@ -153,6 +152,59 @@ class HubliveStalkerClient:
                 json.dump({"mac": mac}, fh)
         except:
             pass
+
+    def get_top_verified_macs(self):
+        """Restituisce la lista dinamica dei Top MAC verificati e funzionanti per questo server."""
+        f = os.path.join(self.cache_dir, f"hl_top_macs_{self.server_id}.json")
+        if os.path.exists(f):
+            try:
+                with open(f, 'r', encoding='utf-8') as fh:
+                    data = json.load(fh)
+                    if isinstance(data, dict):
+                        macs = data.get("top_macs", [])
+                    elif isinstance(data, list):
+                        macs = data
+                    else:
+                        macs = []
+                    return [m for m in macs if m in self.mac_pool]
+            except Exception:
+                pass
+        return []
+
+    def record_top_verified_mac(self, mac):
+        """
+        Promuove un MAC in cima alla lista dei Top MAC verificati (aggiornamento costante).
+        I MAC che partono subito e trasmettono con successo salgono in prima posizione.
+        """
+        if not mac:
+            return
+        top_macs = self.get_top_verified_macs()
+        if mac in top_macs:
+            top_macs.remove(mac)
+        top_macs.insert(0, mac)
+        top_macs = top_macs[:20]
+        f = os.path.join(self.cache_dir, f"hl_top_macs_{self.server_id}.json")
+        try:
+            with open(f, 'w', encoding='utf-8') as fh:
+                json.dump({"top_macs": top_macs, "updated": time.time()}, fh)
+            xbmc.log(f"[CBTV-HB] MAC {mac} promosso nei Top MAC di {self.server_id} (Totale Top MAC: {len(top_macs)})", xbmc.LOGINFO)
+        except Exception as e:
+            xbmc.log(f"[CBTV-HB] Errore salvataggio Top MAC: {e}", xbmc.LOGWARNING)
+
+    def remove_top_verified_mac(self, mac):
+        """Rimuove un MAC dalla lista Top MAC quando fallisce o cade la trasmissione."""
+        if not mac:
+            return
+        top_macs = self.get_top_verified_macs()
+        if mac in top_macs:
+            top_macs.remove(mac)
+            f = os.path.join(self.cache_dir, f"hl_top_macs_{self.server_id}.json")
+            try:
+                with open(f, 'w', encoding='utf-8') as fh:
+                    json.dump({"top_macs": top_macs, "updated": time.time()}, fh)
+                xbmc.log(f"[CBTV-HB] MAC {mac} rimosso dai Top MAC di {self.server_id} in seguito a fallimento", xbmc.LOGINFO)
+            except Exception:
+                pass
 
     # ---- headers / cookies come Hublive originale ----
     def _headers(self, mac=None):
@@ -256,45 +308,59 @@ class HubliveStalkerClient:
     def resolve_stream(self, cmd, exclude_macs=None):
         """
         Prova i MAC disponibili (escludendo quelli già falliti) per ottenere un URL di stream.
+        Prioritizza la lista dinamica dei Top MAC (quelli che partono subito) e la aggiorna costantemente.
         Restituisce (final_url, mac_usato) o (None, None).
         """
         if exclude_macs is None:
             exclude_macs = set()
 
         pool = list(self.mac_pool)
-        random.shuffle(pool)
         
-        # Escludi MAC già falliti in tentativi precedenti
+        # Escludi MAC già falliti in questa sessione
         if exclude_macs:
             pool = [m for m in pool if m not in exclude_macs]
         
-        # Inserisci il Last Working MAC in cima al pool (priorità assoluta)
+        # Mescola casualmente per ruotare ed esplorare nuovi MAC
+        random.shuffle(pool)
+
+        # 1. Prioritizza i Top MAC verificati (quelli che sono partiti subito nelle sessioni recenti)
+        top_verified = [m for m in self.get_top_verified_macs() if m in pool]
+        for v_mac in reversed(top_verified):
+            pool.remove(v_mac)
+            pool.insert(0, v_mac)
+
+        # 2. Inserisci il Last Working MAC in cima al pool (priorità assoluta)
         last_working = self._get_last_working_mac()
         if last_working and last_working in pool:
             pool.remove(last_working)
             pool.insert(0, last_working)
 
-        # Limita a massimo 6 MAC casuali per evitare timeout di Kodi durante la scansione
-        pool = pool[:6]
+        # Prova fino a 5 MAC per chiamata
+        pool = pool[:5]
         
         if not pool:
-            xbmc.log("[CBTV-HB] Tutti i MAC sono stati esauriti", xbmc.LOGWARNING)
+            xbmc.log(f"[CBTV-HB] Tutti i MAC sono stati esauriti per {self.server_id}", xbmc.LOGWARNING)
             return None, None
 
         for attempt, mac in enumerate(pool, 1):
-            xbmc.log(f"[CBTV-HB] Tentativo {attempt}/{len(pool)} con MAC: {mac}", xbmc.LOGINFO)
+            is_top = mac in top_verified or mac == last_working
+            xbmc.log(f"[CBTV-HB] Tentativo {attempt}/{len(pool)} con MAC: {mac} (Top: {is_top})", xbmc.LOGINFO)
 
-            # 1. Handshake (con timeout ridotto per velocizzare)
-            token = self._handshake(mac, timeout=1.5)
+            # 1. Handshake (timeout realistico per connessioni Wi-Fi)
+            token = self._handshake(mac, timeout=3.0)
             if not token:
                 xbmc.log(f"[CBTV-HB] Handshake fallito per MAC {mac}", xbmc.LOGWARNING)
+                if is_top:
+                    self.remove_top_verified_mac(mac)
                 exclude_macs.add(mac)
                 continue
 
-            # 2. create_link (con timeout ridotto per velocizzare)
-            url_or_token, stream_id_out = self.create_link(mac, token, cmd, timeout=2.0)
+            # 2. create_link
+            url_or_token, stream_id_out = self.create_link(mac, token, cmd, timeout=3.5)
             if not url_or_token:
                 xbmc.log(f"[CBTV-HB] create_link fallito per MAC {mac}", xbmc.LOGWARNING)
+                if is_top:
+                    self.remove_top_verified_mac(mac)
                 exclude_macs.add(mac)
                 continue
 
@@ -305,39 +371,54 @@ class HubliveStalkerClient:
                 final_url = (f"{self.portal_url}/play/live.php"
                              f"?mac={mac}&stream={stream_id_out}&extension=ts&play_token={url_or_token}")
 
-            # 4. Verifica se lo stream è realmente attivo (evita i black screen / GZIP vuoti)
+            # 4. Verifica se lo stream è realmente attivo (evita blocchi/black.ts con gestione ReadTimeout live)
             try:
-                r_play = requests.get(final_url, headers={"User-Agent": self.UA}, timeout=2.0, stream=True)
-                
-                # Controllo anti black.ts
-                if "black.ts" in r_play.url.lower():
-                    xbmc.log(f"[CBTV-HB] MAC {mac} reindirizzato a video nero (black.ts)", xbmc.LOGWARNING)
-                    r_play.close()
-                    exclude_macs.add(mac)
-                    continue
+                v_session = requests.Session()
+                v_session.trust_env = False
+                with v_session.get(final_url, headers={"User-Agent": self.UA}, timeout=(2.5, 3.5), stream=True, allow_redirects=True) as r_play:
+                    if r_play.status_code >= 400:
+                        xbmc.log(f"[CBTV-HB] MAC {mac} HTTP error {r_play.status_code}", xbmc.LOGWARNING)
+                        if is_top:
+                            self.remove_top_verified_mac(mac)
+                        exclude_macs.add(mac)
+                        continue
 
-                if r_play.status_code == 200:
-                    head = r_play.raw.read(100)
-                    r_play.close()
+                    final_dest = str(r_play.url).lower()
+                    content_type = (r_play.headers.get("Content-Type") or "").lower()
+
+                    if "black.ts" in final_dest or "85.18.95.155" in final_dest or "text/html" in content_type:
+                        xbmc.log(f"[CBTV-HB] MAC {mac} bloccato o black.ts ({final_dest[:60]})", xbmc.LOGWARNING)
+                        if is_top:
+                            self.remove_top_verified_mac(mac)
+                        exclude_macs.add(mac)
+                        continue
+
+                    head = r_play.raw.read(188)
                     if not head:
-                        xbmc.log(f"[CBTV-HB] MAC {mac} ha restituito uno stream vuoto (0 bytes)", xbmc.LOGWARNING)
+                        xbmc.log(f"[CBTV-HB] MAC {mac} stream vuoto (0 bytes)", xbmc.LOGWARNING)
+                        if is_top:
+                            self.remove_top_verified_mac(mac)
                         exclude_macs.add(mac)
                         continue
                     if head.startswith(b'\x1f\x8b\x08'):
                         xbmc.log(f"[CBTV-HB] MAC {mac} non autorizzato (stream GZIP vuoto)", xbmc.LOGWARNING)
+                        if is_top:
+                            self.remove_top_verified_mac(mac)
                         exclude_macs.add(mac)
                         continue
                     if b"Sito Illegale" in head or b"AGCOM" in head or b"html" in head:
-                        xbmc.log(f"[CBTV-HB] MAC {mac} reindirizzato a pagina di blocco AGCOM o HTML", xbmc.LOGWARNING)
+                        xbmc.log(f"[CBTV-HB] MAC {mac} pagina blocco AGCOM o HTML", xbmc.LOGWARNING)
+                        if is_top:
+                            self.remove_top_verified_mac(mac)
                         exclude_macs.add(mac)
                         continue
-                else:
-                    xbmc.log(f"[CBTV-HB] MAC {mac} ha restituito errore HTTP {r_play.status_code}", xbmc.LOGWARNING)
-                    r_play.close()
-                    exclude_macs.add(mac)
-                    continue
+            except requests.exceptions.ReadTimeout:
+                # Il flusso live TS sta trasmettendo pacchetti continui: successo!
+                xbmc.log(f"[CBTV-HB] MAC {mac} stream live verificato (ReadTimeout live)", xbmc.LOGINFO)
             except Exception as e:
-                xbmc.log(f"[CBTV-HB] Eccezione durante il test dello stream con MAC {mac}: {e}", xbmc.LOGWARNING)
+                xbmc.log(f"[CBTV-HB] MAC {mac} errore verifica stream: {e}", xbmc.LOGWARNING)
+                if is_top:
+                    self.remove_top_verified_mac(mac)
                 exclude_macs.add(mac)
                 continue
 
@@ -345,8 +426,9 @@ class HubliveStalkerClient:
             final_url_with_ua = f"{final_url}|User-Agent={quote_plus(self.UA)}"
             xbmc.log(f"[CBTV-HB] Stream risolto con successo usando MAC {mac}", xbmc.LOGINFO)
             
-            # Salva come Last Working MAC per gli avvii futuri
+            # Salva come Last Working MAC e registra/promuovi nei Top MAC (aggiornamento costante)
             self._set_last_working_mac(mac)
+            self.record_top_verified_mac(mac)
             
             return final_url_with_ua, mac
 
@@ -377,17 +459,22 @@ class HubliveStalkerClient:
 
     # ---- get_genres / lookup ----
     def _get_working_token_and_mac(self):
-        """Ruota i MAC finché non ne trova uno che esegue l'handshake con successo, prioritizzando il Last Working MAC."""
+        """Ruota i MAC finché non ne trova uno che esegue l'handshake con successo, prioritizzando Top MAC e Last Working MAC."""
         pool = list(self.mac_pool)
         random.shuffle(pool)
         
+        top_verified = [m for m in self.get_top_verified_macs() if m in pool]
+        for v_mac in reversed(top_verified):
+            pool.remove(v_mac)
+            pool.insert(0, v_mac)
+
         last_working = self._get_last_working_mac()
         if last_working and last_working in pool:
             pool.remove(last_working)
             pool.insert(0, last_working)
 
         for mac in pool:
-            token = self._handshake(mac, timeout=1.5)
+            token = self._handshake(mac, timeout=2.5)
             if token:
                 self._set_last_working_mac(mac)
                 return token, mac
