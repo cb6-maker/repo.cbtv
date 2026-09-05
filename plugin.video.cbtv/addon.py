@@ -1771,34 +1771,55 @@ def play_hublive_stalker(cmd, name=None):
             xbmc.sleep(500)
         
         if not hb_player.isPlaying() and not hb_player.av_started:
-            if hb_player.stopped_by_user:
-                xbmc.log("[CBTV-HB] Utente ha fermato prima dell'avvio con tasto Stop. Esco.", xbmc.LOGINFO)
+            # Rilevamento inattività telecomando prima dell'avvio:
+            idle_str = xbmc.getInfoLabel('System.IdleTime').strip()
+            try:
+                idle_sec = int(idle_str)
+            except Exception:
+                idle_sec = 0 if not xbmc.getCondVisibility('System.IdleTime(2)') else 10
+
+            # Se l'utente ha premuto Stop/Indietro prima dell'avvio (idle_sec < 2):
+            if hb_player.stopped_by_user or idle_sec < 2 or monitor.abortRequested():
+                xbmc.log(f"[CBTV-HB] Utente ha fermato prima dell'avvio con telecomando (stopped_by_user={hb_player.stopped_by_user}, idle={idle_sec}s). Esco.", xbmc.LOGINFO)
                 return
-            # MAC non ha funzionato — escludilo e riprova
-            xbmc.log(f"[CBTV-HB] Stream non partito con MAC {mac}, escludo e riprovo", xbmc.LOGWARNING)
+
+            # Altrimenti il MAC non ha risposto — escludilo e riprova
+            xbmc.log(f"[CBTV-HB] Stream non partito con MAC {mac} (idle={idle_sec}s), escludo e riprovo", xbmc.LOGWARNING)
             failed_macs.add(mac)
             continue
         
-        # Fase 2: Monitora playback — distingui stop manuale da crash
+        # Fase 2: Monitora playback — distingui stop manuale da crash tramite System.IdleTime
         playback_start_time = time.time()
         while hb_player.isPlaying():
             if monitor.abortRequested():
                 return
             xbmc.sleep(1000)
         
-        # Breve attesa per permettere a Kodi di recapitare i callback asincroni dell'evento di stop
+        # Breve attesa per permettere a Kodi di aggiornare i contatori ed eventi
         xbmc.sleep(500)
         
         playback_duration = time.time() - playback_start_time - 0.5
-        xbmc.log(f"[CBTV-HB] Playback interrotto dopo {playback_duration:.1f} secondi. stopped_by_user={hb_player.stopped_by_user}, playback_error={hb_player.playback_error}, playback_ended={hb_player.playback_ended}", xbmc.LOGINFO)
         
-        # SE L'UTENTE HA PREMUTO STOP / INDIETRO (anche dopo pochi secondi!), USCIAMO SUBITO SENZA RICONNETTERE:
-        if hb_player.stopped_by_user or monitor.abortRequested():
-            xbmc.log(f"[CBTV-HB] Stop premuto manualmente dall'utente (durata={playback_duration:.1f}s). Esco definitivamente.", xbmc.LOGINFO)
+        # Rilevamento inattività telecomando:
+        idle_str = xbmc.getInfoLabel('System.IdleTime').strip()
+        try:
+            idle_sec = int(idle_str)
+        except Exception:
+            idle_sec = 0 if not xbmc.getCondVisibility('System.IdleTime(2)') else 10
+
+        xbmc.log(f"[CBTV-HB] Playback interrotto dopo {playback_duration:.1f} secondi. stopped_by_user={hb_player.stopped_by_user}, idle_sec={idle_sec}s, error={hb_player.playback_error}, ended={hb_player.playback_ended}", xbmc.LOGINFO)
+        
+        # DISTINZIONE INFALLIBILE TRA STOP UTENTE E CADUTA LINEA:
+        # 1. Se il callback stopped_by_user è scattato
+        # 2. OPPURE se il telecomando è stato premuto negli ultimi 2 secondi (idle_sec < 2, tipico su Firestick quando premi Stop o Indietro)
+        # 3. OPPURE se Kodi richiede abort
+        if hb_player.stopped_by_user or idle_sec < 2 or monitor.abortRequested():
+            xbmc.log(f"[CBTV-HB] Stop premuto dall'utente (durata={playback_duration:.1f}s, idle={idle_sec}s). Esco definitivamente senza riconnettere.", xbmc.LOGINFO)
             return
             
-        # Altrimenti è stata una caduta di connessione / EOF socket: tentiamo auto-riconnessione
-        xbmc.log(f"[CBTV-HB] Caduta di linea con MAC {mac} dopo {playback_duration:.1f}s (stopped_by_user=False). Riconnessione automatica...", xbmc.LOGWARNING)
+        # ALTRIMENTI (telecomando NON toccato da >= 2 secondi):
+        # È una reale caduta di linea / MAC bloccato dal server. Tentiamo auto-riconnessione automatica con nuovo MAC!
+        xbmc.log(f"[CBTV-HB] Caduta di linea server con MAC {mac} dopo {playback_duration:.1f}s (idle={idle_sec}s). Riconnessione automatica con nuovo MAC...", xbmc.LOGWARNING)
         xbmcgui.Dialog().notification("CBTV", "Riconnessione in corso...", xbmcgui.NOTIFICATION_INFO, 2000)
         failed_macs.add(mac)
         continue
