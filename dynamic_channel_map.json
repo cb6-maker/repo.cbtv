@@ -1,5 +1,5 @@
 {
-  "version": 23,
+  "version": 24,
   "updated_at": "2026-09-05T16:48:00Z",
   "description": "CBTV Dynamic Cloud Channel Mapping (WideIPTV / Bluetier CDN Primary Backbone, TV247 & Stalker Server 31/29)",
   "channels": [
@@ -401,7 +401,7 @@
     },
     {
       "name": "Zona DAZN 2 HD",
-      "url": "http://main.light-ott.net:80/ch/1158738_",
+      "url": "http://main.light-ott.net:80/ch/1158715_",
       "source_type": "hublive",
       "code": "it",
       "image": "",
@@ -409,7 +409,7 @@
     },
     {
       "name": "Zona DAZN 3 HD",
-      "url": "http://main.light-ott.net:80/ch/1158742_",
+      "url": "http://main.light-ott.net:80/ch/1158716_",
       "source_type": "hublive",
       "code": "it",
       "image": "",
@@ -1164,7 +1164,9 @@
     "1104": "1104",
     "1103": "1103",
     "1102": "1102",
-    "559136": "559136"
+    "559136": "559136",
+    "1158715": "1158715",
+    "1158716": "1158716"
   },
   "s29_sport_map": {
     "880331": "1729163",
@@ -1210,7 +1212,9 @@
     "ZIGGOSPORT3": "933001",
     "ZIGGOSPORT4": "933000",
     "ZIGGOSPORT5": "933002",
-    "ZIGGOSPORT6": "932998"
+    "ZIGGOSPORT6": "932998",
+    "1158715": "1158715",
+    "1158716": "1158716"
   },
   "daddylive_map": {
     "1917240": "472",
