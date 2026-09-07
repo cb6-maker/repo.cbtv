@@ -31,9 +31,12 @@ class HubliveStalkerClient:
     # Server 28 / Server 31 (Primario)
     PORTAL_1_URL = "http://pro.most8knew.com:80"
     PORTAL_1_MACS = [
-        "A0:BB:3E:00:08:9F", "A0:BB:3E:00:0A:CD", "A0:BB:3E:00:0A:CB", "00:1A:79:7B:20:DE",
-        "00:1A:79:36:33:37", "00:1A:79:B6:E1:AD", "00:1A:79:B6:CB:B8", "00:1A:79:B6:E6:77",
-        "A0:BB:3E:00:06:EE", "00:1A:79:B5:B6:D5", "00:1A:79:81:F3:59", "A0:BB:3E:00:0A:B5"
+        "00:1A:79:81:F3:59", "A0:BB:3E:00:0A:CB", "A0:BB:3E:00:0A:CD", "A0:BB:3E:00:0A:B5",
+        "A0:BB:3E:00:06:EE", "00:1A:79:B5:B6:D5", "00:1A:79:7B:20:DE", "00:1A:79:36:33:37",
+        "00:1A:79:B6:E1:AD", "00:1A:79:B6:E1:AB", "00:1A:79:B6:CB:B8", "00:1A:79:B6:E6:77",
+        "00:1A:79:00:18:F8", "00:1A:79:14:57:6A", "00:1A:79:77:DC:8C", "00:1A:79:7E:27:6C",
+        "00:1A:79:85:7E:E6", "00:1A:79:AB:F3:FC", "00:1A:79:E1:3F:ED", "A0:BB:3E:00:4B:60",
+        "A0:BB:3E:00:5A:E4", "A0:BB:3E:00:68:C1", "00:1A:79:B5:B6:30", "A0:BB:3E:00:08:9F"
     ]
 
     # Server 29 / Server 50 (Fallback)
@@ -119,35 +122,44 @@ class HubliveStalkerClient:
             xbmc.log(f"[CBTV-HB] Impossibile scaricare servers.json remoto: {e}", xbmc.LOGWARNING)
 
     def _update_pool_from_servers(self, servers_data):
-        """Aggiorna il pool di MAC e URL del server in base ai dati scaricati."""
+        """Aggiorna il pool di MAC e URL del server unendo tutti i server e MAC corrispondenti."""
         if not servers_data or not isinstance(servers_data, list):
             return
 
-        target_server = None
+        combined_macs = []
+        target_portal = None
+
         for s in servers_data:
             if not isinstance(s, dict):
                 continue
             name = s.get("name", "")
             portal = (s.get("portal_url") or s.get("portal") or s.get("url") or "").lower()
+            macs = s.get("macs") or s.get("mac_pool") or []
 
             if self.server_id == "s50":
                 if name in ["Server 29", "Server 50"] or "watchtivo" in portal or "tvdsz" in portal:
-                    if s.get("macs") or s.get("mac_pool"):
-                        target_server = s
-                        break
+                    if not target_portal:
+                        target_portal = s.get("portal_url") or s.get("portal") or s.get("url")
+                    for m in macs:
+                        if m and m not in combined_macs:
+                            combined_macs.append(m)
             else:
-                if name in ["Server 28", "Server 31"] or "most8k" in portal or "light-ott" in portal:
-                    if s.get("macs") or s.get("mac_pool"):
-                        target_server = s
-                        break
+                if "most8k" in portal or "light-ott" in portal or name in ["Server 28", "Server 31", "Server 73"]:
+                    if not target_portal and "most8k" in portal:
+                        target_portal = s.get("portal_url") or s.get("portal") or s.get("url")
+                    for m in macs:
+                        if m and m not in combined_macs:
+                            combined_macs.append(m)
 
-        if target_server:
-            remote_macs = target_server.get("macs") or target_server.get("mac_pool") or []
-            remote_portal = target_server.get("portal_url") or target_server.get("portal") or target_server.get("url")
-            if remote_macs:
-                self.mac_pool = list(remote_macs)
-            if remote_portal:
-                self.portal_url = remote_portal
+        if combined_macs:
+            # Assicura che i MAC statici verificati siano sempre presenti
+            base_macs = self.PORTAL_1_MACS if self.server_id == "s28" else self.PORTAL_2_MACS
+            for m in base_macs:
+                if m not in combined_macs:
+                    combined_macs.append(m)
+            self.mac_pool = combined_macs
+            if target_portal:
+                self.portal_url = target_portal
             xbmc.log(f"[CBTV-HB] Sincronizzati {len(self.mac_pool)} MAC per {self.server_id} da {self.portal_url}", xbmc.LOGINFO)
 
     def _get_last_working_mac(self):
@@ -350,22 +362,19 @@ class HubliveStalkerClient:
             pool.remove(last_working)
             pool.insert(0, last_working)
 
-        # Prova fino a 5 MAC per chiamata
-        pool = pool[:5]
+        # Prova fino a 8 MAC per batch per trovare rapidamente una linea libera
+        pool = pool[:8]
         
         if not pool:
             xbmc.log(f"[CBTV-HB] Tutti i MAC sono stati esauriti per {self.server_id}", xbmc.LOGWARNING)
             return None, None
 
-        first_fallback_url = None
-        first_fallback_mac = None
-
         for attempt, mac in enumerate(pool, 1):
             is_top = mac in top_verified or mac == last_working
             xbmc.log(f"[CBTV-HB] Tentativo {attempt}/{len(pool)} con MAC: {mac} (Top: {is_top})", xbmc.LOGINFO)
 
-            # 1. Handshake (timeout realistico per connessioni Wi-Fi)
-            token = self._handshake(mac, timeout=3.0)
+            # 1. Handshake veloce
+            token = self._handshake(mac, timeout=1.8)
             if not token:
                 xbmc.log(f"[CBTV-HB] Handshake fallito per MAC {mac}", xbmc.LOGWARNING)
                 if is_top:
@@ -374,7 +383,7 @@ class HubliveStalkerClient:
                 continue
 
             # 2. create_link
-            url_or_token, stream_id_out = self.create_link(mac, token, cmd, timeout=3.5)
+            url_or_token, stream_id_out = self.create_link(mac, token, cmd, timeout=2.2)
             if not url_or_token:
                 xbmc.log(f"[CBTV-HB] create_link fallito per MAC {mac}", xbmc.LOGWARNING)
                 if is_top:
@@ -382,23 +391,18 @@ class HubliveStalkerClient:
                 exclude_macs.add(mac)
                 continue
 
-            # 3. Costruisci URL finale assicurando il dominio attivo corretto
+            # 3. Costruisci URL finale
             if stream_id_out is None and url_or_token.startswith("http"):
                 final_url = re.sub(r"http[s]?://[^/]+", self.portal_url, url_or_token)
             else:
                 final_url = (f"{self.portal_url}/play/live.php"
                              f"?mac={mac}&stream={stream_id_out}&extension=ts&play_token={url_or_token}")
 
-            # Salva il primo come fallback nel caso in cui tutti falliscano il probe live
-            if not first_fallback_url:
-                first_fallback_url = f"{final_url}|User-Agent={quote_plus(self.UA)}"
-                first_fallback_mac = mac
-
-            # 4. Verifica se lo stream è realmente attivo (evita blocchi/black.ts con gestione ReadTimeout live)
+            # 4. Verifica se lo stream è realmente attivo (evita di passare a Kodi linee occupate 458 o bloccate)
             try:
                 v_session = requests.Session()
                 v_session.trust_env = False
-                with v_session.get(final_url, headers={"User-Agent": self.UA}, timeout=(2.5, 3.5), stream=True, allow_redirects=True) as r_play:
+                with v_session.get(final_url, headers={"User-Agent": self.UA}, timeout=(1.5, 2.5), stream=True, allow_redirects=True) as r_play:
                     if r_play.status_code >= 400:
                         xbmc.log(f"[CBTV-HB] MAC {mac} HTTP error {r_play.status_code}", xbmc.LOGWARNING)
                         if is_top and r_play.status_code in [401, 403, 404]:
@@ -436,32 +440,28 @@ class HubliveStalkerClient:
                         exclude_macs.add(mac)
                         continue
             except requests.exceptions.ReadTimeout:
-                # Il flusso live TS sta trasmettendo pacchetti continui: successo!
+                # Flusso live MPEG-TS in trasmissione continua: linea perfetta!
                 xbmc.log(f"[CBTV-HB] MAC {mac} stream live verificato (ReadTimeout live)", xbmc.LOGINFO)
             except Exception as e:
-                xbmc.log(f"[CBTV-HB] MAC {mac} errore verifica stream: {e}", xbmc.LOGWARNING)
+                xbmc.log(f"[CBTV-HB] MAC {mac} timeout/errore verifica: {e}", xbmc.LOGWARNING)
                 exclude_macs.add(mac)
                 continue
 
-            # 5. Aggiungi User-Agent per Kodi
+            # 5. Linea verificata e funzionante al 100%!
             final_url_with_ua = f"{final_url}|User-Agent={quote_plus(self.UA)}"
             xbmc.log(f"[CBTV-HB] Stream risolto con successo usando MAC {mac}", xbmc.LOGINFO)
             
-            # Salva come Last Working MAC e registra/promuovi nei Top MAC (aggiornamento costante)
+            # Salva come Last Working MAC e promuovi nei Top MAC
             self._set_last_working_mac(mac)
             self.record_top_verified_mac(mac)
             
             return final_url_with_ua, mac
 
-        # Se nessun MAC ha completato il probe live ma un create_link ha avuto successo, usa il fallback
-        if first_fallback_url:
-            xbmc.log(f"[CBTV-HB] Nessun MAC ha passato il probe live rapido. Uso il primo stream autorizzato: {first_fallback_mac}", xbmc.LOGINFO)
-            return first_fallback_url, first_fallback_mac
-
+        # Se tutti i MAC di questo batch erano occupati o non validi, restituisci None per provare il batch successivo
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.3.4"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.3.5"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""

@@ -1712,44 +1712,41 @@ def play_hublive_stalker(cmd, name=None):
     
     client = HubliveStalkerClient(server_id)
     failed_macs = set()       # MAC che hanno fallito (handshake, play o stream caduto)
-    max_attempts = min(12, len(client.mac_pool))  # Prova al massimo 12 MAC per non fare attendere troppo l'utente in caso di errore
-    reconnect_delay = 2
+    max_batches = 15  # Prova fino a 15 batch di MAC (oltre 100 MAC scansionati automaticamente)
     first_attempt = True      # Per gestire setResolvedUrl vs Player.play()
     
-    for attempt in range(max_attempts):
-        if not first_attempt:
-            xbmc.log(f"[CBTV-HB] Tentativo {attempt + 1}, MAC esclusi: {len(failed_macs)}/{max_attempts}", xbmc.LOGINFO)
-            if attempt <= 3:  # Notifica solo i primi tentativi per non spammare
-                xbmcgui.Dialog().notification("HB", f"Cambio canale... ({attempt + 1})", xbmcgui.NOTIFICATION_INFO, 1500)
-            xbmc.sleep(reconnect_delay * 1000)
+    for attempt in range(max_batches):
+        if attempt > 0:
+            xbmc.log(f"[CBTV-HB] Batch {attempt + 1}, MAC già provati: {len(failed_macs)}", xbmc.LOGINFO)
+            xbmcgui.Dialog().notification("CBTV", f"Linee occupate, cerco MAC libero... ({len(failed_macs)})", xbmcgui.NOTIFICATION_INFO, 1200)
+            xbmc.sleep(200)
         
         final_url, mac = client.resolve_stream(cmd, exclude_macs=failed_macs)
         
         if not final_url:
-            # Fallback automatico su Server 29
-            if server_id == "s28" and name:
-                xbmc.log(f"[CBTV-HB] Tutti i MAC di s28 hanno fallito. Tento fallback su Server 29 per '{name}'...", xbmc.LOGWARNING)
-                xbmcgui.Dialog().notification("HB Fallback", "Tento server secondario...", xbmcgui.NOTIFICATION_WARNING, 2000)
+            if len(failed_macs) >= len(client.mac_pool) or attempt >= max_batches - 1:
+                # Tutti i MAC di s28 hanno fallito: tenta fallback su Server secondario
+                if server_id == "s28" and name:
+                    xbmc.log(f"[CBTV-HB] Tutti i MAC di s28 occupati. Tento fallback su Server 29 per '{name}'...", xbmc.LOGWARNING)
+                    xbmcgui.Dialog().notification("HB Fallback", "Tento server secondario...", xbmcgui.NOTIFICATION_WARNING, 2000)
+                    
+                    client_s50 = HubliveStalkerClient("s50")
+                    fallback_cmd = client_s50.find_channel_cmd_by_name(name)
+                    if fallback_cmd:
+                        xbmc.log(f"[CBTV-HB] Trovato cmd alternativo su s29: {fallback_cmd[:80]}...", xbmc.LOGINFO)
+                        server_id = "s50"
+                        client = client_s50
+                        cmd = fallback_cmd
+                        failed_macs = set()
+                        max_batches = 10
+                        continue
                 
-                client_s50 = HubliveStalkerClient("s50")
-                fallback_cmd = client_s50.find_channel_cmd_by_name(name)
-                if fallback_cmd:
-                    xbmc.log(f"[CBTV-HB] Trovato cmd alternativo su s29: {fallback_cmd[:80]}...", xbmc.LOGINFO)
-                    server_id = "s50"
-                    client = client_s50
-                    cmd = fallback_cmd
-                    failed_macs = set()
-                    max_attempts = min(12, len(client.mac_pool))
-                    first_attempt = True
-                    continue
-            
-            if len(failed_macs) >= max_attempts:
-                xbmc.log(f"[CBTV-HB] Tutti i {max_attempts} MAC di {server_id} hanno fallito.", xbmc.LOGWARNING)
+                xbmc.log(f"[CBTV-HB] Tutti i MAC di {server_id} hanno fallito.", xbmc.LOGWARNING)
                 if first_attempt:
                     xbmcplugin.setResolvedUrl(HANDLE, False, xbmcgui.ListItem())
                 break
             else:
-                xbmc.log(f"[CBTV-HB] Batch di MAC fallito su {server_id}, provo il prossimo batch... (esclusi: {len(failed_macs)}/{max_attempts})", xbmc.LOGINFO)
+                xbmc.log(f"[CBTV-HB] Batch di MAC occupato su {server_id}, provo il prossimo batch... (esclusi: {len(failed_macs)})", xbmc.LOGINFO)
                 continue
         
         # Crea player con tracking eventi
@@ -1782,21 +1779,13 @@ def play_hublive_stalker(cmd, name=None):
             xbmc.sleep(500)
         
         if not hb_player.isPlaying() and not hb_player.av_started:
-            # Rilevamento inattività telecomando prima dell'avvio:
-            idle_str = xbmc.getInfoLabel('System.IdleTime').strip()
-            try:
-                idle_sec = int(idle_str)
-            except Exception:
-                idle_sec = 0 if not xbmc.getCondVisibility('System.IdleTime(2)') else 10
-
-            # Se l'utente ha premuto Stop/Indietro prima dell'avvio (idle_sec < 2):
-            if hb_player.stopped_by_user or idle_sec < 2 or monitor.abortRequested():
-                xbmc.log(f"[CBTV-HB] Utente ha fermato prima dell'avvio con telecomando (stopped_by_user={hb_player.stopped_by_user}, idle={idle_sec}s). Esco.", xbmc.LOGINFO)
+            # Se l'utente ha premuto esplicitamente Stop col telecomando o Kodi richiede abort:
+            if hb_player.stopped_by_user or monitor.abortRequested():
+                xbmc.log(f"[CBTV-HB] Utente ha fermato prima dell'avvio con telecomando (stopped_by_user={hb_player.stopped_by_user}). Esco.", xbmc.LOGINFO)
                 return
 
-            # Altrimenti il MAC non ha risposto — escludilo, rimuovilo dai Top MAC e riprova
-            xbmc.log(f"[CBTV-HB] Stream non partito con MAC {mac} (idle={idle_sec}s), escludo e riprovo", xbmc.LOGWARNING)
-            client.remove_top_verified_mac(mac)
+            # Altrimenti il MAC non ha trasmesso o ha dato errore di playback in Kodi:
+            xbmc.log(f"[CBTV-HB] Stream non partito con MAC {mac} (error={hb_player.playback_error}), escludo e tento un altro MAC...", xbmc.LOGWARNING)
             failed_macs.add(mac)
             continue
         
