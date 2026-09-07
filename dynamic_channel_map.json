@@ -1,7 +1,7 @@
 {
-  "version": 26,
-  "updated_at": "2026-09-07T16:47:00Z",
-  "description": "CBTV Live Stream Mapping - Sky Sport Tennis fallback fix (DaddyLive 576) & Cosmote 624-630",
+  "version": 27,
+  "updated_at": "2026-09-07T17:35:00Z",
+  "description": "CBTV Live Stream Mapping - Fix MAX Sport 1 via Server 29 Watchtivo (228632) without broken DaddyLive 472 diverts",
   "channels": [
     {
       "name": "Sky Sport 24 HD",
@@ -193,11 +193,11 @@
     },
     {
       "name": "MAX Sport 1",
-      "url": "http://main.light-ott.net:80/ch/228727_",
+      "url": "http://line.watchtivo-8k.com:80/ch/228632_",
       "source_type": "hublive",
       "streams": [
-        "hublive:228727",
-        "hls:472"
+        "s29:228632",
+        "hublive:228727"
       ],
       "code": "bg",
       "image": "",
@@ -1225,12 +1225,6 @@
     "1158716": "1158716"
   },
   "daddylive_map": {
-    "1917240": "472",
-    "1562900": "472",
-    "154879": "472",
-    "1862334": "472",
-    "MAXSPORT1": "472",
-    "MAX SPORT 1": "472",
     "1562899": "473",
     "154880": "473",
     "1862333": "473",
@@ -1715,15 +1709,11 @@
     "TDP": "85",
     "228725": "474",
     "228630": "474",
-    "228727": "472",
-    "228632": "472",
     "228726": "473",
     "228631": "473",
     "228629": "475",
     "228724": "475",
-    "83260": "472",
     "472": "472",
-    "maxsport1": "472",
     "1917239": "473",
     "83259": "473",
     "473": "473",
