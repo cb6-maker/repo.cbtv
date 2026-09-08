@@ -1,7 +1,7 @@
 {
-  "version": 28,
-  "updated_at": "2026-09-08T07:50:00Z",
-  "description": "CBTV Live Stream Mapping - LibVLC Universal Player + Fix MAX Sport 1 (s29:228632) and Polsat Sport 1-2 (s29:1729163/1729165)",
+  "version": 29,
+  "updated_at": "2026-09-08T08:10:00Z",
+  "description": "CBTV Live Stream Mapping - Force Web Player con controlli overlay per MAX Sport 1 e Polsat Sport 1-2",
   "channels": [
     {
       "name": "Sky Sport 24 HD",
@@ -195,6 +195,7 @@
       "name": "MAX Sport 1",
       "url": "http://line.watchtivo-8k.com:80/ch/228632_",
       "source_type": "hublive",
+      "force_web_player": true,
       "streams": [
         "s29:228632",
         "hublive:228727"
@@ -243,6 +244,7 @@
       "name": "Polsat Sport 1",
       "url": "http://line.watchtivo-8k.com:80/ch/1729163_",
       "source_type": "hublive",
+      "force_web_player": true,
       "streams": [
         "s29:1729163"
       ],
@@ -254,6 +256,7 @@
       "name": "Polsat Sport 2",
       "url": "http://line.watchtivo-8k.com:80/ch/1729165_",
       "source_type": "hublive",
+      "force_web_player": true,
       "streams": [
         "s29:1729165"
       ],
