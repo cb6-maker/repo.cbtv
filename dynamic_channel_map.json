@@ -1,7 +1,7 @@
 {
-  "version": 32,
-  "updated_at": "2026-09-08T09:30:00Z",
-  "description": "CBTV Live Stream Mapping - MAX Sport and Polsat Sport on Server 29 (AAC audio, Kodi source) native ExoPlayer",
+  "version": 33,
+  "updated_at": "2026-09-08T09:51:00Z",
+  "description": "CBTV Live Stream Mapping - MAX Sport 1 with DaddyLive HLS (472) primary and Server 29 fallback",
   "channels": [
     {
       "name": "Sky Sport 24 HD",
@@ -196,6 +196,7 @@
       "url": "http://line.watchtivo-8k.com:80/ch/228727_",
       "source_type": "hublive",
       "streams": [
+        "hls:472",
         "s29:228727"
       ],
       "code": "bg",
