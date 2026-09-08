@@ -1,7 +1,7 @@
 {
-  "version": 29,
-  "updated_at": "2026-09-08T08:10:00Z",
-  "description": "CBTV Live Stream Mapping - Force Web Player con controlli overlay per MAX Sport 1 e Polsat Sport 1-2",
+  "version": 30,
+  "updated_at": "2026-09-08T08:45:00Z",
+  "description": "CBTV Live Stream Mapping - MAX Sport 1 HLS native ExoPlayer, clean native UI",
   "channels": [
     {
       "name": "Sky Sport 24 HD",
@@ -193,10 +193,10 @@
     },
     {
       "name": "MAX Sport 1",
-      "url": "http://line.watchtivo-8k.com:80/ch/228632_",
-      "source_type": "hublive",
-      "force_web_player": true,
+      "url": "hls:472",
+      "source_type": "web_hls",
       "streams": [
+        "hls:472",
         "s29:228632",
         "hublive:228727"
       ],
@@ -244,7 +244,6 @@
       "name": "Polsat Sport 1",
       "url": "http://line.watchtivo-8k.com:80/ch/1729163_",
       "source_type": "hublive",
-      "force_web_player": true,
       "streams": [
         "s29:1729163"
       ],
@@ -256,7 +255,6 @@
       "name": "Polsat Sport 2",
       "url": "http://line.watchtivo-8k.com:80/ch/1729165_",
       "source_type": "hublive",
-      "force_web_player": true,
       "streams": [
         "s29:1729165"
       ],
