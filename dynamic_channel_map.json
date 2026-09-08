@@ -1,7 +1,7 @@
 {
-  "version": 27,
-  "updated_at": "2026-09-07T17:35:00Z",
-  "description": "CBTV Live Stream Mapping - Fix MAX Sport 1 via Server 29 Watchtivo (228632) without broken DaddyLive 472 diverts",
+  "version": 28,
+  "updated_at": "2026-09-08T07:50:00Z",
+  "description": "CBTV Live Stream Mapping - LibVLC Universal Player + Fix MAX Sport 1 (s29:228632) and Polsat Sport 1-2 (s29:1729163/1729165)",
   "channels": [
     {
       "name": "Sky Sport 24 HD",
@@ -243,6 +243,9 @@
       "name": "Polsat Sport 1",
       "url": "http://line.watchtivo-8k.com:80/ch/1729163_",
       "source_type": "hublive",
+      "streams": [
+        "s29:1729163"
+      ],
       "code": "pl",
       "image": "",
       "status": "online"
@@ -251,6 +254,9 @@
       "name": "Polsat Sport 2",
       "url": "http://line.watchtivo-8k.com:80/ch/1729165_",
       "source_type": "hublive",
+      "streams": [
+        "s29:1729165"
+      ],
       "code": "pl",
       "image": "",
       "status": "online"
