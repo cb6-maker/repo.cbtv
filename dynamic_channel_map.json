@@ -1,7 +1,7 @@
 {
-  "version": 30,
-  "updated_at": "2026-09-08T08:45:00Z",
-  "description": "CBTV Live Stream Mapping - MAX Sport 1 HLS native ExoPlayer, clean native UI",
+  "version": 31,
+  "updated_at": "2026-09-08T08:56:00Z",
+  "description": "CBTV Live Stream Mapping - MAX Sport 1 on Server 31 (228727) native ExoPlayer",
   "channels": [
     {
       "name": "Sky Sport 24 HD",
@@ -193,12 +193,11 @@
     },
     {
       "name": "MAX Sport 1",
-      "url": "hls:472",
-      "source_type": "web_hls",
+      "url": "http://main.light-ott.net:80/ch/228727_",
+      "source_type": "hublive",
       "streams": [
-        "hls:472",
-        "s29:228632",
-        "hublive:228727"
+        "228727",
+        "s29:228632"
       ],
       "code": "bg",
       "image": "",
