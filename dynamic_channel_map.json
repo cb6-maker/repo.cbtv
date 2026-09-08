@@ -1,7 +1,7 @@
 {
-  "version": 31,
-  "updated_at": "2026-09-08T08:56:00Z",
-  "description": "CBTV Live Stream Mapping - MAX Sport 1 on Server 31 (228727) native ExoPlayer",
+  "version": 32,
+  "updated_at": "2026-09-08T09:30:00Z",
+  "description": "CBTV Live Stream Mapping - MAX Sport and Polsat Sport on Server 29 (AAC audio, Kodi source) native ExoPlayer",
   "channels": [
     {
       "name": "Sky Sport 24 HD",
@@ -193,11 +193,10 @@
     },
     {
       "name": "MAX Sport 1",
-      "url": "http://main.light-ott.net:80/ch/228727_",
+      "url": "http://line.watchtivo-8k.com:80/ch/228727_",
       "source_type": "hublive",
       "streams": [
-        "228727",
-        "s29:228632"
+        "s29:228727"
       ],
       "code": "bg",
       "image": "",
@@ -205,11 +204,11 @@
     },
     {
       "name": "MAX Sport 2",
-      "url": "hls:473",
-      "source_type": "web_hls",
+      "url": "http://line.watchtivo-8k.com:80/ch/228726_",
+      "source_type": "hublive",
       "streams": [
-        "hls:473",
-        "hublive:228726"
+        "s29:228726",
+        "hls:473"
       ],
       "code": "bg",
       "image": "",
@@ -217,11 +216,11 @@
     },
     {
       "name": "MAX Sport 3",
-      "url": "hls:474",
-      "source_type": "web_hls",
+      "url": "http://line.watchtivo-8k.com:80/ch/228725_",
+      "source_type": "hublive",
       "streams": [
-        "hls:474",
-        "hublive:228725"
+        "s29:228725",
+        "hls:474"
       ],
       "code": "bg",
       "image": "",
@@ -229,11 +228,11 @@
     },
     {
       "name": "MAX Sport 4",
-      "url": "hls:475",
-      "source_type": "web_hls",
+      "url": "http://line.watchtivo-8k.com:80/ch/228724_",
+      "source_type": "hublive",
       "streams": [
-        "hls:475",
-        "hublive:228724"
+        "s29:228724",
+        "hls:475"
       ],
       "code": "bg",
       "image": "https://via.placeholder.com/150/150f1f/9d4edd?text=Max+Sport+4+BG",
@@ -271,14 +270,14 @@
     },
     {
       "name": "Polsat Sport Fight FHD",
-      "url": "http://line.watchtivo-8k.com:80/ch/1729166_",
+      "url": "http://line.watchtivo-8k.com:80/ch/1729167_",
       "source_type": "hublive",
       "code": "pl",
       "image": "",
       "status": "online",
       "streams": [
-        "hls:997",
-        "hublive:1729166"
+        "s29:1729167",
+        "hls:997"
       ]
     },
     {
@@ -289,8 +288,8 @@
       "image": "https://via.placeholder.com/150/150f1f/9d4edd?text=Polsat+Premium+1",
       "status": "online",
       "streams": [
-        "hls:991",
-        "hublive:1729171"
+        "s29:1729171",
+        "hls:991"
       ]
     },
     {
@@ -301,8 +300,8 @@
       "image": "https://via.placeholder.com/150/150f1f/9d4edd?text=Polsat+Premium+2",
       "status": "online",
       "streams": [
-        "hls:992",
-        "hublive:1729173"
+        "s29:1729173",
+        "hls:992"
       ]
     },
     {
@@ -1179,10 +1178,22 @@
     "1158716": "1158716",
     "240464": "240464",
     "177692": "177692",
-    "228727": "228727",
-    "1917240": "228727"
+    "228727": "s29:228727",
+    "228726": "s29:228726",
+    "228725": "s29:228725",
+    "228724": "s29:228724",
+    "1917240": "s29:228727"
   },
   "s29_sport_map": {
+    "228727": "228727",
+    "228726": "228726",
+    "228725": "228725",
+    "228724": "228724",
+    "MAXSPORT1": "228727",
+    "MAXSPORT2": "228726",
+    "MAXSPORT3": "228725",
+    "MAXSPORT4": "228724",
+    "1729167": "1729167",
     "880331": "1729163",
     "47": "1729163",
     "POLSATSPORT1": "1729163",
