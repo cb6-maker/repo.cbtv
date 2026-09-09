@@ -1,7 +1,7 @@
 {
-  "version": 34,
-  "updated_at": "2026-09-09T07:53:00Z",
-  "description": "CBTV Live Stream Mapping - Sky Sport Calcio 251-259 FHD feeds and fallback streams on Server 31",
+  "version": 35,
+  "updated_at": "2026-09-09T08:00:00Z",
+  "description": "CBTV Live Stream Mapping - Sky Sport Uno/Calcio FHD feeds and Tennis HEVC backup on Server 31",
   "channels": [
     {
       "name": "Sky Sport 24 HD",
@@ -13,16 +13,26 @@
     },
     {
       "name": "Sky Sport Uno HD",
-      "url": "http://main.light-ott.net:80/ch/177685_",
+      "url": "http://main.light-ott.net:80/ch/177687_",
       "source_type": "hublive",
+      "streams": [
+        "s31:177687",
+        "s31:1167167",
+        "s31:177685"
+      ],
       "code": "it",
       "image": "",
       "status": "online"
     },
     {
       "name": "Sky Sport Calcio HD",
-      "url": "http://main.light-ott.net:80/ch/177695_",
+      "url": "http://main.light-ott.net:80/ch/177694_",
       "source_type": "hublive",
+      "streams": [
+        "s31:177694",
+        "s31:1167169",
+        "s31:177695"
+      ],
       "code": "it",
       "image": "",
       "status": "online"
@@ -32,7 +42,8 @@
       "url": "http://main.light-ott.net:80/ch/1167174_",
       "source_type": "hublive",
       "streams": [
-        "hublive:1167174",
+        "s31:1167174",
+        "s31:1167175",
         "hls:576"
       ],
       "code": "it",
