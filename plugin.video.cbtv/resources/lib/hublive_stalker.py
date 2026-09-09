@@ -461,7 +461,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.3.5"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.3.6"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""
@@ -676,12 +676,8 @@ class HubliveStalkerClient:
             negatives=["SPORT", "DAZN", "CALCIO", "F1", "MOTOGP", "PRIMAFILA"],
             force=force_refresh)
             
-        if self.server_id == "s28" and not channels:
-            xbmc.log("[CBTV-HB] get_sky_tv_channels su s28 fallito/vuoto, provo s50 fallback", xbmc.LOGWARNING)
-            client_s50 = HubliveStalkerClient("s50")
-            channels = client_s50.get_sky_tv_channels(force_refresh=force_refresh)
-
         if not channels:
+            xbmc.log("[CBTV-HB] get_sky_tv_channels vuoto/timeout, carico sky_tv_fallback.json integrato", xbmc.LOGWARNING)
             channels = self._load_fallback("sky_tv_fallback.json")
             if channels:
                 self._set_cache("sky_tv", channels)
@@ -712,12 +708,8 @@ class HubliveStalkerClient:
             negatives=["SERIE C", "SERIE D", "LEGA PRO", "DAZN BAR", "DAZN CHANNEL", "VETRINA DAZN"],
             force=force_refresh)
             
-        if self.server_id == "s28" and not channels:
-            xbmc.log("[CBTV-HB] get_sky_sport_channels su s28 vuoto, provo s50 fallback", xbmc.LOGWARNING)
-            client_s50 = HubliveStalkerClient("s50")
-            channels = client_s50.get_sky_sport_channels(force_refresh=force_refresh)
-
         if not channels:
+            xbmc.log("[CBTV-HB] get_sky_sport_channels vuoto/timeout, carico sky_sport_fallback.json integrato", xbmc.LOGWARNING)
             channels = self._load_fallback("sky_sport_fallback.json")
 
         def sky_sport_sort_key(ch):
@@ -800,14 +792,8 @@ class HubliveStalkerClient:
             negatives=["WOMEN", "SKY SPORT", "SKY CALCIO", "EUROSPORT", "PALLAVOLO", "PALLAMANO", "PALLANUOTO"],
             force=force_refresh)
             
-        if self.server_id == "s28" and (not channels or not any("ZONA DAZN" in ch.get('name', '').upper() for ch in channels)):
-            xbmc.log("[CBTV-HB] get_dazn_channels su s28 vuoto o senza Zona DAZN, carico s50", xbmc.LOGINFO)
-            client_s50 = HubliveStalkerClient("s50")
-            channels = client_s50.get_dazn_channels(force_refresh=force_refresh)
-
-        # Se il fetch remoto è incompleto (manca Zona DAZN) o fallito (502 Bad Gateway), usa il fallback integrato completo
         if not channels or not any("ZONA DAZN" in ch.get('name', '').upper() for ch in channels):
-            xbmc.log("[CBTV-HB] Fetch remoto DAZN incompleto, carico dazn_fallback.json integrato (56 canali)", xbmc.LOGINFO)
+            xbmc.log("[CBTV-HB] get_dazn_channels vuoto o incompleto, carico dazn_fallback.json integrato (74 canali)", xbmc.LOGINFO)
             channels = self._load_fallback("dazn_fallback.json")
 
         if channels:
