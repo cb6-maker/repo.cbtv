@@ -1,7 +1,7 @@
 {
-  "version": 33,
-  "updated_at": "2026-09-08T09:51:00Z",
-  "description": "CBTV Live Stream Mapping - MAX Sport 1 with DaddyLive HLS (472) primary and Server 29 fallback",
+  "version": 34,
+  "updated_at": "2026-09-09T07:53:00Z",
+  "description": "CBTV Live Stream Mapping - Sky Sport Calcio 251-259 FHD feeds and fallback streams on Server 31",
   "channels": [
     {
       "name": "Sky Sport 24 HD",
@@ -97,56 +97,84 @@
     },
     {
       "name": "Sky Sport Calcio 251 FHD",
-      "url": "http://main.light-ott.net:80/ch/177703_",
+      "url": "http://main.light-ott.net:80/ch/177769_",
       "source_type": "hublive",
+      "streams": [
+        "s31:177769",
+        "s31:177703"
+      ],
       "code": "it",
       "image": "",
       "status": "online"
     },
     {
       "name": "Sky Sport Calcio 252 FHD",
-      "url": "http://main.light-ott.net:80/ch/177704_",
+      "url": "http://main.light-ott.net:80/ch/177770_",
       "source_type": "hublive",
+      "streams": [
+        "s31:177770",
+        "s31:177704"
+      ],
       "code": "it",
       "image": "",
       "status": "online"
     },
     {
       "name": "Sky Sport Calcio 253 FHD",
-      "url": "http://main.light-ott.net:80/ch/177705_",
+      "url": "http://main.light-ott.net:80/ch/177771_",
       "source_type": "hublive",
+      "streams": [
+        "s31:177771",
+        "s31:177705"
+      ],
       "code": "it",
       "image": "",
       "status": "online"
     },
     {
       "name": "Sky Sport Calcio 254 FHD",
-      "url": "http://main.light-ott.net:80/ch/177706_",
+      "url": "http://main.light-ott.net:80/ch/177772_",
       "source_type": "hublive",
+      "streams": [
+        "s31:177772",
+        "s31:177706"
+      ],
       "code": "it",
       "image": "",
       "status": "online"
     },
     {
       "name": "Sky Sport Calcio 255 FHD",
-      "url": "http://main.light-ott.net:80/ch/177707_",
+      "url": "http://main.light-ott.net:80/ch/177773_",
       "source_type": "hublive",
+      "streams": [
+        "s31:177773",
+        "s31:177707"
+      ],
       "code": "it",
       "image": "",
       "status": "online"
     },
     {
       "name": "Sky Sport Calcio 256 FHD",
-      "url": "http://main.light-ott.net:80/ch/177708_",
+      "url": "http://main.light-ott.net:80/ch/177774_",
       "source_type": "hublive",
+      "streams": [
+        "s31:177774",
+        "s31:177708"
+      ],
       "code": "it",
       "image": "",
       "status": "online"
     },
     {
       "name": "Sky Sport Calcio 257 FHD",
-      "url": "http://main.light-ott.net:80/ch/1167345_",
+      "url": "http://main.light-ott.net:80/ch/704711_",
       "source_type": "hublive",
+      "streams": [
+        "s31:704711",
+        "s31:1167345"
+      ],
       "code": "it",
       "image": "",
       "status": "online"
@@ -155,6 +183,9 @@
       "name": "Sky Sport Calcio 258 HD",
       "url": "http://main.light-ott.net:80/ch/1167347_",
       "source_type": "hublive",
+      "streams": [
+        "s31:1167347"
+      ],
       "code": "it",
       "image": "",
       "status": "online"
@@ -163,6 +194,9 @@
       "name": "Sky Sport Calcio 259 HD",
       "url": "http://main.light-ott.net:80/ch/1167349_",
       "source_type": "hublive",
+      "streams": [
+        "s31:1167349"
+      ],
       "code": "it",
       "image": "",
       "status": "online"
