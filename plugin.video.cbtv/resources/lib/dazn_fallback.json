@@ -1,298 +1,226 @@
 [
   {
-    "name": "ZONA DAZN SERIE A 1 4K",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=495146"
+    "name": "ZONA DAZN HEVC",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158734"
   },
   {
-    "name": "ZONA DAZN SERIE A 1 HD",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=495145"
+    "name": "ZONA DAZN FHD",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158736"
   },
   {
-    "name": "ZONA DAZN SERIE A 1 SD",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=495144"
+    "name": "ZONA DAZN HD",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158735"
   },
   {
-    "name": "ZONA DAZN SERIE A 2 4K",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=495149"
+    "name": "ZONA DAZN",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158737"
   },
   {
-    "name": "ZONA DAZN SERIE A 2 HD",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=495148"
+    "name": "ZONA DAZN 2 HEVC",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158739"
   },
   {
-    "name": "ZONA DAZN SERIE A 2 SD",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=495147"
+    "name": "ZONA DAZN 2 FHD",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158738"
   },
   {
-    "name": "ZONA DAZN SERIE A 3 4K",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=495152"
+    "name": "ZONA DAZN 2 HD",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158740"
   },
   {
-    "name": "ZONA DAZN SERIE A 3 HD",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=495151"
+    "name": "ZONA DAZN 2",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158741"
   },
   {
-    "name": "ZONA DAZN SERIE A 3 SD",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=495150"
+    "name": "ZONA DAZN 3 HEVC",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158743"
   },
   {
-    "name": "DAZN DIRETTA GOL SERIE A UHD",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=300630"
+    "name": "ZONA DAZN 3 FHD",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158742"
   },
   {
-    "name": "DAZN DIRETTA GOL SERIE A HD",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351709"
+    "name": "ZONA DAZN 3 HD",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158744"
   },
   {
-    "name": "DAZN DIRETTA GOL SERIE A",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351708"
+    "name": "ZONA DAZN 3",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158745"
   },
   {
-    "name": "DAZN DIRETTA GOL SERIE A SD",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=495140"
+    "name": "ZONA DAZN 4 HEVC",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158747"
   },
   {
-    "name": "DAZN DIRETTA GOL SERIE A 4K",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351713"
+    "name": "ZONA DAZN 4 FHD",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158746"
   },
   {
-    "name": "DAZN DIRETTA GOL SERIE B UHD",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=300631"
+    "name": "DAZN SERIE A 1 FHD",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158714"
   },
   {
-    "name": "DAZN DIRETTA GOL SERIE B HD",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351707"
+    "name": "DAZN SERIE A 2 FHD",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158715"
   },
   {
-    "name": "DAZN DIRETTA GOL SERIE B",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351706"
+    "name": "DAZN SERIE A 3",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158716"
   },
   {
-    "name": "DAZN DIRETTA GOL SERIE B SD",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=495138"
+    "name": "DAZN SERIE A 4 FHD",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158717"
   },
   {
-    "name": "DAZN DIRETTA GOL SERIE B 4K",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351712"
+    "name": "DAZN SERIE A 5",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158718"
   },
   {
-    "name": "DAZN DIRETTA GOL EUROPA LEAGUE HD",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351705"
+    "name": "DAZN SERIE A 6",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158719"
   },
   {
-    "name": "DAZN DIRETTA GOL EUROPA LEAGUE",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351704"
+    "name": "DAZN SERIE A 7",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158720"
   },
   {
-    "name": "DAZN DIRETTA GOL EUROPA LEAGUE 4K",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351711"
+    "name": "DAZN SERIE A 8",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158721"
   },
   {
-    "name": "DAZN CHANNEL HEVC",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351703"
+    "name": "DAZN SERIE A 9",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158722"
   },
   {
-    "name": "DAZN CHANNEL HD",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351701"
+    "name": "DAZN SERIE A 10",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158723"
   },
   {
-    "name": "DAZN CHANNEL",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351700"
+    "name": "DAZN SERIE A 11",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158724"
   },
   {
-    "name": "DAZN CHANNEL 4K",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351702"
+    "name": "DAZN SERIE A 12",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158725"
   },
   {
-    "name": "DAZN REDBULL 4K",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351795"
+    "name": "DAZN SERIE A 13",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158726"
   },
   {
-    "name": "DAZN WEB 1 4K",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351758"
+    "name": "DAZN SERIE A 14",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158727"
   },
   {
-    "name": "DAZN WEB 1 HD",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351748"
+    "name": "DAZN EVENT 1 FHD",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=228862"
   },
   {
-    "name": "DAZN WEB 1",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351747"
+    "name": "DAZN EVENT 2 FHD",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=228861"
   },
   {
-    "name": "DAZN WEB 2 4K",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351757"
+    "name": "DAZN 3 FHD",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=228860"
   },
   {
-    "name": "DAZN WEB 2 HD",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351746"
+    "name": "DAZN 4 FHD",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=228859"
   },
   {
-    "name": "DAZN WEB 2",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351745"
+    "name": "DAZN EVENT 5",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=228858"
   },
   {
-    "name": "DAZN WEB 3 4K",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351756"
+    "name": "DAZN EVENT 6 FHD",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=228857"
   },
   {
-    "name": "DAZN WEB 3 HD",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351744"
+    "name": "DAZN EVENT 7 FHD",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=228856"
   },
   {
-    "name": "DAZN WEB 3",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351743"
+    "name": "DAZN EVENT 8 FHD",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=228855"
   },
   {
-    "name": "DAZN WEB 4 4K",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351755"
+    "name": "DAZN EVENT 9 FHD",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=228854"
   },
   {
-    "name": "DAZN WEB 4 HD",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351742"
+    "name": "DAZN EVENT 10 FHD",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=228853"
   },
   {
-    "name": "DAZN WEB 4",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351741"
+    "name": "DAZN EVENT 11 FHD",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=228849"
   },
   {
-    "name": "DAZN WEB 5 4K",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351754"
+    "name": "DAZN EVENT 12 FHD",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=228848"
   },
   {
-    "name": "DAZN WEB 5 HD",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351740"
+    "name": "DAZN 13 FHD",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=884017"
   },
   {
-    "name": "DAZN WEB 5",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351739"
+    "name": "DAZN 14 FHD",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=884018"
   },
   {
-    "name": "DAZN WEB 6 4K",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351753"
+    "name": "DAZN SERIE B 1",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158802"
   },
   {
-    "name": "DAZN WEB 6 HD",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351738"
+    "name": "DAZN SERIE B 2",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158803"
   },
   {
-    "name": "DAZN WEB 6",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351737"
+    "name": "DAZN SERIE B 3",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158804"
   },
   {
-    "name": "DAZN WEB 7 4K",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351752"
+    "name": "DAZN SERIE B 4",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158805"
   },
   {
-    "name": "DAZN WEB 7 HD",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351736"
+    "name": "DAZN SERIE B 5",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158806"
   },
   {
-    "name": "DAZN WEB 7",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351735"
+    "name": "DAZN SERIE B 6",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158807"
   },
   {
-    "name": "DAZN WEB 8 4K",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351751"
+    "name": "DAZN SERIE B 7",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158808"
   },
   {
-    "name": "DAZN WEB 8 HD",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351734"
+    "name": "DAZN SERIE B 8",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158809"
   },
   {
-    "name": "DAZN WEB 8",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351733"
+    "name": "DAZN SERIE B 9",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158810"
   },
   {
-    "name": "DAZN WEB 9 4K",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351750"
+    "name": "DAZN SERIE B 10",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158811"
   },
   {
-    "name": "DAZN WEB 9 HD",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351732"
+    "name": "DAZN SERIE B 11",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158812"
   },
   {
-    "name": "DAZN WEB 9",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351731"
+    "name": "DAZN SERIE B 12",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158813"
   },
   {
-    "name": "DAZN WEB 10 4K",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351749"
+    "name": "DAZN SERIE B 13",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158814"
   },
   {
-    "name": "DAZN WEB 10 HD",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351730"
-  },
-  {
-    "name": "DAZN WEB 10",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351729"
-  },
-  {
-    "name": "DAZN WEB 11 4K",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351726"
-  },
-  {
-    "name": "DAZN WEB 11 HD",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351727"
-  },
-  {
-    "name": "DAZN WEB 11",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351728"
-  },
-  {
-    "name": "DAZN WEB 12 4K",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351723"
-  },
-  {
-    "name": "DAZN WEB 12 HD",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351724"
-  },
-  {
-    "name": "DAZN WEB 12",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351725"
-  },
-  {
-    "name": "DAZN WEB 13 4K",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351720"
-  },
-  {
-    "name": "DAZN WEB 13 HD",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351721"
-  },
-  {
-    "name": "DAZN WEB 13",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351722"
-  },
-  {
-    "name": "DAZN WEB 14 4K",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351717"
-  },
-  {
-    "name": "DAZN WEB 14 HD",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351718"
-  },
-  {
-    "name": "DAZN WEB 14",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351719"
-  },
-  {
-    "name": "DAZN WEB 15 4K",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351714"
-  },
-  {
-    "name": "DAZN WEB 15 HD",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351715"
-  },
-  {
-    "name": "DAZN WEB 15",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351716"
-  },
-  {
-    "name": "DAZN NFL",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351699"
-  },
-  {
-    "name": "VETRINA DAZN",
-    "cmd": "ffmpeg http://pro.most8knew.com:80/play/live.php?stream=351698"
+    "name": "DAZN SERIE B 14",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158815"
   }
 ]

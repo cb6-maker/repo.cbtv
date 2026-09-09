@@ -1628,7 +1628,7 @@ def list_eagle_genres(eb_type, force_refresh=False):
                            is_folder=True)
         if force_refresh:
             xbmcgui.Dialog().notification("CBTV", "Aggiornamento canali DAZN...", xbmcgui.NOTIFICATION_INFO, 2000)
-        hl_client_dazn = HubliveStalkerClient("s28")
+        hl_client_dazn = HubliveStalkerClient("s31")
         hl_channels = hl_client_dazn.get_dazn_channels(force_refresh=force_refresh)
         for ch in hl_channels:
             title = f"{ch['name']} [COLOR orange](HB)[/COLOR]"
@@ -1703,7 +1703,9 @@ def play_hublive_stalker(cmd, name=None):
     """Riproduce un canale Hublive con auto-riconnessione, rotazione MAC completa e fallback su Server 29."""
     global _CURRENT_HB_PLAYER
     # Determiniamo il server iniziale in base al cmd
-    if "line.watchtivo-8k.com" in cmd:
+    if "main.light-ott.net" in cmd or "light-ott" in cmd:
+        server_id = "s31"
+    elif "line.watchtivo-8k.com" in cmd:
         server_id = "s50"
     else:
         server_id = "s28"

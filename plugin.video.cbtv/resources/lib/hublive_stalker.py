@@ -28,7 +28,7 @@ def clean_text(text):
 class HubliveStalkerClient:
     """Client Stalker con supporto multi-server e fallback automatico tra Server 28 e Server 11."""
 
-    # Server 28 / Server 31 (Primario)
+    # Server 28 (Primario Most8k)
     PORTAL_1_URL = "http://pro.most8knew.com:80"
     PORTAL_1_MACS = [
         "00:1A:79:81:F3:59", "A0:BB:3E:00:0A:CB", "A0:BB:3E:00:0A:CD", "A0:BB:3E:00:0A:B5",
@@ -37,6 +37,17 @@ class HubliveStalkerClient:
         "00:1A:79:00:18:F8", "00:1A:79:14:57:6A", "00:1A:79:77:DC:8C", "00:1A:79:7E:27:6C",
         "00:1A:79:85:7E:E6", "00:1A:79:AB:F3:FC", "00:1A:79:E1:3F:ED", "A0:BB:3E:00:4B:60",
         "A0:BB:3E:00:5A:E4", "A0:BB:3E:00:68:C1", "00:1A:79:B5:B6:30", "A0:BB:3E:00:08:9F"
+    ]
+
+    # Server 31 (Light-OTT - Primario DAZN e Sport)
+    PORTAL_31_URL = "http://main.light-ott.net:80"
+    PORTAL_31_MACS = [
+        "00:1B:79:41:43:5D", "00:1B:79:48:4E:B4", "A0:BB:3E:00:02:2D", "A0:BB:3E:00:02:82",
+        "A0:BB:3E:00:06:87", "A0:BB:3E:00:07:36", "A0:BB:3E:00:09:28", "A0:BB:3E:00:0A:53",
+        "A0:BB:3E:00:0B:4D", "A0:BB:3E:00:0A:CF", "A0:BB:3E:00:0A:FD", "A0:BB:3E:00:0A:E9",
+        "A0:BB:3E:00:0C:EC", "A0:BB:3E:00:0C:EE", "A0:BB:3E:00:0D:3A", "A0:BB:3E:00:0D:EB",
+        "A0:BB:3E:00:0E:13", "A0:BB:3E:00:0E:E8", "A0:BB:3E:00:0E:F5", "A0:BB:3E:00:0F:0D",
+        "A0:BB:3E:00:0F:85", "A0:BB:3E:00:10:97", "A0:BB:3E:00:11:BD", "A0:BB:3E:00:12:87"
     ]
 
     # Server 29 / Server 50 (Fallback)
@@ -65,7 +76,10 @@ class HubliveStalkerClient:
     # ---- inizializzazione ----
     def __init__(self, server_id="s28"):
         self.server_id = server_id
-        if server_id == "s50":
+        if server_id == "s31":
+            self.portal_url = self.PORTAL_31_URL
+            self.mac_pool = list(self.PORTAL_31_MACS)
+        elif server_id == "s50":
             self.portal_url = self.PORTAL_2_URL
             self.mac_pool = list(self.PORTAL_2_MACS)
         else:
@@ -136,7 +150,14 @@ class HubliveStalkerClient:
             portal = (s.get("portal_url") or s.get("portal") or s.get("url") or "").lower()
             macs = s.get("macs") or s.get("mac_pool") or []
 
-            if self.server_id == "s50":
+            if self.server_id == "s31":
+                if "light-ott" in portal or name in ["Server 31"]:
+                    if not target_portal:
+                        target_portal = s.get("portal_url") or s.get("portal") or s.get("url")
+                    for m in macs:
+                        if m and m not in combined_macs:
+                            combined_macs.append(m)
+            elif self.server_id == "s50":
                 if name in ["Server 29", "Server 50"] or "watchtivo" in portal or "tvdsz" in portal:
                     if not target_portal:
                         target_portal = s.get("portal_url") or s.get("portal") or s.get("url")
@@ -144,7 +165,7 @@ class HubliveStalkerClient:
                         if m and m not in combined_macs:
                             combined_macs.append(m)
             else:
-                if "most8k" in portal or "light-ott" in portal or name in ["Server 28", "Server 31", "Server 73"]:
+                if "most8k" in portal or name in ["Server 28"]:
                     if not target_portal and "most8k" in portal:
                         target_portal = s.get("portal_url") or s.get("portal") or s.get("url")
                     for m in macs:
@@ -153,7 +174,12 @@ class HubliveStalkerClient:
 
         if combined_macs:
             # Assicura che i MAC statici verificati siano sempre presenti
-            base_macs = self.PORTAL_1_MACS if self.server_id == "s28" else self.PORTAL_2_MACS
+            if self.server_id == "s31":
+                base_macs = self.PORTAL_31_MACS
+            elif self.server_id == "s50":
+                base_macs = self.PORTAL_2_MACS
+            else:
+                base_macs = self.PORTAL_1_MACS
             for m in base_macs:
                 if m not in combined_macs:
                     combined_macs.append(m)
@@ -402,7 +428,7 @@ class HubliveStalkerClient:
             try:
                 v_session = requests.Session()
                 v_session.trust_env = False
-                with v_session.get(final_url, headers={"User-Agent": self.UA}, timeout=(1.5, 2.5), stream=True, allow_redirects=True) as r_play:
+                with v_session.get(final_url, headers={"User-Agent": self.UA}, cookies={"mac": mac}, timeout=(1.5, 2.5), stream=True, allow_redirects=True) as r_play:
                     if r_play.status_code >= 400:
                         xbmc.log(f"[CBTV-HB] MAC {mac} HTTP error {r_play.status_code}", xbmc.LOGWARNING)
                         if is_top and r_play.status_code in [401, 403, 404]:
@@ -448,7 +474,11 @@ class HubliveStalkerClient:
                 continue
 
             # 5. Linea verificata e funzionante al 100%!
-            final_url_with_ua = f"{final_url}|User-Agent={quote_plus(self.UA)}"
+            dest_url = getattr(r_play, 'url', None) or final_url
+            if dest_url.startswith("http") and "black.ts" not in dest_url.lower():
+                final_url_with_ua = f"{dest_url}|User-Agent={quote_plus(self.UA)}"
+            else:
+                final_url_with_ua = f"{final_url}|User-Agent={quote_plus(self.UA)}"
             xbmc.log(f"[CBTV-HB] Stream risolto con successo usando MAC {mac}", xbmc.LOGINFO)
             
             # Salva come Last Working MAC e promuovi nei Top MAC
@@ -461,7 +491,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.3.6"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.3.7"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""
@@ -783,8 +813,8 @@ class HubliveStalkerClient:
             "┃IT┃ ZONA DAZN", "┃IT┃ DAZN", "┃IT┃ DAZN SERIE A", "┃IT┃ DAZN SERIE B"
         ]
         gids = self._find_genre_ids_by_titles(target_titles)
-        if not gids and self.server_id == "s50":
-            # ID reali certificati per Server 50
+        if not gids and self.server_id in ("s31", "s50"):
+            # ID reali certificati per Server 31 / Server 50
             gids = ["3331", "2730", "2731", "3333"]
 
         channels = self._fetch_channels_for_genres(gids, "dazn",
