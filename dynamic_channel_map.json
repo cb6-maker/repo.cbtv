@@ -1,7 +1,7 @@
 {
-  "version": 35,
-  "updated_at": "2026-09-09T08:00:00Z",
-  "description": "CBTV Live Stream Mapping - Sky Sport Uno/Calcio FHD feeds and Tennis HEVC backup on Server 31",
+  "version": 36,
+  "updated_at": "2026-09-10T08:00:00Z",
+  "description": "CBTV Live Stream Mapping - Server 37 integration for MAX Sport, Cosmote Sport, Sport Klub & Async proxy buffer",
   "channels": [
     {
       "name": "Sky Sport 24 HD",
@@ -238,11 +238,13 @@
     },
     {
       "name": "MAX Sport 1",
-      "url": "http://line.watchtivo-8k.com:80/ch/228727_",
+      "url": "http://line.8kultradnscloud.ru:80/ch/1720064_",
       "source_type": "hublive",
       "streams": [
-        "hls:472",
-        "s29:228727"
+        "s37:1720064",
+        "s37:967052",
+        "s29:228727",
+        "hls:472"
       ],
       "code": "bg",
       "image": "",
@@ -250,9 +252,10 @@
     },
     {
       "name": "MAX Sport 2",
-      "url": "http://line.watchtivo-8k.com:80/ch/228726_",
+      "url": "http://line.8kultradnscloud.ru:80/ch/1720063_",
       "source_type": "hublive",
       "streams": [
+        "s37:1720063",
         "s29:228726",
         "hls:473"
       ],
@@ -262,9 +265,10 @@
     },
     {
       "name": "MAX Sport 3",
-      "url": "http://line.watchtivo-8k.com:80/ch/228725_",
+      "url": "http://line.8kultradnscloud.ru:80/ch/83258_",
       "source_type": "hublive",
       "streams": [
+        "s37:83258",
         "s29:228725",
         "hls:474"
       ],
@@ -274,9 +278,10 @@
     },
     {
       "name": "MAX Sport 4",
-      "url": "http://line.watchtivo-8k.com:80/ch/228724_",
+      "url": "http://line.8kultradnscloud.ru:80/ch/83257_",
       "source_type": "hublive",
       "streams": [
+        "s37:83257",
         "s29:228724",
         "hls:475"
       ],
@@ -480,75 +485,111 @@
     },
     {
       "name": "Cosmote Sport 1 HD",
-      "url": "http://main.light-ott.net:80/ch/1890_",
+      "url": "http://line.8kultradnscloud.ru:80/ch/307824_",
       "source_type": "hublive",
       "code": "gr",
       "image": "",
-      "status": "online"
+      "status": "online",
+      "streams": [
+        "s37:307824",
+        "s31:1890"
+      ]
     },
     {
       "name": "Cosmote Sport 2 HD",
-      "url": "http://main.light-ott.net:80/ch/174427_",
+      "url": "http://line.8kultradnscloud.ru:80/ch/307822_",
       "source_type": "hublive",
       "code": "gr",
       "image": "",
-      "status": "online"
+      "status": "online",
+      "streams": [
+        "s37:307822",
+        "s31:174427"
+      ]
     },
     {
       "name": "Cosmote Sport 3 HD",
-      "url": "http://main.light-ott.net:80/ch/1888_",
+      "url": "http://line.8kultradnscloud.ru:80/ch/1432202_",
       "source_type": "hublive",
       "code": "gr",
       "image": "",
-      "status": "online"
+      "status": "online",
+      "streams": [
+        "s37:1432202",
+        "s31:1888"
+      ]
     },
     {
       "name": "Cosmote Sport 4 HD",
-      "url": "http://main.light-ott.net:80/ch/1887_",
+      "url": "http://line.8kultradnscloud.ru:80/ch/1432199_",
       "source_type": "hublive",
       "code": "gr",
       "image": "",
-      "status": "online"
+      "status": "online",
+      "streams": [
+        "s37:1432199",
+        "s31:1887"
+      ]
     },
     {
       "name": "Cosmote Sport 5 HD",
-      "url": "http://main.light-ott.net:80/ch/1886_",
+      "url": "http://line.8kultradnscloud.ru:80/ch/307816_",
       "source_type": "hublive",
       "code": "gr",
       "image": "",
-      "status": "online"
+      "status": "online",
+      "streams": [
+        "s37:307816",
+        "s31:1886"
+      ]
     },
     {
       "name": "Cosmote Sport 6 HD",
-      "url": "http://main.light-ott.net:80/ch/1885_",
+      "url": "http://line.8kultradnscloud.ru:80/ch/1432193_",
       "source_type": "hublive",
       "code": "gr",
       "image": "",
-      "status": "online"
+      "status": "online",
+      "streams": [
+        "s37:1432193",
+        "s31:1885"
+      ]
     },
     {
       "name": "Cosmote Sport 7 HD",
-      "url": "http://main.light-ott.net:80/ch/1884_",
+      "url": "http://line.8kultradnscloud.ru:80/ch/1432190_",
       "source_type": "hublive",
       "code": "gr",
       "image": "",
-      "status": "online"
+      "status": "online",
+      "streams": [
+        "s37:1432190",
+        "s31:1884"
+      ]
     },
     {
       "name": "Cosmote Sport 8 HD",
-      "url": "http://main.light-ott.net:80/ch/1883_",
+      "url": "http://line.8kultradnscloud.ru:80/ch/1432187_",
       "source_type": "hublive",
       "code": "gr",
       "image": "",
-      "status": "online"
+      "status": "online",
+      "streams": [
+        "s37:1432187",
+        "s31:1883"
+      ]
     },
     {
       "name": "Cosmote Sport 9 HD",
-      "url": "http://main.light-ott.net:80/ch/1882_",
+      "url": "http://line.8kultradnscloud.ru:80/ch/307808_",
       "source_type": "hublive",
       "code": "gr",
       "image": "",
-      "status": "online"
+      "status": "online",
+      "streams": [
+        "s37:307808",
+        "s31:1882"
+      ]
     },
     {
       "name": "Ziggo Sport",
@@ -672,67 +713,105 @@
     },
     {
       "name": "Sport Klub 1",
-      "url": "http://main.light-ott.net:80/ch/1108_",
+      "url": "http://line.8kultradnscloud.ru:80/ch/110690_",
       "source_type": "hublive",
       "code": "hr",
       "image": "",
-      "status": "online"
+      "status": "online",
+      "streams": [
+        "s37:110690",
+        "s37:1720051",
+        "s31:1108"
+      ]
     },
     {
       "name": "Sport Klub 2",
-      "url": "http://main.light-ott.net:80/ch/1107_",
+      "url": "http://line.8kultradnscloud.ru:80/ch/110689_",
       "source_type": "hublive",
       "code": "hr",
       "image": "",
-      "status": "online"
+      "status": "online",
+      "streams": [
+        "s37:110689",
+        "s37:1720050",
+        "s31:1107"
+      ]
     },
     {
       "name": "Sport Klub 3",
-      "url": "http://main.light-ott.net:80/ch/1106_",
+      "url": "http://line.8kultradnscloud.ru:80/ch/110688_",
       "source_type": "hublive",
       "code": "hr",
       "image": "",
-      "status": "online"
+      "status": "online",
+      "streams": [
+        "s37:110688",
+        "s37:1720049",
+        "s31:1106"
+      ]
     },
     {
       "name": "Sport Klub 4 HR",
-      "url": "http://main.light-ott.net:80/ch/1105_",
+      "url": "http://line.8kultradnscloud.ru:80/ch/1209950_",
       "source_type": "hublive",
       "code": "hr",
       "image": "",
-      "status": "online"
+      "status": "online",
+      "streams": [
+        "s37:1209950",
+        "s37:1720059",
+        "s31:1105"
+      ]
     },
     {
       "name": "Sport Klub 5 HR",
-      "url": "http://main.light-ott.net:80/ch/1104_",
+      "url": "http://line.8kultradnscloud.ru:80/ch/1209953_",
       "source_type": "hublive",
       "code": "hr",
       "image": "",
-      "status": "online"
+      "status": "online",
+      "streams": [
+        "s37:1209953",
+        "s37:1720058",
+        "s31:1104"
+      ]
     },
     {
       "name": "Sport Klub 6 HR",
-      "url": "http://main.light-ott.net:80/ch/1103_",
+      "url": "http://line.8kultradnscloud.ru:80/ch/1209956_",
       "source_type": "hublive",
       "code": "hr",
       "image": "",
-      "status": "online"
+      "status": "online",
+      "streams": [
+        "s37:1209956",
+        "s37:1720057",
+        "s31:1103"
+      ]
     },
     {
       "name": "Sport Klub Golf HR",
-      "url": "http://main.light-ott.net:80/ch/1102_",
+      "url": "http://line.8kultradnscloud.ru:80/ch/110764_",
       "source_type": "hublive",
       "code": "hr",
       "image": "",
-      "status": "online"
+      "status": "online",
+      "streams": [
+        "s37:110764",
+        "s31:1102"
+      ]
     },
     {
       "name": "Sport Klub Fight HR",
-      "url": "http://main.light-ott.net:80/ch/559136_",
+      "url": "http://line.8kultradnscloud.ru:80/ch/929601_",
       "source_type": "hublive",
       "code": "hr",
       "image": "",
-      "status": "online"
+      "status": "online",
+      "streams": [
+        "s37:929601",
+        "s31:559136"
+      ]
     },
     {
       "name": "Arena Sport 1 HR",
