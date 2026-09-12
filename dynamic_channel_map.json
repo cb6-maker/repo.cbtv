@@ -1,7 +1,7 @@
 {
-  "version": 39,
-  "updated_at": "2026-09-12T07:42:00Z",
-  "description": "CBTV Live Stream Mapping - v39 MAX Sport 1 ultra-fast GOP streams on Server 29",
+  "version": 40,
+  "updated_at": "2026-09-12T07:48:00Z",
+  "description": "CBTV Live Stream Mapping - v40 Separated Bulgarian and Croatian MAX Sport",
   "channels": [
     {
       "name": "Sky Sport 24 HD",
@@ -238,13 +238,11 @@
     },
     {
       "name": "MAX Sport 1",
-      "url": "http://line.watchtivo-8k.com:80/ch/559133_",
+      "url": "http://line.watchtivo-8k.com:80/ch/228727_",
       "source_type": "hublive",
       "streams": [
-        "s29:559133",
         "s29:228727",
-        "s29:228632",
-        "hls:472"
+        "s29:228632"
       ],
       "code": "bg",
       "image": "",
@@ -256,7 +254,7 @@
       "source_type": "hublive",
       "streams": [
         "s29:228726",
-        "hls:473"
+        "s29:228631"
       ],
       "code": "bg",
       "image": "",
@@ -268,7 +266,7 @@
       "source_type": "hublive",
       "streams": [
         "s29:228725",
-        "hls:474"
+        "s29:228630"
       ],
       "code": "bg",
       "image": "",
@@ -280,10 +278,36 @@
       "source_type": "hublive",
       "streams": [
         "s29:228724",
-        "hls:475"
+        "s29:228629"
       ],
       "code": "bg",
       "image": "https://via.placeholder.com/150/150f1f/9d4edd?text=Max+Sport+4+BG",
+      "status": "online"
+    },
+    {
+      "name": "MAX Sport 1 HR",
+      "url": "http://line.watchtivo-8k.com:80/ch/559133_",
+      "source_type": "hublive",
+      "streams": [
+        "s29:559133",
+        "s31:559133",
+        "s29:558965"
+      ],
+      "code": "hr",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "MAX Sport 2 HR",
+      "url": "http://line.watchtivo-8k.com:80/ch/559134_",
+      "source_type": "hublive",
+      "streams": [
+        "s29:559134",
+        "s31:559134",
+        "s29:558966"
+      ],
+      "code": "hr",
+      "image": "",
       "status": "online"
     },
     {
