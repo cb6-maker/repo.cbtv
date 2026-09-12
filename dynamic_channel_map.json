@@ -1,7 +1,7 @@
 {
-  "version": 38,
-  "updated_at": "2026-09-12T07:22:00Z",
-  "description": "CBTV Live Stream Mapping - v38 MAX Sport 1 prioritized on Server 29 (AAC)",
+  "version": 39,
+  "updated_at": "2026-09-12T07:42:00Z",
+  "description": "CBTV Live Stream Mapping - v39 MAX Sport 1 ultra-fast GOP streams on Server 29",
   "channels": [
     {
       "name": "Sky Sport 24 HD",
@@ -238,10 +238,12 @@
     },
     {
       "name": "MAX Sport 1",
-      "url": "http://line.watchtivo-8k.com:80/ch/228727_",
+      "url": "http://line.watchtivo-8k.com:80/ch/559133_",
       "source_type": "hublive",
       "streams": [
+        "s29:559133",
         "s29:228727",
+        "s29:228632",
         "hls:472"
       ],
       "code": "bg",
