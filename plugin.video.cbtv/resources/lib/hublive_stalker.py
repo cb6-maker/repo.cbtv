@@ -13,6 +13,14 @@ import xbmcaddon
 import xbmcvfs
 from urllib.parse import urlparse, quote_plus
 
+try:
+    from . import proxy_config
+except ImportError:
+    try:
+        import proxy_config
+    except ImportError:
+        proxy_config = None
+
 # ---------- utilità ----------
 def clean_text(text):
     """Rimuove tag [COLOR], simboli box-drawing e prefissi paese da nomi canale."""
@@ -274,33 +282,51 @@ class HubliveStalkerClient:
             c["token"] = token
         return c
 
+    def _get_session(self, use_proxy=True):
+        """Restituisce una sessione HTTP preconfigurata, usando il pool Webshare per bypassare i blocchi AGCOM."""
+        if use_proxy and proxy_config:
+            try:
+                return proxy_config.get_proxy_session()
+            except Exception:
+                pass
+        s = requests.Session()
+        s.trust_env = False
+        return s
+
     # ---- handshake ----
     def _handshake(self, mac, timeout=5):
         """Esegue l'handshake Stalker e restituisce il token (o None)."""
-        session = requests.Session()
-        session.cookies.clear()
         url = f"{self.portal_url}/portal.php"
         params = {"type": "stb", "action": "handshake", "token": "", "JsHttpRequest": "1-xml"}
-        try:
-            r = session.get(url, params=params,
-                            headers=self._headers(),
-                            cookies=self._cookies(mac),
-                            timeout=timeout)
-            r.raise_for_status()
-            data = r.json()
-            if isinstance(data, dict):
-                js = data.get("js", {})
-                if isinstance(js, dict):
-                    return js.get("token")
-            return None
-        except Exception as e:
-            xbmc.log(f"[CBTV-HB] Handshake fallito per MAC {mac}: {e}", xbmc.LOGWARNING)
-            return None
+        headers = self._headers()
+        cookies = self._cookies(mac)
+
+        sessions = []
+        if proxy_config:
+            sessions.append(self._get_session(use_proxy=True))
+        direct_s = requests.Session()
+        direct_s.trust_env = False
+        sessions.append(direct_s)
+
+        for s in sessions:
+            try:
+                s.cookies.clear()
+                r = s.get(url, params=params, headers=headers, cookies=cookies, timeout=timeout)
+                if r.status_code == 200:
+                    data = r.json()
+                    if isinstance(data, dict):
+                        js = data.get("js", {})
+                        if isinstance(js, dict) and js.get("token"):
+                            return js.get("token")
+            except Exception:
+                pass
+
+        xbmc.log(f"[CBTV-HB] Handshake fallito per MAC {mac}", xbmc.LOGWARNING)
+        return None
 
     # ---- chiamata API generica ----
     def _api_call(self, mac, token, action, extra_params=None, timeout=12):
         """Chiamata a portal.php — restituisce il campo 'js' della risposta."""
-        session = requests.Session()
         url = f"{self.portal_url}/portal.php"
         params = {
             "type": "itv",
@@ -313,16 +339,25 @@ class HubliveStalkerClient:
         headers = self._headers()
         cookies = self._cookies(mac, token)
 
-        try:
-            r = session.get(url, params=params, headers=headers, cookies=cookies, timeout=timeout)
-            r.raise_for_status()
-            data = r.json()
-            if isinstance(data, dict):
-                return data.get("js", {})
-            return {}
-        except Exception as e:
-            xbmc.log(f"[CBTV-HB] API call '{action}' fallita: {e}", xbmc.LOGWARNING)
-            return {}
+        sessions = []
+        if proxy_config:
+            sessions.append(self._get_session(use_proxy=True))
+        direct_s = requests.Session()
+        direct_s.trust_env = False
+        sessions.append(direct_s)
+
+        for s in sessions:
+            try:
+                r = s.get(url, params=params, headers=headers, cookies=cookies, timeout=timeout)
+                if r.status_code == 200:
+                    data = r.json()
+                    if isinstance(data, dict):
+                        return data.get("js", {})
+            except Exception:
+                pass
+
+        xbmc.log(f"[CBTV-HB] API call '{action}' fallita", xbmc.LOGWARNING)
+        return {}
 
     # ---- create_link ----
     def create_link(self, mac, token, cmd, timeout=12):
@@ -426,9 +461,8 @@ class HubliveStalkerClient:
 
             # 4. Verifica se lo stream è realmente attivo (evita di passare a Kodi linee occupate 458 o bloccate)
             try:
-                v_session = requests.Session()
-                v_session.trust_env = False
-                with v_session.get(final_url, headers={"User-Agent": self.UA}, cookies={"mac": mac}, timeout=(1.5, 2.5), stream=True, allow_redirects=True) as r_play:
+                v_session = self._get_session(use_proxy=True)
+                with v_session.get(final_url, headers={"User-Agent": self.UA}, cookies={"mac": mac}, timeout=(2.0, 3.5), stream=True, allow_redirects=True) as r_play:
                     if r_play.status_code >= 400:
                         xbmc.log(f"[CBTV-HB] MAC {mac} HTTP error {r_play.status_code}", xbmc.LOGWARNING)
                         if is_top and r_play.status_code in [401, 403, 404]:
@@ -491,7 +525,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.3.7"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.3.8"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""
