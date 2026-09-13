@@ -937,6 +937,26 @@ def play_hls_channel(daddy_id, title):
         xbmcgui.Dialog().notification("CBTV Errore", str(e), xbmcgui.NOTIFICATION_ERROR)
         xbmcplugin.setResolvedUrl(HANDLE, False, xbmcgui.ListItem())
 
+def _get_dazn_daddy_id(name):
+    """Mappa i nomi canale DAZN agli ID HLS di DaddyLive per fallback istantaneo (1080p 50fps)."""
+    if not name:
+        return "877"
+    nl = name.lower()
+    if "zona dazn 2" in nl or "dazn 2" in nl:
+        return "878"
+    if "f1" in nl:
+        return "537"
+    if "laliga" in nl:
+        return "538"
+    if "spagna" in nl or "es" in nl:
+        return "445"
+    if "uk" in nl:
+        return "230"
+    if "zona dazn" in nl or "dazn" in nl:
+        return "877"
+    return "877"
+
+
 def list_international_sport():
     """Menu principale Canali Internazionali"""
     xbmcplugin.setContent(HANDLE, 'videos')
@@ -1726,6 +1746,15 @@ def play_hublive_stalker(cmd, name=None):
         final_url, mac = client.resolve_stream(cmd, exclude_macs=failed_macs)
         
         if not final_url:
+            # Paracadute automatico per canali DAZN verso DaddyLive HLS (1080p 50fps)
+            if (server_id == "s31" or (name and any(k in name.upper() for k in ["DAZN", "ZONA"]))) and (attempt >= 1 or len(failed_macs) >= 8):
+                daddy_id = _get_dazn_daddy_id(name)
+                if daddy_id:
+                    xbmc.log(f"[CBTV-HB] Linee Stalker occupate per '{name}'. Avvio paracadute HLS (ID {daddy_id})...", xbmc.LOGINFO)
+                    xbmcgui.Dialog().notification("CBTV", "Avvio stream di riserva HLS...", xbmcgui.NOTIFICATION_INFO, 2000)
+                    play_hls_channel(daddy_id, name)
+                    return
+
             if len(failed_macs) >= len(client.mac_pool) or attempt >= max_batches - 1:
                 # Tutti i MAC di s28 hanno fallito: tenta fallback su Server secondario
                 if server_id == "s28" and name:
@@ -1743,6 +1772,15 @@ def play_hublive_stalker(cmd, name=None):
                         max_batches = 10
                         continue
                 
+                # Ultimo tentativo paracadute DAZN se non ancora scattato
+                if name and any(k in name.upper() for k in ["DAZN", "ZONA"]):
+                    daddy_id = _get_dazn_daddy_id(name)
+                    if daddy_id:
+                        xbmc.log(f"[CBTV-HB] Avvio paracadute HLS finale per '{name}' (ID {daddy_id})...", xbmc.LOGINFO)
+                        xbmcgui.Dialog().notification("CBTV", "Avvio stream di riserva HLS...", xbmcgui.NOTIFICATION_INFO, 2000)
+                        play_hls_channel(daddy_id, name)
+                        return
+
                 xbmc.log(f"[CBTV-HB] Tutti i MAC di {server_id} hanno fallito.", xbmc.LOGWARNING)
                 if first_attempt:
                     xbmcplugin.setResolvedUrl(HANDLE, False, xbmcgui.ListItem())

@@ -301,26 +301,19 @@ class HubliveStalkerClient:
         headers = self._headers()
         cookies = self._cookies(mac)
 
-        sessions = []
-        if proxy_config:
-            for p in proxy_config.get_shuffled_proxies()[:3]:
-                sessions.append(proxy_config.get_proxy_session(p))
-        direct_s = requests.Session()
-        direct_s.trust_env = False
-        sessions.append(direct_s)
-
-        for s in sessions:
-            try:
-                s.cookies.clear()
-                r = s.get(url, params=params, headers=headers, cookies=cookies, timeout=timeout)
-                if r.status_code == 200:
-                    data = r.json()
-                    if isinstance(data, dict):
-                        js = data.get("js", {})
-                        if isinstance(js, dict) and js.get("token"):
-                            return js.get("token")
-            except Exception:
-                pass
+        s = requests.Session()
+        s.trust_env = False
+        try:
+            s.cookies.clear()
+            r = s.get(url, params=params, headers=headers, cookies=cookies, timeout=timeout)
+            if r.status_code == 200:
+                data = r.json()
+                if isinstance(data, dict):
+                    js = data.get("js", {})
+                    if isinstance(js, dict) and js.get("token"):
+                        return js.get("token")
+        except Exception:
+            pass
 
         xbmc.log(f"[CBTV-HB] Handshake fallito per MAC {mac}", xbmc.LOGWARNING)
         return None
@@ -340,23 +333,16 @@ class HubliveStalkerClient:
         headers = self._headers()
         cookies = self._cookies(mac, token)
 
-        sessions = []
-        if proxy_config:
-            for p in proxy_config.get_shuffled_proxies()[:3]:
-                sessions.append(proxy_config.get_proxy_session(p))
-        direct_s = requests.Session()
-        direct_s.trust_env = False
-        sessions.append(direct_s)
-
-        for s in sessions:
-            try:
-                r = s.get(url, params=params, headers=headers, cookies=cookies, timeout=timeout)
-                if r.status_code == 200:
-                    data = r.json()
-                    if isinstance(data, dict):
-                        return data.get("js", {})
-            except Exception:
-                pass
+        s = requests.Session()
+        s.trust_env = False
+        try:
+            r = s.get(url, params=params, headers=headers, cookies=cookies, timeout=timeout)
+            if r.status_code == 200:
+                data = r.json()
+                if isinstance(data, dict):
+                    return data.get("js", {})
+        except Exception:
+            pass
 
         xbmc.log(f"[CBTV-HB] API call '{action}' fallita", xbmc.LOGWARNING)
         return {}
@@ -436,8 +422,8 @@ class HubliveStalkerClient:
             is_top = mac in top_verified or mac == last_working
             xbmc.log(f"[CBTV-HB] Tentativo {attempt}/{len(pool)} con MAC: {mac} (Top: {is_top})", xbmc.LOGINFO)
 
-            # 1. Handshake robusto con retry multi-proxy
-            token = self._handshake(mac, timeout=3.5)
+            # 1. Handshake veloce nativo
+            token = self._handshake(mac, timeout=1.8)
             if not token:
                 xbmc.log(f"[CBTV-HB] Handshake fallito per MAC {mac}", xbmc.LOGWARNING)
                 if is_top:
@@ -445,8 +431,8 @@ class HubliveStalkerClient:
                 exclude_macs.add(mac)
                 continue
 
-            # 2. create_link robusto con retry multi-proxy
-            url_or_token, stream_id_out = self.create_link(mac, token, cmd, timeout=4.0)
+            # 2. create_link veloce nativo
+            url_or_token, stream_id_out = self.create_link(mac, token, cmd, timeout=2.5)
             if not url_or_token:
                 xbmc.log(f"[CBTV-HB] create_link fallito per MAC {mac}", xbmc.LOGWARNING)
                 if is_top:
@@ -461,77 +447,66 @@ class HubliveStalkerClient:
                 final_url = (f"{self.portal_url}/play/live.php"
                              f"?mac={mac}&stream={stream_id_out}&extension=ts&play_token={url_or_token}")
 
-            # 4. Verifica stream ed estrazione URL CDN diretto non bloccato da AGCOM
-            resolved_cdn_url = None
-            verify_sessions = []
-            if proxy_config:
-                for p in proxy_config.get_shuffled_proxies()[:3]:
-                    verify_sessions.append(proxy_config.get_proxy_session(p))
-            verify_sessions.append(requests.Session())
+            # 4. Verifica stream ed estrazione rapida redirect CDN
+            try:
+                v_session = requests.Session()
+                v_session.trust_env = False
+                with v_session.get(final_url, headers={"User-Agent": self.UA}, cookies={"mac": mac}, timeout=(1.8, 2.5), stream=True, allow_redirects=True) as r_play:
+                    if r_play.status_code >= 400:
+                        xbmc.log(f"[CBTV-HB] MAC {mac} HTTP error {r_play.status_code}", xbmc.LOGWARNING)
+                        if is_top and r_play.status_code in [401, 403, 404]:
+                            self.remove_top_verified_mac(mac)
+                        exclude_macs.add(mac)
+                        continue
 
-            stream_ok = False
-            for v_session in verify_sessions:
-                try:
-                    with v_session.get(final_url, headers={"User-Agent": self.UA}, cookies={"mac": mac}, timeout=(3.0, 4.5), stream=True, allow_redirects=True) as r_play:
-                        if r_play.status_code >= 400:
-                            xbmc.log(f"[CBTV-HB] MAC {mac} HTTP error {r_play.status_code}", xbmc.LOGWARNING)
-                            if is_top and r_play.status_code in [401, 403, 404]:
-                                self.remove_top_verified_mac(mac)
-                            break
+                    final_dest = str(r_play.url)
+                    final_dest_lower = final_dest.lower()
+                    content_type = (r_play.headers.get("Content-Type") or "").lower()
 
-                        final_dest = str(r_play.url)
-                        final_dest_lower = final_dest.lower()
-                        content_type = (r_play.headers.get("Content-Type") or "").lower()
+                    if "black.ts" in final_dest_lower or "85.18.95.155" in final_dest_lower or "text/html" in content_type:
+                        xbmc.log(f"[CBTV-HB] MAC {mac} bloccato o black.ts ({final_dest[:60]})", xbmc.LOGWARNING)
+                        if is_top:
+                            self.remove_top_verified_mac(mac)
+                        exclude_macs.add(mac)
+                        continue
 
-                        if "black.ts" in final_dest_lower or "85.18.95.155" in final_dest_lower or "text/html" in content_type:
-                            xbmc.log(f"[CBTV-HB] MAC {mac} bloccato o black.ts ({final_dest[:60]})", xbmc.LOGWARNING)
-                            if is_top:
-                                self.remove_top_verified_mac(mac)
-                            break
+                    head = r_play.raw.read(188)
+                    if not head or head.startswith(b'\x1f\x8b\x08') or b"Sito Illegale" in head or b"AGCOM" in head:
+                        xbmc.log(f"[CBTV-HB] MAC {mac} non valido o vuoto", xbmc.LOGWARNING)
+                        if is_top:
+                            self.remove_top_verified_mac(mac)
+                        exclude_macs.add(mac)
+                        continue
 
-                        head = r_play.raw.read(188)
-                        if not head or head.startswith(b'\x1f\x8b\x08') or b"Sito Illegale" in head or b"AGCOM" in head:
-                            xbmc.log(f"[CBTV-HB] MAC {mac} non valido o vuoto", xbmc.LOGWARNING)
-                            if is_top:
-                                self.remove_top_verified_mac(mac)
-                            break
-
-                        # Flusso valido: memorizza l'URL CDN diretto (IP/host non bloccato da AGCOM)
-                        resolved_cdn_url = final_dest
-                        stream_ok = True
-                        break
-                except requests.exceptions.ReadTimeout:
-                    # Flusso live continuo: linea perfetta!
-                    resolved_cdn_url = final_url
-                    stream_ok = True
-                    break
-                except Exception:
-                    # Errore connessione o timeout proxy: prova sessione successiva
-                    continue
-
-            if not stream_ok:
+                # 5. Linea verificata e funzionante al 100%!
+                dest_url = final_dest or final_url
+                if dest_url.startswith("http") and "black.ts" not in dest_url.lower():
+                    final_url_with_ua = f"{dest_url}|User-Agent={quote_plus(self.UA)}"
+                else:
+                    final_url_with_ua = f"{final_url}|User-Agent={quote_plus(self.UA)}"
+                xbmc.log(f"[CBTV-HB] Stream risolto con successo usando MAC {mac} -> {dest_url[:80]}", xbmc.LOGINFO)
+                
+                # Salva come Last Working MAC e promuovi nei Top MAC
+                self._set_last_working_mac(mac)
+                self.record_top_verified_mac(mac)
+                
+                return final_url_with_ua, mac
+            except requests.exceptions.ReadTimeout:
+                dest_url = final_url
+                final_url_with_ua = f"{dest_url}|User-Agent={quote_plus(self.UA)}"
+                self._set_last_working_mac(mac)
+                self.record_top_verified_mac(mac)
+                return final_url_with_ua, mac
+            except Exception as e:
+                xbmc.log(f"[CBTV-HB] MAC {mac} timeout/errore verifica: {e}", xbmc.LOGWARNING)
                 exclude_macs.add(mac)
                 continue
-
-            # 5. Linea verificata e funzionante al 100%!
-            dest_url = resolved_cdn_url or final_url
-            if dest_url.startswith("http") and "black.ts" not in dest_url.lower() and "85.18.95.155" not in dest_url:
-                final_url_with_ua = f"{dest_url}|User-Agent={quote_plus(self.UA)}"
-            else:
-                final_url_with_ua = f"{final_url}|User-Agent={quote_plus(self.UA)}"
-            xbmc.log(f"[CBTV-HB] Stream risolto con successo usando MAC {mac} -> {dest_url[:80]}", xbmc.LOGINFO)
-            
-            # Salva come Last Working MAC e promuovi nei Top MAC
-            self._set_last_working_mac(mac)
-            self.record_top_verified_mac(mac)
-            
-            return final_url_with_ua, mac
 
         # Se tutti i MAC di questo batch erano occupati o non validi, restituisci None per provare il batch successivo
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.3.10"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.3.11"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""
