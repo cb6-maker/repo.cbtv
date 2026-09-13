@@ -28,6 +28,12 @@ def get_random_proxy():
         return None
     return random.choice(WEBSHARE_PROXIES)
 
+def get_shuffled_proxies():
+    """Restituisce una lista casuale di tutti i proxy disponibili per retry."""
+    pool = list(WEBSHARE_PROXIES)
+    random.shuffle(pool)
+    return pool
+
 def get_proxy_session(proxy_url=None):
     """Crea una requests.Session preconfigurata con proxy Webshare."""
     session = requests.Session()
