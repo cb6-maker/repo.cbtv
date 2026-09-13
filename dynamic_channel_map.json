@@ -1,7 +1,7 @@
 {
-  "version": 40,
-  "updated_at": "2026-09-12T07:48:00Z",
-  "description": "CBTV Live Stream Mapping - v40 Separated Bulgarian and Croatian MAX Sport",
+  "version": 41,
+  "updated_at": "2026-09-13T07:47:00Z",
+  "description": "CBTV Live Stream Mapping - v41 Updated Zona DAZN 1-4 and Serie A to Server 29/31 with direct CDN resolution",
   "channels": [
     {
       "name": "Sky Sport 24 HD",
@@ -474,7 +474,7 @@
     },
     {
       "name": "Zona DAZN 1 HD",
-      "url": "http://main.light-ott.net:80/ch/1158736_",
+      "url": "http://line.watchtivo-8k.com:80/ch/1158736_",
       "source_type": "hublive",
       "code": "it",
       "image": "",
@@ -482,7 +482,7 @@
     },
     {
       "name": "Zona DAZN 2 HD",
-      "url": "http://main.light-ott.net:80/ch/1158715_",
+      "url": "http://line.watchtivo-8k.com:80/ch/1158738_",
       "source_type": "hublive",
       "code": "it",
       "image": "",
@@ -490,7 +490,15 @@
     },
     {
       "name": "Zona DAZN 3 HD",
-      "url": "http://main.light-ott.net:80/ch/1158716_",
+      "url": "http://line.watchtivo-8k.com:80/ch/1158742_",
+      "source_type": "hublive",
+      "code": "it",
+      "image": "",
+      "status": "online"
+    },
+    {
+      "name": "Zona DAZN 4 HD",
+      "url": "http://line.watchtivo-8k.com:80/ch/1158746_",
       "source_type": "hublive",
       "code": "it",
       "image": "",
@@ -498,7 +506,7 @@
     },
     {
       "name": "DAZN Diretta Gol Serie A",
-      "url": "http://main.light-ott.net:80/ch/883849_",
+      "url": "http://line.watchtivo-8k.com:80/ch/1158714_",
       "source_type": "hublive",
       "code": "it",
       "image": "",
@@ -812,6 +820,9 @@
     "1273583": "1158738",
     "1273584": "1158738",
     "1158738": "1158738",
+    "1158742": "1158742",
+    "1158746": "1158746",
+    "1158714": "1158714",
     "692439": "177690",
     "692438": "177690",
     "692437": "177690",
@@ -1152,7 +1163,6 @@
     "1917708": "177697",
     "1917710": "240463",
     "240463": "240464",
-    "1158742": "1158742",
     "883849": "883849",
     "Sport Klub 1": "1108",
     "Sport Klub 2": "1107",
@@ -1745,8 +1755,11 @@
     "1729166": "997",
     "1729171": "991",
     "1729173": "992",
-    "1158736": "634",
-    "1158738": "635",
+    "1158736": "1158736",
+    "1158738": "1158738",
+    "1158742": "1158742",
+    "1158746": "1158746",
+    "1158714": "1158714",
     "932999": "393",
     "932997": "398",
     "933001": "919",
