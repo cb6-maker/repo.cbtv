@@ -710,18 +710,14 @@ def add_directory_item(title, query, is_folder=True, icon=None, is_playable=Fals
 def main_menu():
     xbmcplugin.setContent(HANDLE, 'videos')
     
-    import time
-    # Il parametro 'reload' con timestamp forza Kodi a NON usare la cache della cartella
-    reload_salt = str(int(time.time()))
-    
-    add_directory_item("[COLOR lime][B]Agenda Sportiva (Eventi di Oggi)[/B][/COLOR]", {"action": "list_agenda", "reload": reload_salt})
-    add_directory_item("[COLOR gold][B]Canali Sport[/B][/COLOR]", {"action": "list_sport", "reload": reload_salt})
+    add_directory_item("[COLOR lime][B]Agenda Sportiva (Eventi di Oggi)[/B][/COLOR]", {"action": "list_agenda"})
+    add_directory_item("[COLOR gold][B]Canali Sport[/B][/COLOR]", {"action": "list_sport"})
     
     # NOVITÀ: Canali Intrattenimento (Fonte Premium Stabile)
-    add_directory_item("[COLOR lightblue][B]Canali Intrattenimento[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_tv", "reload": reload_salt})
+    add_directory_item("[COLOR lightblue][B]Canali Intrattenimento[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_tv"})
     
     # Nuova cartella Primafila in Home (sotto Intrattenimento)
-    add_directory_item("[COLOR pink][B]Primafila[/B][/COLOR]", {"action": "list_primafila", "reload": reload_salt})
+    add_directory_item("[COLOR pink][B]Primafila[/B][/COLOR]", {"action": "list_primafila"})
     
     add_directory_item("[COLOR lime][B]Cerca Film[/B][/COLOR]", {"action": "sc_search", "search_type": "movie"}, icon=FANART)
     add_directory_item("[COLOR lime][B]Cerca Serie TV[/B][/COLOR]", {"action": "sc_search", "search_type": "tvshow"}, icon=FANART)
@@ -729,7 +725,7 @@ def main_menu():
     add_directory_item("[COLOR cyan][B]Cerca Canale TV[/B][/COLOR]", {"action": "search_channels"}, is_folder=False, icon=FANART)
     add_directory_item("[COLOR lightgray][B]⚙️ Impostazioni CBTV[/B][/COLOR]", {"action": "open_settings"}, is_folder=False, icon=FANART)
 
-    xbmcplugin.endOfDirectory(HANDLE)
+    xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
 
 def search_live_channels(query=None):
     """Ricerca globale di canali live in tutte le sorgenti (Locali e Remote)"""
@@ -845,17 +841,14 @@ def list_sport():
     """Sottomenu Sport con tutte le sorgenti"""
     xbmcplugin.setContent(HANDLE, 'videos')
     
-    import time
-    reload_salt = str(int(time.time()))
-
-    add_directory_item("[COLOR cyan][B]Sky Sport (HB)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_sport", "reload": reload_salt})
-    add_directory_item("[COLOR lightblue][B]Sky Sport (HLS)[/B][/COLOR]", {"action": "list_sky_sport_hls", "reload": reload_salt})
-    add_directory_item("[COLOR orange][B]Dazn (HB)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "dazn_only", "reload": reload_salt})
-    add_directory_item("[COLOR yellow][B]Dazn (HLS)[/B][/COLOR]", {"action": "list_dazn_hls", "reload": reload_salt})
+    add_directory_item("[COLOR cyan][B]Sky Sport (HB)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_sport"})
+    add_directory_item("[COLOR lightblue][B]Sky Sport (HLS)[/B][/COLOR]", {"action": "list_sky_sport_hls"})
+    add_directory_item("[COLOR orange][B]Dazn (HB)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "dazn_only"})
+    add_directory_item("[COLOR yellow][B]Dazn (HLS)[/B][/COLOR]", {"action": "list_dazn_hls"})
     
-    add_directory_item("[COLOR violet][B]Canali Internazionali[/B][/COLOR]", {"action": "list_international_sport", "reload": reload_salt})
+    add_directory_item("[COLOR violet][B]Canali Internazionali[/B][/COLOR]", {"action": "list_international_sport"})
     
-    xbmcplugin.endOfDirectory(HANDLE)
+    xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
 
 def list_sky_sport_hls():
     """Lista canali Sky Sport da sorgente HLS di riserva"""
@@ -885,7 +878,7 @@ def list_sky_sport_hls():
             is_folder=False,
             is_playable=True
         )
-    xbmcplugin.endOfDirectory(HANDLE)
+    xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
 
 def list_dazn_hls():
     """Lista canali DAZN da sorgente HLS di riserva"""
@@ -905,7 +898,7 @@ def list_dazn_hls():
             is_folder=False,
             is_playable=True
         )
-    xbmcplugin.endOfDirectory(HANDLE)
+    xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
 
 def play_hls_channel(daddy_id, title):
     """Risolve e riproduce lo stream HLS autenticato tramite web_hls_resolver"""
@@ -964,7 +957,7 @@ def list_international_sport():
     add_directory_item("[COLOR yellow][B]Canali Esteri (Lista 1 HB)[/B][/COLOR]", {"action": "list_hb_esteri_nazioni"})
     add_directory_item("[COLOR gold][B]Canali Esteri (Lista 2 MPD)[/B][/COLOR]", {"action": "list_mpd_nazioni"})
     
-    xbmcplugin.endOfDirectory(HANDLE)
+    xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
 
 
 def list_dazn_mh():
@@ -1273,7 +1266,7 @@ def list_agenda():
     if not events:
         xbmcgui.Dialog().notification("CBTV", "Nessun evento sportivo trovato per oggi", xbmcgui.NOTIFICATION_INFO, 3000)
     
-    xbmcplugin.endOfDirectory(HANDLE)
+    xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
 
 
 def list_sources_agenda():
@@ -1668,7 +1661,7 @@ def list_eagle_genres(eb_type, force_refresh=False):
             title = f"{ch['name']} [COLOR cyan](HB)[/COLOR]"
             add_directory_item(title, {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name']}, is_folder=False, is_playable=True)
         
-    xbmcplugin.endOfDirectory(HANDLE)
+    xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
 
 
 def list_primafila():
@@ -1686,7 +1679,7 @@ def list_primafila():
         xbmc.log(f"[CBTV] Errore caricamento Primafila: {e}", xbmc.LOGERROR)
         xbmcgui.Dialog().notification("Errore", "Impossibile caricare canali Primafila", xbmcgui.NOTIFICATION_ERROR)
         
-    xbmcplugin.endOfDirectory(HANDLE)
+    xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
 
 
 
