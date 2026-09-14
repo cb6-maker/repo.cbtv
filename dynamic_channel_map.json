@@ -1,7 +1,7 @@
 {
-  "version": 41,
-  "updated_at": "2026-09-13T07:47:00Z",
-  "description": "CBTV Live Stream Mapping - v41 Updated Zona DAZN 1-4 and Serie A to Server 29/31 with direct CDN resolution",
+  "version": 42,
+  "updated_at": "2026-09-14T07:48:00Z",
+  "description": "CBTV Live Stream Mapping - v42 Set Hublive Server 29 priority for Zona DAZN 1 HD with HLS fallback",
   "channels": [
     {
       "name": "Sky Sport 24 HD",
@@ -476,6 +476,10 @@
       "name": "Zona DAZN 1 HD",
       "url": "http://line.watchtivo-8k.com:80/ch/1158736_",
       "source_type": "hublive",
+      "streams": [
+        "s29:1158736",
+        "hls:1158736"
+      ],
       "code": "it",
       "image": "",
       "status": "online"
@@ -484,6 +488,9 @@
       "name": "Zona DAZN 2 HD",
       "url": "http://line.watchtivo-8k.com:80/ch/1158738_",
       "source_type": "hublive",
+      "streams": [
+        "s29:1158738"
+      ],
       "code": "it",
       "image": "",
       "status": "online"
@@ -492,6 +499,9 @@
       "name": "Zona DAZN 3 HD",
       "url": "http://line.watchtivo-8k.com:80/ch/1158742_",
       "source_type": "hublive",
+      "streams": [
+        "s29:1158742"
+      ],
       "code": "it",
       "image": "",
       "status": "online"
@@ -500,6 +510,9 @@
       "name": "Zona DAZN 4 HD",
       "url": "http://line.watchtivo-8k.com:80/ch/1158746_",
       "source_type": "hublive",
+      "streams": [
+        "s29:1158746"
+      ],
       "code": "it",
       "image": "",
       "status": "online"
@@ -508,6 +521,9 @@
       "name": "DAZN Diretta Gol Serie A",
       "url": "http://line.watchtivo-8k.com:80/ch/1158714_",
       "source_type": "hublive",
+      "streams": [
+        "s29:1158714"
+      ],
       "code": "it",
       "image": "",
       "status": "online"
