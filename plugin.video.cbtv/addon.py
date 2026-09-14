@@ -727,6 +727,7 @@ def main_menu():
     add_directory_item("[COLOR lime][B]Cerca Serie TV[/B][/COLOR]", {"action": "sc_search", "search_type": "tvshow"}, icon=FANART)
     # Impostiamo is_folder=False per far sì che agisca come un comando, non come una cartella vuota
     add_directory_item("[COLOR cyan][B]Cerca Canale TV[/B][/COLOR]", {"action": "search_channels"}, is_folder=False, icon=FANART)
+    add_directory_item("[COLOR lightgray][B]⚙️ Impostazioni CBTV[/B][/COLOR]", {"action": "open_settings"}, is_folder=False, icon=FANART)
 
     xbmcplugin.endOfDirectory(HANDLE)
 
@@ -1986,6 +1987,8 @@ if __name__ == '__main__':
     
     if not action:
         main_menu()
+    elif action == 'open_settings':
+        ADDON.openSettings()
     elif action == 'search_channels':
         search_live_channels(params.get('query'))
 
