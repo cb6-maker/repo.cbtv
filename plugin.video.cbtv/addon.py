@@ -1336,18 +1336,13 @@ def list_hb_esteri_nazioni():
     xbmcplugin.endOfDirectory(HANDLE)
 
 def list_hb_esteri_channels(group):
-    """Elenca i canali per il gruppo selezionato di Lista 1 HB in modo dinamico"""
+    """Elenca i canali per il gruppo selezionato di Lista 1 HB in modo dinamico da Server 29 (s50)"""
     xbmcplugin.setContent(HANDLE, 'videos')
     
     from resources.lib.hublive_stalker import HubliveStalkerClient
-    client = HubliveStalkerClient()
-    
-    p_dialog = xbmcgui.DialogProgress()
-    p_dialog.create("CBTV", "Caricamento canali...")
+    client = HubliveStalkerClient("s50")
     
     channels = client.get_foreign_sport_channels(group)
-    
-    p_dialog.close()
     
     for ch in channels:
         title = f"{ch['name']} [COLOR yellow](HB)[/COLOR]"
@@ -1358,7 +1353,7 @@ def list_hb_esteri_channels(group):
             is_playable=True
         )
         
-    xbmcplugin.endOfDirectory(HANDLE)
+    xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
 
 # --- MPD NAZIONI (MANDRAKODI SPORT SOURCE) ---
 
