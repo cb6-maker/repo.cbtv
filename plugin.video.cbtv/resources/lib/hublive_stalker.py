@@ -58,24 +58,6 @@ class HubliveStalkerClient:
         "A0:BB:3E:00:0F:85", "A0:BB:3E:00:10:97", "A0:BB:3E:00:11:BD", "A0:BB:3E:00:12:87"
     ]
 
-    # Server 29 / Server 50 (Fallback)
-    PORTAL_2_URL = "http://line.watchtivo-8k.com:80"
-    PORTAL_2_MACS = [
-        "00:1A:79:97:29:31", "00:1A:79:17:04:D7", "00:1A:79:00:00:00", "00:1A:79:00:22:D5",
-        "00:1A:79:BB:F6:57", "00:1A:79:C8:7B:30", "00:1A:79:C7:10:76", "00:1A:79:BF:D9:75",
-        "00:1A:79:CD:F2:84", "00:1A:79:7E:71:A1", "00:1A:79:A8:B7:16", "00:1A:79:84:EB:56",
-        "00:1A:79:AD:0E:30", "00:1A:79:F1:F1:CA", "00:1A:79:17:2E:14", "00:1A:79:17:1B:15",
-        "00:1A:79:0C:42:DE", "00:1A:79:B6:26:F7", "00:1A:79:09:1C:05", "00:1A:79:18:1A:57",
-        "00:1A:79:B5:0D:A0", "00:1A:79:C7:CB:94", "00:1A:79:9D:4A:60", "00:1A:79:5D:AB:3B",
-        "00:1A:79:C6:F6:F6", "00:1A:79:B6:42:BD", "00:1A:79:74:AB:3F", "00:1A:79:18:12:E8",
-        "00:1A:79:69:38:2E", "00:1A:79:85:5C:A4", "00:1A:79:F5:3F:55", "00:1A:79:7E:24:C3",
-        "00:1A:79:0B:B9:9B", "00:1A:79:A9:1C:50", "00:1A:79:39:DA:D6", "00:1A:79:A0:E8:37",
-        "00:1A:79:C6:1B:54", "00:1A:79:B1:58:AB", "00:1A:79:DC:88:87", "00:1A:79:8B:56:DA",
-        "00:1A:79:C3:2F:08", "00:1A:79:C6:DA:B6", "00:1A:79:90:19:6E", "00:1A:79:16:C3:C7",
-        "00:1A:79:B6:5E:6C", "00:1A:79:DB:8E:FE", "00:1A:79:BF:E0:1A", "00:1A:79:BF:B5:5B",
-        "00:1A:79:1C:10:51", "00:1A:79:0B:C1:2A", "00:1A:79:B6:23:16", "00:1A:79:F1:B3:3D"
-    ]
-
     REMOTE_HUB_URL = "https://raw.githubusercontent.com/staycanuca/hub/main/servers.json"
 
     UA = ("Mozilla/5.0 (QtEmbedded; U; Linux; C) AppleWebKit/533.3 "
@@ -87,9 +69,6 @@ class HubliveStalkerClient:
         if server_id == "s31":
             self.portal_url = self.PORTAL_31_URL
             self.mac_pool = list(self.PORTAL_31_MACS)
-        elif server_id == "s50":
-            self.portal_url = self.PORTAL_2_URL
-            self.mac_pool = list(self.PORTAL_2_MACS)
         else:
             self.portal_url = self.PORTAL_1_URL
             self.mac_pool = list(self.PORTAL_1_MACS)
@@ -165,13 +144,6 @@ class HubliveStalkerClient:
                     for m in macs:
                         if m and m not in combined_macs:
                             combined_macs.append(m)
-            elif self.server_id == "s50":
-                if name in ["Server 29", "Server 50"] or "watchtivo" in portal or "tvdsz" in portal:
-                    if not target_portal:
-                        target_portal = s.get("portal_url") or s.get("portal") or s.get("url")
-                    for m in macs:
-                        if m and m not in combined_macs:
-                            combined_macs.append(m)
             else:
                 if "most8k" in portal or name in ["Server 28"]:
                     if not target_portal and "most8k" in portal:
@@ -184,8 +156,6 @@ class HubliveStalkerClient:
             # Assicura che i MAC statici verificati siano sempre presenti
             if self.server_id == "s31":
                 base_macs = self.PORTAL_31_MACS
-            elif self.server_id == "s50":
-                base_macs = self.PORTAL_2_MACS
             else:
                 base_macs = self.PORTAL_1_MACS
             for m in base_macs:
@@ -506,7 +476,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.3.16"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.3.17"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""
@@ -578,28 +548,14 @@ class HubliveStalkerClient:
             self._set_cache("genres", res)
             return res
 
-        # Fallback integrato delle categorie note reali per evitare blocchi
-        if self.server_id == "s50":
-            fallback_genres = [
-                {"id": "2721", "title": "┃IT┃ GENERALE"},
-                {"id": "2723", "title": "┃IT┃ FILM E SERIE"},
-                {"id": "388", "title": "┃IT┃ SPORT"},
-                {"id": "2728", "title": "┃IT┃ SKY SPORT"},
-                {"id": "2729", "title": "┃IT┃ SKY CALCIO"},
-                {"id": "3331", "title": "┃IT┃ ZONA DAZN"},
-                {"id": "2731", "title": "┃IT┃ DAZN SERIE A"},
-                {"id": "2730", "title": "┃IT┃ DAZN"},
-                {"id": "3333", "title": "┃IT┃ DAZN SERIE B"}
-            ]
-        else:
-            fallback_genres = [
-                {"id": "11", "title": "IT| PRIME ᴿᴬᵂ ⁶⁰ᶠᵖˢ"},
-                {"id": "12", "title": "IT| PLATINUM TV UHD/4K"},
-                {"id": "13", "title": "IT| GENERALE"},
-                {"id": "14", "title": "IT| CINEMA"},
-                {"id": "15", "title": "IT| SPORT"},
-                {"id": "16", "title": "IT| GOLD TV HEVC"}
-            ]
+        fallback_genres = [
+            {"id": "11", "title": "IT| PRIME ᴿᴬᵂ ⁶⁰ᶠᵖˢ"},
+            {"id": "12", "title": "IT| PLATINUM TV UHD/4K"},
+            {"id": "13", "title": "IT| GENERALE"},
+            {"id": "14", "title": "IT| CINEMA"},
+            {"id": "15", "title": "IT| SPORT"},
+            {"id": "16", "title": "IT| GOLD TV HEVC"}
+        ]
         self._set_cache("genres", fallback_genres)
         return fallback_genres
 
@@ -872,8 +828,8 @@ class HubliveStalkerClient:
             "┃IT┃ ZONA DAZN", "┃IT┃ DAZN", "┃IT┃ DAZN SERIE A", "┃IT┃ DAZN SERIE B"
         ]
         gids = self._find_genre_ids_by_titles(target_titles)
-        if not gids and self.server_id in ("s31", "s50"):
-            # ID reali certificati per Server 31 / Server 50
+        if not gids and self.server_id == "s31":
+            # ID reali certificati per Server 31
             gids = ["3331", "2730", "2731", "3333"]
 
         channels = self._fetch_channels_for_genres(gids, "dazn",
@@ -930,56 +886,59 @@ class HubliveStalkerClient:
         """Retrocompatibilità: reindirizza istantaneamente ai canali Cinema evitando timeout"""
         return self.get_sky_cinema_channels()
 
-    def get_foreign_sport_channels(self, group):
+    def get_foreign_sport_channels(self, group, force_refresh=False):
+        """Ottiene i canali per il gruppo sportivo estero selezionato da Server 31"""
         target_titles = []
         filter_keywords = []
         
-        if group == "COSMOTE / GR SPORT":
-            target_titles = ["GR| ΑΘΛΗΤΙΚΆ/SPORTS", "GR| ΑΘΛΗΤΙΚΑ/SPORTS", "GR| ΑΘΛΗΤΙΚΑ/SPORTS VIP", "┃GR┃ COSMOTE SPORTS", "┃GR┃ SPORTS | ΑΘΛΗΤΙΚΑ", "┃GR┃ NOVA SPORTS", "┃GR┃ MAGENTA SPORTS"]
-            filter_keywords = ["COSMOTE", "NOVA", "ANT1", "MAGENTA", "SPORT"]
-        elif group == "MAX SPORT / BG SPORT":
-            target_titles = ["BG| BULGARIA", "BG| BULGARIA ⱽᴵᴾ ᴿᴬᵂ", "BG| BULGARIA ᴴᴰ/ᴿᴬᵂ", "┃BG┃ BULGARIA", "┃BG┃ BULGARIA ⱽᴵᴾ ᴿᴬᵂ"]
-            filter_keywords = ["DIEMA", "MAX SPORT", "MAX", "RING", "SPORT"]
-        elif group == "POLSAT / PL SPORT":
-            target_titles = ["PL| SPORTOWE", "PL| CANAL+ ONLINE SPORT ᴿᴬᵂ", "PL| SPORTOWE ᴴᴰ/ᴿᴬᵂ", "PL| CANAL+ ONLINE SPORT ᴿᴬᵂ", "┃PL┃ CANAL+ SPORT", "┃PL┃ POLSAT SPORT", "┃PL┃ ELEVEN SPORTS"]
-            filter_keywords = ["POLSAT", "ELEVEN", "CANAL+"]
-        elif group == "TNT / UK SPORT":
+        if group == "TNT / UK SPORT":
             target_titles = [
-                "UK| TNT SPORTS EVENT", "UK| TNT SPORT EVENT", "UK| TNT SPORT ᴴᴰ ⱽᴵᴾ", "UK| TNT SPORT ᴿᴬᵂ ⱽᴵᴾ ᴰᴼᴸᴮʸ ᴬᵁᴰᴵᴼ",
-                "UK| SPORTS", "UK| SPORTS HEVC", "UK| SKY SPORT+ VIP",
-                "┃UK┃ TNT SPORTS EVENT", "┃UK┃ TNT SPORTS RAW DOLBY", "┃UK┃ TNT SPORTS HEVC", "┃UK┃ TNT SPORTS FHD", "┃UK┃ TNT SPORTS HD", "┃UK┃ TNT SPORTS SD"
+                "┃UK┃ TNT SPORTS FHD", "┃UK┃ TNT SPORTS HEVC", "┃UK┃ TNT SPORTS RAW DOLBY",
+                "┃UK┃ TNT SPORTS EVENT", "┃UK┃ SKY SPORTS FHD", "┃UK┃ SKY SPORTS RAW DOLBY",
+                "┃UK┃ SKY SPORTS HEVC", "┃UK┃ PREMIER SPORTS"
             ]
-            filter_keywords = ["TNT"]
+            filter_keywords = ["TNT", "SKY", "PREMIER"]
+        elif group == "POLSAT / PL SPORT":
+            target_titles = ["┃PL┃ CANAL+ SPORT", "┃PL┃ POLSAT SPORT", "┃PL┃ ELEVEN SPORTS"]
+            filter_keywords = ["POLSAT", "ELEVEN", "CANAL+"]
         elif group == "ZIGGO / NL SPORT":
-            target_titles = ["NL| SPORT", "NL| SPORT HD/4K", "NL| ZIGGO SPORTS ᴿᴬᵂ", "NL| ZIGGO ᴿᴬᵂ", "NL| VIAPLAY SPORT", "┃NL┃ SPORT TV+", "┃NL┃ ZIGGO ᴿᴬᵂ", "┃NL┃ ZIGGO SPORTS ᴿᴬᵂ", "┃NL┃ ZIGGO KABEL", "┃NL┃ VIAPLAY SPORT"]
+            target_titles = ["┃NL┃ ZIGGO KABEL", "┃NL┃ VIAPLAY SPORT", "┃NL┃ ESPN WATCH", "┃NL┃ SPORT TV+"]
             filter_keywords = ["ZIGGO", "VIAPLAY", "ESPN", "SPORT"]
         elif group == "S SPORT / TR SPORT":
             target_titles = [
-                "TR| SPOR KANALI GOLD", "TR| SPOR KANALI VIP", "TR| SPOR KANALI LOCAL", "TR| SPOR KANALLARI", "TR| TABII SPORT",
-                "┃TR┃ BEIN SPORTS HEVC", "┃TR┃ BEIN SPORTS FHD", "┃TR┃ BEIN SPORTS", "┃TR┃ EXXEN SPORTS", "┃TR┃ S SPORTS", "┃TR┃ BEIN SPORTS RAW"
+                "┃TR┃ S SPORTS", "┃TR┃ BEIN SPORTS RAW", "┃TR┃ BEIN SPORTS FHD",
+                "┃TR┃ EXXEN SPORTS", "┃TR┃ BEIN CONNECT", "┃TR┃ BEIN PLATFORM"
             ]
             filter_keywords = ["S SPORT", "EXXEN", "BEIN", "SPOR"]
+        elif group == "COSMOTE / GR SPORT":
+            target_titles = ["┃GR┃ NOVA SPORTS", "┃GR┃ MAGENTA SPORTS", "┃GR┃ SPORTS | ΑΘΛΗΤΙΚΑ"]
+            filter_keywords = ["COSMOTE", "NOVA", "ANT1", "MAGENTA", "SPORT"]
+        elif group == "MAX SPORT / BG SPORT":
+            target_titles = ["┃BG┃ BULGARIA"]
+            filter_keywords = ["DIEMA", "MAX SPORT", "MAX", "RING", "SPORT"]
+        elif group == "DAZN / ES SPORT":
+            target_titles = ["┃ES┃ DAZN LA LIGA", "┃ES┃ DAZN ESPAÑA", "┃ES┃DAZN MUNDIAL 2026"]
+            filter_keywords = ["DAZN", "LALIGA", "SPORT"]
+        elif group == "CANAL+ / FR SPORT":
+            target_titles = ["┃FR┃ MY CANAL+ SPORT", "┃FR┃ RMC SPORT", "┃FR┃ BEIN SPORTS", "┃FR┃ CANAL+ LIVE"]
+            filter_keywords = ["CANAL", "RMC", "BEIN", "SPORT"]
             
         gids = self._find_genre_ids_by_titles(target_titles)
-        if not gids and group == "TNT / UK SPORT":
+        if not gids:
             genres = self.get_genres()
-            gids = [g["id"] for g in genres if "TNT" in g.get("title", "").upper()]
+            gids = [g["id"] for g in genres if any(t in g.get("title", "") for t in target_titles)]
 
         channels = []
         if gids:
-            channels = self._load_and_filter_foreign_channels(gids, group, filter_keywords)
-            
-        if self.server_id == "s28" and not channels:
-            xbmc.log(f"[CBTV-HB] {group} su s28 vuoto, provo s50 fallback", xbmc.LOGWARNING)
-            client_s50 = HubliveStalkerClient("s50")
-            return client_s50.get_foreign_sport_channels(group)
+            cache_key = f"foreign_{group.replace(' ', '_').replace('/', '_')}"
+            channels = self._load_and_filter_foreign_channels(gids, cache_key, filter_keywords, force=force_refresh)
             
         return channels
 
-    def _load_and_filter_foreign_channels(self, gids, group, filter_keywords):
+    def _load_and_filter_foreign_channels(self, gids, cache_key, filter_keywords, force=False):
         channels = []
         seen_cmds = set()
-        ch_list = self._fetch_channels_for_genres(gids, f"foreign_{group.replace(' ', '_').replace('/', '_')}")
+        ch_list = self._fetch_channels_for_genres(gids, cache_key, force=force)
         for ch in ch_list:
             name = ch.get("name", "")
             cmd = ch.get("cmd", "")
@@ -1049,9 +1008,9 @@ class HubliveStalkerClient:
                     break
                     
         if not category_key:
-            # Fallback: cerca in tutte le cache s50 già caricate
+            # Fallback: cerca nelle cache s31 già caricate
             for fn in cache_files:
-                if fn.startswith("hl_s50_") and fn.endswith(".json") and "genres" not in fn:
+                if fn.startswith("hl_s31_") and fn.endswith(".json") and "genres" not in fn:
                     try:
                         with open(os.path.join(self.cache_dir, fn), 'r', encoding='utf-8') as fh:
                             d = json.load(fh)
@@ -1062,37 +1021,16 @@ class HubliveStalkerClient:
                         pass
             return None
             
-        # 2. Cerca nella cache s50 specifica
-        s50_fn = f"hl_s50_{category_key}.json"
-        if s50_fn in cache_files:
+        # 2. Cerca nella cache s31 specifica se presente
+        s31_fn = f"hl_s31_{category_key}.json"
+        if s31_fn in cache_files:
             try:
-                with open(os.path.join(self.cache_dir, s50_fn), 'r', encoding='utf-8') as fh:
+                with open(os.path.join(self.cache_dir, s31_fn), 'r', encoding='utf-8') as fh:
                     d = json.load(fh)
                     for ch in d.get('data', []):
                         if self._normalize_channel_name(ch.get('name', '')) == norm_target:
                             return ch.get('cmd')
             except:
                 pass
-                
-        # 3. Cache s50 non presente, caricala al volo
-        xbmc.log(f"[CBTV-HB] Fallback cache s50 per {category_key} mancante, avvio fetch dinamico...", xbmc.LOGINFO)
-        client_s50 = HubliveStalkerClient("s50")
-        channels_s50 = []
-        
-        if category_key == "sky_tv":
-            channels_s50 = client_s50.get_sky_tv_channels()
-        elif category_key == "sky_sport":
-            channels_s50 = client_s50.get_sky_sport_channels()
-        elif category_key == "dazn":
-            channels_s50 = client_s50.get_dazn_channels()
-        elif category_key == "primafila":
-            channels_s50 = client_s50.get_primafila_channels()
-        elif category_key.startswith("foreign_"):
-            group_name = category_key.replace("foreign_", "").replace("_", " ")
-            channels_s50 = client_s50.get_foreign_sport_channels(group_name)
-            
-        for ch in channels_s50:
-            if self._normalize_channel_name(ch.get('name', '')) == norm_target:
-                return ch.get('cmd')
                 
         return None

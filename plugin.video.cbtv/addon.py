@@ -1369,16 +1369,18 @@ def play_daddy_direct():
 # --- CANALI ESTERI HUBLIVE (LISTA 1 HB) ---
 
 def list_hb_esteri_nazioni():
-    """Elenca i gruppi/nazioni disponibili per i canali sportivi esteri HB."""
+    """Elenca i gruppi/nazioni disponibili per i canali sportivi esteri HB da Server 31."""
     xbmcplugin.setContent(HANDLE, 'videos')
     
     groups = [
-        ("COSMOTE / GR SPORT", "[COLOR cyan]COSMOTE (Grecia)[/COLOR]"),
-        ("MAX SPORT / BG SPORT", "[COLOR cyan]MAX SPORT / DIEMA (Bulgaria)[/COLOR]"),
-        ("POLSAT / PL SPORT", "[COLOR cyan]POLSAT / CANAL+ (Polonia)[/COLOR]"),
-        ("S SPORT / TR SPORT", "[COLOR cyan]S SPORT (Turchia)[/COLOR]"),
-        ("TNT / UK SPORT", "[COLOR cyan]TNT SPORTS (UK)[/COLOR]"),
-        ("ZIGGO / NL SPORT", "[COLOR cyan]ZIGGO (Olanda)[/COLOR]"),
+        ("TNT / UK SPORT", "[COLOR cyan][B]TNT SPORTS & SKY (UK)[/B][/COLOR]"),
+        ("POLSAT / PL SPORT", "[COLOR cyan][B]POLSAT & CANAL+ (Polonia)[/B][/COLOR]"),
+        ("ZIGGO / NL SPORT", "[COLOR cyan][B]ZIGGO & ESPN (Olanda)[/B][/COLOR]"),
+        ("S SPORT / TR SPORT", "[COLOR cyan][B]S SPORT & BEIN (Turchia)[/B][/COLOR]"),
+        ("COSMOTE / GR SPORT", "[COLOR cyan][B]NOVA & COSMOTE (Grecia)[/B][/COLOR]"),
+        ("MAX SPORT / BG SPORT", "[COLOR cyan][B]MAX SPORT & DIEMA (Bulgaria)[/B][/COLOR]"),
+        ("DAZN / ES SPORT", "[COLOR cyan][B]DAZN & LALIGA (Spagna)[/B][/COLOR]"),
+        ("CANAL+ / FR SPORT", "[COLOR cyan][B]CANAL+ & RMC (Francia)[/B][/COLOR]"),
     ]
     
     esteri_icon = get_tile("tile_canali_esteri.png")
@@ -1390,17 +1392,24 @@ def list_hb_esteri_nazioni():
             icon=esteri_icon
         )
     
-    xbmcplugin.endOfDirectory(HANDLE)
+    xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
 
-def list_hb_esteri_channels(group):
-    """Elenca i canali per il gruppo selezionato di Lista 1 HB in modo dinamico da Server 29 (s50)"""
+def list_hb_esteri_channels(group, force_refresh=False):
+    """Elenca i canali per il gruppo selezionato di Lista 1 HB in modo dinamico da Server 31"""
     xbmcplugin.setContent(HANDLE, 'videos')
-    
-    from resources.lib.hublive_stalker import HubliveStalkerClient
-    client = HubliveStalkerClient("s50")
-    
-    channels = client.get_foreign_sport_channels(group)
     esteri_icon = get_tile("tile_canali_esteri.png")
+    
+    add_directory_item("[COLOR yellow][B]↻ Ricarica lista dal server[/B][/COLOR]", 
+                       {"action": "list_hb_esteri_channels", "group": group, "force_refresh": "1"}, 
+                       is_folder=True, icon=esteri_icon)
+    
+    if force_refresh:
+        xbmcgui.Dialog().notification("CBTV", f"Aggiornamento {group}...", xbmcgui.NOTIFICATION_INFO, 1500)
+        
+    from resources.lib.hublive_stalker import HubliveStalkerClient
+    client = HubliveStalkerClient("s31")
+    
+    channels = client.get_foreign_sport_channels(group, force_refresh=force_refresh)
     for ch in channels:
         title = f"{ch['name']} [COLOR yellow](HB)[/COLOR]"
         add_directory_item(
@@ -1772,13 +1781,11 @@ class HBPlayer(xbmc.Player):
 
 
 def play_hublive_stalker(cmd, name=None):
-    """Riproduce un canale Hublive con auto-riconnessione, rotazione MAC completa e fallback su Server 29."""
+    """Riproduce un canale Hublive con auto-riconnessione e rotazione MAC completa."""
     global _CURRENT_HB_PLAYER
     # Determiniamo il server iniziale in base al cmd
     if "main.light-ott.net" in cmd or "light-ott" in cmd:
         server_id = "s31"
-    elif "line.watchtivo-8k.com" in cmd:
-        server_id = "s50"
     else:
         server_id = "s28"
 
@@ -1808,22 +1815,6 @@ def play_hublive_stalker(cmd, name=None):
                     return
 
             if len(failed_macs) >= len(client.mac_pool) or attempt >= max_batches - 1:
-                # Tutti i MAC di s28 hanno fallito: tenta fallback su Server secondario
-                if server_id == "s28" and name:
-                    xbmc.log(f"[CBTV-HB] Tutti i MAC di s28 occupati. Tento fallback su Server 29 per '{name}'...", xbmc.LOGWARNING)
-                    xbmcgui.Dialog().notification("HB Fallback", "Tento server secondario...", xbmcgui.NOTIFICATION_WARNING, 2000)
-                    
-                    client_s50 = HubliveStalkerClient("s50")
-                    fallback_cmd = client_s50.find_channel_cmd_by_name(name)
-                    if fallback_cmd:
-                        xbmc.log(f"[CBTV-HB] Trovato cmd alternativo su s29: {fallback_cmd[:80]}...", xbmc.LOGINFO)
-                        server_id = "s50"
-                        client = client_s50
-                        cmd = fallback_cmd
-                        failed_macs = set()
-                        max_batches = 10
-                        continue
-                
                 # Ultimo tentativo paracadute DAZN se non ancora scattato
                 if name and any(k in name.upper() for k in ["DAZN", "ZONA"]):
                     daddy_id = _get_dazn_daddy_id(name)
@@ -2066,7 +2057,7 @@ if __name__ == '__main__':
     elif action == 'list_hb_esteri_nazioni':
         list_hb_esteri_nazioni()
     elif action == 'list_hb_esteri_channels':
-        list_hb_esteri_channels(params.get('group'))
+        list_hb_esteri_channels(params.get('group'), force_refresh=(params.get('force_refresh') == '1'))
     elif action == 'list_freeshot_v3':
         list_freeshot_v3()
     elif action == 'play_freeshot_v3':
