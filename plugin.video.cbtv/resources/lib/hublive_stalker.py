@@ -506,7 +506,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.3.14"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.3.16"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""
@@ -708,17 +708,16 @@ class HubliveStalkerClient:
                 return fallback
 
         target_titles = [
-            "IT| GENERALE", "IT| GENERALE HD/4K", "IT| CINEMA", "IT| CINEMA HD/4K", "IT| CINEMA VIP HD/4K",
-            "IT| REGIONALI", "IT| REGIONALI HD/4K", "IT| PRIME ᴿᴬᵂ ⁶⁰ᶠᵖˢ", "IT| 24/7 MOVIES & SERIES",
-            "IT| 24/7 MOVIES & SERIES HD/4K", "IT| ITALY FHD/HEVC", "IT| ITALY UHD/4K", "IT| PLATINUM TV UHD/4K",
-            "IT| GOLD TV HEVC", "IT| AMAZON PRIME",
+            "IT| GENERALE", "IT| GENERALE HD/4K", "IT| REGIONALI", "IT| REGIONALI HD/4K",
+            "IT| 24/7 MOVIES & SERIES", "IT| 24/7 MOVIES & SERIES HD/4K", "IT| ITALY FHD/HEVC",
+            "IT| ITALY UHD/4K", "IT| PLATINUM TV UHD/4K", "IT| GOLD TV HEVC", "IT| AMAZON PRIME",
             "┃IT┃ ITALIA HD | RIGIOCARE ⏺", "┃IT┃ GENERALE", "┃IT┃ INTRATTENIMENTO",
-            "┃IT┃ FILM E SERIE", "┃IT┃ CINEMA", "┃IT┃ 24/7 MOVIES & SERIES", "┃IT┃ DOCUMENTARIO"
+            "┃IT┃ FILM E SERIE", "┃IT┃ 24/7 MOVIES & SERIES", "┃IT┃ DOCUMENTARIO"
         ]
         gids = self._find_genre_ids_by_titles(target_titles)
         channels = self._fetch_channels_for_genres(gids, "sky_tv",
             keywords=["SKY"],
-            negatives=["SPORT", "DAZN", "CALCIO", "F1", "MOTOGP", "PRIMAFILA"],
+            negatives=["SPORT", "DAZN", "CALCIO", "F1", "MOTOGP", "PRIMAFILA", "CINEMA"],
             force=force_refresh)
             
         if not channels:
@@ -727,6 +726,51 @@ class HubliveStalkerClient:
             if channels:
                 self._set_cache("sky_tv", channels)
             
+        return channels
+
+    def get_sky_cinema_channels(self, force_refresh=False):
+        """Canali Sky Cinema (55 canali cinema). Caricamento istantaneo con ricarica opzionale."""
+        if not force_refresh:
+            cached = self._get_cache("sky_cinema")
+            if cached and len(cached) > 5:
+                return cached
+            fallback = self._load_fallback("sky_cinema_fallback.json")
+            if fallback:
+                self._set_cache("sky_cinema", fallback)
+                return fallback
+
+        target_titles = [
+            "IT| CINEMA", "IT| CINEMA HD/4K", "IT| CINEMA VIP HD/4K",
+            "IT| PRIME ᴿᴬᵂ ⁶⁰ᶠᵖˢ", "IT| 24/7 MOVIES & SERIES", "IT| 24/7 MOVIES & SERIES HD/4K",
+            "IT| PLATINUM TV UHD/4K", "IT| GOLD TV HEVC",
+            "┃IT┃ FILM E SERIE", "┃IT┃ CINEMA", "┃IT┃ 24/7 MOVIES & SERIES"
+        ]
+        gids = self._find_genre_ids_by_titles(target_titles)
+        channels = self._fetch_channels_for_genres(gids, "sky_cinema",
+            keywords=["CINEMA"],
+            negatives=["SPORT", "DAZN", "CALCIO"],
+            force=force_refresh)
+            
+        if not channels:
+            xbmc.log("[CBTV-HB] get_sky_cinema_channels vuoto/timeout, carico sky_cinema_fallback.json integrato", xbmc.LOGWARNING)
+            channels = self._load_fallback("sky_cinema_fallback.json")
+
+        def cinema_sort_key(c):
+            n = c.get('name', '').upper()
+            if 'CINEMA UNO' in n: order = 1
+            elif 'CINEMA DUE' in n: order = 2
+            elif 'ACTION' in n: order = 3
+            elif 'COLLECTION' in n: order = 4
+            elif 'COMEDY' in n: order = 5
+            elif 'DRAMA' in n: order = 6
+            elif 'FAMILY' in n: order = 7
+            elif 'ROMANCE' in n: order = 8
+            elif 'SUSPENSE' in n: order = 9
+            else: order = 10
+            return (order, n)
+
+        channels.sort(key=cinema_sort_key)
+        self._set_cache("sky_cinema", channels)
         return channels
 
     def get_sky_sport_channels(self, force_refresh=False):
@@ -883,35 +927,8 @@ class HubliveStalkerClient:
         return channels
 
     def get_primafila_channels(self):
-        target_titles = [
-            "IT| CINEMA", "IT| CINEMA VIP HD/4K", "IT| CINEMA HD/4K", "IT| SPORT", "IT| SPORT HD/4K",
-            "IT| ITALY FHD/HEVC", "IT| PLATINUM TV UHD/4K", "IT| ITALY UHD/4K",
-            "┃IT┃ OD SKY PRIMAFILA ESCLUSIVO", "┃IT┃ OD SKY PRIMAFILA", "┃IT┃ OD PRIMAFILA", "┃IT┃ OD PRIMA", "┃IT┃ OD MESCOLA"
-        ]
-        gids = self._find_genre_ids_by_titles(target_titles)
-        channels = self._fetch_channels_for_genres(gids, "primafila", keywords=["PRIMAFILA"])
-        
-        if self.server_id == "s28" and not channels:
-            xbmc.log("[CBTV-HB] get_primafila_channels su s28 vuoto, provo s50 fallback", xbmc.LOGWARNING)
-            client_s50 = HubliveStalkerClient("s50")
-            channels = client_s50.get_primafila_channels()
-        
-        def primafila_sort_key(ch):
-            name = ch.get('name', '').upper().strip()
-            norm = name.replace(" ", "")
-            is_vetrina = 0 if "VETRINA" in norm else 1
-            if "PRIMAFILA" in norm:
-                group = 0
-            elif "CINEPLAY" in norm:
-                group = 1
-            else:
-                group = 2
-            num_match = re.search(r'\d+', norm)
-            num = int(num_match.group()) if num_match else 999999
-            return (is_vetrina, group, num, name)
-            
-        channels.sort(key=primafila_sort_key)
-        return channels
+        """Retrocompatibilità: reindirizza istantaneamente ai canali Cinema evitando timeout"""
+        return self.get_sky_cinema_channels()
 
     def get_foreign_sport_channels(self, group):
         target_titles = []

@@ -435,7 +435,7 @@ def get_channel_tile(name, category=""):
     up = name.upper()
     
     # Cinema
-    if "CINEMA" in up:
+    if "CINEMA" in up or category == "sky_cinema":
         return get_tile("tile_sky_cinema.png")
         
     # Sky Intrattenimento / Canali TV
@@ -766,8 +766,8 @@ def main_menu():
     # NOVITÀ: Canali Intrattenimento (Fonte Premium Stabile)
     add_directory_item("[COLOR lightblue][B]Canali Intrattenimento[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_tv"}, icon=get_tile("tile_sky_intrattenimento.png"))
     
-    # Nuova cartella Primafila in Home (sotto Intrattenimento)
-    add_directory_item("[COLOR pink][B]Primafila[/B][/COLOR]", {"action": "list_primafila"}, icon=get_tile("tile_primafila.png"))
+    # Nuova cartella Canali Cinema in Home (Fonte Premium Stabile)
+    add_directory_item("[COLOR gold][B]Canali Cinema[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_cinema"}, icon=get_tile("tile_sky_cinema.png"))
     
     add_directory_item("[COLOR lime][B]Cerca Film[/B][/COLOR]", {"action": "sc_search", "search_type": "movie"}, icon=FANART)
     add_directory_item("[COLOR lime][B]Cerca Serie TV[/B][/COLOR]", {"action": "sc_search", "search_type": "tvshow"}, icon=FANART)
@@ -1689,6 +1689,21 @@ def list_eagle_genres(eb_type, force_refresh=False):
             ch_icon = get_channel_tile(ch['name'], "sky_tv")
             add_directory_item(title, {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name']}, is_folder=False, is_playable=True, icon=ch_icon)
             
+    elif eb_type == "sky_cinema":
+        # Canali Sky Cinema da Hublive (Fonte Premium Stabile)
+        add_directory_item("[COLOR yellow][B]↻ Ricarica lista dal server[/B][/COLOR]", 
+                           {"action": "list_eagle_genres", "eb_type": "sky_cinema", "force_refresh": "1"}, 
+                           is_folder=True, icon=get_tile("tile_sky_cinema.png"))
+        if force_refresh:
+            xbmcgui.Dialog().notification("CBTV", "Aggiornamento canali Sky Cinema...", xbmcgui.NOTIFICATION_INFO, 2000)
+        hl_client = HubliveStalkerClient("s28")
+        hl_channels = hl_client.get_sky_cinema_channels(force_refresh=force_refresh)
+        cinema_icon = get_tile("tile_sky_cinema.png")
+        for ch in hl_channels:
+            title = f"{ch['name']} [COLOR gold](HB)[/COLOR]"
+            ch_icon = get_channel_tile(ch['name'], "sky_cinema") or cinema_icon
+            add_directory_item(title, {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name']}, is_folder=False, is_playable=True, icon=ch_icon)
+            
     elif eb_type == "dazn_only":
         # Canali DAZN (Zona DAZN 1-4, DAZN 1-4, Serie A, Serie B, Events)
         add_directory_item("[COLOR yellow][B]↻ Ricarica lista dal server[/B][/COLOR]", 
@@ -1721,22 +1736,8 @@ def list_eagle_genres(eb_type, force_refresh=False):
 
 
 def list_primafila():
-    """Elenca i canali Primafila e Cineplay da Hublive"""
-    xbmcplugin.setContent(HANDLE, 'videos')
-    from resources.lib.hublive_stalker import HubliveStalkerClient
-    hl_client = HubliveStalkerClient()
-    
-    try:
-        channels = hl_client.get_primafila_channels()
-        pf_icon = get_tile("tile_primafila.png")
-        for ch in channels:
-            title = f"{ch['name']} [COLOR pink](HB)[/COLOR]"
-            add_directory_item(title, {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name']}, is_folder=False, is_playable=True, icon=pf_icon)
-    except Exception as e:
-        xbmc.log(f"[CBTV] Errore caricamento Primafila: {e}", xbmc.LOGERROR)
-        xbmcgui.Dialog().notification("Errore", "Impossibile caricare canali Primafila", xbmcgui.NOTIFICATION_ERROR)
-        
-    xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
+    """Elenca i Canali Cinema (sostituisce la vecchia Primafila con caricamento istantaneo)"""
+    list_eagle_genres("sky_cinema")
 
 
 
