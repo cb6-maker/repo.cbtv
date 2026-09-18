@@ -421,6 +421,55 @@ def sc_save_library(title, item_type, sc_id, slug=None, thumb=None):
 
 # Ensure absolute path for fanart
 FANART = os.path.join(ADDON.getAddonInfo('path'), 'fanart.jpg')
+TILES_DIR = os.path.join(ADDON.getAddonInfo('path'), 'resources', 'media', 'tiles')
+
+def get_tile(tile_name):
+    """Restituisce il path assoluto di un tile/icona quadrata 1:1"""
+    path = os.path.join(TILES_DIR, tile_name)
+    return path if os.path.exists(path) else ''
+
+def get_channel_tile(name, category=""):
+    """Associa dinamicamente la card 1:1 ad alta definizione al canale in base al nome e categoria"""
+    if not name:
+        return ''
+    up = name.upper()
+    
+    # Cinema
+    if "CINEMA" in up:
+        return get_tile("tile_sky_cinema.png")
+        
+    # Sky Intrattenimento / Canali TV
+    if "ATLANTIC" in up:
+        return get_tile("tile_sky_atlantic.png")
+    if "SERIE" in up and "SERIE A" not in up and "SERIE B" not in up:
+        return get_tile("tile_sky_serie.png")
+    if "ARTE" in up:
+        return get_tile("tile_sky_arte.png")
+    if "TG24" in up or "TG 24" in up:
+        return get_tile("tile_sky_tg24.png")
+    if "DOCUMENTARIES" in up or "DOCS" in up:
+        return get_tile("tile_sky_documentaries.png")
+    if "NATURE" in up:
+        return get_tile("tile_sky_nature.png")
+    if "CRIME" in up:
+        return get_tile("tile_sky_crime.png")
+    if "INVESTIGATION" in up:
+        return get_tile("tile_sky_investigation.png")
+    if "UNO" in up and ("SKY" in up or category == "sky_tv"):
+        return get_tile("tile_sky_uno.png")
+        
+    # Primafila / Cinema VOD
+    if "PRIMAFILA" in up or "CINEPLAY" in up:
+        return get_tile("tile_primafila.png")
+        
+    # Sport
+    if "DAZN" in up or category == "dazn_only":
+        return get_tile("tile_dazn.png")
+    if "SPORT" in up or "CALCIO" in up or "TENNIS" in up or "F1" in up or "MOTOGP" in up or "ARENA" in up or category == "sky_sport":
+        return get_tile("tile_sky_sport.png")
+        
+    return ''
+
 
 # URL config remota su GitHub Pages
 REMOTE_CONFIG_URL = "https://cb6-maker.github.io/repo.cbtv/channels_config.json"
@@ -701,6 +750,7 @@ def add_directory_item(title, query, is_folder=True, icon=None, is_playable=Fals
     if icon:
         art['icon'] = icon
         art['thumb'] = icon
+        art['poster'] = icon
     list_item.setArt(art)
 
     if is_playable:
@@ -710,14 +760,14 @@ def add_directory_item(title, query, is_folder=True, icon=None, is_playable=Fals
 def main_menu():
     xbmcplugin.setContent(HANDLE, 'videos')
     
-    add_directory_item("[COLOR lime][B]Agenda Sportiva (Eventi di Oggi)[/B][/COLOR]", {"action": "list_agenda"})
-    add_directory_item("[COLOR gold][B]Canali Sport[/B][/COLOR]", {"action": "list_sport"})
+    add_directory_item("[COLOR lime][B]Agenda Sportiva (Eventi di Oggi)[/B][/COLOR]", {"action": "list_agenda"}, icon=get_tile("tile_agenda_sportiva.png"))
+    add_directory_item("[COLOR gold][B]Canali Sport[/B][/COLOR]", {"action": "list_sport"}, icon=get_tile("tile_sport_live.png"))
     
     # NOVITÀ: Canali Intrattenimento (Fonte Premium Stabile)
-    add_directory_item("[COLOR lightblue][B]Canali Intrattenimento[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_tv"})
+    add_directory_item("[COLOR lightblue][B]Canali Intrattenimento[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_tv"}, icon=get_tile("tile_sky_intrattenimento.png"))
     
     # Nuova cartella Primafila in Home (sotto Intrattenimento)
-    add_directory_item("[COLOR pink][B]Primafila[/B][/COLOR]", {"action": "list_primafila"})
+    add_directory_item("[COLOR pink][B]Primafila[/B][/COLOR]", {"action": "list_primafila"}, icon=get_tile("tile_primafila.png"))
     
     add_directory_item("[COLOR lime][B]Cerca Film[/B][/COLOR]", {"action": "sc_search", "search_type": "movie"}, icon=FANART)
     add_directory_item("[COLOR lime][B]Cerca Serie TV[/B][/COLOR]", {"action": "sc_search", "search_type": "tvshow"}, icon=FANART)
@@ -841,12 +891,12 @@ def list_sport():
     """Sottomenu Sport con tutte le sorgenti"""
     xbmcplugin.setContent(HANDLE, 'videos')
     
-    add_directory_item("[COLOR cyan][B]Sky Sport (HB)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_sport"})
-    add_directory_item("[COLOR lightblue][B]Sky Sport (HLS)[/B][/COLOR]", {"action": "list_sky_sport_hls"})
-    add_directory_item("[COLOR orange][B]Dazn (HB)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "dazn_only"})
-    add_directory_item("[COLOR yellow][B]Dazn (HLS)[/B][/COLOR]", {"action": "list_dazn_hls"})
+    add_directory_item("[COLOR cyan][B]Sky Sport (HB)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_sport"}, icon=get_tile("tile_sky_sport.png"))
+    add_directory_item("[COLOR lightblue][B]Sky Sport (HLS)[/B][/COLOR]", {"action": "list_sky_sport_hls"}, icon=get_tile("tile_sky_sport.png"))
+    add_directory_item("[COLOR orange][B]Dazn (HB)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "dazn_only"}, icon=get_tile("tile_dazn.png"))
+    add_directory_item("[COLOR yellow][B]Dazn (HLS)[/B][/COLOR]", {"action": "list_dazn_hls"}, icon=get_tile("tile_dazn.png"))
     
-    add_directory_item("[COLOR violet][B]Canali Internazionali[/B][/COLOR]", {"action": "list_international_sport"})
+    add_directory_item("[COLOR violet][B]Canali Internazionali[/B][/COLOR]", {"action": "list_international_sport"}, icon=get_tile("tile_canali_esteri.png"))
     
     xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
 
@@ -871,12 +921,14 @@ def list_sky_sport_hls():
         {"name": "Eurosport 1 IT HD", "id": "878"},
         {"name": "Eurosport 2 IT HD", "id": "879"},
     ]
+    sport_icon = get_tile("tile_sky_sport.png")
     for ch in channels:
         add_directory_item(
             f"[COLOR lightblue]{ch['name']}[/COLOR]",
             {"action": "play_hls_channel", "daddy_id": ch["id"], "title": ch["name"]},
             is_folder=False,
-            is_playable=True
+            is_playable=True,
+            icon=sport_icon
         )
     xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
 
@@ -891,12 +943,14 @@ def list_dazn_hls():
         {"name": "DAZN LaLiga (Spagna)", "id": "538"},
         {"name": "DAZN 1 UK", "id": "230"},
     ]
+    dazn_icon = get_tile("tile_dazn.png")
     for ch in channels:
         add_directory_item(
             f"[COLOR yellow]{ch['name']}[/COLOR]",
             {"action": "play_hls_channel", "daddy_id": ch["id"], "title": ch["name"]},
             is_folder=False,
-            is_playable=True
+            is_playable=True,
+            icon=dazn_icon
         )
     xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
 
@@ -954,8 +1008,9 @@ def _get_dazn_daddy_id(name):
 def list_international_sport():
     """Menu principale Canali Internazionali"""
     xbmcplugin.setContent(HANDLE, 'videos')
-    add_directory_item("[COLOR yellow][B]Canali Esteri (Lista 1 HB)[/B][/COLOR]", {"action": "list_hb_esteri_nazioni"})
-    add_directory_item("[COLOR gold][B]Canali Esteri (Lista 2 MPD)[/B][/COLOR]", {"action": "list_mpd_nazioni"})
+    esteri_icon = get_tile("tile_canali_esteri.png")
+    add_directory_item("[COLOR yellow][B]Canali Esteri (Lista 1 HB)[/B][/COLOR]", {"action": "list_hb_esteri_nazioni"}, icon=esteri_icon)
+    add_directory_item("[COLOR gold][B]Canali Esteri (Lista 2 MPD)[/B][/COLOR]", {"action": "list_mpd_nazioni"}, icon=esteri_icon)
     
     xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
 
@@ -1326,11 +1381,13 @@ def list_hb_esteri_nazioni():
         ("ZIGGO / NL SPORT", "[COLOR cyan]ZIGGO (Olanda)[/COLOR]"),
     ]
     
+    esteri_icon = get_tile("tile_canali_esteri.png")
     for group_id, label in groups:
         add_directory_item(
             label,
             {"action": "list_hb_esteri_channels", "group": group_id},
-            is_folder=True
+            is_folder=True,
+            icon=esteri_icon
         )
     
     xbmcplugin.endOfDirectory(HANDLE)
@@ -1343,14 +1400,15 @@ def list_hb_esteri_channels(group):
     client = HubliveStalkerClient("s50")
     
     channels = client.get_foreign_sport_channels(group)
-    
+    esteri_icon = get_tile("tile_canali_esteri.png")
     for ch in channels:
         title = f"{ch['name']} [COLOR yellow](HB)[/COLOR]"
         add_directory_item(
             title,
             {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name']},
             is_folder=False,
-            is_playable=True
+            is_playable=True,
+            icon=esteri_icon
         )
         
     xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
@@ -1621,40 +1679,43 @@ def list_eagle_genres(eb_type, force_refresh=False):
         # Canali Intrattenimento e Cinema da Hublive (NO canali sport)
         add_directory_item("[COLOR yellow][B]↻ Ricarica lista dal server[/B][/COLOR]", 
                            {"action": "list_eagle_genres", "eb_type": "sky_tv", "force_refresh": "1"}, 
-                           is_folder=True)
+                           is_folder=True, icon=get_tile("tile_sky_intrattenimento.png"))
         if force_refresh:
             xbmcgui.Dialog().notification("CBTV", "Aggiornamento canali Sky TV...", xbmcgui.NOTIFICATION_INFO, 2000)
         hl_client = HubliveStalkerClient("s28")
         hl_channels = hl_client.get_sky_tv_channels(force_refresh=force_refresh)
         for ch in hl_channels:
             title = f"{ch['name']} [COLOR yellow](HB)[/COLOR]"
-            add_directory_item(title, {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name']}, is_folder=False, is_playable=True)
+            ch_icon = get_channel_tile(ch['name'], "sky_tv")
+            add_directory_item(title, {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name']}, is_folder=False, is_playable=True, icon=ch_icon)
             
     elif eb_type == "dazn_only":
         # Canali DAZN (Zona DAZN 1-4, DAZN 1-4, Serie A, Serie B, Events)
         add_directory_item("[COLOR yellow][B]↻ Ricarica lista dal server[/B][/COLOR]", 
                            {"action": "list_eagle_genres", "eb_type": "dazn_only", "force_refresh": "1"}, 
-                           is_folder=True)
+                           is_folder=True, icon=get_tile("tile_dazn.png"))
         if force_refresh:
             xbmcgui.Dialog().notification("CBTV", "Aggiornamento canali DAZN...", xbmcgui.NOTIFICATION_INFO, 2000)
         hl_client_dazn = HubliveStalkerClient("s31")
         hl_channels = hl_client_dazn.get_dazn_channels(force_refresh=force_refresh)
+        dazn_icon = get_tile("tile_dazn.png")
         for ch in hl_channels:
             title = f"{ch['name']} [COLOR orange](HB)[/COLOR]"
-            add_directory_item(title, {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name']}, is_folder=False, is_playable=True)
+            add_directory_item(title, {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name']}, is_folder=False, is_playable=True, icon=dazn_icon)
             
     elif eb_type == "sky_sport":
         # Canali Sky Sport (Sky Sport 24, Uno, Calcio 1-7, Arena, Action, F1, MotoGP, Max, Tennis, Eurosport)
         add_directory_item("[COLOR yellow][B]↻ Ricarica lista dal server[/B][/COLOR]", 
                            {"action": "list_eagle_genres", "eb_type": "sky_sport", "force_refresh": "1"}, 
-                           is_folder=True)
+                           is_folder=True, icon=get_tile("tile_sky_sport.png"))
         if force_refresh:
             xbmcgui.Dialog().notification("CBTV", "Aggiornamento canali Sky Sport...", xbmcgui.NOTIFICATION_INFO, 2000)
         hl_client = HubliveStalkerClient("s28")
         hl_channels = hl_client.get_sky_sport_channels(force_refresh=force_refresh)
+        sport_icon = get_tile("tile_sky_sport.png")
         for ch in hl_channels:
             title = f"{ch['name']} [COLOR cyan](HB)[/COLOR]"
-            add_directory_item(title, {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name']}, is_folder=False, is_playable=True)
+            add_directory_item(title, {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name']}, is_folder=False, is_playable=True, icon=sport_icon)
         
     xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
 
@@ -1667,9 +1728,10 @@ def list_primafila():
     
     try:
         channels = hl_client.get_primafila_channels()
+        pf_icon = get_tile("tile_primafila.png")
         for ch in channels:
             title = f"{ch['name']} [COLOR pink](HB)[/COLOR]"
-            add_directory_item(title, {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name']}, is_folder=False, is_playable=True)
+            add_directory_item(title, {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name']}, is_folder=False, is_playable=True, icon=pf_icon)
     except Exception as e:
         xbmc.log(f"[CBTV] Errore caricamento Primafila: {e}", xbmc.LOGERROR)
         xbmcgui.Dialog().notification("Errore", "Impossibile caricare canali Primafila", xbmcgui.NOTIFICATION_ERROR)
