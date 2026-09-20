@@ -237,6 +237,48 @@ class HubliveStalkerClient:
             except Exception:
                 pass
 
+    def get_channel_working_mac(self, channel_name):
+        """Restituisce il MAC memorizzato e associato a questo canale specifico."""
+        if not channel_name:
+            return None
+        safe_key = re.sub(r'[^a-zA-Z0-9_]', '_', channel_name).lower()
+        f = os.path.join(self.cache_dir, f"hl_ch_mac_{self.server_id}_{safe_key}.json")
+        if os.path.exists(f):
+            try:
+                with open(f, 'r', encoding='utf-8') as fh:
+                    data = json.load(fh)
+                    mac = data.get("mac")
+                    if mac and mac in self.mac_pool:
+                        return mac
+            except Exception:
+                pass
+        return None
+
+    def record_channel_working_mac(self, channel_name, mac):
+        """Memorizza l'abbinamento canale -> MAC che lo ha avviato con successo."""
+        if not channel_name or not mac:
+            return
+        safe_key = re.sub(r'[^a-zA-Z0-9_]', '_', channel_name).lower()
+        f = os.path.join(self.cache_dir, f"hl_ch_mac_{self.server_id}_{safe_key}.json")
+        try:
+            with open(f, 'w', encoding='utf-8') as fh:
+                json.dump({"mac": mac, "updated": time.time()}, fh)
+            xbmc.log(f"[CBTV-HB] Abbinato canale '{channel_name}' -> MAC {mac}", xbmc.LOGINFO)
+        except Exception as e:
+            xbmc.log(f"[CBTV-HB] Errore salvataggio abbinamento canale-MAC: {e}", xbmc.LOGWARNING)
+
+    def remove_channel_working_mac(self, channel_name):
+        """Rimuove l'abbinamento canale -> MAC se il MAC fallisce."""
+        if not channel_name:
+            return
+        safe_key = re.sub(r'[^a-zA-Z0-9_]', '_', channel_name).lower()
+        f = os.path.join(self.cache_dir, f"hl_ch_mac_{self.server_id}_{safe_key}.json")
+        if os.path.exists(f):
+            try:
+                os.remove(f)
+            except Exception:
+                pass
+
     # ---- headers / cookies come Hublive originale ----
     def _headers(self, mac=None):
         h = {
@@ -351,10 +393,10 @@ class HubliveStalkerClient:
 
         return play_token_match.group(1), stream_id
 
-    def resolve_stream(self, cmd, exclude_macs=None):
+    def resolve_stream(self, cmd, exclude_macs=None, channel_name=None):
         """
         Prova i MAC disponibili (escludendo quelli già falliti) per ottenere un URL di stream.
-        Prioritizza la lista dinamica dei Top MAC (quelli che partono subito) e la aggiorna costantemente.
+        Prioritizza l'abbinamento canale-MAC memorizzato, i MAC Full Package e la lista dinamica dei Top MAC.
         Restituisce (final_url, mac_usato) o (None, None).
         """
         if exclude_macs is None:
@@ -375,11 +417,26 @@ class HubliveStalkerClient:
             pool.remove(v_mac)
             pool.insert(0, v_mac)
 
-        # 2. Inserisci il Last Working MAC in cima al pool (priorità assoluta)
+        # 2. Se siamo su s31, prioritizza i MAC con pacchetto completo verificato (720 categorie)
+        if self.server_id == "s31":
+            s31_full_pkg = ["A0:BB:3E:00:0F:0D", "00:1B:79:41:43:5D", "A0:BB:3E:00:0C:EC", "00:1B:79:48:4E:B4"]
+            for fp in reversed(s31_full_pkg):
+                if fp in pool:
+                    pool.remove(fp)
+                    pool.insert(0, fp)
+
+        # 3. Inserisci il Last Working MAC del server
         last_working = self._get_last_working_mac()
         if last_working and last_working in pool:
             pool.remove(last_working)
             pool.insert(0, last_working)
+
+        # 4. PRIORITÀ ASSOLUTA: MAC memorizzato specificamente per questo canale
+        ch_mac = self.get_channel_working_mac(channel_name) if channel_name else None
+        if ch_mac and ch_mac in pool:
+            pool.remove(ch_mac)
+            pool.insert(0, ch_mac)
+            xbmc.log(f"[CBTV-HB] Canale '{channel_name}': prioritizzato MAC memorizzato {ch_mac}", xbmc.LOGINFO)
 
         # Prova fino a 8 MAC per batch per trovare rapidamente una linea libera
         pool = pool[:8]
@@ -389,7 +446,7 @@ class HubliveStalkerClient:
             return None, None
 
         for attempt, mac in enumerate(pool, 1):
-            is_top = mac in top_verified or mac == last_working
+            is_top = mac in top_verified or mac == last_working or (ch_mac and mac == ch_mac)
             xbmc.log(f"[CBTV-HB] Tentativo {attempt}/{len(pool)} con MAC: {mac} (Top: {is_top})", xbmc.LOGINFO)
 
             # 1. Handshake veloce nativo
@@ -398,6 +455,8 @@ class HubliveStalkerClient:
                 xbmc.log(f"[CBTV-HB] Handshake fallito per MAC {mac}", xbmc.LOGWARNING)
                 if is_top:
                     self.remove_top_verified_mac(mac)
+                if ch_mac and mac == ch_mac:
+                    self.remove_channel_working_mac(channel_name)
                 exclude_macs.add(mac)
                 continue
 
@@ -407,6 +466,8 @@ class HubliveStalkerClient:
                 xbmc.log(f"[CBTV-HB] create_link fallito per MAC {mac}", xbmc.LOGWARNING)
                 if is_top:
                     self.remove_top_verified_mac(mac)
+                if ch_mac and mac == ch_mac:
+                    self.remove_channel_working_mac(channel_name)
                 exclude_macs.add(mac)
                 continue
 
@@ -426,6 +487,8 @@ class HubliveStalkerClient:
                         xbmc.log(f"[CBTV-HB] MAC {mac} HTTP error {r_play.status_code}", xbmc.LOGWARNING)
                         if is_top and r_play.status_code in [401, 403, 404]:
                             self.remove_top_verified_mac(mac)
+                        if ch_mac and mac == ch_mac:
+                            self.remove_channel_working_mac(channel_name)
                         exclude_macs.add(mac)
                         continue
 
@@ -437,6 +500,8 @@ class HubliveStalkerClient:
                         xbmc.log(f"[CBTV-HB] MAC {mac} bloccato o black.ts ({final_dest[:60]})", xbmc.LOGWARNING)
                         if is_top:
                             self.remove_top_verified_mac(mac)
+                        if ch_mac and mac == ch_mac:
+                            self.remove_channel_working_mac(channel_name)
                         exclude_macs.add(mac)
                         continue
 
@@ -445,6 +510,8 @@ class HubliveStalkerClient:
                         xbmc.log(f"[CBTV-HB] MAC {mac} non valido o vuoto", xbmc.LOGWARNING)
                         if is_top:
                             self.remove_top_verified_mac(mac)
+                        if ch_mac and mac == ch_mac:
+                            self.remove_channel_working_mac(channel_name)
                         exclude_macs.add(mac)
                         continue
 
@@ -459,6 +526,8 @@ class HubliveStalkerClient:
                 # Salva come Last Working MAC e promuovi nei Top MAC
                 self._set_last_working_mac(mac)
                 self.record_top_verified_mac(mac)
+                if channel_name:
+                    self.record_channel_working_mac(channel_name, mac)
                 
                 return final_url_with_ua, mac
             except requests.exceptions.ReadTimeout:
@@ -466,9 +535,13 @@ class HubliveStalkerClient:
                 final_url_with_ua = f"{dest_url}|User-Agent={quote_plus(self.UA)}"
                 self._set_last_working_mac(mac)
                 self.record_top_verified_mac(mac)
+                if channel_name:
+                    self.record_channel_working_mac(channel_name, mac)
                 return final_url_with_ua, mac
             except Exception as e:
                 xbmc.log(f"[CBTV-HB] MAC {mac} timeout/errore verifica: {e}", xbmc.LOGWARNING)
+                if ch_mac and mac == ch_mac:
+                    self.remove_channel_working_mac(channel_name)
                 exclude_macs.add(mac)
                 continue
 
@@ -476,7 +549,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.3.17"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.3.18"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""
@@ -887,7 +960,20 @@ class HubliveStalkerClient:
         return self.get_sky_cinema_channels()
 
     def get_foreign_sport_channels(self, group, force_refresh=False):
-        """Ottiene i canali per il gruppo sportivo estero selezionato da Server 31"""
+        """Ottiene i canali per il gruppo sportivo estero selezionato da Server 31 con fallback istantaneo."""
+        cache_key = f"foreign_{group.replace(' ', '_').replace('/', '_')}"
+        if not force_refresh:
+            cached = self._get_cache(cache_key)
+            if cached and len(cached) > 0:
+                return cached
+            # Apertura istantanea da file locale pre-integrato (582 canali)
+            fallback_dict = self._load_fallback("foreign_sports_fallback.json")
+            if isinstance(fallback_dict, dict) and group in fallback_dict:
+                fallback_ch = fallback_dict[group]
+                if fallback_ch:
+                    self._set_cache(cache_key, fallback_ch)
+                    return fallback_ch
+
         target_titles = []
         filter_keywords = []
         
@@ -930,9 +1016,15 @@ class HubliveStalkerClient:
 
         channels = []
         if gids:
-            cache_key = f"foreign_{group.replace(' ', '_').replace('/', '_')}"
             channels = self._load_and_filter_foreign_channels(gids, cache_key, filter_keywords, force=force_refresh)
             
+        if not channels:
+            fallback_dict = self._load_fallback("foreign_sports_fallback.json")
+            if isinstance(fallback_dict, dict) and group in fallback_dict:
+                channels = fallback_dict[group]
+                if channels:
+                    self._set_cache(cache_key, channels)
+
         return channels
 
     def _load_and_filter_foreign_channels(self, gids, cache_key, filter_keywords, force=False):

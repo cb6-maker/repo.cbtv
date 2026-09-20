@@ -1,0 +1,2346 @@
+{
+  "TNT / UK SPORT": [
+    {
+      "name": "UK PREMIER SPORTS 1 FHD (IRELAND)",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312725&extension=ts&play_token=4I4Vk7BLQq"
+    },
+    {
+      "name": "UK PREMIER SPORTS 1 FHD (UK)",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312729&extension=ts&play_token=gTwkfMpKcl"
+    },
+    {
+      "name": "UK PREMIER SPORTS 1 HEVC FHD (IRELAND)",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312717&extension=ts&play_token=XIJuUiYs2H"
+    },
+    {
+      "name": "UK PREMIER SPORTS 1 HEVC HD (IRELAND)",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312719&extension=ts&play_token=lflsASWXxZ"
+    },
+    {
+      "name": "UK PREMIER SPORTS 1 RAW 50FPS FHD (IRELAND)",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312727&extension=ts&play_token=ISXe6axnTz"
+    },
+    {
+      "name": "UK PREMIER SPORTS 1 SD (IRELAND)",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312721&extension=ts&play_token=J1bOka3Pbm"
+    },
+    {
+      "name": "UK PREMIER SPORTS 2 FHD (IRELAND)",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312726&extension=ts&play_token=Mkgd6nYlQ6"
+    },
+    {
+      "name": "UK PREMIER SPORTS 2 FHD (UK)",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312730&extension=ts&play_token=3ykYHbjIAN"
+    },
+    {
+      "name": "UK PREMIER SPORTS 2 HD (IRELAND)",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312724&extension=ts&play_token=epfaLLttES"
+    },
+    {
+      "name": "UK PREMIER SPORTS 2 HEVC FHD (IRELAND)",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312718&extension=ts&play_token=CdMxVQXXI9"
+    },
+    {
+      "name": "UK PREMIER SPORTS 2 HEVC HD IRELAND)",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312720&extension=ts&play_token=kHWEhJPK9q"
+    },
+    {
+      "name": "UK PREMIER SPORTS 2 RAW 50FPS FHD (IRELAND)",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312728&extension=ts&play_token=wBdRXG3P9G"
+    },
+    {
+      "name": "UK PREMIER SPORTS 2 SD (IRELAND)",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312722&extension=ts&play_token=g7O43CO38j"
+    },
+    {
+      "name": "UK PREMIER SPORTS  1 HD (IRELAND)",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312723&extension=ts&play_token=sDOqwKWDqI"
+    },
+    {
+      "name": "UK SKY SPORTS 1 4K",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312005&extension=ts&play_token=JwSLQlXEKP"
+    },
+    {
+      "name": "UK SKY SPORTS 2 4K",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312006&extension=ts&play_token=wawsn0xjMO"
+    },
+    {
+      "name": "UK SKY SPORTS ACTION / NFL FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=394547&extension=ts&play_token=lAusrGJTgU"
+    },
+    {
+      "name": "UK SKY SPORTS ACTION / NFL HEVC FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312027&extension=ts&play_token=qJdFJ6SngO"
+    },
+    {
+      "name": "UK SKY SPORTS ACTION / NFL HEVC HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312045&extension=ts&play_token=YGRZRH174y"
+    },
+    {
+      "name": "UK SKY SPORTS ACTION / NFL RAW 50FPS",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1311993&extension=ts&play_token=XCe07egxo6"
+    },
+    {
+      "name": "UK SKY SPORTS CRICKET FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=394545&extension=ts&play_token=1dBpHRwTfN"
+    },
+    {
+      "name": "UK SKY SPORTS CRICKET HEVC FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312029&extension=ts&play_token=sQUcd9Mdl0"
+    },
+    {
+      "name": "UK SKY SPORTS CRICKET HEVC HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312040&extension=ts&play_token=pucFZFXjX9"
+    },
+    {
+      "name": "UK SKY SPORTS CRICKET RAW 50FPS",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1311995&extension=ts&play_token=jv0px2TovF"
+    },
+    {
+      "name": "UK SKY SPORTS F1 4K",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312007&extension=ts&play_token=QQJmmmDNit"
+    },
+    {
+      "name": "UK SKY SPORTS F1 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=394543&extension=ts&play_token=MJJYyQcPXs"
+    },
+    {
+      "name": "UK SKY SPORTS F1 HEVC FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312030&extension=ts&play_token=tJlzC3QnbB"
+    },
+    {
+      "name": "UK SKY SPORTS F1 HEVC HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312044&extension=ts&play_token=5CJVir8PmS"
+    },
+    {
+      "name": "UK SKY SPORTS F1 RAW 50FPS",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1311996&extension=ts&play_token=MBs7X9xcIR"
+    },
+    {
+      "name": "UK SKY SPORTS FOOTBALL 50 FPS",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1311997&extension=ts&play_token=oTAiXhbT5G"
+    },
+    {
+      "name": "UK SKY SPORTS FOOTBALL FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=394555&extension=ts&play_token=5mADgdW6ZK"
+    },
+    {
+      "name": "UK SKY SPORTS FOOTBALL HEVC FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312031&extension=ts&play_token=fnDhbxTaEE"
+    },
+    {
+      "name": "UK SKY SPORTS FOOTBALL HEVC HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312047&extension=ts&play_token=6x2tjsjGYD"
+    },
+    {
+      "name": "UK SKY SPORTS GOLF 50FPS",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1311998&extension=ts&play_token=UW4wkG8aPP"
+    },
+    {
+      "name": "UK SKY SPORTS GOLF FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1198277&extension=ts&play_token=EKKvxTiRPC"
+    },
+    {
+      "name": "UK SKY SPORTS GOLF HEVC FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312032&extension=ts&play_token=5Uy2d33EWg"
+    },
+    {
+      "name": "UK SKY SPORTS GOLF HEVC HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312041&extension=ts&play_token=kPozrcRPVA"
+    },
+    {
+      "name": "UK SKY SPORTS MAIN EVENT 50 FPS",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1311999&extension=ts&play_token=FL1W3peBXB"
+    },
+    {
+      "name": "UK SKY SPORTS MAIN EVENT FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=394553&extension=ts&play_token=PcPYO5Vp6N"
+    },
+    {
+      "name": "UK SKY SPORTS MAIN EVENTS 4K",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312008&extension=ts&play_token=pIPIoNoq1z"
+    },
+    {
+      "name": "UK SKY SPORTS MAIN EVENTS HEVC FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312033&extension=ts&play_token=Goa7egikjx"
+    },
+    {
+      "name": "UK SKY SPORTS MAIN EVENTS HEVC HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312049&extension=ts&play_token=0mmdjrdw1I"
+    },
+    {
+      "name": "UK SKY SPORTS MIX FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=394551&extension=ts&play_token=AcRqyvuX2l"
+    },
+    {
+      "name": "UK SKY SPORTS MIX HEVC FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312034&extension=ts&play_token=lPGJvByD8y"
+    },
+    {
+      "name": "UK SKY SPORTS MIX HEVC HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312046&extension=ts&play_token=YRbrVuOERP"
+    },
+    {
+      "name": "UK SKY SPORTS MIX RAW 50FPS",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312000&extension=ts&play_token=53uLQDddJy"
+    },
+    {
+      "name": "UK SKY SPORTS NEWS FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=394559&extension=ts&play_token=ASxBFvjn8x"
+    },
+    {
+      "name": "UK SKY SPORTS NEWS HEVC FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312035&extension=ts&play_token=bxx9PScOPg"
+    },
+    {
+      "name": "UK SKY SPORTS NEWS HEVC HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312039&extension=ts&play_token=OaZDb3Bs7t"
+    },
+    {
+      "name": "UK SKY SPORTS NEWS RAW 50FPS",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312001&extension=ts&play_token=ii2pFawrxW"
+    },
+    {
+      "name": "UK SKY SPORTS PREMIER LEAGUE FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=394557&extension=ts&play_token=bEWjN3C4qa"
+    },
+    {
+      "name": "UK SKY SPORTS PREMIER LEAGUE HEVC FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312036&extension=ts&play_token=9OY0ueDY0t"
+    },
+    {
+      "name": "UK SKY SPORTS PREMIER LEAGUE HEVC HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312048&extension=ts&play_token=lgTfggpfRR"
+    },
+    {
+      "name": "UK SKY SPORTS PREMIER LEAUGE 50FPS",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312002&extension=ts&play_token=b2a45ncJQL"
+    },
+    {
+      "name": "UK SKY SPORTS RACING FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1198276&extension=ts&play_token=3ddCPgyuct"
+    },
+    {
+      "name": "UK SKY SPORTS RACING HEVC FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312037&extension=ts&play_token=LLo45u6ZZb"
+    },
+    {
+      "name": "UK SKY SPORTS RACING HEVC HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312042&extension=ts&play_token=qs7beY5WOk"
+    },
+    {
+      "name": "UK SKY SPORTS RACING RAW 50FPS",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312003&extension=ts&play_token=YHkY1fMtSz"
+    },
+    {
+      "name": "UK SKY SPORTS TENNIS FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=394549&extension=ts&play_token=ihKnIbx5Lb"
+    },
+    {
+      "name": "UK SKY SPORTS TENNIS HEVC FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312026&extension=ts&play_token=ZtSDJ41STw"
+    },
+    {
+      "name": "UK SKY SPORTS TENNIS HEVC HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312043&extension=ts&play_token=3zF1OFSZal"
+    },
+    {
+      "name": "UK SKY SPORTS TENNIS RAW 50FPS",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312004&extension=ts&play_token=sTXpw0zmz9"
+    },
+    {
+      "name": "UK SKY SPORTS+ FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=870313&extension=ts&play_token=jKW82O10wm"
+    },
+    {
+      "name": "UK SKY SPORTS+ HEVC FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312028&extension=ts&play_token=A54WzcX4sA"
+    },
+    {
+      "name": "UK SKY SPORTS+ HEVC HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312050&extension=ts&play_token=ofvYGK4U9v"
+    },
+    {
+      "name": "UK SKY SPORTS+ RAW 50FPS",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1311994&extension=ts&play_token=SH6cOS3pJZ"
+    },
+    {
+      "name": "UK TNT SPORTS 1 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1311899&extension=ts&play_token=K0dvBNYc24"
+    },
+    {
+      "name": "UK TNT SPORTS 1 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174236&extension=ts&play_token=UqHhKUiMuO"
+    },
+    {
+      "name": "UK TNT SPORTS 1 HEVC FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174231&extension=ts&play_token=IRYRQyXfCZ"
+    },
+    {
+      "name": "UK TNT SPORTS 1 HEVC HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174226&extension=ts&play_token=hwJw5dw82H"
+    },
+    {
+      "name": "UK TNT SPORTS 1 HEVC RAW",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1311894&extension=ts&play_token=YuleJv22OC"
+    },
+    {
+      "name": "UK TNT SPORTS 1 RAW",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174214&extension=ts&play_token=UCErdO7pIl"
+    },
+    {
+      "name": "UK TNT SPORTS 1 RAW 50FPS",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174218&extension=ts&play_token=B0WMi7NKZm"
+    },
+    {
+      "name": "UK TNT SPORTS 2 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1311900&extension=ts&play_token=ACZr6EkOFI"
+    },
+    {
+      "name": "UK TNT SPORTS 2 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174237&extension=ts&play_token=p6R2bjk9gq"
+    },
+    {
+      "name": "UK TNT SPORTS 2 HEVC FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174232&extension=ts&play_token=ze9OHG1WBd"
+    },
+    {
+      "name": "UK TNT SPORTS 2 HEVC HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174227&extension=ts&play_token=oeBfekwUzC"
+    },
+    {
+      "name": "UK TNT SPORTS 2 HEVC RAW",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1311895&extension=ts&play_token=721joTWFKb"
+    },
+    {
+      "name": "UK TNT SPORTS 2 RAW",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174215&extension=ts&play_token=vEyn9yNn7W"
+    },
+    {
+      "name": "UK TNT SPORTS 2 RAW 50FPS",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174219&extension=ts&play_token=dMsLD8o6Zo"
+    },
+    {
+      "name": "UK TNT SPORTS 3 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1311901&extension=ts&play_token=7CVvlVSLxk"
+    },
+    {
+      "name": "UK TNT SPORTS 3 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174238&extension=ts&play_token=r3kv6lG6e0"
+    },
+    {
+      "name": "UK TNT SPORTS 3 HEVC FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174233&extension=ts&play_token=eJCobDB8oA"
+    },
+    {
+      "name": "UK TNT SPORTS 3 HEVC HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174228&extension=ts&play_token=8L4TL4pfVT"
+    },
+    {
+      "name": "UK TNT SPORTS 3 HEVC RAW",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1311896&extension=ts&play_token=XKNSfwHSgL"
+    },
+    {
+      "name": "UK TNT SPORTS 3 RAW",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174216&extension=ts&play_token=Jel4hDcWV8"
+    },
+    {
+      "name": "UK TNT SPORTS 3 RAW 50FPS",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174220&extension=ts&play_token=hU3N7LxYSG"
+    },
+    {
+      "name": "UK TNT SPORTS 4 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1311902&extension=ts&play_token=0oAQrWRiPZ"
+    },
+    {
+      "name": "UK TNT SPORTS 4 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174239&extension=ts&play_token=bLJmi4Ny0u"
+    },
+    {
+      "name": "UK TNT SPORTS 4 HEVC FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174234&extension=ts&play_token=sq8jS27DXP"
+    },
+    {
+      "name": "UK TNT SPORTS 4 HEVC HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174229&extension=ts&play_token=zNt0Hdbavr"
+    },
+    {
+      "name": "UK TNT SPORTS 4 HEVC RAW",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1311897&extension=ts&play_token=BNP9di7bOe"
+    },
+    {
+      "name": "UK TNT SPORTS 4 RAW",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174217&extension=ts&play_token=DW54G6A543"
+    },
+    {
+      "name": "UK TNT SPORTS 4 RAW 50FPS",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174221&extension=ts&play_token=icYG48Ozah"
+    },
+    {
+      "name": "UK TNT SPORTS EVENT 1",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174212&extension=ts&play_token=qMbCBdFyZ9"
+    },
+    {
+      "name": "UK TNT SPORTS EVENT 2",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174211&extension=ts&play_token=5S5JcrNhDC"
+    },
+    {
+      "name": "UK TNT SPORTS EVENT 3",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174210&extension=ts&play_token=xzAYJhICRV"
+    },
+    {
+      "name": "UK TNT SPORTS EVENT 4",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174209&extension=ts&play_token=9fLBUNlFGR"
+    },
+    {
+      "name": "UK TNT SPORTS EVENT 5",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174208&extension=ts&play_token=FwlphemVwl"
+    },
+    {
+      "name": "UK TNT SPORTS EVENT 6",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174207&extension=ts&play_token=aVhdbdgsMD"
+    },
+    {
+      "name": "UK TNT SPORTS EVENT 7",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174206&extension=ts&play_token=AyBTQNuAA6"
+    },
+    {
+      "name": "UK TNT SPORTS EVENT 8",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174205&extension=ts&play_token=oMHRut3Gky"
+    },
+    {
+      "name": "UK TNT SPORTS EVENT 9",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174204&extension=ts&play_token=qS8AbNqAWM"
+    },
+    {
+      "name": "UK TNT SPORTS EVENT 10",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174203&extension=ts&play_token=mGYYgfanfs"
+    },
+    {
+      "name": "UK TNT SPORTS EVENT 11",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174202&extension=ts&play_token=UzUK0CsTFK"
+    },
+    {
+      "name": "UK TNT SPORTS EVENT 12",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174201&extension=ts&play_token=XO3sy9YmNZ"
+    },
+    {
+      "name": "UK TNT SPORTS EVENT 13",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174200&extension=ts&play_token=jaIAoeSVj1"
+    },
+    {
+      "name": "UK TNT SPORTS EVENT 14",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174199&extension=ts&play_token=mPILz6i8oK"
+    },
+    {
+      "name": "UK TNT SPORTS EVENT 15",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174198&extension=ts&play_token=FKog3nKKIn"
+    },
+    {
+      "name": "UK TNT SPORTS EVENT 16",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174197&extension=ts&play_token=ougNjwimnU"
+    },
+    {
+      "name": "UK TNT SPORTS EVENT 17",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174196&extension=ts&play_token=tRRtVsdQUA"
+    },
+    {
+      "name": "UK TNT SPORTS EVENT 18",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174195&extension=ts&play_token=MUlzZjEljE"
+    },
+    {
+      "name": "UK TNT SPORTS ULTIMATE 4K",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174213&extension=ts&play_token=pjeF8S9JmG"
+    },
+    {
+      "name": "☰☰☰☰ UK PREMIER SPORTS ☰☰☰☰",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312716&extension=ts&play_token=nkzCbsLQMq"
+    },
+    {
+      "name": "☰☰☰☰ UK SKY SPORTS 4K ☰☰☰☰",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312010&extension=ts&play_token=IO1ucG4UK3"
+    },
+    {
+      "name": "☰☰☰☰ UK SKY SPORTS FHD ☰☰☰☰",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312075&extension=ts&play_token=WAEChFmz3B"
+    },
+    {
+      "name": "☰☰☰☰ UK SKY SPORTS HEVC FHD ☰☰☰☰",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312025&extension=ts&play_token=jWpVPydJU0"
+    },
+    {
+      "name": "☰☰☰☰ UK SKY SPORTS HEVC HD ☰☰☰☰",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312038&extension=ts&play_token=MISg1BXqU9"
+    },
+    {
+      "name": "☰☰☰☰ UK SKY SPORTS RAW DOLBY ☰☰☰☰",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1312009&extension=ts&play_token=npYL62ihit"
+    },
+    {
+      "name": "☰☰☰☰ UK TNT SPORTS FHD ☰☰☰☰",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1311898&extension=ts&play_token=JIw1I68weN"
+    },
+    {
+      "name": "☰☰☰☰ UK TNT SPORTS HD ☰☰☰☰",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174235&extension=ts&play_token=rhOhu3cvoA"
+    },
+    {
+      "name": "☰☰☰☰ UK TNT SPORTS HEVC FHD ☰☰☰☰",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174230&extension=ts&play_token=NbAs4647KY"
+    },
+    {
+      "name": "☰☰☰☰ UK TNT SPORTS HEVC HD ☰☰☰☰",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174224&extension=ts&play_token=mbD0TJi6Ws"
+    },
+    {
+      "name": "☰☰☰☰ UK TNT SPORTS HEVC RAW ☰☰☰☰",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1311893&extension=ts&play_token=vAwHGfAg8R"
+    },
+    {
+      "name": "☰☰☰☰ UK TNT SPORTS RAW 50FPS ☰☰☰☰",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174223&extension=ts&play_token=wDvHwWLN4g"
+    },
+    {
+      "name": "☰☰☰☰ UK TNT SPORTS RAW ☰☰☰☰",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1174222&extension=ts&play_token=19HdmD9SRA"
+    }
+  ],
+  "POLSAT / PL SPORT": [
+    {
+      "name": "PL CANAL+ EXTRA 1 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729146&extension=ts&play_token=HYQyvTCYq0"
+    },
+    {
+      "name": "PL CANAL+ EXTRA 1 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729147&extension=ts&play_token=eqQcaPuxys"
+    },
+    {
+      "name": "PL CANAL+ EXTRA 2 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729148&extension=ts&play_token=rui3gOGUjT"
+    },
+    {
+      "name": "PL CANAL+ EXTRA 2 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729149&extension=ts&play_token=MFXpWuAYCb"
+    },
+    {
+      "name": "PL CANAL+ EXTRA 3 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729150&extension=ts&play_token=nxPm21XMs8"
+    },
+    {
+      "name": "PL CANAL+ EXTRA 3 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729151&extension=ts&play_token=h7LMsuL3Bt"
+    },
+    {
+      "name": "PL CANAL+ EXTRA 4 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729152&extension=ts&play_token=DEKiNuaU0B"
+    },
+    {
+      "name": "PL CANAL+ EXTRA 4 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729153&extension=ts&play_token=rOJLv8nKHS"
+    },
+    {
+      "name": "PL CANAL+ EXTRA 5 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729154&extension=ts&play_token=2tP9GVZjz0"
+    },
+    {
+      "name": "PL CANAL+ EXTRA 5 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729155&extension=ts&play_token=GcI7xHa74W"
+    },
+    {
+      "name": "PL CANAL+ EXTRA 6 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729156&extension=ts&play_token=zWvfbe0r6n"
+    },
+    {
+      "name": "PL CANAL+ EXTRA 6 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729157&extension=ts&play_token=3RuWuqCYVF"
+    },
+    {
+      "name": "PL CANAL+ EXTRA 7 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729158&extension=ts&play_token=KurMpMwrFw"
+    },
+    {
+      "name": "PL CANAL+ EXTRA 7 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729159&extension=ts&play_token=ptMpQsEakQ"
+    },
+    {
+      "name": "PL CANAL+ EXTRA 8 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729160&extension=ts&play_token=xYQ0SD1VJI"
+    },
+    {
+      "name": "PL CANAL+ EXTRA 9 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729161&extension=ts&play_token=yhfrarUAvM"
+    },
+    {
+      "name": "PL CANAL+ NOW FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729144&extension=ts&play_token=5rToKDGLqH"
+    },
+    {
+      "name": "PL CANAL+ NOW HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729145&extension=ts&play_token=dfFiV0yjFl"
+    },
+    {
+      "name": "PL CANAL+ SPORT 2 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729136&extension=ts&play_token=xSDigIlxdj"
+    },
+    {
+      "name": "PL CANAL+ SPORT 2 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729137&extension=ts&play_token=rtC5fCGojQ"
+    },
+    {
+      "name": "PL CANAL+ SPORT 3 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729138&extension=ts&play_token=wUxt83dw0c"
+    },
+    {
+      "name": "PL CANAL+ SPORT 3 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729139&extension=ts&play_token=FnBxs6f8VU"
+    },
+    {
+      "name": "PL CANAL+ SPORT 4 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729140&extension=ts&play_token=DpvIfJRwYJ"
+    },
+    {
+      "name": "PL CANAL+ SPORT 4 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729141&extension=ts&play_token=t4UdswPpZX"
+    },
+    {
+      "name": "PL CANAL+ SPORT 5 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729142&extension=ts&play_token=2DSzag4GUG"
+    },
+    {
+      "name": "PL CANAL+ SPORT 5 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729143&extension=ts&play_token=OJWmxi2ICP"
+    },
+    {
+      "name": "PL CANAL+ SPORT FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729134&extension=ts&play_token=6rSuEmJkOr"
+    },
+    {
+      "name": "PL CANAL+ SPORT HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729135&extension=ts&play_token=KSCMjsW7cT"
+    },
+    {
+      "name": "PL ELEVEN SPORTS 1",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729223&extension=ts&play_token=2ScT1HVDU9"
+    },
+    {
+      "name": "PL ELEVEN SPORTS 1 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729221&extension=ts&play_token=p22c3bqYSj"
+    },
+    {
+      "name": "PL ELEVEN SPORTS 1 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729222&extension=ts&play_token=hBhGWsdFm8"
+    },
+    {
+      "name": "PL ELEVEN SPORTS 2",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729226&extension=ts&play_token=CJGbyhSLlK"
+    },
+    {
+      "name": "PL ELEVEN SPORTS 2 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729224&extension=ts&play_token=kLdBa1sJtt"
+    },
+    {
+      "name": "PL ELEVEN SPORTS 2 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729225&extension=ts&play_token=fZuUatUOGz"
+    },
+    {
+      "name": "PL ELEVEN SPORTS 3",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729229&extension=ts&play_token=OBI3MSDvzP"
+    },
+    {
+      "name": "PL ELEVEN SPORTS 3 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729227&extension=ts&play_token=FDTUy7Lhdc"
+    },
+    {
+      "name": "PL ELEVEN SPORTS 3 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729228&extension=ts&play_token=UpkIEIWJwT"
+    },
+    {
+      "name": "PL ELEVEN SPORTS 4",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729232&extension=ts&play_token=abRhjG0Fl0"
+    },
+    {
+      "name": "PL ELEVEN SPORTS 4 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729230&extension=ts&play_token=iCEZFdd5W5"
+    },
+    {
+      "name": "PL ELEVEN SPORTS 4 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729231&extension=ts&play_token=vbuB1BBwpR"
+    },
+    {
+      "name": "PL POLSAT SPORT 1 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729162&extension=ts&play_token=77BBLqlBZs"
+    },
+    {
+      "name": "PL POLSAT SPORT 1 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729163&extension=ts&play_token=lEIivZVUDD"
+    },
+    {
+      "name": "PL POLSAT SPORT 2 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729164&extension=ts&play_token=pjWmQCCQXZ"
+    },
+    {
+      "name": "PL POLSAT SPORT 2 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729165&extension=ts&play_token=KxJExRgoLY"
+    },
+    {
+      "name": "PL POLSAT SPORT 3 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729168&extension=ts&play_token=GjbzsiipaS"
+    },
+    {
+      "name": "PL POLSAT SPORT 3 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729169&extension=ts&play_token=ARPFaCkP81"
+    },
+    {
+      "name": "PL POLSAT SPORT EXTRA 1 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729174&extension=ts&play_token=aes52d5XOu"
+    },
+    {
+      "name": "PL POLSAT SPORT EXTRA 1 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729175&extension=ts&play_token=EjNJLOOn3k"
+    },
+    {
+      "name": "PL POLSAT SPORT EXTRA 2 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729176&extension=ts&play_token=zbq86Suf8b"
+    },
+    {
+      "name": "PL POLSAT SPORT EXTRA 2 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729177&extension=ts&play_token=utQMVUkFmQ"
+    },
+    {
+      "name": "PL POLSAT SPORT EXTRA 3 FDH",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729178&extension=ts&play_token=wRRpVtKrL2"
+    },
+    {
+      "name": "PL POLSAT SPORT EXTRA 3 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729179&extension=ts&play_token=oRa63AaWwj"
+    },
+    {
+      "name": "PL POLSAT SPORT EXTRA 4 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729180&extension=ts&play_token=DkSbmC9vfv"
+    },
+    {
+      "name": "PL POLSAT SPORT EXTRA 4 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729181&extension=ts&play_token=cFAYzt9meZ"
+    },
+    {
+      "name": "PL POLSAT SPORT Fight FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729166&extension=ts&play_token=7UlA8YYqgG"
+    },
+    {
+      "name": "PL POLSAT SPORT FIGHT HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729167&extension=ts&play_token=Kx5dEYxHTF"
+    },
+    {
+      "name": "PL POLSAT SPORT PREMIUM 1 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729170&extension=ts&play_token=nYTKPCmvuj"
+    },
+    {
+      "name": "PL POLSAT SPORT PREMIUM 1 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729171&extension=ts&play_token=mdCAva3SBK"
+    },
+    {
+      "name": "PL POLSAT SPORT PREMIUM 2 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729172&extension=ts&play_token=7RFqq6q645"
+    },
+    {
+      "name": "PL POLSAT SPORT PREMIUM 2 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1729173&extension=ts&play_token=MojeBZt0Ya"
+    }
+  ],
+  "ZIGGO / NL SPORT": [
+    {
+      "name": "NL ESPN 1 8K",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=237593&extension=ts&play_token=diZR4p2SoQ"
+    },
+    {
+      "name": "NL ESPN 1 8K+ UHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=392203&extension=ts&play_token=DkxTeg7bTg"
+    },
+    {
+      "name": "NL ESPN 2 8K",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=237594&extension=ts&play_token=0LEq4iwdYa"
+    },
+    {
+      "name": "NL ESPN 2 8K+ UHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=392202&extension=ts&play_token=GB0cU980QK"
+    },
+    {
+      "name": "NL ESPN 3 8K",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=237595&extension=ts&play_token=C6Jm8JToqN"
+    },
+    {
+      "name": "NL ESPN 3 8K+ UHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=392201&extension=ts&play_token=DCU3cr0HfB"
+    },
+    {
+      "name": "NL ESPN 4 8K",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=237596&extension=ts&play_token=CQJaOXklEM"
+    },
+    {
+      "name": "NL ESPN 4 8K+ UHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=392200&extension=ts&play_token=HYwiXOGtbg"
+    },
+    {
+      "name": "NL ESPN 8K UHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=92512&extension=ts&play_token=SVjI3TMbe5"
+    },
+    {
+      "name": "NL ESPN WATCH 1 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=639296&extension=ts&play_token=dUaBmI9owZ"
+    },
+    {
+      "name": "NL ESPN WATCH 2 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=639297&extension=ts&play_token=DdBxeba8X6"
+    },
+    {
+      "name": "NL ESPN WATCH 3 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=639298&extension=ts&play_token=UsTZSdMyNd"
+    },
+    {
+      "name": "NL ESPN WATCH 4 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=639299&extension=ts&play_token=hAaTKxfHfK"
+    },
+    {
+      "name": "NL ESPN WATCH 5 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925377&extension=ts&play_token=SixlE0U2xd"
+    },
+    {
+      "name": "NL ESPN WATCH 6 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925378&extension=ts&play_token=U45hkEXaCU"
+    },
+    {
+      "name": "NL ESPN WATCH 7 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925379&extension=ts&play_token=epfNysM8p2"
+    },
+    {
+      "name": "NL ESPN WATCH 8 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925380&extension=ts&play_token=NK2O418Ts0"
+    },
+    {
+      "name": "NL ESPN WATCH 9 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925381&extension=ts&play_token=aPxygUM7Rr"
+    },
+    {
+      "name": "NL ESPN WATCH 10 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925382&extension=ts&play_token=m4CWsofbmE"
+    },
+    {
+      "name": "NL ESPN WATCH 11 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925383&extension=ts&play_token=npjNePybua"
+    },
+    {
+      "name": "NL ESPN WATCH 12 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925384&extension=ts&play_token=TQZK1LGldK"
+    },
+    {
+      "name": "NL ESPN WATCH 13 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925385&extension=ts&play_token=UvDaQ8KLEX"
+    },
+    {
+      "name": "NL ESPN WATCH 14 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925386&extension=ts&play_token=xa4VSz0Mdr"
+    },
+    {
+      "name": "NL ESPN WATCH 15 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925387&extension=ts&play_token=MDQseUSJmW"
+    },
+    {
+      "name": "NL ESPN WATCH 16 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925388&extension=ts&play_token=csOlYrcyHO"
+    },
+    {
+      "name": "NL ESPN WATCH 17 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925389&extension=ts&play_token=in3KnYQDeS"
+    },
+    {
+      "name": "NL ESPN WATCH 18 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925390&extension=ts&play_token=tSTUfiF2CW"
+    },
+    {
+      "name": "NL ESPN WATCH 19 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925391&extension=ts&play_token=0IZnQn52c5"
+    },
+    {
+      "name": "NL ESPN WATCH 20 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925392&extension=ts&play_token=z6OJKTOWSn"
+    },
+    {
+      "name": "NL ESPN WATCH 21 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925393&extension=ts&play_token=1jgbalMFtY"
+    },
+    {
+      "name": "NL ESPN WATCH 22 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925394&extension=ts&play_token=VzYuc6NPHo"
+    },
+    {
+      "name": "NL ESPN WATCH 23 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925395&extension=ts&play_token=RHG3Q7fbkt"
+    },
+    {
+      "name": "NL ESPN WATCH 24 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925396&extension=ts&play_token=hI3d9CVhUI"
+    },
+    {
+      "name": "NL ESPN WATCH 25 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925397&extension=ts&play_token=7brRewOK6p"
+    },
+    {
+      "name": "NL ESPN WATCH 26 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925398&extension=ts&play_token=lMOi0hcaHE"
+    },
+    {
+      "name": "NL ESPN WATCH 27 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925399&extension=ts&play_token=OaOyrHF87C"
+    },
+    {
+      "name": "NL ESPN WATCH 28 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925400&extension=ts&play_token=JGuVgd54F3"
+    },
+    {
+      "name": "NL ESPN WATCH 29 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925401&extension=ts&play_token=NXVEyoAwoA"
+    },
+    {
+      "name": "NL ESPN WATCH 30 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925402&extension=ts&play_token=ZQiLKyrDC7"
+    },
+    {
+      "name": "NL ESPN WATCH 31 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925403&extension=ts&play_token=ChVBeGxdGR"
+    },
+    {
+      "name": "NL ESPN WATCH 32 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925404&extension=ts&play_token=MI5Ja8cFcS"
+    },
+    {
+      "name": "NL ESPN WATCH 33 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925405&extension=ts&play_token=EtqlPjwzvl"
+    },
+    {
+      "name": "NL ESPN WATCH 34 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925406&extension=ts&play_token=iCOlIRQ6WX"
+    },
+    {
+      "name": "NL ESPN WATCH 35 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925407&extension=ts&play_token=rWyFFPHPGX"
+    },
+    {
+      "name": "NL ESPN WATCH 36 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925408&extension=ts&play_token=BqiNLjQjbT"
+    },
+    {
+      "name": "NL ESPN WATCH 37 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925409&extension=ts&play_token=Z3u2AqWonV"
+    },
+    {
+      "name": "NL ESPN WATCH 38 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925410&extension=ts&play_token=XgkCCwRMVm"
+    },
+    {
+      "name": "NL ESPN WATCH 39 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925411&extension=ts&play_token=7KBQVUk0o3"
+    },
+    {
+      "name": "NL ESPN WATCH 40 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925412&extension=ts&play_token=5nWUcoGswn"
+    },
+    {
+      "name": "NL ESPN WATCH 41 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925413&extension=ts&play_token=UWYaBWIwrJ"
+    },
+    {
+      "name": "NL ESPN WATCH 42 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925414&extension=ts&play_token=vcesldjDWx"
+    },
+    {
+      "name": "NL ESPN WATCH 43 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925415&extension=ts&play_token=qwrrqjUYmP"
+    },
+    {
+      "name": "NL ESPN WATCH 44 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=925416&extension=ts&play_token=BWl4u1zD3F"
+    },
+    {
+      "name": "NL EUROSPORT 1 8K",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=237604&extension=ts&play_token=bav0dwkXEU"
+    },
+    {
+      "name": "NL EUROSPORT 1 8K+ UHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=392198&extension=ts&play_token=3IDKKd31aO"
+    },
+    {
+      "name": "NL EUROSPORT 2 8K",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=237605&extension=ts&play_token=diZHTFVFOm"
+    },
+    {
+      "name": "NL EUROSPORT 2 8K+ UHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=392197&extension=ts&play_token=XuV1jPzMC7"
+    },
+    {
+      "name": "NL VIAPLAY DARTS 1 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=225685&extension=ts&play_token=hVPddWddnv"
+    },
+    {
+      "name": "NL VIAPLAY ENFUSION |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=225678&extension=ts&play_token=BNQfo4ModV"
+    },
+    {
+      "name": "NL VIAPLAY EVENT 1",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=225666&extension=ts&play_token=a3nGeDJ4A7"
+    },
+    {
+      "name": "NL VIAPLAY EVENT 2 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=225665&extension=ts&play_token=CWQQciGyfq"
+    },
+    {
+      "name": "NL VIAPLAY EVENT 3 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=225664&extension=ts&play_token=rr0MUv59Ge"
+    },
+    {
+      "name": "NL VIAPLAY EVENT 4 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=225663&extension=ts&play_token=rWj8r7yqY0"
+    },
+    {
+      "name": "NL VIAPLAY EVENT 5 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=225662&extension=ts&play_token=Og48P1G56g"
+    },
+    {
+      "name": "NL VIAPLAY EVENT 6 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=225661&extension=ts&play_token=7WJdeGyVF2"
+    },
+    {
+      "name": "NL VIAPLAY EVENT 7 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=225660&extension=ts&play_token=zOfKkbtGdR"
+    },
+    {
+      "name": "NL VIAPLAY EVENT 8 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=225659&extension=ts&play_token=yFkdbQzrWU"
+    },
+    {
+      "name": "NL VIAPLAY EVENT 9 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=225658&extension=ts&play_token=ks7n87f4UG"
+    },
+    {
+      "name": "NL VIAPLAY EVENT 10 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=225657&extension=ts&play_token=XyaA3C3Csi"
+    },
+    {
+      "name": "NL VIAPLAY EVENT 11 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=225656&extension=ts&play_token=qhHA7GAkkp"
+    },
+    {
+      "name": "NL VIAPLAY EVENT 12 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=225655&extension=ts&play_token=gdVuD4uGlg"
+    },
+    {
+      "name": "NL VIAPLAY EVENT 13 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=225654&extension=ts&play_token=KqEf48hGmf"
+    },
+    {
+      "name": "NL VIAPLAY EVENT 14 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=225653&extension=ts&play_token=Y1HrVjMOjX"
+    },
+    {
+      "name": "NL VIAPLAY MMA 1 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=225680&extension=ts&play_token=HcfA6MSVMU"
+    },
+    {
+      "name": "NL VIAPLAY MMA 2 |",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=225679&extension=ts&play_token=Oq1jKEzD2g"
+    },
+    {
+      "name": "NL VIAPLAY SCHEMA",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=531912&extension=ts&play_token=1FcbHlfmWK"
+    },
+    {
+      "name": "NL VIAPLAY TV 8K+ UHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1152827&extension=ts&play_token=L0nqF10VBR"
+    },
+    {
+      "name": "NL ZIGGO SPORT 1 8K",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=237598&extension=ts&play_token=JBTBvxNtLk"
+    },
+    {
+      "name": "NL ZIGGO SPORT 2 8K",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=237599&extension=ts&play_token=FItFAqCnno"
+    },
+    {
+      "name": "NL ZIGGO SPORT 2 8K+ UHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=392115&extension=ts&play_token=Lhlu3qAd5E"
+    },
+    {
+      "name": "NL ZIGGO SPORT 3 8K",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=237601&extension=ts&play_token=vDWPSqsvO9"
+    },
+    {
+      "name": "NL ZIGGO SPORT 3 8K+ UHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=392120&extension=ts&play_token=regatQJUGW"
+    },
+    {
+      "name": "NL ZIGGO SPORT 4 8K",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=237600&extension=ts&play_token=2BoIEPMloO"
+    },
+    {
+      "name": "NL ZIGGO SPORT 4 8K+ UHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=392119&extension=ts&play_token=TbVMF7Qh64"
+    },
+    {
+      "name": "NL ZIGGO SPORT 5 8K",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=237602&extension=ts&play_token=36VVWvzGvm"
+    },
+    {
+      "name": "NL ZIGGO SPORT 5 8K+ UHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=392121&extension=ts&play_token=xLkPJwEA20"
+    },
+    {
+      "name": "NL ZIGGO SPORT 6 8K",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=237603&extension=ts&play_token=AueBzxUfQ2"
+    },
+    {
+      "name": "NL ZIGGO SPORT 6 8K+ UHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=392117&extension=ts&play_token=GB8ASpKmRM"
+    },
+    {
+      "name": "NL ZIGGO SPORT  8K+ UHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=392231&extension=ts&play_token=0hjth6ZGph"
+    }
+  ],
+  "S SPORT / TR SPORT": [
+    {
+      "name": "TR BEIN BOX OFFICE 1",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1471698&extension=ts&play_token=70tjLxlFUu"
+    },
+    {
+      "name": "TR BEIN BOX OFFICE 2",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1471699&extension=ts&play_token=cqwHj16s59"
+    },
+    {
+      "name": "TR BEIN BOX OFFICE 3",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1471700&extension=ts&play_token=TGmsfL5UpB"
+    },
+    {
+      "name": "TR BEIN CONNECT 1 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=739&extension=ts&play_token=Hh3sk8RPWj"
+    },
+    {
+      "name": "TR BEIN CONNECT 2 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=214066&extension=ts&play_token=AD62TWTTWy"
+    },
+    {
+      "name": "TR BEIN CONNECT 3 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=793282&extension=ts&play_token=N4e07l0egq"
+    },
+    {
+      "name": "TR BEIN CONNECT 4 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=793283&extension=ts&play_token=fplpo1QmBW"
+    },
+    {
+      "name": "TR BEIN CONNECT 5 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=793284&extension=ts&play_token=jU9T5qh9ZU"
+    },
+    {
+      "name": "TR BEIN CONNECT 6 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=793285&extension=ts&play_token=muCVB0z7Uo"
+    },
+    {
+      "name": "TR BEIN CONNECT 7 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=793286&extension=ts&play_token=Bxv7TQN447"
+    },
+    {
+      "name": "TR BEIN CONNECT 8 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=793287&extension=ts&play_token=S7TC4Ojyxk"
+    },
+    {
+      "name": "TR BEIN CONNECT INFO",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=740&extension=ts&play_token=5mYAB0KGFG"
+    },
+    {
+      "name": "TR BEIN MOVIES ACTION HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1471677&extension=ts&play_token=qUqzQ7Bh8f"
+    },
+    {
+      "name": "TR BEIN MOVIES PREMIERE 2 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1471679&extension=ts&play_token=bQs8lUMAS4"
+    },
+    {
+      "name": "TR BEIN MOVIES PREMIERE HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1471678&extension=ts&play_token=qjPpWUCEWo"
+    },
+    {
+      "name": "TR BEIN MOVIES STARS HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1471680&extension=ts&play_token=WWwZA1ZSxJ"
+    },
+    {
+      "name": "TR BEIN MOVIES TURK HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1471681&extension=ts&play_token=2KyYWD2gAy"
+    },
+    {
+      "name": "TR BEIN SERIES 1 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1471673&extension=ts&play_token=i5h8pOWymp"
+    },
+    {
+      "name": "TR BEIN SERIES 2 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1471674&extension=ts&play_token=Jpv0Z1Onki"
+    },
+    {
+      "name": "TR BEIN SERIES 3 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1471675&extension=ts&play_token=Ibeoea8FoC"
+    },
+    {
+      "name": "TR BEIN SERIES 4 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1471676&extension=ts&play_token=fzqlsvSZGh"
+    },
+    {
+      "name": "TR BEIN SPORTS 1",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988853&extension=ts&play_token=Ksc94mTcwb"
+    },
+    {
+      "name": "TR BEIN SPORTS 1 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988850&extension=ts&play_token=Yry4B31h5s"
+    },
+    {
+      "name": "TR BEIN SPORTS 1 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988874&extension=ts&play_token=xHCanpi4K8"
+    },
+    {
+      "name": "TR BEIN SPORTS 1 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988851&extension=ts&play_token=BKDlw8Wk3W"
+    },
+    {
+      "name": "TR BEIN SPORTS 1 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988881&extension=ts&play_token=gapdNiWaPn"
+    },
+    {
+      "name": "TR BEIN SPORTS 1 HD LQ",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988852&extension=ts&play_token=c6FMSEPqdb"
+    },
+    {
+      "name": "TR BEIN SPORTS 1 RAW",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988849&extension=ts&play_token=2FaFX12TQo"
+    },
+    {
+      "name": "TR BEIN SPORTS 1 RAW",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988867&extension=ts&play_token=YeoVB5lkJe"
+    },
+    {
+      "name": "TR BEIN SPORTS 2 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988854&extension=ts&play_token=s6T2wJrpoN"
+    },
+    {
+      "name": "TR BEIN SPORTS 2 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988875&extension=ts&play_token=xiyKlkzlhH"
+    },
+    {
+      "name": "TR BEIN SPORTS 2 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988855&extension=ts&play_token=r36CUrU2KK"
+    },
+    {
+      "name": "TR BEIN SPORTS 2 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988882&extension=ts&play_token=0TMGBYGNAX"
+    },
+    {
+      "name": "TR BEIN SPORTS 2 RAW",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988868&extension=ts&play_token=5MOTuYexHM"
+    },
+    {
+      "name": "TR BEIN SPORTS 3 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988856&extension=ts&play_token=XMBgatbMaW"
+    },
+    {
+      "name": "TR BEIN SPORTS 3 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988876&extension=ts&play_token=MAtyYx8iQs"
+    },
+    {
+      "name": "TR BEIN SPORTS 3 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988857&extension=ts&play_token=HStWaYBJ2C"
+    },
+    {
+      "name": "TR BEIN SPORTS 3 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988883&extension=ts&play_token=8l03ucpL31"
+    },
+    {
+      "name": "TR BEIN SPORTS 3 RAW",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988869&extension=ts&play_token=5H6VoipM7n"
+    },
+    {
+      "name": "TR BEIN SPORTS 4 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988858&extension=ts&play_token=6huGD9chsY"
+    },
+    {
+      "name": "TR BEIN SPORTS 4 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988877&extension=ts&play_token=gAT78x1tVB"
+    },
+    {
+      "name": "TR BEIN SPORTS 4 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988859&extension=ts&play_token=hslAbCQS6M"
+    },
+    {
+      "name": "TR BEIN SPORTS 4 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988884&extension=ts&play_token=xX9WkyHGhl"
+    },
+    {
+      "name": "TR BEIN SPORTS 4 RAW",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988870&extension=ts&play_token=hA7ECkPV9q"
+    },
+    {
+      "name": "TR BEIN SPORTS 5 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988860&extension=ts&play_token=SHtRTcdtDo"
+    },
+    {
+      "name": "TR BEIN SPORTS 5 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988878&extension=ts&play_token=WG9lhjMda2"
+    },
+    {
+      "name": "TR BEIN SPORTS 5 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988861&extension=ts&play_token=CCbPRJYf1z"
+    },
+    {
+      "name": "TR BEIN SPORTS 5 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988885&extension=ts&play_token=EIdQfu50MU"
+    },
+    {
+      "name": "TR BEIN SPORTS 5 RAW",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988871&extension=ts&play_token=GKdvdSPjwI"
+    },
+    {
+      "name": "TR BEIN SPORTS HABER FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988865&extension=ts&play_token=dWZ9T8za9U"
+    },
+    {
+      "name": "TR BEIN SPORTS HABER HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988866&extension=ts&play_token=cZaJ1E0jZF"
+    },
+    {
+      "name": "TR BEIN SPORTS HABER RAW",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988864&extension=ts&play_token=FjxtuNAuIM"
+    },
+    {
+      "name": "TR BEIN SPORTS MAX 1 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988862&extension=ts&play_token=rT9X0ezgnN"
+    },
+    {
+      "name": "TR BEIN SPORTS MAX 1 RAW",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988872&extension=ts&play_token=cjelwqMndy"
+    },
+    {
+      "name": "TR BEIN SPORTS MAX 2 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988863&extension=ts&play_token=Kpd7ONSssj"
+    },
+    {
+      "name": "TR BEIN SPORTS MAX 2 RAW",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=988873&extension=ts&play_token=kK9Y1OOcpz"
+    },
+    {
+      "name": "TR EUROSPORT 1 4K",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=708&extension=ts&play_token=tgl7mzaEMQ"
+    },
+    {
+      "name": "TR EUROSPORT 1 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=700&extension=ts&play_token=wVJdHaE1FG"
+    },
+    {
+      "name": "TR EUROSPORT 2 4K",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=707&extension=ts&play_token=3O7HL5G5JD"
+    },
+    {
+      "name": "TR EUROSPORT 2 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=699&extension=ts&play_token=2AU178fLAB"
+    },
+    {
+      "name": "TR EXXEN SPORTS 1",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=15522&extension=ts&play_token=iJNLKdcs5w"
+    },
+    {
+      "name": "TR EXXEN SPORTS 1 4K",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=15340&extension=ts&play_token=MhWa3guw6J"
+    },
+    {
+      "name": "TR EXXEN SPORTS 1 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=15521&extension=ts&play_token=LOgmXdVOLB"
+    },
+    {
+      "name": "TR EXXEN SPORTS 2 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=15341&extension=ts&play_token=LevAIXGLII"
+    },
+    {
+      "name": "TR EXXEN SPORTS 3 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=15342&extension=ts&play_token=FkPTzItU2Z"
+    },
+    {
+      "name": "TR EXXEN SPORTS 4 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=15515&extension=ts&play_token=I0aeHMgEV2"
+    },
+    {
+      "name": "TR EXXEN SPORTS 5 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=15516&extension=ts&play_token=fvjgrNOWdp"
+    },
+    {
+      "name": "TR EXXEN SPORTS 6 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=15517&extension=ts&play_token=CFyZ3lOTLt"
+    },
+    {
+      "name": "TR EXXEN SPORTS 7 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=15518&extension=ts&play_token=vilRSuNkA2"
+    },
+    {
+      "name": "TR EXXEN SPORTS 8 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=15519&extension=ts&play_token=Uq1Zkb3o9r"
+    },
+    {
+      "name": "TR S SPORT 1 4K",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=712&extension=ts&play_token=M2M0uvoGkB"
+    },
+    {
+      "name": "TR S SPORT 1 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=703&extension=ts&play_token=HvMAUMp5nS"
+    },
+    {
+      "name": "TR S SPORT 2 4K",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=711&extension=ts&play_token=X1QwOMIjM6"
+    },
+    {
+      "name": "TR S SPORT 2 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=18638&extension=ts&play_token=ZdrvkBusve"
+    },
+    {
+      "name": "TR S SPORT+ 1 HD (MATCH TIME)",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=15562&extension=ts&play_token=7IF3umPF5E"
+    },
+    {
+      "name": "TR S SPORT+ 2 HD (MATCH TIME)",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=15561&extension=ts&play_token=wG7PA7IIfu"
+    },
+    {
+      "name": "TR S SPORT+ 3 HD (MATCH TIME)",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=15560&extension=ts&play_token=XolquloaYI"
+    },
+    {
+      "name": "TR S SPORT+ 4 HD (MATCH TIME)",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=15559&extension=ts&play_token=gLTVrfwBqb"
+    },
+    {
+      "name": "TR S SPORT+ 5 HD (MATCH TIME)",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=15558&extension=ts&play_token=z5JiQwoHBh"
+    },
+    {
+      "name": "TR S SPORT+ 6 HD (MATCH TIME)",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=15557&extension=ts&play_token=eKtValSYCe"
+    },
+    {
+      "name": "TR SPOR SMART 1 4K",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=713&extension=ts&play_token=cqbb3vKVlc"
+    },
+    {
+      "name": "TR SPOR SMART 1 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=704&extension=ts&play_token=4POzc2vLbo"
+    },
+    {
+      "name": "TR SPOR SMART 2 4K",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=18631&extension=ts&play_token=VFToqjLxHQ"
+    },
+    {
+      "name": "TR SPOR SMART 2 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=18640&extension=ts&play_token=LEQo9hJYGz"
+    },
+    {
+      "name": "☰☰☰☰ TR PAKET S SPORTS HD ☰☰☰☰",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=18629&extension=ts&play_token=48GGQpiobL"
+    },
+    {
+      "name": "☰☰☰☰ TR PAKET S SPORTS+ FHD ☰☰☰☰",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=18630&extension=ts&play_token=H1XqzzQepS"
+    }
+  ],
+  "COSMOTE / GR SPORT": [
+    {
+      "name": "GR ANT1+ SPORTS 1 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=253995&extension=ts&play_token=Gn6PH4OioO"
+    },
+    {
+      "name": "GR ANT1+ SPORTS 2 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=697964&extension=ts&play_token=UpGzfgHATc"
+    },
+    {
+      "name": "GR ANT1+ SPORTS 3 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=697963&extension=ts&play_token=CAlxCkghqU"
+    },
+    {
+      "name": "GR EPT SPORTS 1 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=699604&extension=ts&play_token=piyYoVlJH7"
+    },
+    {
+      "name": "GR EPT SPORTS 2 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=699605&extension=ts&play_token=MdRPOD1J44"
+    },
+    {
+      "name": "GR EPT SPORTS 3 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=866625&extension=ts&play_token=gF1l3SWXIS"
+    },
+    {
+      "name": "GR ERT SPORTS 4 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1648353&extension=ts&play_token=tZQlHNWxjY"
+    },
+    {
+      "name": "GR EUROSPORT 1 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=173188&extension=ts&play_token=fYo6KLx6li"
+    },
+    {
+      "name": "GR EUROSPORT 2 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=173189&extension=ts&play_token=HKcgfrNDEK"
+    },
+    {
+      "name": "GR MAGENTA SPORT 1 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=174426&extension=ts&play_token=fNUhItFOni"
+    },
+    {
+      "name": "GR MAGENTA SPORT 1 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1890&extension=ts&play_token=GHvai5bZT7"
+    },
+    {
+      "name": "GR MAGENTA SPORT 1 SD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=671508&extension=ts&play_token=Fk2je4KqWO"
+    },
+    {
+      "name": "GR MAGENTA SPORT 2 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=174427&extension=ts&play_token=tUC8BLo2Vu"
+    },
+    {
+      "name": "GR MAGENTA SPORT 2 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1889&extension=ts&play_token=Zk63eYcHAS"
+    },
+    {
+      "name": "GR MAGENTA SPORT 2 SD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=671509&extension=ts&play_token=JCIJ3cRKc0"
+    },
+    {
+      "name": "GR MAGENTA SPORT 3 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=174428&extension=ts&play_token=MZTllF5zwq"
+    },
+    {
+      "name": "GR MAGENTA SPORT 3 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1888&extension=ts&play_token=TOVGyaMuju"
+    },
+    {
+      "name": "GR MAGENTA SPORT 3 SD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=671510&extension=ts&play_token=seUCtV1ekw"
+    },
+    {
+      "name": "GR MAGENTA SPORT 4 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=174429&extension=ts&play_token=TfknsnPtI2"
+    },
+    {
+      "name": "GR MAGENTA SPORT 4 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1887&extension=ts&play_token=SRGecMqxlw"
+    },
+    {
+      "name": "GR MAGENTA SPORT 4 SD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=671511&extension=ts&play_token=VPGIPsjvve"
+    },
+    {
+      "name": "GR MAGENTA SPORT 4K",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1648352&extension=ts&play_token=1O80aJP29x"
+    },
+    {
+      "name": "GR MAGENTA SPORT 5 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=174430&extension=ts&play_token=jcSNZ0Ux4Z"
+    },
+    {
+      "name": "GR MAGENTA SPORT 5 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1886&extension=ts&play_token=5VRt5oqMwS"
+    },
+    {
+      "name": "GR MAGENTA SPORT 5 SD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=671512&extension=ts&play_token=WteOMgxgbQ"
+    },
+    {
+      "name": "GR MAGENTA SPORT 6 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=174265&extension=ts&play_token=ciHNoNcMRo"
+    },
+    {
+      "name": "GR MAGENTA SPORT 6 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1885&extension=ts&play_token=nrG5kJpCzq"
+    },
+    {
+      "name": "GR MAGENTA SPORT 6 SD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=671513&extension=ts&play_token=UiWJItAh29"
+    },
+    {
+      "name": "GR MAGENTA SPORT 7 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=174264&extension=ts&play_token=73vkHKNsPO"
+    },
+    {
+      "name": "GR MAGENTA SPORT 7 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1884&extension=ts&play_token=ZFlJzRDmmt"
+    },
+    {
+      "name": "GR MAGENTA SPORT 8 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=174263&extension=ts&play_token=c3rBvXVxNK"
+    },
+    {
+      "name": "GR MAGENTA SPORT 8 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1883&extension=ts&play_token=Pig8ZAjdzG"
+    },
+    {
+      "name": "GR MAGENTA SPORT 9 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1882&extension=ts&play_token=cMofOrEHWk"
+    },
+    {
+      "name": "GR MAGENTA SPORT 9 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=671507&extension=ts&play_token=CHAGJlutSy"
+    },
+    {
+      "name": "GR MAGENTA SPORT HIGHLIGHTS FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1891&extension=ts&play_token=x3AkeJBrGX"
+    },
+    {
+      "name": "GR MAGENTA SPORT HIGHLIGHTS HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=671498&extension=ts&play_token=wtNnk4pBu3"
+    },
+    {
+      "name": "GR MAGENTA SPORT LEAGUE 1 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1977050&extension=ts&play_token=Nx4TINgwJE"
+    },
+    {
+      "name": "GR MAGENTA SPORT LEAGUE 1 SD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1977073&extension=ts&play_token=QS5zB1Fcox"
+    },
+    {
+      "name": "GR MAGENTA SPORT LEAGUE 2 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1977051&extension=ts&play_token=56V80823SW"
+    },
+    {
+      "name": "GR MAGENTA SPORT LEAGUE 2 SD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1977074&extension=ts&play_token=vTleUufjBY"
+    },
+    {
+      "name": "GR MAGENTA SPORT LEAGUE 3 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1977052&extension=ts&play_token=lM9geJ0do1"
+    },
+    {
+      "name": "GR MAGENTA SPORT LEAGUE 3 SD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1977075&extension=ts&play_token=Pg5xK6AtDY"
+    },
+    {
+      "name": "GR MAGENTA SPORT LEAGUE 4 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1977053&extension=ts&play_token=PsnvN2t8po"
+    },
+    {
+      "name": "GR MAGENTA SPORT LEAGUE 4 SD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1977076&extension=ts&play_token=y6qOuGDCXe"
+    },
+    {
+      "name": "GR MAGENTA SPORT SL PANATHINAIKOS PASS HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=242084&extension=ts&play_token=0tmDhhbwpE"
+    },
+    {
+      "name": "GR MAGENTA SPORT SL PASS AEK FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=699597&extension=ts&play_token=kVEmbfW7Ny"
+    },
+    {
+      "name": "GR MAGENTA SPORT SL PASS AEK HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=242086&extension=ts&play_token=SNobk1wYn7"
+    },
+    {
+      "name": "GR MAGENTA SPORT SL PASS OLYMPIAKOS FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=699598&extension=ts&play_token=9RWe0ejHyG"
+    },
+    {
+      "name": "GR MAGENTA SPORT SL PASS OLYMPIAKOS HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=242085&extension=ts&play_token=O4OVa99xFZ"
+    },
+    {
+      "name": "GR MAGENTA SPORT SL PASS PANATHINAIKOS FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=699599&extension=ts&play_token=IImmn9d8jw"
+    },
+    {
+      "name": "GR NOVA SPORT NEWS HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=174431&extension=ts&play_token=MrH3znE0N0"
+    },
+    {
+      "name": "GR NOVA SPORTS 1 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=173185&extension=ts&play_token=ArN4A3Cevy"
+    },
+    {
+      "name": "GR NOVA SPORTS 1 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=193070&extension=ts&play_token=3S3ociR9Uz"
+    },
+    {
+      "name": "GR NOVA SPORTS 1 SD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1648348&extension=ts&play_token=QstK2CvwTj"
+    },
+    {
+      "name": "GR NOVA SPORTS 2 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=173186&extension=ts&play_token=2aQdmCEHcl"
+    },
+    {
+      "name": "GR NOVA SPORTS 2 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1878&extension=ts&play_token=QFSoA4mzzu"
+    },
+    {
+      "name": "GR NOVA SPORTS 2 SD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1648347&extension=ts&play_token=jRslNBaHlw"
+    },
+    {
+      "name": "GR NOVA SPORTS 3 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=174271&extension=ts&play_token=4A42qZDnKq"
+    },
+    {
+      "name": "GR NOVA SPORTS 3 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1877&extension=ts&play_token=39HQBqRhDI"
+    },
+    {
+      "name": "GR NOVA SPORTS 3 SD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1648346&extension=ts&play_token=tCBWLNvRgb"
+    },
+    {
+      "name": "GR NOVA SPORTS 4 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=174272&extension=ts&play_token=kc5ol16Ttq"
+    },
+    {
+      "name": "GR NOVA SPORTS 4 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1876&extension=ts&play_token=1KClEsnzwC"
+    },
+    {
+      "name": "GR NOVA SPORTS 4 SD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1648345&extension=ts&play_token=ouvUE0wEpQ"
+    },
+    {
+      "name": "GR NOVA SPORTS 5 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1875&extension=ts&play_token=Wymwn5s9RX"
+    },
+    {
+      "name": "GR NOVA SPORTS 5 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=193074&extension=ts&play_token=0fEx9BfIHA"
+    },
+    {
+      "name": "GR NOVA SPORTS 5 SD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1648344&extension=ts&play_token=ZOWOlmvvfx"
+    },
+    {
+      "name": "GR NOVA SPORTS 6 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=174273&extension=ts&play_token=eWvZTp9VSR"
+    },
+    {
+      "name": "GR NOVA SPORTS 6 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=699928&extension=ts&play_token=CFNTf6Jy1e"
+    },
+    {
+      "name": "GR NOVA SPORTS 6 SD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1648343&extension=ts&play_token=40W4uTYVjP"
+    },
+    {
+      "name": "GR NOVA SPORTS EXTRA 1 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=193071&extension=ts&play_token=F47QkbUMlX"
+    },
+    {
+      "name": "GR NOVA SPORTS EXTRA 2 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=193072&extension=ts&play_token=5w2CSlGGxP"
+    },
+    {
+      "name": "GR NOVA SPORTS EXTRA 3 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=193073&extension=ts&play_token=cDnGBLPfYp"
+    },
+    {
+      "name": "GR NOVA SPORTS EXTRA 4 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=724019&extension=ts&play_token=rcACedsB6u"
+    },
+    {
+      "name": "GR NOVA SPORTS NEWS FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1880&extension=ts&play_token=GhkfRxuIdG"
+    },
+    {
+      "name": "GR NOVA SPORTS PREMIER LEAGUE FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1879&extension=ts&play_token=JcneLmuMd6"
+    },
+    {
+      "name": "GR NOVA SPORTS PREMIER LEAGUE HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=663683&extension=ts&play_token=Cgtd3Wv9ee"
+    },
+    {
+      "name": "GR NOVA SPORTS PREMIER LEAGUE SD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1648349&extension=ts&play_token=pd27MkBrW0"
+    },
+    {
+      "name": "GR NOVA SPORTS PRIME FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1142146&extension=ts&play_token=h6dxXQHqj4"
+    },
+    {
+      "name": "GR NOVA SPORTS PRIME HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1874&extension=ts&play_token=QNYQRFnXOM"
+    },
+    {
+      "name": "GR NOVA SPORTS PRIME SD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1648351&extension=ts&play_token=lFEcrcdzUQ"
+    },
+    {
+      "name": "GR NOVA SPORTS START FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=56829&extension=ts&play_token=W7wmmI9tdM"
+    },
+    {
+      "name": "GR NOVA SPORTS START HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=174254&extension=ts&play_token=0wHx1bh1x0"
+    },
+    {
+      "name": "GR NOVA SPORTS START SD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1648350&extension=ts&play_token=TtwPoOmoiJ"
+    },
+    {
+      "name": "GR SPORT PLUS HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=663269&extension=ts&play_token=fZTOf5Md7s"
+    }
+  ],
+  "MAX SPORT / BG SPORT": [
+    {
+      "name": "BG AUTOMOTOR SPORT HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=228713&extension=ts&play_token=EWJKMp1jp5"
+    },
+    {
+      "name": "BG CINEMAX 2 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=228704&extension=ts&play_token=8S2RBNpFTP"
+    },
+    {
+      "name": "BG CINEMAX HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=228705&extension=ts&play_token=eHYWkVm5GG"
+    },
+    {
+      "name": "BG DIEMA FAMILY",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=228692&extension=ts&play_token=GMDrHVuDpp"
+    },
+    {
+      "name": "BG DIEMA SPORT",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=228628&extension=ts&play_token=37Vg100ORv"
+    },
+    {
+      "name": "BG DIEMA SPORT 1 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=228723&extension=ts&play_token=wZYjwf7Hja"
+    },
+    {
+      "name": "BG DIEMA SPORT 2",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=228627&extension=ts&play_token=roAt5Xf0bs"
+    },
+    {
+      "name": "BG DIEMA SPORT 2 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=228722&extension=ts&play_token=rLs887f3iM"
+    },
+    {
+      "name": "BG DIEMA SPORT 3",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=228626&extension=ts&play_token=I5TcWWDksK"
+    },
+    {
+      "name": "BG DIEMA SPORT 3 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=228721&extension=ts&play_token=5JmvZ5yK3k"
+    },
+    {
+      "name": "BG EUROSPORT 1 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=228716&extension=ts&play_token=H44kKoBOAt"
+    },
+    {
+      "name": "BG EUROSPORT 2 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=228715&extension=ts&play_token=g6WPtxN6T9"
+    },
+    {
+      "name": "BG MAX SPORT 1",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=228632&extension=ts&play_token=BUAKRSX6k2"
+    },
+    {
+      "name": "BG MAX SPORT 1 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=228727&extension=ts&play_token=62BraaiG6u"
+    },
+    {
+      "name": "BG MAX SPORT 2",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=228631&extension=ts&play_token=L5XTjT1xOr"
+    },
+    {
+      "name": "BG MAX SPORT 2 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=228726&extension=ts&play_token=swaINPduTT"
+    },
+    {
+      "name": "BG MAX SPORT 3",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=228630&extension=ts&play_token=SZoyms1sNQ"
+    },
+    {
+      "name": "BG MAX SPORT 3 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=228725&extension=ts&play_token=jryObUi3Ct"
+    },
+    {
+      "name": "BG MAX SPORT 4",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=228629&extension=ts&play_token=ymA30bzHkp"
+    },
+    {
+      "name": "BG MAX SPORT 4 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=228724&extension=ts&play_token=kiK0KBz2Ly"
+    },
+    {
+      "name": "BG NOVA SPORT HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=228720&extension=ts&play_token=gFrvnY4MtR"
+    },
+    {
+      "name": "BG RING HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=228718&extension=ts&play_token=PVvzxSVApb"
+    },
+    {
+      "name": "BG TRACE SPORTS STARS HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=228714&extension=ts&play_token=MQJtcVoiHo"
+    }
+  ],
+  "DAZN / ES SPORT": [
+    {
+      "name": "ES DAZN 1",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=897416&extension=ts&play_token=ipArtWdCBd"
+    },
+    {
+      "name": "ES DAZN 1 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=587359&extension=ts&play_token=fO3yNHwwL7"
+    },
+    {
+      "name": "ES DAZN 1 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=587358&extension=ts&play_token=Z6LjSq8cSQ"
+    },
+    {
+      "name": "ES DAZN 2",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=897419&extension=ts&play_token=a7NIoWZl5P"
+    },
+    {
+      "name": "ES DAZN 2 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=897417&extension=ts&play_token=HC9zHYVNPG"
+    },
+    {
+      "name": "ES DAZN 2 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=897418&extension=ts&play_token=o7mQVX1m02"
+    },
+    {
+      "name": "ES DAZN 3",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=897422&extension=ts&play_token=33Lahn3I0Y"
+    },
+    {
+      "name": "ES DAZN 3 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=897420&extension=ts&play_token=JmZ32JmTI5"
+    },
+    {
+      "name": "ES DAZN 3 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=897421&extension=ts&play_token=XBYjip2jSG"
+    },
+    {
+      "name": "ES DAZN 4",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=897425&extension=ts&play_token=a0YCUxBulJ"
+    },
+    {
+      "name": "ES DAZN 4 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=897423&extension=ts&play_token=L2QH6ZzdDl"
+    },
+    {
+      "name": "ES DAZN 4 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=897424&extension=ts&play_token=hyb8gCNPLR"
+    },
+    {
+      "name": "ES DAZN F1",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=587360&extension=ts&play_token=HSlhZiUz9R"
+    },
+    {
+      "name": "ES DAZN F1 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=587367&extension=ts&play_token=oYzuImpkNl"
+    },
+    {
+      "name": "ES DAZN F1 FHD HEVC",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=587368&extension=ts&play_token=HiDfIqtTB4"
+    },
+    {
+      "name": "ES DAZN F1 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=587361&extension=ts&play_token=EYP5sYskQG"
+    },
+    {
+      "name": "ES DAZN LA LIGA 1",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=587363&extension=ts&play_token=Io6TW5BlHK"
+    },
+    {
+      "name": "ES DAZN LA LIGA 1 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=587365&extension=ts&play_token=Gszf3GrYIp"
+    },
+    {
+      "name": "ES DAZN LA LIGA 1 FHD HEVC",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=587366&extension=ts&play_token=fby7Q0Ts74"
+    },
+    {
+      "name": "ES DAZN LA LIGA 1 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=587364&extension=ts&play_token=qkvmtCFXsL"
+    },
+    {
+      "name": "ES DAZN LA LIGA 2",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=897415&extension=ts&play_token=10orVuLP6H"
+    },
+    {
+      "name": "ES DAZN LA LIGA 2 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=587362&extension=ts&play_token=icKoMNhvZd"
+    },
+    {
+      "name": "ES DAZN LA LIGA 2 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=897414&extension=ts&play_token=lZvxH6BSng"
+    },
+    {
+      "name": "ES DAZN MUNDIAL 2 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1745215&extension=ts&play_token=Uhcg09UoZK"
+    },
+    {
+      "name": "ES DAZN MUNDIAL 2 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1745216&extension=ts&play_token=xrcqHqnCdJ"
+    },
+    {
+      "name": "ES DAZN MUNDIAL 2 SD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1745217&extension=ts&play_token=tnwCgkHmoZ"
+    },
+    {
+      "name": "ES DAZN MUNDIAL 3 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1745218&extension=ts&play_token=z6XvXoruay"
+    },
+    {
+      "name": "ES DAZN MUNDIAL 3 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1745219&extension=ts&play_token=yn5MYxHieS"
+    },
+    {
+      "name": "ES DAZN MUNDIAL 3 SD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1745220&extension=ts&play_token=xr0dvpNAaQ"
+    },
+    {
+      "name": "ES DAZN MUNDIAL 4 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1745221&extension=ts&play_token=WdfXw0rFg8"
+    },
+    {
+      "name": "ES DAZN MUNDIAL 4 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1745222&extension=ts&play_token=xzchqfa8wi"
+    },
+    {
+      "name": "ES DAZN MUNDIAL 4 SD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1745223&extension=ts&play_token=xfmOAsN009"
+    },
+    {
+      "name": "ES DAZN MUNDIAL FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1745212&extension=ts&play_token=FqBaTthYzC"
+    },
+    {
+      "name": "ES DAZN MUNDIAL HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1745213&extension=ts&play_token=8uPp5ssc8c"
+    },
+    {
+      "name": "ES DAZN MUNDIAL HEVC",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1745210&extension=ts&play_token=NPb1EE6H6T"
+    },
+    {
+      "name": "ES DAZN MUNDIAL RAW",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1745211&extension=ts&play_token=XthG2wjr05"
+    },
+    {
+      "name": "ES DAZN MUNDIAL SD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=1745214&extension=ts&play_token=m7MFFwnDjF"
+    }
+  ],
+  "CANAL+ / FR SPORT": [
+    {
+      "name": "FR BEIN SPORTS 1",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941419&extension=ts&play_token=X2vytBVBfv"
+    },
+    {
+      "name": "FR BEIN SPORTS 1 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941417&extension=ts&play_token=vNtsozwkk9"
+    },
+    {
+      "name": "FR BEIN SPORTS 1 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941418&extension=ts&play_token=iSYlykOnqk"
+    },
+    {
+      "name": "FR BEIN SPORTS 2",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941422&extension=ts&play_token=mirkcWBmuR"
+    },
+    {
+      "name": "FR BEIN SPORTS 2 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941420&extension=ts&play_token=8qyWdQxWob"
+    },
+    {
+      "name": "FR BEIN SPORTS 2 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941421&extension=ts&play_token=sbAOCPumAa"
+    },
+    {
+      "name": "FR BEIN SPORTS 3",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941425&extension=ts&play_token=4dR0Y6lyMJ"
+    },
+    {
+      "name": "FR BEIN SPORTS 3 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941423&extension=ts&play_token=kLUhdxDQVD"
+    },
+    {
+      "name": "FR BEIN SPORTS 3 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941424&extension=ts&play_token=tczGTVSVX6"
+    },
+    {
+      "name": "FR BEIN SPORTS MAX 4 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941426&extension=ts&play_token=0CTAKyfPEg"
+    },
+    {
+      "name": "FR BEIN SPORTS MAX 5 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941427&extension=ts&play_token=jQojzyYTaA"
+    },
+    {
+      "name": "FR BEIN SPORTS MAX 6 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941428&extension=ts&play_token=W4gn7jqYTA"
+    },
+    {
+      "name": "FR BEIN SPORTS MAX 7 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941429&extension=ts&play_token=TdAbfqoLlK"
+    },
+    {
+      "name": "FR BEIN SPORTS MAX 8 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941430&extension=ts&play_token=87ErEHkIAD"
+    },
+    {
+      "name": "FR BEIN SPORTS MAX 9 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941431&extension=ts&play_token=LDFFY3rrvw"
+    },
+    {
+      "name": "FR BEIN SPORTS MAX 10 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941432&extension=ts&play_token=nT0DIou2kV"
+    },
+    {
+      "name": "FR CANAL + SPORT",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941410&extension=ts&play_token=Bul6tG0bv4"
+    },
+    {
+      "name": "FR CANAL + SPORT FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941408&extension=ts&play_token=wciX15nwom"
+    },
+    {
+      "name": "FR CANAL + SPORT HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941409&extension=ts&play_token=vFpyiKrzBL"
+    },
+    {
+      "name": "FR CANAL+ 360",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941413&extension=ts&play_token=tgTPHZGIks"
+    },
+    {
+      "name": "FR CANAL+ 360 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941411&extension=ts&play_token=JsdLr2gXti"
+    },
+    {
+      "name": "FR CANAL+ 360 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941412&extension=ts&play_token=nGqauN7z6f"
+    },
+    {
+      "name": "FR CANAl+ CHAMPIONS LEAGUE FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941625&extension=ts&play_token=1niKX0i1Qc"
+    },
+    {
+      "name": "FR CANAl+ CHAMPIONS LEAGUE HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941624&extension=ts&play_token=ZHOeayO8qr"
+    },
+    {
+      "name": "FR CANAL+ FOOT",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941407&extension=ts&play_token=zm5SOx7XeT"
+    },
+    {
+      "name": "FR CANAL+ FOOT FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941405&extension=ts&play_token=N8sg0N7DYg"
+    },
+    {
+      "name": "FR CANAL+ FOOT HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941406&extension=ts&play_token=RaSGbPIQKn"
+    },
+    {
+      "name": "FR CANAL+ LIVE 1 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941442&extension=ts&play_token=e0PFdMHAvN"
+    },
+    {
+      "name": "FR CANAL+ LIVE 1 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941461&extension=ts&play_token=aj6qE0zCzW"
+    },
+    {
+      "name": "FR CANAL+ LIVE 2 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941443&extension=ts&play_token=bdCBp2ZuZE"
+    },
+    {
+      "name": "FR CANAL+ LIVE 2 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941462&extension=ts&play_token=rvxMo8wn24"
+    },
+    {
+      "name": "FR CANAL+ LIVE 3 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941444&extension=ts&play_token=gUS3y7A2Mg"
+    },
+    {
+      "name": "FR CANAL+ LIVE 3 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941463&extension=ts&play_token=cLdYt6Ogyi"
+    },
+    {
+      "name": "FR CANAL+ LIVE 4 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941445&extension=ts&play_token=vTLj2tb3Dz"
+    },
+    {
+      "name": "FR CANAL+ LIVE 4 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941464&extension=ts&play_token=RoK0CxLuz8"
+    },
+    {
+      "name": "FR CANAL+ LIVE 5 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941446&extension=ts&play_token=BBUd18OvJI"
+    },
+    {
+      "name": "FR CANAL+ LIVE 5 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941465&extension=ts&play_token=g4QOXsoMu7"
+    },
+    {
+      "name": "FR CANAL+ LIVE 6 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941447&extension=ts&play_token=QlEWzsEdRU"
+    },
+    {
+      "name": "FR CANAL+ LIVE 6 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941466&extension=ts&play_token=xznn6peEjm"
+    },
+    {
+      "name": "FR CANAL+ LIVE 7 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941448&extension=ts&play_token=sBr6qzujeo"
+    },
+    {
+      "name": "FR CANAL+ LIVE 7 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941467&extension=ts&play_token=INLQkhS7VU"
+    },
+    {
+      "name": "FR CANAL+ LIVE 8 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941449&extension=ts&play_token=wLKedUOGrv"
+    },
+    {
+      "name": "FR CANAL+ LIVE 8 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941468&extension=ts&play_token=GW2ZixgVIR"
+    },
+    {
+      "name": "FR CANAL+ LIVE 9 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941450&extension=ts&play_token=b8vMAcwOYj"
+    },
+    {
+      "name": "FR CANAL+ LIVE 9 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941469&extension=ts&play_token=SDYtfILvd1"
+    },
+    {
+      "name": "FR CANAL+ LIVE 10 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941451&extension=ts&play_token=NDbH0qjxo6"
+    },
+    {
+      "name": "FR CANAL+ LIVE 10 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941470&extension=ts&play_token=lSBKR6O5st"
+    },
+    {
+      "name": "FR CANAL+ LIVE 11 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941452&extension=ts&play_token=m7m460KrF7"
+    },
+    {
+      "name": "FR CANAL+ LIVE 11 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941471&extension=ts&play_token=gSZ1QxQA1J"
+    },
+    {
+      "name": "FR CANAL+ LIVE 12 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941453&extension=ts&play_token=2Kni04vUpT"
+    },
+    {
+      "name": "FR CANAL+ LIVE 12 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941472&extension=ts&play_token=PXCyXqKCCw"
+    },
+    {
+      "name": "FR CANAL+ LIVE 13 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941454&extension=ts&play_token=t4ugKyloU5"
+    },
+    {
+      "name": "FR CANAL+ LIVE 13 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941473&extension=ts&play_token=3rr8nPLnJK"
+    },
+    {
+      "name": "FR CANAL+ LIVE 14 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941455&extension=ts&play_token=MXU7sRBf03"
+    },
+    {
+      "name": "FR CANAL+ LIVE 14 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941474&extension=ts&play_token=7nyWyfML2i"
+    },
+    {
+      "name": "FR CANAL+ LIVE 15 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941456&extension=ts&play_token=CvF9MEsmZi"
+    },
+    {
+      "name": "FR CANAL+ LIVE 15 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941475&extension=ts&play_token=eqXuolyF9N"
+    },
+    {
+      "name": "FR CANAL+ LIVE 16 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941457&extension=ts&play_token=DSxh2qjiZu"
+    },
+    {
+      "name": "FR CANAL+ LIVE 16 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941476&extension=ts&play_token=dBOiXOzznD"
+    },
+    {
+      "name": "FR CANAL+ LIVE 17 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941458&extension=ts&play_token=RDkhfeSFKI"
+    },
+    {
+      "name": "FR CANAL+ LIVE 17 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941477&extension=ts&play_token=9XG42knqk6"
+    },
+    {
+      "name": "FR CANAL+ LIVE 18 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941459&extension=ts&play_token=rkcAA6CwBQ"
+    },
+    {
+      "name": "FR CANAL+ LIVE 18 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941478&extension=ts&play_token=lGLzZ02JTc"
+    },
+    {
+      "name": "FR CANAL+ LIVE 19 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941460&extension=ts&play_token=sN3uOkKHev"
+    },
+    {
+      "name": "FR CANAL+ LIVE 19 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941479&extension=ts&play_token=WMyN5eSgYS"
+    },
+    {
+      "name": "FR CANAL+ PREMIER LEAGUE",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941416&extension=ts&play_token=bNDk3c5tec"
+    },
+    {
+      "name": "FR CANAL+ PREMIER LEAGUE FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941414&extension=ts&play_token=FgbdiscEjr"
+    },
+    {
+      "name": "FR CANAL+ PREMIER LEAGUE HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941415&extension=ts&play_token=PpScnfeWfe"
+    },
+    {
+      "name": "FR RMC SPORT 1 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941434&extension=ts&play_token=06dtyqQ8D2"
+    },
+    {
+      "name": "FR RMC SPORT 1 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941435&extension=ts&play_token=ltk8IRZk9D"
+    },
+    {
+      "name": "FR RMC SPORT 2 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941436&extension=ts&play_token=xd9zT4VFhz"
+    },
+    {
+      "name": "FR RMC SPORT 2 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941437&extension=ts&play_token=cVJbsWFPRQ"
+    },
+    {
+      "name": "FR RMC SPORT LIVE 3 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941438&extension=ts&play_token=BOJs8eO0Co"
+    },
+    {
+      "name": "FR RMC SPORT LIVE 3 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941439&extension=ts&play_token=PQMOlSgIEU"
+    },
+    {
+      "name": "FR RMC SPORT LIVE 4 FHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941440&extension=ts&play_token=URUJiotujG"
+    },
+    {
+      "name": "FR RMC SPORT LIVE 4 HD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941441&extension=ts&play_token=UvWqRNzDQK"
+    },
+    {
+      "name": "FR RMC SPORT UHD",
+      "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=A0:BB:3E:00:0F:0D&stream=941433&extension=ts&play_token=mSYLv3xEse"
+    }
+  ]
+}
