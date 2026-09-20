@@ -755,7 +755,6 @@ def add_directory_item(title, query, is_folder=True, icon=None, is_playable=Fals
 
     if is_playable:
         list_item.setProperty('IsPlayable', 'true')
-        list_item.setInfo('video', {'title': title})
     xbmcplugin.addDirectoryItem(handle=HANDLE, url=url, listitem=list_item, isFolder=is_folder)
 
 def main_menu():
@@ -1767,10 +1766,6 @@ class HBPlayer(xbmc.Player):
 
     def onAVStarted(self):
         self.av_started = True
-        try:
-            xbmc.executebuiltin("Action(FullScreen)")
-        except Exception:
-            pass
 
     def onPlayBackStopped(self):
         # L'utente ha premuto stop/back
@@ -1841,12 +1836,7 @@ def play_hublive_stalker(cmd, name=None):
         hb_player = HBPlayer()
         _CURRENT_HB_PLAYER = hb_player
         list_item = xbmcgui.ListItem(path=final_url)
-        list_item.setInfo('video', {'title': name or 'Canale TV'})
         list_item.setArt({'fanart': FANART})
-        list_item.setProperty('inputstream', 'inputstream.ffmpegdirect')
-        list_item.setProperty('inputstream.ffmpegdirect.is_realtime_stream', 'true')
-        list_item.setProperty('inputstream.ffmpegdirect.auto_reconnect', 'true')
-        list_item.setProperty('inputstream.ffmpegdirect.auto_reconnect_retry_limit', '10')
         list_item.setMimeType('video/mp2t')
         list_item.setContentLookup(False)
         
@@ -1855,11 +1845,6 @@ def play_hublive_stalker(cmd, name=None):
             first_attempt = False
         else:
             hb_player.play(final_url, list_item)
-        
-        try:
-            xbmc.executebuiltin("Action(FullScreen)")
-        except Exception:
-            pass
         
         xbmc.log(f"[CBTV-HB] Stream avviato con MAC {mac}", xbmc.LOGINFO)
         
