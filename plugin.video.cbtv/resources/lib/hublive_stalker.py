@@ -549,7 +549,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.3.18"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.3.20"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""
@@ -858,47 +858,20 @@ class HubliveStalkerClient:
         return channels
 
     def get_dazn_channels(self, force_refresh=False):
-        """Canali DAZN completi (56 canali con Zona DAZN 1-4 in testa). Caricamento istantaneo con ricarica opzionale."""
+        """Canali DAZN essenziali (12 canali puliti senza slot morti). Caricamento istantaneo con ricarica opzionale."""
         if not force_refresh:
             cached = self._get_cache("dazn")
             if cached and any("ZONA DAZN" in ch.get('name', '').upper() for ch in cached):
                 return cached
-            # Apertura istantanea da file locale pre-integrato (56 canali)
+            # Apertura istantanea da file locale pre-integrato (12 canali)
             fallback = self._load_fallback("dazn_fallback.json")
             if fallback:
-                import re
-                def dazn_sort_key(ch):
-                    name = ch.get('name', '').upper()
-                    if "ZONA DAZN" in name:
-                        group = 1
-                    elif "DAZN" in name and "EVENT" not in name and "SERIE" not in name:
-                        group = 2
-                    elif "SERIE A" in name:
-                        group = 3
-                    elif "SERIE B" in name:
-                        group = 4
-                    elif "EVENT" in name:
-                        group = 5
-                    else:
-                        group = 6
-                    num_match = re.search(r'\d+', name)
-                    num = int(num_match.group()) if num_match else 1
-                    res_val = 4
-                    if "HEVC" in name or "4K" in name:
-                        res_val = 1
-                    elif "FHD" in name:
-                        res_val = 2
-                    elif "HD" in name:
-                        res_val = 3
-                    return (group, num, res_val, name)
-
-                fallback.sort(key=dazn_sort_key)
                 self._set_cache("dazn", fallback)
                 return fallback
 
         target_titles = [
             "IT| SERIE A/B/C", "IT| DAZN VIP HD/4K", "IT| DAZN PPV", "IT| DAZN",
-            "┃IT┃ ZONA DAZN", "┃IT┃ DAZN", "┃IT┃ DAZN SERIE A", "┃IT┃ DAZN SERIE B"
+            "┃IT┃ ZONA DAZN", "┃IT┃ DAZN", "┃IT┃ DAZN SERIE A"
         ]
         gids = self._find_genre_ids_by_titles(target_titles)
         if not gids and self.server_id == "s31":
@@ -907,40 +880,42 @@ class HubliveStalkerClient:
 
         channels = self._fetch_channels_for_genres(gids, "dazn",
             keywords=None,
-            negatives=["WOMEN", "SKY SPORT", "SKY CALCIO", "EUROSPORT", "PALLAVOLO", "PALLAMANO", "PALLANUOTO"],
+            negatives=["WOMEN", "SKY SPORT", "SKY CALCIO", "EUROSPORT", "PALLAVOLO", "PALLAMANO", "PALLANUOTO", "SERIE B", "ZONA DAZN 2", "ZONA DAZN 3", "ZONA DAZN 4"],
             force=force_refresh)
             
         if not channels or not any("ZONA DAZN" in ch.get('name', '').upper() for ch in channels):
-            xbmc.log("[CBTV-HB] get_dazn_channels vuoto o incompleto, carico dazn_fallback.json integrato (74 canali)", xbmc.LOGINFO)
+            xbmc.log("[CBTV-HB] get_dazn_channels vuoto o incompleto, carico dazn_fallback.json integrato (12 canali)", xbmc.LOGINFO)
             channels = self._load_fallback("dazn_fallback.json")
 
         if channels:
             import re
+            filtered = []
+            for ch in channels:
+                name = ch.get('name', '').upper()
+                if any(k in name for k in ["ZONA DAZN 2", "ZONA DAZN 3", "ZONA DAZN 4", "SERIE B"]):
+                    continue
+                num_match = re.search(r'\d+', name)
+                num = int(num_match.group()) if num_match else 1
+                if "SERIE A" in name and num > 4:
+                    continue
+                if "EVENT" in name and num > 4:
+                    continue
+                filtered.append(ch)
+
             def dazn_sort_key(ch):
                 name = ch.get('name', '').upper()
-                # Gruppo 1: Zona DAZN (canali lineari principali)
                 if "ZONA DAZN" in name:
                     group = 1
-                # Gruppo 2: DAZN standard (DAZN 1, DAZN 2, ecc. senza la parola EVENT o SERIE)
-                elif "DAZN" in name and "EVENT" not in name and "SERIE" not in name:
-                    group = 2
-                # Gruppo 3: DAZN Serie A (canali dedicati)
                 elif "SERIE A" in name:
-                    group = 3
-                # Gruppo 4: DAZN Serie B (calcio Serie B)
-                elif "SERIE B" in name:
-                    group = 4
-                # Gruppo 5: DAZN Event (i canali web/evento)
+                    group = 2
                 elif "EVENT" in name:
-                    group = 5
+                    group = 3
                 else:
-                    group = 6
+                    group = 4
                 
-                # Numero del canale (se non specificato, è il canale 1)
                 num_match = re.search(r'\d+', name)
                 num = int(num_match.group()) if num_match else 1
                 
-                # Qualità della sorgente (preferisci HEVC/4K -> FHD -> HD -> SD)
                 res_val = 4
                 if "HEVC" in name or "4K" in name:
                     res_val = 1
@@ -950,7 +925,8 @@ class HubliveStalkerClient:
                     res_val = 3
                 return (group, num, res_val, name)
                 
-            channels.sort(key=dazn_sort_key)
+            filtered.sort(key=dazn_sort_key)
+            channels = filtered
             self._set_cache("dazn", channels)
             
         return channels

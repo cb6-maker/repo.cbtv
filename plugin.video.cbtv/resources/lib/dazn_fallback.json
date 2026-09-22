@@ -16,46 +16,6 @@
     "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158737"
   },
   {
-    "name": "ZONA DAZN 2 HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158739"
-  },
-  {
-    "name": "ZONA DAZN 2 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158738"
-  },
-  {
-    "name": "ZONA DAZN 2 HD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158740"
-  },
-  {
-    "name": "ZONA DAZN 2",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158741"
-  },
-  {
-    "name": "ZONA DAZN 3 HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158743"
-  },
-  {
-    "name": "ZONA DAZN 3 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158742"
-  },
-  {
-    "name": "ZONA DAZN 3 HD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158744"
-  },
-  {
-    "name": "ZONA DAZN 3",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158745"
-  },
-  {
-    "name": "ZONA DAZN 4 HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158747"
-  },
-  {
-    "name": "ZONA DAZN 4 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158746"
-  },
-  {
     "name": "DAZN SERIE A 1 FHD",
     "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158714"
   },
@@ -72,46 +32,6 @@
     "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158717"
   },
   {
-    "name": "DAZN SERIE A 5",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158718"
-  },
-  {
-    "name": "DAZN SERIE A 6",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158719"
-  },
-  {
-    "name": "DAZN SERIE A 7",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158720"
-  },
-  {
-    "name": "DAZN SERIE A 8",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158721"
-  },
-  {
-    "name": "DAZN SERIE A 9",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158722"
-  },
-  {
-    "name": "DAZN SERIE A 10",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158723"
-  },
-  {
-    "name": "DAZN SERIE A 11",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158724"
-  },
-  {
-    "name": "DAZN SERIE A 12",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158725"
-  },
-  {
-    "name": "DAZN SERIE A 13",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158726"
-  },
-  {
-    "name": "DAZN SERIE A 14",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158727"
-  },
-  {
     "name": "DAZN EVENT 1 FHD",
     "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=228862"
   },
@@ -126,101 +46,5 @@
   {
     "name": "DAZN 4 FHD",
     "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=228859"
-  },
-  {
-    "name": "DAZN EVENT 5",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=228858"
-  },
-  {
-    "name": "DAZN EVENT 6 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=228857"
-  },
-  {
-    "name": "DAZN EVENT 7 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=228856"
-  },
-  {
-    "name": "DAZN EVENT 8 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=228855"
-  },
-  {
-    "name": "DAZN EVENT 9 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=228854"
-  },
-  {
-    "name": "DAZN EVENT 10 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=228853"
-  },
-  {
-    "name": "DAZN EVENT 11 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=228849"
-  },
-  {
-    "name": "DAZN EVENT 12 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=228848"
-  },
-  {
-    "name": "DAZN 13 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=884017"
-  },
-  {
-    "name": "DAZN 14 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=884018"
-  },
-  {
-    "name": "DAZN SERIE B 1",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158802"
-  },
-  {
-    "name": "DAZN SERIE B 2",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158803"
-  },
-  {
-    "name": "DAZN SERIE B 3",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158804"
-  },
-  {
-    "name": "DAZN SERIE B 4",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158805"
-  },
-  {
-    "name": "DAZN SERIE B 5",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158806"
-  },
-  {
-    "name": "DAZN SERIE B 6",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158807"
-  },
-  {
-    "name": "DAZN SERIE B 7",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158808"
-  },
-  {
-    "name": "DAZN SERIE B 8",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158809"
-  },
-  {
-    "name": "DAZN SERIE B 9",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158810"
-  },
-  {
-    "name": "DAZN SERIE B 10",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158811"
-  },
-  {
-    "name": "DAZN SERIE B 11",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158812"
-  },
-  {
-    "name": "DAZN SERIE B 12",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158813"
-  },
-  {
-    "name": "DAZN SERIE B 13",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158814"
-  },
-  {
-    "name": "DAZN SERIE B 14",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158815"
   }
 ]
