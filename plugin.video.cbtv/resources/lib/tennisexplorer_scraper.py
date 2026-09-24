@@ -20,7 +20,7 @@ def get_tennisexplorer_schedule():
         resp = requests.get(url, headers=headers, timeout=12, verify=False)
         if resp.status_code != 200:
             return []
-            
+        resp.encoding = 'utf-8'
         html = resp.text
         
         # Split by right column first to avoid parsing the sidebar

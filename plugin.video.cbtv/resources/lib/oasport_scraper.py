@@ -36,8 +36,12 @@ def clean_html_tags(raw_html):
     """Rimuove i tag HTML e decodifica le entità comuni in modo sicuro."""
     cleanr = re.compile('<.*?>')
     cleantext = re.sub(cleanr, '', raw_html)
-    cleantext = cleantext.replace('&#8211;', '–').replace('&amp;', '&').replace('&#215;', 'x').replace('&nbsp;', ' ')
+    cleantext = cleantext.replace('&#8211;', '-').replace('&amp;', '&').replace('&#215;', 'x').replace('&nbsp;', ' ')
+    cleantext = cleantext.replace('\xa0', ' ').replace('\u2013', '-').replace('\u2014', '-').replace('–', '-').replace('—', '-')
     cleantext = cleantext.replace('’', "'").replace('‘', "'").replace('“', '"').replace('”', '"')
+    # Rimuove artefatti di doppio encoding (es. Â o â isolati)
+    cleantext = cleantext.replace('Â', '').replace('â', '-')
+    cleantext = re.sub(r'\s+', ' ', cleantext)
     return cleantext.strip()
 
 def get_oasport_schedule():
@@ -109,7 +113,7 @@ def get_oasport_schedule():
                 resp = requests.get(source_url, headers=headers, timeout=10, verify=False)
                 if resp.status_code != 200:
                     continue
-                
+                resp.encoding = 'utf-8'
                 html = resp.text
                 links = re.findall(r'<a[^>]+href="([^"]+)"[^>]*>(.*?)</a>', html, re.DOTALL)
                 
@@ -134,6 +138,7 @@ def get_oasport_schedule():
         if art_resp.status_code != 200:
             return []
             
+        art_resp.encoding = 'utf-8'
         art_html = art_resp.text
         
         raw_events = []
@@ -262,9 +267,14 @@ def get_oasport_schedule():
                     channels.append({"name": "Rai Sport", "country": "Suggerito"})
                     channels.append({"name": "Sky Sport Arena", "country": "Suggerito"})
             
-            # --- PARSING SOTTO-EVENTI (es. Tennis tra parentesi) ---
+            # --- PARSING E PULIZIA TITOLO ---
             word_st = base64.b64decode("c3RyZWFtaW5n").decode()
-            cleaned_desc = re.sub(rf'\s*[-–]\s*(?:Diretta|Dalle|{word_st}|live|tv|solo|su\b).*$', '', desc, flags=re.IGNORECASE).strip()
+            # 1. Rimuove parentesi contenenti info di trasmissione (es: "(diretta tv su ...)", "(diretta streaming...)")
+            cleaned_desc = re.sub(r'\s*\((?:diretta|dalle|live|solo|' + word_st + r').*?\)', '', desc, flags=re.IGNORECASE).strip()
+            # 2. Rimuove clausole a fine riga precedute da trattino o punto e virgola
+            cleaned_desc = re.sub(rf'\s*[-–—;]\s*(?:diretta|dalle|{word_st}|live|tv|solo|su\b).*$', '', cleaned_desc, flags=re.IGNORECASE).strip()
+            # 3. Normalizza spazi e trattini
+            cleaned_desc = cleaned_desc.replace('\xa0', ' ').replace('–', '-').replace('—', '-').replace('Â', '').strip(' -–—,;:')
             
             parenthesis_match = re.search(r'\(([^)]+)\)', cleaned_desc)
             split_titles = []

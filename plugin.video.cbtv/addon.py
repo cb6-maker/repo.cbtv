@@ -470,6 +470,53 @@ def get_channel_tile(name, category=""):
         
     return ''
 
+def get_event_tile(ev):
+    """Associa dinamicamente la card 1:1 specifica all'evento dell'Agenda Sportiva"""
+    if not ev:
+        return get_tile("tile_agenda_sportiva.png")
+    title = ev.get("title", "").upper()
+    tourn = ev.get("tournament", "").upper()
+    sport = ev.get("sport", "").upper()
+
+    # 1. Calcio - Competizioni specifiche
+    if "SERIE A" in tourn or "SERIE A" in title:
+        return get_tile("tile_event_serie_a.png")
+    if any(k in tourn or k in title for k in ["CHAMPIONS", "UCL"]):
+        return get_tile("tile_event_champions.png")
+    if "EUROPA LEAGUE" in tourn or "EUROPA LEAGUE" in title:
+        return get_tile("tile_event_europa_league.png")
+    if "CONFERENCE" in tourn or "CONFERENCE" in title:
+        return get_tile("tile_event_europa_league.png")
+    if sport == "CALCIO" or any(k in tourn or k in title for k in ["CALCIO", "COPPA ITALIA", "NATIONS LEAGUE", "PREMIER LEAGUE", "LALIGA", "LA LIGA", "BUNDESLIGA"]):
+        return get_tile("tile_event_calcio.png")
+
+    # 2. Motorsport
+    if any(k in title or k in tourn for k in ["F1", "FORMULA 1", "F2", "FORMULA 2", "BAKU", "AZERBAIJAN", "MONZA", "GP "]):
+        return get_tile("tile_event_f1.png")
+    if any(k in title or k in tourn for k in ["MOTOGP", "MOTO GP", "MOTO2", "MOTO3"]):
+        return get_tile("tile_event_motogp.png")
+    if sport == "MOTORSPORT":
+        return get_tile("tile_event_f1.png")
+
+    # 3. Tennis
+    if sport == "TENNIS" or any(k in title or k in tourn for k in ["TENNIS", "ATP", "WTA", "BJK CUP", "DAVIS", "ROLAND GARROS", "WIMBLEDON", "US OPEN", "AUSTRALIAN OPEN", "SINNER", "PAOLINI", "MUSETTI"]):
+        return get_tile("tile_event_tennis.png")
+
+    # 4. Basket
+    if sport == "BASKET" or any(k in title or k in tourn for k in ["BASKET", "EUROLEGA", "EUROLEAGUE", "EUROCUP", "NBA", "LBA", "PALLACANESTRO"]):
+        return get_tile("tile_event_basket.png")
+
+    # 5. Volley
+    if sport == "VOLLEY" or any(k in title or k in tourn for k in ["VOLLEY", "PALLAVOLO", "SUPERLEGA", "CEV"]):
+        return get_tile("tile_event_volley.png")
+
+    # 6. Ciclismo
+    if sport == "CICLISMO" or any(k in title or k in tourn for k in ["CICLISMO", "GIRO D'ITALIA", "TOUR DE FRANCE", "VUELTA", "CRO RACE"]):
+        return get_tile("tile_event_ciclismo.png")
+
+    # Fallback generale Agenda
+    return get_tile("tile_agenda_sportiva.png")
+
 
 # URL config remota su GitHub Pages
 REMOTE_CONFIG_URL = "https://cb6-maker.github.io/repo.cbtv/channels_config.json"
@@ -1284,6 +1331,15 @@ def list_agenda():
         json.dump(events, f, ensure_ascii=False)
     
     for idx, ev in enumerate(events):
+        # Sanitizzazione rapida caratteri indesiderati
+        raw_title = ev.get('title', '')
+        clean_t = raw_title.replace('\xa0', ' ').replace('&nbsp;', ' ')
+        clean_t = clean_t.replace('Â', '').replace('â', '-')
+        clean_t = re.sub(r'\s*\((?:diretta|dalle|live|solo|streaming).*?\)', '', clean_t, flags=re.IGNORECASE)
+        clean_t = re.sub(r'\s*[-–—;]\s*(?:diretta|dalle|streaming|live|tv|solo|su\b).*$', '', clean_t, flags=re.IGNORECASE)
+        clean_t = re.sub(r'\s+', ' ', clean_t).strip(' -–—,;:')
+        ev['title'] = clean_t
+
         title_up = ev["title"].upper()
         tourn_up = ev.get("tournament", "").upper()
         
@@ -1312,6 +1368,9 @@ def list_agenda():
         # Aggiungi info plot per vedere sport/torneo nel dettaglio
         plot = f"Sport: {ev['sport']}\nTorneo: {ev.get('tournament', 'N/A')}\nCanali: {', '.join([s['name'] for s in ev.get('sources', [])])}"
         list_item.setInfo('video', {'title': ev['title'], 'plot': plot})
+        
+        tile_art = get_event_tile(ev)
+        list_item.setArt({'icon': tile_art, 'thumb': tile_art, 'poster': tile_art})
         
         url = f"{sys.argv[0]}?action=list_sources_agenda&idx={idx}"
         xbmcplugin.addDirectoryItem(handle=HANDLE, url=url, listitem=list_item, isFolder=True)
@@ -1349,7 +1408,9 @@ def list_sources_agenda():
         if country:
             label += f" ({country})"
             
+        tile_art = get_event_tile(ev)
         list_item = xbmcgui.ListItem(label=label)
+        list_item.setArt({'icon': tile_art, 'thumb': tile_art, 'poster': tile_art})
         list_item.setProperty('IsPlayable', 'false')
         xbmcplugin.addDirectoryItem(handle=HANDLE, url="", listitem=list_item, isFolder=False)
     
