@@ -542,7 +542,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.3.22"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.3.23"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""
@@ -729,13 +729,13 @@ class HubliveStalkerClient:
                 return fallback
 
         target_titles = [
-            "┃IT┃ INTRATTENIMENTO", "┃IT┃ DOCUMENTARIO", "┃IT┃ GENERALE",
-            "IT| GENERALE", "IT| DOCUMENTARIO", "IT| BAMBINI"
+            "┃IT┃ FILM E SERIE", "┃IT┃ DOCUMENTARIO", "┃IT┃ ITALIA HD | RIGIOCARE ⏺",
+            "IT| INTRATTENIMENTO", "IT| DOCUMENTARIO", "IT| GENERALE"
         ]
         gids = self._find_genre_ids_by_titles(target_titles)
         channels = self._fetch_channels_for_genres(gids, "sky_tv",
-            keywords=None,
-            negatives=["SPORT", "DAZN", "CALCIO", "F1", "MOTOGP", "PRIMAFILA", "CINEMA", "SERIE A", "SERIE B"],
+            keywords=["SKY UNO", "SKY ATLANTIC", "SKY DOCUMENTARIES", "SKY NATURE", "SKY ARTE", "SKY INVESTIGATION", "SKY CRIME", "SKY SERIE"],
+            negatives=["SPORT", "DAZN", "CALCIO", "F1", "MOTOGP", "PRIMAFILA", "CINEMA", "SERIE A", "SERIE B", "BASKET", "BAR"],
             force=force_refresh)
             
         if not channels:

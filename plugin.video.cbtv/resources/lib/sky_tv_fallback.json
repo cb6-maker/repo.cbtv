@@ -1,266 +1,62 @@
 [
   {
+    "name": "SKY UNO FHD",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177632&extension=ts&play_token=cm97CAYoW4"
+  },
+  {
+    "name": "SKY UNO HEVC",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167164&extension=ts&play_token=cm97CAYoW4"
+  },
+  {
+    "name": "SKY UNO HD",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177743&extension=ts&play_token=cm97CAYoW4"
+  },
+  {
+    "name": "SKY ATLANTIC FHD",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177655&extension=ts&play_token=cm97CAYoW4"
+  },
+  {
+    "name": "SKY ATLANTIC HEVC",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167165&extension=ts&play_token=cm97CAYoW4"
+  },
+  {
+    "name": "SKY ATLANTIC HD",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177654&extension=ts&play_token=cm97CAYoW4"
+  },
+  {
+    "name": "SKY DOCUMENTARIES HD",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167294&extension=ts&play_token=cm97CAYoW4"
+  },
+  {
+    "name": "SKY NATURE HD",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167296&extension=ts&play_token=cm97CAYoW4"
+  },
+  {
     "name": "SKY ARTE FHD",
     "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177658&extension=ts&play_token=cm97CAYoW4"
   },
   {
     "name": "SKY ARTE HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167209&extension=ts&play_token=zoZed1Wqrm"
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167209&extension=ts&play_token=cm97CAYoW4"
+  },
+  {
+    "name": "SKY ARTE HD",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177652&extension=ts&play_token=cm97CAYoW4"
   },
   {
     "name": "SKY INVESTIGATION FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177958&extension=ts&play_token=bbeX9KlF5b"
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177958&extension=ts&play_token=cm97CAYoW4"
   },
   {
     "name": "SKY INVESTIGATION HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167210&extension=ts&play_token=FMX4LxLHsk"
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167210&extension=ts&play_token=cm97CAYoW4"
   },
   {
-    "name": "DISCOVERY CHANNEL HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167211&extension=ts&play_token=ub8J0gSgAM"
+    "name": "SKY INVESTIGATION HD",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167298&extension=ts&play_token=cm97CAYoW4"
   },
   {
-    "name": "DISCOVERY FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177667&extension=ts&play_token=yJsVirDmLs"
-  },
-  {
-    "name": "HISTORY 4K",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177679&extension=ts&play_token=RIWnTY3dqK"
-  },
-  {
-    "name": "HISTORY HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167212&extension=ts&play_token=yX0TPZQ3cL"
-  },
-  {
-    "name": "MTV FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177622&extension=ts&play_token=0SloKdfE6j"
-  },
-  {
-    "name": "MTV HD HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167202&extension=ts&play_token=Pyq5Bpy55Y"
-  },
-  {
-    "name": "COMEDY CENTRAL FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177620&extension=ts&play_token=GOqBdEm2C9"
-  },
-  {
-    "name": "COMEDY CENTRAL HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167203&extension=ts&play_token=Iy4eDGkRzG"
-  },
-  {
-    "name": "NOVE FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177625&extension=ts&play_token=xptuYsETzO"
-  },
-  {
-    "name": "NOVE HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167205&extension=ts&play_token=O4eq1RPrT3"
-  },
-  {
-    "name": "DMAX FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177623&extension=ts&play_token=BPFgq7MNou"
-  },
-  {
-    "name": "DMAX HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167204&extension=ts&play_token=Jcmr4IEzj7"
-  },
-  {
-    "name": "FOCUS FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177626&extension=ts&play_token=RM6vPIcCmY"
-  },
-  {
-    "name": "FOCUS HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167206&extension=ts&play_token=nTi9ko6CnP"
-  },
-  {
-    "name": "TOP CRIME FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177627&extension=ts&play_token=izHLnPsq1q"
-  },
-  {
-    "name": "TOP CRIME HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167207&extension=ts&play_token=cXuv2tQ1wW"
-  },
-  {
-    "name": "GIALLO FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177628&extension=ts&play_token=q3fprqovoK"
-  },
-  {
-    "name": "GIALLO HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167208&extension=ts&play_token=fjdlms80EU"
-  },
-  {
-    "name": "FOOD NETWORK FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177673&extension=ts&play_token=lQNLU5461U"
-  },
-  {
-    "name": "FOOD NETWORK HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167213&extension=ts&play_token=8dyEbVTrTe"
-  },
-  {
-    "name": "GAMBERO ROSSO FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177681&extension=ts&play_token=t8mSkZ7dAA"
-  },
-  {
-    "name": "GAMBERO ROSSO HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167214&extension=ts&play_token=fPiXNhjaFQ"
-  },
-  {
-    "name": "CACCIA E PESCA 4K",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177676&extension=ts&play_token=a9LH5QPdP2"
-  },
-  {
-    "name": "PESCA E CACCIA FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177674&extension=ts&play_token=0AaD0p32pN"
-  },
-  {
-    "name": "RAI 1 4K",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167397&extension=ts&play_token=WacyVnnvbh"
-  },
-  {
-    "name": "RAI 1 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177568&extension=ts&play_token=kLrP3WukBi"
-  },
-  {
-    "name": "RAI 1 HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1166053&extension=ts&play_token=njQoIw6bI6"
-  },
-  {
-    "name": "RAI 2 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177569&extension=ts&play_token=j47AmJL6Xn"
-  },
-  {
-    "name": "RAI 2 HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1166054&extension=ts&play_token=wdpMEnwFuN"
-  },
-  {
-    "name": "RAI 3 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177570&extension=ts&play_token=LBXmncD8jM"
-  },
-  {
-    "name": "RAI 3 HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1166055&extension=ts&play_token=O2AFkfXiZl"
-  },
-  {
-    "name": "RETE 4 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177580&extension=ts&play_token=haOGfzefRT"
-  },
-  {
-    "name": "RETE 4 HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1166056&extension=ts&play_token=NGz6uqbkBD"
-  },
-  {
-    "name": "CANALE 5 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177581&extension=ts&play_token=0lRSzYxssA"
-  },
-  {
-    "name": "CANALE 5 HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1166057&extension=ts&play_token=4lhJOQ8xFj"
-  },
-  {
-    "name": "ITALIA 1 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177579&extension=ts&play_token=DawKC4JgFc"
-  },
-  {
-    "name": "ITALIA 1 HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1166058&extension=ts&play_token=GOdSVP16tc"
-  },
-  {
-    "name": "LA 7 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177586&extension=ts&play_token=Y1srOlZKjR"
-  },
-  {
-    "name": "TV 8 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177587&extension=ts&play_token=UqgcjC3ikU"
-  },
-  {
-    "name": "ALICE 4K",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177763&extension=ts&play_token=rCsjchpdmX"
-  },
-  {
-    "name": "CANALE 20 4K",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177582&extension=ts&play_token=JPGmrWTirC"
-  },
-  {
-    "name": "CIELO FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177589&extension=ts&play_token=3OJ7b5xSRo"
-  },
-  {
-    "name": "IRIS FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177762&extension=ts&play_token=4InG5AvGqs"
-  },
-  {
-    "name": "ITALIA 2 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177760&extension=ts&play_token=nwA73x0xrC"
-  },
-  {
-    "name": "MEDIASET EXTRA FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177761&extension=ts&play_token=l3bL59nre6"
-  },
-  {
-    "name": "RAI 4 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=221096&extension=ts&play_token=Iyc2bQumWo"
-  },
-  {
-    "name": "RAI 4 HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1166061&extension=ts&play_token=Kj2fNi9Pfq"
-  },
-  {
-    "name": "RAI 5 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177572&extension=ts&play_token=4plHLWZ7vX"
-  },
-  {
-    "name": "RAI 5 HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1166063&extension=ts&play_token=dpiVnNfWyl"
-  },
-  {
-    "name": "RAI GULP FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177577&extension=ts&play_token=Hk0AHUG5NP"
-  },
-  {
-    "name": "RAI MOVIE FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177724&extension=ts&play_token=ozyn3HCzzq"
-  },
-  {
-    "name": "RAI NEWS 24 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177573&extension=ts&play_token=ZCP8V0dbNr"
-  },
-  {
-    "name": "RAI PREMIUM FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177574&extension=ts&play_token=6hwdpo62EZ"
-  },
-  {
-    "name": "RAI SCUOLA FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177575&extension=ts&play_token=Id0oZq4ItW"
-  },
-  {
-    "name": "RAI STORIA FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177576&extension=ts&play_token=77I7XY2cWE"
-  },
-  {
-    "name": "RAI YOYO FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177578&extension=ts&play_token=r4tms8wHW2"
-  },
-  {
-    "name": "REAL TIME FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177584&extension=ts&play_token=f7ScnAxjxD"
-  },
-  {
-    "name": "RSI LA 1 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177591&extension=ts&play_token=ctHckrDPBw"
-  },
-  {
-    "name": "RSI LA 2 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177592&extension=ts&play_token=Guxkui4633"
-  },
-  {
-    "name": "TGCOM24 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177766&extension=ts&play_token=xrxACKNWo3"
-  },
-  {
-    "name": "TV2000 4K",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177764&extension=ts&play_token=fyQJEMYCl4"
-  },
-  {
-    "name": "VIDEOLINA 4K",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177765&extension=ts&play_token=RkXfQMaQBY"
+    "name": "SKY CRIME HD",
+    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177666&extension=ts&play_token=cm97CAYoW4"
   }
 ]
