@@ -1749,10 +1749,10 @@ def list_eagle_genres(eb_type, force_refresh=False):
         # Canali Intrattenimento e Cinema da Hublive (NO canali sport)
         add_directory_item("[COLOR yellow][B]↻ Ricarica lista dal server[/B][/COLOR]", 
                            {"action": "list_eagle_genres", "eb_type": "sky_tv", "force_refresh": "1"}, 
-                           is_folder=True, icon=get_tile("tile_sky_intrattenimento.png"))
+                            is_folder=True, icon=get_tile("tile_sky_intrattenimento.png"))
         if force_refresh:
             xbmcgui.Dialog().notification("CBTV", "Aggiornamento canali Sky TV...", xbmcgui.NOTIFICATION_INFO, 2000)
-        hl_client = HubliveStalkerClient("s28")
+        hl_client = HubliveStalkerClient("s31")
         hl_channels = hl_client.get_sky_tv_channels(force_refresh=force_refresh)
         for ch in hl_channels:
             title = f"{ch['name']} [COLOR yellow](HB)[/COLOR]"
@@ -1763,10 +1763,10 @@ def list_eagle_genres(eb_type, force_refresh=False):
         # Canali Sky Cinema da Hublive (Fonte Premium Stabile)
         add_directory_item("[COLOR yellow][B]↻ Ricarica lista dal server[/B][/COLOR]", 
                            {"action": "list_eagle_genres", "eb_type": "sky_cinema", "force_refresh": "1"}, 
-                           is_folder=True, icon=get_tile("tile_sky_cinema.png"))
+                            is_folder=True, icon=get_tile("tile_sky_cinema.png"))
         if force_refresh:
             xbmcgui.Dialog().notification("CBTV", "Aggiornamento canali Sky Cinema...", xbmcgui.NOTIFICATION_INFO, 2000)
-        hl_client = HubliveStalkerClient("s28")
+        hl_client = HubliveStalkerClient("s31")
         hl_channels = hl_client.get_sky_cinema_channels(force_refresh=force_refresh)
         cinema_icon = get_tile("tile_sky_cinema.png")
         for ch in hl_channels:
@@ -1778,7 +1778,7 @@ def list_eagle_genres(eb_type, force_refresh=False):
         # Canali DAZN (Zona DAZN 1-4, DAZN 1-4, Serie A, Serie B, Events)
         add_directory_item("[COLOR yellow][B]↻ Ricarica lista dal server[/B][/COLOR]", 
                            {"action": "list_eagle_genres", "eb_type": "dazn_only", "force_refresh": "1"}, 
-                           is_folder=True, icon=get_tile("tile_dazn.png"))
+                            is_folder=True, icon=get_tile("tile_dazn.png"))
         if force_refresh:
             xbmcgui.Dialog().notification("CBTV", "Aggiornamento canali DAZN...", xbmcgui.NOTIFICATION_INFO, 2000)
         hl_client_dazn = HubliveStalkerClient("s31")
@@ -1792,10 +1792,10 @@ def list_eagle_genres(eb_type, force_refresh=False):
         # Canali Sky Sport (Sky Sport 24, Uno, Calcio 1-7, Arena, Action, F1, MotoGP, Max, Tennis, Eurosport)
         add_directory_item("[COLOR yellow][B]↻ Ricarica lista dal server[/B][/COLOR]", 
                            {"action": "list_eagle_genres", "eb_type": "sky_sport", "force_refresh": "1"}, 
-                           is_folder=True, icon=get_tile("tile_sky_sport.png"))
+                            is_folder=True, icon=get_tile("tile_sky_sport.png"))
         if force_refresh:
             xbmcgui.Dialog().notification("CBTV", "Aggiornamento canali Sky Sport...", xbmcgui.NOTIFICATION_INFO, 2000)
-        hl_client = HubliveStalkerClient("s28")
+        hl_client = HubliveStalkerClient("s31")
         hl_channels = hl_client.get_sky_sport_channels(force_refresh=force_refresh)
         sport_icon = get_tile("tile_sky_sport.png")
         for ch in hl_channels:
@@ -1845,10 +1845,7 @@ def play_hublive_stalker(cmd, name=None):
     """Riproduce un canale Hublive con auto-riconnessione e rotazione MAC completa."""
     global _CURRENT_HB_PLAYER
     # Determiniamo il server iniziale in base al cmd
-    if "main.light-ott.net" in cmd or "light-ott" in cmd:
-        server_id = "s31"
-    else:
-        server_id = "s28"
+    server_id = "s31"
 
     xbmc.log(f"[CBTV-HB] Avvio play per '{name}' con server iniziale {server_id}", xbmc.LOGINFO)
     

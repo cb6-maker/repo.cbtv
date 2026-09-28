@@ -28,28 +28,17 @@ def clean_text(text):
     text = re.sub(r'\[/COLOR\]', '', text)
     # Rimuovi box-drawing chars (─ │ etc.)
     text = re.sub(r'[\u2500-\u259F]', '', text)
-    # Rimuovi prefissi tipo "IT|" o "IT:" o "IT |" o "IT :"
-    text = re.sub(r'^[A-Z]{2}\s*[:|]\s*', '', text)
+    # Rimuovi prefissi tipo "IT|" o "IT:" o "IT |" o "IT :" o "┃IT┃" o "IT "
+    text = re.sub(r'^(?:┃[A-Z\s]+┃|[A-Z]{2}\s*[:|]?)\s*', '', text)
     return text.strip()
 
 
 class HubliveStalkerClient:
-    """Client Stalker con supporto multi-server e fallback automatico tra Server 28 e Server 11."""
+    """Client Stalker con supporto multi-server e fallback automatico."""
 
-    # Server 28 (Primario Most8k)
-    PORTAL_1_URL = "http://pro.most8knew.com:80"
+    # Server Primario (Light-OTT - Sport, Cinema, Intrattenimento, DAZN)
+    PORTAL_1_URL = "http://main.light-ott.net:80"
     PORTAL_1_MACS = [
-        "00:1A:79:81:F3:59", "A0:BB:3E:00:0A:CB", "A0:BB:3E:00:0A:CD", "A0:BB:3E:00:0A:B5",
-        "A0:BB:3E:00:06:EE", "00:1A:79:B5:B6:D5", "00:1A:79:7B:20:DE", "00:1A:79:36:33:37",
-        "00:1A:79:B6:E1:AD", "00:1A:79:B6:E1:AB", "00:1A:79:B6:CB:B8", "00:1A:79:B6:E6:77",
-        "00:1A:79:00:18:F8", "00:1A:79:14:57:6A", "00:1A:79:77:DC:8C", "00:1A:79:7E:27:6C",
-        "00:1A:79:85:7E:E6", "00:1A:79:AB:F3:FC", "00:1A:79:E1:3F:ED", "A0:BB:3E:00:4B:60",
-        "A0:BB:3E:00:5A:E4", "A0:BB:3E:00:68:C1", "00:1A:79:B5:B6:30", "A0:BB:3E:00:08:9F"
-    ]
-
-    # Server 31 (Light-OTT - Primario DAZN e Sport)
-    PORTAL_31_URL = "http://main.light-ott.net:80"
-    PORTAL_31_MACS = [
         "00:1B:79:41:43:5D", "00:1B:79:48:4E:B4", "A0:BB:3E:00:02:2D", "A0:BB:3E:00:02:82",
         "A0:BB:3E:00:06:87", "A0:BB:3E:00:07:36", "A0:BB:3E:00:09:28", "A0:BB:3E:00:0A:53",
         "A0:BB:3E:00:0B:4D", "A0:BB:3E:00:0A:CF", "A0:BB:3E:00:0A:FD", "A0:BB:3E:00:0A:E9",
@@ -58,13 +47,17 @@ class HubliveStalkerClient:
         "A0:BB:3E:00:0F:85", "A0:BB:3E:00:10:97", "A0:BB:3E:00:11:BD", "A0:BB:3E:00:12:87"
     ]
 
+    # Server 31 (Stessa infrastruttura Light-OTT)
+    PORTAL_31_URL = "http://main.light-ott.net:80"
+    PORTAL_31_MACS = PORTAL_1_MACS
+
     REMOTE_HUB_URL = "https://raw.githubusercontent.com/staycanuca/hub/main/servers.json"
 
     UA = ("Mozilla/5.0 (QtEmbedded; U; Linux; C) AppleWebKit/533.3 "
           "(KHTML, like Gecko) MAG200 stbapp ver: 2 rev: 250 Safari/533.3")
 
     # ---- inizializzazione ----
-    def __init__(self, server_id="s28"):
+    def __init__(self, server_id="s31"):
         self.server_id = server_id
         if server_id == "s31":
             self.portal_url = self.PORTAL_31_URL
@@ -549,7 +542,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.3.20"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.3.22"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""
@@ -622,12 +615,12 @@ class HubliveStalkerClient:
             return res
 
         fallback_genres = [
-            {"id": "11", "title": "IT| PRIME ᴿᴬᵂ ⁶⁰ᶠᵖˢ"},
-            {"id": "12", "title": "IT| PLATINUM TV UHD/4K"},
-            {"id": "13", "title": "IT| GENERALE"},
-            {"id": "14", "title": "IT| CINEMA"},
-            {"id": "15", "title": "IT| SPORT"},
-            {"id": "16", "title": "IT| GOLD TV HEVC"}
+            {"id": "2728", "title": "┃IT┃ SKY SPORT"},
+            {"id": "2729", "title": "┃IT┃ SKY CALCIO"},
+            {"id": "2723", "title": "┃IT┃ FILM E SERIE"},
+            {"id": "2724", "title": "┃IT┃ INTRATTENIMENTO"},
+            {"id": "2732", "title": "┃IT┃ DOCUMENTARIO"},
+            {"id": "3331", "title": "┃IT┃ ZONA DAZN"}
         ]
         self._set_cache("genres", fallback_genres)
         return fallback_genres
@@ -725,28 +718,24 @@ class HubliveStalkerClient:
 
     # ---- API pubblica con logica Fallback ----
     def get_sky_tv_channels(self, force_refresh=False):
-        """Canali Sky Intrattenimento e Cinema (nessun canale sport). Caricamento istantaneo con ricarica opzionale."""
+        """Canali Intrattenimento, Serie TV e Documentari. Caricamento istantaneo con ricarica opzionale."""
         if not force_refresh:
             cached = self._get_cache("sky_tv")
             if cached and len(cached) > 5:
                 return cached
-            # Apertura istantanea da file locale pre-integrato (51 canali)
             fallback = self._load_fallback("sky_tv_fallback.json")
             if fallback:
                 self._set_cache("sky_tv", fallback)
                 return fallback
 
         target_titles = [
-            "IT| GENERALE", "IT| GENERALE HD/4K", "IT| REGIONALI", "IT| REGIONALI HD/4K",
-            "IT| 24/7 MOVIES & SERIES", "IT| 24/7 MOVIES & SERIES HD/4K", "IT| ITALY FHD/HEVC",
-            "IT| ITALY UHD/4K", "IT| PLATINUM TV UHD/4K", "IT| GOLD TV HEVC", "IT| AMAZON PRIME",
-            "┃IT┃ ITALIA HD | RIGIOCARE ⏺", "┃IT┃ GENERALE", "┃IT┃ INTRATTENIMENTO",
-            "┃IT┃ FILM E SERIE", "┃IT┃ 24/7 MOVIES & SERIES", "┃IT┃ DOCUMENTARIO"
+            "┃IT┃ INTRATTENIMENTO", "┃IT┃ DOCUMENTARIO", "┃IT┃ GENERALE",
+            "IT| GENERALE", "IT| DOCUMENTARIO", "IT| BAMBINI"
         ]
         gids = self._find_genre_ids_by_titles(target_titles)
         channels = self._fetch_channels_for_genres(gids, "sky_tv",
-            keywords=["SKY"],
-            negatives=["SPORT", "DAZN", "CALCIO", "F1", "MOTOGP", "PRIMAFILA", "CINEMA"],
+            keywords=None,
+            negatives=["SPORT", "DAZN", "CALCIO", "F1", "MOTOGP", "PRIMAFILA", "CINEMA", "SERIE A", "SERIE B"],
             force=force_refresh)
             
         if not channels:
@@ -758,7 +747,7 @@ class HubliveStalkerClient:
         return channels
 
     def get_sky_cinema_channels(self, force_refresh=False):
-        """Canali Sky Cinema (55 canali cinema). Caricamento istantaneo con ricarica opzionale."""
+        """Canali Sky Cinema. Caricamento istantaneo con ricarica opzionale."""
         if not force_refresh:
             cached = self._get_cache("sky_cinema")
             if cached and len(cached) > 5:
@@ -769,15 +758,12 @@ class HubliveStalkerClient:
                 return fallback
 
         target_titles = [
-            "IT| CINEMA", "IT| CINEMA HD/4K", "IT| CINEMA VIP HD/4K",
-            "IT| PRIME ᴿᴬᵂ ⁶⁰ᶠᵖˢ", "IT| 24/7 MOVIES & SERIES", "IT| 24/7 MOVIES & SERIES HD/4K",
-            "IT| PLATINUM TV UHD/4K", "IT| GOLD TV HEVC",
-            "┃IT┃ FILM E SERIE", "┃IT┃ CINEMA", "┃IT┃ 24/7 MOVIES & SERIES"
+            "┃IT┃ FILM E SERIE", "IT| CINEMA"
         ]
         gids = self._find_genre_ids_by_titles(target_titles)
         channels = self._fetch_channels_for_genres(gids, "sky_cinema",
             keywords=["CINEMA"],
-            negatives=["SPORT", "DAZN", "CALCIO"],
+            negatives=["SPORT", "DAZN", "CALCIO", "PRIMAFILA"],
             force=force_refresh)
             
         if not channels:
@@ -786,16 +772,18 @@ class HubliveStalkerClient:
 
         def cinema_sort_key(c):
             n = c.get('name', '').upper()
-            if 'CINEMA UNO' in n: order = 1
-            elif 'CINEMA DUE' in n: order = 2
-            elif 'ACTION' in n: order = 3
-            elif 'COLLECTION' in n: order = 4
-            elif 'COMEDY' in n: order = 5
-            elif 'DRAMA' in n: order = 6
-            elif 'FAMILY' in n: order = 7
-            elif 'ROMANCE' in n: order = 8
-            elif 'SUSPENSE' in n: order = 9
-            else: order = 10
+            if 'CINEMA UNO +' in n: order = 2
+            elif 'CINEMA UNO' in n: order = 1
+            elif 'CINEMA DUE +' in n: order = 4
+            elif 'CINEMA DUE' in n: order = 3
+            elif 'ACTION' in n: order = 5
+            elif 'COLLECTION' in n: order = 6
+            elif 'COMEDY' in n: order = 7
+            elif 'FAMILY' in n: order = 8
+            elif 'SUSPENSE' in n or 'SUSPENCE' in n: order = 9
+            elif 'ROMANCE' in n: order = 10
+            elif 'DRAMA' in n: order = 11
+            else: order = 12
             return (order, n)
 
         channels.sort(key=cinema_sort_key)
@@ -803,27 +791,24 @@ class HubliveStalkerClient:
         return channels
 
     def get_sky_sport_channels(self, force_refresh=False):
-        """Canali Sky Sport (83 canali sportivi). Caricamento istantaneo con ricarica opzionale."""
+        """Canali Sky Sport. Caricamento istantaneo con ricarica opzionale."""
         if not force_refresh:
             cached = self._get_cache("sky_sport")
             if cached and len(cached) > 10:
                 return cached
-            # Apertura istantanea da file locale pre-integrato (83 canali)
             channels = self._load_fallback("sky_sport_fallback.json")
             if channels:
                 self._set_cache("sky_sport", channels)
                 return channels
 
         target_titles = [
-            "IT| SPORT", "IT| SPORT HD/4K", "IT| FORMULA 1 / MOTOGP", "IT| SERIE A/B/C",
-            "IT| ITALY FHD/HEVC", "IT| ITALY UHD/4K", "IT| PLATINUM TV UHD/4K", "IT| GOLD TV HEVC", "IT| LNP PASS PPV",
-            "┃IT┃ SPORT", "┃IT┃ SKY SPORT", "┃IT┃ SKY CALCIO", "┃IT┃ DAZN SERIE A", "┃IT┃ ZONA DAZN",
-            "┃IT┃ DAZN SERIE B", "┃IT┃ SERIE A | B | C", "┃IT┃ BASKET", "┃IT┃ AMAZON PRIME SPORT", "┃IT┃ MY SPORTS"
+            "┃IT┃ SKY SPORT", "┃IT┃ SKY CALCIO", "┃IT┃ SPORT",
+            "IT| SPORT", "IT| FORMULA 1 / MOTOGP", "IT| SERIE A/B/C"
         ]
         gids = self._find_genre_ids_by_titles(target_titles)
         channels = self._fetch_channels_for_genres(gids, "sky_sport", 
             keywords=["SKY SPORT", "SKY CALCIO", "EUROSPORT"],
-            negatives=["SERIE C", "SERIE D", "LEGA PRO", "DAZN BAR", "DAZN CHANNEL", "VETRINA DAZN"],
+            negatives=["SERIE C", "SERIE D", "LEGA PRO", "BAR", "DAZN BAR", "DAZN CHANNEL", "VETRINA DAZN", "WOMEN"],
             force=force_refresh)
             
         if not channels:
@@ -831,27 +816,27 @@ class HubliveStalkerClient:
             channels = self._load_fallback("sky_sport_fallback.json")
 
         def sky_sport_sort_key(ch):
-            name = ch.get('name', '').upper().strip()
-            if "SKY SPORT" in name:
-                group = 0
-                if "SKY SPORT 24" in name:
-                    subgroup = 0
-                elif "SKY SPORT UNO" in name:
-                    subgroup = 1
-                else:
-                    subgroup = 2
-            elif "SKY CALCIO" in name:
-                group = 1
-                subgroup = 0
-            elif "EUROSPORT" in name:
-                group = 2
-                subgroup = 0
-            else:
-                group = 3
-                subgroup = 0
-            import re
-            parts = [int(text) if text.isdigit() else text.lower() for text in re.split(r'(\d+)', name)]
-            return (group, subgroup, parts)
+            n = ch.get('name', '').upper().strip()
+            if "24" in n: return (1, n)
+            if "UNO" in n: return (2, n)
+            if "CALCIO FHD" in n or "CALCIO HEVC" in n: return (3, n)
+            if "F1" in n: return (4, n)
+            if "MOTOGP" in n or "MOTO GP" in n: return (5, n)
+            if "TENNIS" in n: return (6, n)
+            if "ARENA" in n: return (7, n)
+            if "GOLF" in n: return (8, n)
+            if "MAX" in n: return (9, n)
+            if "NBA" in n: return (10, n)
+            if "CALCIO 251" in n: return (11, n)
+            if "CALCIO 252" in n: return (12, n)
+            if "CALCIO 253" in n: return (13, n)
+            if "CALCIO 254" in n: return (14, n)
+            if "CALCIO 255" in n: return (15, n)
+            if "CALCIO 256" in n: return (16, n)
+            if "CALCIO 257" in n: return (17, n)
+            if "EUROSPORT 1" in n: return (18, n)
+            if "EUROSPORT 2" in n: return (19, n)
+            return (20, n)
 
         channels.sort(key=sky_sport_sort_key)
         self._set_cache("sky_sport", channels)
