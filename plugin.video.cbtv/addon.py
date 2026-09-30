@@ -1033,11 +1033,22 @@ def play_hls_channel(daddy_id, title):
         xbmcplugin.setResolvedUrl(HANDLE, False, xbmcgui.ListItem())
 
 def _get_fallback_hls_id(name):
-    """Mappa i canali Sport e DAZN agli ID HLS di DaddyLive per fallback istantaneo (1080p 50fps).
+    """Mappa SOLO i canali Sport e DAZN agli ID HLS di DaddyLive per fallback istantaneo (1080p 50fps).
     Restituisce l'ID numerico HLS se presente, altrimenti None."""
     if not name:
         return None
     nl = name.lower()
+
+    # Esclusione totale: Canali Intrattenimento, Cinema, Serie TV, Documentari non hanno fallback HLS
+    entertainment_keywords = [
+        "atlantic", "documentar", "investigat", "crime", "nature", "arte",
+        "cinema", "serie", "tg24", "primafila"
+    ]
+    if any(k in nl for k in entertainment_keywords):
+        return None
+    # Escludi anche Sky Uno (che non è Sky Sport Uno)
+    if "uno" in nl and "sport" not in nl:
+        return None
 
     # 1. Numerati Calcio 251-254
     if "251" in nl:
@@ -1082,9 +1093,7 @@ def _get_fallback_hls_id(name):
         return "878"
     if "f1" in nl and "dazn" in nl:
         return "537"
-    if "laliga" in nl:
-        return "538"
-    if "spagna" in nl or "es" in nl:
+    if "laliga" in nl or "spagna" in nl or "dazn es" in nl or "(es)" in nl:
         return "445"
     if "uk" in nl and "dazn" in nl:
         return "230"
