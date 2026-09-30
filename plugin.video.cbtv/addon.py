@@ -1910,22 +1910,17 @@ def play_hublive_stalker(cmd, name=None):
             xbmc.log(f"[CBTV-HB] Batch {attempt + 1}, MAC già provati: {len(failed_macs)}", xbmc.LOGINFO)
             xbmcgui.Dialog().notification("CBTV", f"Linee occupate, cerco MAC libero... ({len(failed_macs)})", xbmcgui.NOTIFICATION_INFO, 1200)
             xbmc.sleep(200)
+        else:
+            xbmcgui.Dialog().notification("CBTV", f"Connessione Stalker ({server_id})...", xbmcgui.NOTIFICATION_INFO, 1000)
         
         final_url, mac = client.resolve_stream(cmd, exclude_macs=failed_macs, channel_name=name)
         
         if not final_url:
-            # Paracadute automatico per canali Sport/DAZN verso flussi HLS alternativi (DaddyLive 1080p 50fps)
-            fallback_hls_id = _get_fallback_hls_id(name)
-            if fallback_hls_id and (attempt >= 1 or len(failed_macs) >= 4):
-                xbmc.log(f"[CBTV-HB] Linee Stalker non disponibili per '{name}'. Avvio paracadute HLS (ID {fallback_hls_id})...", xbmc.LOGINFO)
-                xbmcgui.Dialog().notification("CBTV", "Avvio stream di riserva HLS...", xbmcgui.NOTIFICATION_INFO, 2000)
-                play_hls_channel(fallback_hls_id, name)
-                return
-
             if len(failed_macs) >= len(client.mac_pool) or attempt >= max_batches - 1:
-                # Ultimo tentativo paracadute HLS se non ancora scattato
+                # Tutti i MAC esauriti: paracadute HLS per canali Sport/DAZN come ultima risorsa
+                fallback_hls_id = _get_fallback_hls_id(name)
                 if fallback_hls_id:
-                    xbmc.log(f"[CBTV-HB] Avvio paracadute HLS finale per '{name}' (ID {fallback_hls_id})...", xbmc.LOGINFO)
+                    xbmc.log(f"[CBTV-HB] Linee Stalker esaurite per '{name}'. Avvio paracadute HLS finale (ID {fallback_hls_id})...", xbmc.LOGINFO)
                     xbmcgui.Dialog().notification("CBTV", "Avvio stream di riserva HLS...", xbmcgui.NOTIFICATION_INFO, 2000)
                     play_hls_channel(fallback_hls_id, name)
                     return
