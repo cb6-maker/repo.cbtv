@@ -386,7 +386,7 @@ class HubliveStalkerClient:
 
         return play_token_match.group(1), stream_id
 
-    def resolve_stream(self, cmd, exclude_macs=None, channel_name=None):
+    def resolve_stream(self, cmd, exclude_macs=None, channel_name=None, max_tries=1):
         """
         Prova i MAC disponibili (escludendo quelli già falliti) per ottenere un URL di stream.
         Prioritizza l'abbinamento canale-MAC memorizzato, i MAC Full Package e la lista dinamica dei Top MAC.
@@ -431,8 +431,9 @@ class HubliveStalkerClient:
             pool.insert(0, ch_mac)
             xbmc.log(f"[CBTV-HB] Canale '{channel_name}': prioritizzato MAC memorizzato {ch_mac}", xbmc.LOGINFO)
 
-        # Prova fino a 8 MAC per batch per trovare rapidamente una linea libera
-        pool = pool[:8]
+        # Limita i tentativi al numero specificato (default 1 per rispetto del server e pause umane controllate)
+        if max_tries:
+            pool = pool[:max_tries]
         
         if not pool:
             xbmc.log(f"[CBTV-HB] Tutti i MAC sono stati esauriti per {self.server_id}", xbmc.LOGWARNING)
@@ -442,25 +443,17 @@ class HubliveStalkerClient:
             is_top = mac in top_verified or mac == last_working or (ch_mac and mac == ch_mac)
             xbmc.log(f"[CBTV-HB] Tentativo {attempt}/{len(pool)} con MAC: {mac} (Top: {is_top})", xbmc.LOGINFO)
 
-            # 1. Handshake veloce nativo
-            token = self._handshake(mac, timeout=1.8)
+            # 1. Handshake con timeout di sicurezza (3.0s per stabilità su mobile/Wi-Fi)
+            token = self._handshake(mac, timeout=3.0)
             if not token:
                 xbmc.log(f"[CBTV-HB] Handshake fallito per MAC {mac}", xbmc.LOGWARNING)
-                if is_top:
-                    self.remove_top_verified_mac(mac)
-                if ch_mac and mac == ch_mac:
-                    self.remove_channel_working_mac(channel_name)
                 exclude_macs.add(mac)
                 continue
 
-            # 2. create_link veloce nativo
-            url_or_token, stream_id_out = self.create_link(mac, token, cmd, timeout=2.5)
+            # 2. create_link con timeout di sicurezza (3.5s)
+            url_or_token, stream_id_out = self.create_link(mac, token, cmd, timeout=3.5)
             if not url_or_token:
                 xbmc.log(f"[CBTV-HB] create_link fallito per MAC {mac}", xbmc.LOGWARNING)
-                if is_top:
-                    self.remove_top_verified_mac(mac)
-                if ch_mac and mac == ch_mac:
-                    self.remove_channel_working_mac(channel_name)
                 exclude_macs.add(mac)
                 continue
 
@@ -475,13 +468,9 @@ class HubliveStalkerClient:
             try:
                 v_session = requests.Session()
                 v_session.trust_env = False
-                with v_session.get(final_url, headers={"User-Agent": self.UA}, cookies={"mac": mac}, timeout=(1.8, 2.5), stream=True, allow_redirects=True) as r_play:
+                with v_session.get(final_url, headers={"User-Agent": self.UA}, cookies={"mac": mac}, timeout=(3.0, 3.5), stream=True, allow_redirects=True) as r_play:
                     if r_play.status_code >= 400:
                         xbmc.log(f"[CBTV-HB] MAC {mac} HTTP error {r_play.status_code}", xbmc.LOGWARNING)
-                        if is_top and r_play.status_code in [401, 403, 404]:
-                            self.remove_top_verified_mac(mac)
-                        if ch_mac and mac == ch_mac:
-                            self.remove_channel_working_mac(channel_name)
                         exclude_macs.add(mac)
                         continue
 
@@ -491,20 +480,12 @@ class HubliveStalkerClient:
 
                     if "black.ts" in final_dest_lower or "85.18.95.155" in final_dest_lower or "text/html" in content_type:
                         xbmc.log(f"[CBTV-HB] MAC {mac} bloccato o black.ts ({final_dest[:60]})", xbmc.LOGWARNING)
-                        if is_top:
-                            self.remove_top_verified_mac(mac)
-                        if ch_mac and mac == ch_mac:
-                            self.remove_channel_working_mac(channel_name)
                         exclude_macs.add(mac)
                         continue
 
                     head = r_play.raw.read(188)
                     if not head or head.startswith(b'\x1f\x8b\x08') or b"Sito Illegale" in head or b"AGCOM" in head:
                         xbmc.log(f"[CBTV-HB] MAC {mac} non valido o vuoto", xbmc.LOGWARNING)
-                        if is_top:
-                            self.remove_top_verified_mac(mac)
-                        if ch_mac and mac == ch_mac:
-                            self.remove_channel_working_mac(channel_name)
                         exclude_macs.add(mac)
                         continue
 
