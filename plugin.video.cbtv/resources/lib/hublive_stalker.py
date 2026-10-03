@@ -77,12 +77,39 @@ class HubliveStalkerClient:
         if not os.path.exists(self.cache_dir):
             os.makedirs(self.cache_dir)
 
+        # Pulizia automatica cache obsoleta al cambio versione
+        self._check_and_clean_cache_version()
+
         # Applica subito i server/MAC dalla cache su disco se presenti (<1ms)
         self._apply_cached_servers()
 
         # Sincronizzazione remota in background per non bloccare mai la UI di Kodi
         import threading
         threading.Thread(target=self._sync_remote_servers, kwargs={"force": False}, daemon=True).start()
+
+    def _check_and_clean_cache_version(self):
+        """Verifica la versione cache ed elimina abbinamenti MAC obsoleti o corrotti al cambio versione."""
+        ver_file = os.path.join(self.cache_dir, "hl_cache_version.txt")
+        current_ver = ""
+        if os.path.exists(ver_file):
+            try:
+                with open(ver_file, 'r', encoding='utf-8') as f:
+                    current_ver = f.read().strip()
+            except Exception:
+                pass
+        if current_ver != self.CACHE_VERSION:
+            xbmc.log(f"[CBTV-HB] Upgrade a v{self.CACHE_VERSION}: reset abbinamenti MAC e cache...", xbmc.LOGINFO)
+            try:
+                for fname in os.listdir(self.cache_dir):
+                    if fname.startswith("hl_") and fname.endswith(".json") and "servers_remote" not in fname:
+                        try:
+                            os.remove(os.path.join(self.cache_dir, fname))
+                        except Exception:
+                            pass
+                with open(ver_file, 'w', encoding='utf-8') as f:
+                    f.write(self.CACHE_VERSION)
+            except Exception as e:
+                xbmc.log(f"[CBTV-HB] Errore reset cache: {e}", xbmc.LOGWARNING)
 
     def _apply_cached_servers(self):
         """Carica istantaneamente da disco i server/MAC memorizzati in precedenza."""
@@ -479,20 +506,13 @@ class HubliveStalkerClient:
             pool.remove(v_mac)
             pool.insert(0, v_mac)
 
-        # 2. Prioritizza i MAC con pacchetto completo verificati di Server 18 solo se liberi
-        s18_full_pkg = ["00:1A:79:01:70:B5", "00:1A:79:00:3C:13", "00:1A:79:07:BE:10"]
-        for fp in reversed(s18_full_pkg):
-            if fp in pool:
-                pool.remove(fp)
-                pool.insert(0, fp)
-
-        # 3. Inserisci il Last Working MAC del server (se libero)
+        # 2. Inserisci il Last Working MAC del server (se libero)
         last_working = self._get_last_working_mac()
         if last_working and last_working in pool:
             pool.remove(last_working)
             pool.insert(0, last_working)
 
-        # 4. PRIORITÀ ASSOLUTA: MAC memorizzato specificamente per questo canale (se libero)
+        # 3. PRIORITÀ ASSOLUTA: MAC memorizzato specificamente per questo canale (se libero)
         ch_mac = self.get_channel_working_mac(channel_name) if channel_name else None
         if ch_mac and ch_mac in pool:
             pool.remove(ch_mac)
@@ -568,6 +588,9 @@ class HubliveStalkerClient:
                 # 5. Linea verificata e funzionante al 100%!
                 dest_url = final_dest or final_url
                 if dest_url.startswith("http") and "black.ts" not in dest_url.lower():
+                    # Assicura estensione .ts per corretta inizializzazione del demuxer su Android
+                    if "?" not in dest_url and not dest_url.lower().endswith(".ts"):
+                        dest_url = f"{dest_url}.ts"
                     final_url_with_ua = f"{dest_url}|User-Agent={quote_plus(self.UA)}"
                 else:
                     final_url_with_ua = f"{final_url}|User-Agent={quote_plus(self.UA)}"
@@ -582,14 +605,12 @@ class HubliveStalkerClient:
                 
                 return final_url_with_ua, mac
             except requests.exceptions.ReadTimeout:
-                dest_url = final_url
-                final_url_with_ua = f"{dest_url}|User-Agent={quote_plus(self.UA)}"
-                self.remove_busy_mac(mac)
-                self._set_last_working_mac(mac)
-                self.record_top_verified_mac(mac)
-                if channel_name:
-                    self.record_channel_working_mac(channel_name, mac)
-                return final_url_with_ua, mac
+                xbmc.log(f"[CBTV-HB] MAC {mac} ReadTimeout (linea occupata o nessun pacchetto video ricevuto)", xbmc.LOGWARNING)
+                if ch_mac and mac == ch_mac:
+                    self.remove_channel_working_mac(channel_name)
+                exclude_macs.add(mac)
+                self.record_busy_mac(mac, duration_sec=300)
+                continue
             except Exception as e:
                 xbmc.log(f"[CBTV-HB] MAC {mac} timeout/errore verifica: {e}", xbmc.LOGWARNING)
                 if ch_mac and mac == ch_mac:
@@ -602,7 +623,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.3.29"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.3.30"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""
