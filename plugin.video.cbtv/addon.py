@@ -1939,11 +1939,12 @@ def play_hublive_stalker(cmd, name=None):
         list_item = xbmcgui.ListItem(path=final_url)
         list_item.setArt({'fanart': FANART})
         list_item.setInfo('video', {'title': name or 'Live TV'})
-        list_item.setProperty('inputstream', 'inputstream.ffmpegdirect')
-        list_item.setProperty('inputstream.ffmpegdirect.is_realtime_stream', 'true')
-        list_item.setProperty('inputstream.ffmpegdirect.auto_reconnect', 'true')
-        list_item.setProperty('inputstream.ffmpegdirect.auto_reconnect_retry_limit', '10')
-        list_item.setProperty('inputstream.ffmpegdirect.mime_type', 'video/mp2t')
+        if xbmc.getCondVisibility('System.HasAddon(inputstream.ffmpegdirect)'):
+            list_item.setProperty('inputstream', 'inputstream.ffmpegdirect')
+            list_item.setProperty('inputstream.ffmpegdirect.is_realtime_stream', 'true')
+            list_item.setProperty('inputstream.ffmpegdirect.auto_reconnect', 'true')
+            list_item.setProperty('inputstream.ffmpegdirect.auto_reconnect_retry_limit', '10')
+            list_item.setProperty('inputstream.ffmpegdirect.mime_type', 'video/mp2t')
         list_item.setMimeType('video/mp2t')
         list_item.setContentLookup(False)
         
