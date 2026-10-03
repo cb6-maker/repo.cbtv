@@ -36,20 +36,30 @@ def clean_text(text):
 class HubliveStalkerClient:
     """Client Stalker con supporto multi-server e fallback automatico."""
 
-    # Server Primario (Light-OTT - Sport, Cinema, Intrattenimento, DAZN)
-    PORTAL_1_URL = "http://main.light-ott.net:80"
-    PORTAL_1_MACS = [
-        "00:1B:79:41:43:5D", "00:1B:79:48:4E:B4", "A0:BB:3E:00:02:2D", "A0:BB:3E:00:02:82",
-        "A0:BB:3E:00:06:87", "A0:BB:3E:00:07:36", "A0:BB:3E:00:09:28", "A0:BB:3E:00:0A:53",
-        "A0:BB:3E:00:0B:4D", "A0:BB:3E:00:0A:CF", "A0:BB:3E:00:0A:FD", "A0:BB:3E:00:0A:E9",
-        "A0:BB:3E:00:0C:EC", "A0:BB:3E:00:0C:EE", "A0:BB:3E:00:0D:3A", "A0:BB:3E:00:0D:EB",
-        "A0:BB:3E:00:0E:13", "A0:BB:3E:00:0E:E8", "A0:BB:3E:00:0E:F5", "A0:BB:3E:00:0F:0D",
-        "A0:BB:3E:00:0F:85", "A0:BB:3E:00:10:97", "A0:BB:3E:00:11:BD", "A0:BB:3E:00:12:87"
+    # Server 18 (z1mag - Porta 8080 non soggetta a blocchi AGCOM / Piracy Shield)
+    PORTAL_18_URL = "http://z1mag.xyz:8080"
+    PORTAL_18_MACS = [
+        "00:1A:79:00:3C:13", "00:1A:79:01:70:B5", "00:1A:79:07:BE:10", "00:1A:79:07:C0:F4",
+        "00:1A:79:07:C1:00", "00:1A:79:07:C3:38", "00:1A:79:07:C5:88", "00:1A:79:08:4D:7E",
+        "00:1A:79:08:50:D1", "00:1A:79:08:E8:AA", "00:1A:79:10:3F:FD", "00:1A:79:10:40:CB",
+        "00:1A:79:10:DE:C7", "00:1A:79:10:DF:E2", "00:1A:79:10:E1:47", "00:1A:79:13:53:81",
+        "00:1A:79:13:54:CF", "00:1A:79:13:57:47", "00:1A:79:13:58:D1", "00:1A:79:14:61:CE",
+        "00:1A:79:14:62:20", "00:1A:79:14:64:52", "00:1A:79:14:64:A1", "00:1A:79:14:64:AD",
+        "00:1A:79:14:6D:47", "00:1A:79:14:E0:99", "00:1A:79:14:E7:39", "00:1A:79:19:22:E6",
+        "00:1A:79:1A:67:A3", "00:1A:79:1A:67:AE", "00:1A:79:1A:6C:C1", "00:1A:79:1F:0F:F3",
+        "00:1A:79:1F:12:7F", "00:1A:79:1F:1C:7A", "00:1A:79:1F:1C:CF", "00:1A:79:21:10:70",
+        "00:1A:79:23:00:D0", "00:1A:79:23:01:02", "00:1A:79:4D:05:F4", "00:1A:79:5E:48:E6",
+        "00:1A:79:6E:29:0B", "00:1A:79:6E:2C:B6", "00:1A:79:6E:2E:F4", "00:1A:79:77:01:2E",
+        "00:1A:79:77:02:4D", "00:1A:79:77:04:6D", "00:1A:79:7C:6B:BF", "00:1A:79:A0:E4:BF",
+        "00:1A:79:A0:FD:66", "00:1A:79:A0:FD:9B", "00:1A:79:A1:9D:ED", "00:1A:79:A2:8B:54",
+        "00:1A:79:AF:F8:81", "00:1A:79:C1:A1:DE", "00:1A:79:C4:06:6D", "00:1A:79:C8:4B:31",
+        "00:1B:79:1C:7B:70"
     ]
 
-    # Server 31 (Stessa infrastruttura Light-OTT)
-    PORTAL_31_URL = "http://main.light-ott.net:80"
-    PORTAL_31_MACS = PORTAL_1_MACS
+    PORTAL_1_URL = PORTAL_18_URL
+    PORTAL_1_MACS = PORTAL_18_MACS
+    PORTAL_31_URL = PORTAL_18_URL
+    PORTAL_31_MACS = PORTAL_18_MACS
 
     REMOTE_HUB_URL = "https://raw.githubusercontent.com/staycanuca/hub/main/servers.json"
 
@@ -57,14 +67,10 @@ class HubliveStalkerClient:
           "(KHTML, like Gecko) MAG200 stbapp ver: 2 rev: 250 Safari/533.3")
 
     # ---- inizializzazione ----
-    def __init__(self, server_id="s31"):
+    def __init__(self, server_id="s18"):
         self.server_id = server_id
-        if server_id == "s31":
-            self.portal_url = self.PORTAL_31_URL
-            self.mac_pool = list(self.PORTAL_31_MACS)
-        else:
-            self.portal_url = self.PORTAL_1_URL
-            self.mac_pool = list(self.PORTAL_1_MACS)
+        self.portal_url = self.PORTAL_18_URL
+        self.mac_pool = list(self.PORTAL_18_MACS)
 
         profile = xbmcvfs.translatePath(xbmcaddon.Addon().getAddonInfo('profile'))
         self.cache_dir = os.path.join(profile, "hublive")
@@ -130,28 +136,16 @@ class HubliveStalkerClient:
             portal = (s.get("portal_url") or s.get("portal") or s.get("url") or "").lower()
             macs = s.get("macs") or s.get("mac_pool") or []
 
-            if self.server_id == "s31":
-                if "light-ott" in portal or name in ["Server 31"]:
-                    if not target_portal:
-                        target_portal = s.get("portal_url") or s.get("portal") or s.get("url")
-                    for m in macs:
-                        if m and m not in combined_macs:
-                            combined_macs.append(m)
-            else:
-                if "most8k" in portal or name in ["Server 28"]:
-                    if not target_portal and "most8k" in portal:
-                        target_portal = s.get("portal_url") or s.get("portal") or s.get("url")
-                    for m in macs:
-                        if m and m not in combined_macs:
-                            combined_macs.append(m)
+            if "z1mag" in portal or "zeroone" in portal or "zerotv" in portal or name in ["Server 18", "Server 8", "Server 66"]:
+                if not target_portal and "z1mag" in portal:
+                    target_portal = s.get("portal_url") or s.get("portal") or s.get("url")
+                for m in macs:
+                    if m and m not in combined_macs:
+                        combined_macs.append(m)
 
         if combined_macs:
             # Assicura che i MAC statici verificati siano sempre presenti
-            if self.server_id == "s31":
-                base_macs = self.PORTAL_31_MACS
-            else:
-                base_macs = self.PORTAL_1_MACS
-            for m in base_macs:
+            for m in self.PORTAL_18_MACS:
                 if m not in combined_macs:
                     combined_macs.append(m)
             self.mac_pool = combined_macs
@@ -335,12 +329,14 @@ class HubliveStalkerClient:
                 pass
 
     # ---- headers / cookies come Hublive originale ----
-    def _headers(self, mac=None):
+    def _headers(self, mac=None, token=None):
         h = {
             "User-Agent": self.UA,
             "X-User-Agent": "Model: MAG250; Link: WiFi",
             "Referer": f"{self.portal_url}/stalker_portal/c/index.html",
         }
+        if token:
+            h["Authorization"] = f"Bearer {token}"
         return h
 
     def _cookies(self, mac, token=None):
@@ -397,7 +393,7 @@ class HubliveStalkerClient:
         if extra_params:
             params.update(extra_params)
 
-        headers = self._headers()
+        headers = self._headers(mac, token)
         cookies = self._cookies(mac, token)
 
         s = requests.Session()
@@ -483,13 +479,12 @@ class HubliveStalkerClient:
             pool.remove(v_mac)
             pool.insert(0, v_mac)
 
-        # 2. Se siamo su s31, prioritizza i MAC con pacchetto completo verificato (720 categorie) solo se liberi
-        if self.server_id == "s31":
-            s31_full_pkg = ["A0:BB:3E:00:0F:0D", "00:1B:79:41:43:5D", "A0:BB:3E:00:0C:EC", "00:1B:79:48:4E:B4"]
-            for fp in reversed(s31_full_pkg):
-                if fp in pool:
-                    pool.remove(fp)
-                    pool.insert(0, fp)
+        # 2. Prioritizza i MAC con pacchetto completo verificati di Server 18 solo se liberi
+        s18_full_pkg = ["00:1A:79:01:70:B5", "00:1A:79:00:3C:13", "00:1A:79:07:BE:10"]
+        for fp in reversed(s18_full_pkg):
+            if fp in pool:
+                pool.remove(fp)
+                pool.insert(0, fp)
 
         # 3. Inserisci il Last Working MAC del server (se libero)
         last_working = self._get_last_working_mac()
@@ -607,7 +602,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.3.28"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.3.29"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""
@@ -680,12 +675,12 @@ class HubliveStalkerClient:
             return res
 
         fallback_genres = [
-            {"id": "2728", "title": "┃IT┃ SKY SPORT"},
-            {"id": "2729", "title": "┃IT┃ SKY CALCIO"},
-            {"id": "2723", "title": "┃IT┃ FILM E SERIE"},
-            {"id": "2724", "title": "┃IT┃ INTRATTENIMENTO"},
-            {"id": "2732", "title": "┃IT┃ DOCUMENTARIO"},
-            {"id": "3331", "title": "┃IT┃ ZONA DAZN"}
+            {"id": "923", "title": "IT ✨ SPORT"},
+            {"id": "1233", "title": "IT ✨ DAZN"},
+            {"id": "924", "title": "IT ✨ CINEMA"},
+            {"id": "922", "title": "IT ✨ ITALIA"},
+            {"id": "925", "title": "IT ✨ CULTURA"},
+            {"id": "1332", "title": "IT ✨ HEVC"}
         ]
         self._set_cache("genres", fallback_genres)
         return fallback_genres
@@ -794,12 +789,15 @@ class HubliveStalkerClient:
                 return fallback
 
         target_titles = [
+            "IT ✨ ITALIA", "IT ✨ CULTURA", "IT ✨ HEVC",
             "┃IT┃ FILM E SERIE", "┃IT┃ DOCUMENTARIO", "┃IT┃ ITALIA HD | RIGIOCARE ⏺",
             "IT| INTRATTENIMENTO", "IT| DOCUMENTARIO", "IT| GENERALE"
         ]
         gids = self._find_genre_ids_by_titles(target_titles)
+        if not gids:
+            gids = ["922", "925", "1332"]
         channels = self._fetch_channels_for_genres(gids, "sky_tv",
-            keywords=["SKY UNO", "SKY ATLANTIC", "SKY DOCUMENTARIES", "SKY NATURE", "SKY ARTE", "SKY INVESTIGATION", "SKY CRIME", "SKY SERIE"],
+            keywords=["SKY UNO", "SKY ATLANTIC", "SKY DOCUMENTARIES", "SKY NATURE", "SKY ARTE", "SKY INVESTIGATION", "SKY CRIME", "SKY SERIE", "HISTORY", "DISCOVERY CHANNEL", "DISCOVERY TURBO", "GAMBERO ROSSO", "SKY TG24"],
             negatives=["SPORT", "DAZN", "CALCIO", "F1", "MOTOGP", "PRIMAFILA", "CINEMA", "SERIE A", "SERIE B", "BASKET", "BAR"],
             force=force_refresh)
             
@@ -823,9 +821,11 @@ class HubliveStalkerClient:
                 return fallback
 
         target_titles = [
-            "┃IT┃ FILM E SERIE", "IT| CINEMA"
+            "IT ✨ CINEMA", "┃IT┃ FILM E SERIE", "IT| CINEMA"
         ]
         gids = self._find_genre_ids_by_titles(target_titles)
+        if not gids:
+            gids = ["924"]
         channels = self._fetch_channels_for_genres(gids, "sky_cinema",
             keywords=["CINEMA"],
             negatives=["SPORT", "DAZN", "CALCIO", "PRIMAFILA"],
@@ -867,12 +867,14 @@ class HubliveStalkerClient:
                 return channels
 
         target_titles = [
-            "┃IT┃ SKY SPORT", "┃IT┃ SKY CALCIO", "┃IT┃ SPORT",
+            "IT ✨ SPORT", "┃IT┃ SKY SPORT", "┃IT┃ SKY CALCIO", "┃IT┃ SPORT",
             "IT| SPORT", "IT| FORMULA 1 / MOTOGP", "IT| SERIE A/B/C"
         ]
         gids = self._find_genre_ids_by_titles(target_titles)
+        if not gids:
+            gids = ["923"]
         channels = self._fetch_channels_for_genres(gids, "sky_sport", 
-            keywords=["SKY SPORT", "SKY CALCIO", "EUROSPORT"],
+            keywords=["SKY SPORT", "SKY CALCIO", "EUROSPORT", "SUPERTENNIS"],
             negatives=["SERIE C", "SERIE D", "LEGA PRO", "BAR", "DAZN BAR", "DAZN CHANNEL", "VETRINA DAZN", "WOMEN"],
             force=force_refresh)
             
@@ -908,72 +910,57 @@ class HubliveStalkerClient:
         return channels
 
     def get_dazn_channels(self, force_refresh=False):
-        """Canali DAZN essenziali (12 canali puliti senza slot morti). Caricamento istantaneo con ricarica opzionale."""
+        """Canali DAZN essenziali. Caricamento istantaneo con ricarica opzionale."""
         if not force_refresh:
             cached = self._get_cache("dazn")
-            if cached and any("ZONA DAZN" in ch.get('name', '').upper() for ch in cached):
+            if cached and len(cached) > 5:
                 return cached
-            # Apertura istantanea da file locale pre-integrato (12 canali)
             fallback = self._load_fallback("dazn_fallback.json")
             if fallback:
                 self._set_cache("dazn", fallback)
                 return fallback
 
         target_titles = [
-            "IT| SERIE A/B/C", "IT| DAZN VIP HD/4K", "IT| DAZN PPV", "IT| DAZN",
+            "IT ✨ DAZN", "IT| SERIE A/B/C", "IT| DAZN VIP HD/4K", "IT| DAZN PPV", "IT| DAZN",
             "┃IT┃ ZONA DAZN", "┃IT┃ DAZN", "┃IT┃ DAZN SERIE A"
         ]
         gids = self._find_genre_ids_by_titles(target_titles)
-        if not gids and self.server_id == "s31":
-            # ID reali certificati per Server 31
-            gids = ["3331", "2730", "2731", "3333"]
+        if not gids:
+            gids = ["1233"]
 
         channels = self._fetch_channels_for_genres(gids, "dazn",
             keywords=None,
-            negatives=["WOMEN", "SKY SPORT", "SKY CALCIO", "EUROSPORT", "PALLAVOLO", "PALLAMANO", "PALLANUOTO", "SERIE B", "ZONA DAZN 2", "ZONA DAZN 3", "ZONA DAZN 4"],
+            negatives=["WOMEN", "PALLAVOLO", "PALLAMANO", "PALLANUOTO"],
             force=force_refresh)
             
-        if not channels or not any("ZONA DAZN" in ch.get('name', '').upper() for ch in channels):
-            xbmc.log("[CBTV-HB] get_dazn_channels vuoto o incompleto, carico dazn_fallback.json integrato (12 canali)", xbmc.LOGINFO)
+        if not channels:
+            xbmc.log("[CBTV-HB] get_dazn_channels vuoto o incompleto, carico dazn_fallback.json integrato", xbmc.LOGINFO)
             channels = self._load_fallback("dazn_fallback.json")
 
         if channels:
             import re
-            filtered = []
-            for ch in channels:
-                name = ch.get('name', '').upper()
-                if any(k in name for k in ["ZONA DAZN 2", "ZONA DAZN 3", "ZONA DAZN 4", "SERIE B"]):
-                    continue
-                num_match = re.search(r'\d+', name)
-                num = int(num_match.group()) if num_match else 1
-                if "SERIE A" in name and num > 4:
-                    continue
-                if "EVENT" in name and num > 4:
-                    continue
-                filtered.append(ch)
+            filtered = [ch for ch in channels if not any(k in ch.get('name', '').upper() for k in ["PALLAVOLO", "PALLAMANO", "PALLANUOTO"])]
 
             def dazn_sort_key(ch):
                 name = ch.get('name', '').upper()
-                if "ZONA DAZN" in name:
+                if "DAZN 1" in name or "ZONA DAZN" in name:
                     group = 1
-                elif "SERIE A" in name:
+                elif "DAZN 2" in name:
                     group = 2
-                elif "EVENT" in name:
+                elif "DAZN" in name and any(f"DAZN {i}" in name for i in range(3, 15)):
                     group = 3
-                else:
+                elif "SERIE A" in name:
                     group = 4
+                elif "SERIE B" in name:
+                    group = 5
+                elif "EVENT" in name:
+                    group = 6
+                else:
+                    group = 7
                 
                 num_match = re.search(r'\d+', name)
                 num = int(num_match.group()) if num_match else 1
-                
-                res_val = 4
-                if "HEVC" in name or "4K" in name:
-                    res_val = 1
-                elif "FHD" in name:
-                    res_val = 2
-                elif "HD" in name:
-                    res_val = 3
-                return (group, num, res_val, name)
+                return (group, num, name)
                 
             filtered.sort(key=dazn_sort_key)
             channels = filtered

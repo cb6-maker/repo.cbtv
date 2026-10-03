@@ -1,90 +1,282 @@
 [
   {
     "name": "SKY CINEMA UNO FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177634&extension=ts&play_token=jFFbyjNEqN"
+    "cmd": "ffmpeg http://localhost/ch/925549_"
   },
   {
-    "name": "SKY CINEMA UNO HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167154&extension=ts&play_token=C9QeyVOb5O"
+    "name": "SKY CINEMA UNO HD",
+    "cmd": "ffmpeg http://localhost/ch/925548_"
   },
   {
-    "name": "SKY CINEMA UNO +24 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177635&extension=ts&play_token=ezL4RsCvcV"
+    "name": "SKY CINEMA UNO +1",
+    "cmd": "ffmpeg http://localhost/ch/925547_"
   },
   {
-    "name": "SKY CINEMA UNO +24 HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167166&extension=ts&play_token=YJ19GZHZ3N"
-  },
-  {
-    "name": "SKY CINEMA DUE FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177637&extension=ts&play_token=RquqLWQxvp"
-  },
-  {
-    "name": "SKY CINEMA DUE HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167155&extension=ts&play_token=K3anCGaicp"
-  },
-  {
-    "name": "SKY CINEMA DUE +24 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177639&extension=ts&play_token=l6wXafqNrZ"
-  },
-  {
-    "name": "SKY CINEMA DUE +24 HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167156&extension=ts&play_token=MElqV7BqXE"
+    "name": "SKY CINEMA DUE +1",
+    "cmd": "ffmpeg http://localhost/ch/925546_"
   },
   {
     "name": "SKY CINEMA ACTION FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177641&extension=ts&play_token=gndcmOKX2s"
+    "cmd": "ffmpeg http://localhost/ch/925545_"
   },
   {
-    "name": "SKY CINEMA ACTION HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167157&extension=ts&play_token=mS47sLMhV1"
+    "name": "SKY CINEMA ACTION HD",
+    "cmd": "ffmpeg http://localhost/ch/925544_"
+  },
+  {
+    "name": "SKY CINEMA ACTION +1",
+    "cmd": "ffmpeg http://localhost/ch/925543_"
   },
   {
     "name": "SKY CINEMA COLLECTION FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177646&extension=ts&play_token=LkJlpwtrYO"
+    "cmd": "ffmpeg http://localhost/ch/925542_"
   },
   {
-    "name": "SKY CINEMA COLLECTION HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167160&extension=ts&play_token=loDiL1dtrk"
+    "name": "SKY CINEMA COLLECTION HD",
+    "cmd": "ffmpeg http://localhost/ch/925541_"
+  },
+  {
+    "name": "SKY CINEMA COLLECTION +1",
+    "cmd": "ffmpeg http://localhost/ch/925540_"
   },
   {
     "name": "SKY CINEMA COMEDY FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177643&extension=ts&play_token=suzjHc6WrF"
+    "cmd": "ffmpeg http://localhost/ch/925539_"
   },
   {
-    "name": "SKY CINEMA COMEDY HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167158&extension=ts&play_token=nRuVaWi4jL"
-  },
-  {
-    "name": "SKY CINEMA FAMILY FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177644&extension=ts&play_token=oFVusSGZbl"
-  },
-  {
-    "name": "SKY CINEMA FAMILY HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167159&extension=ts&play_token=sqDwTXkaIb"
-  },
-  {
-    "name": "SKY CINEMA SUSPENCE FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177659&extension=ts&play_token=uusOPX26Wb"
-  },
-  {
-    "name": "SKY CINEMA SUSPENSE HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167161&extension=ts&play_token=8sRmZttCeO"
-  },
-  {
-    "name": "SKY CINEMA ROMANCE FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177651&extension=ts&play_token=cM83vuUz87"
-  },
-  {
-    "name": "SKY CINEMA ROMANCE HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167162&extension=ts&play_token=0a1bJa6rBf"
+    "name": "SKY CINEMA COMEDY HD",
+    "cmd": "ffmpeg http://localhost/ch/925538_"
   },
   {
     "name": "SKY CINEMA DRAMA FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177653&extension=ts&play_token=ltN0RpB3rT"
+    "cmd": "ffmpeg http://localhost/ch/925537_"
   },
   {
-    "name": "SKY CINEMA DRAMA HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167163&extension=ts&play_token=524DisjwR9"
+    "name": "SKY CINEMA DRAMA HD",
+    "cmd": "ffmpeg http://localhost/ch/925536_"
+  },
+  {
+    "name": "SKY CINEMA FAMILY FHD",
+    "cmd": "ffmpeg http://localhost/ch/925535_"
+  },
+  {
+    "name": "SKY CINEMA FAMILY HD",
+    "cmd": "ffmpeg http://localhost/ch/925534_"
+  },
+  {
+    "name": "SKY CINEMA FAMILY +1",
+    "cmd": "ffmpeg http://localhost/ch/925533_"
+  },
+  {
+    "name": "SKY CINEMA ROMANCE FHD",
+    "cmd": "ffmpeg http://localhost/ch/925532_"
+  },
+  {
+    "name": "SKY CINEMA ROMANCE HD",
+    "cmd": "ffmpeg http://localhost/ch/925531_"
+  },
+  {
+    "name": "SKY CINEMA SUSPENSE FHD",
+    "cmd": "ffmpeg http://localhost/ch/925530_"
+  },
+  {
+    "name": "SKY CINEMA SUSPENSE HD",
+    "cmd": "ffmpeg http://localhost/ch/925529_"
+  },
+  {
+    "name": "TOTO",
+    "cmd": "ffmpeg http://localhost/ch/925528_"
+  },
+  {
+    "name": "RAMBO",
+    "cmd": "ffmpeg http://localhost/ch/925527_"
+  },
+  {
+    "name": "ROCKY",
+    "cmd": "ffmpeg http://localhost/ch/925526_"
+  },
+  {
+    "name": "CINEMA OSCAR",
+    "cmd": "ffmpeg http://localhost/ch/925525_"
+  },
+  {
+    "name": "CINEPANETTONE",
+    "cmd": "ffmpeg http://localhost/ch/925524_"
+  },
+  {
+    "name": "007",
+    "cmd": "ffmpeg http://localhost/ch/925523_"
+  },
+  {
+    "name": "MISSION IMPOSSIBLE",
+    "cmd": "ffmpeg http://localhost/ch/925522_"
+  },
+  {
+    "name": "FAST & FURIOUS",
+    "cmd": "ffmpeg http://localhost/ch/925521_"
+  },
+  {
+    "name": "PREDATOR",
+    "cmd": "ffmpeg http://localhost/ch/925520_"
+  },
+  {
+    "name": "BOURNE",
+    "cmd": "ffmpeg http://localhost/ch/925519_"
+  },
+  {
+    "name": "ARMA LETALE",
+    "cmd": "ffmpeg http://localhost/ch/925518_"
+  },
+  {
+    "name": "MARVEL",
+    "cmd": "ffmpeg http://localhost/ch/925517_"
+  },
+  {
+    "name": "MANGAS",
+    "cmd": "ffmpeg http://localhost/ch/925516_"
+  },
+  {
+    "name": "CINEMA WESTERN",
+    "cmd": "ffmpeg http://localhost/ch/925515_"
+  },
+  {
+    "name": "CINEMA ANIMAZIONE",
+    "cmd": "ffmpeg http://localhost/ch/925514_"
+  },
+  {
+    "name": "PULSE CINEMA",
+    "cmd": "ffmpeg http://localhost/ch/925513_"
+  },
+  {
+    "name": "CINEMA ARTI MARZIALI E LOTTA",
+    "cmd": "ffmpeg http://localhost/ch/925512_"
+  },
+  {
+    "name": "CINEMA AVVENTURA",
+    "cmd": "ffmpeg http://localhost/ch/925511_"
+  },
+  {
+    "name": "CINEMA AZIONE",
+    "cmd": "ffmpeg http://localhost/ch/925510_"
+  },
+  {
+    "name": "CINEMA BIOGRAFICO",
+    "cmd": "ffmpeg http://localhost/ch/925509_"
+  },
+  {
+    "name": "CINEMA COMICO",
+    "cmd": "ffmpeg http://localhost/ch/925508_"
+  },
+  {
+    "name": "CINEMA COMMEDIA",
+    "cmd": "ffmpeg http://localhost/ch/925507_"
+  },
+  {
+    "name": "CINEMA CRIMINE",
+    "cmd": "ffmpeg http://localhost/ch/925506_"
+  },
+  {
+    "name": "CINEMA DOCUMENTARIO",
+    "cmd": "ffmpeg http://localhost/ch/925505_"
+  },
+  {
+    "name": "CINEMA DRAMMATICO",
+    "cmd": "ffmpeg http://localhost/ch/925504_"
+  },
+  {
+    "name": "CINEMA FAMILY",
+    "cmd": "ffmpeg http://localhost/ch/925503_"
+  },
+  {
+    "name": "CINEMA FANTASCIENZA",
+    "cmd": "ffmpeg http://localhost/ch/925502_"
+  },
+  {
+    "name": "CINEMA FANTASY",
+    "cmd": "ffmpeg http://localhost/ch/925501_"
+  },
+  {
+    "name": "CINEMA GANGSTER",
+    "cmd": "ffmpeg http://localhost/ch/925500_"
+  },
+  {
+    "name": "CINEMA GUERRA",
+    "cmd": "ffmpeg http://localhost/ch/925499_"
+  },
+  {
+    "name": "CINEMA HORROR",
+    "cmd": "ffmpeg http://localhost/ch/925498_"
+  },
+  {
+    "name": "CINEMA MISTERO",
+    "cmd": "ffmpeg http://localhost/ch/925497_"
+  },
+  {
+    "name": "CINEMA MUSICAL",
+    "cmd": "ffmpeg http://localhost/ch/925496_"
+  },
+  {
+    "name": "CINEMA NOIR",
+    "cmd": "ffmpeg http://localhost/ch/925495_"
+  },
+  {
+    "name": "CINEMA POLIZIESCO",
+    "cmd": "ffmpeg http://localhost/ch/925494_"
+  },
+  {
+    "name": "CINEMA ROMANTICO",
+    "cmd": "ffmpeg http://localhost/ch/925493_"
+  },
+  {
+    "name": "CINEMA SPORTIVO",
+    "cmd": "ffmpeg http://localhost/ch/925492_"
+  },
+  {
+    "name": "CINEMA STORICO",
+    "cmd": "ffmpeg http://localhost/ch/925491_"
+  },
+  {
+    "name": "CINEMA THRILLER",
+    "cmd": "ffmpeg http://localhost/ch/925490_"
+  },
+  {
+    "name": "SKY PRIMAFILA 1",
+    "cmd": "ffmpeg http://localhost/ch/925489_"
+  },
+  {
+    "name": "SKY PRIMAFILA 2",
+    "cmd": "ffmpeg http://localhost/ch/925488_"
+  },
+  {
+    "name": "SKY PRIMAFILA 3",
+    "cmd": "ffmpeg http://localhost/ch/925487_"
+  },
+  {
+    "name": "SKY PRIMAFILA 4",
+    "cmd": "ffmpeg http://localhost/ch/925486_"
+  },
+  {
+    "name": "SKY PRIMAFILA 5",
+    "cmd": "ffmpeg http://localhost/ch/925485_"
+  },
+  {
+    "name": "SKY PRIMAFILA 6",
+    "cmd": "ffmpeg http://localhost/ch/925484_"
+  },
+  {
+    "name": "SKY PRIMAFILA 7",
+    "cmd": "ffmpeg http://localhost/ch/925483_"
+  },
+  {
+    "name": "SKY PRIMAFILA 8",
+    "cmd": "ffmpeg http://localhost/ch/925482_"
+  },
+  {
+    "name": "SKY PRIMAFILA 9",
+    "cmd": "ffmpeg http://localhost/ch/925481_"
+  },
+  {
+    "name": "SKY PRIMAFILA 10",
+    "cmd": "ffmpeg http://localhost/ch/925480_"
   }
 ]

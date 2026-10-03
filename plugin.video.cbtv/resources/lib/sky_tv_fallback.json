@@ -1,62 +1,114 @@
 [
   {
-    "name": "SKY UNO FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177632&extension=ts&play_token=cm97CAYoW4"
+    "name": "SKY DOCUMENTARIES",
+    "cmd": "ffmpeg http://localhost/ch/438639_"
   },
   {
-    "name": "SKY UNO HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167164&extension=ts&play_token=cm97CAYoW4"
+    "name": "SKY UNO",
+    "cmd": "ffmpeg http://localhost/ch/438640_"
   },
   {
-    "name": "SKY UNO HD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177743&extension=ts&play_token=cm97CAYoW4"
+    "name": "DISCOVERY CHANNEL FHD",
+    "cmd": "ffmpeg http://localhost/ch/925282_"
   },
   {
-    "name": "SKY ATLANTIC FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177655&extension=ts&play_token=cm97CAYoW4"
+    "name": "DISCOVERY CHANNEL HD",
+    "cmd": "ffmpeg http://localhost/ch/925281_"
   },
   {
-    "name": "SKY ATLANTIC HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167165&extension=ts&play_token=cm97CAYoW4"
-  },
-  {
-    "name": "SKY ATLANTIC HD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177654&extension=ts&play_token=cm97CAYoW4"
+    "name": "SKY DOCUMENTARIES FHD",
+    "cmd": "ffmpeg http://localhost/ch/925276_"
   },
   {
     "name": "SKY DOCUMENTARIES HD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167294&extension=ts&play_token=cm97CAYoW4"
+    "cmd": "ffmpeg http://localhost/ch/925275_"
+  },
+  {
+    "name": "SKY HISTORY +1",
+    "cmd": "ffmpeg http://localhost/ch/925272_"
+  },
+  {
+    "name": "HISTORY FHD",
+    "cmd": "ffmpeg http://localhost/ch/925271_"
+  },
+  {
+    "name": "HISTORY HD",
+    "cmd": "ffmpeg http://localhost/ch/925270_"
+  },
+  {
+    "name": "CRIME INVESTIGATION",
+    "cmd": "ffmpeg http://localhost/ch/925260_"
+  },
+  {
+    "name": "SKY NATURE FHD",
+    "cmd": "ffmpeg http://localhost/ch/925258_"
   },
   {
     "name": "SKY NATURE HD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167296&extension=ts&play_token=cm97CAYoW4"
+    "cmd": "ffmpeg http://localhost/ch/925257_"
+  },
+  {
+    "name": "SKY ARTE +1 FHD",
+    "cmd": "ffmpeg http://localhost/ch/925256_"
   },
   {
     "name": "SKY ARTE FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177658&extension=ts&play_token=cm97CAYoW4"
-  },
-  {
-    "name": "SKY ARTE HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167209&extension=ts&play_token=cm97CAYoW4"
+    "cmd": "ffmpeg http://localhost/ch/925255_"
   },
   {
     "name": "SKY ARTE HD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177652&extension=ts&play_token=cm97CAYoW4"
+    "cmd": "ffmpeg http://localhost/ch/925254_"
   },
   {
-    "name": "SKY INVESTIGATION FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177958&extension=ts&play_token=cm97CAYoW4"
-  },
-  {
-    "name": "SKY INVESTIGATION HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167210&extension=ts&play_token=cm97CAYoW4"
-  },
-  {
-    "name": "SKY INVESTIGATION HD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=1167298&extension=ts&play_token=cm97CAYoW4"
+    "name": "SKY CRIME FHD",
+    "cmd": "ffmpeg http://localhost/ch/925253_"
   },
   {
     "name": "SKY CRIME HD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?mac=00:1B:79:41:43:5D&stream=177666&extension=ts&play_token=cm97CAYoW4"
+    "cmd": "ffmpeg http://localhost/ch/925252_"
+  },
+  {
+    "name": "DISCOVERY TURBO",
+    "cmd": "ffmpeg http://localhost/ch/925251_"
+  },
+  {
+    "name": "SKY ADVENTURE HD",
+    "cmd": "ffmpeg http://localhost/ch/925248_"
+  },
+  {
+    "name": "GAMBERO ROSSO FHD",
+    "cmd": "ffmpeg http://localhost/ch/925247_"
+  },
+  {
+    "name": "GAMBERO ROSSO HD",
+    "cmd": "ffmpeg http://localhost/ch/925246_"
+  },
+  {
+    "name": "SKY UNO HEVC",
+    "cmd": "ffmpeg http://localhost/ch/900501_"
+  },
+  {
+    "name": "SKY ARTE HEVC",
+    "cmd": "ffmpeg http://localhost/ch/900500_"
+  },
+  {
+    "name": "SKY DOCUMENTARIES HEVC",
+    "cmd": "ffmpeg http://localhost/ch/900499_"
+  },
+  {
+    "name": "SKY NATURE HEVC",
+    "cmd": "ffmpeg http://localhost/ch/900498_"
+  },
+  {
+    "name": "HISTORY HEVC",
+    "cmd": "ffmpeg http://localhost/ch/900497_"
+  },
+  {
+    "name": "DISCOVERY CHANNEL HEVC",
+    "cmd": "ffmpeg http://localhost/ch/900496_"
+  },
+  {
+    "name": "SKY TG24 HEVC",
+    "cmd": "ffmpeg http://localhost/ch/900495_"
   }
 ]

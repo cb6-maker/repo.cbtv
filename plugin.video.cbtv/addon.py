@@ -1519,7 +1519,7 @@ def list_hb_esteri_channels(group, force_refresh=False):
         xbmcgui.Dialog().notification("CBTV", f"Aggiornamento {group}...", xbmcgui.NOTIFICATION_INFO, 1500)
         
     from resources.lib.hublive_stalker import HubliveStalkerClient
-    client = HubliveStalkerClient("s31")
+    client = HubliveStalkerClient("s18")
     
     channels = client.get_foreign_sport_channels(group, force_refresh=force_refresh)
     for ch in channels:
@@ -1803,7 +1803,7 @@ def list_eagle_genres(eb_type, force_refresh=False):
                             is_folder=True, icon=get_tile("tile_sky_intrattenimento.png"))
         if force_refresh:
             xbmcgui.Dialog().notification("CBTV", "Aggiornamento canali Sky TV...", xbmcgui.NOTIFICATION_INFO, 2000)
-        hl_client = HubliveStalkerClient("s31")
+        hl_client = HubliveStalkerClient("s18")
         hl_channels = hl_client.get_sky_tv_channels(force_refresh=force_refresh)
         for ch in hl_channels:
             title = f"{ch['name']} [COLOR yellow](HB)[/COLOR]"
@@ -1817,7 +1817,7 @@ def list_eagle_genres(eb_type, force_refresh=False):
                             is_folder=True, icon=get_tile("tile_sky_cinema.png"))
         if force_refresh:
             xbmcgui.Dialog().notification("CBTV", "Aggiornamento canali Sky Cinema...", xbmcgui.NOTIFICATION_INFO, 2000)
-        hl_client = HubliveStalkerClient("s31")
+        hl_client = HubliveStalkerClient("s18")
         hl_channels = hl_client.get_sky_cinema_channels(force_refresh=force_refresh)
         cinema_icon = get_tile("tile_sky_cinema.png")
         for ch in hl_channels:
@@ -1832,7 +1832,7 @@ def list_eagle_genres(eb_type, force_refresh=False):
                             is_folder=True, icon=get_tile("tile_dazn.png"))
         if force_refresh:
             xbmcgui.Dialog().notification("CBTV", "Aggiornamento canali DAZN...", xbmcgui.NOTIFICATION_INFO, 2000)
-        hl_client_dazn = HubliveStalkerClient("s31")
+        hl_client_dazn = HubliveStalkerClient("s18")
         hl_channels = hl_client_dazn.get_dazn_channels(force_refresh=force_refresh)
         dazn_icon = get_tile("tile_dazn.png")
         for ch in hl_channels:
@@ -1846,7 +1846,7 @@ def list_eagle_genres(eb_type, force_refresh=False):
                             is_folder=True, icon=get_tile("tile_sky_sport.png"))
         if force_refresh:
             xbmcgui.Dialog().notification("CBTV", "Aggiornamento canali Sky Sport...", xbmcgui.NOTIFICATION_INFO, 2000)
-        hl_client = HubliveStalkerClient("s31")
+        hl_client = HubliveStalkerClient("s18")
         hl_channels = hl_client.get_sky_sport_channels(force_refresh=force_refresh)
         sport_icon = get_tile("tile_sky_sport.png")
         for ch in hl_channels:
@@ -1894,7 +1894,7 @@ class HBPlayer(xbmc.Player):
 
 def play_hublive_stalker(cmd, name=None):
     """Riproduce un canale Hublive con protezione anti-ban e uscita immediata alla risoluzione."""
-    server_id = "s31"
+    server_id = "s18"
 
     xbmc.log(f"[CBTV-HB] Avvio play per '{name}' con server iniziale {server_id}", xbmc.LOGINFO)
     
@@ -1914,7 +1914,7 @@ def play_hublive_stalker(cmd, name=None):
             if monitor.abortRequested():
                 return
         else:
-            xbmcgui.Dialog().notification("CBTV", f"Connessione Stalker ({server_id})...", xbmcgui.NOTIFICATION_INFO, 1000)
+            xbmcgui.Dialog().notification("CBTV", "Connessione Stalker...", xbmcgui.NOTIFICATION_INFO, 1000)
         
         final_url, mac = client.resolve_stream(cmd, exclude_macs=failed_macs, channel_name=name, max_tries=1)
         

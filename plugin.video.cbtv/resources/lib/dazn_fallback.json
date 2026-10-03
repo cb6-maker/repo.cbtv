@@ -1,50 +1,282 @@
 [
   {
-    "name": "ZONA DAZN HEVC",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158734"
+    "name": "DAZN 1 FHD",
+    "cmd": "ffmpeg http://localhost/ch/925626_"
   },
   {
-    "name": "ZONA DAZN FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158736"
+    "name": "DAZN 1 HD",
+    "cmd": "ffmpeg http://localhost/ch/925625_"
   },
   {
-    "name": "ZONA DAZN HD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158735"
+    "name": "DAZN 2 FHD",
+    "cmd": "ffmpeg http://localhost/ch/925624_"
   },
   {
-    "name": "ZONA DAZN",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158737"
+    "name": "DAZN 2 HD",
+    "cmd": "ffmpeg http://localhost/ch/925623_"
   },
   {
-    "name": "DAZN SERIE A 1 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158714"
+    "name": "DAZN 3",
+    "cmd": "ffmpeg http://localhost/ch/925622_"
   },
   {
-    "name": "DAZN SERIE A 2 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158715"
+    "name": "DAZN 4",
+    "cmd": "ffmpeg http://localhost/ch/925621_"
   },
   {
-    "name": "DAZN SERIE A 3",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158716"
+    "name": "DAZN 5",
+    "cmd": "ffmpeg http://localhost/ch/925620_"
   },
   {
-    "name": "DAZN SERIE A 4 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=1158717"
+    "name": "DAZN 6",
+    "cmd": "ffmpeg http://localhost/ch/925619_"
   },
   {
-    "name": "DAZN EVENT 1 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=228862"
+    "name": "DAZN 7",
+    "cmd": "ffmpeg http://localhost/ch/925618_"
   },
   {
-    "name": "DAZN EVENT 2 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=228861"
+    "name": "DAZN 8",
+    "cmd": "ffmpeg http://localhost/ch/925617_"
   },
   {
-    "name": "DAZN 3 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=228860"
+    "name": "DAZN 9",
+    "cmd": "ffmpeg http://localhost/ch/925616_"
   },
   {
-    "name": "DAZN 4 FHD",
-    "cmd": "ffmpeg http://main.light-ott.net:80/play/live.php?stream=228859"
+    "name": "DAZN 10",
+    "cmd": "ffmpeg http://localhost/ch/925615_"
+  },
+  {
+    "name": "DAZN 11",
+    "cmd": "ffmpeg http://localhost/ch/925614_"
+  },
+  {
+    "name": "DAZN 12",
+    "cmd": "ffmpeg http://localhost/ch/925613_"
+  },
+  {
+    "name": "DAZN EVENT",
+    "cmd": "ffmpeg http://localhost/ch/925612_"
+  },
+  {
+    "name": "DAZN EVENT 1",
+    "cmd": "ffmpeg http://localhost/ch/925611_"
+  },
+  {
+    "name": "DAZN EVENT 2",
+    "cmd": "ffmpeg http://localhost/ch/925610_"
+  },
+  {
+    "name": "DAZN EVENT 3",
+    "cmd": "ffmpeg http://localhost/ch/925609_"
+  },
+  {
+    "name": "DAZN EVENT 4",
+    "cmd": "ffmpeg http://localhost/ch/925608_"
+  },
+  {
+    "name": "DAZN EVENT 5",
+    "cmd": "ffmpeg http://localhost/ch/925607_"
+  },
+  {
+    "name": "DAZN EVENT 6",
+    "cmd": "ffmpeg http://localhost/ch/925606_"
+  },
+  {
+    "name": "DAZN EVENT 7",
+    "cmd": "ffmpeg http://localhost/ch/925605_"
+  },
+  {
+    "name": "DAZN EVENT 8",
+    "cmd": "ffmpeg http://localhost/ch/925604_"
+  },
+  {
+    "name": "DAZN EVENT 9",
+    "cmd": "ffmpeg http://localhost/ch/925603_"
+  },
+  {
+    "name": "DAZN EVENT 10",
+    "cmd": "ffmpeg http://localhost/ch/925602_"
+  },
+  {
+    "name": "DAZN EVENT 11",
+    "cmd": "ffmpeg http://localhost/ch/925601_"
+  },
+  {
+    "name": "DAZN EVENT 12",
+    "cmd": "ffmpeg http://localhost/ch/925600_"
+  },
+  {
+    "name": "DAZN EVENT 13",
+    "cmd": "ffmpeg http://localhost/ch/925599_"
+  },
+  {
+    "name": "DAZN EVENT 14",
+    "cmd": "ffmpeg http://localhost/ch/925598_"
+  },
+  {
+    "name": "DAZN EVENT 14",
+    "cmd": "ffmpeg http://localhost/ch/925597_"
+  },
+  {
+    "name": "DAZN EVENT 15",
+    "cmd": "ffmpeg http://localhost/ch/925596_"
+  },
+  {
+    "name": "DAZN EVENT 16",
+    "cmd": "ffmpeg http://localhost/ch/925595_"
+  },
+  {
+    "name": "DAZN EVENT 17",
+    "cmd": "ffmpeg http://localhost/ch/925594_"
+  },
+  {
+    "name": "DAZN EVENT 18",
+    "cmd": "ffmpeg http://localhost/ch/925593_"
+  },
+  {
+    "name": "DAZN EVENT 19",
+    "cmd": "ffmpeg http://localhost/ch/925592_"
+  },
+  {
+    "name": "DAZN EVENT 19",
+    "cmd": "ffmpeg http://localhost/ch/925591_"
+  },
+  {
+    "name": "DAZN EVENT 20",
+    "cmd": "ffmpeg http://localhost/ch/925590_"
+  },
+  {
+    "name": "DAZN SERIE A JUVENTUS 1",
+    "cmd": "ffmpeg http://localhost/ch/925589_"
+  },
+  {
+    "name": "DAZN SERIE A INTER 2",
+    "cmd": "ffmpeg http://localhost/ch/925588_"
+  },
+  {
+    "name": "DAZN SERIE A MILAN 3",
+    "cmd": "ffmpeg http://localhost/ch/925587_"
+  },
+  {
+    "name": "DAZN SERIE A NAPOLI 4",
+    "cmd": "ffmpeg http://localhost/ch/925586_"
+  },
+  {
+    "name": "DAZN SERIE A ROMA 5",
+    "cmd": "ffmpeg http://localhost/ch/925585_"
+  },
+  {
+    "name": "DAZN SERIE A LAZIO 6",
+    "cmd": "ffmpeg http://localhost/ch/925584_"
+  },
+  {
+    "name": "DAZN SERIE A COMO 7",
+    "cmd": "ffmpeg http://localhost/ch/925583_"
+  },
+  {
+    "name": "DAZN SERIE A ATALANTA 8",
+    "cmd": "ffmpeg http://localhost/ch/925582_"
+  },
+  {
+    "name": "DAZN SERIE A BOLOGNA 9",
+    "cmd": "ffmpeg http://localhost/ch/925581_"
+  },
+  {
+    "name": "DAZN SERIE A GENOA 10",
+    "cmd": "ffmpeg http://localhost/ch/925580_"
+  },
+  {
+    "name": "DAZN SERIE A FIORENTINA 11",
+    "cmd": "ffmpeg http://localhost/ch/925579_"
+  },
+  {
+    "name": "DAZN SERIE A SASSUOLO 12",
+    "cmd": "ffmpeg http://localhost/ch/925578_"
+  },
+  {
+    "name": "DAZN SERIE A PISA 13",
+    "cmd": "ffmpeg http://localhost/ch/925577_"
+  },
+  {
+    "name": "DAZN SERIE A UDINESE 14",
+    "cmd": "ffmpeg http://localhost/ch/925576_"
+  },
+  {
+    "name": "DAZN SERIE A HELLAS VERONA 15",
+    "cmd": "ffmpeg http://localhost/ch/925575_"
+  },
+  {
+    "name": "DAZN SERIE A TORINO 16",
+    "cmd": "ffmpeg http://localhost/ch/925574_"
+  },
+  {
+    "name": "DAZN SERIE A CREMONESE 17",
+    "cmd": "ffmpeg http://localhost/ch/925573_"
+  },
+  {
+    "name": "DAZN SERIE A LECCE 18",
+    "cmd": "ffmpeg http://localhost/ch/925572_"
+  },
+  {
+    "name": "DAZN SERIE A CAGLIARI 19",
+    "cmd": "ffmpeg http://localhost/ch/925571_"
+  },
+  {
+    "name": "DAZN SERIE A PARMA 20",
+    "cmd": "ffmpeg http://localhost/ch/925570_"
+  },
+  {
+    "name": "DAZN 1 SERIE B BARI",
+    "cmd": "ffmpeg http://localhost/ch/925569_"
+  },
+  {
+    "name": "DAZN 2 SERIE B AVELLINO",
+    "cmd": "ffmpeg http://localhost/ch/925568_"
+  },
+  {
+    "name": "DAZN 3 SERIE B CARRARESE",
+    "cmd": "ffmpeg http://localhost/ch/925567_"
+  },
+  {
+    "name": "DAZN 4 SERIE B CATANZARO",
+    "cmd": "ffmpeg http://localhost/ch/925566_"
+  },
+  {
+    "name": "DAZN 5 SERIE B CESENA",
+    "cmd": "ffmpeg http://localhost/ch/925565_"
+  },
+  {
+    "name": "DAZN 6 SERIE B PESCARA",
+    "cmd": "ffmpeg http://localhost/ch/925564_"
+  },
+  {
+    "name": "DAZN 7 SERIE B VIRTUS ENTELLA",
+    "cmd": "ffmpeg http://localhost/ch/925563_"
+  },
+  {
+    "name": "DAZN 8 SERIE B MONZA",
+    "cmd": "ffmpeg http://localhost/ch/925562_"
+  },
+  {
+    "name": "DAZN 9 SERIE B FROSINONE",
+    "cmd": "ffmpeg http://localhost/ch/925561_"
+  },
+  {
+    "name": "DAZN 10 SERIE B JUVE STABIA",
+    "cmd": "ffmpeg http://localhost/ch/925560_"
+  },
+  {
+    "name": "DAZN 11 SERIE B MANTOVA",
+    "cmd": "ffmpeg http://localhost/ch/925559_"
+  },
+  {
+    "name": "DAZN 12 SERIE B MODENA",
+    "cmd": "ffmpeg http://localhost/ch/925558_"
+  },
+  {
+    "name": "DAZN 13 SERIE B PALERMO",
+    "cmd": "ffmpeg http://localhost/ch/925557_"
   }
 ]
