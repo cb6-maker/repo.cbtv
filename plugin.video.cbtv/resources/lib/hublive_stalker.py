@@ -272,6 +272,68 @@ class HubliveStalkerClient:
             except Exception:
                 pass
 
+    def get_busy_macs(self):
+        """Restituisce il set di MAC attualmente in quarantena (occupati negli ultimi 10 minuti)."""
+        f = os.path.join(self.cache_dir, f"hl_busy_macs_{self.server_id}.json")
+        now = time.time()
+        if os.path.exists(f):
+            try:
+                with open(f, 'r', encoding='utf-8') as fh:
+                    data = json.load(fh)
+                if isinstance(data, dict):
+                    return set(m for m, exp in data.items() if exp > now)
+            except Exception:
+                pass
+        return set()
+
+    def record_busy_mac(self, mac, duration_sec=600):
+        """Mette un MAC in quarantena temporanea (default 10 minuti)."""
+        if not mac:
+            return
+        f = os.path.join(self.cache_dir, f"hl_busy_macs_{self.server_id}.json")
+        now = time.time()
+        data = {}
+        if os.path.exists(f):
+            try:
+                with open(f, 'r', encoding='utf-8') as fh:
+                    raw = json.load(fh)
+                    if isinstance(raw, dict):
+                        data = {m: exp for m, exp in raw.items() if exp > now}
+            except Exception:
+                data = {}
+        data[mac] = now + duration_sec
+        try:
+            with open(f, 'w', encoding='utf-8') as fh:
+                json.dump(data, fh)
+            xbmc.log(f"[CBTV-HB] MAC {mac} in quarantena per {duration_sec}s (totale: {len(data)})", xbmc.LOGINFO)
+        except Exception as e:
+            xbmc.log(f"[CBTV-HB] Errore salvataggio busy MAC: {e}", xbmc.LOGWARNING)
+
+    def remove_busy_mac(self, mac):
+        """Rimuove un MAC dalla quarantena."""
+        if not mac:
+            return
+        f = os.path.join(self.cache_dir, f"hl_busy_macs_{self.server_id}.json")
+        if os.path.exists(f):
+            try:
+                with open(f, 'r', encoding='utf-8') as fh:
+                    data = json.load(fh)
+                if mac in data:
+                    del data[mac]
+                    with open(f, 'w', encoding='utf-8') as fh:
+                        json.dump(data, fh)
+            except Exception:
+                pass
+
+    def clear_busy_macs(self):
+        """Azzera la lista di quarantena (reset di emergenza)."""
+        f = os.path.join(self.cache_dir, f"hl_busy_macs_{self.server_id}.json")
+        if os.path.exists(f):
+            try:
+                os.remove(f)
+            except Exception:
+                pass
+
     # ---- headers / cookies come Hublive originale ----
     def _headers(self, mac=None):
         h = {
@@ -388,7 +450,7 @@ class HubliveStalkerClient:
 
     def resolve_stream(self, cmd, exclude_macs=None, channel_name=None, max_tries=1):
         """
-        Prova i MAC disponibili (escludendo quelli già falliti) per ottenere un URL di stream.
+        Prova i MAC disponibili (escludendo quelli già falliti e quelli in quarantena) per ottenere un URL di stream.
         Prioritizza l'abbinamento canale-MAC memorizzato, i MAC Full Package e la lista dinamica dei Top MAC.
         Restituisce (final_url, mac_usato) o (None, None).
         """
@@ -396,6 +458,17 @@ class HubliveStalkerClient:
             exclude_macs = set()
 
         pool = list(self.mac_pool)
+
+        # 0. Quarantena: escludi MAC occupati/bloccati negli ultimi 10 minuti
+        busy_macs = self.get_busy_macs()
+        if busy_macs:
+            available = [m for m in pool if m not in busy_macs]
+            if not available:
+                xbmc.log(f"[CBTV-HB] Tutti i MAC del pool erano in quarantena per {self.server_id}! Reset emergenza.", xbmc.LOGWARNING)
+                self.clear_busy_macs()
+            else:
+                xbmc.log(f"[CBTV-HB] Esclusi {len(busy_macs)} MAC in quarantena temporanea (occupati)", xbmc.LOGINFO)
+                pool = available
         
         # Escludi MAC già falliti in questa sessione
         if exclude_macs:
@@ -410,7 +483,7 @@ class HubliveStalkerClient:
             pool.remove(v_mac)
             pool.insert(0, v_mac)
 
-        # 2. Se siamo su s31, prioritizza i MAC con pacchetto completo verificato (720 categorie)
+        # 2. Se siamo su s31, prioritizza i MAC con pacchetto completo verificato (720 categorie) solo se liberi
         if self.server_id == "s31":
             s31_full_pkg = ["A0:BB:3E:00:0F:0D", "00:1B:79:41:43:5D", "A0:BB:3E:00:0C:EC", "00:1B:79:48:4E:B4"]
             for fp in reversed(s31_full_pkg):
@@ -418,13 +491,13 @@ class HubliveStalkerClient:
                     pool.remove(fp)
                     pool.insert(0, fp)
 
-        # 3. Inserisci il Last Working MAC del server
+        # 3. Inserisci il Last Working MAC del server (se libero)
         last_working = self._get_last_working_mac()
         if last_working and last_working in pool:
             pool.remove(last_working)
             pool.insert(0, last_working)
 
-        # 4. PRIORITÀ ASSOLUTA: MAC memorizzato specificamente per questo canale
+        # 4. PRIORITÀ ASSOLUTA: MAC memorizzato specificamente per questo canale (se libero)
         ch_mac = self.get_channel_working_mac(channel_name) if channel_name else None
         if ch_mac and ch_mac in pool:
             pool.remove(ch_mac)
@@ -436,7 +509,7 @@ class HubliveStalkerClient:
             pool = pool[:max_tries]
         
         if not pool:
-            xbmc.log(f"[CBTV-HB] Tutti i MAC sono stati esauriti per {self.server_id}", xbmc.LOGWARNING)
+            xbmc.log(f"[CBTV-HB] Tutti i MAC disponibili sono stati esauriti per {self.server_id}", xbmc.LOGWARNING)
             return None, None
 
         for attempt, mac in enumerate(pool, 1):
@@ -448,6 +521,7 @@ class HubliveStalkerClient:
             if not token:
                 xbmc.log(f"[CBTV-HB] Handshake fallito per MAC {mac}", xbmc.LOGWARNING)
                 exclude_macs.add(mac)
+                self.record_busy_mac(mac, duration_sec=300)
                 continue
 
             # 2. create_link con timeout di sicurezza (3.5s)
@@ -455,6 +529,7 @@ class HubliveStalkerClient:
             if not url_or_token:
                 xbmc.log(f"[CBTV-HB] create_link fallito per MAC {mac}", xbmc.LOGWARNING)
                 exclude_macs.add(mac)
+                self.record_busy_mac(mac, duration_sec=300)
                 continue
 
             # 3. Costruisci URL finale
@@ -470,8 +545,12 @@ class HubliveStalkerClient:
                 v_session.trust_env = False
                 with v_session.get(final_url, headers={"User-Agent": self.UA}, cookies={"mac": mac}, timeout=(3.0, 3.5), stream=True, allow_redirects=True) as r_play:
                     if r_play.status_code >= 400:
-                        xbmc.log(f"[CBTV-HB] MAC {mac} HTTP error {r_play.status_code}", xbmc.LOGWARNING)
+                        xbmc.log(f"[CBTV-HB] MAC {mac} HTTP error {r_play.status_code} (linea occupata/vietata)", xbmc.LOGWARNING)
                         exclude_macs.add(mac)
+                        self.record_busy_mac(mac, duration_sec=600)  # Quarantena 10 min
+                        self.remove_top_verified_mac(mac)
+                        if ch_mac and mac == ch_mac:
+                            self.remove_channel_working_mac(channel_name)
                         continue
 
                     final_dest = str(r_play.url)
@@ -481,12 +560,14 @@ class HubliveStalkerClient:
                     if "black.ts" in final_dest_lower or "85.18.95.155" in final_dest_lower or "text/html" in content_type:
                         xbmc.log(f"[CBTV-HB] MAC {mac} bloccato o black.ts ({final_dest[:60]})", xbmc.LOGWARNING)
                         exclude_macs.add(mac)
+                        self.record_busy_mac(mac, duration_sec=600)
                         continue
 
                     head = r_play.raw.read(188)
                     if not head or head.startswith(b'\x1f\x8b\x08') or b"Sito Illegale" in head or b"AGCOM" in head:
                         xbmc.log(f"[CBTV-HB] MAC {mac} non valido o vuoto", xbmc.LOGWARNING)
                         exclude_macs.add(mac)
+                        self.record_busy_mac(mac, duration_sec=300)
                         continue
 
                 # 5. Linea verificata e funzionante al 100%!
@@ -498,6 +579,7 @@ class HubliveStalkerClient:
                 xbmc.log(f"[CBTV-HB] Stream risolto con successo usando MAC {mac} -> {dest_url[:80]}", xbmc.LOGINFO)
                 
                 # Salva come Last Working MAC e promuovi nei Top MAC
+                self.remove_busy_mac(mac)
                 self._set_last_working_mac(mac)
                 self.record_top_verified_mac(mac)
                 if channel_name:
@@ -507,6 +589,7 @@ class HubliveStalkerClient:
             except requests.exceptions.ReadTimeout:
                 dest_url = final_url
                 final_url_with_ua = f"{dest_url}|User-Agent={quote_plus(self.UA)}"
+                self.remove_busy_mac(mac)
                 self._set_last_working_mac(mac)
                 self.record_top_verified_mac(mac)
                 if channel_name:
@@ -517,13 +600,14 @@ class HubliveStalkerClient:
                 if ch_mac and mac == ch_mac:
                     self.remove_channel_working_mac(channel_name)
                 exclude_macs.add(mac)
+                self.record_busy_mac(mac, duration_sec=300)
                 continue
 
-        # Se tutti i MAC di questo batch erano occupati o non validi, restituisci None per provare il batch successivo
+        # Se tutti i MAC di questo batch erano occupati o non validi, restituisci None
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.3.23"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.3.28"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""

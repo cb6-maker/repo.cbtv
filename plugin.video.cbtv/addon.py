@@ -1893,16 +1893,14 @@ class HBPlayer(xbmc.Player):
 
 
 def play_hublive_stalker(cmd, name=None):
-    """Riproduce un canale Hublive con sintonizzazione iniziale protetta ed uscita pulita universale."""
-    global _CURRENT_HB_PLAYER
-    # Determiniamo il server iniziale in base al cmd
+    """Riproduce un canale Hublive con protezione anti-ban e uscita immediata alla risoluzione."""
     server_id = "s31"
 
     xbmc.log(f"[CBTV-HB] Avvio play per '{name}' con server iniziale {server_id}", xbmc.LOGINFO)
     
     client = HubliveStalkerClient(server_id)
-    failed_macs = set()       # MAC che hanno fallito
-    max_attempts = 10         # Fino a 10 tentativi sequenziali
+    failed_macs = set()       # MAC che hanno fallito in questa sessione
+    max_attempts = 3          # Massimo 3 tentativi consecutivi per evitare Fail2Ban / IP ban
     monitor = xbmc.Monitor()
     
     for attempt in range(max_attempts):
@@ -1910,9 +1908,9 @@ def play_hublive_stalker(cmd, name=None):
             return
 
         if attempt > 0:
-            xbmc.log(f"[CBTV-HB] Tentativo {attempt + 1}/{max_attempts}, MAC già provati: {len(failed_macs)}", xbmc.LOGINFO)
-            xbmcgui.Dialog().notification("CBTV", f"Linee occupate, cerco MAC libero... ({attempt + 1}/{max_attempts})", xbmcgui.NOTIFICATION_INFO, 1200)
-            xbmc.sleep(1500)  # Pausa umana di 1.5s per rispetto del server ed evitare Fail2Ban
+            xbmc.log(f"[CBTV-HB] Tentativo {attempt + 1}/{max_attempts}, MAC già esclusi: {len(failed_macs)}", xbmc.LOGINFO)
+            xbmcgui.Dialog().notification("CBTV", f"Linee occupate, cerco MAC libero... ({attempt + 1}/{max_attempts})", xbmcgui.NOTIFICATION_INFO, 1500)
+            xbmc.sleep(2000)  # Pausa umana di 2.0s per rispetto del server ed evitare Fail2Ban
             if monitor.abortRequested():
                 return
         else:
@@ -1921,12 +1919,12 @@ def play_hublive_stalker(cmd, name=None):
         final_url, mac = client.resolve_stream(cmd, exclude_macs=failed_macs, channel_name=name, max_tries=1)
         
         if not final_url:
-            if len(failed_macs) >= len(client.mac_pool) or attempt >= max_attempts - 1:
+            if attempt >= max_attempts - 1 or len(failed_macs) >= 3:
                 # Tutti i tentativi esauriti: paracadute HLS per canali Sport/DAZN come riserva
                 fallback_hls_id = _get_fallback_hls_id(name)
                 if fallback_hls_id:
-                    xbmc.log(f"[CBTV-HB] Linee Stalker esaurite per '{name}'. Avvio paracadute HLS finale (ID {fallback_hls_id})...", xbmc.LOGINFO)
-                    xbmcgui.Dialog().notification("CBTV", "Avvio stream di riserva HLS...", xbmcgui.NOTIFICATION_INFO, 2000)
+                    xbmc.log(f"[CBTV-HB] Linee Stalker occupate per '{name}'. Avvio paracadute HLS (ID {fallback_hls_id})...", xbmc.LOGINFO)
+                    xbmcgui.Dialog().notification("CBTV", "Linee occupate, avvio stream di riserva HLS...", xbmcgui.NOTIFICATION_INFO, 2000)
                     play_hls_channel(fallback_hls_id, name)
                     return
 
@@ -1937,49 +1935,17 @@ def play_hublive_stalker(cmd, name=None):
             else:
                 continue
         
-        # Stream risolto con successo! Avvia la riproduzione in Kodi
-        hb_player = HBPlayer()
-        _CURRENT_HB_PLAYER = hb_player
+        # Stream risolto e verificato fisicamente (pacchetti MPEG-TS già confermati da resolve_stream)!
         list_item = xbmcgui.ListItem(path=final_url)
         list_item.setArt({'fanart': FANART})
         list_item.setMimeType('video/mp2t')
         list_item.setContentLookup(False)
         
         xbmcplugin.setResolvedUrl(HANDLE, True, list_item)
-        xbmc.log(f"[CBTV-HB] Stream avviato con MAC {mac}", xbmc.LOGINFO)
-        
-        # Fase 1: Attendi avvio effettivo dello stream (max 8 secondi)
-        start_time = time.time()
-        while time.time() - start_time < 8:
-            if monitor.abortRequested():
-                return
-            if hb_player.av_started or hb_player.isPlaying():
-                break
-            if hb_player.playback_error or hb_player.stopped_by_user or hb_player.playback_ended:
-                break
-            xbmc.sleep(300)
-        
-        # Se l'utente ha premuto Stop/Indietro prima che partisse il video:
-        if hb_player.stopped_by_user or monitor.abortRequested():
-            xbmc.log("[CBTV-HB] Stop premuto prima dell'avvio. Esco.", xbmc.LOGINFO)
-            return
-
-        # Se il player ha dato errore di playback all'avvio:
-        if hb_player.playback_error or (not hb_player.isPlaying() and not hb_player.av_started):
-            xbmc.log(f"[CBTV-HB] Stream non partito con MAC {mac} (error={hb_player.playback_error}), provo prossimo MAC...", xbmc.LOGWARNING)
-            failed_macs.add(mac)
-            continue
-        
-        # Fase 2: Il canale è in riproduzione regolare a schermo!
-        # Monitora finché è in riproduzione. Qualsiasi interruzione (Stop col touch, mouse, telecomando)
-        # DEVE terminare definitivamente la sessione senza MAI tentare riconnessioni in background.
-        while hb_player.isPlaying():
-            if monitor.abortRequested():
-                return
-            xbmc.sleep(500)
-        
-        xbmc.log(f"[CBTV-HB] Riproduzione interrotta (Stop utente o fine flusso). Esco definitivamente.", xbmc.LOGINFO)
+        xbmc.log(f"[CBTV-HB] Stream avviato con successo su MAC {mac}. Consegno al player ed esco.", xbmc.LOGINFO)
+        # Termina immediatamente il ciclo: nessun altro scan in sottofondo mentre il video è in riproduzione!
         return
+
 
 
 
