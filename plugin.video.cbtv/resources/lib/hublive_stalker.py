@@ -594,6 +594,7 @@ class HubliveStalkerClient:
                              f"?mac={mac}&stream={stream_id_out}&extension=ts&play_token={url_or_token}")
 
             # 4. Verifica stream ed estrazione rapida redirect CDN
+            v_session = None
             try:
                 v_session = requests.Session()
                 v_session.trust_env = False
@@ -623,26 +624,6 @@ class HubliveStalkerClient:
                         exclude_macs.add(mac)
                         self.record_busy_mac(mac, duration_sec=300)
                         continue
-
-                # 5. Linea verificata e funzionante al 100%!
-                dest_url = final_dest or final_url
-                if dest_url.startswith("http") and "black.ts" not in dest_url.lower():
-                    # Assicura estensione .ts per corretta inizializzazione del demuxer su Android
-                    if "?" not in dest_url and not dest_url.lower().endswith(".ts"):
-                        dest_url = f"{dest_url}.ts"
-                    final_url_with_ua = f"{dest_url}|User-Agent={quote_plus(self.UA)}"
-                else:
-                    final_url_with_ua = f"{final_url}|User-Agent={quote_plus(self.UA)}"
-                xbmc.log(f"[CBTV-HB] Stream risolto con successo usando MAC {mac} -> {dest_url[:80]}", xbmc.LOGINFO)
-                
-                # Salva come Last Working MAC e promuovi nei Top MAC
-                self.remove_busy_mac(mac)
-                self._set_last_working_mac(mac)
-                self.record_top_verified_mac(mac)
-                if channel_name:
-                    self.record_channel_working_mac(channel_name, mac)
-                
-                return final_url_with_ua, mac
             except requests.exceptions.ReadTimeout:
                 xbmc.log(f"[CBTV-HB] MAC {mac} ReadTimeout (linea occupata o nessun pacchetto video ricevuto)", xbmc.LOGWARNING)
                 if ch_mac and mac == ch_mac:
@@ -657,12 +638,33 @@ class HubliveStalkerClient:
                 exclude_macs.add(mac)
                 self.record_busy_mac(mac, duration_sec=300)
                 continue
+            finally:
+                if v_session:
+                    try:
+                        v_session.close()
+                    except Exception:
+                        pass
+
+            # 5. Linea verificata e funzionante al 100%!
+            # Consegna a Kodi l'URL del portale: al momento della riproduzione, il portale invia
+            # a Kodi un redirect 302 con un hash di sessione vergine, evitando errori 509 (limite stream).
+            final_url_with_ua = f"{final_url}|User-Agent={quote_plus(self.UA)}"
+            xbmc.log(f"[CBTV-HB] Stream risolto con successo usando MAC {mac} -> {final_url[:80]}", xbmc.LOGINFO)
+            
+            # Salva come Last Working MAC e promuovi nei Top MAC
+            self.remove_busy_mac(mac)
+            self._set_last_working_mac(mac)
+            self.record_top_verified_mac(mac)
+            if channel_name:
+                self.record_channel_working_mac(channel_name, mac)
+            
+            return final_url_with_ua, mac
 
         # Se tutti i MAC di questo batch erano occupati o non validi, restituisci None
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.3.33"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.3.34"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""
