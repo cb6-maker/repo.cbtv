@@ -1519,14 +1519,14 @@ def list_hb_esteri_channels(group, force_refresh=False):
         xbmcgui.Dialog().notification("CBTV", f"Aggiornamento {group}...", xbmcgui.NOTIFICATION_INFO, 1500)
         
     from resources.lib.hublive_stalker import HubliveStalkerClient
-    client = HubliveStalkerClient("s18")
+    client = HubliveStalkerClient("s31")
     
     channels = client.get_foreign_sport_channels(group, force_refresh=force_refresh)
     for ch in channels:
         title = f"{ch['name']} [COLOR yellow](HB)[/COLOR]"
         add_directory_item(
             title,
-            {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name']},
+            {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name'], "server_id": "s31"},
             is_folder=False,
             is_playable=True,
             icon=esteri_icon
@@ -1892,9 +1892,13 @@ class HBPlayer(xbmc.Player):
         self.playback_ended = True
 
 
-def play_hublive_stalker(cmd, name=None):
+def play_hublive_stalker(cmd, name=None, server_id=None):
     """Riproduce un canale Hublive con protezione anti-ban e uscita immediata alla risoluzione."""
-    server_id = "s18"
+    if not server_id:
+        if cmd and ("light-ott" in cmd or "/13" in cmd):
+            server_id = "s31"
+        else:
+            server_id = "s18"
 
     xbmc.log(f"[CBTV-HB] Avvio play per '{name}' con server iniziale {server_id}", xbmc.LOGINFO)
     
@@ -2121,7 +2125,7 @@ if __name__ == '__main__':
     elif action == 'list_primafila':
         list_primafila()
     elif action == 'play_hublive_stalker':
-        play_hublive_stalker(params.get('cmd'), name=params.get('name') or params.get('title'))
+        play_hublive_stalker(params.get('cmd'), name=params.get('name') or params.get('title'), server_id=params.get('server_id'))
     elif action == 'list_premium_sport':
         list_premium_live("A1A165")
     elif action == 'list_dazn_mh':

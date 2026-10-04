@@ -39,27 +39,52 @@ class HubliveStalkerClient:
     # Server 18 (z1mag - Porta 8080 non soggetta a blocchi AGCOM / Piracy Shield)
     PORTAL_18_URL = "http://z1mag.xyz:8080"
     PORTAL_18_MACS = [
-        "00:1A:79:00:3C:13", "00:1A:79:01:70:B5", "00:1A:79:07:BE:10", "00:1A:79:07:C0:F4",
-        "00:1A:79:07:C1:00", "00:1A:79:07:C3:38", "00:1A:79:07:C5:88", "00:1A:79:08:4D:7E",
-        "00:1A:79:08:50:D1", "00:1A:79:08:E8:AA", "00:1A:79:10:3F:FD", "00:1A:79:10:40:CB",
-        "00:1A:79:10:DE:C7", "00:1A:79:10:DF:E2", "00:1A:79:10:E1:47", "00:1A:79:13:53:81",
-        "00:1A:79:13:54:CF", "00:1A:79:13:57:47", "00:1A:79:13:58:D1", "00:1A:79:14:61:CE",
-        "00:1A:79:14:62:20", "00:1A:79:14:64:52", "00:1A:79:14:64:A1", "00:1A:79:14:64:AD",
-        "00:1A:79:14:6D:47", "00:1A:79:14:E0:99", "00:1A:79:14:E7:39", "00:1A:79:19:22:E6",
-        "00:1A:79:1A:67:A3", "00:1A:79:1A:67:AE", "00:1A:79:1A:6C:C1", "00:1A:79:1F:0F:F3",
-        "00:1A:79:1F:12:7F", "00:1A:79:1F:1C:7A", "00:1A:79:1F:1C:CF", "00:1A:79:21:10:70",
-        "00:1A:79:23:00:D0", "00:1A:79:23:01:02", "00:1A:79:4D:05:F4", "00:1A:79:5E:48:E6",
-        "00:1A:79:6E:29:0B", "00:1A:79:6E:2C:B6", "00:1A:79:6E:2E:F4", "00:1A:79:77:01:2E",
-        "00:1A:79:77:02:4D", "00:1A:79:77:04:6D", "00:1A:79:7C:6B:BF", "00:1A:79:A0:E4:BF",
-        "00:1A:79:A0:FD:66", "00:1A:79:A0:FD:9B", "00:1A:79:A1:9D:ED", "00:1A:79:A2:8B:54",
-        "00:1A:79:AF:F8:81", "00:1A:79:C1:A1:DE", "00:1A:79:C4:06:6D", "00:1A:79:C8:4B:31",
-        "00:1B:79:1C:7B:70"
+        "00:1A:79:07:C0:F0", "00:1A:79:07:C3:57", "00:1A:79:07:C3:69", "00:1A:79:07:C6:4F",
+        "00:1A:79:07:C7:5B", "00:1A:79:07:C7:A1", "00:1A:79:08:4A:E6", "00:1A:79:08:E2:3E",
+        "00:1A:79:08:E9:E0", "00:1A:79:0C:A8:EB", "00:1A:79:0E:37:CE", "00:1A:79:0E:3A:35",
+        "00:1A:79:14:66:26", "00:1A:79:14:DE:DA", "00:1A:79:14:E4:22", "00:1A:79:19:1E:E2",
+        "00:1A:79:19:1F:9C", "00:1A:79:19:20:E5", "00:1A:79:1A:6D:3C", "00:1A:79:1A:6E:48",
+        "00:1A:79:1F:19:4E", "00:1A:79:1F:1C:D0", "00:1A:79:1F:1D:20", "00:1A:79:1F:1E:84",
+        "00:1A:79:22:AD:79", "00:1A:79:22:AD:EB", "00:1A:79:22:AD:EE", "00:1A:79:22:FF:AC",
+        "00:1A:79:23:00:A7", "00:1A:79:23:01:06", "00:1A:79:23:01:22", "00:1A:79:23:01:66",
+        "00:1A:79:23:01:69", "00:1A:79:23:02:EE", "00:1A:79:34:2F:96", "00:1A:79:4D:02:49",
+        "00:1A:79:50:24:B5", "00:1A:79:5A:1F:8E", "00:1A:79:5D:AB:EA", "00:1A:79:6E:2B:C7",
+        "00:1A:79:6E:2F:AD", "00:1A:79:77:02:5F", "00:1A:79:77:05:98", "00:1A:79:7C:4F:D3",
+        "00:1A:79:7C:69:9C", "00:1A:79:A0:E3:ED", "00:1A:79:A0:E8:79", "00:1A:79:A0:FE:93",
+        "00:1A:79:A1:E8:EC", "00:1A:79:A3:B9:C6", "00:1A:79:AA:5B:12", "00:1A:79:AB:62:5D",
+        "00:1A:79:AE:CE:68", "00:1A:79:BA:A8:10", "00:1A:79:BB:F3:84", "00:1A:79:BF:A2:ED",
+        "00:1A:79:C1:A1:65", "00:1A:79:C3:C9:9A", "00:1A:79:C9:BE:85", "00:1A:79:F1:B1:63",
+        "00:1A:79:01:70:B5", "00:1A:79:07:C0:F4", "00:1A:79:07:C1:00", "00:1A:79:07:C3:38",
+        "00:1A:79:07:C5:88", "00:1A:79:08:4D:7E", "00:1A:79:08:50:D1", "00:1A:79:10:3F:FD",
+        "00:1A:79:10:40:CB", "00:1A:79:10:DE:C7", "00:1A:79:10:DF:E2", "00:1A:79:10:E1:47",
+        "00:1A:79:13:53:81", "00:1A:79:13:54:CF", "00:1A:79:13:57:47", "00:1A:79:14:61:CE",
+        "00:1A:79:14:64:52", "00:1A:79:14:64:A1", "00:1A:79:14:64:AD", "00:1A:79:14:6D:47",
+        "00:1A:79:14:E0:99", "00:1A:79:14:E7:39", "00:1A:79:1A:67:A3", "00:1A:79:1A:67:AE",
+        "00:1A:79:1F:0F:F3", "00:1A:79:1F:12:7F", "00:1A:79:1F:1C:7A", "00:1A:79:1F:1C:CF",
+        "00:1A:79:21:10:70", "00:1A:79:23:00:D0", "00:1A:79:23:01:02", "00:1A:79:4D:05:F4",
+        "00:1A:79:6E:2C:B6", "00:1A:79:6E:2E:F4", "00:1A:79:77:01:2E", "00:1A:79:77:02:4D",
+        "00:1A:79:77:04:6D", "00:1A:79:7C:6B:BF", "00:1A:79:A0:E4:BF", "00:1A:79:A1:9D:ED",
+        "00:1A:79:A2:8B:54", "00:1A:79:C1:A1:DE", "00:1A:79:C4:06:6D", "00:1A:79:A1:FA:4A",
+        "00:1A:79:34:67:AC", "00:1A:79:1F:19:40", "00:1A:79:0C:A6:60", "00:1A:79:13:59:AB",
+        "00:1A:79:C0:1D:96", "00:1A:79:1F:1D:1C", "00:1A:79:AB:5D:55", "00:1A:79:1A:6C:B4",
+        "00:1A:79:C2:7A:3E", "00:1A:79:23:01:11", "00:1A:79:C3:C9:95", "00:1A:79:BA:B6:BF",
+        "00:1A:79:A0:E6:A7", "00:1A:79:BB:F1:74", "00:1A:79:08:EF:A5", "00:1A:79:22:FF:AE",
+        "00:1A:79:6F:4F:00", "00:1A:79:01:6E:81", "00:1A:79:01:6A:89"
+    ]
+
+    # Server 31 (Light-OTT - Primario Esteri con VPN)
+    PORTAL_31_URL = "http://main.light-ott.net:80"
+    PORTAL_31_MACS = [
+        "00:1B:79:41:43:5D", "00:1B:79:48:4E:B4", "A0:BB:3E:00:02:2D", "A0:BB:3E:00:02:82",
+        "A0:BB:3E:00:06:87", "A0:BB:3E:00:07:36", "A0:BB:3E:00:09:28", "A0:BB:3E:00:0A:53",
+        "A0:BB:3E:00:0B:4D", "A0:BB:3E:00:0A:CF", "A0:BB:3E:00:0A:FD", "A0:BB:3E:00:0A:E9",
+        "A0:BB:3E:00:0C:EC", "A0:BB:3E:00:0C:EE", "A0:BB:3E:00:0D:3A", "A0:BB:3E:00:0D:EB",
+        "A0:BB:3E:00:0E:13", "A0:BB:3E:00:0E:E8", "A0:BB:3E:00:0E:F5", "A0:BB:3E:00:0F:0D",
+        "A0:BB:3E:00:0F:85", "A0:BB:3E:00:10:97", "A0:BB:3E:00:11:BD", "A0:BB:3E:00:12:87"
     ]
 
     PORTAL_1_URL = PORTAL_18_URL
     PORTAL_1_MACS = PORTAL_18_MACS
-    PORTAL_31_URL = PORTAL_18_URL
-    PORTAL_31_MACS = PORTAL_18_MACS
 
     REMOTE_HUB_URL = "https://raw.githubusercontent.com/staycanuca/hub/main/servers.json"
 
@@ -69,8 +94,12 @@ class HubliveStalkerClient:
     # ---- inizializzazione ----
     def __init__(self, server_id="s18"):
         self.server_id = server_id
-        self.portal_url = self.PORTAL_18_URL
-        self.mac_pool = list(self.PORTAL_18_MACS)
+        if server_id == "s31":
+            self.portal_url = self.PORTAL_31_URL
+            self.mac_pool = list(self.PORTAL_31_MACS)
+        else:
+            self.portal_url = self.PORTAL_18_URL
+            self.mac_pool = list(self.PORTAL_18_MACS)
 
         profile = xbmcvfs.translatePath(xbmcaddon.Addon().getAddonInfo('profile'))
         self.cache_dir = os.path.join(profile, "hublive")
@@ -163,16 +192,24 @@ class HubliveStalkerClient:
             portal = (s.get("portal_url") or s.get("portal") or s.get("url") or "").lower()
             macs = s.get("macs") or s.get("mac_pool") or []
 
-            if "z1mag" in portal or "zeroone" in portal or "zerotv" in portal or name in ["Server 18", "Server 8", "Server 66"]:
-                if not target_portal and "z1mag" in portal:
-                    target_portal = s.get("portal_url") or s.get("portal") or s.get("url")
-                for m in macs:
-                    if m and m not in combined_macs:
-                        combined_macs.append(m)
+            if self.server_id == "s31":
+                if "light-ott" in portal or name in ["Server 31"]:
+                    if not target_portal and "light-ott" in portal:
+                        target_portal = s.get("portal_url") or s.get("portal") or s.get("url")
+                    for m in macs:
+                        if m and m not in combined_macs:
+                            combined_macs.append(m)
+            else:
+                if "z1mag" in portal or "zeroone" in portal or "zerotv" in portal or name in ["Server 18", "Server 8", "Server 66"]:
+                    if not target_portal and "z1mag" in portal:
+                        target_portal = s.get("portal_url") or s.get("portal") or s.get("url")
+                    for m in macs:
+                        if m and m not in combined_macs:
+                            combined_macs.append(m)
 
+        base_macs = self.PORTAL_31_MACS if self.server_id == "s31" else self.PORTAL_18_MACS
         if combined_macs:
-            # Assicura che i MAC statici verificati siano sempre presenti
-            for m in self.PORTAL_18_MACS:
+            for m in base_macs:
                 if m not in combined_macs:
                     combined_macs.append(m)
             self.mac_pool = combined_macs
@@ -535,8 +572,10 @@ class HubliveStalkerClient:
             token = self._handshake(mac, timeout=3.0)
             if not token:
                 xbmc.log(f"[CBTV-HB] Handshake fallito per MAC {mac}", xbmc.LOGWARNING)
+                if ch_mac and mac == ch_mac:
+                    self.remove_channel_working_mac(channel_name)
                 exclude_macs.add(mac)
-                self.record_busy_mac(mac, duration_sec=300)
+                self.record_busy_mac(mac, duration_sec=600)
                 continue
 
             # 2. create_link con timeout di sicurezza (3.5s)
@@ -623,7 +662,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.3.32"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.3.33"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""
