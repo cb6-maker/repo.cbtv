@@ -36,6 +36,9 @@ def clean_text(text):
 class HubliveStalkerClient:
     """Client Stalker con supporto multi-server e fallback automatico."""
 
+    # MAC noti per essere saturi o con limite a 28s da escludere a priori
+    BLACKLISTED_MACS = {"00:1A:79:A0:E6:A7"}
+
     # Server 18 (z1mag - Porta 8080 non soggetta a blocchi AGCOM / Piracy Shield)
     PORTAL_18_URL = "http://z1mag.xyz:8080"
     PORTAL_18_MACS = [
@@ -68,7 +71,7 @@ class HubliveStalkerClient:
         "00:1A:79:34:67:AC", "00:1A:79:1F:19:40", "00:1A:79:0C:A6:60", "00:1A:79:13:59:AB",
         "00:1A:79:C0:1D:96", "00:1A:79:1F:1D:1C", "00:1A:79:AB:5D:55", "00:1A:79:1A:6C:B4",
         "00:1A:79:C2:7A:3E", "00:1A:79:23:01:11", "00:1A:79:C3:C9:95", "00:1A:79:BA:B6:BF",
-        "00:1A:79:A0:E6:A7", "00:1A:79:BB:F1:74", "00:1A:79:08:EF:A5", "00:1A:79:22:FF:AE",
+        "00:1A:79:BB:F1:74", "00:1A:79:08:EF:A5", "00:1A:79:22:FF:AE",
         "00:1A:79:6F:4F:00", "00:1A:79:01:6E:81", "00:1A:79:01:6A:89"
     ]
 
@@ -212,7 +215,7 @@ class HubliveStalkerClient:
             for m in base_macs:
                 if m not in combined_macs:
                     combined_macs.append(m)
-            self.mac_pool = combined_macs
+            self.mac_pool = [m for m in combined_macs if m not in self.BLACKLISTED_MACS]
             if target_portal:
                 self.portal_url = target_portal
             xbmc.log(f"[CBTV-HB] Sincronizzati {len(self.mac_pool)} MAC per {self.server_id} da {self.portal_url}", xbmc.LOGINFO)
@@ -517,7 +520,7 @@ class HubliveStalkerClient:
         if exclude_macs is None:
             exclude_macs = set()
 
-        pool = list(self.mac_pool)
+        pool = [m for m in self.mac_pool if m not in self.BLACKLISTED_MACS]
 
         # 0. Quarantena: escludi MAC occupati/bloccati negli ultimi 10 minuti
         busy_macs = self.get_busy_macs()
@@ -664,7 +667,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.3.34"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.3.36"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""
