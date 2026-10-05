@@ -167,8 +167,14 @@ def _sc_decode(data_b64, key):
         return out.decode("utf-8")
     except: return ""
 
+_SC_DOMAIN_CACHE = None
+
 def get_sc_domain():
+    global _SC_DOMAIN_CACHE
+    if _SC_DOMAIN_CACHE:
+        return _SC_DOMAIN_CACHE
     default_domain = "streamingcommunityz.organic"
+    domain_found = None
     try:
         try:
             s4me_path = xbmcvfs.translatePath("special://home/addons/plugin.video.s4me/channels.json")
@@ -186,32 +192,35 @@ def get_sc_domain():
                     from urllib.parse import urlparse
                     parsed = urlparse(domain)
                     if parsed.netloc:
-                        return parsed.netloc
+                        domain_found = parsed.netloc
     except Exception as e:
         xbmc.log(f"[CBTV] Errore lettura dominio locale da stream4me: {e}", xbmc.LOGWARNING)
         
-    try:
-        import requests
-        r = requests.get("https://raw.githubusercontent.com/stream4me/addon/master/channels.json", timeout=5)
-        if r.status_code == 200:
-            data = r.json()
-            domain = data.get("direct", {}).get("streamingcommunity", "")
-            if domain:
-                from urllib.parse import urlparse
-                parsed = urlparse(domain)
-                if parsed.netloc:
-                    return parsed.netloc
-    except Exception as e:
-        xbmc.log(f"[CBTV] Errore lettura dominio remoto di stream4me: {e}", xbmc.LOGWARNING)
+    if not domain_found:
+        try:
+            import requests
+            r = requests.get("https://raw.githubusercontent.com/stream4me/addon/master/channels.json", timeout=5)
+            if r.status_code == 200:
+                data = r.json()
+                domain = data.get("direct", {}).get("streamingcommunity", "")
+                if domain:
+                    from urllib.parse import urlparse
+                    parsed = urlparse(domain)
+                    if parsed.netloc:
+                        domain_found = parsed.netloc
+        except Exception as e:
+            xbmc.log(f"[CBTV] Errore lettura dominio remoto di stream4me: {e}", xbmc.LOGWARNING)
 
-    try:
-        remote_cfg = get_remote_config()
-        if remote_cfg and "sc_domain" in remote_cfg:
-            return remote_cfg["sc_domain"]
-    except Exception as e:
-        pass
+    if not domain_found:
+        try:
+            remote_cfg = get_remote_config()
+            if remote_cfg and "sc_domain" in remote_cfg:
+                domain_found = remote_cfg["sc_domain"]
+        except Exception as e:
+            pass
 
-    return default_domain
+    _SC_DOMAIN_CACHE = domain_found or default_domain
+    return _SC_DOMAIN_CACHE
 CIPHERS = "ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384"
 
 class SCAdapter(HTTPAdapter):
@@ -252,7 +261,8 @@ def extract_data_page(html):
 def sc_search(query, filter_type=None):
     scraper = get_scraper()
     if not scraper: return []
-    url = f"https://{get_sc_domain()}/it/search?q={quote(query)}"
+    sc_domain = get_sc_domain()
+    url = f"https://{sc_domain}/it/search?q={quote(query)}"
     try:
         r = scraper.get(url, timeout=10)
         data = extract_data_page(r.text)
@@ -267,9 +277,9 @@ def sc_search(query, filter_type=None):
                 cover_obj = next((img for img in i['images'] if img.get('type') == 'cover'), None)
                 if not poster_obj: poster_obj = i['images'][0]
                 if poster_obj and poster_obj.get('filename'):
-                    thumb = f"https://cdn.{get_sc_domain()}/images/{poster_obj['filename']}"
+                    thumb = f"https://cdn.{sc_domain}/images/{poster_obj['filename']}"
                 if cover_obj and cover_obj.get('filename'):
-                    fanart = f"https://cdn.{get_sc_domain()}/images/{cover_obj['filename']}"
+                    fanart = f"https://cdn.{sc_domain}/images/{cover_obj['filename']}"
             
             type_val = "tvshow" if "tv" in i.get('type','').lower() else "movie"
             if filter_type and type_val != filter_type: continue
@@ -310,7 +320,8 @@ def sc_search(query, filter_type=None):
 def sc_get_seasons_episodes(sc_id, slug):
     scraper = get_scraper()
     if not scraper: return []
-    url = f"https://{get_sc_domain()}/it/titles/{sc_id}-{slug}"
+    sc_domain = get_sc_domain()
+    url = f"https://{sc_domain}/it/titles/{sc_id}-{slug}"
     try:
         r = scraper.get(url, timeout=10)
         data = extract_data_page(r.text)
@@ -331,7 +342,7 @@ def sc_get_seasons_episodes(sc_id, slug):
                         img_obj = next((img for img in e['images'] if img.get('type') == 'cover'), None)
                         if not img_obj: img_obj = e['images'][0]
                         if img_obj and img_obj.get('filename'):
-                            thumb = f"https://cdn.{get_sc_domain()}/images/{img_obj['filename']}"
+                            thumb = f"https://cdn.{sc_domain}/images/{img_obj['filename']}"
                     
                     parsed_eps.append({"number": e['number'], "title": e.get('name', f"Ep {e['number']}"), "id": e['id'], "plot": e.get('plot', ''), "thumb": thumb})
                 
@@ -2215,20 +2226,21 @@ if __name__ == '__main__':
         res = sc_resolve(sc_id, ep_id)
         if res:
             p_url, iframe_url = res
-            li = xbmcgui.ListItem(path=p_url)
-            li.setMimeType('application/x-mpegURL')
-            li.setProperty('inputstream', 'inputstream.adaptive')
-            li.setProperty('inputstream.adaptive.manifest_type', 'hls')
             headers = {
                 'User-Agent': HEADERS["User-Agent"],
-                'Referer': iframe_url,
-                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-                'Accept-Language': 'it-IT,it;q=0.8,en-US;q=0.5,en;q=0.3'
+                'Referer': 'https://vixcloud.co/',
+                'Origin': 'https://vixcloud.co'
             }
             headers_encoded = urlencode(headers)
+            full_url = f"{p_url}|{headers_encoded}"
+            li = xbmcgui.ListItem(path=full_url)
+            li.setMimeType('application/x-mpegURL')
+            li.setContentLookup(False)
+            li.setProperty('inputstream', 'inputstream.adaptive')
+            li.setProperty('inputstream.adaptive.manifest_type', 'hls')
+            li.setProperty('inputstream.adaptive.common_headers', headers_encoded)
             li.setProperty('inputstream.adaptive.stream_headers', headers_encoded)
             li.setProperty('inputstream.adaptive.manifest_headers', headers_encoded)
-            li.setProperty('inputstream.adaptive.license_key', f"|{headers_encoded}|")
             xbmcplugin.setResolvedUrl(HANDLE, True, listitem=li)
         else:
             xbmcgui.Dialog().notification("Errore", "Impossibile risolvere il link", xbmcgui.NOTIFICATION_ERROR)
