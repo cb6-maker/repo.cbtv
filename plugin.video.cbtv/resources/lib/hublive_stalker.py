@@ -59,21 +59,22 @@ class HubliveStalkerClient:
         "00:1A:79:34:67:AC", "00:1A:79:4D:02:49", "00:1A:79:4D:05:F4", "00:1A:79:50:24:B5",
         "00:1A:79:5A:1F:8E", "00:1A:79:5D:8B:D4", "00:1A:79:5D:AB:EA", "00:1A:79:5E:47:93",
         "00:1A:79:5E:47:AA", "00:1A:79:5E:48:E6", "00:1A:79:6B:BC:60", "00:1A:79:6B:C0:29",
-        "00:1A:79:6E:29:0B", "00:1A:79:6E:2B:C7", "00:1A:79:6E:2F:94", "00:1A:79:6E:2F:AD",
-        "00:1A:79:77:06:7B", "00:1A:79:77:07:04", "00:1A:79:7C:6B:27", "00:1A:79:A0:E6:5E",
-        "00:1A:79:A0:E6:A7", "00:1A:79:A0:FD:66", "00:1A:79:A0:FD:9B", "00:1A:79:A0:FE:93",
-        "00:1A:79:A1:E8:EC", "00:1A:79:A1:FA:4A", "00:1A:79:A2:8B:54", "00:1A:79:A3:B9:C6",
-        "00:1A:79:A7:B1:A1", "00:1A:79:AA:5B:12", "00:1A:79:AB:5D:55", "00:1A:79:AB:62:5D",
-        "00:1A:79:AB:63:1C", "00:1A:79:AC:81:13", "00:1A:79:AE:CE:68", "00:1A:79:AF:F8:81",
-        "00:1A:79:AF:F8:DF", "00:1A:79:BA:A8:10", "00:1A:79:BA:B6:BF", "00:1A:79:BB:F1:74",
-        "00:1A:79:BB:F3:84", "00:1A:79:BF:A2:ED", "00:1A:79:C0:1D:96", "00:1A:79:C1:A1:65",
-        "00:1A:79:C1:A1:DE", "00:1A:79:C2:7A:3E", "00:1A:79:C2:94:BE", "00:1A:79:C3:C9:95",
-        "00:1A:79:C3:C9:9A", "00:1A:79:C4:06:6D", "00:1A:79:C4:14:E9", "00:1A:79:C4:35:1D",
-        "00:1A:79:C8:4B:31", "00:1A:79:C9:BE:85", "00:1A:79:F1:B1:63", "00:1B:79:1C:7B:70"
+        "00:1A:79:6E:29:0B", "00:1A:79:6E:2B:C7", "00:1A:79:6E:2E:F4", "00:1A:79:6E:2F:94",
+        "00:1A:79:6E:2F:AD", "00:1A:79:77:06:7B", "00:1A:79:77:07:04", "00:1A:79:7C:6B:27",
+        "00:1A:79:A0:E6:5E", "00:1A:79:A0:E6:A7", "00:1A:79:A0:FD:66", "00:1A:79:A0:FD:9B",
+        "00:1A:79:A0:FE:93", "00:1A:79:A1:E8:EC", "00:1A:79:A1:FA:4A", "00:1A:79:A2:8B:54",
+        "00:1A:79:A3:B9:C6", "00:1A:79:A7:B1:A1", "00:1A:79:AA:5B:12", "00:1A:79:AB:5D:55",
+        "00:1A:79:AB:62:5D", "00:1A:79:AB:63:1C", "00:1A:79:AC:81:13", "00:1A:79:AE:CE:68",
+        "00:1A:79:AF:F8:81", "00:1A:79:AF:F8:DF", "00:1A:79:BA:A8:10", "00:1A:79:BA:B6:BF",
+        "00:1A:79:BB:F1:74", "00:1A:79:BB:F3:84", "00:1A:79:BF:A2:ED", "00:1A:79:C0:1D:96",
+        "00:1A:79:C1:A1:65", "00:1A:79:C1:A1:DE", "00:1A:79:C2:7A:3E", "00:1A:79:C2:94:BE",
+        "00:1A:79:C3:C9:95", "00:1A:79:C3:C9:9A", "00:1A:79:C4:06:6D", "00:1A:79:C4:14:E9",
+        "00:1A:79:C4:35:1D", "00:1A:79:C8:4B:31", "00:1A:79:C9:BE:85", "00:1A:79:F1:B1:63",
+        "00:1B:79:1C:7B:70"
     }
 
     # Server 18 (z1mag - Porta 8080 non soggetta a blocchi AGCOM / Piracy Shield)
-    # Lista rigorosamente filtrata: solo i 47 MAC verificati con streaming continuo > 35s
+    # Lista rigorosamente filtrata: solo i 46 MAC verificati con streaming continuo > 35s
     PORTAL_18_URL = "http://z1mag.xyz:8080"
     PORTAL_18_MACS = [
         "00:1A:79:13:57:47", "00:1A:79:13:59:AB", "00:1A:79:14:61:CE", "00:1A:79:14:64:52",
@@ -84,10 +85,10 @@ class HubliveStalkerClient:
         "00:1A:79:1F:19:40", "00:1A:79:1F:19:4E", "00:1A:79:1F:1C:7A", "00:1A:79:21:10:70",
         "00:1A:79:22:AD:79", "00:1A:79:22:AD:EB", "00:1A:79:22:FF:AC", "00:1A:79:22:FF:AE",
         "00:1A:79:23:00:A7", "00:1A:79:23:00:D0", "00:1A:79:23:01:02", "00:1A:79:23:01:22",
-        "00:1A:79:6E:2C:B6", "00:1A:79:6E:2E:F4", "00:1A:79:6F:4F:00", "00:1A:79:77:01:2E",
-        "00:1A:79:77:02:4D", "00:1A:79:77:02:5F", "00:1A:79:77:04:6D", "00:1A:79:77:05:98",
-        "00:1A:79:7C:4F:D3", "00:1A:79:7C:69:9C", "00:1A:79:7C:6B:BF", "00:1A:79:A0:E3:ED",
-        "00:1A:79:A0:E4:BF", "00:1A:79:A0:E8:79", "00:1A:79:A1:9D:ED"
+        "00:1A:79:6E:2C:B6", "00:1A:79:6F:4F:00", "00:1A:79:77:01:2E", "00:1A:79:77:02:4D",
+        "00:1A:79:77:02:5F", "00:1A:79:77:04:6D", "00:1A:79:77:05:98", "00:1A:79:7C:4F:D3",
+        "00:1A:79:7C:69:9C", "00:1A:79:7C:6B:BF", "00:1A:79:A0:E3:ED", "00:1A:79:A0:E4:BF",
+        "00:1A:79:A0:E8:79", "00:1A:79:A1:9D:ED"
     ]
 
     # Server 31 (Light-OTT - Primario Esteri con VPN)
@@ -692,7 +693,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.3.37"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.3.38"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""
@@ -1029,29 +1030,39 @@ class HubliveStalkerClient:
 
         if channels:
             import re
-            filtered = [ch for ch in channels if not any(k in ch.get('name', '').upper() for k in ["PALLAVOLO", "PALLAMANO", "PALLANUOTO"])]
+            filtered = []
+            for ch in channels:
+                name = ch.get('name', '').upper()
+                if any(k in name for k in ["EVENT", "SERIE B", "WOMEN", "PALLAVOLO", "PALLAMANO", "PALLANUOTO"]):
+                    continue
+                if "SERIE A" not in name:
+                    if any(f"DAZN {i}" in name or f"ZONA DAZN {i}" in name for i in range(5, 30)):
+                        continue
+                filtered.append(ch)
 
             def dazn_sort_key(ch):
                 name = ch.get('name', '').upper()
-                if "DAZN 1" in name or "ZONA DAZN" in name:
+                if "DAZN 1" in name or "ZONA DAZN 1" in name or name == "ZONA DAZN":
                     group = 1
-                elif "DAZN 2" in name:
+                elif "DAZN 2" in name or "ZONA DAZN 2" in name:
                     group = 2
-                elif "DAZN" in name and any(f"DAZN {i}" in name for i in range(3, 15)):
+                elif "DAZN 3" in name:
                     group = 3
-                elif "SERIE A" in name:
+                elif "DAZN 4" in name:
                     group = 4
-                elif "SERIE B" in name:
+                elif "SERIE A" in name:
                     group = 5
-                elif "EVENT" in name:
-                    group = 6
                 else:
-                    group = 7
-                
+                    group = 6
+
                 num_match = re.search(r'\d+', name)
                 num = int(num_match.group()) if num_match else 1
+                if group == 5:
+                    end_num = re.search(r'(\d+)\s*$', name)
+                    if end_num:
+                        num = int(end_num.group(1))
                 return (group, num, name)
-                
+
             filtered.sort(key=dazn_sort_key)
             channels = filtered
             self._set_cache("dazn", channels)
