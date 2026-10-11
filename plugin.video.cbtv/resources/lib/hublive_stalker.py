@@ -70,7 +70,7 @@ class HubliveStalkerClient:
         "00:1A:79:C1:A1:65", "00:1A:79:C1:A1:DE", "00:1A:79:C2:7A:3E", "00:1A:79:C2:94:BE",
         "00:1A:79:C3:C9:95", "00:1A:79:C3:C9:9A", "00:1A:79:C4:06:6D", "00:1A:79:C4:14:E9",
         "00:1A:79:C4:35:1D", "00:1A:79:C8:4B:31", "00:1A:79:C9:BE:85", "00:1A:79:F1:B1:63",
-        "00:1B:79:1C:7B:70"
+        "00:1B:79:1C:7B:70", "A0:BB:3E:00:12:7C"
     }
 
     # Server 18 (z1mag - Porta 8080 non soggetta a blocchi AGCOM / Piracy Shield)
@@ -94,12 +94,12 @@ class HubliveStalkerClient:
     # Server 31 (Light-OTT - Primario Esteri con VPN)
     PORTAL_31_URL = "http://main.light-ott.net:80"
     PORTAL_31_MACS = [
-        "00:1B:79:41:43:5D", "00:1B:79:48:4E:B4", "A0:BB:3E:00:02:2D", "A0:BB:3E:00:02:82",
-        "A0:BB:3E:00:06:87", "A0:BB:3E:00:07:36", "A0:BB:3E:00:09:28", "A0:BB:3E:00:0A:53",
-        "A0:BB:3E:00:0B:4D", "A0:BB:3E:00:0A:CF", "A0:BB:3E:00:0A:FD", "A0:BB:3E:00:0A:E9",
-        "A0:BB:3E:00:0C:EC", "A0:BB:3E:00:0C:EE", "A0:BB:3E:00:0D:3A", "A0:BB:3E:00:0D:EB",
-        "A0:BB:3E:00:0E:13", "A0:BB:3E:00:0E:E8", "A0:BB:3E:00:0E:F5", "A0:BB:3E:00:0F:0D",
-        "A0:BB:3E:00:0F:85", "A0:BB:3E:00:10:97", "A0:BB:3E:00:11:BD", "A0:BB:3E:00:12:87"
+        "00:1B:79:41:43:5D", "00:1B:79:48:4E:B4", "A0:BB:3E:00:0F:0D", "A0:BB:3E:00:06:87",
+        "A0:BB:3E:00:07:36", "A0:BB:3E:00:09:28", "A0:BB:3E:00:0A:53", "A0:BB:3E:00:0C:EC",
+        "A0:BB:3E:00:02:82", "A0:BB:3E:00:0B:4D", "A0:BB:3E:00:0A:CF", "A0:BB:3E:00:0A:FD",
+        "A0:BB:3E:00:0A:E9", "A0:BB:3E:00:0C:EE", "A0:BB:3E:00:0D:3A", "A0:BB:3E:00:0D:EB",
+        "A0:BB:3E:00:0E:13", "A0:BB:3E:00:0E:E8", "A0:BB:3E:00:0E:F5", "A0:BB:3E:00:0F:85",
+        "A0:BB:3E:00:10:97", "A0:BB:3E:00:11:BD", "A0:BB:3E:00:12:87"
     ]
 
     PORTAL_1_URL = PORTAL_18_URL
@@ -564,26 +564,13 @@ class HubliveStalkerClient:
             pool = [m for m in pool if m not in exclude_macs]
         
         # Mescola casualmente per ruotare ed esplorare nuovi MAC
-        random.shuffle(pool)
-
-        # 1. Prioritizza i Top MAC verificati (quelli che sono partiti subito nelle sessioni recenti)
-        top_verified = [m for m in self.get_top_verified_macs() if m in pool]
-        for v_mac in reversed(top_verified):
-            pool.remove(v_mac)
-            pool.insert(0, v_mac)
-
-        # 2. Inserisci il Last Working MAC del server (se libero)
-        last_working = self._get_last_working_mac()
-        if last_working and last_working in pool:
-            pool.remove(last_working)
-            pool.insert(0, last_working)
-
-        # 3. PRIORITÀ ASSOLUTA: MAC memorizzato specificamente per questo canale (se libero)
-        ch_mac = self.get_channel_working_mac(channel_name) if channel_name else None
-        if ch_mac and ch_mac in pool:
-            pool.remove(ch_mac)
-            pool.insert(0, ch_mac)
-            xbmc.log(f"[CBTV-HB] Canale '{channel_name}': prioritizzato MAC memorizzato {ch_mac}", xbmc.LOGINFO)
+        # Raggruppa i MAC prioritari e mescolali casualmente per evitare collisioni tra dispositivi diversi
+        priority_base = self.PORTAL_31_MACS if self.server_id == "s31" else self.PORTAL_18_MACS
+        priority_macs = [m for m in priority_base if m in pool]
+        random.shuffle(priority_macs)
+        other_macs = [m for m in pool if m not in priority_macs]
+        random.shuffle(other_macs)
+        pool = priority_macs + other_macs
 
         # Limita i tentativi al numero specificato (default 1 per rispetto del server e pause umane controllate)
         if max_tries:
@@ -594,11 +581,11 @@ class HubliveStalkerClient:
             return None, None
 
         for attempt, mac in enumerate(pool, 1):
-            is_top = mac in top_verified or mac == last_working or (ch_mac and mac == ch_mac)
-            xbmc.log(f"[CBTV-HB] Tentativo {attempt}/{len(pool)} con MAC: {mac} (Top: {is_top})", xbmc.LOGINFO)
+            is_top = mac in priority_base
+            xbmc.log(f"[CBTV-HB] Tentativo {attempt}/{len(pool)} con MAC: {mac} (Priority: {is_top})", xbmc.LOGINFO)
 
-            # 1. Handshake con timeout di sicurezza (3.0s per stabilità su mobile/Wi-Fi)
-            token = self._handshake(mac, timeout=3.0)
+            # 1. Handshake con timeout di sicurezza (5.0s per stabilità su mobile/Wi-Fi/VPN)
+            token = self._handshake(mac, timeout=5.0)
             if not token:
                 xbmc.log(f"[CBTV-HB] Handshake fallito per MAC {mac}", xbmc.LOGWARNING)
                 if ch_mac and mac == ch_mac:
@@ -607,8 +594,8 @@ class HubliveStalkerClient:
                 self.record_busy_mac(mac, duration_sec=120)
                 continue
 
-            # 2. create_link con timeout di sicurezza (3.5s)
-            url_or_token, stream_id_out = self.create_link(mac, token, cmd, timeout=3.5)
+            # 2. create_link con timeout di sicurezza (5.0s per VPN)
+            url_or_token, stream_id_out = self.create_link(mac, token, cmd, timeout=5.0)
             if not url_or_token:
                 xbmc.log(f"[CBTV-HB] create_link fallito per MAC {mac}", xbmc.LOGWARNING)
                 exclude_macs.add(mac)
@@ -693,7 +680,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.3.40"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.3.41"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""
