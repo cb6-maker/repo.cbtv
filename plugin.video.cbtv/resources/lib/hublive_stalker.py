@@ -111,14 +111,14 @@ class HubliveStalkerClient:
           "(KHTML, like Gecko) MAG200 stbapp ver: 2 rev: 250 Safari/533.3")
 
     # ---- inizializzazione ----
-    def __init__(self, server_id="s18"):
+    def __init__(self, server_id="s31"):
         self.server_id = server_id
-        if server_id == "s31":
-            self.portal_url = self.PORTAL_31_URL
-            self.mac_pool = list(self.PORTAL_31_MACS)
-        else:
+        if server_id == "s18":
             self.portal_url = self.PORTAL_18_URL
             self.mac_pool = list(self.PORTAL_18_MACS)
+        else:
+            self.portal_url = self.PORTAL_31_URL
+            self.mac_pool = list(self.PORTAL_31_MACS)
 
         profile = xbmcvfs.translatePath(xbmcaddon.Addon().getAddonInfo('profile'))
         self.cache_dir = os.path.join(profile, "hublive")
@@ -319,14 +319,14 @@ class HubliveStalkerClient:
                     data = json.load(fh)
                     mac = data.get("mac")
                     updated = data.get("updated", 0)
-                    # Auto-Recovery Anti-Trap: se il canale è stato avviato meno di 240s fa
-                    # e viene riaperto, significa che lo stream è caduto prematuramente (es. disconnessione 30s).
-                    # Resetta l'abbinamento, mette in quarantena il MAC ed esplora un nuovo MAC!
-                    if time.time() - updated < 240:
-                        xbmc.log(f"[CBTV-HB] Canale '{channel_name}' riaperto dopo soli {int(time.time() - updated)}s (stream interrotto prematuramente!). Reset MAC {mac} ed esclusione temporanea.", xbmc.LOGWARNING)
+                    # Auto-Recovery Anti-Trap: se il canale è caduto entro 15s dall'avvio
+                    # significa che lo stream è caduto subito (es. MAC disconnesso/occupato).
+                    # Resetta l'abbinamento e prova un altro MAC.
+                    if time.time() - updated < 15:
+                        xbmc.log(f"[CBTV-HB] Canale '{channel_name}' caduto dopo soli {int(time.time() - updated)}s. Reset MAC {mac} ed esploro nuovo MAC.", xbmc.LOGWARNING)
                         self.remove_channel_working_mac(channel_name)
                         if mac:
-                            self.record_busy_mac(mac, duration_sec=1800)
+                            self.record_busy_mac(mac, duration_sec=120)
                         return None
                     if mac and mac in self.mac_pool and mac not in self.BLACKLISTED_MACS:
                         return mac
@@ -360,7 +360,7 @@ class HubliveStalkerClient:
                 pass
 
     def get_busy_macs(self):
-        """Restituisce il set di MAC attualmente in quarantena (occupati negli ultimi 10 minuti)."""
+        """Restituisce il set di MAC attualmente in quarantena (occupati negli ultimi 2 minuti)."""
         f = os.path.join(self.cache_dir, f"hl_busy_macs_{self.server_id}.json")
         now = time.time()
         if os.path.exists(f):
@@ -373,8 +373,8 @@ class HubliveStalkerClient:
                 pass
         return set()
 
-    def record_busy_mac(self, mac, duration_sec=600):
-        """Mette un MAC in quarantena temporanea (default 10 minuti)."""
+    def record_busy_mac(self, mac, duration_sec=120):
+        """Mette un MAC in quarantena temporanea (default 2 minuti)."""
         if not mac:
             return
         f = os.path.join(self.cache_dir, f"hl_busy_macs_{self.server_id}.json")
@@ -604,7 +604,7 @@ class HubliveStalkerClient:
                 if ch_mac and mac == ch_mac:
                     self.remove_channel_working_mac(channel_name)
                 exclude_macs.add(mac)
-                self.record_busy_mac(mac, duration_sec=600)
+                self.record_busy_mac(mac, duration_sec=120)
                 continue
 
             # 2. create_link con timeout di sicurezza (3.5s)
@@ -612,7 +612,7 @@ class HubliveStalkerClient:
             if not url_or_token:
                 xbmc.log(f"[CBTV-HB] create_link fallito per MAC {mac}", xbmc.LOGWARNING)
                 exclude_macs.add(mac)
-                self.record_busy_mac(mac, duration_sec=300)
+                self.record_busy_mac(mac, duration_sec=120)
                 continue
 
             # 3. Costruisci URL finale
@@ -622,16 +622,16 @@ class HubliveStalkerClient:
                 final_url = (f"{self.portal_url}/play/live.php"
                              f"?mac={mac}&stream={stream_id_out}&extension=ts&play_token={url_or_token}")
 
-            # 4. Verifica stream ed estrazione rapida redirect CDN
+            # 4. Verifica stream ed estrazione rapida redirect CDN (senza cookies per evitare 405/407 su CDN)
             v_session = None
             try:
                 v_session = requests.Session()
                 v_session.trust_env = False
-                with v_session.get(final_url, headers={"User-Agent": self.UA}, cookies={"mac": mac}, timeout=(3.0, 3.5), stream=True, allow_redirects=True) as r_play:
+                with v_session.get(final_url, headers={"User-Agent": self.UA}, timeout=(3.0, 5.0), stream=True, allow_redirects=True) as r_play:
                     if r_play.status_code >= 400:
                         xbmc.log(f"[CBTV-HB] MAC {mac} HTTP error {r_play.status_code} (linea occupata/vietata)", xbmc.LOGWARNING)
                         exclude_macs.add(mac)
-                        self.record_busy_mac(mac, duration_sec=600)  # Quarantena 10 min
+                        self.record_busy_mac(mac, duration_sec=180)
                         self.remove_top_verified_mac(mac)
                         if ch_mac and mac == ch_mac:
                             self.remove_channel_working_mac(channel_name)
@@ -644,28 +644,28 @@ class HubliveStalkerClient:
                     if "black.ts" in final_dest_lower or "85.18.95.155" in final_dest_lower or "text/html" in content_type:
                         xbmc.log(f"[CBTV-HB] MAC {mac} bloccato o black.ts ({final_dest[:60]})", xbmc.LOGWARNING)
                         exclude_macs.add(mac)
-                        self.record_busy_mac(mac, duration_sec=600)
+                        self.record_busy_mac(mac, duration_sec=300)
                         continue
 
                     head = r_play.raw.read(188)
                     if not head or head.startswith(b'\x1f\x8b\x08') or b"Sito Illegale" in head or b"AGCOM" in head:
                         xbmc.log(f"[CBTV-HB] MAC {mac} non valido o vuoto", xbmc.LOGWARNING)
                         exclude_macs.add(mac)
-                        self.record_busy_mac(mac, duration_sec=300)
+                        self.record_busy_mac(mac, duration_sec=120)
                         continue
             except requests.exceptions.ReadTimeout:
                 xbmc.log(f"[CBTV-HB] MAC {mac} ReadTimeout (linea occupata o nessun pacchetto video ricevuto)", xbmc.LOGWARNING)
                 if ch_mac and mac == ch_mac:
                     self.remove_channel_working_mac(channel_name)
                 exclude_macs.add(mac)
-                self.record_busy_mac(mac, duration_sec=300)
+                self.record_busy_mac(mac, duration_sec=120)
                 continue
             except Exception as e:
                 xbmc.log(f"[CBTV-HB] MAC {mac} timeout/errore verifica: {e}", xbmc.LOGWARNING)
                 if ch_mac and mac == ch_mac:
                     self.remove_channel_working_mac(channel_name)
                 exclude_macs.add(mac)
-                self.record_busy_mac(mac, duration_sec=300)
+                self.record_busy_mac(mac, duration_sec=120)
                 continue
             finally:
                 if v_session:
@@ -693,7 +693,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.3.38"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.3.39"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""
@@ -766,6 +766,15 @@ class HubliveStalkerClient:
             return res
 
         fallback_genres = [
+            {"id": "2728", "title": "┃IT┃ SKY SPORT"},
+            {"id": "2729", "title": "┃IT┃ SKY CALCIO"},
+            {"id": "2730", "title": "┃IT┃ DAZN"},
+            {"id": "3331", "title": "┃IT┃ ZONA DAZN"},
+            {"id": "2731", "title": "┃IT┃ DAZN SERIE A"},
+            {"id": "2723", "title": "┃IT┃ FILM E SERIE"},
+            {"id": "2724", "title": "┃IT┃ INTRATTENIMENTO"},
+            {"id": "2732", "title": "┃IT┃ DOCUMENTARIO"}
+        ] if self.server_id == "s31" else [
             {"id": "923", "title": "IT ✨ SPORT"},
             {"id": "1233", "title": "IT ✨ DAZN"},
             {"id": "924", "title": "IT ✨ CINEMA"},
@@ -880,13 +889,13 @@ class HubliveStalkerClient:
                 return fallback
 
         target_titles = [
+            "┃IT┃ FILM E SERIE", "┃IT┃ INTRATTENIMENTO", "┃IT┃ DOCUMENTARIO", "┃IT┃ ITALIA HD | RIGIOCARE ⏺",
             "IT ✨ ITALIA", "IT ✨ CULTURA", "IT ✨ HEVC",
-            "┃IT┃ FILM E SERIE", "┃IT┃ DOCUMENTARIO", "┃IT┃ ITALIA HD | RIGIOCARE ⏺",
             "IT| INTRATTENIMENTO", "IT| DOCUMENTARIO", "IT| GENERALE"
         ]
         gids = self._find_genre_ids_by_titles(target_titles)
         if not gids:
-            gids = ["922", "925", "1332"]
+            gids = ["2723", "2724", "2732"] if self.server_id == "s31" else ["922", "925", "1332"]
         channels = self._fetch_channels_for_genres(gids, "sky_tv",
             keywords=["SKY UNO", "SKY ATLANTIC", "SKY DOCUMENTARIES", "SKY NATURE", "SKY ARTE", "SKY INVESTIGATION", "SKY CRIME", "SKY SERIE", "HISTORY", "DISCOVERY CHANNEL", "DISCOVERY TURBO", "GAMBERO ROSSO", "SKY TG24"],
             negatives=["SPORT", "DAZN", "CALCIO", "F1", "MOTOGP", "PRIMAFILA", "CINEMA", "SERIE A", "SERIE B", "BASKET", "BAR"],
@@ -912,11 +921,11 @@ class HubliveStalkerClient:
                 return fallback
 
         target_titles = [
-            "IT ✨ CINEMA", "┃IT┃ FILM E SERIE", "IT| CINEMA"
+            "┃IT┃ FILM E SERIE", "IT ✨ CINEMA", "IT| CINEMA"
         ]
         gids = self._find_genre_ids_by_titles(target_titles)
         if not gids:
-            gids = ["924"]
+            gids = ["2723"] if self.server_id == "s31" else ["924"]
         channels = self._fetch_channels_for_genres(gids, "sky_cinema",
             keywords=["CINEMA"],
             negatives=["SPORT", "DAZN", "CALCIO", "PRIMAFILA"],
@@ -958,12 +967,12 @@ class HubliveStalkerClient:
                 return channels
 
         target_titles = [
-            "IT ✨ SPORT", "┃IT┃ SKY SPORT", "┃IT┃ SKY CALCIO", "┃IT┃ SPORT",
-            "IT| SPORT", "IT| FORMULA 1 / MOTOGP", "IT| SERIE A/B/C"
+            "┃IT┃ SKY SPORT", "┃IT┃ SKY CALCIO", "┃IT┃ SPORT",
+            "IT ✨ SPORT", "IT| SPORT", "IT| FORMULA 1 / MOTOGP", "IT| SERIE A/B/C"
         ]
         gids = self._find_genre_ids_by_titles(target_titles)
         if not gids:
-            gids = ["923"]
+            gids = ["2728", "2729"] if self.server_id == "s31" else ["923"]
         channels = self._fetch_channels_for_genres(gids, "sky_sport", 
             keywords=["SKY SPORT", "SKY CALCIO", "EUROSPORT", "SUPERTENNIS"],
             negatives=["SERIE C", "SERIE D", "LEGA PRO", "BAR", "DAZN BAR", "DAZN CHANNEL", "VETRINA DAZN", "WOMEN"],
@@ -1012,12 +1021,12 @@ class HubliveStalkerClient:
                 return fallback
 
         target_titles = [
-            "IT ✨ DAZN", "IT| SERIE A/B/C", "IT| DAZN VIP HD/4K", "IT| DAZN PPV", "IT| DAZN",
-            "┃IT┃ ZONA DAZN", "┃IT┃ DAZN", "┃IT┃ DAZN SERIE A"
+            "┃IT┃ ZONA DAZN", "┃IT┃ DAZN", "┃IT┃ DAZN SERIE A", "┃IT┃ SERIE A TEAMS",
+            "IT ✨ DAZN", "IT| SERIE A/B/C", "IT| DAZN VIP HD/4K", "IT| DAZN PPV", "IT| DAZN"
         ]
         gids = self._find_genre_ids_by_titles(target_titles)
         if not gids:
-            gids = ["1233"]
+            gids = ["3331", "2730", "2731"] if self.server_id == "s31" else ["1233"]
 
         channels = self._fetch_channels_for_genres(gids, "dazn",
             keywords=None,
