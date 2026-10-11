@@ -1,114 +1,114 @@
 [
   {
-    "name": "SKY DOCUMENTARIES",
-    "cmd": "ffmpeg http://localhost/ch/438639_"
+    "name": "MTV HD HEVC",
+    "cmd": "ffmpeg http://localhost/ch/1167202_"
   },
   {
-    "name": "SKY UNO",
-    "cmd": "ffmpeg http://localhost/ch/438640_"
+    "name": "MTV FHD",
+    "cmd": "ffmpeg http://localhost/ch/177622_"
   },
   {
-    "name": "DISCOVERY CHANNEL FHD",
-    "cmd": "ffmpeg http://localhost/ch/925282_"
+    "name": "COMEDY CENTRAL HEVC",
+    "cmd": "ffmpeg http://localhost/ch/1167203_"
   },
   {
-    "name": "DISCOVERY CHANNEL HD",
-    "cmd": "ffmpeg http://localhost/ch/925281_"
+    "name": "COMEDY CENTRAL FHD",
+    "cmd": "ffmpeg http://localhost/ch/177620_"
   },
   {
-    "name": "SKY DOCUMENTARIES FHD",
-    "cmd": "ffmpeg http://localhost/ch/925276_"
+    "name": "DMAX HEVC",
+    "cmd": "ffmpeg http://localhost/ch/1167204_"
   },
   {
-    "name": "SKY DOCUMENTARIES HD",
-    "cmd": "ffmpeg http://localhost/ch/925275_"
+    "name": "DMAX FHD",
+    "cmd": "ffmpeg http://localhost/ch/177623_"
   },
   {
-    "name": "SKY HISTORY +1",
-    "cmd": "ffmpeg http://localhost/ch/925272_"
+    "name": "NOVE HEVC",
+    "cmd": "ffmpeg http://localhost/ch/1167205_"
   },
   {
-    "name": "HISTORY FHD",
-    "cmd": "ffmpeg http://localhost/ch/925271_"
+    "name": "NOVE FHD",
+    "cmd": "ffmpeg http://localhost/ch/177625_"
   },
   {
-    "name": "HISTORY HD",
-    "cmd": "ffmpeg http://localhost/ch/925270_"
+    "name": "FOCUS HEVC",
+    "cmd": "ffmpeg http://localhost/ch/1167206_"
   },
   {
-    "name": "CRIME INVESTIGATION",
-    "cmd": "ffmpeg http://localhost/ch/925260_"
+    "name": "FOCUS FHD",
+    "cmd": "ffmpeg http://localhost/ch/177626_"
   },
   {
-    "name": "SKY NATURE FHD",
-    "cmd": "ffmpeg http://localhost/ch/925258_"
+    "name": "TOP CRIME HEVC",
+    "cmd": "ffmpeg http://localhost/ch/1167207_"
   },
   {
-    "name": "SKY NATURE HD",
-    "cmd": "ffmpeg http://localhost/ch/925257_"
+    "name": "TOP CRIME FHD",
+    "cmd": "ffmpeg http://localhost/ch/177627_"
   },
   {
-    "name": "SKY ARTE +1 FHD",
-    "cmd": "ffmpeg http://localhost/ch/925256_"
+    "name": "GIALLO HEVC",
+    "cmd": "ffmpeg http://localhost/ch/1167208_"
   },
   {
-    "name": "SKY ARTE FHD",
-    "cmd": "ffmpeg http://localhost/ch/925255_"
-  },
-  {
-    "name": "SKY ARTE HD",
-    "cmd": "ffmpeg http://localhost/ch/925254_"
-  },
-  {
-    "name": "SKY CRIME FHD",
-    "cmd": "ffmpeg http://localhost/ch/925253_"
-  },
-  {
-    "name": "SKY CRIME HD",
-    "cmd": "ffmpeg http://localhost/ch/925252_"
-  },
-  {
-    "name": "DISCOVERY TURBO",
-    "cmd": "ffmpeg http://localhost/ch/925251_"
-  },
-  {
-    "name": "SKY ADVENTURE HD",
-    "cmd": "ffmpeg http://localhost/ch/925248_"
-  },
-  {
-    "name": "GAMBERO ROSSO FHD",
-    "cmd": "ffmpeg http://localhost/ch/925247_"
-  },
-  {
-    "name": "GAMBERO ROSSO HD",
-    "cmd": "ffmpeg http://localhost/ch/925246_"
-  },
-  {
-    "name": "SKY UNO HEVC",
-    "cmd": "ffmpeg http://localhost/ch/900501_"
+    "name": "GIALLO FHD",
+    "cmd": "ffmpeg http://localhost/ch/177628_"
   },
   {
     "name": "SKY ARTE HEVC",
-    "cmd": "ffmpeg http://localhost/ch/900500_"
+    "cmd": "ffmpeg http://localhost/ch/1167209_"
   },
   {
-    "name": "SKY DOCUMENTARIES HEVC",
-    "cmd": "ffmpeg http://localhost/ch/900499_"
+    "name": "SKY ARTE FHD",
+    "cmd": "ffmpeg http://localhost/ch/177658_"
   },
   {
-    "name": "SKY NATURE HEVC",
-    "cmd": "ffmpeg http://localhost/ch/900498_"
+    "name": "SKY INVESTIGATION HEVC",
+    "cmd": "ffmpeg http://localhost/ch/1167210_"
   },
   {
-    "name": "HISTORY HEVC",
-    "cmd": "ffmpeg http://localhost/ch/900497_"
+    "name": "SKY INVESTIGATION FHD",
+    "cmd": "ffmpeg http://localhost/ch/177958_"
   },
   {
     "name": "DISCOVERY CHANNEL HEVC",
-    "cmd": "ffmpeg http://localhost/ch/900496_"
+    "cmd": "ffmpeg http://localhost/ch/1167211_"
   },
   {
-    "name": "SKY TG24 HEVC",
-    "cmd": "ffmpeg http://localhost/ch/900495_"
+    "name": "DISCOVERY FHD",
+    "cmd": "ffmpeg http://localhost/ch/177667_"
+  },
+  {
+    "name": "HISTORY HEVC",
+    "cmd": "ffmpeg http://localhost/ch/1167212_"
+  },
+  {
+    "name": "HISTORY 4K",
+    "cmd": "ffmpeg http://localhost/ch/177679_"
+  },
+  {
+    "name": "FOOD NETWORK HEVC",
+    "cmd": "ffmpeg http://localhost/ch/1167213_"
+  },
+  {
+    "name": "FOOD NETWORK FHD",
+    "cmd": "ffmpeg http://localhost/ch/177673_"
+  },
+  {
+    "name": "GAMBERO ROSSO HEVC",
+    "cmd": "ffmpeg http://localhost/ch/1167214_"
+  },
+  {
+    "name": "GAMBERO ROSSO FHD",
+    "cmd": "ffmpeg http://localhost/ch/177681_"
+  },
+  {
+    "name": "PESCA E CACCIA FHD",
+    "cmd": "ffmpeg http://localhost/ch/177674_"
+  },
+  {
+    "name": "CACCIA E PESCA 4K",
+    "cmd": "ffmpeg http://localhost/ch/177676_"
   }
 ]

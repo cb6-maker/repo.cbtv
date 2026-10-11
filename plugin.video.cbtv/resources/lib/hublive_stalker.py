@@ -693,7 +693,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.3.39"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.3.40"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""
