@@ -572,6 +572,8 @@ class HubliveStalkerClient:
         random.shuffle(other_macs)
         pool = priority_macs + other_macs
 
+        ch_mac = self.get_channel_working_mac(channel_name) if channel_name else None
+
         # Limita i tentativi al numero specificato (default 1 per rispetto del server e pause umane controllate)
         if max_tries:
             pool = pool[:max_tries]
@@ -680,7 +682,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.3.41"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.3.42"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""
@@ -884,7 +886,7 @@ class HubliveStalkerClient:
         if not gids:
             gids = ["2723", "2724", "2732"] if self.server_id == "s31" else ["922", "925", "1332"]
         channels = self._fetch_channels_for_genres(gids, "sky_tv",
-            keywords=["SKY UNO", "SKY ATLANTIC", "SKY DOCUMENTARIES", "SKY NATURE", "SKY ARTE", "SKY INVESTIGATION", "SKY CRIME", "SKY SERIE", "HISTORY", "DISCOVERY CHANNEL", "DISCOVERY TURBO", "GAMBERO ROSSO", "SKY TG24"],
+            keywords=["SKY ATLANTIC", "SKY UNO", "SKY NATURE", "SKY DOCUMENTARIES", "SKY ARTE", "SKY INVESTIGATION", "SKY CRIME", "SKY SERIE"],
             negatives=["SPORT", "DAZN", "CALCIO", "F1", "MOTOGP", "PRIMAFILA", "CINEMA", "SERIE A", "SERIE B", "BASKET", "BAR"],
             force=force_refresh)
             
@@ -894,6 +896,26 @@ class HubliveStalkerClient:
             if channels:
                 self._set_cache("sky_tv", channels)
             
+        def tv_sort_key(c):
+            n = c.get('name', '').upper()
+            if 'SKY ATLANTIC' in n: order = 1
+            elif 'SKY UNO' in n: order = 2
+            elif 'SKY SERIE' in n: order = 3
+            elif 'SKY NATURE' in n: order = 4
+            elif 'SKY DOCUMENTARIES' in n or 'SKY DOCS' in n: order = 5
+            elif 'SKY ARTE' in n: order = 6
+            elif 'SKY INVESTIGATION' in n: order = 7
+            elif 'SKY CRIME' in n: order = 8
+            else: order = 20
+            
+            if 'FHD' in n: q = 1
+            elif 'HEVC' in n: q = 2
+            elif 'HD' in n: q = 3
+            elif 'SD' in n: q = 4
+            else: q = 5
+            return (order, q, n)
+
+        channels.sort(key=tv_sort_key)
         return channels
 
     def get_sky_cinema_channels(self, force_refresh=False):

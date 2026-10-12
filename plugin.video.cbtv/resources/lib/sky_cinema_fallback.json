@@ -86,21 +86,5 @@
   {
     "name": "SKY CINEMA DRAMA HEVC",
     "cmd": "ffmpeg http://localhost/ch/1167163_"
-  },
-  {
-    "name": "SKY ATLANTIC FHD",
-    "cmd": "ffmpeg http://localhost/ch/177655_"
-  },
-  {
-    "name": "SKY UNO FHD",
-    "cmd": "ffmpeg http://localhost/ch/177632_"
-  },
-  {
-    "name": "SKY ATLANTIC HEVC",
-    "cmd": "ffmpeg http://localhost/ch/1167165_"
-  },
-  {
-    "name": "SKY UNO HEVC",
-    "cmd": "ffmpeg http://localhost/ch/1167164_"
   }
 ]
