@@ -94,13 +94,19 @@ class HubliveStalkerClient:
     # Server 31 (Light-OTT - Primario Esteri con VPN)
     PORTAL_31_URL = "http://main.light-ott.net:80"
     PORTAL_31_MACS = [
-        "00:1B:79:41:43:5D", "00:1B:79:48:4E:B4", "A0:BB:3E:00:0F:0D", "A0:BB:3E:00:06:87",
-        "A0:BB:3E:00:07:36", "A0:BB:3E:00:09:28", "A0:BB:3E:00:0A:53", "A0:BB:3E:00:0C:EC",
-        "A0:BB:3E:00:02:82", "A0:BB:3E:00:0B:4D", "A0:BB:3E:00:0A:CF", "A0:BB:3E:00:0A:FD",
-        "A0:BB:3E:00:0A:E9", "A0:BB:3E:00:0C:EE", "A0:BB:3E:00:0D:3A", "A0:BB:3E:00:0D:EB",
-        "A0:BB:3E:00:0E:13", "A0:BB:3E:00:0E:E8", "A0:BB:3E:00:0E:F5", "A0:BB:3E:00:0F:85",
-        "A0:BB:3E:00:10:97", "A0:BB:3E:00:11:BD", "A0:BB:3E:00:12:87"
+        "00:1B:79:41:43:5D", "00:1B:79:48:4E:B4", "00:1A:79:17:04:D7", "00:1A:79:00:20:15",
+        "00:1A:79:00:22:D5", "00:1A:79:B6:47:58", "00:1A:79:B6:49:B7", "00:1A:79:C8:B6:ED",
+        "00:1A:79:A0:E1:74", "00:1A:79:B5:AC:98", "00:1A:79:BA:A6:65", "00:1A:79:F0:9F:91",
+        "A0:BB:3E:00:0F:0D", "A0:BB:3E:00:06:87", "A0:BB:3E:00:07:36", "A0:BB:3E:00:09:28",
+        "A0:BB:3E:00:0A:53", "A0:BB:3E:00:0C:EC", "A0:BB:3E:00:02:82", "A0:BB:3E:00:0B:4D",
+        "A0:BB:3E:00:0A:CF", "A0:BB:3E:00:0A:FD", "A0:BB:3E:00:0A:E9", "A0:BB:3E:00:0C:EE",
+        "A0:BB:3E:00:0D:3A", "A0:BB:3E:00:0D:EB", "A0:BB:3E:00:0E:13", "A0:BB:3E:00:0E:E8",
+        "A0:BB:3E:00:0E:F5", "A0:BB:3E:00:0F:85", "A0:BB:3E:00:10:97", "A0:BB:3E:00:11:BD",
+        "A0:BB:3E:00:12:87"
     ]
+
+    # Set di sessione condiviso per escludere all'istante qualsiasi MAC caduto spontaneamente durante la riproduzione
+    DROPPED_MACS = set()
 
     PORTAL_1_URL = PORTAL_18_URL
     PORTAL_1_MACS = PORTAL_18_MACS
@@ -231,7 +237,7 @@ class HubliveStalkerClient:
             for m in base_macs:
                 if m not in combined_macs:
                     combined_macs.append(m)
-            self.mac_pool = [m for m in combined_macs if m not in self.BLACKLISTED_MACS]
+            self.mac_pool = [m for m in combined_macs if m not in self.BLACKLISTED_MACS and m not in self.DROPPED_MACS]
             if target_portal:
                 self.portal_url = target_portal
             xbmc.log(f"[CBTV-HB] Sincronizzati {len(self.mac_pool)} MAC per {self.server_id} da {self.portal_url}", xbmc.LOGINFO)
@@ -308,7 +314,7 @@ class HubliveStalkerClient:
                 pass
 
     def get_channel_working_mac(self, channel_name):
-        """Restituisce il MAC memorizzato e associato a questo canale specifico."""
+        """Restituisce il MAC memorizzato per questo canale, solo se non è caduto o in quarantena."""
         if not channel_name:
             return None
         safe_key = re.sub(r'[^a-zA-Z0-9_]', '_', channel_name).lower()
@@ -318,25 +324,27 @@ class HubliveStalkerClient:
                 with open(f, 'r', encoding='utf-8') as fh:
                     data = json.load(fh)
                     mac = data.get("mac")
-                    updated = data.get("updated", 0)
-                    # Auto-Recovery Anti-Trap: se il canale è caduto entro 15s dall'avvio
-                    # significa che lo stream è caduto subito (es. MAC disconnesso/occupato).
-                    # Resetta l'abbinamento e prova un altro MAC.
-                    if time.time() - updated < 15:
-                        xbmc.log(f"[CBTV-HB] Canale '{channel_name}' caduto dopo soli {int(time.time() - updated)}s. Reset MAC {mac} ed esploro nuovo MAC.", xbmc.LOGWARNING)
-                        self.remove_channel_working_mac(channel_name)
-                        if mac:
-                            self.record_busy_mac(mac, duration_sec=120)
-                        return None
-                    if mac and mac in self.mac_pool and mac not in self.BLACKLISTED_MACS:
-                        return mac
+                    if mac:
+                        # Se il MAC è caduto spontaneamente o è stato bandito, scartalo all'istante
+                        if mac in self.DROPPED_MACS or mac in self.BLACKLISTED_MACS:
+                            xbmc.log(f"[CBTV-HB] Canale '{channel_name}': MAC memorizzato {mac} appartiene ai MAC caduti. Scartato.", xbmc.LOGINFO)
+                            self.remove_channel_working_mac(channel_name)
+                            return None
+                        # Se il MAC è attualmente in quarantena (occupato)
+                        busy_macs = self.get_busy_macs()
+                        if mac in busy_macs:
+                            xbmc.log(f"[CBTV-HB] Canale '{channel_name}': MAC memorizzato {mac} è in quarantena. Scartato.", xbmc.LOGINFO)
+                            self.remove_channel_working_mac(channel_name)
+                            return None
+                        if mac in self.mac_pool:
+                            return mac
             except Exception:
                 pass
         return None
 
     def record_channel_working_mac(self, channel_name, mac):
         """Memorizza l'abbinamento canale -> MAC che lo ha avviato con successo."""
-        if not channel_name or not mac:
+        if not channel_name or not mac or mac in self.DROPPED_MACS or mac in self.BLACKLISTED_MACS:
             return
         safe_key = re.sub(r'[^a-zA-Z0-9_]', '_', channel_name).lower()
         f = os.path.join(self.cache_dir, f"hl_ch_mac_{self.server_id}_{safe_key}.json")
@@ -348,7 +356,7 @@ class HubliveStalkerClient:
             xbmc.log(f"[CBTV-HB] Errore salvataggio abbinamento canale-MAC: {e}", xbmc.LOGWARNING)
 
     def remove_channel_working_mac(self, channel_name):
-        """Rimuove l'abbinamento canale -> MAC se il MAC fallisce."""
+        """Rimuove l'abbinamento canale -> MAC."""
         if not channel_name:
             return
         safe_key = re.sub(r'[^a-zA-Z0-9_]', '_', channel_name).lower()
@@ -358,6 +366,24 @@ class HubliveStalkerClient:
                 os.remove(f)
             except Exception:
                 pass
+
+    def mark_mac_dropped(self, mac, channel_name=None, duration_sec=1800):
+        """Scarta un MAC caduto da solo: lo banna dalla sessione, lo mette in quarantena per 30 min ed elimina i salvataggi."""
+        if not mac:
+            return
+        self.DROPPED_MACS.add(mac)
+        self.record_busy_mac(mac, duration_sec=duration_sec)
+        self.remove_top_verified_mac(mac)
+        if self._get_last_working_mac() == mac:
+            f = os.path.join(self.cache_dir, f"hl_last_mac_{self.server_id}.json")
+            try:
+                if os.path.exists(f):
+                    os.remove(f)
+            except Exception:
+                pass
+        if channel_name:
+            self.remove_channel_working_mac(channel_name)
+        xbmc.log(f"[CBTV-HB] MAC {mac} è caduto spontaneamente su '{channel_name}'. Scartato e messo in quarantena per {duration_sec}s.", xbmc.LOGWARNING)
 
     def get_busy_macs(self):
         """Restituisce il set di MAC attualmente in quarantena (occupati negli ultimi 2 minuti)."""
@@ -546,7 +572,7 @@ class HubliveStalkerClient:
         if exclude_macs is None:
             exclude_macs = set()
 
-        pool = [m for m in self.mac_pool if m not in self.BLACKLISTED_MACS]
+        pool = [m for m in self.mac_pool if m not in self.BLACKLISTED_MACS and m not in self.DROPPED_MACS]
 
         # 0. Quarantena: escludi MAC occupati/bloccati negli ultimi 10 minuti
         busy_macs = self.get_busy_macs()
@@ -555,6 +581,7 @@ class HubliveStalkerClient:
             if not available:
                 xbmc.log(f"[CBTV-HB] Tutti i MAC del pool erano in quarantena per {self.server_id}! Reset emergenza.", xbmc.LOGWARNING)
                 self.clear_busy_macs()
+                self.DROPPED_MACS.clear()
             else:
                 xbmc.log(f"[CBTV-HB] Esclusi {len(busy_macs)} MAC in quarantena temporanea (occupati)", xbmc.LOGINFO)
                 pool = available
@@ -682,7 +709,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.3.42"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.3.43"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""

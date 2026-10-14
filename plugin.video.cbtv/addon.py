@@ -134,7 +134,7 @@ import requests
 import ssl
 from requests.adapters import HTTPAdapter
 from urllib3.util.ssl_ import create_urllib3_context
-from urllib.parse import urlsplit, parse_qs, quote
+from urllib.parse import urlsplit, parse_qs, quote, quote_plus
 
 LIB_PATH = os.path.join(os.path.dirname(__file__), 'lib')
 if LIB_PATH not in sys.path:
@@ -1694,32 +1694,59 @@ def list_primafila():
 _CURRENT_HB_PLAYER = None
 
 class HBPlayer(xbmc.Player):
-    """Player con callback per distinguere stop manuale da caduta stream."""
-    def __init__(self):
+    """Player con callback per distinguere stop manuale da caduta spontanea dello stream."""
+    def __init__(self, channel_name=None, mac=None, server_id=None, client=None):
         super().__init__()
-        self.stopped_by_user = False  # True se l'utente preme stop
-        self.playback_error = False   # True se errore stream
-        self.playback_ended = False   # True se stream finisce
-        self.av_started = False       # True quando il video parte davvero
+        self.channel_name = channel_name
+        self.mac = mac
+        self.server_id = server_id
+        self.client = client
+        self.stopped_by_user = False
+        self.playback_error = False
+        self.playback_ended = False
+        self.av_started = False
+        self.dropped = False
+        self.last_pos = -1.0
+        self.last_pos_time = time.time()
 
     def onAVStarted(self):
         self.av_started = True
-
-    def onPlayBackStopped(self):
-        # L'utente ha premuto stop/back
-        self.stopped_by_user = True
-
-    def onPlayBackError(self):
-        # Errore nello stream (MAC bloccato, server down)
-        self.playback_error = True
+        self.last_pos_time = time.time()
+        xbmc.log(f"[CBTV-HB] AVStarted per '{self.channel_name}' su MAC {self.mac}", xbmc.LOGINFO)
 
     def onPlayBackEnded(self):
-        # Stream terminato (spesso = caduta per MAC esaurito)
+        # Per un canale Live TV, onPlayBackEnded accade solo se il server chiude lo stream (caduta spontanea/trial)
         self.playback_ended = True
+        self.dropped = True
+        xbmc.log(f"[CBTV-HB] onPlayBackEnded (caduta spontanea del server) per '{self.channel_name}' su MAC {self.mac}", xbmc.LOGWARNING)
+        if self.client and self.mac:
+            self.client.mark_mac_dropped(self.mac, self.channel_name)
+
+    def onPlayBackError(self):
+        # Errore nello stream (MAC bloccato, server down, buffer timeout)
+        self.playback_error = True
+        self.dropped = True
+        xbmc.log(f"[CBTV-HB] onPlayBackError per '{self.channel_name}' su MAC {self.mac}", xbmc.LOGWARNING)
+        if self.client and self.mac:
+            self.client.mark_mac_dropped(self.mac, self.channel_name)
+
+    def onPlayBackStopped(self):
+        if not self.dropped and self.av_started:
+            # Se la riproduzione era congelata (il timer video non avanzava da > 2.5s), è una caduta spontanea
+            if time.time() - self.last_pos_time > 2.5:
+                xbmc.log(f"[CBTV-HB] Stream congelato da {time.time() - self.last_pos_time:.1f}s allo stop. Marcato come caduta.", xbmc.LOGWARNING)
+                self.dropped = True
+                if self.client and self.mac:
+                    self.client.mark_mac_dropped(self.mac, self.channel_name)
+            else:
+                self.stopped_by_user = True
+                xbmc.log(f"[CBTV-HB] Stop volontario dell'utente per '{self.channel_name}' (MAC {self.mac})", xbmc.LOGINFO)
+        else:
+            self.stopped_by_user = not self.dropped
 
 
 def play_hublive_stalker(cmd, name=None, server_id=None):
-    """Riproduce un canale Hublive con protezione anti-ban e uscita immediata alla risoluzione."""
+    """Riproduce un canale Hublive con protezione anti-ban, monitoraggio caduta stream e auto-reconnect."""
     if not server_id:
         if cmd and ("z1mag" in cmd or "/play/live.php" in cmd and "z1mag" in cmd):
             server_id = "s18"
@@ -1765,8 +1792,36 @@ def play_hublive_stalker(cmd, name=None, server_id=None):
         list_item.setContentLookup(False)
         
         xbmcplugin.setResolvedUrl(HANDLE, True, list_item)
-        xbmc.log(f"[CBTV-HB] Stream avviato con successo su MAC {mac}. Consegno al player ed esco.", xbmc.LOGINFO)
-        # Termina immediatamente il ciclo: nessun altro scan in sottofondo mentre il video è in riproduzione!
+        xbmc.log(f"[CBTV-HB] Stream avviato con successo su MAC {mac}. Avvio monitoraggio riproduzione.", xbmc.LOGINFO)
+        
+        player = HBPlayer(name, mac, server_id, client)
+        
+        # 1. Attesa inizio effettivo riproduzione (fino a 10s)
+        wait_cnt = 0
+        while not player.isPlaying() and not monitor.abortRequested() and wait_cnt < 20:
+            monitor.waitForAbort(0.5)
+            wait_cnt += 1
+            if player.dropped:
+                break
+                
+        # 2. Monitoraggio continuo slegato dal tempo (finché il video è in riproduzione)
+        while player.isPlaying() and not monitor.abortRequested():
+            try:
+                pos = player.getTime()
+                if pos != player.last_pos:
+                    player.last_pos = pos
+                    player.last_pos_time = time.time()
+            except Exception:
+                pass
+            if monitor.waitForAbort(1.0):
+                break
+                
+        # 3. Se il flusso è caduto da solo (non stop volontario dell'utente), riconnetti subito con un altro MAC
+        if player.dropped and not monitor.abortRequested():
+            xbmc.log(f"[CBTV-HB] Stream caduto da solo su MAC {mac}. Tentativo riconnessione automatica con nuovo MAC...", xbmc.LOGINFO)
+            xbmcgui.Dialog().notification("CBTV", "Stream interrotto dal server. Cambio linea...", xbmcgui.NOTIFICATION_INFO, 2000)
+            url = f"{BASE_URL}?action=play_hublive_stalker&cmd={quote_plus(cmd)}&name={quote_plus(name or '')}&server_id={server_id}"
+            xbmc.executebuiltin(f'PlayMedia("{url}")')
         return
 
 
