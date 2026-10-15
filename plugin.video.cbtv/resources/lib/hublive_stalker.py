@@ -124,6 +124,7 @@ class HubliveStalkerClient:
 
     UA = ("Mozilla/5.0 (QtEmbedded; U; Linux; C) AppleWebKit/533.3 "
           "(KHTML, like Gecko) MAG200 stbapp ver: 2 rev: 250 Safari/533.3")
+    STREAM_UA = "VLC/3.0.18 LibVLC/3.0.18"
 
     # ---- inizializzazione ----
     def __init__(self, server_id="s12"):
@@ -704,7 +705,7 @@ class HubliveStalkerClient:
 
             # 5. Linea verificata e funzionante al 100%!
             final_target = final_dest if (final_dest and "204.52.191.254" in final_url and "204.52" not in final_dest) else final_url
-            final_url_with_ua = f"{final_target}|User-Agent={quote_plus(self.UA)}"
+            final_url_with_ua = f"{final_target}|User-Agent={quote_plus(self.STREAM_UA)}"
             xbmc.log(f"[CBTV-HB] Stream risolto con successo usando MAC {mac} -> {final_target[:80]}", xbmc.LOGINFO)
             
             # Salva come Last Working MAC e promuovi nei Top MAC
@@ -720,7 +721,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.3.45"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.3.46"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""

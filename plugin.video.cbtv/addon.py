@@ -1760,6 +1760,9 @@ def play_hublive_stalker(cmd, name=None, server_id=None):
     max_attempts = 5          # 5 tentativi consecutivi per trovare una linea libera
     monitor = xbmc.Monitor()
     
+    final_url = None
+    mac = None
+
     for attempt in range(max_attempts):
         if monitor.abortRequested():
             return
@@ -1774,69 +1777,38 @@ def play_hublive_stalker(cmd, name=None, server_id=None):
             xbmcgui.Dialog().notification("CBTV", "Connessione Stalker...", xbmcgui.NOTIFICATION_INFO, 1000)
         
         final_url, mac = client.resolve_stream(cmd, exclude_macs=failed_macs, channel_name=name, max_tries=2)
-        
-        if not final_url:
-            if attempt >= max_attempts - 1 or len(failed_macs) >= 8:
-                if server_id == "s12" and name:
-                    xbmc.log(f"[CBTV-HB] Linee S12 esaurite per '{name}'. Tentativo failover su Server 18...", xbmc.LOGINFO)
-                    s18_client = HubliveStalkerClient("s18")
-                    s18_cmd = s18_client.find_channel_cmd_by_name(name)
-                    if s18_cmd:
-                        xbmcgui.Dialog().notification("CBTV", "Failover automatico su Server secondario...", xbmcgui.NOTIFICATION_INFO, 1500)
-                        final_url, mac = s18_client.resolve_stream(s18_cmd, channel_name=name, max_tries=2)
-                        if final_url:
-                            server_id = "s18"
-                            client = s18_client
-                            break
-
-                xbmc.log(f"[CBTV-HB] Tutte le linee occupate dopo {attempt + 1} tentativi per {server_id}.", xbmc.LOGWARNING)
-                xbmcplugin.setResolvedUrl(HANDLE, False, xbmcgui.ListItem())
-                xbmcgui.Dialog().notification("CBTV", "Tutte le linee momentaneamente occupate. Riprova tra poco.", xbmcgui.NOTIFICATION_WARNING, 3000)
-                return
-            else:
-                continue
-        else:
+        if final_url:
             break
         
-        # Stream risolto e verificato fisicamente (pacchetti MPEG-TS già confermati da resolve_stream)!
-        list_item = xbmcgui.ListItem(path=final_url)
-        list_item.setArt({'fanart': FANART})
-        list_item.setInfo('video', {'title': name or 'Live TV'})
-        list_item.setMimeType('video/mp2t')
-        list_item.setContentLookup(False)
-        
-        xbmcplugin.setResolvedUrl(HANDLE, True, list_item)
-        xbmc.log(f"[CBTV-HB] Stream avviato con successo su MAC {mac}. Avvio monitoraggio riproduzione.", xbmc.LOGINFO)
-        
-        player = HBPlayer(name, mac, server_id, client)
-        
-        # 1. Attesa inizio effettivo riproduzione (fino a 10s)
-        wait_cnt = 0
-        while not player.isPlaying() and not monitor.abortRequested() and wait_cnt < 20:
-            monitor.waitForAbort(0.5)
-            wait_cnt += 1
-            if player.dropped:
-                break
-                
-        # 2. Monitoraggio continuo slegato dal tempo (finché il video è in riproduzione)
-        while player.isPlaying() and not monitor.abortRequested():
-            try:
-                pos = player.getTime()
-                if pos != player.last_pos:
-                    player.last_pos = pos
-                    player.last_pos_time = time.time()
-            except Exception:
-                pass
-            if monitor.waitForAbort(1.0):
-                break
-                
-        # 3. Se il flusso è caduto da solo (non stop volontario dell'utente), riconnetti subito con un altro MAC
-        if player.dropped and not monitor.abortRequested():
-            xbmc.log(f"[CBTV-HB] Stream caduto da solo su MAC {mac}. Tentativo riconnessione automatica con nuovo MAC...", xbmc.LOGINFO)
-            xbmcgui.Dialog().notification("CBTV", "Stream interrotto dal server. Cambio linea...", xbmcgui.NOTIFICATION_INFO, 2000)
-            url = f"{BASE_URL}?action=play_hublive_stalker&cmd={quote_plus(cmd)}&name={quote_plus(name or '')}&server_id={server_id}"
-            xbmc.executebuiltin(f'PlayMedia("{url}")')
+        if attempt >= max_attempts - 1 or len(failed_macs) >= 8:
+            if server_id == "s12" and name:
+                xbmc.log(f"[CBTV-HB] Linee S12 esaurite per '{name}'. Tentativo failover su Server 18...", xbmc.LOGINFO)
+                s18_client = HubliveStalkerClient("s18")
+                s18_cmd = s18_client.find_channel_cmd_by_name(name)
+                if s18_cmd:
+                    xbmcgui.Dialog().notification("CBTV", "Failover automatico su Server secondario...", xbmcgui.NOTIFICATION_INFO, 1500)
+                    final_url, mac = s18_client.resolve_stream(s18_cmd, channel_name=name, max_tries=2)
+                    if final_url:
+                        server_id = "s18"
+                        client = s18_client
+                        break
+            break
+
+    if not final_url:
+        xbmc.log(f"[CBTV-HB] Tutte le linee occupate per {server_id}.", xbmc.LOGWARNING)
+        xbmcplugin.setResolvedUrl(HANDLE, False, xbmcgui.ListItem())
+        xbmcgui.Dialog().notification("CBTV", "Tutte le linee momentaneamente occupate. Riprova tra poco.", xbmcgui.NOTIFICATION_WARNING, 3000)
         return
+    
+    # Stream risolto e verificato fisicamente (pacchetti MPEG-TS già confermati da resolve_stream)!
+    list_item = xbmcgui.ListItem(path=final_url)
+    list_item.setArt({'fanart': FANART})
+    list_item.setInfo('video', {'title': name or 'Live TV'})
+    list_item.setMimeType('video/mp2t')
+    list_item.setContentLookup(False)
+    
+    xbmcplugin.setResolvedUrl(HANDLE, True, list_item)
+    xbmc.log(f"[CBTV-HB] Stream avviato con successo su MAC {mac} -> {final_url[:80]}", xbmc.LOGINFO)
 
 
 
