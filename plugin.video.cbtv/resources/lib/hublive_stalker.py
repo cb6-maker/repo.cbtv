@@ -107,26 +107,11 @@ class HubliveStalkerClient:
         "00:1A:79:A0:E8:79", "00:1A:79:A1:9D:ED"
     ]
 
-    # Server 31 (Light-OTT - Primario Esteri con VPN)
-    PORTAL_31_URL = "http://main.light-ott.net:80"
-    PORTAL_31_MACS = [
-        "00:1A:79:A0:E1:74", "00:1A:79:C8:B6:ED", "00:1A:79:B6:49:B7", "00:1A:79:B6:47:58",
-        "00:1A:79:00:22:D5", "00:1A:79:00:20:15", "00:1B:79:48:4E:B4", "00:1B:79:41:43:5D",
-        "00:1A:79:17:04:D7", "00:1A:79:F0:9F:91", "A0:BB:3E:00:0F:0D", "00:1A:79:BA:A6:65",
-        "00:1A:79:B5:AC:98", "A0:BB:3E:00:09:28", "A0:BB:3E:00:02:82", "A0:BB:3E:00:0A:E9",
-        "A0:BB:3E:00:0E:E8", "A0:BB:3E:00:0D:EB", "A0:BB:3E:00:0F:2F", "A0:BB:3E:00:11:45",
-        "A0:BB:3E:00:11:EE", "A0:BB:3E:00:11:A8", "A0:BB:3E:00:12:32", "A0:BB:3E:00:11:56",
-        "A0:BB:3E:00:12:52", "A0:BB:3E:00:11:B6", "A0:BB:3E:00:12:7C", "A0:BB:3E:00:13:F8",
-        "A0:BB:3E:00:13:2B", "A0:BB:3E:00:13:50", "A0:BB:3E:00:15:DB", "A0:BB:3E:00:15:E9",
-        "A0:BB:3E:00:14:44", "A0:BB:3E:00:15:6F", "A0:BB:3E:00:16:99", "A0:BB:3E:00:16:9B",
-        "A0:BB:3E:00:16:F0", "A0:BB:3E:00:16:A5", "A0:BB:3E:00:17:D3", "A0:BB:3E:00:19:3A",
-        "A0:BB:3E:00:17:DE", "A0:BB:3E:00:19:4A", "A0:BB:3E:00:07:0C", "A0:BB:3E:00:04:E8",
-        "A0:BB:3E:00:20:9C", "A0:BB:3E:00:06:D0", "A0:BB:3E:00:09:33", "A0:BB:3E:00:09:8F",
-        "A0:BB:3E:00:08:00", "A0:BB:3E:00:08:35", "A0:BB:3E:00:08:19", "A0:BB:3E:00:0A:72",
-        "A0:BB:3E:00:0C:EF", "A0:BB:3E:00:0C:C7", "A0:BB:3E:00:10:39", "A0:BB:3E:00:0E:78",
-        "A0:BB:3E:00:10:C8", "A0:BB:3E:00:11:3A", "A0:BB:3E:00:12:B7", "A0:BB:3E:00:12:E5",
-        "A0:BB:3E:00:12:E6", "A0:BB:3E:00:12:2A", "A0:BB:3E:00:13:3A", "A0:BB:3E:00:13:3E",
-        "A0:BB:3E:00:13:A2", "A0:BB:3E:00:13:9E", "A0:BB:3E:00:11:0F", "A0:BB:3E:00:18:CD",
+    # Server 12 (Direct IP 204.52.191.254 - Motore primario WebApp, no blocchi AGCOM / Piracy Shield)
+    PORTAL_12_URL = "http://204.52.191.254:80"
+    PORTAL_12_MACS = [
+        "00:1A:79:23:3D:04", "00:1A:79:49:70:7F", "00:1A:79:4B:73:63", "00:1A:79:4C:CF:19",
+        "00:1A:79:4D:10:EA", "00:1A:79:4D:8C:76", "00:1A:79:7A:EF:A4", "00:1A:79:7B:4C:85"
     ]
 
     # Set di sessione condiviso per escludere all'istante qualsiasi MAC caduto spontaneamente durante la riproduzione
@@ -141,14 +126,14 @@ class HubliveStalkerClient:
           "(KHTML, like Gecko) MAG200 stbapp ver: 2 rev: 250 Safari/533.3")
 
     # ---- inizializzazione ----
-    def __init__(self, server_id="s31"):
+    def __init__(self, server_id="s12"):
         self.server_id = server_id
         if server_id == "s18":
             self.portal_url = self.PORTAL_18_URL
             self.mac_pool = list(self.PORTAL_18_MACS)
         else:
-            self.portal_url = self.PORTAL_31_URL
-            self.mac_pool = list(self.PORTAL_31_MACS)
+            self.portal_url = self.PORTAL_12_URL
+            self.mac_pool = list(self.PORTAL_12_MACS)
 
         profile = xbmcvfs.translatePath(xbmcaddon.Addon().getAddonInfo('profile'))
         self.cache_dir = os.path.join(profile, "hublive")
@@ -241,9 +226,9 @@ class HubliveStalkerClient:
             portal = (s.get("portal_url") or s.get("portal") or s.get("url") or "").lower()
             macs = s.get("macs") or s.get("mac_pool") or []
 
-            if self.server_id == "s31":
-                if "light-ott" in portal or name in ["Server 31"]:
-                    if not target_portal and "light-ott" in portal:
+            if self.server_id == "s12":
+                if "204.52.191.254" in portal or "server7" in s.get("id", "").lower() or name in ["Server 12", "Server 7"]:
+                    if not target_portal and "204.52" in portal:
                         target_portal = s.get("portal_url") or s.get("portal") or s.get("url")
                     for m in macs:
                         if m and m not in combined_macs:
@@ -256,7 +241,7 @@ class HubliveStalkerClient:
                         if m and m not in combined_macs:
                             combined_macs.append(m)
 
-        base_macs = self.PORTAL_31_MACS if self.server_id == "s31" else self.PORTAL_18_MACS
+        base_macs = self.PORTAL_12_MACS if self.server_id == "s12" else self.PORTAL_18_MACS
         if combined_macs:
             for m in base_macs:
                 if m not in combined_macs:
@@ -616,7 +601,7 @@ class HubliveStalkerClient:
         
         # Mescola casualmente per ruotare ed esplorare nuovi MAC
         # Raggruppa i MAC prioritari e mescolali casualmente per evitare collisioni tra dispositivi diversi
-        priority_base = self.PORTAL_31_MACS if self.server_id == "s31" else self.PORTAL_18_MACS
+        priority_base = self.PORTAL_12_MACS if self.server_id == "s12" else self.PORTAL_18_MACS
         priority_macs = [m for m in priority_base if m in pool]
         random.shuffle(priority_macs)
         other_macs = [m for m in pool if m not in priority_macs]
@@ -718,10 +703,9 @@ class HubliveStalkerClient:
                         pass
 
             # 5. Linea verificata e funzionante al 100%!
-            # Consegna a Kodi l'URL del portale: al momento della riproduzione, il portale invia
-            # a Kodi un redirect 302 con un hash di sessione vergine, evitando errori 509 (limite stream).
-            final_url_with_ua = f"{final_url}|User-Agent={quote_plus(self.UA)}"
-            xbmc.log(f"[CBTV-HB] Stream risolto con successo usando MAC {mac} -> {final_url[:80]}", xbmc.LOGINFO)
+            final_target = final_dest if (final_dest and "204.52.191.254" in final_url and "204.52" not in final_dest) else final_url
+            final_url_with_ua = f"{final_target}|User-Agent={quote_plus(self.UA)}"
+            xbmc.log(f"[CBTV-HB] Stream risolto con successo usando MAC {mac} -> {final_target[:80]}", xbmc.LOGINFO)
             
             # Salva come Last Working MAC e promuovi nei Top MAC
             self.remove_busy_mac(mac)
@@ -736,7 +720,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.3.44"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.3.45"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""
@@ -808,23 +792,39 @@ class HubliveStalkerClient:
             self._set_cache("genres", res)
             return res
 
-        fallback_genres = [
-            {"id": "2728", "title": "┃IT┃ SKY SPORT"},
-            {"id": "2729", "title": "┃IT┃ SKY CALCIO"},
-            {"id": "2730", "title": "┃IT┃ DAZN"},
-            {"id": "3331", "title": "┃IT┃ ZONA DAZN"},
-            {"id": "2731", "title": "┃IT┃ DAZN SERIE A"},
-            {"id": "2723", "title": "┃IT┃ FILM E SERIE"},
-            {"id": "2724", "title": "┃IT┃ INTRATTENIMENTO"},
-            {"id": "2732", "title": "┃IT┃ DOCUMENTARIO"}
-        ] if self.server_id == "s31" else [
-            {"id": "923", "title": "IT ✨ SPORT"},
-            {"id": "1233", "title": "IT ✨ DAZN"},
-            {"id": "924", "title": "IT ✨ CINEMA"},
-            {"id": "922", "title": "IT ✨ ITALIA"},
-            {"id": "925", "title": "IT ✨ CULTURA"},
-            {"id": "1332", "title": "IT ✨ HEVC"}
-        ]
+        if self.server_id == "s12":
+            fallback_genres = [
+                {"id": "265", "title": "IT| SPORT HD/4K"},
+                {"id": "457", "title": "IT| FORMULA 1 / MOTOGP"},
+                {"id": "467", "title": "IT| SERIE A/B/C"},
+                {"id": "476", "title": "IT| DAZN VIP HD/4K"},
+                {"id": "681", "title": "IT| DAZN PPV"},
+                {"id": "295", "title": "IT| CINEMA HD/4K"},
+                {"id": "417", "title": "IT| PLATINUM TV UHD/4K"},
+                {"id": "18", "title": "IT| GOLD TV HEVC"},
+                {"id": "419", "title": "IT| GENERALE HD/4K"},
+                {"id": "294", "title": "IT| DOCUMENTARIO HD/4K"}
+            ]
+        elif self.server_id == "s18":
+            fallback_genres = [
+                {"id": "923", "title": "IT ✨ SPORT"},
+                {"id": "1233", "title": "IT ✨ DAZN"},
+                {"id": "924", "title": "IT ✨ CINEMA"},
+                {"id": "922", "title": "IT ✨ ITALIA"},
+                {"id": "925", "title": "IT ✨ CULTURA"},
+                {"id": "1332", "title": "IT ✨ HEVC"}
+            ]
+        else:
+            fallback_genres = [
+                {"id": "2728", "title": "┃IT┃ SKY SPORT"},
+                {"id": "2729", "title": "┃IT┃ SKY CALCIO"},
+                {"id": "2730", "title": "┃IT┃ DAZN"},
+                {"id": "3331", "title": "┃IT┃ ZONA DAZN"},
+                {"id": "2731", "title": "┃IT┃ DAZN SERIE A"},
+                {"id": "2723", "title": "┃IT┃ FILM E SERIE"},
+                {"id": "2724", "title": "┃IT┃ INTRATTENIMENTO"},
+                {"id": "2732", "title": "┃IT┃ DOCUMENTARIO"}
+            ]
         self._set_cache("genres", fallback_genres)
         return fallback_genres
 
@@ -932,13 +932,13 @@ class HubliveStalkerClient:
                 return fallback
 
         target_titles = [
-            "┃IT┃ FILM E SERIE", "┃IT┃ INTRATTENIMENTO", "┃IT┃ DOCUMENTARIO", "┃IT┃ ITALIA HD | RIGIOCARE ⏺",
-            "IT ✨ ITALIA", "IT ✨ CULTURA", "IT ✨ HEVC",
-            "IT| INTRATTENIMENTO", "IT| DOCUMENTARIO", "IT| GENERALE"
+            "IT| PLATINUM TV UHD/4K", "IT| GOLD TV HEVC", "IT| GENERALE HD/4K", "IT| DOCUMENTARIO HD/4K",
+            "┃IT┃ FILM E SERIE", "┃IT┃ INTRATTENIMENTO", "┃IT┃ DOCUMENTARIO",
+            "IT ✨ ITALIA", "IT ✨ CULTURA", "IT ✨ HEVC", "IT| GENERALE"
         ]
         gids = self._find_genre_ids_by_titles(target_titles)
         if not gids:
-            gids = ["2723", "2724", "2732"] if self.server_id == "s31" else ["922", "925", "1332"]
+            gids = ["417", "18", "419", "294"] if self.server_id == "s12" else ["922", "925", "1332"]
         channels = self._fetch_channels_for_genres(gids, "sky_tv",
             keywords=["SKY ATLANTIC", "SKY UNO", "SKY NATURE", "SKY DOCUMENTARIES", "SKY ARTE", "SKY INVESTIGATION", "SKY CRIME", "SKY SERIE"],
             negatives=["SPORT", "DAZN", "CALCIO", "F1", "MOTOGP", "PRIMAFILA", "CINEMA", "SERIE A", "SERIE B", "BASKET", "BAR"],
@@ -984,11 +984,11 @@ class HubliveStalkerClient:
                 return fallback
 
         target_titles = [
-            "┃IT┃ FILM E SERIE", "IT ✨ CINEMA", "IT| CINEMA"
+            "IT| CINEMA HD/4K", "IT| CINEMA VIP HD/4K", "┃IT┃ FILM E SERIE", "IT ✨ CINEMA"
         ]
         gids = self._find_genre_ids_by_titles(target_titles)
         if not gids:
-            gids = ["2723"] if self.server_id == "s31" else ["924"]
+            gids = ["295"] if self.server_id == "s12" else ["924"]
         channels = self._fetch_channels_for_genres(gids, "sky_cinema",
             keywords=["CINEMA"],
             negatives=["SPORT", "DAZN", "CALCIO", "PRIMAFILA"],
@@ -1030,15 +1030,15 @@ class HubliveStalkerClient:
                 return channels
 
         target_titles = [
-            "┃IT┃ SKY SPORT", "┃IT┃ SKY CALCIO", "┃IT┃ SPORT",
-            "IT ✨ SPORT", "IT| SPORT", "IT| FORMULA 1 / MOTOGP", "IT| SERIE A/B/C"
+            "IT| SPORT HD/4K", "IT| AMAZON PRIME PPV", "IT| FORMULA 1 / MOTOGP", "IT| SERIE A/B/C",
+            "┃IT┃ SKY SPORT", "┃IT┃ SKY CALCIO", "┃IT┃ SPORT", "IT ✨ SPORT"
         ]
         gids = self._find_genre_ids_by_titles(target_titles)
         if not gids:
-            gids = ["2728", "2729"] if self.server_id == "s31" else ["923"]
+            gids = ["265", "457", "467"] if self.server_id == "s12" else ["923"]
         channels = self._fetch_channels_for_genres(gids, "sky_sport", 
             keywords=["SKY SPORT", "SKY CALCIO", "EUROSPORT", "SUPERTENNIS"],
-            negatives=["SERIE C", "SERIE D", "LEGA PRO", "BAR", "DAZN BAR", "DAZN CHANNEL", "VETRINA DAZN", "WOMEN"],
+            negatives=["SERIE C", "SERIE D", "LEGA PRO", "DAZN CHANNEL", "VETRINA DAZN", "WOMEN"],
             force=force_refresh)
             
         if not channels:
@@ -1047,26 +1047,32 @@ class HubliveStalkerClient:
 
         def sky_sport_sort_key(ch):
             n = ch.get('name', '').upper().strip()
-            if "24" in n: return (1, n)
-            if "UNO" in n: return (2, n)
-            if "CALCIO FHD" in n or "CALCIO HEVC" in n: return (3, n)
-            if "F1" in n: return (4, n)
-            if "MOTOGP" in n or "MOTO GP" in n: return (5, n)
-            if "TENNIS" in n: return (6, n)
-            if "ARENA" in n: return (7, n)
-            if "GOLF" in n: return (8, n)
-            if "MAX" in n: return (9, n)
-            if "NBA" in n: return (10, n)
-            if "CALCIO 251" in n: return (11, n)
-            if "CALCIO 252" in n: return (12, n)
-            if "CALCIO 253" in n: return (13, n)
-            if "CALCIO 254" in n: return (14, n)
-            if "CALCIO 255" in n: return (15, n)
-            if "CALCIO 256" in n: return (16, n)
-            if "CALCIO 257" in n: return (17, n)
-            if "EUROSPORT 1" in n: return (18, n)
-            if "EUROSPORT 2" in n: return (19, n)
-            return (20, n)
+            q = 2 if ("4K" in n or "UHD" in n) else 1
+            if "24" in n: return (1, q, n)
+            if "UNO" in n and "BAR" not in n: return (2, q, n)
+            if "CALCIO HD" in n or "CALCIO 4K" in n or "CALCIO FHD" in n or "CALCIO HEVC" in n: return (3, q, n)
+            if "TENNIS" in n: return (4, q, n)
+            if "ARENA" in n: return (5, q, n)
+            if "MAX" in n: return (6, q, n)
+            if "F1" in n: return (7, q, n)
+            if "MOTOGP" in n or "MOTO GP" in n: return (8, q, n)
+            if "GOLF" in n: return (9, q, n)
+            if "NBA" in n: return (10, q, n)
+            if "MIX" in n: return (11, q, n)
+            if "LEGEND" in n: return (12, q, n)
+            if "BAR UNO" in n: return (13, q, n)
+            if "BAR DUE" in n: return (14, q, n)
+            if "BAR PRIME" in n or "PRIMEVIDEO" in n: return (15, q, n)
+            if "CALCIO 1" in n or "CALCIO 251" in n: return (16, q, n)
+            if "CALCIO 2" in n or "CALCIO 252" in n: return (17, q, n)
+            if "CALCIO 3" in n or "CALCIO 253" in n: return (18, q, n)
+            if "CALCIO 4" in n or "CALCIO 254" in n: return (19, q, n)
+            if "CALCIO 5" in n or "CALCIO 255" in n: return (20, q, n)
+            if "CALCIO 6" in n or "CALCIO 256" in n: return (21, q, n)
+            if "CALCIO 7" in n or "CALCIO 257" in n: return (22, q, n)
+            if "EUROSPORT 1" in n: return (23, q, n)
+            if "EUROSPORT 2" in n: return (24, q, n)
+            return (25, q, n)
 
         channels.sort(key=sky_sport_sort_key)
         self._set_cache("sky_sport", channels)
@@ -1084,12 +1090,12 @@ class HubliveStalkerClient:
                 return fallback
 
         target_titles = [
-            "┃IT┃ ZONA DAZN", "┃IT┃ DAZN", "┃IT┃ DAZN SERIE A", "┃IT┃ SERIE A TEAMS",
-            "IT ✨ DAZN", "IT| SERIE A/B/C", "IT| DAZN VIP HD/4K", "IT| DAZN PPV", "IT| DAZN"
+            "IT| DAZN VIP HD/4K", "IT| SERIE A/B/C", "IT| DAZN PPV",
+            "┃IT┃ ZONA DAZN", "┃IT┃ DAZN", "┃IT┃ DAZN SERIE A", "IT ✨ DAZN"
         ]
         gids = self._find_genre_ids_by_titles(target_titles)
         if not gids:
-            gids = ["3331", "2730", "2731"] if self.server_id == "s31" else ["1233"]
+            gids = ["476", "681"] if self.server_id == "s12" else ["1233"]
 
         channels = self._fetch_channels_for_genres(gids, "dazn",
             keywords=None,
@@ -1272,13 +1278,13 @@ class HubliveStalkerClient:
             pass
             
         for fn in cache_files:
-            if fn.startswith("hl_s28_") and fn.endswith(".json") and "genres" not in fn:
+            if fn.startswith("hl_s12_") and fn.endswith(".json") and "genres" not in fn:
                 try:
                     with open(os.path.join(self.cache_dir, fn), 'r', encoding='utf-8') as fh:
                         d = json.load(fh)
                         for ch in d.get('data', []):
                             if self._normalize_channel_name(ch.get('name', '')) == norm_target:
-                                category_key = fn.replace("hl_s28_", "").replace(".json", "")
+                                category_key = fn.replace("hl_s12_", "").replace(".json", "")
                                 break
                 except:
                     pass
@@ -1286,9 +1292,9 @@ class HubliveStalkerClient:
                     break
                     
         if not category_key:
-            # Fallback: cerca nelle cache s31 già caricate
+            # Fallback: cerca nelle altre cache caricate
             for fn in cache_files:
-                if fn.startswith("hl_s31_") and fn.endswith(".json") and "genres" not in fn:
+                if fn.startswith("hl_") and fn.endswith(".json") and "genres" not in fn:
                     try:
                         with open(os.path.join(self.cache_dir, fn), 'r', encoding='utf-8') as fh:
                             d = json.load(fh)
@@ -1299,11 +1305,11 @@ class HubliveStalkerClient:
                         pass
             return None
             
-        # 2. Cerca nella cache s31 specifica se presente
-        s31_fn = f"hl_s31_{category_key}.json"
-        if s31_fn in cache_files:
+        # 2. Cerca nella cache specifica se presente
+        s12_fn = f"hl_s12_{category_key}.json"
+        if s12_fn in cache_files:
             try:
-                with open(os.path.join(self.cache_dir, s31_fn), 'r', encoding='utf-8') as fh:
+                with open(os.path.join(self.cache_dir, s12_fn), 'r', encoding='utf-8') as fh:
                     d = json.load(fh)
                     for ch in d.get('data', []):
                         if self._normalize_channel_name(ch.get('name', '')) == norm_target:

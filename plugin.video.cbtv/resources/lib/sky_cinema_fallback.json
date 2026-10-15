@@ -1,90 +1,42 @@
 [
   {
-    "name": "SKY CINEMA UNO FHD",
-    "cmd": "ffmpeg http://localhost/ch/177634_"
+    "name": "SKY CINEMA UNO HD",
+    "cmd": "ffmpeg http://localhost/ch/284887_"
   },
   {
-    "name": "SKY CINEMA UNO HEVC",
-    "cmd": "ffmpeg http://localhost/ch/1167154_"
+    "name": "SKY CINEMA DUE HD",
+    "cmd": "ffmpeg http://localhost/ch/284873_"
   },
   {
-    "name": "SKY CINEMA UNO +24 FHD",
-    "cmd": "ffmpeg http://localhost/ch/177635_"
+    "name": "SKY CINEMA DUE +24 HD",
+    "cmd": "ffmpeg http://localhost/ch/284871_"
   },
   {
-    "name": "SKY CINEMA UNO +24 HEVC",
-    "cmd": "ffmpeg http://localhost/ch/1167166_"
+    "name": "SKY CINEMA COLLECTION HD",
+    "cmd": "ffmpeg http://localhost/ch/284862_"
   },
   {
-    "name": "SKY CINEMA DUE FHD",
-    "cmd": "ffmpeg http://localhost/ch/177637_"
+    "name": "SKY CINEMA ACTION HD",
+    "cmd": "ffmpeg http://localhost/ch/284859_"
   },
   {
-    "name": "SKY CINEMA DUE HEVC",
-    "cmd": "ffmpeg http://localhost/ch/1167155_"
+    "name": "SKY CINEMA COMEDY HD",
+    "cmd": "ffmpeg http://localhost/ch/284865_"
   },
   {
-    "name": "SKY CINEMA DUE +24 FHD",
-    "cmd": "ffmpeg http://localhost/ch/177639_"
+    "name": "SKY CINEMA DRAMA HD",
+    "cmd": "ffmpeg http://localhost/ch/284868_"
   },
   {
-    "name": "SKY CINEMA DUE +24 HEVC",
-    "cmd": "ffmpeg http://localhost/ch/1167156_"
+    "name": "SKY CINEMA FAMILY HD",
+    "cmd": "ffmpeg http://localhost/ch/284876_"
   },
   {
-    "name": "SKY CINEMA ACTION FHD",
-    "cmd": "ffmpeg http://localhost/ch/177641_"
+    "name": "SKY CINEMA ROMANCE HD",
+    "cmd": "ffmpeg http://localhost/ch/284879_"
   },
   {
-    "name": "SKY CINEMA ACTION HEVC",
-    "cmd": "ffmpeg http://localhost/ch/1167157_"
-  },
-  {
-    "name": "SKY CINEMA COLLECTION FHD",
-    "cmd": "ffmpeg http://localhost/ch/177646_"
-  },
-  {
-    "name": "SKY CINEMA COLLECTION HEVC",
-    "cmd": "ffmpeg http://localhost/ch/1167160_"
-  },
-  {
-    "name": "SKY CINEMA COMEDY FHD",
-    "cmd": "ffmpeg http://localhost/ch/177643_"
-  },
-  {
-    "name": "SKY CINEMA COMEDY HEVC",
-    "cmd": "ffmpeg http://localhost/ch/1167158_"
-  },
-  {
-    "name": "SKY CINEMA FAMILY FHD",
-    "cmd": "ffmpeg http://localhost/ch/177644_"
-  },
-  {
-    "name": "SKY CINEMA FAMILY HEVC",
-    "cmd": "ffmpeg http://localhost/ch/1167159_"
-  },
-  {
-    "name": "SKY CINEMA SUSPENCE FHD",
-    "cmd": "ffmpeg http://localhost/ch/177659_"
-  },
-  {
-    "name": "SKY CINEMA SUSPENSE HEVC",
-    "cmd": "ffmpeg http://localhost/ch/1167161_"
-  },
-  {
-    "name": "SKY CINEMA ROMANCE FHD",
-    "cmd": "ffmpeg http://localhost/ch/177651_"
-  },
-  {
-    "name": "SKY CINEMA ROMANCE HEVC",
-    "cmd": "ffmpeg http://localhost/ch/1167162_"
-  },
-  {
-    "name": "SKY CINEMA DRAMA FHD",
-    "cmd": "ffmpeg http://localhost/ch/177653_"
-  },
-  {
-    "name": "SKY CINEMA DRAMA HEVC",
-    "cmd": "ffmpeg http://localhost/ch/1167163_"
+    "name": "SKY CINEMA SUSPENSE HD",
+    "cmd": "ffmpeg http://localhost/ch/284882_"
   }
 ]

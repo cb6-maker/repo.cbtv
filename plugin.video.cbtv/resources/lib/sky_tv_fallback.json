@@ -1,70 +1,42 @@
 [
   {
-    "name": "SKY ATLANTIC FHD",
-    "cmd": "ffmpeg http://localhost/ch/177655_"
+    "name": "SKY UNO HD",
+    "cmd": "ffmpeg http://localhost/ch/285475_"
   },
   {
-    "name": "SKY ATLANTIC HEVC",
-    "cmd": "ffmpeg http://localhost/ch/1167165_"
-  },
-  {
-    "name": "SKY ATLANTIC HD",
-    "cmd": "ffmpeg http://localhost/ch/177654_"
-  },
-  {
-    "name": "SKY UNO FHD",
-    "cmd": "ffmpeg http://localhost/ch/177632_"
+    "name": "SKY UNO 4K",
+    "cmd": "ffmpeg http://localhost/ch/285474_"
   },
   {
     "name": "SKY UNO HEVC",
-    "cmd": "ffmpeg http://localhost/ch/1167164_"
+    "cmd": "ffmpeg http://localhost/ch/284825_"
   },
   {
-    "name": "SKY UNO HD",
-    "cmd": "ffmpeg http://localhost/ch/177743_"
+    "name": "SKY ATLANTIC HD",
+    "cmd": "ffmpeg http://localhost/ch/284895_"
   },
   {
-    "name": "SKY NATURE HD",
-    "cmd": "ffmpeg http://localhost/ch/1167296_"
-  },
-  {
-    "name": "SKY NATURE SD",
-    "cmd": "ffmpeg http://localhost/ch/1167295_"
-  },
-  {
-    "name": "SKY DOCUMENTARIES HD",
-    "cmd": "ffmpeg http://localhost/ch/1167294_"
-  },
-  {
-    "name": "SKY DOCUMENTARIES SD",
-    "cmd": "ffmpeg http://localhost/ch/1167293_"
-  },
-  {
-    "name": "SKY ARTE FHD",
-    "cmd": "ffmpeg http://localhost/ch/177658_"
-  },
-  {
-    "name": "SKY ARTE HEVC",
-    "cmd": "ffmpeg http://localhost/ch/1167209_"
-  },
-  {
-    "name": "SKY ARTE HD",
-    "cmd": "ffmpeg http://localhost/ch/177652_"
-  },
-  {
-    "name": "SKY INVESTIGATION FHD",
-    "cmd": "ffmpeg http://localhost/ch/177958_"
-  },
-  {
-    "name": "SKY INVESTIGATION HEVC",
-    "cmd": "ffmpeg http://localhost/ch/1167210_"
+    "name": "SKY SERIE HD",
+    "cmd": "ffmpeg http://localhost/ch/284854_"
   },
   {
     "name": "SKY INVESTIGATION HD",
-    "cmd": "ffmpeg http://localhost/ch/1167298_"
+    "cmd": "ffmpeg http://localhost/ch/284853_"
   },
   {
     "name": "SKY CRIME HD",
-    "cmd": "ffmpeg http://localhost/ch/177666_"
+    "cmd": "ffmpeg http://localhost/ch/285393_"
+  },
+  {
+    "name": "SKY ARTE HD",
+    "cmd": "ffmpeg http://localhost/ch/284893_"
+  },
+  {
+    "name": "SKY DOCUMENTARIES HD",
+    "cmd": "ffmpeg http://localhost/ch/284855_"
+  },
+  {
+    "name": "SKY NATURE HD",
+    "cmd": "ffmpeg http://localhost/ch/284856_"
   }
 ]
