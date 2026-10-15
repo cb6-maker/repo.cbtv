@@ -1776,22 +1776,11 @@ def play_hublive_stalker(cmd, name=None, server_id=None):
         else:
             xbmcgui.Dialog().notification("CBTV", "Connessione Stalker...", xbmcgui.NOTIFICATION_INFO, 1000)
         
-        final_url, mac = client.resolve_stream(cmd, exclude_macs=failed_macs, channel_name=name, max_tries=2)
+        final_url, mac = client.resolve_stream(cmd, exclude_macs=failed_macs, channel_name=name, max_tries=3)
         if final_url:
             break
         
-        if attempt >= max_attempts - 1 or len(failed_macs) >= 8:
-            if server_id == "s12" and name:
-                xbmc.log(f"[CBTV-HB] Linee S12 esaurite per '{name}'. Tentativo failover su Server 18...", xbmc.LOGINFO)
-                s18_client = HubliveStalkerClient("s18")
-                s18_cmd = s18_client.find_channel_cmd_by_name(name)
-                if s18_cmd:
-                    xbmcgui.Dialog().notification("CBTV", "Failover automatico su Server secondario...", xbmcgui.NOTIFICATION_INFO, 1500)
-                    final_url, mac = s18_client.resolve_stream(s18_cmd, channel_name=name, max_tries=2)
-                    if final_url:
-                        server_id = "s18"
-                        client = s18_client
-                        break
+        if attempt >= max_attempts - 1 or len(failed_macs) >= 18:
             break
 
     if not final_url:
