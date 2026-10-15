@@ -1757,7 +1757,7 @@ def play_hublive_stalker(cmd, name=None, server_id=None):
     
     client = HubliveStalkerClient(server_id)
     failed_macs = set()       # MAC che hanno fallito in questa sessione
-    max_attempts = 3          # Massimo 3 tentativi consecutivi per evitare Fail2Ban / IP ban
+    max_attempts = 5          # 5 tentativi consecutivi per trovare una linea libera
     monitor = xbmc.Monitor()
     
     for attempt in range(max_attempts):
@@ -1766,17 +1766,17 @@ def play_hublive_stalker(cmd, name=None, server_id=None):
 
         if attempt > 0:
             xbmc.log(f"[CBTV-HB] Tentativo {attempt + 1}/{max_attempts}, MAC già esclusi: {len(failed_macs)}", xbmc.LOGINFO)
-            xbmcgui.Dialog().notification("CBTV", f"Linee occupate, cerco MAC libero... ({attempt + 1}/{max_attempts})", xbmcgui.NOTIFICATION_INFO, 1500)
-            xbmc.sleep(2000)  # Pausa umana di 2.0s per rispetto del server ed evitare Fail2Ban
+            xbmcgui.Dialog().notification("CBTV", f"Linea occupata, cerco linea libera... ({attempt + 1}/{max_attempts})", xbmcgui.NOTIFICATION_INFO, 1200)
+            xbmc.sleep(1500)  # Pausa breve per rispetto del server
             if monitor.abortRequested():
                 return
         else:
             xbmcgui.Dialog().notification("CBTV", "Connessione Stalker...", xbmcgui.NOTIFICATION_INFO, 1000)
         
-        final_url, mac = client.resolve_stream(cmd, exclude_macs=failed_macs, channel_name=name, max_tries=1)
+        final_url, mac = client.resolve_stream(cmd, exclude_macs=failed_macs, channel_name=name, max_tries=2)
         
         if not final_url:
-            if attempt >= max_attempts - 1 or len(failed_macs) >= 3:
+            if attempt >= max_attempts - 1 or len(failed_macs) >= 8:
                 xbmc.log(f"[CBTV-HB] Tutte le linee occupate dopo {attempt + 1} tentativi per {server_id}.", xbmc.LOGWARNING)
                 xbmcplugin.setResolvedUrl(HANDLE, False, xbmcgui.ListItem())
                 xbmcgui.Dialog().notification("CBTV", "Tutte le linee momentaneamente occupate. Riprova tra poco.", xbmcgui.NOTIFICATION_WARNING, 3000)

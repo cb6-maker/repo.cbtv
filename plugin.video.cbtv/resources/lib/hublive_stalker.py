@@ -70,7 +70,23 @@ class HubliveStalkerClient:
         "00:1A:79:C1:A1:65", "00:1A:79:C1:A1:DE", "00:1A:79:C2:7A:3E", "00:1A:79:C2:94:BE",
         "00:1A:79:C3:C9:95", "00:1A:79:C3:C9:9A", "00:1A:79:C4:06:6D", "00:1A:79:C4:14:E9",
         "00:1A:79:C4:35:1D", "00:1A:79:C8:4B:31", "00:1A:79:C9:BE:85", "00:1A:79:F1:B1:63",
-        "00:1B:79:1C:7B:70", "A0:BB:3E:00:12:7C"
+        "00:1B:79:1C:7B:70",
+        "A0:BB:3E:00:07:36", "A0:BB:3E:00:0A:53", "A0:BB:3E:00:0C:EC", "A0:BB:3E:00:0A:CF",
+        "A0:BB:3E:00:06:87", "A0:BB:3E:00:0C:EE", "A0:BB:3E:00:0A:FD", "A0:BB:3E:00:0B:4D",
+        "A0:BB:3E:00:0F:85", "A0:BB:3E:00:0E:13", "A0:BB:3E:00:0D:3A", "A0:BB:3E:00:0E:F5",
+        "A0:BB:3E:00:10:97", "A0:BB:3E:00:12:87", "A0:BB:3E:00:11:BD", "A0:BB:3E:00:10:3E",
+        "A0:BB:3E:00:10:AB", "A0:BB:3E:00:10:AC", "A0:BB:3E:00:02:2D", "A0:BB:3E:00:10:30",
+        "A0:BB:3E:00:0F:44", "A0:BB:3E:00:10:52", "A0:BB:3E:00:10:CB", "A0:BB:3E:00:10:C0",
+        "A0:BB:3E:00:11:17", "A0:BB:3E:00:10:C3", "A0:BB:3E:00:10:BC", "A0:BB:3E:00:11:41",
+        "A0:BB:3E:00:12:8F", "A0:BB:3E:00:12:B0", "A0:BB:3E:00:12:CF", "A0:BB:3E:00:14:03",
+        "A0:BB:3E:00:13:EE", "A0:BB:3E:00:14:D1", "A0:BB:3E:00:14:F9", "A0:BB:3E:00:15:E8",
+        "A0:BB:3E:00:15:EC", "A0:BB:3E:00:18:5C", "A0:BB:3E:00:16:17", "A0:BB:3E:00:18:B2",
+        "A0:BB:3E:00:05:75", "A0:BB:3E:00:05:EB", "A0:BB:3E:00:08:E3", "A0:BB:3E:00:0A:FA",
+        "A0:BB:3E:00:09:BA", "A0:BB:3E:00:0B:FD", "A0:BB:3E:00:0A:2E", "A0:BB:3E:00:0B:D9",
+        "A0:BB:3E:00:0C:ED", "A0:BB:3E:00:0E:4D", "A0:BB:3E:00:0E:7C", "A0:BB:3E:00:0F:79",
+        "A0:BB:3E:00:0F:BA", "A0:BB:3E:00:11:F3", "A0:BB:3E:00:11:5F", "A0:BB:3E:00:12:C1",
+        "A0:BB:3E:00:12:34", "A0:BB:3E:00:13:BF", "A0:BB:3E:00:14:5F", "A0:BB:3E:00:14:EA",
+        "A0:BB:3E:00:17:65", "A0:BB:3E:00:15:73", "A0:BB:3E:00:18:60", "A0:BB:3E:00:18:E8",
     }
 
     # Server 18 (z1mag - Porta 8080 non soggetta a blocchi AGCOM / Piracy Shield)
@@ -94,15 +110,23 @@ class HubliveStalkerClient:
     # Server 31 (Light-OTT - Primario Esteri con VPN)
     PORTAL_31_URL = "http://main.light-ott.net:80"
     PORTAL_31_MACS = [
-        "00:1B:79:41:43:5D", "00:1B:79:48:4E:B4", "00:1A:79:17:04:D7", "00:1A:79:00:20:15",
-        "00:1A:79:00:22:D5", "00:1A:79:B6:47:58", "00:1A:79:B6:49:B7", "00:1A:79:C8:B6:ED",
-        "00:1A:79:A0:E1:74", "00:1A:79:B5:AC:98", "00:1A:79:BA:A6:65", "00:1A:79:F0:9F:91",
-        "A0:BB:3E:00:0F:0D", "A0:BB:3E:00:06:87", "A0:BB:3E:00:07:36", "A0:BB:3E:00:09:28",
-        "A0:BB:3E:00:0A:53", "A0:BB:3E:00:0C:EC", "A0:BB:3E:00:02:82", "A0:BB:3E:00:0B:4D",
-        "A0:BB:3E:00:0A:CF", "A0:BB:3E:00:0A:FD", "A0:BB:3E:00:0A:E9", "A0:BB:3E:00:0C:EE",
-        "A0:BB:3E:00:0D:3A", "A0:BB:3E:00:0D:EB", "A0:BB:3E:00:0E:13", "A0:BB:3E:00:0E:E8",
-        "A0:BB:3E:00:0E:F5", "A0:BB:3E:00:0F:85", "A0:BB:3E:00:10:97", "A0:BB:3E:00:11:BD",
-        "A0:BB:3E:00:12:87"
+        "00:1A:79:A0:E1:74", "00:1A:79:C8:B6:ED", "00:1A:79:B6:49:B7", "00:1A:79:B6:47:58",
+        "00:1A:79:00:22:D5", "00:1A:79:00:20:15", "00:1B:79:48:4E:B4", "00:1B:79:41:43:5D",
+        "00:1A:79:17:04:D7", "00:1A:79:F0:9F:91", "A0:BB:3E:00:0F:0D", "00:1A:79:BA:A6:65",
+        "00:1A:79:B5:AC:98", "A0:BB:3E:00:09:28", "A0:BB:3E:00:02:82", "A0:BB:3E:00:0A:E9",
+        "A0:BB:3E:00:0E:E8", "A0:BB:3E:00:0D:EB", "A0:BB:3E:00:0F:2F", "A0:BB:3E:00:11:45",
+        "A0:BB:3E:00:11:EE", "A0:BB:3E:00:11:A8", "A0:BB:3E:00:12:32", "A0:BB:3E:00:11:56",
+        "A0:BB:3E:00:12:52", "A0:BB:3E:00:11:B6", "A0:BB:3E:00:12:7C", "A0:BB:3E:00:13:F8",
+        "A0:BB:3E:00:13:2B", "A0:BB:3E:00:13:50", "A0:BB:3E:00:15:DB", "A0:BB:3E:00:15:E9",
+        "A0:BB:3E:00:14:44", "A0:BB:3E:00:15:6F", "A0:BB:3E:00:16:99", "A0:BB:3E:00:16:9B",
+        "A0:BB:3E:00:16:F0", "A0:BB:3E:00:16:A5", "A0:BB:3E:00:17:D3", "A0:BB:3E:00:19:3A",
+        "A0:BB:3E:00:17:DE", "A0:BB:3E:00:19:4A", "A0:BB:3E:00:07:0C", "A0:BB:3E:00:04:E8",
+        "A0:BB:3E:00:20:9C", "A0:BB:3E:00:06:D0", "A0:BB:3E:00:09:33", "A0:BB:3E:00:09:8F",
+        "A0:BB:3E:00:08:00", "A0:BB:3E:00:08:35", "A0:BB:3E:00:08:19", "A0:BB:3E:00:0A:72",
+        "A0:BB:3E:00:0C:EF", "A0:BB:3E:00:0C:C7", "A0:BB:3E:00:10:39", "A0:BB:3E:00:0E:78",
+        "A0:BB:3E:00:10:C8", "A0:BB:3E:00:11:3A", "A0:BB:3E:00:12:B7", "A0:BB:3E:00:12:E5",
+        "A0:BB:3E:00:12:E6", "A0:BB:3E:00:12:2A", "A0:BB:3E:00:13:3A", "A0:BB:3E:00:13:3E",
+        "A0:BB:3E:00:13:A2", "A0:BB:3E:00:13:9E", "A0:BB:3E:00:11:0F", "A0:BB:3E:00:18:CD",
     ]
 
     # Set di sessione condiviso per escludere all'istante qualsiasi MAC caduto spontaneamente durante la riproduzione
@@ -600,6 +624,9 @@ class HubliveStalkerClient:
         pool = priority_macs + other_macs
 
         ch_mac = self.get_channel_working_mac(channel_name) if channel_name else None
+        if ch_mac and ch_mac in pool:
+            pool.remove(ch_mac)
+            pool.insert(0, ch_mac)
 
         # Limita i tentativi al numero specificato (default 1 per rispetto del server e pause umane controllate)
         if max_tries:
@@ -709,7 +736,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.3.43"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.3.44"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""
