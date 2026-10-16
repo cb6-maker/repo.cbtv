@@ -1634,7 +1634,10 @@ def list_eagle_genres(eb_type, force_refresh=False):
         for ch in hl_channels:
             title = f"{ch['name']} [COLOR yellow](HB)[/COLOR]"
             ch_icon = get_channel_tile(ch['name'], "sky_tv")
-            add_directory_item(title, {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name'], "server_id": "s12"}, is_folder=False, is_playable=True, icon=ch_icon)
+            item_params = {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name'], "server_id": "s12"}
+            if ch.get("sids"):
+                item_params["sids"] = ",".join(ch["sids"])
+            add_directory_item(title, item_params, is_folder=False, is_playable=True, icon=ch_icon)
             
     elif eb_type == "sky_cinema":
         # Canali Sky Cinema da Hublive (Fonte Premium Stabile)
@@ -1649,7 +1652,10 @@ def list_eagle_genres(eb_type, force_refresh=False):
         for ch in hl_channels:
             title = f"{ch['name']} [COLOR gold](HB)[/COLOR]"
             ch_icon = get_channel_tile(ch['name'], "sky_cinema") or cinema_icon
-            add_directory_item(title, {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name'], "server_id": "s12"}, is_folder=False, is_playable=True, icon=ch_icon)
+            item_params = {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name'], "server_id": "s12"}
+            if ch.get("sids"):
+                item_params["sids"] = ",".join(ch["sids"])
+            add_directory_item(title, item_params, is_folder=False, is_playable=True, icon=ch_icon)
             
     elif eb_type == "dazn_only":
         # Canali DAZN (Zona DAZN 1-4, DAZN 1-4, Serie A)
@@ -1663,7 +1669,10 @@ def list_eagle_genres(eb_type, force_refresh=False):
         dazn_icon = get_tile("tile_dazn.png")
         for ch in hl_channels:
             title = f"{ch['name']} [COLOR orange](HB)[/COLOR]"
-            add_directory_item(title, {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name'], "server_id": "s12"}, is_folder=False, is_playable=True, icon=dazn_icon)
+            item_params = {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name'], "server_id": "s12"}
+            if ch.get("sids"):
+                item_params["sids"] = ",".join(ch["sids"])
+            add_directory_item(title, item_params, is_folder=False, is_playable=True, icon=dazn_icon)
             
     elif eb_type == "sky_sport":
         # Canali Sky Sport (Sky Sport 24, Uno, Calcio 1-7, Arena, Action, F1, MotoGP, Max, Tennis, Eurosport)
@@ -1677,7 +1686,10 @@ def list_eagle_genres(eb_type, force_refresh=False):
         sport_icon = get_tile("tile_sky_sport.png")
         for ch in hl_channels:
             title = f"{ch['name']} [COLOR cyan](HB)[/COLOR]"
-            add_directory_item(title, {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name'], "server_id": "s12"}, is_folder=False, is_playable=True, icon=sport_icon)
+            item_params = {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name'], "server_id": "s12"}
+            if ch.get("sids"):
+                item_params["sids"] = ",".join(ch["sids"])
+            add_directory_item(title, item_params, is_folder=False, is_playable=True, icon=sport_icon)
         
     xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
 
@@ -1745,19 +1757,19 @@ class HBPlayer(xbmc.Player):
             self.stopped_by_user = not self.dropped
 
 
-def play_hublive_stalker(cmd, name=None, server_id=None):
-    """Riproduce un canale Hublive con protezione anti-ban, monitoraggio caduta stream e auto-reconnect."""
+def play_hublive_stalker(cmd, name=None, server_id=None, sids=None):
+    """Riproduce un canale Hublive con cascata qualitativa multi-ID, protezione anti-ban e monitoraggio caduta stream."""
     if not server_id:
         if cmd and ("z1mag" in cmd or "/play/live.php" in cmd and "z1mag" in cmd):
             server_id = "s18"
         else:
             server_id = "s12"
 
-    xbmc.log(f"[CBTV-HB] Avvio play per '{name}' con server iniziale {server_id}", xbmc.LOGINFO)
+    xbmc.log(f"[CBTV-HB] Avvio play per '{name}' (server: {server_id}, sids: {sids})", xbmc.LOGINFO)
     
     client = HubliveStalkerClient(server_id)
     failed_macs = set()       # MAC che hanno fallito in questa sessione
-    max_attempts = 5          # 5 tentativi consecutivi per trovare una linea libera
+    max_attempts = 3          # Tentativi complessivi
     monitor = xbmc.Monitor()
     
     final_url = None
@@ -1776,11 +1788,11 @@ def play_hublive_stalker(cmd, name=None, server_id=None):
         else:
             xbmcgui.Dialog().notification("CBTV", "Connessione Stalker...", xbmcgui.NOTIFICATION_INFO, 1000)
         
-        final_url, mac = client.resolve_stream(cmd, exclude_macs=failed_macs, channel_name=name, max_tries=3)
+        final_url, mac = client.resolve_stream(cmd, exclude_macs=failed_macs, channel_name=name, max_tries=3, sids=sids)
         if final_url:
             break
         
-        if attempt >= max_attempts - 1 or len(failed_macs) >= 18:
+        if attempt >= max_attempts - 1 or len(failed_macs) >= 12:
             break
 
     if not final_url:
@@ -1962,7 +1974,7 @@ if __name__ == '__main__':
     elif action == 'list_primafila':
         list_primafila()
     elif action == 'play_hublive_stalker':
-        play_hublive_stalker(params.get('cmd'), name=params.get('name') or params.get('title'), server_id=params.get('server_id'))
+        play_hublive_stalker(params.get('cmd'), name=params.get('name') or params.get('title'), server_id=params.get('server_id'), sids=params.get('sids'))
     elif action == 'list_premium_sport':
         list_premium_live("A1A165")
     elif action == 'list_dazn_mh':

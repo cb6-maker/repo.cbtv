@@ -111,10 +111,8 @@ class HubliveStalkerClient:
     PORTAL_12_URL = "http://204.52.191.254:80"
     PORTAL_12_MACS = [
         "00:1A:79:23:3D:04", "00:1A:79:49:70:7F", "00:1A:79:4B:73:63", "00:1A:79:4C:CF:19",
-        "00:1A:79:4D:10:EA", "00:1A:79:4D:8C:76", "00:1A:79:7A:EF:A4", "00:1A:79:7B:4C:85",
-        "00:1A:79:B6:E3:F9", "A0:BB:3E:FF:D1:F6", "A0:BB:3E:01:63:19", "A0:BB:3E:02:7D:3D",
-        "00:1A:79:00:10:22", "00:1A:79:00:1E:81", "00:1A:79:77:D7:0A", "00:1A:79:B5:69:40",
-        "00:1A:79:7C:99:37", "00:1A:79:3C:C6:C3"
+        "00:1A:79:4D:10:EA", "00:1A:79:B6:E3:F9", "A0:BB:3E:FF:D1:F6", "A0:BB:3E:01:63:19",
+        "A0:BB:3E:02:7D:3D", "00:1A:79:77:D7:0A", "00:1A:79:B5:69:40", "00:1A:79:7C:99:37"
     ]
 
     # Set di sessione condiviso per escludere all'istante qualsiasi MAC caduto spontaneamente durante la riproduzione
@@ -576,14 +574,31 @@ class HubliveStalkerClient:
 
         return play_token_match.group(1), stream_id
 
-    def resolve_stream(self, cmd, exclude_macs=None, channel_name=None, max_tries=1):
+    def resolve_stream(self, cmd, exclude_macs=None, channel_name=None, max_tries=3, sids=None):
         """
-        Prova i MAC disponibili (escludendo quelli già falliti e quelli in quarantena) per ottenere un URL di stream.
-        Prioritizza l'abbinamento canale-MAC memorizzato, i MAC Full Package e la lista dinamica dei Top MAC.
+        Prova i canali candidati in cascata qualitativa (sids) e i MAC disponibili.
+        Per ogni sid candidato prova fino a max_tries MAC (default 3).
+        Se il flusso risponde con 'black.ts', interrompe subito i tentativi su quel sid
+        e passa all'ID successivo della sequenza senza sprecare altri MAC.
         Restituisce (final_url, mac_usato) o (None, None).
         """
         if exclude_macs is None:
             exclude_macs = set()
+
+        # Risolvi la lista ordinata dei cmd/sid da provare
+        candidate_cmds = []
+        if sids:
+            if isinstance(sids, str):
+                sids_list = [s.strip() for s in sids.split(",") if s.strip()]
+            else:
+                sids_list = list(sids)
+            for s in sids_list:
+                candidate_cmds.append(f"ffmpeg /media/{s}.ts")
+        elif cmd:
+            candidate_cmds.append(cmd)
+
+        if not candidate_cmds:
+            return None, None
 
         pool = [m for m in self.mac_pool if m not in self.BLACKLISTED_MACS and m not in self.DROPPED_MACS]
 
@@ -592,7 +607,6 @@ class HubliveStalkerClient:
         if busy_macs:
             available = [m for m in pool if m not in busy_macs]
             if len(available) < 5:
-                # Se rimangono meno di 5 MAC liberi, resetta la quarantena per non esaurire mai il pool
                 xbmc.log(f"[CBTV-HB] Pochi MAC liberi ({len(available)}) per {self.server_id}! Reset preventivo quarantena.", xbmc.LOGINFO)
                 self.clear_busy_macs()
                 self.DROPPED_MACS.clear()
@@ -605,127 +619,141 @@ class HubliveStalkerClient:
             pool = [m for m in pool if m not in exclude_macs]
         
         # Mescola casualmente per ruotare ed esplorare nuovi MAC
-        # Raggruppa i MAC prioritari e mescolali casualmente per evitare collisioni tra dispositivi diversi
         priority_base = self.PORTAL_12_MACS if self.server_id == "s12" else self.PORTAL_18_MACS
         priority_macs = [m for m in priority_base if m in pool]
         random.shuffle(priority_macs)
         other_macs = [m for m in pool if m not in priority_macs]
         random.shuffle(other_macs)
-        pool = priority_macs + other_macs
+        base_pool = priority_macs + other_macs
 
         ch_mac = self.get_channel_working_mac(channel_name) if channel_name else None
-        if ch_mac and ch_mac in pool:
-            pool.remove(ch_mac)
-            pool.insert(0, ch_mac)
+        if ch_mac and ch_mac in base_pool:
+            base_pool.remove(ch_mac)
+            base_pool.insert(0, ch_mac)
 
-        # Limita i tentativi al numero specificato (default 1 per rispetto del server e pause umane controllate)
-        if max_tries:
-            pool = pool[:max_tries]
-        
-        if not pool:
+        if not base_pool:
             xbmc.log(f"[CBTV-HB] Tutti i MAC disponibili sono stati esauriti per {self.server_id}", xbmc.LOGWARNING)
             return None, None
 
-        for attempt, mac in enumerate(pool, 1):
-            is_top = mac in priority_base
-            xbmc.log(f"[CBTV-HB] Tentativo {attempt}/{len(pool)} con MAC: {mac} (Priority: {is_top})", xbmc.LOGINFO)
+        # Prova ogni cmd candidato in ordine decrescente di qualità
+        for sid_idx, target_cmd in enumerate(candidate_cmds, 1):
+            sid_match = re.search(r'/media/(\d+)\.ts', target_cmd)
+            curr_sid = sid_match.group(1) if sid_match else target_cmd
+            xbmc.log(f"[CBTV-HB] Valuto flusso candidato {sid_idx}/{len(candidate_cmds)}: ID {curr_sid}", xbmc.LOGINFO)
 
-            # 1. Handshake con timeout di sicurezza (5.0s per stabilità su mobile/Wi-Fi/VPN)
-            token = self._handshake(mac, timeout=5.0)
-            if not token:
-                xbmc.log(f"[CBTV-HB] Handshake fallito per MAC {mac}", xbmc.LOGWARNING)
-                if ch_mac and mac == ch_mac:
-                    self.remove_channel_working_mac(channel_name)
-                exclude_macs.add(mac)
-                self.record_busy_mac(mac, duration_sec=120)
+            mac_candidates = [m for m in base_pool if m not in exclude_macs]
+            if max_tries:
+                mac_candidates = mac_candidates[:max_tries]
+
+            blacklisted_stream = False
+
+            for attempt, mac in enumerate(mac_candidates, 1):
+                is_top = mac in priority_base
+                xbmc.log(f"[CBTV-HB] [ID {curr_sid}] Tentativo {attempt}/{len(mac_candidates)} con MAC: {mac} (Priority: {is_top})", xbmc.LOGINFO)
+
+                # 1. Handshake
+                token = self._handshake(mac, timeout=5.0)
+                if not token:
+                    xbmc.log(f"[CBTV-HB] Handshake fallito per MAC {mac}", xbmc.LOGWARNING)
+                    if ch_mac and mac == ch_mac:
+                        self.remove_channel_working_mac(channel_name)
+                    exclude_macs.add(mac)
+                    self.record_busy_mac(mac, duration_sec=120)
+                    continue
+
+                # 2. create_link
+                url_or_token, stream_id_out = self.create_link(mac, token, target_cmd, timeout=5.0)
+                if not url_or_token:
+                    xbmc.log(f"[CBTV-HB] create_link fallito per MAC {mac} su ID {curr_sid}", xbmc.LOGWARNING)
+                    exclude_macs.add(mac)
+                    self.record_busy_mac(mac, duration_sec=120)
+                    continue
+
+                # 3. Costruisci URL finale
+                if stream_id_out is None and url_or_token.startswith("http"):
+                    final_url = re.sub(r"http[s]?://[^/]+", self.portal_url, url_or_token)
+                else:
+                    final_url = (f"{self.portal_url}/play/live.php"
+                                 f"?mac={mac}&stream={stream_id_out}&extension=ts&play_token={url_or_token}")
+
+                # 4. Verifica stream ed estrazione rapida redirect CDN
+                v_session = None
+                try:
+                    v_session = requests.Session()
+                    v_session.trust_env = False
+                    with v_session.get(final_url, headers={"User-Agent": self.UA}, timeout=(3.0, 5.0), stream=True, allow_redirects=True) as r_play:
+                        if r_play.status_code >= 400:
+                            xbmc.log(f"[CBTV-HB] MAC {mac} HTTP error {r_play.status_code} su ID {curr_sid}", xbmc.LOGWARNING)
+                            exclude_macs.add(mac)
+                            self.record_busy_mac(mac, duration_sec=180)
+                            self.remove_top_verified_mac(mac)
+                            if ch_mac and mac == ch_mac:
+                                self.remove_channel_working_mac(channel_name)
+                            continue
+
+                        final_dest = str(r_play.url)
+                        final_dest_lower = final_dest.lower()
+                        content_type = (r_play.headers.get("Content-Type") or "").lower()
+
+                        if "black.ts" in final_dest_lower:
+                            xbmc.log(f"[CBTV-HB] ID {curr_sid} reindirizza a black.ts (flusso spento). Salto immediato al prossimo ID!", xbmc.LOGWARNING)
+                            blacklisted_stream = True
+                            break
+
+                        if "85.18.95.155" in final_dest_lower or "text/html" in content_type:
+                            xbmc.log(f"[CBTV-HB] MAC {mac} bloccato AGCOM o HTML ({final_dest[:60]})", xbmc.LOGWARNING)
+                            exclude_macs.add(mac)
+                            self.record_busy_mac(mac, duration_sec=300)
+                            continue
+
+                        head = r_play.raw.read(188)
+                        if not head or head.startswith(b'\x1f\x8b\x08') or b"Sito Illegale" in head or b"AGCOM" in head:
+                            xbmc.log(f"[CBTV-HB] MAC {mac} non valido o vuoto su ID {curr_sid}", xbmc.LOGWARNING)
+                            exclude_macs.add(mac)
+                            self.record_busy_mac(mac, duration_sec=120)
+                            continue
+                except requests.exceptions.ReadTimeout:
+                    xbmc.log(f"[CBTV-HB] MAC {mac} ReadTimeout su ID {curr_sid}", xbmc.LOGWARNING)
+                    if ch_mac and mac == ch_mac:
+                        self.remove_channel_working_mac(channel_name)
+                    exclude_macs.add(mac)
+                    self.record_busy_mac(mac, duration_sec=120)
+                    continue
+                except Exception as e:
+                    xbmc.log(f"[CBTV-HB] MAC {mac} errore verifica su ID {curr_sid}: {e}", xbmc.LOGWARNING)
+                    if ch_mac and mac == ch_mac:
+                        self.remove_channel_working_mac(channel_name)
+                    exclude_macs.add(mac)
+                    self.record_busy_mac(mac, duration_sec=120)
+                    continue
+                finally:
+                    if v_session:
+                        try:
+                            v_session.close()
+                        except Exception:
+                            pass
+
+                # 5. Linea verificata e funzionante al 100%!
+                final_target = final_dest if (final_dest and "204.52.191.254" in final_url and "204.52" not in final_dest) else final_url
+                final_url_with_ua = f"{final_target}|User-Agent={quote_plus(self.STREAM_UA)}"
+                xbmc.log(f"[CBTV-HB] Stream risolto con successo usando ID {curr_sid} e MAC {mac} -> {final_target[:80]}", xbmc.LOGINFO)
+                
+                self.remove_busy_mac(mac)
+                self._set_last_working_mac(mac)
+                self.record_top_verified_mac(mac)
+                if channel_name:
+                    self.record_channel_working_mac(channel_name, mac)
+                
+                return final_url_with_ua, mac
+
+            if blacklisted_stream:
                 continue
 
-            # 2. create_link con timeout di sicurezza (5.0s per VPN)
-            url_or_token, stream_id_out = self.create_link(mac, token, cmd, timeout=5.0)
-            if not url_or_token:
-                xbmc.log(f"[CBTV-HB] create_link fallito per MAC {mac}", xbmc.LOGWARNING)
-                exclude_macs.add(mac)
-                self.record_busy_mac(mac, duration_sec=120)
-                continue
-
-            # 3. Costruisci URL finale
-            if stream_id_out is None and url_or_token.startswith("http"):
-                final_url = re.sub(r"http[s]?://[^/]+", self.portal_url, url_or_token)
-            else:
-                final_url = (f"{self.portal_url}/play/live.php"
-                             f"?mac={mac}&stream={stream_id_out}&extension=ts&play_token={url_or_token}")
-
-            # 4. Verifica stream ed estrazione rapida redirect CDN (senza cookies per evitare 405/407 su CDN)
-            v_session = None
-            try:
-                v_session = requests.Session()
-                v_session.trust_env = False
-                with v_session.get(final_url, headers={"User-Agent": self.UA}, timeout=(3.0, 5.0), stream=True, allow_redirects=True) as r_play:
-                    if r_play.status_code >= 400:
-                        xbmc.log(f"[CBTV-HB] MAC {mac} HTTP error {r_play.status_code} (linea occupata/vietata)", xbmc.LOGWARNING)
-                        exclude_macs.add(mac)
-                        self.record_busy_mac(mac, duration_sec=180)
-                        self.remove_top_verified_mac(mac)
-                        if ch_mac and mac == ch_mac:
-                            self.remove_channel_working_mac(channel_name)
-                        continue
-
-                    final_dest = str(r_play.url)
-                    final_dest_lower = final_dest.lower()
-                    content_type = (r_play.headers.get("Content-Type") or "").lower()
-
-                    if "black.ts" in final_dest_lower or "85.18.95.155" in final_dest_lower or "text/html" in content_type:
-                        xbmc.log(f"[CBTV-HB] MAC {mac} bloccato o black.ts ({final_dest[:60]})", xbmc.LOGWARNING)
-                        exclude_macs.add(mac)
-                        self.record_busy_mac(mac, duration_sec=300)
-                        continue
-
-                    head = r_play.raw.read(188)
-                    if not head or head.startswith(b'\x1f\x8b\x08') or b"Sito Illegale" in head or b"AGCOM" in head:
-                        xbmc.log(f"[CBTV-HB] MAC {mac} non valido o vuoto", xbmc.LOGWARNING)
-                        exclude_macs.add(mac)
-                        self.record_busy_mac(mac, duration_sec=120)
-                        continue
-            except requests.exceptions.ReadTimeout:
-                xbmc.log(f"[CBTV-HB] MAC {mac} ReadTimeout (linea occupata o nessun pacchetto video ricevuto)", xbmc.LOGWARNING)
-                if ch_mac and mac == ch_mac:
-                    self.remove_channel_working_mac(channel_name)
-                exclude_macs.add(mac)
-                self.record_busy_mac(mac, duration_sec=120)
-                continue
-            except Exception as e:
-                xbmc.log(f"[CBTV-HB] MAC {mac} timeout/errore verifica: {e}", xbmc.LOGWARNING)
-                if ch_mac and mac == ch_mac:
-                    self.remove_channel_working_mac(channel_name)
-                exclude_macs.add(mac)
-                self.record_busy_mac(mac, duration_sec=120)
-                continue
-            finally:
-                if v_session:
-                    try:
-                        v_session.close()
-                    except Exception:
-                        pass
-
-            # 5. Linea verificata e funzionante al 100%!
-            final_target = final_dest if (final_dest and "204.52.191.254" in final_url and "204.52" not in final_dest) else final_url
-            final_url_with_ua = f"{final_target}|User-Agent={quote_plus(self.STREAM_UA)}"
-            xbmc.log(f"[CBTV-HB] Stream risolto con successo usando MAC {mac} -> {final_target[:80]}", xbmc.LOGINFO)
-            
-            # Salva come Last Working MAC e promuovi nei Top MAC
-            self.remove_busy_mac(mac)
-            self._set_last_working_mac(mac)
-            self.record_top_verified_mac(mac)
-            if channel_name:
-                self.record_channel_working_mac(channel_name, mac)
-            
-            return final_url_with_ua, mac
-
-        # Se tutti i MAC di questo batch erano occupati o non validi, restituisci None
+        # Se tutti i tentativi su tutti gli ID hanno fallito
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.3.47"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.3.5"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""

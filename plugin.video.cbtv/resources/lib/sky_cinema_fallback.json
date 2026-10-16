@@ -1,42 +1,52 @@
 [
   {
-    "name": "SKY CINEMA UNO HD",
-    "cmd": "ffmpeg http://localhost/ch/284887_"
+    "name": "SKY CINEMA UNO",
+    "sids": ["284886", "284810", "284887", "284888"],
+    "cmd": "ffmpeg http://localhost/ch/284886_"
   },
   {
-    "name": "SKY CINEMA DUE HD",
-    "cmd": "ffmpeg http://localhost/ch/284873_"
+    "name": "SKY CINEMA DUE",
+    "sids": ["284872", "284815", "284873", "284874"],
+    "cmd": "ffmpeg http://localhost/ch/284872_"
   },
   {
-    "name": "SKY CINEMA DUE +24 HD",
-    "cmd": "ffmpeg http://localhost/ch/284871_"
+    "name": "SKY CINEMA DUE +24",
+    "sids": ["284870", "284816", "284871"],
+    "cmd": "ffmpeg http://localhost/ch/284870_"
   },
   {
-    "name": "SKY CINEMA COLLECTION HD",
-    "cmd": "ffmpeg http://localhost/ch/284862_"
+    "name": "SKY CINEMA COLLECTION",
+    "sids": ["284861", "284819", "284862", "284863"],
+    "cmd": "ffmpeg http://localhost/ch/284861_"
   },
   {
-    "name": "SKY CINEMA ACTION HD",
-    "cmd": "ffmpeg http://localhost/ch/284859_"
+    "name": "SKY CINEMA ACTION",
+    "sids": ["284858", "284820", "284859", "284860"],
+    "cmd": "ffmpeg http://localhost/ch/284858_"
   },
   {
-    "name": "SKY CINEMA COMEDY HD",
-    "cmd": "ffmpeg http://localhost/ch/284865_"
+    "name": "SKY CINEMA COMEDY",
+    "sids": ["284864", "284818", "284865", "284866"],
+    "cmd": "ffmpeg http://localhost/ch/284864_"
   },
   {
-    "name": "SKY CINEMA DRAMA HD",
-    "cmd": "ffmpeg http://localhost/ch/284868_"
+    "name": "SKY CINEMA DRAMA",
+    "sids": ["284867", "284817", "284868", "284869"],
+    "cmd": "ffmpeg http://localhost/ch/284867_"
   },
   {
-    "name": "SKY CINEMA FAMILY HD",
-    "cmd": "ffmpeg http://localhost/ch/284876_"
+    "name": "SKY CINEMA FAMILY",
+    "sids": ["284875", "284814", "284876", "284877"],
+    "cmd": "ffmpeg http://localhost/ch/284875_"
   },
   {
-    "name": "SKY CINEMA ROMANCE HD",
-    "cmd": "ffmpeg http://localhost/ch/284879_"
+    "name": "SKY CINEMA ROMANCE",
+    "sids": ["284878", "284813", "284879", "284880"],
+    "cmd": "ffmpeg http://localhost/ch/284878_"
   },
   {
-    "name": "SKY CINEMA SUSPENSE HD",
-    "cmd": "ffmpeg http://localhost/ch/284882_"
+    "name": "SKY CINEMA SUSPENSE",
+    "sids": ["284881", "284812", "284882", "284883"],
+    "cmd": "ffmpeg http://localhost/ch/284881_"
   }
 ]

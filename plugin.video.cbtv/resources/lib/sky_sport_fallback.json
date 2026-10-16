@@ -1,118 +1,132 @@
 [
   {
-    "name": "SKY SPORT 24 HD",
-    "cmd": "ffmpeg http://localhost/ch/285211_"
-  },
-  {
-    "name": "SKY SPORT 24 4K",
+    "name": "SKY SPORT 24",
+    "sids": ["285210", "1562642", "285211"],
     "cmd": "ffmpeg http://localhost/ch/285210_"
   },
   {
-    "name": "SKY SPORT UNO HD",
-    "cmd": "ffmpeg http://localhost/ch/285257_"
-  },
-  {
-    "name": "SKY SPORT UNO 4K",
+    "name": "SKY SPORT UNO",
+    "sids": ["285258", "1562622", "285257"],
     "cmd": "ffmpeg http://localhost/ch/285258_"
   },
   {
-    "name": "SKY SPORT CALCIO HD",
-    "cmd": "ffmpeg http://localhost/ch/285233_"
-  },
-  {
-    "name": "SKY SPORT CALCIO 4K",
+    "name": "SKY SPORT CALCIO",
+    "sids": ["285232", "1562630", "285233"],
     "cmd": "ffmpeg http://localhost/ch/285232_"
   },
   {
-    "name": "SKY SPORT TENNIS HD",
-    "cmd": "ffmpeg http://localhost/ch/285218_"
-  },
-  {
-    "name": "SKY SPORT TENNIS 4K",
+    "name": "SKY SPORT TENNIS",
+    "sids": ["285216", "1562623", "285218"],
     "cmd": "ffmpeg http://localhost/ch/285216_"
   },
   {
-    "name": "SKY SPORT ARENA HD",
-    "cmd": "ffmpeg http://localhost/ch/285214_"
+    "name": "SKY SPORT ARENA",
+    "sids": ["1562632", "285214"],
+    "cmd": "ffmpeg http://localhost/ch/1562632_"
   },
   {
-    "name": "SKY SPORT MAX HD",
-    "cmd": "ffmpeg http://localhost/ch/707916_"
+    "name": "SKY SPORT F1",
+    "sids": ["1562629", "285221"],
+    "cmd": "ffmpeg http://localhost/ch/1562629_"
   },
   {
-    "name": "SKY SPORT F1 HD",
-    "cmd": "ffmpeg http://localhost/ch/285221_"
+    "name": "SKY SPORT MOTOGP",
+    "sids": ["1562624", "285227"],
+    "cmd": "ffmpeg http://localhost/ch/1562624_"
   },
   {
-    "name": "SKY SPORT MOTOGP HD",
-    "cmd": "ffmpeg http://localhost/ch/285227_"
+    "name": "SKY SPORT MAX",
+    "sids": ["1562626", "707916"],
+    "cmd": "ffmpeg http://localhost/ch/1562626_"
   },
   {
     "name": "SKY SPORT GOLF",
+    "sids": ["1562628"],
     "cmd": "ffmpeg http://localhost/ch/1562628_"
   },
   {
-    "name": "SKY SPORT NBA HD",
-    "cmd": "ffmpeg http://localhost/ch/285230_"
+    "name": "SKY SPORT NBA",
+    "sids": ["1562631", "285230"],
+    "cmd": "ffmpeg http://localhost/ch/1562631_"
   },
   {
-    "name": "SKY SPORT MIX HD",
-    "cmd": "ffmpeg http://localhost/ch/1492149_"
+    "name": "SKY SPORT MIX",
+    "sids": ["1562625", "1492149"],
+    "cmd": "ffmpeg http://localhost/ch/1562625_"
   },
   {
-    "name": "SKY SPORT LEGEND HD",
-    "cmd": "ffmpeg http://localhost/ch/1492146_"
+    "name": "SKY SPORT LEGEND",
+    "sids": ["1562627", "1492146"],
+    "cmd": "ffmpeg http://localhost/ch/1562627_"
   },
   {
     "name": "SKY SPORT BAR UNO HD",
+    "sids": ["287858"],
     "cmd": "ffmpeg http://localhost/ch/287858_"
   },
   {
     "name": "SKY SPORT BAR DUE HD",
+    "sids": ["287861"],
     "cmd": "ffmpeg http://localhost/ch/287861_"
   },
   {
-    "name": "SKY SPORT BAR PRIMEVIDEO HD",
-    "cmd": "ffmpeg http://localhost/ch/287864_"
-  },
-  {
-    "name": "SKY SPORT BAR PRIMEVIDEO 4K",
+    "name": "SKY SPORT BAR PRIMEVIDEO",
+    "sids": ["287863", "287864"],
     "cmd": "ffmpeg http://localhost/ch/287863_"
   },
   {
-    "name": "SKY CALCIO 1 HD",
-    "cmd": "ffmpeg http://localhost/ch/285236_"
+    "name": "SKY SPORT 251",
+    "sids": ["1562641", "285236"],
+    "cmd": "ffmpeg http://localhost/ch/1562641_"
   },
   {
-    "name": "SKY CALCIO 2 HD",
-    "cmd": "ffmpeg http://localhost/ch/285239_"
+    "name": "SKY SPORT 252",
+    "sids": ["1562640", "285239"],
+    "cmd": "ffmpeg http://localhost/ch/1562640_"
   },
   {
-    "name": "SKY CALCIO 3 HD",
-    "cmd": "ffmpeg http://localhost/ch/285242_"
+    "name": "SKY SPORT 253",
+    "sids": ["1562639", "285242"],
+    "cmd": "ffmpeg http://localhost/ch/1562639_"
   },
   {
-    "name": "SKY CALCIO 4 HD",
-    "cmd": "ffmpeg http://localhost/ch/285245_"
+    "name": "SKY SPORT 254",
+    "sids": ["1562638", "285245"],
+    "cmd": "ffmpeg http://localhost/ch/1562638_"
   },
   {
-    "name": "SKY CALCIO 5 HD",
-    "cmd": "ffmpeg http://localhost/ch/285248_"
+    "name": "SKY SPORT 255",
+    "sids": ["1562637", "285248"],
+    "cmd": "ffmpeg http://localhost/ch/1562637_"
   },
   {
-    "name": "SKY CALCIO 6 HD",
-    "cmd": "ffmpeg http://localhost/ch/285251_"
+    "name": "SKY SPORT 256",
+    "sids": ["1562636", "285251"],
+    "cmd": "ffmpeg http://localhost/ch/1562636_"
   },
   {
-    "name": "SKY CALCIO 7 HD",
-    "cmd": "ffmpeg http://localhost/ch/285253_"
+    "name": "SKY SPORT 257",
+    "sids": ["1562635", "285254"],
+    "cmd": "ffmpeg http://localhost/ch/1562635_"
   },
   {
-    "name": "SKY EUROSPORT 1 HD",
+    "name": "SKY SPORT 258",
+    "sids": ["1562634"],
+    "cmd": "ffmpeg http://localhost/ch/1562634_"
+  },
+  {
+    "name": "SKY SPORT 259",
+    "sids": ["1562633"],
+    "cmd": "ffmpeg http://localhost/ch/1562633_"
+  },
+  {
+    "name": "EUROSPORT 1",
+    "sids": ["285285", "1562609"],
     "cmd": "ffmpeg http://localhost/ch/285285_"
   },
   {
-    "name": "SKY EUROSPORT 2 HD",
+    "name": "EUROSPORT 2",
+    "sids": ["285287", "1562608"],
     "cmd": "ffmpeg http://localhost/ch/285287_"
   }
 ]

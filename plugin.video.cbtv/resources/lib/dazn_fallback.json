@@ -1,74 +1,112 @@
 [
   {
-    "name": "ZONA DAZN 1 HD",
-    "cmd": "ffmpeg http://localhost/ch/495145_"
-  },
-  {
-    "name": "ZONA DAZN 1 4K",
+    "name": "ZONA DAZN 1",
+    "sids": ["495146", "495145", "495144", "1562610"],
     "cmd": "ffmpeg http://localhost/ch/495146_"
   },
   {
-    "name": "ZONA DAZN 1 SD",
-    "cmd": "ffmpeg http://localhost/ch/495144_"
-  },
-  {
-    "name": "ZONA DAZN 2 HD",
-    "cmd": "ffmpeg http://localhost/ch/495148_"
-  },
-  {
-    "name": "ZONA DAZN 2 4K",
+    "name": "ZONA DAZN 2",
+    "sids": ["495149", "495148", "495147"],
     "cmd": "ffmpeg http://localhost/ch/495149_"
   },
   {
-    "name": "ZONA DAZN 2 SD",
-    "cmd": "ffmpeg http://localhost/ch/495147_"
-  },
-  {
-    "name": "ZONA DAZN 3 HD",
-    "cmd": "ffmpeg http://localhost/ch/495151_"
-  },
-  {
-    "name": "ZONA DAZN 3 4K",
+    "name": "ZONA DAZN 3",
+    "sids": ["495152", "495151", "495150"],
     "cmd": "ffmpeg http://localhost/ch/495152_"
   },
   {
-    "name": "ZONA DAZN 3 SD",
-    "cmd": "ffmpeg http://localhost/ch/495150_"
+    "name": "DAZN DIRETTA GOL SERIE A",
+    "sids": ["495143", "351713", "351709", "351708", "495141"],
+    "cmd": "ffmpeg http://localhost/ch/495143_"
   },
   {
-    "name": "DAZN DIRETTA GOL SERIE A HD",
-    "cmd": "ffmpeg http://localhost/ch/351709_"
+    "name": "DAZN DIRETTA GOL SERIE B",
+    "sids": ["495142", "351712", "351707", "351706", "495139"],
+    "cmd": "ffmpeg http://localhost/ch/495142_"
   },
   {
-    "name": "DAZN DIRETTA GOL SERIE A 4K",
-    "cmd": "ffmpeg http://localhost/ch/351713_"
-  },
-  {
-    "name": "DAZN DIRETTA GOL SERIE B HD",
-    "cmd": "ffmpeg http://localhost/ch/351707_"
-  },
-  {
-    "name": "DAZN DIRETTA GOL SERIE B 4K",
-    "cmd": "ffmpeg http://localhost/ch/351712_"
-  },
-  {
-    "name": "DAZN DIRETTA GOL EUROPA LEAGUE HD",
-    "cmd": "ffmpeg http://localhost/ch/351705_"
-  },
-  {
-    "name": "DAZN DIRETTA GOL EUROPA LEAGUE 4K",
+    "name": "DAZN DIRETTA GOL EUROPA LEAGUE",
+    "sids": ["351711", "351705", "351704"],
     "cmd": "ffmpeg http://localhost/ch/351711_"
   },
   {
-    "name": "DAZN CHANNEL HD",
-    "cmd": "ffmpeg http://localhost/ch/351701_"
+    "name": "DAZN 1 FAST+",
+    "sids": ["1562594", "525580"],
+    "cmd": "ffmpeg http://localhost/ch/1562594_"
   },
   {
-    "name": "DAZN CHANNEL 4K",
-    "cmd": "ffmpeg http://localhost/ch/351702_"
+    "name": "DAZN WEB 1",
+    "sids": ["351758", "351748", "351747"],
+    "cmd": "ffmpeg http://localhost/ch/351758_"
   },
   {
-    "name": "DAZN REDBULL 4K",
-    "cmd": "ffmpeg http://localhost/ch/351795_"
+    "name": "DAZN WEB 2",
+    "sids": ["351757", "351746", "351745"],
+    "cmd": "ffmpeg http://localhost/ch/351757_"
+  },
+  {
+    "name": "DAZN WEB 3",
+    "sids": ["351756", "351744", "351743"],
+    "cmd": "ffmpeg http://localhost/ch/351756_"
+  },
+  {
+    "name": "DAZN WEB 4",
+    "sids": ["351755", "351742", "351741"],
+    "cmd": "ffmpeg http://localhost/ch/351755_"
+  },
+  {
+    "name": "DAZN WEB 5",
+    "sids": ["351754", "351740", "351739"],
+    "cmd": "ffmpeg http://localhost/ch/351754_"
+  },
+  {
+    "name": "DAZN WEB 6",
+    "sids": ["351753", "351738", "351737"],
+    "cmd": "ffmpeg http://localhost/ch/351753_"
+  },
+  {
+    "name": "DAZN WEB 7",
+    "sids": ["351752", "351736", "351735"],
+    "cmd": "ffmpeg http://localhost/ch/351752_"
+  },
+  {
+    "name": "DAZN WEB 8",
+    "sids": ["351751", "351734", "351733"],
+    "cmd": "ffmpeg http://localhost/ch/351751_"
+  },
+  {
+    "name": "DAZN WEB 9",
+    "sids": ["351750", "351732", "351731"],
+    "cmd": "ffmpeg http://localhost/ch/351750_"
+  },
+  {
+    "name": "DAZN WEB 10",
+    "sids": ["351749", "351730", "351729"],
+    "cmd": "ffmpeg http://localhost/ch/351749_"
+  },
+  {
+    "name": "DAZN WEB 11",
+    "sids": ["351726", "351727", "351728"],
+    "cmd": "ffmpeg http://localhost/ch/351726_"
+  },
+  {
+    "name": "DAZN WEB 12",
+    "sids": ["351723", "351724", "351725"],
+    "cmd": "ffmpeg http://localhost/ch/351723_"
+  },
+  {
+    "name": "DAZN WEB 13",
+    "sids": ["351720", "351721", "351722"],
+    "cmd": "ffmpeg http://localhost/ch/351720_"
+  },
+  {
+    "name": "DAZN WEB 14",
+    "sids": ["351717", "351718", "351719"],
+    "cmd": "ffmpeg http://localhost/ch/351717_"
+  },
+  {
+    "name": "DAZN WEB 15",
+    "sids": ["351714", "351715", "351716"],
+    "cmd": "ffmpeg http://localhost/ch/351714_"
   }
 ]

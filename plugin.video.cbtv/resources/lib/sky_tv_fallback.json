@@ -1,42 +1,42 @@
 [
   {
-    "name": "SKY UNO HD",
-    "cmd": "ffmpeg http://localhost/ch/285475_"
-  },
-  {
-    "name": "SKY UNO 4K",
+    "name": "SKY UNO",
+    "sids": ["285474", "284825", "285475", "285476"],
     "cmd": "ffmpeg http://localhost/ch/285474_"
   },
   {
-    "name": "SKY UNO HEVC",
-    "cmd": "ffmpeg http://localhost/ch/284825_"
+    "name": "SKY ATLANTIC",
+    "sids": ["284894", "284807", "284895", "284896"],
+    "cmd": "ffmpeg http://localhost/ch/284894_"
   },
   {
-    "name": "SKY ATLANTIC HD",
-    "cmd": "ffmpeg http://localhost/ch/284895_"
-  },
-  {
-    "name": "SKY SERIE HD",
+    "name": "SKY SERIE",
+    "sids": ["284854"],
     "cmd": "ffmpeg http://localhost/ch/284854_"
   },
   {
-    "name": "SKY INVESTIGATION HD",
+    "name": "SKY INVESTIGATION",
+    "sids": ["284853"],
     "cmd": "ffmpeg http://localhost/ch/284853_"
   },
   {
-    "name": "SKY CRIME HD",
-    "cmd": "ffmpeg http://localhost/ch/285393_"
+    "name": "SKY CRIME",
+    "sids": ["285392", "284805", "285393"],
+    "cmd": "ffmpeg http://localhost/ch/285392_"
   },
   {
-    "name": "SKY ARTE HD",
-    "cmd": "ffmpeg http://localhost/ch/284893_"
+    "name": "SKY ARTE",
+    "sids": ["284892", "284791", "284893"],
+    "cmd": "ffmpeg http://localhost/ch/284892_"
   },
   {
-    "name": "SKY DOCUMENTARIES HD",
+    "name": "SKY DOCUMENTARIES",
+    "sids": ["284855"],
     "cmd": "ffmpeg http://localhost/ch/284855_"
   },
   {
-    "name": "SKY NATURE HD",
+    "name": "SKY NATURE",
+    "sids": ["284856"],
     "cmd": "ffmpeg http://localhost/ch/284856_"
   }
 ]
