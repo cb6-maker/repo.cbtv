@@ -545,10 +545,12 @@ class HubliveStalkerClient:
         """Chiama create_link e restituisce (play_token, stream_id) o (None, None)."""
         sid_match = re.search(r'stream=(\d+)', cmd)
         if not sid_match:
-            # Fallback: prova formato /ch/XXXXX
-            m2 = re.search(r'/ch/(\d+)', cmd)
+            # Fallback: prova formato /ch/XXXXX o /media/XXXXX o ID numerico diretto
+            m2 = re.search(r'(?:/ch/|/media/)(\d+)', cmd)
             if m2:
                 stream_id = m2.group(1)
+            elif re.match(r'^\d+$', cmd.strip()):
+                stream_id = cmd.strip()
             else:
                 xbmc.log(f"[CBTV-HB] Impossibile estrarre stream_id dal cmd: {cmd[:80]}", xbmc.LOGWARNING)
                 return None, None
