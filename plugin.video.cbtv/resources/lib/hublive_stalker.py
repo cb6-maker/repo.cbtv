@@ -505,10 +505,12 @@ class HubliveStalkerClient:
                     js = data.get("js", {})
                     if isinstance(js, dict) and js.get("token"):
                         return js.get("token")
-        except Exception:
-            pass
+                    xbmc.log(f"[CBTV-HB] Handshake risposto ma senza token: {str(data)[:100]}", xbmc.LOGWARNING)
+            else:
+                xbmc.log(f"[CBTV-HB] Handshake HTTP {r.status_code} per MAC {mac}: {r.text[:100]}", xbmc.LOGWARNING)
+        except Exception as e:
+            xbmc.log(f"[CBTV-HB] Handshake ECCEZIONE per MAC {mac}: {type(e).__name__} - {e}", xbmc.LOGWARNING)
 
-        xbmc.log(f"[CBTV-HB] Handshake fallito per MAC {mac}", xbmc.LOGWARNING)
         return None
 
     # ---- chiamata API generica ----
@@ -534,10 +536,11 @@ class HubliveStalkerClient:
                 data = r.json()
                 if isinstance(data, dict):
                     return data.get("js", {})
-        except Exception:
-            pass
+            else:
+                xbmc.log(f"[CBTV-HB] API '{action}' HTTP {r.status_code} per MAC {mac}: {r.text[:100]}", xbmc.LOGWARNING)
+        except Exception as e:
+            xbmc.log(f"[CBTV-HB] API '{action}' ECCEZIONE per MAC {mac}: {type(e).__name__} - {e}", xbmc.LOGWARNING)
 
-        xbmc.log(f"[CBTV-HB] API call '{action}' fallita", xbmc.LOGWARNING)
         return {}
 
     # ---- create_link ----
@@ -755,7 +758,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.4.0"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.4.1"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""
