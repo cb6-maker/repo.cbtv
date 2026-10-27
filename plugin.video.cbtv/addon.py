@@ -173,7 +173,7 @@ def get_sc_domain():
     global _SC_DOMAIN_CACHE
     if _SC_DOMAIN_CACHE:
         return _SC_DOMAIN_CACHE
-    default_domain = "streamingcommunityz.organic"
+    default_domain = "streamingcommunityz.day"
     domain_found = None
     try:
         try:
@@ -358,8 +358,8 @@ def sc_resolve(sc_id, ep_id=None):
     if ep_id: iframe_url += f"?episode_id={ep_id}"
     try:
         r = scraper.get(iframe_url, timeout=15)
-        m = re.search(r'embed_url="([^"]+)', r.text) or re.search(r'<iframe [^>]+src="([^"]+)', r.text)
-        if not m: m = re.search(r'src="(https://vixcloud\.co/embed/[^"]+)"', r.text)
+        m = re.search(r'<iframe\s+[^>]*?src=["\']([^"\']+)["\']', r.text, re.DOTALL) or re.search(r'embed_url=["\']([^"\']+)', r.text)
+        if not m: m = re.search(r'src="(https://vixcloud\.[^/]+/embed/[^"]+)"', r.text)
         if not m: return None
         raw_embed_url = m.group(1).replace('&amp;', '&')
         embed_url = html.unescape(raw_embed_url)
@@ -381,7 +381,7 @@ def sc_resolve(sc_id, ep_id=None):
         playlist_params = dict(parse_qsl(split_playlist.query))
         masterPlaylistParams.update(playlist_params)
         final_url = f"{split_playlist.scheme}://{split_playlist.netloc}{split_playlist.path}?{urlencode(masterPlaylistParams)}"
-        return final_url, iframe_url
+        return final_url, embed_url
     except: return None
 
 def sc_save_library(title, item_type, sc_id, slug=None, thumb=None):
@@ -2069,11 +2069,13 @@ if __name__ == '__main__':
         sc_id, ep_id = params.get('sc_id'), params.get('ep_id')
         res = sc_resolve(sc_id, ep_id)
         if res:
-            p_url, iframe_url = res
+            p_url, embed_url = res
+            parsed_embed = urlsplit(embed_url)
+            vix_origin = f"{parsed_embed.scheme}://{parsed_embed.netloc}"
             headers = {
                 'User-Agent': HEADERS["User-Agent"],
-                'Referer': 'https://vixcloud.co/',
-                'Origin': 'https://vixcloud.co'
+                'Referer': f"{vix_origin}/",
+                'Origin': vix_origin
             }
             headers_encoded = urlencode(headers)
             full_url = f"{p_url}|{headers_encoded}"
