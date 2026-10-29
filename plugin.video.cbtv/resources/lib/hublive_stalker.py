@@ -87,6 +87,7 @@ class HubliveStalkerClient:
         "A0:BB:3E:00:0F:BA", "A0:BB:3E:00:11:F3", "A0:BB:3E:00:11:5F", "A0:BB:3E:00:12:C1",
         "A0:BB:3E:00:12:34", "A0:BB:3E:00:13:BF", "A0:BB:3E:00:14:5F", "A0:BB:3E:00:14:EA",
         "A0:BB:3E:00:17:65", "A0:BB:3E:00:15:73", "A0:BB:3E:00:18:60", "A0:BB:3E:00:18:E8",
+        "00:1A:79:B6:E3:F9", "A0:BB:3E:FF:D1:F6",
     }
 
     # Server 18 (z1mag - Porta 8080 non soggetta a blocchi AGCOM / Piracy Shield)
@@ -111,8 +112,8 @@ class HubliveStalkerClient:
     PORTAL_12_URL = "http://204.52.191.254:80"
     PORTAL_12_MACS = [
         "00:1A:79:23:3D:04", "00:1A:79:49:70:7F", "00:1A:79:4B:73:63", "00:1A:79:4C:CF:19",
-        "00:1A:79:4D:10:EA", "00:1A:79:B6:E3:F9", "A0:BB:3E:FF:D1:F6", "A0:BB:3E:01:63:19",
-        "A0:BB:3E:02:7D:3D", "00:1A:79:77:D7:0A", "00:1A:79:B5:69:40", "00:1A:79:7C:99:37"
+        "00:1A:79:4D:10:EA", "00:1A:79:4D:8C:76", "A0:BB:3E:01:63:19", "A0:BB:3E:02:7D:3D",
+        "00:1A:79:77:D7:0A", "00:1A:79:B5:69:40", "00:1A:79:7C:99:37"
     ]
 
     # Set di sessione condiviso per escludere all'istante qualsiasi MAC caduto spontaneamente durante la riproduzione
@@ -758,7 +759,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.4.1"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.4.3"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""

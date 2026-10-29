@@ -1,0 +1,100 @@
+{
+  "updated_at": "2026-10-29 07:51:21",
+  "summary": {
+    "total_servers_in_staycanuca": 89,
+    "online_tcp_servers": 48,
+    "positive_from_8_candidates": 0,
+    "active_verified_italian_servers": 1,
+    "note": "Tutti gli 8 server candidati sul cluster 185.243.7.x / 185.233.19.3 hanno fallito il test di streaming reale dall'Italia: i loro nodi CDN reindirizzano a http://85.18.95.155 (blocco AGCOM) e il loro firewall banna temporaneamente l'IP dopo le chiamate a get_genres/create_link. L'unico server attivo e funzionante al 100% senza VPN resta il Server 12 (http://204.52.191.254:80)."
+  },
+  "backup_servers": [
+    {
+      "id": "server7",
+      "name": "Server 12",
+      "portal_url": "http://204.52.191.254:80",
+      "status": "ONLINE_VERIFIED_STREAMING",
+      "cdn_domain_pattern": "*.it1.ip1-st87-iijhhhggggwww.me:80",
+      "agcom_blocked": false,
+      "verified_macs_count": 11,
+      "verified_macs": [
+        "00:1A:79:23:3D:04",
+        "00:1A:79:49:70:7F",
+        "00:1A:79:4B:73:63",
+        "00:1A:79:4C:CF:19",
+        "00:1A:79:4D:10:EA",
+        "00:1A:79:4D:8C:76",
+        "A0:BB:3E:01:63:19",
+        "A0:BB:3E:02:7D:3D",
+        "00:1A:79:77:D7:0A",
+        "00:1A:79:B5:69:40",
+        "00:1A:79:7C:99:37"
+      ]
+    }
+  ],
+  "tested_8_candidates_report": [
+    {
+      "id": "server11",
+      "name": "Server 13",
+      "portal_url": "http://skunkytv.live:80",
+      "ip": "185.243.7.176",
+      "handshake": "OK (prima del rate-limit)",
+      "stream_test": "FAIL - CDN bloccato da AGCOM (redirect a http://85.18.95.155) + ban IP automatico"
+    },
+    {
+      "id": "server16",
+      "name": "Server 15",
+      "portal_url": "http://fronline.cc:80",
+      "ip": "185.243.7.177",
+      "handshake": "OK (prima del rate-limit)",
+      "stream_test": "FAIL - CDN bloccato da AGCOM / ConnectTimeout per ban IP firewall"
+    },
+    {
+      "id": "server10",
+      "name": "Server 17",
+      "portal_url": "http://secretservice.cc:80",
+      "ip": "185.243.7.177",
+      "handshake": "OK (prima del rate-limit)",
+      "stream_test": "FAIL - Condivide lo stesso IP/firewall di Server 15 (185.243.7.177), CDN bloccato"
+    },
+    {
+      "id": "server14",
+      "name": "Server 20",
+      "portal_url": "http://dinoon.sbs:80",
+      "ip": "185.243.7.174",
+      "handshake": "OK (prima del rate-limit)",
+      "stream_test": "FAIL - Stesso cluster 185.243.7.x, CDN bloccato e ban IP automatico"
+    },
+    {
+      "id": "server32",
+      "name": "Server 32",
+      "portal_url": "http://meilleuriptv8k.xyz:80",
+      "ip": "185.243.7.175",
+      "handshake": "OK (prima del rate-limit)",
+      "stream_test": "FAIL - Stesso cluster 185.243.7.x, CDN bloccato e ban IP automatico"
+    },
+    {
+      "id": "server51",
+      "name": "Server 51",
+      "portal_url": "http://tv24.site:80",
+      "ip": "185.233.19.3",
+      "handshake": "OK",
+      "stream_test": "FAIL - create_link funziona ma il flusso video reindirizza a http://85.18.95.155 (blocco AGCOM)"
+    },
+    {
+      "id": "server53",
+      "name": "Server 53",
+      "portal_url": "http://activeiptv.sbs:80",
+      "ip": "185.243.7.175",
+      "handshake": "OK (prima del rate-limit)",
+      "stream_test": "FAIL - Condivide lo stesso IP/firewall di Server 32 (185.243.7.175), CDN bloccato"
+    },
+    {
+      "id": "server59",
+      "name": "Server 59",
+      "portal_url": "http://suiptv265.xyz:80",
+      "ip": "185.243.7.174",
+      "handshake": "OK (prima del rate-limit)",
+      "stream_test": "FAIL - Condivide lo stesso IP/firewall di Server 20 (185.243.7.174), CDN bloccato"
+    }
+  ]
+}
