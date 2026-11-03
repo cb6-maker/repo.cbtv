@@ -129,7 +129,7 @@ class HubliveStalkerClient:
     STREAM_UA = "VLC/3.0.18 LibVLC/3.0.18"
 
     # ---- inizializzazione ----
-    def __init__(self, server_id="s12"):
+    def __init__(self, server_id="s18"):
         self.server_id = server_id
         if server_id == "s18":
             self.portal_url = self.PORTAL_18_URL
@@ -759,7 +759,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.4.3"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.4.4"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""

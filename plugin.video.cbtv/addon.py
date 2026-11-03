@@ -1629,12 +1629,12 @@ def list_eagle_genres(eb_type, force_refresh=False):
                             is_folder=True, icon=get_tile("tile_sky_intrattenimento.png"))
         if force_refresh:
             xbmcgui.Dialog().notification("CBTV", "Aggiornamento canali Sky TV...", xbmcgui.NOTIFICATION_INFO, 2000)
-        hl_client = HubliveStalkerClient("s12")
+        hl_client = HubliveStalkerClient("s18")
         hl_channels = hl_client.get_sky_tv_channels(force_refresh=force_refresh)
         for ch in hl_channels:
             title = f"{ch['name']} [COLOR yellow](HB)[/COLOR]"
             ch_icon = get_channel_tile(ch['name'], "sky_tv")
-            item_params = {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name'], "server_id": "s12"}
+            item_params = {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name'], "server_id": "s18"}
             if ch.get("sids"):
                 item_params["sids"] = ",".join(ch["sids"])
             add_directory_item(title, item_params, is_folder=False, is_playable=True, icon=ch_icon)
@@ -1646,13 +1646,13 @@ def list_eagle_genres(eb_type, force_refresh=False):
                             is_folder=True, icon=get_tile("tile_sky_cinema.png"))
         if force_refresh:
             xbmcgui.Dialog().notification("CBTV", "Aggiornamento canali Sky Cinema...", xbmcgui.NOTIFICATION_INFO, 2000)
-        hl_client = HubliveStalkerClient("s12")
+        hl_client = HubliveStalkerClient("s18")
         hl_channels = hl_client.get_sky_cinema_channels(force_refresh=force_refresh)
         cinema_icon = get_tile("tile_sky_cinema.png")
         for ch in hl_channels:
             title = f"{ch['name']} [COLOR gold](HB)[/COLOR]"
             ch_icon = get_channel_tile(ch['name'], "sky_cinema") or cinema_icon
-            item_params = {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name'], "server_id": "s12"}
+            item_params = {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name'], "server_id": "s18"}
             if ch.get("sids"):
                 item_params["sids"] = ",".join(ch["sids"])
             add_directory_item(title, item_params, is_folder=False, is_playable=True, icon=ch_icon)
@@ -1664,12 +1664,12 @@ def list_eagle_genres(eb_type, force_refresh=False):
                             is_folder=True, icon=get_tile("tile_dazn.png"))
         if force_refresh:
             xbmcgui.Dialog().notification("CBTV", "Aggiornamento canali DAZN...", xbmcgui.NOTIFICATION_INFO, 2000)
-        hl_client_dazn = HubliveStalkerClient("s12")
+        hl_client_dazn = HubliveStalkerClient("s18")
         hl_channels = hl_client_dazn.get_dazn_channels(force_refresh=force_refresh)
         dazn_icon = get_tile("tile_dazn.png")
         for ch in hl_channels:
             title = f"{ch['name']} [COLOR orange](HB)[/COLOR]"
-            item_params = {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name'], "server_id": "s12"}
+            item_params = {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name'], "server_id": "s18"}
             if ch.get("sids"):
                 item_params["sids"] = ",".join(ch["sids"])
             add_directory_item(title, item_params, is_folder=False, is_playable=True, icon=dazn_icon)
@@ -1681,12 +1681,12 @@ def list_eagle_genres(eb_type, force_refresh=False):
                             is_folder=True, icon=get_tile("tile_sky_sport.png"))
         if force_refresh:
             xbmcgui.Dialog().notification("CBTV", "Aggiornamento canali Sky Sport...", xbmcgui.NOTIFICATION_INFO, 2000)
-        hl_client = HubliveStalkerClient("s12")
+        hl_client = HubliveStalkerClient("s18")
         hl_channels = hl_client.get_sky_sport_channels(force_refresh=force_refresh)
         sport_icon = get_tile("tile_sky_sport.png")
         for ch in hl_channels:
             title = f"{ch['name']} [COLOR cyan](HB)[/COLOR]"
-            item_params = {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name'], "server_id": "s12"}
+            item_params = {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name'], "server_id": "s18"}
             if ch.get("sids"):
                 item_params["sids"] = ",".join(ch["sids"])
             add_directory_item(title, item_params, is_folder=False, is_playable=True, icon=sport_icon)
@@ -1763,7 +1763,7 @@ def play_hublive_stalker(cmd, name=None, server_id=None, sids=None):
         if cmd and ("z1mag" in cmd or "/play/live.php" in cmd and "z1mag" in cmd):
             server_id = "s18"
         else:
-            server_id = "s12"
+            server_id = "s18"
 
     xbmc.log(f"[CBTV-HB] Avvio play per '{name}' (server: {server_id}, sids: {sids})", xbmc.LOGINFO)
     
