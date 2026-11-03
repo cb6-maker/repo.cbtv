@@ -445,8 +445,14 @@ def get_channel_tile(name, category=""):
         return ''
     up = name.upper()
     
+    # Sport (DARE PRECEDENZA A SPORT PRIMA DI UNO/CINEMA/DOCUMENTARIES)
+    if "DAZN" in up or category in ("dazn", "dazn_only"):
+        return get_tile("tile_dazn.png")
+    if "SPORT" in up or "CALCIO" in up or "TENNIS" in up or "F1" in up or "MOTOGP" in up or "ARENA" in up or category in ("sport", "sky_sport"):
+        return get_tile("tile_sky_sport.png")
+
     # Cinema
-    if "CINEMA" in up or category == "sky_cinema":
+    if "CINEMA" in up or category in ("cinema", "sky_cinema"):
         return get_tile("tile_sky_cinema.png")
         
     # Sky Intrattenimento / Canali TV
@@ -466,18 +472,12 @@ def get_channel_tile(name, category=""):
         return get_tile("tile_sky_crime.png")
     if "INVESTIGATION" in up:
         return get_tile("tile_sky_investigation.png")
-    if "UNO" in up and ("SKY" in up or category == "sky_tv"):
+    if "UNO" in up and ("SKY" in up or category in ("tv", "sky_tv")):
         return get_tile("tile_sky_uno.png")
         
     # Primafila / Cinema VOD
-    if "PRIMAFILA" in up or "CINEPLAY" in up:
+    if "PRIMAFILA" in up or "CINEPLAY" in up or category == "primafila":
         return get_tile("tile_primafila.png")
-        
-    # Sport
-    if "DAZN" in up or category == "dazn_only":
-        return get_tile("tile_dazn.png")
-    if "SPORT" in up or "CALCIO" in up or "TENNIS" in up or "F1" in up or "MOTOGP" in up or "ARENA" in up or category == "sky_sport":
-        return get_tile("tile_sky_sport.png")
         
     return ''
 
@@ -821,11 +821,11 @@ def main_menu():
     add_directory_item("[COLOR lime][B]Agenda Sportiva (Eventi di Oggi)[/B][/COLOR]", {"action": "list_agenda"}, icon=get_tile("tile_agenda_sportiva.png"))
     add_directory_item("[COLOR gold][B]Canali Sport[/B][/COLOR]", {"action": "list_sport"}, icon=get_tile("tile_sport_live.png"))
     
-    # NOVITÀ: Canali Intrattenimento (Fonte Premium Stabile)
-    add_directory_item("[COLOR lightblue][B]Canali Intrattenimento[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_tv"}, icon=get_tile("tile_sky_intrattenimento.png"))
+    # NOVITÀ: Canali Intrattenimento (Scelta sorgente HLS / HB)
+    add_directory_item("[COLOR lightblue][B]Canali Intrattenimento[/B][/COLOR]", {"action": "menu_entertainment"}, icon=get_tile("tile_sky_intrattenimento.png"))
     
-    # Nuova cartella Canali Cinema in Home (Fonte Premium Stabile)
-    add_directory_item("[COLOR gold][B]Canali Cinema[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_cinema"}, icon=get_tile("tile_sky_cinema.png"))
+    # Nuova cartella Canali Cinema in Home (Scelta sorgente HLS / HB)
+    add_directory_item("[COLOR gold][B]Canali Cinema[/B][/COLOR]", {"action": "menu_cinema"}, icon=get_tile("tile_sky_cinema.png"))
     
     add_directory_item("[COLOR lime][B]Cerca Film[/B][/COLOR]", {"action": "sc_search", "search_type": "movie"}, icon=FANART)
     add_directory_item("[COLOR lime][B]Cerca Serie TV[/B][/COLOR]", {"action": "sc_search", "search_type": "tvshow"}, icon=FANART)
@@ -922,10 +922,88 @@ def list_sport():
     """Sottomenu Sport con tutte le sorgenti"""
     xbmcplugin.setContent(HANDLE, 'videos')
     
-    add_directory_item("[COLOR cyan][B]Sky Sport (HB)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_sport"}, icon=get_tile("tile_sky_sport.png"))
-    add_directory_item("[COLOR orange][B]Dazn (HB)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "dazn_only"}, icon=get_tile("tile_dazn.png"))
+    add_directory_item("[COLOR cyan][B]Sky Sport (HLS)[/B][/COLOR]", {"action": "list_vavoo_channels", "cat": "sport"}, icon=get_tile("tile_sky_sport.png"))
+    add_directory_item("[COLOR orange][B]Dazn (HLS)[/B][/COLOR]", {"action": "list_vavoo_channels", "cat": "dazn"}, icon=get_tile("tile_dazn.png"))
+    add_directory_item("[COLOR lightblue][B]Sky Sport (HB)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_sport"}, icon=get_tile("tile_sky_sport.png"))
+    add_directory_item("[COLOR lightsalmon][B]Dazn (HB)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "dazn_only"}, icon=get_tile("tile_dazn.png"))
     add_directory_item("[COLOR violet][B]Canali Internazionali[/B][/COLOR]", {"action": "list_international_sport"}, icon=get_tile("tile_canali_esteri.png"))
     
+    xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
+
+
+def menu_entertainment():
+    """Sottomenu Canali Intrattenimento con scelta sorgente"""
+    xbmcplugin.setContent(HANDLE, 'videos')
+    add_directory_item("[COLOR cyan][B]Canali Intrattenimento (HLS)[/B][/COLOR]", {"action": "list_vavoo_channels", "cat": "tv"}, icon=get_tile("tile_sky_intrattenimento.png"))
+    add_directory_item("[COLOR lightblue][B]Canali Intrattenimento (HB)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_tv"}, icon=get_tile("tile_sky_intrattenimento.png"))
+    xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
+
+
+def menu_cinema():
+    """Sottomenu Canali Cinema con scelta sorgente"""
+    xbmcplugin.setContent(HANDLE, 'videos')
+    add_directory_item("[COLOR gold][B]Canali Cinema (HLS)[/B][/COLOR]", {"action": "list_vavoo_channels", "cat": "cinema"}, icon=get_tile("tile_sky_cinema.png"))
+    add_directory_item("[COLOR gold][B]Sky Primafila (HLS)[/B][/COLOR]", {"action": "list_vavoo_channels", "cat": "primafila"}, icon=get_tile("tile_sky_cinema.png"))
+    add_directory_item("[COLOR yellow][B]Canali Cinema (HB)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_cinema"}, icon=get_tile("tile_sky_cinema.png"))
+    xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
+
+
+def list_vavoo_channels(category):
+    """Elenca i canali HLS di una specifica categoria dal file JSON locale"""
+    xbmcplugin.setContent(HANDLE, 'videos')
+    
+    cat_files = {
+        "sport": "vavoo_sport.json",
+        "dazn": "vavoo_sport.json",
+        "cinema": "vavoo_cinema.json",
+        "primafila": "vavoo_primafila.json",
+        "tv": "vavoo_tv.json"
+    }
+    
+    fname = cat_files.get(category, "vavoo_sport.json")
+    json_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources", "lib", fname)
+    
+    if not os.path.exists(json_path):
+        xbmcgui.Dialog().notification("CBTV", "File canali HLS non trovato", xbmcgui.NOTIFICATION_ERROR)
+        xbmcplugin.endOfDirectory(HANDLE)
+        return
+        
+    try:
+        with open(json_path, 'r', encoding='utf-8') as f:
+            channels = json.load(f)
+            
+        for ch in channels:
+            name = ch.get("name", "")
+            # Se siamo nella cartella Dazn, mostriamo solo DAZN
+            if category == "dazn" and "DAZN" not in name.upper():
+                continue
+            # Se siamo nella cartella Sport normale, escludiamo DAZN (perché ha la sua cartella dedicata)
+            if category == "sport" and "DAZN" in name.upper():
+                continue
+                
+            sources = ch.get("sources", [])
+            tag_color = "gold" if "cinema" in category or "primafila" in category else "cyan"
+            display_title = f"{name} [COLOR {tag_color}](HLS)[/COLOR]"
+            
+            icon = get_channel_tile(name, category)
+            if not icon:
+                if category in ("cinema", "primafila"):
+                    icon = get_tile("tile_sky_cinema.png")
+                elif category in ("sport", "dazn"):
+                    icon = get_tile("tile_dazn.png") if "DAZN" in name.upper() else get_tile("tile_sky_sport.png")
+                else:
+                    icon = get_tile("tile_sky_intrattenimento.png")
+                    
+            add_directory_item(
+                display_title,
+                {"action": "play_vavoo_hls", "title": name, "sources": json.dumps(sources)},
+                is_folder=False,
+                is_playable=True,
+                icon=icon
+            )
+    except Exception as e:
+        xbmc.log(f"[CBTV] Errore caricamento canali HLS ({category}): {e}", xbmc.LOGERROR)
+        
     xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
 
 
@@ -1952,6 +2030,16 @@ if __name__ == '__main__':
         list_international_fs_country(params.get('country'))
     elif action == 'play_internal':
         play_internal(params.get('url'), params.get('title'))
+    elif action == 'menu_entertainment':
+        menu_entertainment()
+    elif action == 'menu_cinema':
+        menu_cinema()
+    elif action == 'list_vavoo_channels':
+        list_vavoo_channels(params.get('cat'))
+    elif action == 'play_vavoo_hls':
+        from resources.lib.vavoo_client import play_hls_channel
+        sources = json.loads(params.get('sources', '[]'))
+        play_hls_channel(sources, title=params.get('title', 'Canale HLS'))
     elif action == 'list_eagle_genres':
         list_eagle_genres(params.get('eb_type'), force_refresh=(params.get('force_refresh') == '1'))
 
