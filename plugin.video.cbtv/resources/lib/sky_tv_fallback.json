@@ -1,57 +1,42 @@
 [
   {
     "name": "SKY UNO",
-    "sids": [
-      "438640",
-      "900501"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/438640_"
+    "sids": ["285474", "284825", "285475", "285476"],
+    "cmd": "ffmpeg http://localhost/ch/285474_"
   },
   {
-    "name": "SKY DOCUMENTARIES",
-    "sids": [
-      "925276",
-      "925275",
-      "438639",
-      "900499"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925276_"
+    "name": "SKY ATLANTIC",
+    "sids": ["284894", "284807", "284895", "284896"],
+    "cmd": "ffmpeg http://localhost/ch/284894_"
   },
   {
-    "name": "SKY NATURE",
-    "sids": [
-      "925258",
-      "925257",
-      "925259",
-      "900498"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925258_"
+    "name": "SKY SERIE",
+    "sids": ["284854"],
+    "cmd": "ffmpeg http://localhost/ch/284854_"
   },
   {
-    "name": "SKY ARTE",
-    "sids": [
-      "925255",
-      "925254",
-      "925256",
-      "900500"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925255_"
+    "name": "SKY INVESTIGATION",
+    "sids": ["284853"],
+    "cmd": "ffmpeg http://localhost/ch/284853_"
   },
   {
     "name": "SKY CRIME",
-    "sids": [
-      "925253",
-      "925252",
-      "925260"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925253_"
+    "sids": ["285392", "284805", "285393"],
+    "cmd": "ffmpeg http://localhost/ch/285392_"
   },
   {
-    "name": "SKY HISTORY",
-    "sids": [
-      "925272",
-      "900497"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925272_"
+    "name": "SKY ARTE",
+    "sids": ["284892", "284791", "284893"],
+    "cmd": "ffmpeg http://localhost/ch/284892_"
+  },
+  {
+    "name": "SKY DOCUMENTARIES",
+    "sids": ["284855"],
+    "cmd": "ffmpeg http://localhost/ch/284855_"
+  },
+  {
+    "name": "SKY NATURE",
+    "sids": ["284856"],
+    "cmd": "ffmpeg http://localhost/ch/284856_"
   }
 ]

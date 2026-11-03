@@ -129,7 +129,7 @@ class HubliveStalkerClient:
     STREAM_UA = "VLC/3.0.18 LibVLC/3.0.18"
 
     # ---- inizializzazione ----
-    def __init__(self, server_id="s18"):
+    def __init__(self, server_id="s12"):
         self.server_id = server_id
         if server_id == "s18":
             self.portal_url = self.PORTAL_18_URL
@@ -483,8 +483,7 @@ class HubliveStalkerClient:
                 return proxy_config.get_proxy_session()
             except Exception:
                 pass
-        s = requests.Session()
-        s.trust_env = False
+        s = self._get_session(use_proxy=True)
         return s
 
     # ---- handshake ----
@@ -495,8 +494,7 @@ class HubliveStalkerClient:
         headers = self._headers()
         cookies = self._cookies(mac)
 
-        s = requests.Session()
-        s.trust_env = False
+        s = self._get_session(use_proxy=True)
         try:
             s.cookies.clear()
             r = s.get(url, params=params, headers=headers, cookies=cookies, timeout=timeout)
@@ -529,8 +527,7 @@ class HubliveStalkerClient:
         headers = self._headers(mac, token)
         cookies = self._cookies(mac, token)
 
-        s = requests.Session()
-        s.trust_env = False
+        s = self._get_session(use_proxy=True)
         try:
             r = s.get(url, params=params, headers=headers, cookies=cookies, timeout=timeout)
             if r.status_code == 200:
@@ -685,8 +682,7 @@ class HubliveStalkerClient:
                 # 4. Verifica stream ed estrazione rapida redirect CDN
                 v_session = None
                 try:
-                    v_session = requests.Session()
-                    v_session.trust_env = False
+                    v_session = self._get_session(use_proxy=True)
                     with v_session.get(final_url, headers={"User-Agent": self.UA}, timeout=(3.0, 5.0), stream=True, allow_redirects=True) as r_play:
                         if r_play.status_code >= 400:
                             xbmc.log(f"[CBTV-HB] MAC {mac} HTTP error {r_play.status_code} su ID {curr_sid}", xbmc.LOGWARNING)
@@ -759,7 +755,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.4.4"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.4.5"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""

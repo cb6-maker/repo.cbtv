@@ -1,193 +1,112 @@
 [
   {
     "name": "ZONA DAZN 1",
-    "sids": [
-      "925626",
-      "925625"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925626_"
+    "sids": ["495146", "495145", "495144", "1562610"],
+    "cmd": "ffmpeg http://localhost/ch/495146_"
   },
   {
     "name": "ZONA DAZN 2",
-    "sids": [
-      "925624",
-      "925623"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925624_"
+    "sids": ["495149", "495148", "495147"],
+    "cmd": "ffmpeg http://localhost/ch/495149_"
   },
   {
-    "name": "DAZN 3",
-    "sids": [
-      "925622"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925622_"
+    "name": "ZONA DAZN 3",
+    "sids": ["495152", "495151", "495150"],
+    "cmd": "ffmpeg http://localhost/ch/495152_"
   },
   {
-    "name": "DAZN 4",
-    "sids": [
-      "925621"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925621_"
+    "name": "DAZN DIRETTA GOL SERIE A",
+    "sids": ["495143", "351713", "351709", "351708", "495141"],
+    "cmd": "ffmpeg http://localhost/ch/495143_"
   },
   {
-    "name": "DAZN 5",
-    "sids": [
-      "925620"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925620_"
+    "name": "DAZN DIRETTA GOL SERIE B",
+    "sids": ["495142", "351712", "351707", "351706", "495139"],
+    "cmd": "ffmpeg http://localhost/ch/495142_"
   },
   {
-    "name": "DAZN 6",
-    "sids": [
-      "925619"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925619_"
+    "name": "DAZN DIRETTA GOL EUROPA LEAGUE",
+    "sids": ["351711", "351705", "351704"],
+    "cmd": "ffmpeg http://localhost/ch/351711_"
   },
   {
-    "name": "DAZN 7",
-    "sids": [
-      "925618"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925618_"
+    "name": "DAZN 1 FAST+",
+    "sids": ["1562594", "525580"],
+    "cmd": "ffmpeg http://localhost/ch/1562594_"
   },
   {
-    "name": "DAZN 8",
-    "sids": [
-      "925617"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925617_"
+    "name": "DAZN WEB 1",
+    "sids": ["351758", "351748", "351747"],
+    "cmd": "ffmpeg http://localhost/ch/351758_"
   },
   {
-    "name": "DAZN 9",
-    "sids": [
-      "925616"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925616_"
+    "name": "DAZN WEB 2",
+    "sids": ["351757", "351746", "351745"],
+    "cmd": "ffmpeg http://localhost/ch/351757_"
   },
   {
-    "name": "DAZN 10",
-    "sids": [
-      "925615"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925615_"
+    "name": "DAZN WEB 3",
+    "sids": ["351756", "351744", "351743"],
+    "cmd": "ffmpeg http://localhost/ch/351756_"
   },
   {
-    "name": "DAZN 11",
-    "sids": [
-      "925614"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925614_"
+    "name": "DAZN WEB 4",
+    "sids": ["351755", "351742", "351741"],
+    "cmd": "ffmpeg http://localhost/ch/351755_"
   },
   {
-    "name": "DAZN 12",
-    "sids": [
-      "925613"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925613_"
+    "name": "DAZN WEB 5",
+    "sids": ["351754", "351740", "351739"],
+    "cmd": "ffmpeg http://localhost/ch/351754_"
   },
   {
-    "name": "DAZN EVENT",
-    "sids": [
-      "925612"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925612_"
+    "name": "DAZN WEB 6",
+    "sids": ["351753", "351738", "351737"],
+    "cmd": "ffmpeg http://localhost/ch/351753_"
   },
   {
-    "name": "DAZN EVENT 1",
-    "sids": [
-      "925611"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925611_"
+    "name": "DAZN WEB 7",
+    "sids": ["351752", "351736", "351735"],
+    "cmd": "ffmpeg http://localhost/ch/351752_"
   },
   {
-    "name": "DAZN EVENT 2",
-    "sids": [
-      "925610"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925610_"
+    "name": "DAZN WEB 8",
+    "sids": ["351751", "351734", "351733"],
+    "cmd": "ffmpeg http://localhost/ch/351751_"
   },
   {
-    "name": "DAZN EVENT 3",
-    "sids": [
-      "925609"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925609_"
+    "name": "DAZN WEB 9",
+    "sids": ["351750", "351732", "351731"],
+    "cmd": "ffmpeg http://localhost/ch/351750_"
   },
   {
-    "name": "DAZN EVENT 4",
-    "sids": [
-      "925608"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925608_"
+    "name": "DAZN WEB 10",
+    "sids": ["351749", "351730", "351729"],
+    "cmd": "ffmpeg http://localhost/ch/351749_"
   },
   {
-    "name": "DAZN EVENT 5",
-    "sids": [
-      "925607"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925607_"
+    "name": "DAZN WEB 11",
+    "sids": ["351726", "351727", "351728"],
+    "cmd": "ffmpeg http://localhost/ch/351726_"
   },
   {
-    "name": "DAZN EVENT 6",
-    "sids": [
-      "925606"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925606_"
+    "name": "DAZN WEB 12",
+    "sids": ["351723", "351724", "351725"],
+    "cmd": "ffmpeg http://localhost/ch/351723_"
   },
   {
-    "name": "DAZN EVENT 7",
-    "sids": [
-      "925605"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925605_"
+    "name": "DAZN WEB 13",
+    "sids": ["351720", "351721", "351722"],
+    "cmd": "ffmpeg http://localhost/ch/351720_"
   },
   {
-    "name": "DAZN EVENT 8",
-    "sids": [
-      "925604"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925604_"
+    "name": "DAZN WEB 14",
+    "sids": ["351717", "351718", "351719"],
+    "cmd": "ffmpeg http://localhost/ch/351717_"
   },
   {
-    "name": "DAZN EVENT 9",
-    "sids": [
-      "925603"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925603_"
-  },
-  {
-    "name": "DAZN EVENT 10",
-    "sids": [
-      "925602"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925602_"
-  },
-  {
-    "name": "DAZN EVENT 11",
-    "sids": [
-      "925601"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925601_"
-  },
-  {
-    "name": "DAZN EVENT 12",
-    "sids": [
-      "925600"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925600_"
-  },
-  {
-    "name": "DAZN EVENT 13",
-    "sids": [
-      "925599"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925599_"
-  },
-  {
-    "name": "DAZN EVENT 14",
-    "sids": [
-      "925597"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925597_"
+    "name": "DAZN WEB 15",
+    "sids": ["351714", "351715", "351716"],
+    "cmd": "ffmpeg http://localhost/ch/351714_"
   }
 ]

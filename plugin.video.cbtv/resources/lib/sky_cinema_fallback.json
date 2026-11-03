@@ -1,77 +1,52 @@
 [
   {
     "name": "SKY CINEMA UNO",
-    "sids": [
-      "925549",
-      "925548",
-      "925547"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925549_"
+    "sids": ["284886", "284810", "284887", "284888"],
+    "cmd": "ffmpeg http://localhost/ch/284886_"
   },
   {
-    "name": "SKY CINEMA DUE +1",
-    "sids": [
-      "925546"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925546_"
+    "name": "SKY CINEMA DUE",
+    "sids": ["284872", "284815", "284873", "284874"],
+    "cmd": "ffmpeg http://localhost/ch/284872_"
+  },
+  {
+    "name": "SKY CINEMA DUE +24",
+    "sids": ["284870", "284816", "284871"],
+    "cmd": "ffmpeg http://localhost/ch/284870_"
   },
   {
     "name": "SKY CINEMA COLLECTION",
-    "sids": [
-      "925542",
-      "925541",
-      "925540"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925542_"
+    "sids": ["284861", "284819", "284862", "284863"],
+    "cmd": "ffmpeg http://localhost/ch/284861_"
   },
   {
     "name": "SKY CINEMA ACTION",
-    "sids": [
-      "925545",
-      "925544",
-      "925543"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925545_"
+    "sids": ["284858", "284820", "284859", "284860"],
+    "cmd": "ffmpeg http://localhost/ch/284858_"
   },
   {
     "name": "SKY CINEMA COMEDY",
-    "sids": [
-      "925539",
-      "925538"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925539_"
+    "sids": ["284864", "284818", "284865", "284866"],
+    "cmd": "ffmpeg http://localhost/ch/284864_"
   },
   {
     "name": "SKY CINEMA DRAMA",
-    "sids": [
-      "925537",
-      "925536"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925537_"
+    "sids": ["284867", "284817", "284868", "284869"],
+    "cmd": "ffmpeg http://localhost/ch/284867_"
   },
   {
     "name": "SKY CINEMA FAMILY",
-    "sids": [
-      "925535",
-      "925534",
-      "925533"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925535_"
+    "sids": ["284875", "284814", "284876", "284877"],
+    "cmd": "ffmpeg http://localhost/ch/284875_"
   },
   {
     "name": "SKY CINEMA ROMANCE",
-    "sids": [
-      "925532",
-      "925531"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925532_"
+    "sids": ["284878", "284813", "284879", "284880"],
+    "cmd": "ffmpeg http://localhost/ch/284878_"
   },
   {
     "name": "SKY CINEMA SUSPENSE",
-    "sids": [
-      "925530",
-      "925529"
-    ],
-    "cmd": "ffmpeg http://localhost/ch/925530_"
+    "sids": ["284881", "284812", "284882", "284883"],
+    "cmd": "ffmpeg http://localhost/ch/284881_"
   }
 ]
