@@ -41,6 +41,13 @@
         ]
     },
     {
+        "name": "Sky Sport Tennis",
+        "sources": [
+            "https://vavoo.to/vavoo-iptv/play/210077178262e76f204fa6",
+            "https://vavoo.to/vavoo-iptv/play/78546677680f40b76841"
+        ]
+    },
+    {
         "name": "Super Tennis",
         "sources": [
             "https://vavoo.to/vavoo-iptv/play/55828211836e421b20575",
@@ -52,6 +59,13 @@
         "name": "Sky Sport F1",
         "sources": [
             "https://vavoo.to/vavoo-iptv/play/42467740561588897497f2"
+        ]
+    },
+    {
+        "name": "Sky Sport MotoGP",
+        "sources": [
+            "https://vavoo.to/vavoo-iptv/play/2090703806f47d7eb551ce",
+            "https://vavoo.to/vavoo-iptv/play/30363168866e9eeb997936"
         ]
     },
     {
