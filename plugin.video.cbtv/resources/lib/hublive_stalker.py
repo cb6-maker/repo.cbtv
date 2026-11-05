@@ -116,6 +116,16 @@ class HubliveStalkerClient:
         "00:1A:79:77:D7:0A", "00:1A:79:B5:69:40", "00:1A:79:7C:99:37"
     ]
 
+    # Server 50 (line.tvdsz.cc:80 - Seconda sorgente Stalker attiva, CDN senza blocchi)
+    PORTAL_50_URL = "http://line.tvdsz.cc:80"
+    PORTAL_50_MACS = [
+        "00:1A:79:3D:88:09", "00:1A:79:02:99:38", "00:1A:79:07:C8:28", "00:1A:79:18:1C:1E",
+        "00:1A:79:17:04:D7", "00:1A:79:F5:CE:C6", "00:1A:79:18:15:1D", "00:1A:79:18:20:E2",
+        "00:1A:79:18:1E:7D", "00:1A:79:BF:E9:5C", "00:1A:79:C3:BB:5F", "00:1A:79:34:86:5B",
+        "00:1A:79:1D:01:4C", "00:1A:79:5D:AB:3F", "00:1A:79:F5:CD:3D", "00:1A:79:F5:CD:F9",
+        "00:1A:79:F5:CD:F6", "00:1A:79:1D:01:E4", "00:1A:79:F5:CD:49"
+    ]
+
     # Set di sessione condiviso per escludere all'istante qualsiasi MAC caduto spontaneamente durante la riproduzione
     DROPPED_MACS = set()
 
@@ -131,7 +141,10 @@ class HubliveStalkerClient:
     # ---- inizializzazione ----
     def __init__(self, server_id="s12"):
         self.server_id = server_id
-        if server_id == "s18":
+        if server_id == "s50":
+            self.portal_url = self.PORTAL_50_URL
+            self.mac_pool = list(self.PORTAL_50_MACS)
+        elif server_id == "s18":
             self.portal_url = self.PORTAL_18_URL
             self.mac_pool = list(self.PORTAL_18_MACS)
         else:
@@ -229,7 +242,14 @@ class HubliveStalkerClient:
             portal = (s.get("portal_url") or s.get("portal") or s.get("url") or "").lower()
             macs = s.get("macs") or s.get("mac_pool") or []
 
-            if self.server_id == "s12":
+            if self.server_id == "s50":
+                if "tvdsz" in portal or "server50" in s.get("id", "").lower() or name == "Server 50":
+                    if not target_portal and "tvdsz" in portal:
+                        target_portal = s.get("portal_url") or s.get("portal") or s.get("url")
+                    for m in macs:
+                        if m and m not in combined_macs:
+                            combined_macs.append(m)
+            elif self.server_id == "s12":
                 if "204.52.191.254" in portal or "server7" in s.get("id", "").lower() or name in ["Server 12", "Server 7"]:
                     if not target_portal and "204.52" in portal:
                         target_portal = s.get("portal_url") or s.get("portal") or s.get("url")
@@ -244,7 +264,12 @@ class HubliveStalkerClient:
                         if m and m not in combined_macs:
                             combined_macs.append(m)
 
-        base_macs = self.PORTAL_12_MACS if self.server_id == "s12" else self.PORTAL_18_MACS
+        if self.server_id == "s50":
+            base_macs = self.PORTAL_50_MACS
+        elif self.server_id == "s12":
+            base_macs = self.PORTAL_12_MACS
+        else:
+            base_macs = self.PORTAL_18_MACS
         if combined_macs:
             for m in base_macs:
                 if m not in combined_macs:
@@ -736,7 +761,7 @@ class HubliveStalkerClient:
                             pass
 
                 # 5. Linea verificata e funzionante al 100%!
-                final_target = final_dest if (final_dest and "204.52.191.254" in final_url and "204.52" not in final_dest) else final_url
+                final_target = final_dest if (final_dest and (("204.52.191.254" in final_url and "204.52" not in final_dest) or ("tvdsz.cc" in final_url and "tvdsz" not in final_dest))) else final_url
                 final_url_with_ua = f"{final_target}|User-Agent={quote_plus(self.STREAM_UA)}"
                 xbmc.log(f"[CBTV-HB] Stream risolto con successo usando ID {curr_sid} e MAC {mac} -> {final_target[:80]}", xbmc.LOGINFO)
                 
@@ -755,7 +780,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.4.5"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.4.8"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""
@@ -961,7 +986,8 @@ class HubliveStalkerClient:
             cached = self._get_cache("sky_tv")
             if cached and len(cached) > 5:
                 return cached
-            fallback = self._load_fallback("sky_tv_fallback.json")
+            fb_name = "s50_tv_fallback.json" if self.server_id == "s50" else "sky_tv_fallback.json"
+            fallback = self._load_fallback(fb_name)
             if fallback:
                 self._set_cache("sky_tv", fallback)
                 return fallback
@@ -1013,7 +1039,8 @@ class HubliveStalkerClient:
             cached = self._get_cache("sky_cinema")
             if cached and len(cached) > 5:
                 return cached
-            fallback = self._load_fallback("sky_cinema_fallback.json")
+            fb_name = "s50_cinema_fallback.json" if self.server_id == "s50" else "sky_cinema_fallback.json"
+            fallback = self._load_fallback(fb_name)
             if fallback:
                 self._set_cache("sky_cinema", fallback)
                 return fallback
@@ -1059,7 +1086,8 @@ class HubliveStalkerClient:
             cached = self._get_cache("sky_sport")
             if cached and len(cached) > 10:
                 return cached
-            channels = self._load_fallback("sky_sport_fallback.json")
+            fb_name = "s50_sport_fallback.json" if self.server_id == "s50" else "sky_sport_fallback.json"
+            channels = self._load_fallback(fb_name)
             if channels:
                 self._set_cache("sky_sport", channels)
                 return channels
@@ -1119,7 +1147,8 @@ class HubliveStalkerClient:
             cached = self._get_cache("dazn")
             if cached and len(cached) > 5:
                 return cached
-            fallback = self._load_fallback("dazn_fallback.json")
+            fb_name = "s50_dazn_fallback.json" if self.server_id == "s50" else "dazn_fallback.json"
+            fallback = self._load_fallback(fb_name)
             if fallback:
                 self._set_cache("dazn", fallback)
                 return fallback

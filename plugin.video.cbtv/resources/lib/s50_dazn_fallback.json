@@ -1,0 +1,214 @@
+[
+  {
+    "name": "ZONA DAZN 1",
+    "sids": [
+      "1158734",
+      "1158736",
+      "1158735",
+      "1158737"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/1158734_"
+  },
+  {
+    "name": "ZONA DAZN 2",
+    "sids": [
+      "1158739",
+      "1158738",
+      "1158740",
+      "1158741"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/1158739_"
+  },
+  {
+    "name": "ZONA DAZN 3",
+    "sids": [
+      "1158743",
+      "1158742",
+      "1158744",
+      "1158745"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/1158743_"
+  },
+  {
+    "name": "ZONA DAZN 4",
+    "sids": [
+      "1158747",
+      "1158746",
+      "1158748",
+      "1158749"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/1158747_"
+  },
+  {
+    "name": "ZONA DAZN 5",
+    "sids": [
+      "1158751",
+      "1158750",
+      "1158752",
+      "1158753"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/1158751_"
+  },
+  {
+    "name": "DAZN SERIE A 1",
+    "sids": [
+      "1158714",
+      "1158723",
+      "1158724",
+      "1158725",
+      "1158726",
+      "1158727",
+      "1158728",
+      "1158729",
+      "1158730",
+      "1158731",
+      "1158732"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/1158714_"
+  },
+  {
+    "name": "DAZN SERIE A 2",
+    "sids": [
+      "1158715",
+      "1158733"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/1158715_"
+  },
+  {
+    "name": "DAZN SERIE A 3",
+    "sids": [
+      "1158716"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/1158716_"
+  },
+  {
+    "name": "DAZN SERIE A 4",
+    "sids": [
+      "1158717"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/1158717_"
+  },
+  {
+    "name": "DAZN SERIE A 5",
+    "sids": [
+      "1158718"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/1158718_"
+  },
+  {
+    "name": "DAZN SERIE A 6",
+    "sids": [
+      "1158719"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/1158719_"
+  },
+  {
+    "name": "DAZN SERIE A 7",
+    "sids": [
+      "1158720"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/1158720_"
+  },
+  {
+    "name": "DAZN SERIE A 8",
+    "sids": [
+      "1158721"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/1158721_"
+  },
+  {
+    "name": "DAZN SERIE A 9",
+    "sids": [
+      "1158722"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/1158722_"
+  },
+  {
+    "name": "DAZN SERIE A 10",
+    "sids": [
+      "1158723"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/1158723_"
+  },
+  {
+    "name": "DAZN EVENT 1",
+    "sids": [
+      "228862",
+      "228853",
+      "228849",
+      "228848",
+      "884017",
+      "884018",
+      "896975",
+      "896976",
+      "896977",
+      "896978",
+      "896979"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/228862_"
+  },
+  {
+    "name": "DAZN EVENT 2",
+    "sids": [
+      "228861",
+      "896980"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/228861_"
+  },
+  {
+    "name": "DAZN EVENT 3",
+    "sids": [
+      "228860"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/228860_"
+  },
+  {
+    "name": "DAZN EVENT 4",
+    "sids": [
+      "228859"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/228859_"
+  },
+  {
+    "name": "DAZN EVENT 5",
+    "sids": [
+      "228858"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/228858_"
+  },
+  {
+    "name": "DAZN EVENT 6",
+    "sids": [
+      "228857"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/228857_"
+  },
+  {
+    "name": "DAZN EVENT 7",
+    "sids": [
+      "228856"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/228856_"
+  },
+  {
+    "name": "DAZN EVENT 8",
+    "sids": [
+      "228855"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/228855_"
+  },
+  {
+    "name": "DAZN EVENT 9",
+    "sids": [
+      "228854"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/228854_"
+  },
+  {
+    "name": "DAZN EVENT 10",
+    "sids": [
+      "228853"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/228853_"
+  }
+]

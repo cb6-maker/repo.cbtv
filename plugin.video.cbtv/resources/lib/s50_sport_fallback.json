@@ -1,0 +1,152 @@
+[
+  {
+    "name": "SKY SPORT 24",
+    "sids": [
+      "1167168",
+      "177690"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/1167168_"
+  },
+  {
+    "name": "SKY SPORT UNO",
+    "sids": [
+      "1167167",
+      "177687"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/1167167_"
+  },
+  {
+    "name": "SKY SPORT CALCIO",
+    "sids": [
+      "1167169",
+      "177694"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/1167169_"
+  },
+  {
+    "name": "SKY SPORT TENNIS",
+    "sids": [
+      "1167175",
+      "1167174"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/1167175_"
+  },
+  {
+    "name": "SKY SPORT MOTOGP",
+    "sids": [
+      "1167177",
+      "177700"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/1167177_"
+  },
+  {
+    "name": "SKY SPORT F1",
+    "sids": [
+      "1167173",
+      "177699"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/1167173_"
+  },
+  {
+    "name": "SKY SPORT ARENA",
+    "sids": [
+      "1167171",
+      "177696"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/1167171_"
+  },
+  {
+    "name": "SKY SPORT MAX",
+    "sids": [
+      "1167172",
+      "177697"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/1167172_"
+  },
+  {
+    "name": "SKY SPORT NBA",
+    "sids": [
+      "1167176",
+      "177701"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/1167176_"
+  },
+  {
+    "name": "SKY SPORT GOLF",
+    "sids": [
+      "1167170",
+      "240463"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/1167170_"
+  },
+  {
+    "name": "EUROSPORT 1",
+    "sids": [
+      "177964"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/177964_"
+  },
+  {
+    "name": "EUROSPORT 2",
+    "sids": [
+      "177966"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/177966_"
+  },
+  {
+    "name": "SUPER TENNIS",
+    "sids": [
+      "228924"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/228924_"
+  },
+  {
+    "name": "SKY SPORT 251",
+    "sids": [
+      "177769"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/177769_"
+  },
+  {
+    "name": "SKY SPORT 252",
+    "sids": [
+      "177770"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/177770_"
+  },
+  {
+    "name": "SKY SPORT 253",
+    "sids": [
+      "177771"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/177771_"
+  },
+  {
+    "name": "SKY SPORT 254",
+    "sids": [
+      "177772"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/177772_"
+  },
+  {
+    "name": "SKY SPORT 255",
+    "sids": [
+      "177773"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/177773_"
+  },
+  {
+    "name": "SKY SPORT 256",
+    "sids": [
+      "177774"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/177774_"
+  },
+  {
+    "name": "SKY SPORT 257",
+    "sids": [
+      "704711"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/704711_"
+  }
+]

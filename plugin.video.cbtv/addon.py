@@ -888,7 +888,7 @@ def search_live_channels(query=None):
     except Exception as e:
         xbmc.log(f"[CBTV] Search Premium Error: {e}", xbmc.LOGERROR)
 
-    # 4. Canali da Hublive (HB)
+    # 4. Canali da Hublive {s_label}
     try:
         from resources.lib.hublive_stalker import HubliveStalkerClient
         hl_client = HubliveStalkerClient()
@@ -919,32 +919,37 @@ def search_live_channels(query=None):
     xbmcplugin.endOfDirectory(HANDLE)
 
 def list_sport():
-    """Sottomenu Sport con tutte le sorgenti"""
+    """Sottomenu Sport organizzato per sorgente (12, 50, HLS)"""
     xbmcplugin.setContent(HANDLE, 'videos')
     
+    add_directory_item("[COLOR lightblue][B]Sky Sport (12)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_sport", "server_id": "s12"}, icon=get_tile("tile_sky_sport.png"))
+    add_directory_item("[COLOR dodgerblue][B]Sky Sport (50)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_sport", "server_id": "s50"}, icon=get_tile("tile_sky_sport.png"))
     add_directory_item("[COLOR cyan][B]Sky Sport (HLS)[/B][/COLOR]", {"action": "list_vavoo_channels", "cat": "sport"}, icon=get_tile("tile_sky_sport.png"))
+    
+    add_directory_item("[COLOR lightsalmon][B]Dazn (12)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "dazn_only", "server_id": "s12"}, icon=get_tile("tile_dazn.png"))
+    add_directory_item("[COLOR coral][B]Dazn (50)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "dazn_only", "server_id": "s50"}, icon=get_tile("tile_dazn.png"))
     add_directory_item("[COLOR orange][B]Dazn (HLS)[/B][/COLOR]", {"action": "list_vavoo_channels", "cat": "dazn"}, icon=get_tile("tile_dazn.png"))
-    add_directory_item("[COLOR lightblue][B]Sky Sport (HB)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_sport"}, icon=get_tile("tile_sky_sport.png"))
-    add_directory_item("[COLOR lightsalmon][B]Dazn (HB)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "dazn_only"}, icon=get_tile("tile_dazn.png"))
-    add_directory_item("[COLOR violet][B]Canali Internazionali[/B][/COLOR]", {"action": "list_international_sport"}, icon=get_tile("tile_canali_esteri.png"))
     
     xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
 
 
 def menu_entertainment():
-    """Sottomenu Canali Intrattenimento con scelta sorgente"""
+    """Sottomenu Canali Intrattenimento con scelta sorgente (12, 50, HLS)"""
     xbmcplugin.setContent(HANDLE, 'videos')
+    add_directory_item("[COLOR lightblue][B]Canali Intrattenimento (12)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_tv", "server_id": "s12"}, icon=get_tile("tile_sky_intrattenimento.png"))
+    add_directory_item("[COLOR dodgerblue][B]Canali Intrattenimento (50)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_tv", "server_id": "s50"}, icon=get_tile("tile_sky_intrattenimento.png"))
     add_directory_item("[COLOR cyan][B]Canali Intrattenimento (HLS)[/B][/COLOR]", {"action": "list_vavoo_channels", "cat": "tv"}, icon=get_tile("tile_sky_intrattenimento.png"))
-    add_directory_item("[COLOR lightblue][B]Canali Intrattenimento (HB)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_tv"}, icon=get_tile("tile_sky_intrattenimento.png"))
     xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
 
 
 def menu_cinema():
-    """Sottomenu Canali Cinema con scelta sorgente"""
+    """Sottomenu Canali Cinema con scelta sorgente (12, 50, HLS)"""
     xbmcplugin.setContent(HANDLE, 'videos')
+    add_directory_item("[COLOR yellow][B]Canali Cinema (12)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_cinema", "server_id": "s12"}, icon=get_tile("tile_sky_cinema.png"))
+    add_directory_item("[COLOR moccasin][B]Canali Cinema (50)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_cinema", "server_id": "s50"}, icon=get_tile("tile_sky_cinema.png"))
     add_directory_item("[COLOR gold][B]Canali Cinema (HLS)[/B][/COLOR]", {"action": "list_vavoo_channels", "cat": "cinema"}, icon=get_tile("tile_sky_cinema.png"))
-    add_directory_item("[COLOR gold][B]Sky Primafila (HLS)[/B][/COLOR]", {"action": "list_vavoo_channels", "cat": "primafila"}, icon=get_tile("tile_sky_cinema.png"))
-    add_directory_item("[COLOR yellow][B]Canali Cinema (HB)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_cinema"}, icon=get_tile("tile_sky_cinema.png"))
+    add_directory_item("[COLOR gold][B]Sky Primafila (50)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "primafila", "server_id": "s50"}, icon=get_tile("tile_sky_cinema.png"))
+    add_directory_item("[COLOR goldenrod][B]Sky Primafila (HLS)[/B][/COLOR]", {"action": "list_vavoo_channels", "cat": "primafila"}, icon=get_tile("tile_sky_cinema.png"))
     xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
 
 
@@ -1423,7 +1428,7 @@ def list_hb_esteri_channels(group, force_refresh=False):
     
     channels = client.get_foreign_sport_channels(group, force_refresh=force_refresh)
     for ch in channels:
-        title = f"{ch['name']} [COLOR yellow](HB)[/COLOR]"
+        title = f"{ch['name']} [COLOR yellow]{s_label}[/COLOR]"
         add_directory_item(
             title,
             {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name'], "server_id": "s31"},
@@ -1691,7 +1696,8 @@ def play_mpd(resolve_data):
         xbmcgui.Dialog().notification("Play MPD", f"Errore: {str(e)}", xbmcgui.NOTIFICATION_ERROR)
         xbmcplugin.setResolvedUrl(HANDLE, False, xbmcgui.ListItem())
 
-def list_eagle_genres(eb_type, force_refresh=False):
+def list_eagle_genres(eb_type, force_refresh=False, server_id="s12"):
+    s_label = "(50)" if server_id == "s50" else "(12)"
     """Elenca le categorie o i canali di Hublive con caricamento istantaneo e ricarica a comando"""
     xbmcplugin.setContent(HANDLE, 'videos')
     from resources.lib.hublive_stalker import HubliveStalkerClient
@@ -1700,12 +1706,12 @@ def list_eagle_genres(eb_type, force_refresh=False):
         # Canali Intrattenimento e Cinema da Hublive (NO canali sport)
         if force_refresh:
             xbmcgui.Dialog().notification("CBTV", "Aggiornamento canali Sky TV...", xbmcgui.NOTIFICATION_INFO, 2000)
-        hl_client = HubliveStalkerClient("s12")
+        hl_client = HubliveStalkerClient(server_id)
         hl_channels = hl_client.get_sky_tv_channels(force_refresh=force_refresh)
         for ch in hl_channels:
-            title = f"{ch['name']} [COLOR yellow](HB)[/COLOR]"
+            title = f"{ch['name']} [COLOR yellow]{s_label}[/COLOR]"
             ch_icon = get_channel_tile(ch['name'], "sky_tv")
-            item_params = {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name'], "server_id": "s12"}
+            item_params = {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name'], "server_id": server_id}
             if ch.get("sids"):
                 item_params["sids"] = ",".join(ch["sids"])
             add_directory_item(title, item_params, is_folder=False, is_playable=True, icon=ch_icon)
@@ -1714,27 +1720,42 @@ def list_eagle_genres(eb_type, force_refresh=False):
         # Canali Sky Cinema da Hublive (Fonte Premium Stabile)
         if force_refresh:
             xbmcgui.Dialog().notification("CBTV", "Aggiornamento canali Sky Cinema...", xbmcgui.NOTIFICATION_INFO, 2000)
-        hl_client = HubliveStalkerClient("s12")
+        hl_client = HubliveStalkerClient(server_id)
         hl_channels = hl_client.get_sky_cinema_channels(force_refresh=force_refresh)
         cinema_icon = get_tile("tile_sky_cinema.png")
         for ch in hl_channels:
-            title = f"{ch['name']} [COLOR gold](HB)[/COLOR]"
+            title = f"{ch['name']} [COLOR gold]{s_label}[/COLOR]"
             ch_icon = get_channel_tile(ch['name'], "sky_cinema") or cinema_icon
-            item_params = {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name'], "server_id": "s12"}
+            item_params = {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name'], "server_id": server_id}
             if ch.get("sids"):
                 item_params["sids"] = ",".join(ch["sids"])
             add_directory_item(title, item_params, is_folder=False, is_playable=True, icon=ch_icon)
+            
+    elif eb_type == "primafila":
+        if force_refresh:
+            xbmcgui.Dialog().notification("CBTV", "Aggiornamento Sky Primafila...", xbmcgui.NOTIFICATION_INFO, 2000)
+        hl_client = HubliveStalkerClient(server_id)
+        from resources.lib.hublive_stalker import HubliveStalkerClient as _HSC
+        # Load primafila fallback for s50
+        pf_channels = hl_client._load_fallback("s50_primafila_fallback.json") or []
+        cinema_icon = get_tile("tile_sky_cinema.png")
+        for ch in pf_channels:
+            title = f"{ch['name']} [COLOR gold]{s_label}[/COLOR]"
+            item_params = {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name'], "server_id": server_id}
+            if ch.get("sids"):
+                item_params["sids"] = ",".join(ch["sids"])
+            add_directory_item(title, item_params, is_folder=False, is_playable=True, icon=cinema_icon)
             
     elif eb_type == "dazn_only":
         # Canali DAZN (Zona DAZN 1-4, DAZN 1-4, Serie A)
         if force_refresh:
             xbmcgui.Dialog().notification("CBTV", "Aggiornamento canali DAZN...", xbmcgui.NOTIFICATION_INFO, 2000)
-        hl_client_dazn = HubliveStalkerClient("s12")
+        hl_client_dazn = HubliveStalkerClient(server_id)
         hl_channels = hl_client_dazn.get_dazn_channels(force_refresh=force_refresh)
         dazn_icon = get_tile("tile_dazn.png")
         for ch in hl_channels:
-            title = f"{ch['name']} [COLOR orange](HB)[/COLOR]"
-            item_params = {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name'], "server_id": "s12"}
+            title = f"{ch['name']} [COLOR orange]{s_label}[/COLOR]"
+            item_params = {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name'], "server_id": server_id}
             if ch.get("sids"):
                 item_params["sids"] = ",".join(ch["sids"])
             add_directory_item(title, item_params, is_folder=False, is_playable=True, icon=dazn_icon)
@@ -1743,12 +1764,12 @@ def list_eagle_genres(eb_type, force_refresh=False):
         # Canali Sky Sport (Sky Sport 24, Uno, Calcio 1-7, Arena, Action, F1, MotoGP, Max, Tennis, Eurosport)
         if force_refresh:
             xbmcgui.Dialog().notification("CBTV", "Aggiornamento canali Sky Sport...", xbmcgui.NOTIFICATION_INFO, 2000)
-        hl_client = HubliveStalkerClient("s12")
+        hl_client = HubliveStalkerClient(server_id)
         hl_channels = hl_client.get_sky_sport_channels(force_refresh=force_refresh)
         sport_icon = get_tile("tile_sky_sport.png")
         for ch in hl_channels:
-            title = f"{ch['name']} [COLOR cyan](HB)[/COLOR]"
-            item_params = {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name'], "server_id": "s12"}
+            title = f"{ch['name']} [COLOR cyan]{s_label}[/COLOR]"
+            item_params = {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name'], "server_id": server_id}
             if ch.get("sids"):
                 item_params["sids"] = ",".join(ch["sids"])
             add_directory_item(title, item_params, is_folder=False, is_playable=True, icon=sport_icon)
@@ -2041,7 +2062,7 @@ if __name__ == '__main__':
         sources = json.loads(params.get('sources', '[]'))
         play_hls_channel(sources, title=params.get('title', 'Canale HLS'))
     elif action == 'list_eagle_genres':
-        list_eagle_genres(params.get('eb_type'), force_refresh=(params.get('force_refresh') == '1'))
+        list_eagle_genres(params.get('eb_type'), force_refresh=(params.get('force_refresh') == '1'), server_id=params.get('server_id', 's12'))
 
     elif action == 'list_primafila':
         list_primafila()

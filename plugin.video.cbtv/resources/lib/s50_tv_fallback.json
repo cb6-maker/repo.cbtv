@@ -1,0 +1,40 @@
+[
+  {
+    "name": "SKY UNO",
+    "sids": [
+      "1167164",
+      "177632",
+      "177743",
+      "1167283"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/1167164_"
+  },
+  {
+    "name": "SKY ARTE",
+    "sids": [
+      "1167209",
+      "177658",
+      "177652",
+      "1167292"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/1167209_"
+  },
+  {
+    "name": "SKY DOCUMENTARIES",
+    "sids": [
+      "1167294",
+      "1167293"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/1167294_"
+  },
+  {
+    "name": "SKY INVESTIGATION",
+    "sids": [
+      "1167210",
+      "177958",
+      "1167298",
+      "1167297"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/1167210_"
+  }
+]
