@@ -91,72 +91,99 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
                 'Cache-Control': 'no-cache'
             }
 
-            cached_sess = S22_SESSION_CACHE.get(sid)
-            cdn_location = None
-            cdn_host = None
-            # Mantieni la sessione se attiva (ultimo polling avvenuto meno di 45s fa)
-            if cached_sess and (now - cached_sess.get('last_seen', 0) < 45):
-                cdn_location = cached_sess.get('cdn_location')
-                cdn_host = cached_sess.get('cdn_host')
+            cached = S22_SESSION_CACHE.get(sid)
+            # Se la sessione precedente è ferma da più di 45 secondi, resettala
+            if cached and (now - cached.get('last_seen', 0) > 45):
+                cached = None
+                S22_SESSION_CACHE.pop(sid, None)
+
+            s = requests.Session()
+            s22_url = f"http://interstellar.salex74.xyz:25461/live/gTfM0070/fBJb8hB/{sid}.m3u8"
 
             try:
-                r_m3u8 = None
-                # 1. Se abbiamo già un nodo assegnato, scarica direttamente da quello
-                if cdn_location:
-                    try:
-                        r_m3u8 = requests.get(cdn_location, headers=s22_headers, timeout=5)
-                        if r_m3u8.status_code != 200:
-                            r_m3u8 = None
-                    except Exception:
-                        r_m3u8 = None
+                pinned_host = cached.get('pinned_host') if cached else None
+                matched_loc = None
 
-                # 2. Se non abbiamo sessione o il nodo non risponde, chiedi nuovo redirect al bilanciatore
-                if r_m3u8 is None:
-                    ts = int(now * 1000)
-                    s22_url = f"http://interstellar.salex74.xyz:25461/live/gTfM0070/fBJb8hB/{sid}.m3u8?_vegeta_refresh={ts}"
-                    r_redir = requests.get(s22_url, headers=s22_headers, allow_redirects=False, timeout=6)
-                    cdn_location = r_redir.headers.get('Location') or s22_url
-                    parsed_cdn = urlparse(cdn_location)
-                    cdn_host = f"{parsed_cdn.scheme}://{parsed_cdn.netloc}"
-                    r_m3u8 = requests.get(cdn_location, headers=s22_headers, timeout=6)
+                if pinned_host:
+                    # Cerca di agganciare lo STESSO nodo CDN per evitare sfasamenti temporali o salti
+                    for _ in range(10):
+                        ts = int(time.time() * 1000)
+                        r_redir = s.get(f"{s22_url}?_vegeta_refresh={ts}", headers=s22_headers, allow_redirects=False, timeout=2.5)
+                        loc = r_redir.headers.get('Location')
+                        if loc and pinned_host in loc:
+                            matched_loc = loc
+                            break
 
-                if r_m3u8.status_code != 200:
-                    self.send_response(r_m3u8.status_code)
+                    if not matched_loc:
+                        cached['miss_count'] = cached.get('miss_count', 0) + 1
+                        if cached['miss_count'] >= 3:
+                            pinned_host = None
+                            S22_SESSION_CACHE.pop(sid, None)
+                    else:
+                        cached['miss_count'] = 0
+
+                # Se è il primo avvio della sessione o il vecchio nodo non è più disponibile
+                if not matched_loc:
+                    ts = int(time.time() * 1000)
+                    r_redir = s.get(f"{s22_url}?_vegeta_refresh={ts}", headers=s22_headers, allow_redirects=False, timeout=5)
+                    matched_loc = r_redir.headers.get('Location') or s22_url
+                    parsed = urlparse(matched_loc)
+                    pinned_host = parsed.netloc
+
+                final_body = None
+                if matched_loc:
+                    r_m3u8 = s.get(matched_loc, headers=s22_headers, timeout=5)
+                    if r_m3u8.status_code == 200:
+                        parsed_cdn = urlparse(matched_loc)
+                        cdn_host = f"{parsed_cdn.scheme}://{parsed_cdn.netloc}"
+                        new_lines = []
+                        for line in r_m3u8.text.split('\n'):
+                            line = line.strip()
+                            if not line:
+                                continue
+                            if line.startswith('#'):
+                                new_lines.append(line)
+                            else:
+                                if line.startswith('/'):
+                                    new_lines.append(f"{cdn_host}{line}")
+                                elif not line.startswith('http'):
+                                    base_dir = matched_loc.rsplit('/', 1)[0]
+                                    new_lines.append(f"{base_dir}/{line}")
+                                else:
+                                    new_lines.append(line)
+
+                        final_body = "\n".join(new_lines)
+                        S22_SESSION_CACHE[sid] = {
+                            'pinned_host': pinned_host,
+                            'last_body': final_body,
+                            'last_seen': now,
+                            'miss_count': 0
+                        }
+
+                if not final_body and cached and cached.get('last_body'):
+                    final_body = cached['last_body']
+                    cached['last_seen'] = now
+
+                if not final_body:
+                    self.send_response(500)
                     self.end_headers()
                     return
 
-                # Aggiorna la sessione sticky
-                S22_SESSION_CACHE[sid] = {
-                    'cdn_location': cdn_location,
-                    'cdn_host': cdn_host,
-                    'last_seen': now
-                }
-
-                # 3. Riscrivi i percorsi dei segmenti in URL assoluti diretti al CDN
-                new_lines = []
-                for line in r_m3u8.text.split('\n'):
-                    line = line.strip()
-                    if not line:
-                        continue
-                    if line.startswith('#'):
-                        new_lines.append(line)
-                    else:
-                        if line.startswith('/'):
-                            new_lines.append(f"{cdn_host}{line}")
-                        elif not line.startswith('http'):
-                            base_dir = cdn_location.rsplit('/', 1)[0]
-                            new_lines.append(f"{base_dir}/{line}")
-                        else:
-                            new_lines.append(line)
-
-                final_body = "\n".join(new_lines)
                 self.send_response(200)
                 self.send_header("Content-Type", "application/x-mpegURL")
                 self.send_header("Access-Control-Allow-Origin", "*")
                 self.end_headers()
                 self.wfile.write(final_body.encode('utf-8'))
                 return
+
             except Exception as e:
+                if cached and cached.get('last_body'):
+                    self.send_response(200)
+                    self.send_header("Content-Type", "application/x-mpegURL")
+                    self.send_header("Access-Control-Allow-Origin", "*")
+                    self.end_headers()
+                    self.wfile.write(cached['last_body'].encode('utf-8'))
+                    return
                 xbmc.log(f"[CBTV Proxy] Errore S22 proxy: {e}", xbmc.LOGERROR)
                 self.send_response(500)
                 self.end_headers()
