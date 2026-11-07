@@ -1,0 +1,350 @@
+[
+  {
+    "name": "Sky Cinema Action FHD",
+    "sid": "474",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_9050.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Action FHD (PLUS)",
+    "sid": "87822",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_9050.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Action HD",
+    "sid": "483",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_9050.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Action HD (PLUS)",
+    "sid": "87820",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_9050.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Action SD",
+    "sid": "492",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_9050.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Collection FHD",
+    "sid": "475",
+    "icon": "https://i.ibb.co/y69ZF4K/Sky-Cinema-Collection-Logo-2021-svg.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Collection FHD (PLUS)",
+    "sid": "87812",
+    "icon": "https://i.ibb.co/y69ZF4K/Sky-Cinema-Collection-Logo-2021-svg.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Collection HD",
+    "sid": "484",
+    "icon": "https://i.ibb.co/y69ZF4K/Sky-Cinema-Collection-Logo-2021-svg.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Collection HD (PLUS)",
+    "sid": "87813",
+    "icon": "https://i.ibb.co/y69ZF4K/Sky-Cinema-Collection-Logo-2021-svg.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Collection SD",
+    "sid": "493",
+    "icon": "https://i.ibb.co/y69ZF4K/Sky-Cinema-Collection-Logo-2021-svg.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Comedy FHD",
+    "sid": "473",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_9039.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Comedy FHD (PLUS)",
+    "sid": "87839",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_9039.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Comedy HD",
+    "sid": "482",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_9039.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Comedy HD (PLUS)",
+    "sid": "87837",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_9039.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Comedy SD",
+    "sid": "491",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_9039.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Drama FHD",
+    "sid": "479",
+    "icon": "https://i.ibb.co/0r8yG6T/Sky-Cinema-Drama-Logo-2021-svg.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Drama FHD (PLUS)",
+    "sid": "87835",
+    "icon": "https://i.ibb.co/0r8yG6T/Sky-Cinema-Drama-Logo-2021-svg.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Drama HD",
+    "sid": "488",
+    "icon": "https://i.ibb.co/0r8yG6T/Sky-Cinema-Drama-Logo-2021-svg.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Drama HD (PLUS)",
+    "sid": "87833",
+    "icon": "https://i.ibb.co/0r8yG6T/Sky-Cinema-Drama-Logo-2021-svg.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Drama SD",
+    "sid": "497",
+    "icon": "https://i.ibb.co/0r8yG6T/Sky-Cinema-Drama-Logo-2021-svg.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Stories FHD",
+    "sid": "472",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Sky_Cinema_Stories_-_Logo_2025.svg/330px-Sky_Cinema_Stories_-_Logo_2025.svg.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Stories FHD (PLUS)",
+    "sid": "87810",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Sky_Cinema_Stories_-_Logo_2025.svg/330px-Sky_Cinema_Stories_-_Logo_2025.svg.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Stories +24 FHD (PLUS)",
+    "sid": "11763",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Sky_Cinema_Stories_-_Logo_2025.svg/330px-Sky_Cinema_Stories_-_Logo_2025.svg.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Stories HD",
+    "sid": "481",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Sky_Cinema_Stories_-_Logo_2025.svg/330px-Sky_Cinema_Stories_-_Logo_2025.svg.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Stories HD (PLUS)",
+    "sid": "87808",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Sky_Cinema_Stories_-_Logo_2025.svg/330px-Sky_Cinema_Stories_-_Logo_2025.svg.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Stories +24 HD (PLUS)",
+    "sid": "11764",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Sky_Cinema_Stories_-_Logo_2025.svg/330px-Sky_Cinema_Stories_-_Logo_2025.svg.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Stories SD",
+    "sid": "490",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Sky_Cinema_Stories_-_Logo_2025.svg/330px-Sky_Cinema_Stories_-_Logo_2025.svg.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Family FHD",
+    "sid": "476",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_9042.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Family FHD (PLUS)",
+    "sid": "87818",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_9042.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Family HD",
+    "sid": "485",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_9042.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Family HD (PLUS)",
+    "sid": "87816",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_9042.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Family SD",
+    "sid": "494",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_9042.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Romance FHD",
+    "sid": "478",
+    "icon": "https://i.ibb.co/9hNV9YW/Sky-Cinema-Romance-Logo-2021-svg.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Romance FHD (PLUS)",
+    "sid": "87829",
+    "icon": "https://i.ibb.co/9hNV9YW/Sky-Cinema-Romance-Logo-2021-svg.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Romance HD",
+    "sid": "487",
+    "icon": "https://i.ibb.co/9hNV9YW/Sky-Cinema-Romance-Logo-2021-svg.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Romance HD (PLUS)",
+    "sid": "87830",
+    "icon": "https://i.ibb.co/9hNV9YW/Sky-Cinema-Romance-Logo-2021-svg.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Romance SD",
+    "sid": "496",
+    "icon": "https://i.ibb.co/9hNV9YW/Sky-Cinema-Romance-Logo-2021-svg.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Suspense FHD",
+    "sid": "477",
+    "icon": "https://i.ibb.co/PFyCHJd/Sky-Cinema-Suspense-Logo-2021-svg.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Suspense FHD (PLUS)",
+    "sid": "87827",
+    "icon": "https://i.ibb.co/PFyCHJd/Sky-Cinema-Suspense-Logo-2021-svg.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Suspense HD",
+    "sid": "486",
+    "icon": "https://i.ibb.co/PFyCHJd/Sky-Cinema-Suspense-Logo-2021-svg.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Suspense HD (PLUS)",
+    "sid": "87825",
+    "icon": "https://i.ibb.co/9hNV9YW/Sky-Cinema-Romance-Logo-2021-svg.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Suspense SD",
+    "sid": "495",
+    "icon": "https://i.ibb.co/PFyCHJd/Sky-Cinema-Suspense-Logo-2021-svg.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Uno FHD",
+    "sid": "471",
+    "icon": "https://i.ibb.co/WDmkJB6/Sky-Cinema-Uno-Logo-2021-svg.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Uno FHD (PLUS)",
+    "sid": "87804",
+    "icon": "https://i.ibb.co/WDmkJB6/Sky-Cinema-Uno-Logo-2021-svg.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Uno +24 FHD (PLUS)",
+    "sid": "11765",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_9037.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Uno HD",
+    "sid": "480",
+    "icon": "https://i.ibb.co/WDmkJB6/Sky-Cinema-Uno-Logo-2021-svg.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Uno HD (PLUS)",
+    "sid": "87806",
+    "icon": "https://i.ibb.co/WDmkJB6/Sky-Cinema-Uno-Logo-2021-svg.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Uno +24 HD (PLUS)",
+    "sid": "11766",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_9037.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Uno SD",
+    "sid": "489",
+    "icon": "https://i.ibb.co/WDmkJB6/Sky-Cinema-Uno-Logo-2021-svg.png",
+    "category_id": 110
+  },
+  {
+    "name": "Sky Cinema Action",
+    "sid": "286708",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_9050.png",
+    "category_id": 264
+  },
+  {
+    "name": "Sky Cinema Collection",
+    "sid": "286707",
+    "icon": "https://i.ibb.co/y69ZF4K/Sky-Cinema-Collection-Logo-2021-svg.png",
+    "category_id": 264
+  },
+  {
+    "name": "Sky Cinema Comedy",
+    "sid": "286706",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_9039.png",
+    "category_id": 264
+  },
+  {
+    "name": "Sky Cinema Drama",
+    "sid": "286705",
+    "icon": "https://i.ibb.co/0r8yG6T/Sky-Cinema-Drama-Logo-2021-svg.png",
+    "category_id": 264
+  },
+  {
+    "name": "Sky Cinema Family",
+    "sid": "286704",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_9042.png",
+    "category_id": 264
+  },
+  {
+    "name": "Sky Cinema Romance",
+    "sid": "286703",
+    "icon": "https://i.ibb.co/9hNV9YW/Sky-Cinema-Romance-Logo-2021-svg.png",
+    "category_id": 264
+  },
+  {
+    "name": "Sky Cinema Stories",
+    "sid": "286702",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Sky_Cinema_Stories_-_Logo_2025.svg/330px-Sky_Cinema_Stories_-_Logo_2025.svg.png",
+    "category_id": 264
+  },
+  {
+    "name": "Sky Cinema Suspense",
+    "sid": "286701",
+    "icon": "https://i.ibb.co/PFyCHJd/Sky-Cinema-Suspense-Logo-2021-svg.png",
+    "category_id": 264
+  },
+  {
+    "name": "Sky Cinema Uno",
+    "sid": "286700",
+    "icon": "https://i.ibb.co/WDmkJB6/Sky-Cinema-Uno-Logo-2021-svg.png",
+    "category_id": 264
+  }
+]

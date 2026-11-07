@@ -919,12 +919,14 @@ def search_live_channels(query=None):
     xbmcplugin.endOfDirectory(HANDLE)
 
 def list_sport():
-    """Sottomenu Sport organizzato per sorgente (HLS, VPN)"""
+    """Sottomenu Sport organizzato per sorgente (22, HLS, VPN)"""
     xbmcplugin.setContent(HANDLE, 'videos')
     
+    add_directory_item("[COLOR dodgerblue][B]Sky Sport (22)[/B][/COLOR]", {"action": "list_s22_channels", "cat": "sport"}, icon=get_tile("tile_sky_sport.png"))
     add_directory_item("[COLOR cyan][B]Sky Sport (HLS)[/B][/COLOR]", {"action": "list_vavoo_channels", "cat": "sport"}, icon=get_tile("tile_sky_sport.png"))
     add_directory_item("[COLOR lightblue][B]Sky Sport (VPN)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_sport", "server_id": "s12"}, icon=get_tile("tile_sky_sport.png"))
     
+    add_directory_item("[COLOR coral][B]Dazn (22)[/B][/COLOR]", {"action": "list_s22_channels", "cat": "dazn"}, icon=get_tile("tile_dazn.png"))
     add_directory_item("[COLOR orange][B]Dazn (HLS)[/B][/COLOR]", {"action": "list_vavoo_channels", "cat": "dazn"}, icon=get_tile("tile_dazn.png"))
     add_directory_item("[COLOR lightsalmon][B]Dazn (VPN)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "dazn_only", "server_id": "s12"}, icon=get_tile("tile_dazn.png"))
     
@@ -932,20 +934,108 @@ def list_sport():
 
 
 def menu_entertainment():
-    """Sottomenu Canali Intrattenimento con scelta sorgente (HLS, VPN)"""
+    """Sottomenu Canali Intrattenimento con scelta sorgente (22, HLS, VPN)"""
     xbmcplugin.setContent(HANDLE, 'videos')
-    add_directory_item("[COLOR cyan][B]Canali Intrattenimento (HLS)[/B][/COLOR]", {"action": "list_vavoo_channels", "cat": "tv"}, icon=get_tile("tile_sky_intrattenimento.png"))
-    add_directory_item("[COLOR lightblue][B]Canali Intrattenimento (VPN)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_tv", "server_id": "s12"}, icon=get_tile("tile_sky_intrattenimento.png"))
+    add_directory_item("[COLOR dodgerblue][B]Intrattenimento (22)[/B][/COLOR]", {"action": "list_s22_channels", "cat": "tv"}, icon=get_tile("tile_sky_intrattenimento.png"))
+    add_directory_item("[COLOR cyan][B]Intrattenimento (HLS)[/B][/COLOR]", {"action": "list_vavoo_channels", "cat": "tv"}, icon=get_tile("tile_sky_intrattenimento.png"))
+    add_directory_item("[COLOR lightblue][B]Intrattenimento (VPN)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_tv", "server_id": "s12"}, icon=get_tile("tile_sky_intrattenimento.png"))
     xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
 
 
 def menu_cinema():
-    """Sottomenu Canali Cinema con scelta sorgente (HLS, VPN)"""
+    """Sottomenu Canali Cinema con scelta sorgente (22, HLS, VPN)"""
     xbmcplugin.setContent(HANDLE, 'videos')
-    add_directory_item("[COLOR gold][B]Canali Cinema (HLS)[/B][/COLOR]", {"action": "list_vavoo_channels", "cat": "cinema"}, icon=get_tile("tile_sky_cinema.png"))
-    add_directory_item("[COLOR yellow][B]Canali Cinema (VPN)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_cinema", "server_id": "s12"}, icon=get_tile("tile_sky_cinema.png"))
-    add_directory_item("[COLOR goldenrod][B]Sky Primafila (HLS)[/B][/COLOR]", {"action": "list_vavoo_channels", "cat": "primafila"}, icon=get_tile("tile_sky_cinema.png"))
+    add_directory_item("[COLOR moccasin][B]Cinema (22)[/B][/COLOR]", {"action": "list_s22_channels", "cat": "cinema"}, icon=get_tile("tile_sky_cinema.png"))
+    add_directory_item("[COLOR gold][B]Cinema (HLS)[/B][/COLOR]", {"action": "list_vavoo_channels", "cat": "cinema"}, icon=get_tile("tile_sky_cinema.png"))
+    add_directory_item("[COLOR yellow][B]Cinema (VPN)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_cinema", "server_id": "s12"}, icon=get_tile("tile_sky_cinema.png"))
+    add_directory_item("[COLOR peachpuff][B]Primafila (22)[/B][/COLOR]", {"action": "list_s22_channels", "cat": "primafila"}, icon=get_tile("tile_sky_cinema.png"))
+    add_directory_item("[COLOR goldenrod][B]Primafila (HLS)[/B][/COLOR]", {"action": "list_vavoo_channels", "cat": "primafila"}, icon=get_tile("tile_sky_cinema.png"))
     xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
+
+
+def list_s22_channels(cat):
+    """Elenca i canali del Server 22 salvati nei rispettivi JSON"""
+    xbmcplugin.setContent(HANDLE, 'videos')
+    cat_files = {
+        "sport": "s22_sport.json",
+        "dazn": "s22_dazn.json",
+        "cinema": "s22_cinema.json",
+        "primafila": "s22_primafila.json",
+        "tv": "s22_tv.json"
+    }
+    fname = cat_files.get(cat, "s22_sport.json")
+    json_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources", "lib", fname)
+    if not os.path.exists(json_path):
+        xbmcgui.Dialog().notification("CBTV", f"Lista {cat} non disponibile", xbmcgui.NOTIFICATION_WARNING)
+        xbmcplugin.endOfDirectory(HANDLE)
+        return
+
+    try:
+        with open(json_path, 'r', encoding='utf-8') as f:
+            channels = json.load(f)
+            
+        color_map = {
+            "sport": "dodgerblue",
+            "dazn": "coral",
+            "cinema": "moccasin",
+            "primafila": "peachpuff",
+            "tv": "dodgerblue"
+        }
+        color = color_map.get(cat, "white")
+        
+        for ch in channels:
+            name = ch.get("name", "")
+            sid = ch.get("sid", "")
+            icon = ch.get("icon") or get_channel_tile(name, "sky_sport" if cat in ("sport", "dazn") else "sky_cinema")
+            add_directory_item(
+                name,
+                {"action": "play_s22_channel", "sid": sid, "name": name},
+                is_folder=False,
+                is_playable=True,
+                icon=icon
+            )
+    except Exception as e:
+        xbmc.log(f"[CBTV] Errore caricamento canali S22 ({cat}): {e}", xbmc.LOGERROR)
+
+    xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
+
+
+def play_s22_channel(sid, name):
+    """Risolve e avvia lo stream HLS da Server 22 (senza VPN)"""
+    xbmcgui.Dialog().notification("CBTV", f"Avvio {name}...", xbmcgui.NOTIFICATION_INFO, 1500)
+    base_url = "http://interstellar.salex74.xyz:25461"
+    user = "gTfM0070"
+    pwd = "fBJb8hB"
+    ts = int(time.time() * 1000)
+    req_url = f"{base_url}/live/{user}/{pwd}/{sid}.m3u8?_vegeta_refresh={ts}"
+
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Android TV; VegetaTV/1.0)',
+        'Accept': 'audio/x-mpegurl,application/vnd.apple.mpegurl,text/plain,*/*',
+        'Cache-Control': 'no-cache'
+    }
+
+    try:
+        r = requests.get(req_url, headers=headers, allow_redirects=False, timeout=6)
+        stream_url = r.headers.get('Location')
+        if not stream_url and r.status_code == 200:
+            stream_url = req_url
+
+        if stream_url:
+            list_item = xbmcgui.ListItem(path=stream_url)
+            list_item.setInfo('video', {'title': name})
+            list_item.setProperty('inputstream', 'inputstream.ffmpegdirect')
+            list_item.setProperty('inputstream.ffmpegdirect.mime_type', 'application/x-mpegURL')
+            list_item.setProperty('inputstream.ffmpegdirect.manifest_type', 'hls')
+            list_item.setProperty('inputstream.ffmpegdirect.headers', 'User-Agent=Mozilla%2F5.0%20(Android%20TV%3B%20VegetaTV%2F1.0)')
+            list_item.setContentLookup(False)
+            xbmcplugin.setResolvedUrl(HANDLE, True, list_item)
+            return
+    except Exception as e:
+        xbmc.log(f"[CBTV] Errore riproduzione S22: {e}", xbmc.LOGWARNING)
+
+    xbmcgui.Dialog().notification("CBTV", f"Impossibile avviare {name}", xbmcgui.NOTIFICATION_ERROR, 3000)
+    xbmcplugin.setResolvedUrl(HANDLE, False, xbmcgui.ListItem())
 
 
 def list_vavoo_channels(category):
@@ -982,9 +1072,6 @@ def list_vavoo_channels(category):
                 continue
                 
             sources = ch.get("sources", [])
-            tag_color = "gold" if "cinema" in category or "primafila" in category else "cyan"
-            display_title = f"{name} [COLOR {tag_color}](HLS)[/COLOR]"
-            
             icon = get_channel_tile(name, category)
             if not icon:
                 if category in ("cinema", "primafila"):
@@ -995,7 +1082,7 @@ def list_vavoo_channels(category):
                     icon = get_tile("tile_sky_intrattenimento.png")
                     
             add_directory_item(
-                display_title,
+                name,
                 {"action": "play_vavoo_hls", "title": name, "sources": json.dumps(sources)},
                 is_folder=False,
                 is_playable=True,
@@ -1704,7 +1791,7 @@ def list_eagle_genres(eb_type, force_refresh=False, server_id="s12"):
         hl_client = HubliveStalkerClient(server_id)
         hl_channels = hl_client.get_sky_tv_channels(force_refresh=force_refresh)
         for ch in hl_channels:
-            title = f"{ch['name']} [COLOR yellow]{s_label}[/COLOR]"
+            title = ch['name']
             ch_icon = get_channel_tile(ch['name'], "sky_tv")
             item_params = {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name'], "server_id": server_id}
             if ch.get("sids"):
@@ -1719,7 +1806,7 @@ def list_eagle_genres(eb_type, force_refresh=False, server_id="s12"):
         hl_channels = hl_client.get_sky_cinema_channels(force_refresh=force_refresh)
         cinema_icon = get_tile("tile_sky_cinema.png")
         for ch in hl_channels:
-            title = f"{ch['name']} [COLOR gold]{s_label}[/COLOR]"
+            title = ch['name']
             ch_icon = get_channel_tile(ch['name'], "sky_cinema") or cinema_icon
             item_params = {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name'], "server_id": server_id}
             if ch.get("sids"):
@@ -1735,7 +1822,7 @@ def list_eagle_genres(eb_type, force_refresh=False, server_id="s12"):
         pf_channels = hl_client._load_fallback("s50_primafila_fallback.json") or []
         cinema_icon = get_tile("tile_sky_cinema.png")
         for ch in pf_channels:
-            title = f"{ch['name']} [COLOR gold]{s_label}[/COLOR]"
+            title = ch['name']
             item_params = {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name'], "server_id": server_id}
             if ch.get("sids"):
                 item_params["sids"] = ",".join(ch["sids"])
@@ -1749,7 +1836,7 @@ def list_eagle_genres(eb_type, force_refresh=False, server_id="s12"):
         hl_channels = hl_client_dazn.get_dazn_channels(force_refresh=force_refresh)
         dazn_icon = get_tile("tile_dazn.png")
         for ch in hl_channels:
-            title = f"{ch['name']} [COLOR orange]{s_label}[/COLOR]"
+            title = ch['name']
             item_params = {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name'], "server_id": server_id}
             if ch.get("sids"):
                 item_params["sids"] = ",".join(ch["sids"])
@@ -1763,7 +1850,7 @@ def list_eagle_genres(eb_type, force_refresh=False, server_id="s12"):
         hl_channels = hl_client.get_sky_sport_channels(force_refresh=force_refresh)
         sport_icon = get_tile("tile_sky_sport.png")
         for ch in hl_channels:
-            title = f"{ch['name']} [COLOR cyan]{s_label}[/COLOR]"
+            title = ch['name']
             item_params = {"action": "play_hublive_stalker", "cmd": ch['cmd'], "name": ch['name'], "server_id": server_id}
             if ch.get("sids"):
                 item_params["sids"] = ",".join(ch["sids"])
@@ -2052,6 +2139,10 @@ if __name__ == '__main__':
         menu_cinema()
     elif action == 'list_vavoo_channels':
         list_vavoo_channels(params.get('cat'))
+    elif action == 'list_s22_channels':
+        list_s22_channels(params.get('cat'))
+    elif action == 'play_s22_channel':
+        play_s22_channel(params.get('sid'), params.get('name'))
     elif action == 'play_vavoo_hls':
         from resources.lib.vavoo_client import play_hls_channel
         sources = json.loads(params.get('sources', '[]'))

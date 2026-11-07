@@ -1,0 +1,1592 @@
+[
+  {
+    "name": "Top Crime FHD",
+    "sid": "44",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Top_Crime_-_Logo_2013.svg/3840px-Top_Crime_-_Logo_2013.svg.png",
+    "category_id": 114
+  },
+  {
+    "name": "Top Crime FHD (PLUS)",
+    "sid": "87926",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Top_Crime_-_Logo_2013.svg/3840px-Top_Crime_-_Logo_2013.svg.png",
+    "category_id": 114
+  },
+  {
+    "name": "Top Crime HD",
+    "sid": "87",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Top_Crime_-_Logo_2013.svg/3840px-Top_Crime_-_Logo_2013.svg.png",
+    "category_id": 114
+  },
+  {
+    "name": "Top Crime HD (PLUS)",
+    "sid": "87927",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Top_Crime_-_Logo_2013.svg/3840px-Top_Crime_-_Logo_2013.svg.png",
+    "category_id": 114
+  },
+  {
+    "name": "Top Crime SD",
+    "sid": "88",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Top_Crime_-_Logo_2013.svg/3840px-Top_Crime_-_Logo_2013.svg.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky Uno FHD",
+    "sid": "20",
+    "icon": "https://i.ibb.co/9gRffjY/Sky-Uno-Logo-2021-svg.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky Uno FHD (PLUS)",
+    "sid": "87953",
+    "icon": "https://i.ibb.co/9gRffjY/Sky-Uno-Logo-2021-svg.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky Uno HD",
+    "sid": "21",
+    "icon": "https://i.ibb.co/9gRffjY/Sky-Uno-Logo-2021-svg.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky Uno HD (PLUS)",
+    "sid": "87954",
+    "icon": "https://i.ibb.co/9gRffjY/Sky-Uno-Logo-2021-svg.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky Uno SD",
+    "sid": "22",
+    "icon": "https://i.ibb.co/9gRffjY/Sky-Uno-Logo-2021-svg.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky Uno Plus FHD",
+    "sid": "275461",
+    "icon": "https://i.ibb.co/9gRffjY/Sky-Uno-Logo-2021-svg.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky Uno Plus HD",
+    "sid": "275462",
+    "icon": "https://i.ibb.co/9gRffjY/Sky-Uno-Logo-2021-svg.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky Uno Plus SD",
+    "sid": "275463",
+    "icon": "https://i.ibb.co/9gRffjY/Sky-Uno-Logo-2021-svg.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky Serie FHD",
+    "sid": "17",
+    "icon": "https://i.imgur.com/ofaaIKf.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky Serie HD",
+    "sid": "18",
+    "icon": "https://i.imgur.com/ofaaIKf.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky Serie SD",
+    "sid": "19",
+    "icon": "https://i.imgur.com/ofaaIKf.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky Collection FHD",
+    "sid": "271348",
+    "icon": "https://i.ibb.co/LzVR241c/2a19c222-1725-4c15-9ee0-fb8f186903d7.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky Collection HD",
+    "sid": "271347",
+    "icon": "https://i.ibb.co/LzVR241c/2a19c222-1725-4c15-9ee0-fb8f186903d7.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky Collection SD",
+    "sid": "271346",
+    "icon": "https://i.ibb.co/LzVR241c/2a19c222-1725-4c15-9ee0-fb8f186903d7.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky MTV FHD",
+    "sid": "8",
+    "icon": "https://logos-world.net/wp-content/uploads/2021/10/MTV-Logo.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky MTV HD",
+    "sid": "9",
+    "icon": "https://logos-world.net/wp-content/uploads/2021/10/MTV-Logo.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky MTV SD",
+    "sid": "10",
+    "icon": "https://logos-world.net/wp-content/uploads/2021/10/MTV-Logo.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky Investigation FHD",
+    "sid": "14",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_11246.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky Investigation FHD (PLUS)",
+    "sid": "87944",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_11246.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky Investigation HD",
+    "sid": "15",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_11246.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky Investigation HD (PLUS)",
+    "sid": "87945",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_11246.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky Investigation SD",
+    "sid": "16",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_11246.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky Crime FHD",
+    "sid": "5",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Sky_Crime_DE_Logo_2021.svg/960px-Sky_Crime_DE_Logo_2021.svg.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky Crime FHD (PLUS)",
+    "sid": "87935",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Sky_Crime_DE_Logo_2021.svg/960px-Sky_Crime_DE_Logo_2021.svg.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky Crime HD",
+    "sid": "6",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Sky_Crime_DE_Logo_2021.svg/960px-Sky_Crime_DE_Logo_2021.svg.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky Crime HD (PLUS)",
+    "sid": "87936",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Sky_Crime_DE_Logo_2021.svg/960px-Sky_Crime_DE_Logo_2021.svg.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky Crime SD",
+    "sid": "7",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Sky_Crime_DE_Logo_2021.svg/960px-Sky_Crime_DE_Logo_2021.svg.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky Atlantic FHD",
+    "sid": "11",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_9095.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky Atlantic FHD (PLUS)",
+    "sid": "87941",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_9095.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky Atlantic HD",
+    "sid": "12",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_9095.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky Atlantic HD (PLUS)",
+    "sid": "87942",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_9095.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky Atlantic SD",
+    "sid": "13",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_9095.png",
+    "category_id": 114
+  },
+  {
+    "name": "Real Time FHD",
+    "sid": "47",
+    "icon": "https://i.imgur.com/SPlk2Gx.png",
+    "category_id": 114
+  },
+  {
+    "name": "Real Time FHD (PLUS)",
+    "sid": "87938",
+    "icon": "https://i.imgur.com/SPlk2Gx.png",
+    "category_id": 114
+  },
+  {
+    "name": "Real Time HD",
+    "sid": "93",
+    "icon": "https://i.imgur.com/SPlk2Gx.png",
+    "category_id": 114
+  },
+  {
+    "name": "Real Time HD (PLUS)",
+    "sid": "87939",
+    "icon": "https://i.imgur.com/SPlk2Gx.png",
+    "category_id": 114
+  },
+  {
+    "name": "Real Time SD",
+    "sid": "128",
+    "icon": "https://i.imgur.com/SPlk2Gx.png",
+    "category_id": 114
+  },
+  {
+    "name": "Comedy Central FHD",
+    "sid": "260399",
+    "icon": "https://i.postimg.cc/dQXnhTMC/Comedy-Central-2018-svg.png",
+    "category_id": 114
+  },
+  {
+    "name": "Comedy Central HD",
+    "sid": "3",
+    "icon": "https://i.postimg.cc/dQXnhTMC/Comedy-Central-2018-svg.png",
+    "category_id": 114
+  },
+  {
+    "name": "Comedy Central SD",
+    "sid": "4",
+    "icon": "https://i.postimg.cc/dQXnhTMC/Comedy-Central-2018-svg.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky Adventure FHD",
+    "sid": "257104",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/9/97/Sky_Adventure_-_Logo_2025.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky Adventure HD",
+    "sid": "257105",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/9/97/Sky_Adventure_-_Logo_2025.png",
+    "category_id": 114
+  },
+  {
+    "name": "Sky Adventure SD",
+    "sid": "257106",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/9/97/Sky_Adventure_-_Logo_2025.png",
+    "category_id": 114
+  },
+  {
+    "name": "Discovery Channel FHD",
+    "sid": "6401",
+    "icon": "https://upload.wikimedia.org/wikipedia/de/f/f4/Discovery_Channel_Logo_2019.png",
+    "category_id": 134
+  },
+  {
+    "name": "Discovery Channel FHD (PLUS)",
+    "sid": "88247",
+    "icon": "https://upload.wikimedia.org/wikipedia/de/f/f4/Discovery_Channel_Logo_2019.png",
+    "category_id": 134
+  },
+  {
+    "name": "Discovery Channel HD",
+    "sid": "24267",
+    "icon": "https://upload.wikimedia.org/wikipedia/de/f/f4/Discovery_Channel_Logo_2019.png",
+    "category_id": 134
+  },
+  {
+    "name": "Discovery Channel HD (PLUS)",
+    "sid": "88248",
+    "icon": "https://upload.wikimedia.org/wikipedia/de/f/f4/Discovery_Channel_Logo_2019.png",
+    "category_id": 134
+  },
+  {
+    "name": "Fishing TV",
+    "sid": "86450",
+    "icon": "https://i.imgur.com/qrn6tUO.png",
+    "category_id": 134
+  },
+  {
+    "name": "Focus FHD",
+    "sid": "52",
+    "icon": "https://i.ibb.co/kSdwCSF/Focus-Logo-svg.png",
+    "category_id": 134
+  },
+  {
+    "name": "Focus FHD (PLUS)",
+    "sid": "88232",
+    "icon": "https://i.ibb.co/kSdwCSF/Focus-Logo-svg.png",
+    "category_id": 134
+  },
+  {
+    "name": "Focus HD",
+    "sid": "105",
+    "icon": "https://i.ibb.co/kSdwCSF/Focus-Logo-svg.png",
+    "category_id": 134
+  },
+  {
+    "name": "Focus HD (PLUS)",
+    "sid": "88233",
+    "icon": "https://i.ibb.co/kSdwCSF/Focus-Logo-svg.png",
+    "category_id": 134
+  },
+  {
+    "name": "Focus SD",
+    "sid": "106",
+    "icon": "https://i.ibb.co/kSdwCSF/Focus-Logo-svg.png",
+    "category_id": 134
+  },
+  {
+    "name": "Sky Arte FHD",
+    "sid": "151",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_8473.png",
+    "category_id": 134
+  },
+  {
+    "name": "Sky Arte FHD (PLUS)",
+    "sid": "88235",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_8473.png",
+    "category_id": 134
+  },
+  {
+    "name": "Sky Arte HD",
+    "sid": "152",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_8473.png",
+    "category_id": 134
+  },
+  {
+    "name": "Sky Arte HD (PLUS)",
+    "sid": "88236",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_8473.png",
+    "category_id": 134
+  },
+  {
+    "name": "Sky Arte SD",
+    "sid": "153",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_8473.png",
+    "category_id": 134
+  },
+  {
+    "name": "Sky Documentaries FHD",
+    "sid": "154",
+    "icon": "https://i.imgur.com/bCJZZo6.png",
+    "category_id": 134
+  },
+  {
+    "name": "Sky Documentaries FHD (PLUS)",
+    "sid": "98506",
+    "icon": "https://i.imgur.com/bCJZZo6.png",
+    "category_id": 134
+  },
+  {
+    "name": "Sky Documentaries HD",
+    "sid": "155",
+    "icon": "https://i.imgur.com/bCJZZo6.png",
+    "category_id": 134
+  },
+  {
+    "name": "Sky Documentaries HD (PLUS)",
+    "sid": "98507",
+    "icon": "https://i.imgur.com/bCJZZo6.png",
+    "category_id": 134
+  },
+  {
+    "name": "Sky Documentaries SD",
+    "sid": "156",
+    "icon": "https://i.imgur.com/bCJZZo6.png",
+    "category_id": 134
+  },
+  {
+    "name": "Sky History FHD",
+    "sid": "148",
+    "icon": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/history-channel-it.png",
+    "category_id": 134
+  },
+  {
+    "name": "History FHD (PLUS)",
+    "sid": "88238",
+    "icon": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/history-channel-it.png",
+    "category_id": 134
+  },
+  {
+    "name": "Sky History HD",
+    "sid": "149",
+    "icon": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/history-channel-it.png",
+    "category_id": 134
+  },
+  {
+    "name": "History HD (PLUS)",
+    "sid": "88239",
+    "icon": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/history-channel-it.png",
+    "category_id": 134
+  },
+  {
+    "name": "Sky History SD",
+    "sid": "150",
+    "icon": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/history-channel-it.png",
+    "category_id": 134
+  },
+  {
+    "name": "CacciaTv",
+    "sid": "16912",
+    "icon": "https://i.imgur.com/guk4CWm.png",
+    "category_id": 134
+  },
+  {
+    "name": "PescaTv",
+    "sid": "16911",
+    "icon": "https://i.imgur.com/5yUOoNm.png",
+    "category_id": 134
+  },
+  {
+    "name": "Sky Nature FHD",
+    "sid": "157",
+    "icon": "https://i.imgur.com/NWKIfXy.png",
+    "category_id": 134
+  },
+  {
+    "name": "Sky Nature FHD (PLUS)",
+    "sid": "88241",
+    "icon": "https://i.imgur.com/NWKIfXy.png",
+    "category_id": 134
+  },
+  {
+    "name": "Sky Nature HD",
+    "sid": "158",
+    "icon": "https://i.imgur.com/NWKIfXy.png",
+    "category_id": 134
+  },
+  {
+    "name": "Sky Nature HD (PLUS)",
+    "sid": "88242",
+    "icon": "https://i.imgur.com/NWKIfXy.png",
+    "category_id": 134
+  },
+  {
+    "name": "Sky Nature SD",
+    "sid": "159",
+    "icon": "https://i.imgur.com/NWKIfXy.png",
+    "category_id": 134
+  },
+  {
+    "name": "Padre Pio",
+    "sid": "78180",
+    "icon": "https://i.ibb.co/187gd5G/IMG-4348.png",
+    "category_id": 134
+  },
+  {
+    "name": "Euronews",
+    "sid": "134",
+    "icon": "https://i.imgur.com/8t9mdg9.png",
+    "category_id": 137
+  },
+  {
+    "name": "Euronews FHD (PLUS)",
+    "sid": "88262",
+    "icon": "https://tvpmlogopeu.samsungcloud.tv/platform/image/sourcelogo/vc/70/02/10/ITBA33000432S_20220404T005714.png",
+    "category_id": 137
+  },
+  {
+    "name": "Euronews HD (PLUS)",
+    "sid": "98504",
+    "icon": "https://tvpmlogopeu.samsungcloud.tv/platform/image/sourcelogo/vc/70/02/10/ITBA33000432S_20220404T005714.png",
+    "category_id": 137
+  },
+  {
+    "name": "Sky TG24 FHD",
+    "sid": "466",
+    "icon": "https://i.ibb.co/CKR0yQf/Sky-TG24-Logo-2021-svg.png",
+    "category_id": 137
+  },
+  {
+    "name": "Sky TG24 FHD (PLUS)",
+    "sid": "88259",
+    "icon": "https://i.ibb.co/CKR0yQf/Sky-TG24-Logo-2021-svg.png",
+    "category_id": 137
+  },
+  {
+    "name": "Sky TG24 HD",
+    "sid": "467",
+    "icon": "https://i.ibb.co/CKR0yQf/Sky-TG24-Logo-2021-svg.png",
+    "category_id": 137
+  },
+  {
+    "name": "Sky TG24 HD (PLUS)",
+    "sid": "88260",
+    "icon": "https://i.ibb.co/CKR0yQf/Sky-TG24-Logo-2021-svg.png",
+    "category_id": 137
+  },
+  {
+    "name": "Sky TG24 SD",
+    "sid": "468",
+    "icon": "https://i.ibb.co/CKR0yQf/Sky-TG24-Logo-2021-svg.png",
+    "category_id": 137
+  },
+  {
+    "name": "TGCom24 FHD",
+    "sid": "45",
+    "icon": "https://i.imgur.com/fPmvbGH.png",
+    "category_id": 137
+  },
+  {
+    "name": "TgCom 24 FHD (PLUS)",
+    "sid": "88256",
+    "icon": "https://i.imgur.com/fPmvbGH.png",
+    "category_id": 137
+  },
+  {
+    "name": "TGCom24 HD",
+    "sid": "89",
+    "icon": "https://i.imgur.com/fPmvbGH.png",
+    "category_id": 137
+  },
+  {
+    "name": "TgCom 24 HD (PLUS)",
+    "sid": "88257",
+    "icon": "https://i.imgur.com/fPmvbGH.png",
+    "category_id": 137
+  },
+  {
+    "name": "TGCom24 SD",
+    "sid": "90",
+    "icon": "https://i.imgur.com/fPmvbGH.png",
+    "category_id": 137
+  },
+  {
+    "name": "Boing",
+    "sid": "462",
+    "icon": "https://i.imgur.com/LHMHIpp.png",
+    "category_id": 139
+  },
+  {
+    "name": "Boing FHD (PLUS)",
+    "sid": "98491",
+    "icon": "https://i.imgur.com/LHMHIpp.png",
+    "category_id": 139
+  },
+  {
+    "name": "Boing HD (PLUS)",
+    "sid": "88061",
+    "icon": "https://i.imgur.com/LHMHIpp.png",
+    "category_id": 139
+  },
+  {
+    "name": "Boing Plus",
+    "sid": "16910",
+    "icon": "https://i.imgur.com/tmQQZD2.png",
+    "category_id": 139
+  },
+  {
+    "name": "Boing Plus (PLUS)",
+    "sid": "88062",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Boing_Plus_Logo.png",
+    "category_id": 139
+  },
+  {
+    "name": "Boomerang FHD",
+    "sid": "260404",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/4/41/Boomerang_tv_logo.png",
+    "category_id": 139
+  },
+  {
+    "name": "Boomerang FHD (PLUS)",
+    "sid": "88063",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/4/41/Boomerang_tv_logo.png",
+    "category_id": 139
+  },
+  {
+    "name": "Boomerang HD",
+    "sid": "460",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/4/41/Boomerang_tv_logo.png",
+    "category_id": 139
+  },
+  {
+    "name": "Boomerang HD (PLUS)",
+    "sid": "88064",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/4/41/Boomerang_tv_logo.png",
+    "category_id": 139
+  },
+  {
+    "name": "Boomerang SD",
+    "sid": "461",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/4/41/Boomerang_tv_logo.png",
+    "category_id": 139
+  },
+  {
+    "name": "Cartoonito",
+    "sid": "464",
+    "icon": "https://i.imgur.com/sZDXfWq.png",
+    "category_id": 139
+  },
+  {
+    "name": "Cartoonito (PLUS)",
+    "sid": "88069",
+    "icon": "https://i.imgur.com/sZDXfWq.png",
+    "category_id": 139
+  },
+  {
+    "name": "Cartoon Network FHD",
+    "sid": "452",
+    "icon": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/cartoon-network-it.png",
+    "category_id": 139
+  },
+  {
+    "name": "Cartoon Network FHD (PLUS)",
+    "sid": "88066",
+    "icon": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/cartoon-network-it.png",
+    "category_id": 139
+  },
+  {
+    "name": "Cartoon Network HD",
+    "sid": "16913",
+    "icon": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/cartoon-network-it.png",
+    "category_id": 139
+  },
+  {
+    "name": "Cartoon Network HD (PLUS)",
+    "sid": "88067",
+    "icon": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/cartoon-network-it.png",
+    "category_id": 139
+  },
+  {
+    "name": "Cartoon Network SD",
+    "sid": "453",
+    "icon": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/cartoon-network-it.png",
+    "category_id": 139
+  },
+  {
+    "name": "Dea Kids FHD",
+    "sid": "260402",
+    "icon": "https://i.ibb.co/tYkS8rc/2560px-De-A-Kids-Logo-2017-svg.png",
+    "category_id": 139
+  },
+  {
+    "name": "Dea Kids FHD (PLUS)",
+    "sid": "88070",
+    "icon": "https://i.ibb.co/tYkS8rc/2560px-De-A-Kids-Logo-2017-svg.png",
+    "category_id": 139
+  },
+  {
+    "name": "Dea Kids HD",
+    "sid": "456",
+    "icon": "https://i.ibb.co/tYkS8rc/2560px-De-A-Kids-Logo-2017-svg.png",
+    "category_id": 139
+  },
+  {
+    "name": "Dea Kids HD (PLUS)",
+    "sid": "88071",
+    "icon": "https://i.ibb.co/tYkS8rc/2560px-De-A-Kids-Logo-2017-svg.png",
+    "category_id": 139
+  },
+  {
+    "name": "Dea Kids SD",
+    "sid": "457",
+    "icon": "https://i.ibb.co/tYkS8rc/2560px-De-A-Kids-Logo-2017-svg.png",
+    "category_id": 139
+  },
+  {
+    "name": "Frisbee",
+    "sid": "465",
+    "icon": "https://i.imgur.com/Qw2f7Ga.png",
+    "category_id": 139
+  },
+  {
+    "name": "Frisbee (PLUS)",
+    "sid": "88073",
+    "icon": "https://i.imgur.com/Qw2f7Ga.png",
+    "category_id": 139
+  },
+  {
+    "name": "K2",
+    "sid": "463",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b4/K2_new_logo.svg/1920px-K2_new_logo.svg.png",
+    "category_id": 139
+  },
+  {
+    "name": "K2 (PLUS)",
+    "sid": "88075",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b4/K2_new_logo.svg/1920px-K2_new_logo.svg.png",
+    "category_id": 139
+  },
+  {
+    "name": "Nickelodeon FHD",
+    "sid": "260401",
+    "icon": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/nickelodeon-it.png",
+    "category_id": 139
+  },
+  {
+    "name": "Nickelodeon FHD (PLUS)",
+    "sid": "88080",
+    "icon": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/nickelodeon-it.png",
+    "category_id": 139
+  },
+  {
+    "name": "Nickelodeon HD",
+    "sid": "454",
+    "icon": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/nickelodeon-it.png",
+    "category_id": 139
+  },
+  {
+    "name": "Nickelodeon HD (PLUS)",
+    "sid": "88081",
+    "icon": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/nickelodeon-it.png",
+    "category_id": 139
+  },
+  {
+    "name": "NIckelodeon SD",
+    "sid": "455",
+    "icon": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/nickelodeon-it.png",
+    "category_id": 139
+  },
+  {
+    "name": "Nick Jr FHD",
+    "sid": "260403",
+    "icon": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/nick-jr-it.png",
+    "category_id": 139
+  },
+  {
+    "name": "Nick Jr FHD (PLUS)",
+    "sid": "88077",
+    "icon": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/nick-jr-it.png",
+    "category_id": 139
+  },
+  {
+    "name": "Nick Jr HD",
+    "sid": "458",
+    "icon": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/nick-jr-it.png",
+    "category_id": 139
+  },
+  {
+    "name": "Nick Jr HD (PLUS)",
+    "sid": "88078",
+    "icon": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/nick-jr-it.png",
+    "category_id": 139
+  },
+  {
+    "name": "Nick Jr SD",
+    "sid": "459",
+    "icon": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/nick-jr-it.png",
+    "category_id": 139
+  },
+  {
+    "name": "Rai YoYo",
+    "sid": "142",
+    "icon": "https://i.imgur.com/SXPFPrG.png",
+    "category_id": 139
+  },
+  {
+    "name": "Rai YoYo FHD (PLUS)",
+    "sid": "270361",
+    "icon": "https://i.imgur.com/SXPFPrG.png",
+    "category_id": 139
+  },
+  {
+    "name": "Rai YoYo HD (PLUS)",
+    "sid": "88083",
+    "icon": "https://i.imgur.com/SXPFPrG.png",
+    "category_id": 139
+  },
+  {
+    "name": "Super! HD",
+    "sid": "107",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Super%21_logo_2025.png",
+    "category_id": 139
+  },
+  {
+    "name": "Rai 1 FHD",
+    "sid": "84121",
+    "icon": "https://i.ibb.co/ynZhkbS7/Rai-1-Logo-2016-svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Rai 1 FHD (PLUS)",
+    "sid": "87957",
+    "icon": "https://i.ibb.co/ynZhkbS7/Rai-1-Logo-2016-svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Rai 1 HD",
+    "sid": "26",
+    "icon": "https://i.ibb.co/ynZhkbS7/Rai-1-Logo-2016-svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Rai 1 HD (PLUS)",
+    "sid": "87958",
+    "icon": "https://i.ibb.co/ynZhkbS7/Rai-1-Logo-2016-svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Rai 1 SD",
+    "sid": "60",
+    "icon": "https://i.ibb.co/ynZhkbS7/Rai-1-Logo-2016-svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Rai 2 FHD",
+    "sid": "84122",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_rai-2.png",
+    "category_id": 105
+  },
+  {
+    "name": "Rai 2 FHD (PLUS)",
+    "sid": "87962",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_rai-2.png",
+    "category_id": 105
+  },
+  {
+    "name": "Rai 2 HD",
+    "sid": "27",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_rai-2.png",
+    "category_id": 105
+  },
+  {
+    "name": "Rai 2 HD (PLUS)",
+    "sid": "87963",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_rai-2.png",
+    "category_id": 105
+  },
+  {
+    "name": "Rai 2 SD",
+    "sid": "61",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_rai-2.png",
+    "category_id": 105
+  },
+  {
+    "name": "Rai 3 FHD",
+    "sid": "84123",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_rai-3.png",
+    "category_id": 105
+  },
+  {
+    "name": "Rai 3 FHD (PLUS)",
+    "sid": "87966",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_rai-3.png",
+    "category_id": 105
+  },
+  {
+    "name": "Rai 3 HD",
+    "sid": "28",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_rai-3.png",
+    "category_id": 105
+  },
+  {
+    "name": "Rai 3 HD (PLUS)",
+    "sid": "87967",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_rai-3.png",
+    "category_id": 105
+  },
+  {
+    "name": "Rai 3 SD",
+    "sid": "62",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_rai-3.png",
+    "category_id": 105
+  },
+  {
+    "name": "Rete 4 FHD",
+    "sid": "29",
+    "icon": "https://i.ibb.co/n8nTpMp/IMG-5101.png",
+    "category_id": 105
+  },
+  {
+    "name": "Rete 4 FHD (PLUS)",
+    "sid": "87970",
+    "icon": "https://i.ibb.co/n8nTpMp/IMG-5101.png",
+    "category_id": 105
+  },
+  {
+    "name": "Rete 4 HD",
+    "sid": "63",
+    "icon": "https://i.ibb.co/n8nTpMp/IMG-5101.png",
+    "category_id": 105
+  },
+  {
+    "name": "Rete 4 HD (PLUS)",
+    "sid": "87971",
+    "icon": "https://i.ibb.co/n8nTpMp/IMG-5101.png",
+    "category_id": 105
+  },
+  {
+    "name": "Rete 4 SD",
+    "sid": "64",
+    "icon": "https://i.ibb.co/n8nTpMp/IMG-5101.png",
+    "category_id": 105
+  },
+  {
+    "name": "Canale 5 FHD",
+    "sid": "30",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_C5.png",
+    "category_id": 105
+  },
+  {
+    "name": "Canale 5 FHD (PLUS)",
+    "sid": "87974",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_C5.png",
+    "category_id": 105
+  },
+  {
+    "name": "Canale 5 HD",
+    "sid": "65",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_C5.png",
+    "category_id": 105
+  },
+  {
+    "name": "Canale 5 HD (PLUS)",
+    "sid": "87975",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_C5.png",
+    "category_id": 105
+  },
+  {
+    "name": "Canale 5 SD",
+    "sid": "66",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_C5.png",
+    "category_id": 105
+  },
+  {
+    "name": "Italia 1 FHD",
+    "sid": "31",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cc/Italia_1_logo.svg/3840px-Italia_1_logo.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Italia 1 FHD (PLUS)",
+    "sid": "87978",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cc/Italia_1_logo.svg/3840px-Italia_1_logo.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Italia 1 HD",
+    "sid": "67",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cc/Italia_1_logo.svg/3840px-Italia_1_logo.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Italia 1 HD (PLUS)",
+    "sid": "87979",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cc/Italia_1_logo.svg/3840px-Italia_1_logo.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Italia 1 SD",
+    "sid": "68",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cc/Italia_1_logo.svg/3840px-Italia_1_logo.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "La 7 FHD",
+    "sid": "35",
+    "icon": "https://github.com/tv-logo/tv-logos/blob/main/countries/italy/la7-it.png?raw=true",
+    "category_id": 105
+  },
+  {
+    "name": "La 7 FHD (PLUS)",
+    "sid": "87982",
+    "icon": "https://github.com/tv-logo/tv-logos/blob/main/countries/italy/la7-it.png?raw=true",
+    "category_id": 105
+  },
+  {
+    "name": "La 7 HD",
+    "sid": "69",
+    "icon": "https://github.com/tv-logo/tv-logos/blob/main/countries/italy/la7-it.png?raw=true",
+    "category_id": 105
+  },
+  {
+    "name": "La 7 HD (PLUS)",
+    "sid": "87983",
+    "icon": "https://github.com/tv-logo/tv-logos/blob/main/countries/italy/la7-it.png?raw=true",
+    "category_id": 105
+  },
+  {
+    "name": "La 7 SD",
+    "sid": "71",
+    "icon": "https://github.com/tv-logo/tv-logos/blob/main/countries/italy/la7-it.png?raw=true",
+    "category_id": 105
+  },
+  {
+    "name": "TV 8",
+    "sid": "55",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_8195.png",
+    "category_id": 105
+  },
+  {
+    "name": "Tv 8 FHD (PLUS)",
+    "sid": "87985",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_8195.png",
+    "category_id": 105
+  },
+  {
+    "name": "Tv 8 HD (PLUS)",
+    "sid": "87986",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_8195.png",
+    "category_id": 105
+  },
+  {
+    "name": "Nove FHD",
+    "sid": "46",
+    "icon": "https://i.imgur.com/f1oC0LV.png",
+    "category_id": 105
+  },
+  {
+    "name": "Nove FHD (PLUS)",
+    "sid": "87988",
+    "icon": "https://i.imgur.com/f1oC0LV.png",
+    "category_id": 105
+  },
+  {
+    "name": "Nove HD",
+    "sid": "91",
+    "icon": "https://i.imgur.com/f1oC0LV.png",
+    "category_id": 105
+  },
+  {
+    "name": "Nove HD (PLUS)",
+    "sid": "87989",
+    "icon": "https://i.imgur.com/f1oC0LV.png",
+    "category_id": 105
+  },
+  {
+    "name": "Nove SD",
+    "sid": "92",
+    "icon": "https://i.imgur.com/f1oC0LV.png",
+    "category_id": 105
+  },
+  {
+    "name": "Rai 4",
+    "sid": "130",
+    "icon": "https://i.imgur.com/x6bP7A7.png",
+    "category_id": 105
+  },
+  {
+    "name": "Rai 4 FHD (PLUS)",
+    "sid": "87991",
+    "icon": "https://i.imgur.com/x6bP7A7.png",
+    "category_id": 105
+  },
+  {
+    "name": "Rai 4 HD (PLUS)",
+    "sid": "87992",
+    "icon": "https://i.imgur.com/x6bP7A7.png",
+    "category_id": 105
+  },
+  {
+    "name": "Iris FHD",
+    "sid": "43",
+    "icon": "https://i.imgur.com/ZLnSLh4.png",
+    "category_id": 105
+  },
+  {
+    "name": "Iris FHD (PLUS)",
+    "sid": "87994",
+    "icon": "https://i.imgur.com/ZLnSLh4.png",
+    "category_id": 105
+  },
+  {
+    "name": "Iris HD",
+    "sid": "85",
+    "icon": "https://i.imgur.com/ZLnSLh4.png",
+    "category_id": 105
+  },
+  {
+    "name": "Iris HD (PLUS)",
+    "sid": "87995",
+    "icon": "https://i.imgur.com/ZLnSLh4.png",
+    "category_id": 105
+  },
+  {
+    "name": "Iris SD",
+    "sid": "86",
+    "icon": "https://i.imgur.com/ZLnSLh4.png",
+    "category_id": 105
+  },
+  {
+    "name": "La 5 FHD",
+    "sid": "39",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/La5_Mediaset.svg/1280px-La5_Mediaset.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "La 5 FHD (PLUS)",
+    "sid": "87997",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/La5_Mediaset.svg/1280px-La5_Mediaset.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "La 5 HD",
+    "sid": "77",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/La5_Mediaset.svg/1280px-La5_Mediaset.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "La 5 HD (PLUS)",
+    "sid": "87998",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/La5_Mediaset.svg/1280px-La5_Mediaset.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "La 5 SD",
+    "sid": "78",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/La5_Mediaset.svg/1280px-La5_Mediaset.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Gambero Rosso FHD",
+    "sid": "56",
+    "icon": "https://i.ibb.co/p2vCMW1/YLQqsYZ.png",
+    "category_id": 105
+  },
+  {
+    "name": "Gambero Rosso FHD (PLUS)",
+    "sid": "88054",
+    "icon": "https://i.ibb.co/p2vCMW1/YLQqsYZ.png",
+    "category_id": 105
+  },
+  {
+    "name": "Gambero Rosso HD",
+    "sid": "98684",
+    "icon": "https://i.ibb.co/p2vCMW1/YLQqsYZ.png",
+    "category_id": 105
+  },
+  {
+    "name": "Gambero Rosso HD (PLUS)",
+    "sid": "88055",
+    "icon": "https://i.ibb.co/p2vCMW1/YLQqsYZ.png",
+    "category_id": 105
+  },
+  {
+    "name": "Gambero Rosso SD",
+    "sid": "88056",
+    "icon": "https://i.ibb.co/p2vCMW1/YLQqsYZ.png",
+    "category_id": 105
+  },
+  {
+    "name": "Rai 5",
+    "sid": "131",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Rai_5_logo.svg/3840px-Rai_5_logo.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Rai 5 FHD (PLUS)",
+    "sid": "88000",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Rai_5_logo.svg/3840px-Rai_5_logo.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Rai 5 HD (PLUS)",
+    "sid": "88001",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Rai_5_logo.svg/3840px-Rai_5_logo.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Rai Premium",
+    "sid": "139",
+    "icon": "https://i.imgur.com/xOzphEM.png",
+    "category_id": 105
+  },
+  {
+    "name": "Rai Premium FHD (PLUS)",
+    "sid": "88003",
+    "icon": "https://i.imgur.com/xOzphEM.png",
+    "category_id": 105
+  },
+  {
+    "name": "Rai Premium HD (PLUS)",
+    "sid": "88004",
+    "icon": "https://i.imgur.com/xOzphEM.png",
+    "category_id": 105
+  },
+  {
+    "name": "Rai Movie",
+    "sid": "138",
+    "icon": "https://mediterranee-audiovisuelle.com/wp-content/uploads/2019/02/Rai-Movie.png",
+    "category_id": 105
+  },
+  {
+    "name": "Rai Movie FHD (PLUS)",
+    "sid": "88007",
+    "icon": "https://github.com/tv-logo/tv-logos/blob/main/countries/italy/rai-movie-it.png?raw=true",
+    "category_id": 105
+  },
+  {
+    "name": "Rai Movie HD (PLUS)",
+    "sid": "88008",
+    "icon": "https://github.com/tv-logo/tv-logos/blob/main/countries/italy/rai-movie-it.png?raw=true",
+    "category_id": 105
+  },
+  {
+    "name": "Rai News HD",
+    "sid": "135",
+    "icon": "https://i.imgur.com/dppqBQX.png",
+    "category_id": 105
+  },
+  {
+    "name": "Italia 2 FHD",
+    "sid": "41",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c5/Logo_Italia2.svg/3840px-Logo_Italia2.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Italia 2 FHD (PLUS)",
+    "sid": "88009",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c5/Logo_Italia2.svg/3840px-Logo_Italia2.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Italia 2 HD",
+    "sid": "81",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c5/Logo_Italia2.svg/3840px-Logo_Italia2.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Italia 2 HD (PLUS)",
+    "sid": "88010",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c5/Logo_Italia2.svg/3840px-Logo_Italia2.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Italia 2 SD",
+    "sid": "82",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c5/Logo_Italia2.svg/3840px-Logo_Italia2.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Mediaset Extra FHD",
+    "sid": "42",
+    "icon": "https://i.imgur.com/G51Lvah.png",
+    "category_id": 105
+  },
+  {
+    "name": "Mediaset Extra FHD (PLUS)",
+    "sid": "88012",
+    "icon": "https://i.imgur.com/G51Lvah.png",
+    "category_id": 105
+  },
+  {
+    "name": "Mediaset Extra HD",
+    "sid": "83",
+    "icon": "https://i.imgur.com/G51Lvah.png",
+    "category_id": 105
+  },
+  {
+    "name": "Mediaset Extra HD (PLUS)",
+    "sid": "88013",
+    "icon": "https://i.imgur.com/G51Lvah.png",
+    "category_id": 105
+  },
+  {
+    "name": "Mediaset Extra SD",
+    "sid": "84",
+    "icon": "https://i.imgur.com/G51Lvah.png",
+    "category_id": 105
+  },
+  {
+    "name": "20 Mediaset FHD",
+    "sid": "37",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/20_Mediaset_2018.svg/330px-20_Mediaset_2018.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "20 Mediaset HD",
+    "sid": "73",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/20_Mediaset_2018.svg/330px-20_Mediaset_2018.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "20 Mediaset SD",
+    "sid": "74",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/20_Mediaset_2018.svg/330px-20_Mediaset_2018.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Rai Storia",
+    "sid": "140",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/RAI_storia_2010_Logo.svg/3840px-RAI_storia_2010_Logo.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Rai Scuola",
+    "sid": "143",
+    "icon": "https://static.wikia.nocookie.net/tvfanon6528/images/4/40/Rai_Scuola_%282017-.n.v.%29.png",
+    "category_id": 105
+  },
+  {
+    "name": "Rai Gulp",
+    "sid": "141",
+    "icon": "https://i.imgur.com/Lts70bM.png",
+    "category_id": 105
+  },
+  {
+    "name": "27 TwentySeven FHD",
+    "sid": "38",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/26/Twentyseven_logo.svg/3840px-Twentyseven_logo.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "27 Twentyseven FHD (PLUS)",
+    "sid": "88027",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/26/Twentyseven_logo.svg/3840px-Twentyseven_logo.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "27 TwentySeven HD",
+    "sid": "75",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/26/Twentyseven_logo.svg/3840px-Twentyseven_logo.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "27 Twentyseven HD (PLUS)",
+    "sid": "88028",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/26/Twentyseven_logo.svg/3840px-Twentyseven_logo.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "27 TwentySeven SD",
+    "sid": "76",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/26/Twentyseven_logo.svg/3840px-Twentyseven_logo.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "DMAX FHD",
+    "sid": "49",
+    "icon": "https://i39.servimg.com/u/f39/20/53/10/83/800px-10.png",
+    "category_id": 105
+  },
+  {
+    "name": "Dmax FHD (PLUS)",
+    "sid": "88030",
+    "icon": "https://i39.servimg.com/u/f39/20/53/10/83/800px-10.png",
+    "category_id": 105
+  },
+  {
+    "name": "DMAX HD",
+    "sid": "97",
+    "icon": "https://i.imgur.com/ej58cFp.png",
+    "category_id": 105
+  },
+  {
+    "name": "Dmax HD (PLUS)",
+    "sid": "88031",
+    "icon": "https://i39.servimg.com/u/f39/20/53/10/83/800px-10.png",
+    "category_id": 105
+  },
+  {
+    "name": "DMAX SD",
+    "sid": "98",
+    "icon": "https://i.imgur.com/ej58cFp.png",
+    "category_id": 105
+  },
+  {
+    "name": "La7 Cinema FHD",
+    "sid": "36",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/LA7_Cinema_-_Logo_2025.png/120px-LA7_Cinema_-_Logo_2025.png",
+    "category_id": 105
+  },
+  {
+    "name": "La7 Cinema FHD (PLUS)",
+    "sid": "88032",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/LA7_Cinema_-_Logo_2025.png/120px-LA7_Cinema_-_Logo_2025.png",
+    "category_id": 105
+  },
+  {
+    "name": "La7 Cinema HD",
+    "sid": "70",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/LA7_Cinema_-_Logo_2025.png/120px-LA7_Cinema_-_Logo_2025.png",
+    "category_id": 105
+  },
+  {
+    "name": "La7 Cinema HD (PLUS)",
+    "sid": "88033",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/LA7_Cinema_-_Logo_2025.png/120px-LA7_Cinema_-_Logo_2025.png",
+    "category_id": 105
+  },
+  {
+    "name": "La7 Cinema SD",
+    "sid": "72",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/LA7_Cinema_-_Logo_2025.png/120px-LA7_Cinema_-_Logo_2025.png",
+    "category_id": 105
+  },
+  {
+    "name": "Cine 34 FHD",
+    "sid": "40",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Cine34_logo.svg/1280px-Cine34_logo.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Cine 34 FHD (PLUS)",
+    "sid": "88035",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Cine34_logo.svg/1280px-Cine34_logo.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Cine 34 HD",
+    "sid": "79",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Cine34_logo.svg/1280px-Cine34_logo.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Cine 34 HD (PLUS)",
+    "sid": "88036",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Cine34_logo.svg/1280px-Cine34_logo.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Cine 34 SD",
+    "sid": "80",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Cine34_logo.svg/1280px-Cine34_logo.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Giallo FHD",
+    "sid": "53",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Giallo_-_Logo_2014.svg/1280px-Giallo_-_Logo_2014.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Giallo FHD (PLUS)",
+    "sid": "88038",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Giallo_-_Logo_2014.svg/1280px-Giallo_-_Logo_2014.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Giallo HD",
+    "sid": "101",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Giallo_-_Logo_2014.svg/1280px-Giallo_-_Logo_2014.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Giallo HD (PLUS)",
+    "sid": "88039",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Giallo_-_Logo_2014.svg/1280px-Giallo_-_Logo_2014.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Giallo SD",
+    "sid": "102",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Giallo_-_Logo_2014.svg/1280px-Giallo_-_Logo_2014.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Food Network FHD",
+    "sid": "48",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Food-network_color.svg/330px-Food-network_color.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Food Network FHD (PLUS)",
+    "sid": "88041",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Food-network_color.svg/330px-Food-network_color.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Food Network HD",
+    "sid": "95",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Food-network_color.svg/330px-Food-network_color.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Food Network HD (PLUS)",
+    "sid": "88042",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Food-network_color.svg/330px-Food-network_color.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Food Network SD",
+    "sid": "96",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Food-network_color.svg/330px-Food-network_color.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "HGTV FHD",
+    "sid": "50",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/0/05/HGTV_logo.png",
+    "category_id": 105
+  },
+  {
+    "name": "HGTV FHD (PLUS)",
+    "sid": "88044",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/0/05/HGTV_logo.png",
+    "category_id": 105
+  },
+  {
+    "name": "HGTV HD",
+    "sid": "99",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/0/05/HGTV_logo.png",
+    "category_id": 105
+  },
+  {
+    "name": "HGTV HD (PLUS)",
+    "sid": "88045",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/0/05/HGTV_logo.png",
+    "category_id": 105
+  },
+  {
+    "name": "HGTV SD",
+    "sid": "100",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/0/05/HGTV_logo.png",
+    "category_id": 105
+  },
+  {
+    "name": "RSI La1",
+    "sid": "113",
+    "icon": "https://thumb.wikimedia.org/wikipedia/it/thumb/5/51/RSI_La_1.svg/960px-RSI_La_1.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "RSI La2",
+    "sid": "114",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/RSI_La_2_2012.svg/1280px-RSI_La_2_2012.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "TV2000",
+    "sid": "51",
+    "icon": "https://thumb.wikimedia.org/wikipedia/it/thumb/0/0d/Logo_tv2000_2015.svg/1280px-Logo_tv2000_2015.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Cielo",
+    "sid": "132",
+    "icon": "https://i.imgur.com/SuoFm3J.png",
+    "category_id": 105
+  },
+  {
+    "name": "Cielo FHD (PLUS)",
+    "sid": "88050",
+    "icon": "https://i.imgur.com/SuoFm3J.png",
+    "category_id": 105
+  },
+  {
+    "name": "Cielo HD (PLUS)",
+    "sid": "88051",
+    "icon": "https://i.imgur.com/SuoFm3J.png",
+    "category_id": 105
+  },
+  {
+    "name": "Warner TV HD",
+    "sid": "133",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Warner_TV_Italy.svg/330px-Warner_TV_Italy.svg.png",
+    "category_id": 105
+  },
+  {
+    "name": "Canale Italia",
+    "sid": "2113",
+    "icon": "https://i.imgur.com/ZqxOFkN.png",
+    "category_id": 105
+  },
+  {
+    "name": "QVC",
+    "sid": "18203",
+    "icon": "https://i.imgur.com/6TWUVrh.png",
+    "category_id": 105
+  }
+]

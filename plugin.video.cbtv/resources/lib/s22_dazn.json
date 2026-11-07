@@ -1,0 +1,1448 @@
+[
+  {
+    "name": "DAZN 1 FHD",
+    "sid": "289822",
+    "icon": "https://image.discovery.indazn.com/eu/v2/eu/image/?id=sxq07q8rseju1j7chnfc7w3if_image-header_pIt_1754467959000",
+    "category_id": 235
+  },
+  {
+    "name": "DAZN 1 HD",
+    "sid": "289823",
+    "icon": "https://image.discovery.indazn.com/eu/v2/eu/image/?id=sxq07q8rseju1j7chnfc7w3if_image-header_pIt_1754467959000",
+    "category_id": 235
+  },
+  {
+    "name": "DAZN 1 SD",
+    "sid": "289824",
+    "icon": "https://image.discovery.indazn.com/eu/v2/eu/image/?id=sxq07q8rseju1j7chnfc7w3if_image-header_pIt_1754467959000",
+    "category_id": 235
+  },
+  {
+    "name": "Inter TV FHD",
+    "sid": "289673",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Inter_TV_-_Logo_2021.png",
+    "category_id": 235
+  },
+  {
+    "name": "Inter TV HD",
+    "sid": "289672",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Inter_TV_-_Logo_2021.png",
+    "category_id": 235
+  },
+  {
+    "name": "Inter TV SD",
+    "sid": "289671",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Inter_TV_-_Logo_2021.png",
+    "category_id": 235
+  },
+  {
+    "name": "Milan TV FHD",
+    "sid": "289670",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Milan_TV_-_Logo_2016.png",
+    "category_id": 235
+  },
+  {
+    "name": "Milan TV HD",
+    "sid": "289669",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Milan_TV_-_Logo_2016.png",
+    "category_id": 235
+  },
+  {
+    "name": "Milan TV SD",
+    "sid": "289668",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Milan_TV_-_Logo_2016.png",
+    "category_id": 235
+  },
+  {
+    "name": "Radio TV Serie A FHD",
+    "sid": "289667",
+    "icon": "https://image.discovery.indazn.com/eu/v2/eu/image/?id=8xftxwvnt2c11dvwo1575o622_image-header_pIt_1756280909000",
+    "category_id": 235
+  },
+  {
+    "name": "Radio TV Serie A HD",
+    "sid": "289666",
+    "icon": "https://image.discovery.indazn.com/eu/v2/eu/image/?id=8xftxwvnt2c11dvwo1575o622_image-header_pIt_1756280909000",
+    "category_id": 235
+  },
+  {
+    "name": "Radio TV Serie A SD",
+    "sid": "289665",
+    "icon": "https://image.discovery.indazn.com/eu/v2/eu/image/?id=8xftxwvnt2c11dvwo1575o622_image-header_pIt_1756280909000",
+    "category_id": 235
+  },
+  {
+    "name": "Red Bull TV FHD",
+    "sid": "289662",
+    "icon": "https://i.ibb.co/Y4xsZK7b/image.png",
+    "category_id": 235
+  },
+  {
+    "name": "Red Bull TV HD",
+    "sid": "289661",
+    "icon": "https://i.ibb.co/Y4xsZK7b/image.png",
+    "category_id": 235
+  },
+  {
+    "name": "Red Bull TV SD",
+    "sid": "289660",
+    "icon": "https://i.ibb.co/Y4xsZK7b/image.png",
+    "category_id": 235
+  },
+  {
+    "name": "Unbeaten",
+    "sid": "289659",
+    "icon": "https://i.ibb.co/ynTffnQB/image.jpg",
+    "category_id": 235
+  },
+  {
+    "name": "NFL Network: Live 24_7 Coverage FHD",
+    "sid": "289658",
+    "icon": "https://image.discovery.indazn.com/eu/v2/eu/image/?id=u0o1f5qdd5871ijnw6yjnbnrx_image-header_pIt_1711624423000",
+    "category_id": 235
+  },
+  {
+    "name": "NFL Network: Live 24_7 Coverage HD",
+    "sid": "289657",
+    "icon": "https://image.discovery.indazn.com/eu/v2/eu/image/?id=u0o1f5qdd5871ijnw6yjnbnrx_image-header_pIt_1711624423000",
+    "category_id": 235
+  },
+  {
+    "name": "NFL Network: Live 24_7 Coverage SD",
+    "sid": "289656",
+    "icon": "https://image.discovery.indazn.com/eu/v2/eu/image/?id=u0o1f5qdd5871ijnw6yjnbnrx_image-header_pIt_1711624423000",
+    "category_id": 235
+  },
+  {
+    "name": "Vetrina DAZN",
+    "sid": "289821",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 1 FHD",
+    "sid": "289820",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 1 HD",
+    "sid": "289819",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 1 SD",
+    "sid": "289818",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 2 FHD",
+    "sid": "289817",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 2 HD",
+    "sid": "289816",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 2 SD",
+    "sid": "289815",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 3 FHD",
+    "sid": "289814",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 3 HD",
+    "sid": "289813",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 3 SD",
+    "sid": "289812",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 4 FHD",
+    "sid": "289811",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 4 HD",
+    "sid": "289810",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 4 SD",
+    "sid": "289809",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 5 FHD",
+    "sid": "289808",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 5 HD",
+    "sid": "289807",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 5 SD",
+    "sid": "289806",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 6 FHD",
+    "sid": "289805",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 6 HD",
+    "sid": "289804",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 6 SD",
+    "sid": "289803",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 7 FHD",
+    "sid": "289802",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 7 HD",
+    "sid": "289801",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 7 SD",
+    "sid": "289800",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 8 FHD",
+    "sid": "289799",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 8 HD",
+    "sid": "289798",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 8 SD",
+    "sid": "289797",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 9 FHD",
+    "sid": "289796",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 9 HD",
+    "sid": "289795",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 9 SD",
+    "sid": "289794",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 10 FHD",
+    "sid": "289793",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 10 HD",
+    "sid": "289792",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 10 SD",
+    "sid": "289791",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 11 FHD",
+    "sid": "289790",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 11 HD",
+    "sid": "289789",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 11 SD",
+    "sid": "289788",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 12 FHD",
+    "sid": "289787",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 12 HD",
+    "sid": "289786",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 12 SD",
+    "sid": "289785",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 13 FHD",
+    "sid": "289784",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 13 HD",
+    "sid": "289783",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 13 SD",
+    "sid": "289782",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 14 FHD",
+    "sid": "289781",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 14 HD",
+    "sid": "289780",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 14 SD",
+    "sid": "289779",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 15 FHD",
+    "sid": "289778",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 15 HD",
+    "sid": "289777",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 15 SD",
+    "sid": "289776",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 16 FHD",
+    "sid": "289775",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 16 HD",
+    "sid": "289774",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 16 SD",
+    "sid": "289773",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 17 FHD",
+    "sid": "289772",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 17 HD",
+    "sid": "289771",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 17 SD",
+    "sid": "289770",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 18 FHD",
+    "sid": "289769",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 18 HD",
+    "sid": "289768",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 18 SD",
+    "sid": "289767",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 19 FHD",
+    "sid": "289766",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 19 HD",
+    "sid": "289765",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 19 SD",
+    "sid": "289764",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 20 FHD",
+    "sid": "289763",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 20 HD",
+    "sid": "289762",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 20 SD",
+    "sid": "289761",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 21 FHD",
+    "sid": "289760",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 21 HD",
+    "sid": "289759",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 21 SD",
+    "sid": "289758",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 22 FHD",
+    "sid": "289757",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 22 HD",
+    "sid": "289756",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 22 SD",
+    "sid": "289755",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 23 FHD",
+    "sid": "289754",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 23 HD",
+    "sid": "289753",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 23 SD",
+    "sid": "289752",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 24 FHD",
+    "sid": "289751",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 24 HD",
+    "sid": "289750",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 24 SD",
+    "sid": "289749",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 25 FHD",
+    "sid": "289748",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 25 HD",
+    "sid": "289747",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Events 25 SD",
+    "sid": "289746",
+    "icon": "https://img.priv.re/iptv/it/dazn_eventi_1.png",
+    "category_id": 21
+  },
+  {
+    "name": "Zona Serie A 1 FHD",
+    "sid": "297259",
+    "icon": "https://files.catbox.moe/lg718k.png",
+    "category_id": 128
+  },
+  {
+    "name": "Zona Serie A 1 HD",
+    "sid": "297258",
+    "icon": "https://files.catbox.moe/lg718k.png",
+    "category_id": 128
+  },
+  {
+    "name": "Zona Serie A 1 SD",
+    "sid": "297257",
+    "icon": "https://files.catbox.moe/lg718k.png",
+    "category_id": 128
+  },
+  {
+    "name": "Zona Serie A 2 FHD",
+    "sid": "297256",
+    "icon": "https://files.catbox.moe/lg718k.png",
+    "category_id": 128
+  },
+  {
+    "name": "Zona Serie A 2 HD",
+    "sid": "297255",
+    "icon": "https://files.catbox.moe/lg718k.png",
+    "category_id": 128
+  },
+  {
+    "name": "Zona Serie A 2 SD",
+    "sid": "297254",
+    "icon": "https://files.catbox.moe/lg718k.png",
+    "category_id": 128
+  },
+  {
+    "name": "Atalanta FHD",
+    "sid": "297319",
+    "icon": "https://thumb.wikimedia.org/wikipedia/it/thumb/8/81/Logo_Atalanta_Bergamo.svg/1280px-Logo_Atalanta_Bergamo.svg.png",
+    "category_id": 128
+  },
+  {
+    "name": "Atalanta HD",
+    "sid": "297318",
+    "icon": "https://thumb.wikimedia.org/wikipedia/it/thumb/8/81/Logo_Atalanta_Bergamo.svg/1280px-Logo_Atalanta_Bergamo.svg.png",
+    "category_id": 128
+  },
+  {
+    "name": "Atalanta SD",
+    "sid": "297317",
+    "icon": "https://thumb.wikimedia.org/wikipedia/it/thumb/8/81/Logo_Atalanta_Bergamo.svg/1280px-Logo_Atalanta_Bergamo.svg.png",
+    "category_id": 128
+  },
+  {
+    "name": "Bologna FHD",
+    "sid": "297316",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5b/Bologna_F.C._1909_logo.svg/1920px-Bologna_F.C._1909_logo.svg.png",
+    "category_id": 128
+  },
+  {
+    "name": "Bologna HD",
+    "sid": "297315",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5b/Bologna_F.C._1909_logo.svg/1920px-Bologna_F.C._1909_logo.svg.png",
+    "category_id": 128
+  },
+  {
+    "name": "Bologna SD",
+    "sid": "297314",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5b/Bologna_F.C._1909_logo.svg/1920px-Bologna_F.C._1909_logo.svg.png",
+    "category_id": 128
+  },
+  {
+    "name": "Cagliari FHD",
+    "sid": "297313",
+    "icon": "https://thumb.wikimedia.org/wikipedia/it/thumb/8/88/Cagliari_calcio.svg/1920px-Cagliari_calcio.svg.png",
+    "category_id": 128
+  },
+  {
+    "name": "Cagliari HD",
+    "sid": "297312",
+    "icon": "https://thumb.wikimedia.org/wikipedia/it/thumb/8/88/Cagliari_calcio.svg/1920px-Cagliari_calcio.svg.png",
+    "category_id": 128
+  },
+  {
+    "name": "Cagliari SD",
+    "sid": "297311",
+    "icon": "https://thumb.wikimedia.org/wikipedia/it/thumb/8/88/Cagliari_calcio.svg/1920px-Cagliari_calcio.svg.png",
+    "category_id": 128
+  },
+  {
+    "name": "Como FHD",
+    "sid": "297310",
+    "icon": "https://files.catbox.moe/tqz960.png",
+    "category_id": 128
+  },
+  {
+    "name": "Como HD",
+    "sid": "297309",
+    "icon": "https://files.catbox.moe/tqz960.png",
+    "category_id": 128
+  },
+  {
+    "name": "Como SD",
+    "sid": "297308",
+    "icon": "https://files.catbox.moe/tqz960.png",
+    "category_id": 128
+  },
+  {
+    "name": "Fiorentina FHD",
+    "sid": "297307",
+    "icon": "https://files.catbox.moe/892jpm.png",
+    "category_id": 128
+  },
+  {
+    "name": "Fiorentina HD",
+    "sid": "297306",
+    "icon": "https://files.catbox.moe/892jpm.png",
+    "category_id": 128
+  },
+  {
+    "name": "Fiorentina SD",
+    "sid": "297305",
+    "icon": "https://files.catbox.moe/892jpm.png",
+    "category_id": 128
+  },
+  {
+    "name": "Frosinone FHD",
+    "sid": "297304",
+    "icon": "https://files.catbox.moe/4lj8f7.png",
+    "category_id": 128
+  },
+  {
+    "name": "Frosinone HD",
+    "sid": "297303",
+    "icon": "https://files.catbox.moe/4lj8f7.png",
+    "category_id": 128
+  },
+  {
+    "name": "Frosinone SD",
+    "sid": "297302",
+    "icon": "https://files.catbox.moe/4lj8f7.png",
+    "category_id": 128
+  },
+  {
+    "name": "Genoa FHD",
+    "sid": "297301",
+    "icon": "https://files.catbox.moe/eo84qv.png",
+    "category_id": 128
+  },
+  {
+    "name": "Genoa HD",
+    "sid": "297300",
+    "icon": "https://files.catbox.moe/eo84qv.png",
+    "category_id": 128
+  },
+  {
+    "name": "Genoa SD",
+    "sid": "297299",
+    "icon": "https://files.catbox.moe/eo84qv.png",
+    "category_id": 128
+  },
+  {
+    "name": "Inter FHD",
+    "sid": "297298",
+    "icon": "https://files.catbox.moe/od0ktw.png",
+    "category_id": 128
+  },
+  {
+    "name": "Inter HD",
+    "sid": "297297",
+    "icon": "https://files.catbox.moe/od0ktw.png",
+    "category_id": 128
+  },
+  {
+    "name": "Inter SD",
+    "sid": "297296",
+    "icon": "https://files.catbox.moe/od0ktw.png",
+    "category_id": 128
+  },
+  {
+    "name": "Juventus FHD",
+    "sid": "297295",
+    "icon": "https://files.catbox.moe/b54d9v.png",
+    "category_id": 128
+  },
+  {
+    "name": "Juventus HD",
+    "sid": "297294",
+    "icon": "https://files.catbox.moe/b54d9v.png",
+    "category_id": 128
+  },
+  {
+    "name": "Juventus SD",
+    "sid": "297293",
+    "icon": "https://files.catbox.moe/b54d9v.png",
+    "category_id": 128
+  },
+  {
+    "name": "Lazio FHD",
+    "sid": "297292",
+    "icon": "https://files.catbox.moe/cbaapi.png",
+    "category_id": 128
+  },
+  {
+    "name": "Lazio HD",
+    "sid": "297291",
+    "icon": "https://files.catbox.moe/cbaapi.png",
+    "category_id": 128
+  },
+  {
+    "name": "Lazio SD",
+    "sid": "297290",
+    "icon": "https://files.catbox.moe/cbaapi.png",
+    "category_id": 128
+  },
+  {
+    "name": "Lecce FHD",
+    "sid": "297289",
+    "icon": "https://files.catbox.moe/iw24fv.png",
+    "category_id": 128
+  },
+  {
+    "name": "Lecce HD",
+    "sid": "297288",
+    "icon": "https://files.catbox.moe/iw24fv.png",
+    "category_id": 128
+  },
+  {
+    "name": "Lecce SD",
+    "sid": "297287",
+    "icon": "https://files.catbox.moe/iw24fv.png",
+    "category_id": 128
+  },
+  {
+    "name": "Milan FHD",
+    "sid": "297286",
+    "icon": "https://files.catbox.moe/vahp2m.png",
+    "category_id": 128
+  },
+  {
+    "name": "Milan HD",
+    "sid": "297285",
+    "icon": "https://files.catbox.moe/vahp2m.png",
+    "category_id": 128
+  },
+  {
+    "name": "Milan SD",
+    "sid": "297284",
+    "icon": "https://files.catbox.moe/vahp2m.png",
+    "category_id": 128
+  },
+  {
+    "name": "Monza FHD",
+    "sid": "297283",
+    "icon": "https://files.catbox.moe/w3jyqc.png",
+    "category_id": 128
+  },
+  {
+    "name": "Monza HD",
+    "sid": "297282",
+    "icon": "https://files.catbox.moe/w3jyqc.png",
+    "category_id": 128
+  },
+  {
+    "name": "Monza SD",
+    "sid": "297281",
+    "icon": "https://files.catbox.moe/w3jyqc.png",
+    "category_id": 128
+  },
+  {
+    "name": "Napoli FHD",
+    "sid": "297280",
+    "icon": "https://files.catbox.moe/u2olf1.png",
+    "category_id": 128
+  },
+  {
+    "name": "Napoli HD",
+    "sid": "297279",
+    "icon": "https://files.catbox.moe/u2olf1.png",
+    "category_id": 128
+  },
+  {
+    "name": "Napoli SD",
+    "sid": "297278",
+    "icon": "https://files.catbox.moe/u2olf1.png",
+    "category_id": 128
+  },
+  {
+    "name": "Parma FHD",
+    "sid": "297277",
+    "icon": "https://files.catbox.moe/vhvixd.png",
+    "category_id": 128
+  },
+  {
+    "name": "Parma HD",
+    "sid": "297276",
+    "icon": "https://files.catbox.moe/vhvixd.png",
+    "category_id": 128
+  },
+  {
+    "name": "Parma SD",
+    "sid": "297275",
+    "icon": "https://files.catbox.moe/vhvixd.png",
+    "category_id": 128
+  },
+  {
+    "name": "Roma FHD",
+    "sid": "297274",
+    "icon": "https://files.catbox.moe/oirncd.png",
+    "category_id": 128
+  },
+  {
+    "name": "Roma HD",
+    "sid": "297273",
+    "icon": "https://files.catbox.moe/oirncd.png",
+    "category_id": 128
+  },
+  {
+    "name": "Roma SD",
+    "sid": "297272",
+    "icon": "https://files.catbox.moe/oirncd.png",
+    "category_id": 128
+  },
+  {
+    "name": "Sassuolo FHD",
+    "sid": "297271",
+    "icon": "https://files.catbox.moe/gx6n18.png",
+    "category_id": 128
+  },
+  {
+    "name": "Sassuolo HD",
+    "sid": "297270",
+    "icon": "https://files.catbox.moe/gx6n18.png",
+    "category_id": 128
+  },
+  {
+    "name": "Sassuolo SD",
+    "sid": "297269",
+    "icon": "https://files.catbox.moe/gx6n18.png",
+    "category_id": 128
+  },
+  {
+    "name": "Torino FHD",
+    "sid": "297268",
+    "icon": "https://upload.wikimedia.org/wikipedia/en/thumb/2/2e/Torino_FC_Logo.svg/1280px-Torino_FC_Logo.svg.png?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=thumbnail",
+    "category_id": 128
+  },
+  {
+    "name": "Torino HD",
+    "sid": "297267",
+    "icon": "https://upload.wikimedia.org/wikipedia/en/thumb/2/2e/Torino_FC_Logo.svg/1280px-Torino_FC_Logo.svg.png?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=thumbnail",
+    "category_id": 128
+  },
+  {
+    "name": "Torino SD",
+    "sid": "297266",
+    "icon": "https://upload.wikimedia.org/wikipedia/en/thumb/2/2e/Torino_FC_Logo.svg/1280px-Torino_FC_Logo.svg.png?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=thumbnail",
+    "category_id": 128
+  },
+  {
+    "name": "Udinese FHD",
+    "sid": "297265",
+    "icon": "https://files.catbox.moe/4li5ne.png",
+    "category_id": 128
+  },
+  {
+    "name": "Udinese HD",
+    "sid": "297264",
+    "icon": "https://files.catbox.moe/4li5ne.png",
+    "category_id": 128
+  },
+  {
+    "name": "Udinese SD",
+    "sid": "297263",
+    "icon": "https://files.catbox.moe/4li5ne.png",
+    "category_id": 128
+  },
+  {
+    "name": "Venezia FHD",
+    "sid": "297262",
+    "icon": "https://files.catbox.moe/qe0ex2.png",
+    "category_id": 128
+  },
+  {
+    "name": "Venezia HD",
+    "sid": "297261",
+    "icon": "https://files.catbox.moe/qe0ex2.png",
+    "category_id": 128
+  },
+  {
+    "name": "Venezia SD",
+    "sid": "297260",
+    "icon": "https://files.catbox.moe/qe0ex2.png",
+    "category_id": 128
+  },
+  {
+    "name": "Zona Serie B 1 FHD",
+    "sid": "297190",
+    "icon": "https://files.catbox.moe/r1ttr9.png",
+    "category_id": 22
+  },
+  {
+    "name": "Zona Serie B 1 HD",
+    "sid": "297189",
+    "icon": "https://files.catbox.moe/r1ttr9.png",
+    "category_id": 22
+  },
+  {
+    "name": "Zona Serie B 1 SD",
+    "sid": "297188",
+    "icon": "https://files.catbox.moe/r1ttr9.png",
+    "category_id": 22
+  },
+  {
+    "name": "Zona Serie B 2 FHD",
+    "sid": "297187",
+    "icon": "https://files.catbox.moe/r1ttr9.png",
+    "category_id": 22
+  },
+  {
+    "name": "Zona Serie B 2 HD",
+    "sid": "297186",
+    "icon": "https://files.catbox.moe/r1ttr9.png",
+    "category_id": 22
+  },
+  {
+    "name": "Zona Serie B 2 SD",
+    "sid": "297185",
+    "icon": "https://files.catbox.moe/r1ttr9.png",
+    "category_id": 22
+  },
+  {
+    "name": "Arezzo FHD",
+    "sid": "297250",
+    "icon": "https://files.catbox.moe/ilxdkg.png",
+    "category_id": 22
+  },
+  {
+    "name": "Arezzo HD",
+    "sid": "297249",
+    "icon": "https://files.catbox.moe/ilxdkg.png",
+    "category_id": 22
+  },
+  {
+    "name": "Arezzo SD",
+    "sid": "297248",
+    "icon": "https://files.catbox.moe/ilxdkg.png",
+    "category_id": 22
+  },
+  {
+    "name": "Ascoli FHD",
+    "sid": "297247",
+    "icon": "https://files.catbox.moe/e81re2.png",
+    "category_id": 22
+  },
+  {
+    "name": "Ascoli HD",
+    "sid": "297246",
+    "icon": "https://files.catbox.moe/e81re2.png",
+    "category_id": 22
+  },
+  {
+    "name": "Ascoli SD",
+    "sid": "297245",
+    "icon": "https://files.catbox.moe/e81re2.png",
+    "category_id": 22
+  },
+  {
+    "name": "Avellino FHD",
+    "sid": "297244",
+    "icon": "https://d5rzfs5ck83rq.cloudfront.net/legab.it/img/club/loghi/avellino.png",
+    "category_id": 22
+  },
+  {
+    "name": "Avellino HD",
+    "sid": "297243",
+    "icon": "https://d5rzfs5ck83rq.cloudfront.net/legab.it/img/club/loghi/avellino.png",
+    "category_id": 22
+  },
+  {
+    "name": "Avellino SD",
+    "sid": "297242",
+    "icon": "https://d5rzfs5ck83rq.cloudfront.net/legab.it/img/club/loghi/avellino.png",
+    "category_id": 22
+  },
+  {
+    "name": "Benevento FHD",
+    "sid": "297241",
+    "icon": "https://files.catbox.moe/ts0zat.png",
+    "category_id": 22
+  },
+  {
+    "name": "Benevento HD",
+    "sid": "297240",
+    "icon": "https://files.catbox.moe/ts0zat.png",
+    "category_id": 22
+  },
+  {
+    "name": "Benevento SD",
+    "sid": "297239",
+    "icon": "https://files.catbox.moe/ts0zat.png",
+    "category_id": 22
+  },
+  {
+    "name": "Carrarese FHD",
+    "sid": "297238",
+    "icon": "https://files.catbox.moe/gpokrs.png",
+    "category_id": 22
+  },
+  {
+    "name": "Carrarese HD",
+    "sid": "297237",
+    "icon": "https://files.catbox.moe/gpokrs.png",
+    "category_id": 22
+  },
+  {
+    "name": "Carrarese SD",
+    "sid": "297236",
+    "icon": "https://files.catbox.moe/gpokrs.png",
+    "category_id": 22
+  },
+  {
+    "name": "Catanzaro FHD",
+    "sid": "297235",
+    "icon": "https://files.catbox.moe/tjl7ff.png",
+    "category_id": 22
+  },
+  {
+    "name": "Catanzaro HD",
+    "sid": "297234",
+    "icon": "https://files.catbox.moe/tjl7ff.png",
+    "category_id": 22
+  },
+  {
+    "name": "Catanzaro SD",
+    "sid": "297233",
+    "icon": "https://files.catbox.moe/tjl7ff.png",
+    "category_id": 22
+  },
+  {
+    "name": "Cesena FHD",
+    "sid": "297232",
+    "icon": "https://files.catbox.moe/790nwg.png",
+    "category_id": 22
+  },
+  {
+    "name": "Cesena HD",
+    "sid": "297231",
+    "icon": "https://files.catbox.moe/790nwg.png",
+    "category_id": 22
+  },
+  {
+    "name": "Cesena SD",
+    "sid": "297230",
+    "icon": "https://files.catbox.moe/790nwg.png",
+    "category_id": 22
+  },
+  {
+    "name": "Cremonese FHD",
+    "sid": "297229",
+    "icon": "https://files.catbox.moe/ar12vr.png",
+    "category_id": 22
+  },
+  {
+    "name": "Cremonese HD",
+    "sid": "297228",
+    "icon": "https://files.catbox.moe/ar12vr.png",
+    "category_id": 22
+  },
+  {
+    "name": "Cremonese SD",
+    "sid": "297227",
+    "icon": "https://files.catbox.moe/ar12vr.png",
+    "category_id": 22
+  },
+  {
+    "name": "Empoli FHD",
+    "sid": "297226",
+    "icon": "https://files.catbox.moe/e6tpsr.png",
+    "category_id": 22
+  },
+  {
+    "name": "Empoli HD",
+    "sid": "297225",
+    "icon": "https://files.catbox.moe/e6tpsr.png",
+    "category_id": 22
+  },
+  {
+    "name": "Empoli SD",
+    "sid": "297224",
+    "icon": "https://files.catbox.moe/e6tpsr.png",
+    "category_id": 22
+  },
+  {
+    "name": "Hellas Verona FHD",
+    "sid": "297223",
+    "icon": "https://files.catbox.moe/b9z7hh.png",
+    "category_id": 22
+  },
+  {
+    "name": "Hellas Verona HD",
+    "sid": "297222",
+    "icon": "https://files.catbox.moe/b9z7hh.png",
+    "category_id": 22
+  },
+  {
+    "name": "Hellas Verona SD",
+    "sid": "297221",
+    "icon": "https://files.catbox.moe/b9z7hh.png",
+    "category_id": 22
+  },
+  {
+    "name": "Juve Stabia FHD",
+    "sid": "297220",
+    "icon": "https://files.catbox.moe/d9jewl.png",
+    "category_id": 22
+  },
+  {
+    "name": "Juve Stabia HD",
+    "sid": "297219",
+    "icon": "https://files.catbox.moe/d9jewl.png",
+    "category_id": 22
+  },
+  {
+    "name": "Juve Stabia SD",
+    "sid": "297218",
+    "icon": "https://files.catbox.moe/d9jewl.png",
+    "category_id": 22
+  },
+  {
+    "name": "Mantova FHD",
+    "sid": "297217",
+    "icon": "https://files.catbox.moe/u5eogx.png",
+    "category_id": 22
+  },
+  {
+    "name": "Mantova HD",
+    "sid": "297216",
+    "icon": "https://files.catbox.moe/u5eogx.png",
+    "category_id": 22
+  },
+  {
+    "name": "Mantova SD",
+    "sid": "297215",
+    "icon": "https://files.catbox.moe/u5eogx.png",
+    "category_id": 22
+  },
+  {
+    "name": "Modena FHD",
+    "sid": "297214",
+    "icon": "https://files.catbox.moe/ub9sz1.png",
+    "category_id": 22
+  },
+  {
+    "name": "Modena HD",
+    "sid": "297213",
+    "icon": "https://files.catbox.moe/ub9sz1.png",
+    "category_id": 22
+  },
+  {
+    "name": "Modena SD",
+    "sid": "297212",
+    "icon": "https://files.catbox.moe/ub9sz1.png",
+    "category_id": 22
+  },
+  {
+    "name": "Padova FHD",
+    "sid": "297211",
+    "icon": "https://d5rzfs5ck83rq.cloudfront.net/legab.it/img/club/loghi/padova-b.png",
+    "category_id": 22
+  },
+  {
+    "name": "Padova HD",
+    "sid": "297210",
+    "icon": "https://d5rzfs5ck83rq.cloudfront.net/legab.it/img/club/loghi/padova-b.png",
+    "category_id": 22
+  },
+  {
+    "name": "Padova SD",
+    "sid": "297209",
+    "icon": "https://d5rzfs5ck83rq.cloudfront.net/legab.it/img/club/loghi/padova-b.png",
+    "category_id": 22
+  },
+  {
+    "name": "Palermo FHD",
+    "sid": "297208",
+    "icon": "https://files.catbox.moe/ifp7e7.png",
+    "category_id": 22
+  },
+  {
+    "name": "Palermo HD",
+    "sid": "297207",
+    "icon": "https://files.catbox.moe/ifp7e7.png",
+    "category_id": 22
+  },
+  {
+    "name": "Palermo SD",
+    "sid": "297206",
+    "icon": "https://files.catbox.moe/ifp7e7.png",
+    "category_id": 22
+  },
+  {
+    "name": "Pisa FHD",
+    "sid": "297205",
+    "icon": "https://files.catbox.moe/in8v3y.png",
+    "category_id": 22
+  },
+  {
+    "name": "Pisa HD",
+    "sid": "297204",
+    "icon": "https://files.catbox.moe/in8v3y.png",
+    "category_id": 22
+  },
+  {
+    "name": "Pisa SD",
+    "sid": "297203",
+    "icon": "https://files.catbox.moe/in8v3y.png",
+    "category_id": 22
+  },
+  {
+    "name": "Sampdoria FHD",
+    "sid": "297202",
+    "icon": "https://files.catbox.moe/ce5mnw.png",
+    "category_id": 22
+  },
+  {
+    "name": "Sampdoria HD",
+    "sid": "297201",
+    "icon": "https://files.catbox.moe/ce5mnw.png",
+    "category_id": 22
+  },
+  {
+    "name": "Sampdoria SD",
+    "sid": "297200",
+    "icon": "https://files.catbox.moe/ce5mnw.png",
+    "category_id": 22
+  },
+  {
+    "name": "Südtirol FHD",
+    "sid": "297199",
+    "icon": "https://files.catbox.moe/xz3cxu.png",
+    "category_id": 22
+  },
+  {
+    "name": "Südtirol HD",
+    "sid": "297198",
+    "icon": "https://files.catbox.moe/xz3cxu.png",
+    "category_id": 22
+  },
+  {
+    "name": "Südtirol SD",
+    "sid": "297197",
+    "icon": "https://files.catbox.moe/xz3cxu.png",
+    "category_id": 22
+  },
+  {
+    "name": "Vicenza FHD",
+    "sid": "297196",
+    "icon": "https://files.catbox.moe/pye58x.png",
+    "category_id": 22
+  },
+  {
+    "name": "Vicenza HD",
+    "sid": "297195",
+    "icon": "https://files.catbox.moe/pye58x.png",
+    "category_id": 22
+  },
+  {
+    "name": "Vicenza SD",
+    "sid": "297194",
+    "icon": "https://files.catbox.moe/pye58x.png",
+    "category_id": 22
+  },
+  {
+    "name": "Virtus Entella FHD",
+    "sid": "297193",
+    "icon": "https://files.catbox.moe/xh5ntf.png",
+    "category_id": 22
+  },
+  {
+    "name": "Virtus Entella HD",
+    "sid": "297192",
+    "icon": "https://files.catbox.moe/xh5ntf.png",
+    "category_id": 22
+  },
+  {
+    "name": "Virtus Entella SD",
+    "sid": "297191",
+    "icon": "https://files.catbox.moe/xh5ntf.png",
+    "category_id": 22
+  },
+  {
+    "name": "Diretta Gol Champions League",
+    "sid": "277230",
+    "icon": "https://www.edigitalagency.com.au/wp-content/uploads/new-Champions-League-logo-white-PNG-large-size.png",
+    "category_id": 260
+  },
+  {
+    "name": "SAT - Amazon Prime Bar FHD",
+    "sid": "282730",
+    "icon": "https://www.edigitalagency.com.au/wp-content/uploads/new-Champions-League-logo-white-PNG-large-size.png",
+    "category_id": 260
+  },
+  {
+    "name": "SAT - Amazon Prime Bar HD",
+    "sid": "282731",
+    "icon": "https://www.edigitalagency.com.au/wp-content/uploads/new-Champions-League-logo-white-PNG-large-size.png",
+    "category_id": 260
+  },
+  {
+    "name": "SAT - Amazon Prime Bar SD",
+    "sid": "282732",
+    "icon": "https://www.edigitalagency.com.au/wp-content/uploads/new-Champions-League-logo-white-PNG-large-size.png",
+    "category_id": 260
+  },
+  {
+    "name": "Amazon Prime FHD (SOLO SU EVENTO)",
+    "sid": "13429",
+    "icon": "https://www.edigitalagency.com.au/wp-content/uploads/new-Champions-League-logo-white-PNG-large-size.png",
+    "category_id": 260
+  },
+  {
+    "name": "Amazon Prime FHD 2 ( Solo Evento)",
+    "sid": "88229",
+    "icon": "https://www.edigitalagency.com.au/wp-content/uploads/new-Champions-League-logo-white-PNG-large-size.png",
+    "category_id": 260
+  },
+  {
+    "name": "Amazon Prime HD (SOLO SU EVENTO)",
+    "sid": "70131",
+    "icon": "https://www.edigitalagency.com.au/wp-content/uploads/new-Champions-League-logo-white-PNG-large-size.png",
+    "category_id": 260
+  },
+  {
+    "name": "Amazon Prime HD 2 (SOLO SU EVENTO)",
+    "sid": "88230",
+    "icon": "https://www.edigitalagency.com.au/wp-content/uploads/new-Champions-League-logo-white-PNG-large-size.png",
+    "category_id": 260
+  },
+  {
+    "name": "Amazon Prime SD (SOLO SU EVENTO)",
+    "sid": "70132",
+    "icon": "https://www.edigitalagency.com.au/wp-content/uploads/new-Champions-League-logo-white-PNG-large-size.png",
+    "category_id": 260
+  },
+  {
+    "name": "Amazon Prime SD 2 (SOLO SU EVENTO )",
+    "sid": "88231",
+    "icon": "https://www.edigitalagency.com.au/wp-content/uploads/new-Champions-League-logo-white-PNG-large-size.png",
+    "category_id": 260
+  },
+  {
+    "name": "Amazon Prime 2 (SOLO SU EVENTO)",
+    "sid": "73639",
+    "icon": "https://www.edigitalagency.com.au/wp-content/uploads/new-Champions-League-logo-white-PNG-large-size.png",
+    "category_id": 260
+  },
+  {
+    "name": "Champions Napoli",
+    "sid": "274899",
+    "icon": "https://www.edigitalagency.com.au/wp-content/uploads/new-Champions-League-logo-white-PNG-large-size.png",
+    "category_id": 260
+  },
+  {
+    "name": "Champions Inter",
+    "sid": "277229",
+    "icon": "https://www.edigitalagency.com.au/wp-content/uploads/new-Champions-League-logo-white-PNG-large-size.png",
+    "category_id": 260
+  },
+  {
+    "name": "Champions Juventus",
+    "sid": "277261",
+    "icon": "https://www.edigitalagency.com.au/wp-content/uploads/new-Champions-League-logo-white-PNG-large-size.png",
+    "category_id": 260
+  }
+]

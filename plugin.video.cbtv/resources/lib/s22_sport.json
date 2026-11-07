@@ -1,0 +1,884 @@
+[
+  {
+    "name": "Sky Sport Bar Uno",
+    "sid": "253131",
+    "icon": "https://i.ibb.co/m53qz93v/1636150712-skysportbar-removebg-preview.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Bar Due",
+    "sid": "253132",
+    "icon": "https://i.ibb.co/m53qz93v/1636150712-skysportbar-removebg-preview.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport 24 FHD",
+    "sid": "498",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_929.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport 24 FHD (PLUS)",
+    "sid": "88087",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_929.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport 24 HD",
+    "sid": "499",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_929.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport 24 HD (PLUS)",
+    "sid": "88088",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_929.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport 24 SD",
+    "sid": "500",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_929.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Arena FHD",
+    "sid": "519",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_7507.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Arena FHD (PLUS)",
+    "sid": "88095",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_7507.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Arena HD",
+    "sid": "520",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_7507.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Arena HD (PLUS)",
+    "sid": "88096",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_7507.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Arena SD",
+    "sid": "521",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_7507.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Calcio FHD",
+    "sid": "522",
+    "icon": "https://i.postimg.cc/zvr24t73/Sky-Sport-Calcio-Logo-2026-svg.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Calcio  FHD (PLUS)",
+    "sid": "88099",
+    "icon": "https://i.postimg.cc/zvr24t73/Sky-Sport-Calcio-Logo-2026-svg.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Calcio HD",
+    "sid": "523",
+    "icon": "https://i.postimg.cc/zvr24t73/Sky-Sport-Calcio-Logo-2026-svg.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Calcio HD (PLUS)",
+    "sid": "88100",
+    "icon": "https://i.postimg.cc/zvr24t73/Sky-Sport-Calcio-Logo-2026-svg.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Calcio SD",
+    "sid": "524",
+    "icon": "https://i.postimg.cc/zvr24t73/Sky-Sport-Calcio-Logo-2026-svg.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Formula1 FHD",
+    "sid": "507",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_9096.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport F1 FHD (PLUS)",
+    "sid": "88103",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_9096.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Formula1 HD",
+    "sid": "508",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_9096.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport F1 HD (PLUS)",
+    "sid": "88104",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_9096.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Formula1 SD",
+    "sid": "509",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_9096.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Golf FHD",
+    "sid": "513",
+    "icon": "https://i.imgur.com/nhhbHvs.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Golf FHD (PLUS)",
+    "sid": "88107",
+    "icon": "https://i.imgur.com/nhhbHvs.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Golf HD",
+    "sid": "514",
+    "icon": "https://i.imgur.com/nhhbHvs.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Golf HD (PLUS)",
+    "sid": "88108",
+    "icon": "https://i.imgur.com/nhhbHvs.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Golf SD",
+    "sid": "515",
+    "icon": "https://i.imgur.com/nhhbHvs.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport MAX FHD",
+    "sid": "510",
+    "icon": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-max-it.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Max FHD (PLUS)",
+    "sid": "88091",
+    "icon": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-max-it.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport MAX HD",
+    "sid": "511",
+    "icon": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-max-it.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Max HD (PLUS)",
+    "sid": "88092",
+    "icon": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-max-it.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport MAX SD",
+    "sid": "512",
+    "icon": "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/italy/sky-sport-max-it.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport MotoGP FHD",
+    "sid": "501",
+    "icon": "https://i.ibb.co/wpWsq9k/1280px-Sky-Sport-Moto-GP-Logo-2020-svg.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Moto Gp FHD (PLUS)",
+    "sid": "88111",
+    "icon": "https://i.ibb.co/wpWsq9k/1280px-Sky-Sport-Moto-GP-Logo-2020-svg.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport MotoGP HD",
+    "sid": "502",
+    "icon": "https://i.ibb.co/wpWsq9k/1280px-Sky-Sport-Moto-GP-Logo-2020-svg.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Moto Gp HD (PLUS)",
+    "sid": "88112",
+    "icon": "https://i.ibb.co/wpWsq9k/1280px-Sky-Sport-Moto-GP-Logo-2020-svg.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport MotoGP SD",
+    "sid": "503",
+    "icon": "https://i.ibb.co/wpWsq9k/1280px-Sky-Sport-Moto-GP-Logo-2020-svg.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Basket FHD",
+    "sid": "504",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_8753.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Basket FHD (PLUS)",
+    "sid": "88115",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_8753.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Basket HD",
+    "sid": "505",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_8753.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Basket HD (PLUS)",
+    "sid": "88116",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_8753.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Basket SD",
+    "sid": "506",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_8753.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Legend FHD",
+    "sid": "257266",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/96/Sky_Sport_Legend_-_Logo_2026.svg/1280px-Sky_Sport_Legend_-_Logo_2026.svg.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Legend HD",
+    "sid": "257265",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/96/Sky_Sport_Legend_-_Logo_2026.svg/1280px-Sky_Sport_Legend_-_Logo_2026.svg.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Legend SD",
+    "sid": "257264",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/96/Sky_Sport_Legend_-_Logo_2026.svg/1280px-Sky_Sport_Legend_-_Logo_2026.svg.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Mix FHD",
+    "sid": "257269",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e0/Sky_Sport_Mix_Logo_2022.svg/1280px-Sky_Sport_Mix_Logo_2022.svg.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Mix HD",
+    "sid": "257268",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e0/Sky_Sport_Mix_Logo_2022.svg/1280px-Sky_Sport_Mix_Logo_2022.svg.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Mix SD",
+    "sid": "257267",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e0/Sky_Sport_Mix_Logo_2022.svg/1280px-Sky_Sport_Mix_Logo_2022.svg.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Tennis FHD",
+    "sid": "516",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Sky_Sport_Tennis.svg/1280px-Sky_Sport_Tennis.svg.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Tennis FHD (PLUS)",
+    "sid": "88122",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Sky_Sport_Tennis.svg/1280px-Sky_Sport_Tennis.svg.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Tennis HD",
+    "sid": "517",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Sky_Sport_Tennis.svg/1280px-Sky_Sport_Tennis.svg.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Tennis HD (PLUS)",
+    "sid": "88123",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Sky_Sport_Tennis.svg/1280px-Sky_Sport_Tennis.svg.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Tennis SD",
+    "sid": "518",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Sky_Sport_Tennis.svg/1280px-Sky_Sport_Tennis.svg.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Uno FHD",
+    "sid": "525",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_8714.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Uno FHD (PLUS)",
+    "sid": "88118",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_8714.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Uno HD",
+    "sid": "526",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_8714.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Uno HD (PLUS)",
+    "sid": "88119",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_8714.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport Uno SD",
+    "sid": "527",
+    "icon": "https://www.movietele.it/wp-content/themes/mvtl/images/guidetv/logo_8714.png",
+    "category_id": 122
+  },
+  {
+    "name": "Sky Sport 251 FHD",
+    "sid": "528",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport  251 FHD (PLUS)",
+    "sid": "88126",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport 251 HD",
+    "sid": "539",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport  251 HD (PLUS)",
+    "sid": "88127",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport 251 SD",
+    "sid": "83766",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport 252 FHD",
+    "sid": "529",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport  252 FHD (PLUS)",
+    "sid": "88129",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport 252 HD",
+    "sid": "540",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport  252 HD (PLUS)",
+    "sid": "88130",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport 252 SD",
+    "sid": "84026",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport 253 FHD",
+    "sid": "530",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport  253 FHD (PLUS)",
+    "sid": "88132",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport 253 HD",
+    "sid": "541",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport  253 HD (PLUS)",
+    "sid": "88133",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport 253 SD",
+    "sid": "84776",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport 254 FHD",
+    "sid": "531",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport  254 FHD (PLUS)",
+    "sid": "88135",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport 254 HD",
+    "sid": "542",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport  254 HD (PLUS)",
+    "sid": "88136",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport 254 SD",
+    "sid": "84777",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport 255 FHD",
+    "sid": "532",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport  255 FHD (PLUS)",
+    "sid": "88138",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport 255 HD",
+    "sid": "543",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport  255 HD (PLUS)",
+    "sid": "88139",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport 255 SD",
+    "sid": "84778",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport 256 FHD",
+    "sid": "533",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport  256 FHD (PLUS)",
+    "sid": "88141",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport 256 HD",
+    "sid": "544",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport  256 HD (PLUS)",
+    "sid": "88142",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport 256 SD",
+    "sid": "84779",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport 257 FHD",
+    "sid": "534",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport  257 FHD (PLUS)",
+    "sid": "88144",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport 257 HD",
+    "sid": "545",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport  257 HD (PLUS)",
+    "sid": "88145",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport 257 SD",
+    "sid": "84780",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport 258 FHD",
+    "sid": "84781",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport 258 FHD (PLUS)",
+    "sid": "88147",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport 258 HD",
+    "sid": "535",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport 258 HD (PLUS)",
+    "sid": "88148",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport 258 SD",
+    "sid": "546",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport 259 FHD",
+    "sid": "84782",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport 259 FHD (PLUS)",
+    "sid": "88150",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport 259 HD",
+    "sid": "536",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport 259 HD (PLUS)",
+    "sid": "88151",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "Sky Sport 259 SD",
+    "sid": "547",
+    "icon": "https://napolifutsal.net/wp-content/uploads/2022/10/SKYSPORT-logo.png",
+    "category_id": 17
+  },
+  {
+    "name": "SKY SPORT BUSINESS 1 FHD ˢᴬᵀ",
+    "sid": "299262",
+    "icon": "http://loghi98jsajdfbnrr8rewebdbuwd30.ufcfan.org:2222/home/www-data/downloads/Loghi/skysportbar.png",
+    "category_id": 279
+  },
+  {
+    "name": "SKY SPORT BUSINESS 1 HD ˢᴬᵀ",
+    "sid": "299261",
+    "icon": "http://loghi98jsajdfbnrr8rewebdbuwd30.ufcfan.org:2222/home/www-data/downloads/Loghi/skysportbar.png",
+    "category_id": 279
+  },
+  {
+    "name": "SKY SPORT BUSINESS 2 FHD ˢᴬᵀ",
+    "sid": "299260",
+    "icon": "http://loghi98jsajdfbnrr8rewebdbuwd30.ufcfan.org:2222/home/www-data/downloads/Loghi/skysportbar.png",
+    "category_id": 279
+  },
+  {
+    "name": "SKY SPORT BUSINESS 2 HD ˢᴬᵀ",
+    "sid": "299259",
+    "icon": "http://loghi98jsajdfbnrr8rewebdbuwd30.ufcfan.org:2222/home/www-data/downloads/Loghi/skysportbar.png",
+    "category_id": 279
+  },
+  {
+    "name": "SKY SPORT BUSINESS 3 FHDˢᴬᵀ",
+    "sid": "299258",
+    "icon": "https://image.mobazzz.com/?img=http://loghi98jsajdfbnrr8rewebdbuwd30.ufcfan.org:2222/home/www-data/downloads/Loghi/skysportbar.png",
+    "category_id": 279
+  },
+  {
+    "name": "SKY SPORT BUSINESS 3 HDˢᴬᵀ",
+    "sid": "299257",
+    "icon": "https://image.mobazzz.com/?img=http://loghi98jsajdfbnrr8rewebdbuwd30.ufcfan.org:2222/home/www-data/downloads/Loghi/skysportbar.png",
+    "category_id": 279
+  },
+  {
+    "name": "SKY SPORT 4K  ˢᴬᵀ",
+    "sid": "299264",
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/72/Sky_Sport_4K_-_Logo_2026.svg/3840px-Sky_Sport_4K_-_Logo_2026.svg.png?utm_source=it.wikipedia.org&utm_campaign=index&utm_content=thumbnail",
+    "category_id": 279
+  },
+  {
+    "name": "EuroSport 1",
+    "sid": "689",
+    "icon": "https://i.imgur.com/olQJgm7.png",
+    "category_id": 194
+  },
+  {
+    "name": "EuroSport 2",
+    "sid": "690",
+    "icon": "https://i.imgur.com/f56dHgR.png",
+    "category_id": 194
+  },
+  {
+    "name": "Eurosport 3",
+    "sid": "238004",
+    "icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS81UCGCi94KO2-Ku9pe4wc3MHQp5CY4n5nQg&s",
+    "category_id": 194
+  },
+  {
+    "name": "Eurosport 4",
+    "sid": "238008",
+    "icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZQbUeD05dtylviEe0e7VsnsbcSRfvESWKgg&s",
+    "category_id": 194
+  },
+  {
+    "name": "Eurosport 5",
+    "sid": "238015",
+    "icon": "https://www.monpetitforfait.com/comparateur-box-internet/wp-content/uploads/2021/05/eurosport-5.png",
+    "category_id": 194
+  },
+  {
+    "name": "Eurosport 6",
+    "sid": "238016",
+    "icon": "https://i.ibb.co/VpvmPs5/Eurosport-6-II.png",
+    "category_id": 194
+  },
+  {
+    "name": "F1 Driver Tracker",
+    "sid": "297818",
+    "icon": "https://assets.dyler.com/uploads/posts/165/images/11177/f1-logo-2018-a-new-logo.png",
+    "category_id": 126
+  },
+  {
+    "name": "F1 Multiscreen",
+    "sid": "297819",
+    "icon": "https://assets.dyler.com/uploads/posts/165/images/11177/f1-logo-2018-a-new-logo.png",
+    "category_id": 126
+  },
+  {
+    "name": "F1 Onboard Mix",
+    "sid": "297820",
+    "icon": "https://assets.dyler.com/uploads/posts/165/images/11177/f1-logo-2018-a-new-logo.png",
+    "category_id": 126
+  },
+  {
+    "name": "F1 Timing",
+    "sid": "297821",
+    "icon": "https://assets.dyler.com/uploads/posts/165/images/11177/f1-logo-2018-a-new-logo.png",
+    "category_id": 126
+  },
+  {
+    "name": "Albon Onboard",
+    "sid": "297798",
+    "icon": "https://files.catbox.moe/rqwt3w.png",
+    "category_id": 126
+  },
+  {
+    "name": "Alonso Onboard",
+    "sid": "297799",
+    "icon": "https://files.catbox.moe/mxoj1b.png",
+    "category_id": 126
+  },
+  {
+    "name": "Antonelli Onboard",
+    "sid": "297800",
+    "icon": "https://files.catbox.moe/4roho8.png",
+    "category_id": 126
+  },
+  {
+    "name": "Bearman Onboard",
+    "sid": "297801",
+    "icon": "https://files.catbox.moe/l4ltc7.png",
+    "category_id": 126
+  },
+  {
+    "name": "Bortoleto Onboard",
+    "sid": "297802",
+    "icon": "https://files.catbox.moe/saajei.png",
+    "category_id": 126
+  },
+  {
+    "name": "Colapinto Onboard",
+    "sid": "297803",
+    "icon": "https://files.catbox.moe/vzks9y.png",
+    "category_id": 126
+  },
+  {
+    "name": "Gasly Onboard",
+    "sid": "297804",
+    "icon": "https://files.catbox.moe/wmiktk.png",
+    "category_id": 126
+  },
+  {
+    "name": "Hamilton Onboard FHD",
+    "sid": "297805",
+    "icon": "https://files.catbox.moe/atrmpd.png",
+    "category_id": 126
+  },
+  {
+    "name": "Hulkenberg Onboard",
+    "sid": "297806",
+    "icon": "https://files.catbox.moe/owgugy.png",
+    "category_id": 126
+  },
+  {
+    "name": "Lawson Onboard",
+    "sid": "297807",
+    "icon": "https://files.catbox.moe/7j3gi2.png",
+    "category_id": 126
+  },
+  {
+    "name": "Leclerc Onboard",
+    "sid": "297808",
+    "icon": "https://files.catbox.moe/riyrxm.png",
+    "category_id": 126
+  },
+  {
+    "name": "Norris Onboard",
+    "sid": "297809",
+    "icon": "https://files.catbox.moe/h7d3qy.png",
+    "category_id": 126
+  },
+  {
+    "name": "Ocon Onboard FHD",
+    "sid": "297810",
+    "icon": "https://files.catbox.moe/zup75s.png",
+    "category_id": 126
+  },
+  {
+    "name": "Perez Onboard",
+    "sid": "297811",
+    "icon": "https://files.catbox.moe/gjh3ej.png",
+    "category_id": 126
+  },
+  {
+    "name": "Piastri Onboard",
+    "sid": "297812",
+    "icon": "https://files.catbox.moe/z6x9qf.png",
+    "category_id": 126
+  },
+  {
+    "name": "Russell Onboard",
+    "sid": "297813",
+    "icon": "https://files.catbox.moe/p1yfs7.png",
+    "category_id": 126
+  },
+  {
+    "name": "Sainz Onboard",
+    "sid": "297814",
+    "icon": "https://files.catbox.moe/z9b3f5.png",
+    "category_id": 126
+  },
+  {
+    "name": "Stroll Onboard",
+    "sid": "297815",
+    "icon": "https://files.catbox.moe/3zwzzu.png",
+    "category_id": 126
+  },
+  {
+    "name": "Tsunoda Onboard",
+    "sid": "297816",
+    "icon": "https://files.catbox.moe/ilpdh7.png",
+    "category_id": 126
+  },
+  {
+    "name": "Verstappen Onboard",
+    "sid": "297817",
+    "icon": "https://files.catbox.moe/0oowsi.png",
+    "category_id": 126
+  },
+  {
+    "name": "Vetrina LBA",
+    "sid": "269490",
+    "icon": "https://www.derthonabasket.it/wp-content/uploads/2025/08/logo-LBA_perfetto-x-sito.png",
+    "category_id": 258
+  },
+  {
+    "name": "LBA: BASKET SERIE A EVENTO 1",
+    "sid": "269491",
+    "icon": "https://www.derthonabasket.it/wp-content/uploads/2025/08/logo-LBA_perfetto-x-sito.png",
+    "category_id": 258
+  },
+  {
+    "name": "LBA: BASKET SERIE A EVENTO 2",
+    "sid": "269492",
+    "icon": "https://www.derthonabasket.it/wp-content/uploads/2025/08/logo-LBA_perfetto-x-sito.png",
+    "category_id": 258
+  },
+  {
+    "name": "LBA: BASKET SERIE A EVENTO 3",
+    "sid": "269493",
+    "icon": "https://www.derthonabasket.it/wp-content/uploads/2025/08/logo-LBA_perfetto-x-sito.png",
+    "category_id": 258
+  },
+  {
+    "name": "LBA: BASKET SERIE A EVENTO 4",
+    "sid": "269494",
+    "icon": "https://www.derthonabasket.it/wp-content/uploads/2025/08/logo-LBA_perfetto-x-sito.png",
+    "category_id": 258
+  },
+  {
+    "name": "LBA: BASKET SERIE A EVENTO 5",
+    "sid": "269495",
+    "icon": "https://www.derthonabasket.it/wp-content/uploads/2025/08/logo-LBA_perfetto-x-sito.png",
+    "category_id": 258
+  },
+  {
+    "name": "LBA: BASKET SERIE A EVENTO 6",
+    "sid": "269496",
+    "icon": "https://www.derthonabasket.it/wp-content/uploads/2025/08/logo-LBA_perfetto-x-sito.png",
+    "category_id": 258
+  }
+]

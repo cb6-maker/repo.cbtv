@@ -1,0 +1,68 @@
+[
+  {
+    "name": "Vetrina Primafila",
+    "sid": "270257",
+    "icon": "https://i.ibb.co/sC2Nz5C/Vetrina-PF.png",
+    "category_id": 119
+  },
+  {
+    "name": "PrimaFila 1",
+    "sid": "270258",
+    "icon": "https://i.ibb.co/N2nRxGw/PF1.png",
+    "category_id": 119
+  },
+  {
+    "name": "PrimaFila 2",
+    "sid": "270259",
+    "icon": "https://i.ibb.co/w7YqGgS/PF2.png",
+    "category_id": 119
+  },
+  {
+    "name": "PrimaFila 3",
+    "sid": "270260",
+    "icon": "https://i.ibb.co/jD3gHb5/PF3.png",
+    "category_id": 119
+  },
+  {
+    "name": "PrimaFila 4",
+    "sid": "270261",
+    "icon": "https://i.ibb.co/nnnQDQm/PF4.png",
+    "category_id": 119
+  },
+  {
+    "name": "PrimaFila 5",
+    "sid": "270262",
+    "icon": "https://i.ibb.co/NpWn4vP/PF5.png",
+    "category_id": 119
+  },
+  {
+    "name": "PrimaFila 6",
+    "sid": "270263",
+    "icon": "https://i.ibb.co/YbhB6YG/PF6.png",
+    "category_id": 119
+  },
+  {
+    "name": "PrimaFila 7",
+    "sid": "270264",
+    "icon": "https://i.ibb.co/gdXNzTc/PF7.png",
+    "category_id": 119
+  },
+  {
+    "name": "PrimaFila 8",
+    "sid": "270265",
+    "icon": "https://i.ibb.co/FhRYh4T/PF8.png",
+    "category_id": 119
+  },
+  {
+    "name": "PrimaFila 9",
+    "sid": "270266",
+    "icon": "https://i.ibb.co/C8zFZjW/PF9.png",
+    "category_id": 119
+  },
+  {
+    "name": "PrimaFila 10",
+    "sid": "270267",
+    "icon": "https://i.ibb.co/Qdf3WdC/PF10.png",
+    "category_id": 119
+  }
+]
