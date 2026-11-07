@@ -1001,36 +1001,32 @@ def list_s22_channels(cat):
 
 
 def play_s22_channel(sid, name):
-    """Risolve e avvia lo stream HLS da Server 22 (senza VPN)"""
+    """Risolve e avvia lo stream HLS da Server 22 tramite proxy locale continuo (senza VPN)"""
     xbmcgui.Dialog().notification("CBTV", f"Avvio {name}...", xbmcgui.NOTIFICATION_INFO, 1500)
-    base_url = "http://interstellar.salex74.xyz:25461"
-    user = "gTfM0070"
-    pwd = "fBJb8hB"
-    ts = int(time.time() * 1000)
-    req_url = f"{base_url}/live/{user}/{pwd}/{sid}.m3u8?_vegeta_refresh={ts}"
-
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Android TV; VegetaTV/1.0)',
-        'Accept': 'audio/x-mpegurl,application/vnd.apple.mpegurl,text/plain,*/*',
-        'Cache-Control': 'no-cache'
-    }
-
     try:
-        r = requests.get(req_url, headers=headers, allow_redirects=False, timeout=6)
-        stream_url = r.headers.get('Location')
-        if not stream_url and r.status_code == 200:
-            stream_url = req_url
+        from resources.lib.cbtv_proxy import ProxyManager
+        proxy = ProxyManager()
+        port = proxy.start()
 
-        if stream_url:
-            list_item = xbmcgui.ListItem(path=stream_url)
-            list_item.setInfo('video', {'title': name})
-            list_item.setProperty('inputstream', 'inputstream.ffmpegdirect')
-            list_item.setProperty('inputstream.ffmpegdirect.mime_type', 'application/x-mpegURL')
-            list_item.setProperty('inputstream.ffmpegdirect.manifest_type', 'hls')
-            list_item.setProperty('inputstream.ffmpegdirect.headers', 'User-Agent=Mozilla%2F5.0%20(Android%20TV%3B%20VegetaTV%2F1.0)')
-            list_item.setContentLookup(False)
-            xbmcplugin.setResolvedUrl(HANDLE, True, list_item)
-            return
+        # URL proxata locale per refresh manifest continuo e riscrittura path segmenti
+        proxy_url = f"http://127.0.0.1:{port}/proxy.m3u8?code={sid}&source=s22"
+
+        list_item = xbmcgui.ListItem(path=proxy_url)
+        list_item.setInfo('video', {'title': name})
+        list_item.setProperty('inputstream', 'inputstream.ffmpegdirect')
+        list_item.setProperty('inputstream.ffmpegdirect.is_realtime_stream', 'true')
+        list_item.setProperty('inputstream.ffmpegdirect.manifest_type', 'hls')
+        list_item.setProperty('inputstream.ffmpegdirect.headers', 'User-Agent=Mozilla%2F5.0%20(Android%20TV%3B%20VegetaTV%2F1.0)')
+        list_item.setMimeType('application/x-mpegURL')
+        list_item.setContentLookup(False)
+        xbmcplugin.setResolvedUrl(HANDLE, True, listitem=list_item)
+
+        # Loop di monitoraggio riproduzione
+        for _ in range(15):
+            if xbmc.Player().isPlaying():
+                break
+            xbmc.sleep(500)
+        return
     except Exception as e:
         xbmc.log(f"[CBTV] Errore riproduzione S22: {e}", xbmc.LOGWARNING)
 

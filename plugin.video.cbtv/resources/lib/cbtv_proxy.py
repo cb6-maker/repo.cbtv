@@ -79,6 +79,61 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
             self.send_response(400)
             self.end_headers()
             return
+
+        # ─── GESTIONE SPECIALE SERVER 22 (ATLANTIX HLS PROXY) ───
+        if source_type == "s22":
+            sid = code
+            ts = int(time.time() * 1000)
+            s22_url = f"http://interstellar.salex74.xyz:25461/live/gTfM0070/fBJb8hB/{sid}.m3u8?_vegeta_refresh={ts}"
+            s22_headers = {
+                'User-Agent': 'Mozilla/5.0 (Android TV; VegetaTV/1.0)',
+                'Accept': 'audio/x-mpegurl,application/vnd.apple.mpegurl,text/plain,*/*',
+                'Cache-Control': 'no-cache'
+            }
+            try:
+                # 1. Chiedi redirect per ottenere il Location URL fresco del CDN
+                r_redir = requests.get(s22_url, headers=s22_headers, allow_redirects=False, timeout=6)
+                cdn_location = r_redir.headers.get('Location') or s22_url
+                parsed_cdn = urlparse(cdn_location)
+                cdn_host = f"{parsed_cdn.scheme}://{parsed_cdn.netloc}"
+
+                # 2. Scarica la playlist HLS attuale
+                r_m3u8 = requests.get(cdn_location, headers=s22_headers, timeout=6)
+                if r_m3u8.status_code != 200:
+                    self.send_response(r_m3u8.status_code)
+                    self.end_headers()
+                    return
+
+                # 3. Riscrivi i percorsi dei segmenti in URL assoluti diretti al CDN
+                new_lines = []
+                for line in r_m3u8.text.split('\n'):
+                    line = line.strip()
+                    if not line:
+                        continue
+                    if line.startswith('#'):
+                        new_lines.append(line)
+                    else:
+                        if line.startswith('/'):
+                            new_lines.append(f"{cdn_host}{line}")
+                        elif not line.startswith('http'):
+                            base_dir = cdn_location.rsplit('/', 1)[0]
+                            new_lines.append(f"{base_dir}/{line}")
+                        else:
+                            new_lines.append(line)
+
+                final_body = "\n".join(new_lines)
+                self.send_response(200)
+                self.send_header("Content-Type", "application/x-mpegURL")
+                self.send_header("Access-Control-Allow-Origin", "*")
+                self.end_headers()
+                self.wfile.write(final_body.encode('utf-8'))
+                return
+            except Exception as e:
+                xbmc.log(f"[CBTV Proxy] Errore S22 proxy: {e}", xbmc.LOGERROR)
+                self.send_response(500)
+                self.end_headers()
+                return
+        # ────────────────────────────────────────────────────────
             
         # Get valid token and path
         token, path_override = self.get_token(code, source_type)
