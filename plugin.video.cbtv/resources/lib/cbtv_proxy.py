@@ -8,6 +8,7 @@ import xbmc
 
 # Stato globale del proxy (per mantenere i token)
 TOKEN_CACHE = {}
+S22_SESSION_CACHE = {}
 
 class FreeshotProxyHandler(BaseHTTPRequestHandler):
     
@@ -83,26 +84,53 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
         # ─── GESTIONE SPECIALE SERVER 22 (ATLANTIX HLS PROXY) ───
         if source_type == "s22":
             sid = code
-            ts = int(time.time() * 1000)
-            s22_url = f"http://interstellar.salex74.xyz:25461/live/gTfM0070/fBJb8hB/{sid}.m3u8?_vegeta_refresh={ts}"
+            now = time.time()
             s22_headers = {
                 'User-Agent': 'Mozilla/5.0 (Android TV; VegetaTV/1.0)',
                 'Accept': 'audio/x-mpegurl,application/vnd.apple.mpegurl,text/plain,*/*',
                 'Cache-Control': 'no-cache'
             }
-            try:
-                # 1. Chiedi redirect per ottenere il Location URL fresco del CDN
-                r_redir = requests.get(s22_url, headers=s22_headers, allow_redirects=False, timeout=6)
-                cdn_location = r_redir.headers.get('Location') or s22_url
-                parsed_cdn = urlparse(cdn_location)
-                cdn_host = f"{parsed_cdn.scheme}://{parsed_cdn.netloc}"
 
-                # 2. Scarica la playlist HLS attuale
-                r_m3u8 = requests.get(cdn_location, headers=s22_headers, timeout=6)
+            cached_sess = S22_SESSION_CACHE.get(sid)
+            cdn_location = None
+            cdn_host = None
+            # Mantieni la sessione se attiva (ultimo polling avvenuto meno di 45s fa)
+            if cached_sess and (now - cached_sess.get('last_seen', 0) < 45):
+                cdn_location = cached_sess.get('cdn_location')
+                cdn_host = cached_sess.get('cdn_host')
+
+            try:
+                r_m3u8 = None
+                # 1. Se abbiamo già un nodo assegnato, scarica direttamente da quello
+                if cdn_location:
+                    try:
+                        r_m3u8 = requests.get(cdn_location, headers=s22_headers, timeout=5)
+                        if r_m3u8.status_code != 200:
+                            r_m3u8 = None
+                    except Exception:
+                        r_m3u8 = None
+
+                # 2. Se non abbiamo sessione o il nodo non risponde, chiedi nuovo redirect al bilanciatore
+                if r_m3u8 is None:
+                    ts = int(now * 1000)
+                    s22_url = f"http://interstellar.salex74.xyz:25461/live/gTfM0070/fBJb8hB/{sid}.m3u8?_vegeta_refresh={ts}"
+                    r_redir = requests.get(s22_url, headers=s22_headers, allow_redirects=False, timeout=6)
+                    cdn_location = r_redir.headers.get('Location') or s22_url
+                    parsed_cdn = urlparse(cdn_location)
+                    cdn_host = f"{parsed_cdn.scheme}://{parsed_cdn.netloc}"
+                    r_m3u8 = requests.get(cdn_location, headers=s22_headers, timeout=6)
+
                 if r_m3u8.status_code != 200:
                     self.send_response(r_m3u8.status_code)
                     self.end_headers()
                     return
+
+                # Aggiorna la sessione sticky
+                S22_SESSION_CACHE[sid] = {
+                    'cdn_location': cdn_location,
+                    'cdn_host': cdn_host,
+                    'last_seen': now
+                }
 
                 # 3. Riscrivi i percorsi dei segmenti in URL assoluti diretti al CDN
                 new_lines = []
