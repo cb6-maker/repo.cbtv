@@ -92,7 +92,7 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
             }
 
             cached = S22_SESSION_CACHE.get(sid)
-            # Se la sessione precedente è ferma da più di 45 secondi, resettala
+            # Se la sessione è inattiva da più di 45 secondi, resettala
             if cached and (now - cached.get('last_seen', 0) > 45):
                 cached = None
                 S22_SESSION_CACHE.pop(sid, None)
@@ -105,10 +105,10 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
                 matched_loc = None
 
                 if pinned_host:
-                    # Cerca di agganciare lo STESSO nodo CDN per evitare sfasamenti temporali o salti
-                    for _ in range(10):
+                    # Cerca di agganciare lo STESSO nodo CDN
+                    for _ in range(12):
                         ts = int(time.time() * 1000)
-                        r_redir = s.get(f"{s22_url}?_vegeta_refresh={ts}", headers=s22_headers, allow_redirects=False, timeout=2.5)
+                        r_redir = s.get(f"{s22_url}?_vegeta_refresh={ts}", headers=s22_headers, allow_redirects=False, timeout=2)
                         loc = r_redir.headers.get('Location')
                         if loc and pinned_host in loc:
                             matched_loc = loc
@@ -116,50 +116,61 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
 
                     if not matched_loc:
                         cached['miss_count'] = cached.get('miss_count', 0) + 1
-                        if cached['miss_count'] >= 3:
+                        # Solo dopo 5 refresh a vuoto consecutivi (15-20s) dichiara il nodo offline
+                        if cached['miss_count'] >= 5:
                             pinned_host = None
                             S22_SESSION_CACHE.pop(sid, None)
                     else:
                         cached['miss_count'] = 0
 
-                # Se è il primo avvio della sessione o il vecchio nodo non è più disponibile
-                if not matched_loc:
+                # Solo se non abbiamo ancora un nodo assegnato (o è andato offline definitivamente)
+                if not pinned_host:
                     ts = int(time.time() * 1000)
-                    r_redir = s.get(f"{s22_url}?_vegeta_refresh={ts}", headers=s22_headers, allow_redirects=False, timeout=5)
+                    r_redir = s.get(f"{s22_url}?_vegeta_refresh={ts}", headers=s22_headers, allow_redirects=False, timeout=4)
                     matched_loc = r_redir.headers.get('Location') or s22_url
-                    parsed = urlparse(matched_loc)
-                    pinned_host = parsed.netloc
+                    pinned_host = urlparse(matched_loc).netloc
 
                 final_body = None
                 if matched_loc:
-                    r_m3u8 = s.get(matched_loc, headers=s22_headers, timeout=5)
+                    r_m3u8 = s.get(matched_loc, headers=s22_headers, timeout=4)
                     if r_m3u8.status_code == 200:
                         parsed_cdn = urlparse(matched_loc)
                         cdn_host = f"{parsed_cdn.scheme}://{parsed_cdn.netloc}"
-                        new_lines = []
-                        for line in r_m3u8.text.split('\n'):
-                            line = line.strip()
-                            if not line:
-                                continue
-                            if line.startswith('#'):
-                                new_lines.append(line)
-                            else:
-                                if line.startswith('/'):
-                                    new_lines.append(f"{cdn_host}{line}")
-                                elif not line.startswith('http'):
-                                    base_dir = matched_loc.rsplit('/', 1)[0]
-                                    new_lines.append(f"{base_dir}/{line}")
-                                else:
+
+                        # MONOTONIC GUARD: estrai il numero dell'ultimo segmento
+                        raw_text = r_m3u8.text
+                        seg_nums = [int(m.group(1)) for m in re.finditer(rf'{sid}_(\d+)\.ts', raw_text)]
+                        last_seg = max(seg_nums) if seg_nums else 0
+                        prev_max = cached.get('max_seq', 0) if cached else 0
+
+                        # Se i segmenti ricevuti sono più vecchi di quelli già inviati a Kodi, SCARTALI!
+                        if last_seg >= prev_max or prev_max == 0:
+                            new_lines = []
+                            for line in raw_text.split('\n'):
+                                line = line.strip()
+                                if not line:
+                                    continue
+                                if line.startswith('#'):
                                     new_lines.append(line)
+                                else:
+                                    if line.startswith('/'):
+                                        new_lines.append(f"{cdn_host}{line}")
+                                    elif not line.startswith('http'):
+                                        base_dir = matched_loc.rsplit('/', 1)[0]
+                                        new_lines.append(f"{base_dir}/{line}")
+                                    else:
+                                        new_lines.append(line)
 
-                        final_body = "\n".join(new_lines)
-                        S22_SESSION_CACHE[sid] = {
-                            'pinned_host': pinned_host,
-                            'last_body': final_body,
-                            'last_seen': now,
-                            'miss_count': 0
-                        }
+                            final_body = "\n".join(new_lines)
+                            S22_SESSION_CACHE[sid] = {
+                                'pinned_host': pinned_host,
+                                'last_body': final_body,
+                                'last_seen': now,
+                                'miss_count': 0,
+                                'max_seq': last_seg
+                            }
 
+                # Fallback: se in questo ciclo il nodo non ha risposto o la playlist era vecchia, usa l'ultima valida
                 if not final_body and cached and cached.get('last_body'):
                     final_body = cached['last_body']
                     cached['last_seen'] = now
