@@ -9,6 +9,106 @@ import xbmc
 # Stato globale del proxy (per mantenere i token)
 TOKEN_CACHE = {}
 S22_SESSION_CACHE = {}
+S22_WORKERS = {}
+S22_LOCK = threading.Lock()
+
+def _s22_fetch_manifest(sid, pinned_host=None):
+    """Esegue il fetch di un manifest aggiornato garantendo che provenga ESCLUSIVAMENTE dal nodo pinned_host."""
+    s = requests.Session()
+    s22_headers = {
+        'User-Agent': 'Mozilla/5.0 (Android TV; VegetaTV/1.0)',
+        'Accept': 'audio/x-mpegurl,application/vnd.apple.mpegurl,text/plain,*/*',
+        'Cache-Control': 'no-cache'
+    }
+    s22_url = f"http://interstellar.salex74.xyz:25461/live/gTfM0070/fBJb8hB/{sid}.m3u8"
+    matched_loc = None
+
+    if pinned_host:
+        # Cerca RIGIDAMENTE lo stesso nodo (i nodi non sono sincronizzati tra loro!)
+        for _ in range(8):
+            try:
+                ts = int(time.time() * 1000)
+                r_redir = s.get(f"{s22_url}?_vegeta_refresh={ts}", headers=s22_headers, allow_redirects=False, timeout=1.2)
+                loc = r_redir.headers.get('Location')
+                if loc and pinned_host in loc:
+                    matched_loc = loc
+                    break
+            except Exception:
+                pass
+        
+        # Se in questa iterazione il LB non ci ha dato il nostro nodo, non cambiare nodo: ritorna None
+        # In questo modo si preserva la playlist precedente senza salti temporali
+        if not matched_loc:
+            return None, pinned_host, 0
+    else:
+        # Primo aggancio: prendi il nodo assegnato e fissalo come pinned
+        try:
+            ts = int(time.time() * 1000)
+            r_redir = s.get(f"{s22_url}?_vegeta_refresh={ts}", headers=s22_headers, allow_redirects=False, timeout=2.5)
+            matched_loc = r_redir.headers.get('Location') or s22_url
+            pinned_host = urlparse(matched_loc).netloc
+        except Exception:
+            return None, None, 0
+
+    try:
+        r_m3u8 = s.get(matched_loc, headers=s22_headers, timeout=2.5)
+        if r_m3u8.status_code == 200:
+            parsed_cdn = urlparse(matched_loc)
+            cdn_host = f"{parsed_cdn.scheme}://{parsed_cdn.netloc}"
+            raw_text = r_m3u8.text
+
+            seg_nums = [int(m.group(1)) for m in re.finditer(rf'{sid}_(\d+)\.ts', raw_text)]
+            last_seg = max(seg_nums) if seg_nums else 0
+
+            new_lines = []
+            for line in raw_text.splitlines():
+                line = line.strip()
+                if not line:
+                    continue
+                if line.startswith('#'):
+                    new_lines.append(line)
+                else:
+                    if line.startswith('/'):
+                        new_lines.append(f"{cdn_host}{line}")
+                    elif not line.startswith('http'):
+                        base_dir = matched_loc.rsplit('/', 1)[0]
+                        new_lines.append(f"{base_dir}/{line}")
+                    else:
+                        new_lines.append(line)
+
+            final_body = "\n".join(new_lines)
+            return final_body, pinned_host, last_seg
+    except Exception:
+        pass
+
+    return None, pinned_host, 0
+
+def _s22_worker_loop(sid):
+    """Worker background per mantenere costantemente fresca la playlist senza bloccare Kodi."""
+    while True:
+        with S22_LOCK:
+            sess = S22_SESSION_CACHE.get(sid)
+            if not sess or (time.time() - sess.get('last_seen', 0) > 40):
+                # Nessuna richiesta da oltre 40 secondi: canale chiuso o cambiato
+                S22_SESSION_CACHE.pop(sid, None)
+                S22_WORKERS.pop(sid, None)
+                break
+            pinned_host = sess.get('pinned_host')
+            prev_max = sess.get('max_seq', 0)
+
+        # Fetch manifest in background
+        body, new_host, last_seg = _s22_fetch_manifest(sid, pinned_host)
+        if body:
+            with S22_LOCK:
+                sess = S22_SESSION_CACHE.get(sid)
+                if sess:
+                    if last_seg >= prev_max or prev_max == 0:
+                        sess['last_body'] = body
+                        sess['max_seq'] = max(prev_max, last_seg)
+                    if new_host:
+                        sess['pinned_host'] = new_host
+
+        time.sleep(1.8)
 
 class FreeshotProxyHandler(BaseHTTPRequestHandler):
     
@@ -85,120 +185,53 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
         if source_type == "s22":
             sid = code
             now = time.time()
-            s22_headers = {
-                'User-Agent': 'Mozilla/5.0 (Android TV; VegetaTV/1.0)',
-                'Accept': 'audio/x-mpegurl,application/vnd.apple.mpegurl,text/plain,*/*',
-                'Cache-Control': 'no-cache'
-            }
 
-            cached = S22_SESSION_CACHE.get(sid)
-            # Se la sessione è inattiva da più di 45 secondi, resettala
-            if cached and (now - cached.get('last_seen', 0) > 45):
-                cached = None
-                S22_SESSION_CACHE.pop(sid, None)
+            with S22_LOCK:
+                sess = S22_SESSION_CACHE.get(sid)
+                if sess:
+                    sess['last_seen'] = now
 
-            s = requests.Session()
-            s22_url = f"http://interstellar.salex74.xyz:25461/live/gTfM0070/fBJb8hB/{sid}.m3u8"
-
-            try:
-                pinned_host = cached.get('pinned_host') if cached else None
-                matched_loc = None
-
-                if pinned_host:
-                    # Cerca di agganciare lo STESSO nodo CDN
-                    for _ in range(12):
-                        ts = int(time.time() * 1000)
-                        r_redir = s.get(f"{s22_url}?_vegeta_refresh={ts}", headers=s22_headers, allow_redirects=False, timeout=2)
-                        loc = r_redir.headers.get('Location')
-                        if loc and pinned_host in loc:
-                            matched_loc = loc
-                            break
-
-                    if not matched_loc:
-                        cached['miss_count'] = cached.get('miss_count', 0) + 1
-                        # Solo dopo 5 refresh a vuoto consecutivi (15-20s) dichiara il nodo offline
-                        if cached['miss_count'] >= 5:
-                            pinned_host = None
-                            S22_SESSION_CACHE.pop(sid, None)
-                    else:
-                        cached['miss_count'] = 0
-
-                # Solo se non abbiamo ancora un nodo assegnato (o è andato offline definitivamente)
-                if not pinned_host:
-                    ts = int(time.time() * 1000)
-                    r_redir = s.get(f"{s22_url}?_vegeta_refresh={ts}", headers=s22_headers, allow_redirects=False, timeout=4)
-                    matched_loc = r_redir.headers.get('Location') or s22_url
-                    pinned_host = urlparse(matched_loc).netloc
-
-                final_body = None
-                if matched_loc:
-                    r_m3u8 = s.get(matched_loc, headers=s22_headers, timeout=4)
-                    if r_m3u8.status_code == 200:
-                        parsed_cdn = urlparse(matched_loc)
-                        cdn_host = f"{parsed_cdn.scheme}://{parsed_cdn.netloc}"
-
-                        # MONOTONIC GUARD: estrai il numero dell'ultimo segmento
-                        raw_text = r_m3u8.text
-                        seg_nums = [int(m.group(1)) for m in re.finditer(rf'{sid}_(\d+)\.ts', raw_text)]
-                        last_seg = max(seg_nums) if seg_nums else 0
-                        prev_max = cached.get('max_seq', 0) if cached else 0
-
-                        # Se i segmenti ricevuti sono più vecchi di quelli già inviati a Kodi, SCARTALI!
-                        if last_seg >= prev_max or prev_max == 0:
-                            new_lines = []
-                            for line in raw_text.split('\n'):
-                                line = line.strip()
-                                if not line:
-                                    continue
-                                if line.startswith('#'):
-                                    new_lines.append(line)
-                                else:
-                                    if line.startswith('/'):
-                                        new_lines.append(f"{cdn_host}{line}")
-                                    elif not line.startswith('http'):
-                                        base_dir = matched_loc.rsplit('/', 1)[0]
-                                        new_lines.append(f"{base_dir}/{line}")
-                                    else:
-                                        new_lines.append(line)
-
-                            final_body = "\n".join(new_lines)
-                            S22_SESSION_CACHE[sid] = {
-                                'pinned_host': pinned_host,
-                                'last_body': final_body,
-                                'last_seen': now,
-                                'miss_count': 0,
-                                'max_seq': last_seg
-                            }
-
-                # Fallback: se in questo ciclo il nodo non ha risposto o la playlist era vecchia, usa l'ultima valida
-                if not final_body and cached and cached.get('last_body'):
-                    final_body = cached['last_body']
-                    cached['last_seen'] = now
-
-                if not final_body:
-                    self.send_response(500)
-                    self.end_headers()
-                    return
+            # Se abbiamo già un manifest in cache, invialo SUBITO a Kodi (< 1ms)
+            if sess and sess.get('last_body'):
+                # Assicurati che il worker thread sia attivo
+                with S22_LOCK:
+                    if sid not in S22_WORKERS or not S22_WORKERS[sid].is_alive():
+                        t = threading.Thread(target=_s22_worker_loop, args=(sid,), daemon=True)
+                        S22_WORKERS[sid] = t
+                        t.start()
 
                 self.send_response(200)
                 self.send_header("Content-Type", "application/x-mpegURL")
                 self.send_header("Access-Control-Allow-Origin", "*")
                 self.end_headers()
-                self.wfile.write(final_body.encode('utf-8'))
+                self.wfile.write(sess['last_body'].encode('utf-8'))
                 return
 
-            except Exception as e:
-                if cached and cached.get('last_body'):
-                    self.send_response(200)
-                    self.send_header("Content-Type", "application/x-mpegURL")
-                    self.send_header("Access-Control-Allow-Origin", "*")
-                    self.end_headers()
-                    self.wfile.write(cached['last_body'].encode('utf-8'))
-                    return
-                xbmc.log(f"[CBTV Proxy] Errore S22 proxy: {e}", xbmc.LOGERROR)
-                self.send_response(500)
+            # Primo avvio del canale: fetch iniziale sincrono
+            body, pinned_host, last_seg = _s22_fetch_manifest(sid, pinned_host=None)
+            if body:
+                with S22_LOCK:
+                    S22_SESSION_CACHE[sid] = {
+                        'pinned_host': pinned_host,
+                        'last_body': body,
+                        'last_seen': now,
+                        'max_seq': last_seg
+                    }
+                    if sid not in S22_WORKERS or not S22_WORKERS[sid].is_alive():
+                        t = threading.Thread(target=_s22_worker_loop, args=(sid,), daemon=True)
+                        S22_WORKERS[sid] = t
+                        t.start()
+
+                self.send_response(200)
+                self.send_header("Content-Type", "application/x-mpegURL")
+                self.send_header("Access-Control-Allow-Origin", "*")
                 self.end_headers()
+                self.wfile.write(body.encode('utf-8'))
                 return
+
+            self.send_response(500)
+            self.end_headers()
+            return
         # ────────────────────────────────────────────────────────
             
         # Get valid token and path
