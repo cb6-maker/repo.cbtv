@@ -13,7 +13,7 @@ S22_WORKERS = {}
 S22_LOCK = threading.Lock()
 
 def _s22_fetch_manifest(sid, pinned_host=None):
-    """Esegue il fetch di un manifest aggiornato garantendo che provenga ESCLUSIVAMENTE dal nodo pinned_host."""
+    """Esegue il fetch di un manifest aggiornato cercando il nodo pinned_host o rilevandone uno nuovo se il LB shifta."""
     s = requests.Session()
     s22_headers = {
         'User-Agent': 'Mozilla/5.0 (Android TV; VegetaTV/1.0)',
@@ -22,39 +22,44 @@ def _s22_fetch_manifest(sid, pinned_host=None):
     }
     s22_url = f"http://interstellar.salex74.xyz:25461/live/gTfM0070/fBJb8hB/{sid}.m3u8"
     matched_loc = None
+    first_loc = None
 
     if pinned_host:
-        # Cerca RIGIDAMENTE lo stesso nodo (i nodi non sono sincronizzati tra loro!)
-        for _ in range(8):
+        # Fai fino a 6 tentativi rapidi per agganciare il nodo pinned
+        for _ in range(6):
             try:
                 ts = int(time.time() * 1000)
                 r_redir = s.get(f"{s22_url}?_vegeta_refresh={ts}", headers=s22_headers, allow_redirects=False, timeout=1.2)
                 loc = r_redir.headers.get('Location')
-                if loc and pinned_host in loc:
-                    matched_loc = loc
-                    break
+                if loc:
+                    if not first_loc:
+                        first_loc = loc
+                    if pinned_host in loc:
+                        matched_loc = loc
+                        break
             except Exception:
                 pass
         
-        # Se in questa iterazione il LB non ci ha dato il nostro nodo, non cambiare nodo: ritorna None
-        # In questo modo si preserva la playlist precedente senza salti temporali
-        if not matched_loc:
-            return None, pinned_host, 0
+        # Se dopo 6 tentativi il nodo pinned non compare, accetta il nodo alternativo fornito dal LB (LB shift)
+        if not matched_loc and first_loc:
+            matched_loc = first_loc
     else:
-        # Primo aggancio: prendi il nodo assegnato e fissalo come pinned
         try:
             ts = int(time.time() * 1000)
             r_redir = s.get(f"{s22_url}?_vegeta_refresh={ts}", headers=s22_headers, allow_redirects=False, timeout=2.5)
             matched_loc = r_redir.headers.get('Location') or s22_url
-            pinned_host = urlparse(matched_loc).netloc
         except Exception:
             return None, None, 0
+
+    if not matched_loc:
+        return None, pinned_host, 0
 
     try:
         r_m3u8 = s.get(matched_loc, headers=s22_headers, timeout=2.5)
         if r_m3u8.status_code == 200:
             parsed_cdn = urlparse(matched_loc)
             cdn_host = f"{parsed_cdn.scheme}://{parsed_cdn.netloc}"
+            curr_host = parsed_cdn.netloc
             raw_text = r_m3u8.text
 
             seg_nums = [int(m.group(1)) for m in re.finditer(rf'{sid}_(\d+)\.ts', raw_text)]
@@ -77,14 +82,14 @@ def _s22_fetch_manifest(sid, pinned_host=None):
                         new_lines.append(line)
 
             final_body = "\n".join(new_lines)
-            return final_body, pinned_host, last_seg
+            return final_body, curr_host, last_seg
     except Exception:
         pass
 
     return None, pinned_host, 0
 
 def _s22_worker_loop(sid):
-    """Worker background per mantenere costantemente fresca la playlist senza bloccare Kodi."""
+    """Worker background per mantenere costantemente fresca la playlist con sliding buffer e intervallo HLS ottimale."""
     while True:
         with S22_LOCK:
             sess = S22_SESSION_CACHE.get(sid)
@@ -102,13 +107,15 @@ def _s22_worker_loop(sid):
             with S22_LOCK:
                 sess = S22_SESSION_CACHE.get(sid)
                 if sess:
+                    # MONOTONIC GUARD: solo se la playlist avanza o è al passo
                     if last_seg >= prev_max or prev_max == 0:
                         sess['last_body'] = body
                         sess['max_seq'] = max(prev_max, last_seg)
-                    if new_host:
-                        sess['pinned_host'] = new_host
+                        if new_host:
+                            sess['pinned_host'] = new_host
 
-        time.sleep(1.8)
+        # Intervallo ottimale HLS: 4 secondi (evita ban flood LB e garantisce sempre buffer pronto)
+        time.sleep(4.0)
 
 class FreeshotProxyHandler(BaseHTTPRequestHandler):
     
