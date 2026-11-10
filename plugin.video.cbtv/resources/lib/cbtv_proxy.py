@@ -24,11 +24,12 @@ def _s22_fetch_manifest(sid, pinned_host=None):
     matched_loc = None
 
     if pinned_host:
-        # Fai fino a 8 tentativi rapidi per agganciare ESCLUSIVAMENTE il nodo assegnato
-        for _ in range(8):
+        # Fai fino a 20 tentativi rapidi in sessione HTTP per agganciare ESCLUSIVAMENTE il nodo assegnato
+        # Con HTTP keep-alive 20 tentativi richiedono appena ~0.3s e coprono qualsiasi raffica del Load Balancer
+        for _ in range(20):
             try:
                 ts = int(time.time() * 1000)
-                r_redir = s.get(f"{s22_url}?_vegeta_refresh={ts}", headers=s22_headers, allow_redirects=False, timeout=1.2)
+                r_redir = s.get(f"{s22_url}?_vegeta_refresh={ts}", headers=s22_headers, allow_redirects=False, timeout=1.0)
                 loc = r_redir.headers.get('Location')
                 if loc and pinned_host in loc:
                     matched_loc = loc
@@ -121,7 +122,7 @@ def _s22_render_playlist(sess, window_size=10):
     return playlist_body
 
 def _s22_worker_loop(sid):
-    """Worker background per mantenere costantemente fresca la playlist con sliding window e zero attese per Kodi."""
+    """Worker background per mantenere costantemente fresca la playlist sincronizzata sul battito reale dell'encoder."""
     while True:
         with S22_LOCK:
             sess = S22_SESSION_CACHE.get(sid)
@@ -131,9 +132,11 @@ def _s22_worker_loop(sid):
                 S22_WORKERS.pop(sid, None)
                 break
             pinned_host = sess.get('pinned_host')
+            current_max_seq = sess.get('max_seq', 0)
 
         # Fetch segmenti ESCLUSIVAMENTE dal nodo pinned_host
         new_segs, _ = _s22_fetch_manifest(sid, pinned_host)
+        has_new_segment = False
         if new_segs:
             with S22_LOCK:
                 sess = S22_SESSION_CACHE.get(sid)
@@ -141,6 +144,8 @@ def _s22_worker_loop(sid):
                     seg_dict = sess.setdefault('segments', {})
                     for seq, inf, url in new_segs:
                         seg_dict[seq] = (inf, url)
+                        if seq > current_max_seq:
+                            has_new_segment = True
 
                     # Conserva fino a 20 segmenti in memoria
                     if len(seg_dict) > 20:
@@ -149,8 +154,13 @@ def _s22_worker_loop(sid):
 
                     _s22_render_playlist(sess, window_size=10)
 
-        # Polling calibrato a 4.0 secondi (durata segmenti 10s -> azzera flood del server e rate limit dei 6 min)
-        time.sleep(4.0)
+        # Polling adattivo sul ritmo di generazione dell'encoder:
+        # Se è appena comparso un nuovo segmento, attendi 5 secondi (metà durata segmento).
+        # Se non è ancora comparso il nuovo segmento, ricontrolla tra 2.0 secondi per non accumulare drift!
+        if has_new_segment:
+            time.sleep(5.0)
+        else:
+            time.sleep(2.0)
 
 class FreeshotProxyHandler(BaseHTTPRequestHandler):
     

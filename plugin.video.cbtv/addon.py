@@ -1014,7 +1014,6 @@ def play_s22_channel(sid, name):
         list_item = xbmcgui.ListItem(path=proxy_url)
         list_item.setInfo('video', {'title': name})
         list_item.setProperty('inputstream', 'inputstream.ffmpegdirect')
-        list_item.setProperty('inputstream.ffmpegdirect.is_realtime_stream', 'true')
         list_item.setProperty('inputstream.ffmpegdirect.manifest_type', 'hls')
         list_item.setProperty('inputstream.ffmpegdirect.headers', 'User-Agent=Mozilla%2F5.0%20(Android%20TV%3B%20VegetaTV%2F1.0)')
         list_item.setMimeType('application/x-mpegURL')
