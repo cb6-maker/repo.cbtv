@@ -1014,17 +1014,23 @@ def play_s22_channel(sid, name):
         list_item = xbmcgui.ListItem(path=proxy_url)
         list_item.setInfo('video', {'title': name})
         list_item.setProperty('inputstream', 'inputstream.ffmpegdirect')
+        list_item.setProperty('inputstream.ffmpegdirect.is_realtime_stream', 'true')
         list_item.setProperty('inputstream.ffmpegdirect.manifest_type', 'hls')
         list_item.setProperty('inputstream.ffmpegdirect.headers', 'User-Agent=Mozilla%2F5.0%20(Android%20TV%3B%20VegetaTV%2F1.0)')
         list_item.setMimeType('application/x-mpegURL')
         list_item.setContentLookup(False)
         xbmcplugin.setResolvedUrl(HANDLE, True, listitem=list_item)
 
-        # Loop di monitoraggio riproduzione
+        # Loop di monitoraggio e keep-alive del processo Python su Android
         for _ in range(15):
             if xbmc.Player().isPlaying():
                 break
             xbmc.sleep(500)
+
+        while xbmc.Player().isPlaying():
+            xbmc.sleep(1000)
+
+        proxy.stop()
         return
     except Exception as e:
         xbmc.log(f"[CBTV] Errore riproduzione S22: {e}", xbmc.LOGWARNING)
