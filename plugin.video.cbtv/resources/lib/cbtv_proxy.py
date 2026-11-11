@@ -82,14 +82,14 @@ def _s22_fetch_manifest(sid, pinned_host=None):
         pass
     return None, pinned_host
 
-def _s22_render_playlist(sess, window_size=10):
+def _s22_render_playlist(sess, window_size=6):
     """Genera una playlist HLS rigorosamente MONOTONICA: EXT-X-MEDIA-SEQUENCE non può mai decrescere."""
     seg_dict = sess.get('segments', {})
     if not seg_dict:
         return None
 
     all_seqs = sorted(seg_dict.keys())
-    # Mantieni fino a window_size segmenti più recenti (fino a 100 secondi di buffer continuo)
+    # Mantieni fino a window_size segmenti più recenti (allineato ai 6 segmenti dei nodi CDN)
     active_seqs = all_seqs[-window_size:]
     
     first_seq = active_seqs[0]
@@ -147,12 +147,12 @@ def _s22_worker_loop(sid):
                         if seq > current_max_seq:
                             has_new_segment = True
 
-                    # Conserva fino a 20 segmenti in memoria
-                    if len(seg_dict) > 20:
-                        for old_k in sorted(seg_dict.keys())[:-20]:
+                    # Conserva fino a 12 segmenti in memoria per pulizia continua
+                    if len(seg_dict) > 12:
+                        for old_k in sorted(seg_dict.keys())[:-12]:
                             seg_dict.pop(old_k, None)
 
-                    _s22_render_playlist(sess, window_size=10)
+                    _s22_render_playlist(sess, window_size=6)
 
         # Polling adattivo sul ritmo di generazione dell'encoder:
         # Se è appena comparso un nuovo segmento, attendi 5 secondi (metà durata segmento).
@@ -269,7 +269,7 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
                         'last_seen': now,
                         'media_seq': 0
                     }
-                    body = _s22_render_playlist(sess, window_size=10)
+                    body = _s22_render_playlist(sess, window_size=6)
                     S22_SESSION_CACHE[sid] = sess
 
                     if sid not in S22_WORKERS or not S22_WORKERS[sid].is_alive():
