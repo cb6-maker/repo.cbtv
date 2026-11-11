@@ -1,4 +1,4 @@
-htt"""
+"""
 proxy_config.py - Webshare Proxy Pool per bypass blocchi AGCOM/ISP
 Utilizzato ESCLUSIVAMENTE per handshake, create_link e risoluzione del redirect Stalker Portal.
 Il flusso video effettivo (CDN) scorre in connessione diretta senza passare dal proxy.
