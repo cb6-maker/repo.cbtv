@@ -12,8 +12,16 @@ S22_SESSION_CACHE = {}
 S22_WORKERS = {}
 S22_LOCK = threading.Lock()
 
+S22_STALL_REPIN_SECONDS = 25.0
+
+
+def _s22_log(msg, level=None):
+    xbmc.log(f"[CBTV S22] {msg}", level if level is not None else xbmc.LOGINFO)
+
+
 def _s22_fetch_manifest(sid, pinned_host=None):
-    """Richiede un nuovo manifest al load balancer garantendo l'aggancio RIGIDO allo stesso nodo encoder."""
+    """Richiede un nuovo manifest al load balancer.
+    Ritorna (segments, host, info) dove info descrive l'esito per i log diagnostici."""
     s = requests.Session()
     s22_headers = {
         'User-Agent': 'Mozilla/5.0 (Android TV; VegetaTV/1.0)',
@@ -22,96 +30,95 @@ def _s22_fetch_manifest(sid, pinned_host=None):
     }
     s22_url = f"http://interstellar.salex74.xyz:25461/live/gTfM0070/fBJb8hB/{sid}.m3u8"
     matched_loc = None
+    seen_hosts = {}
+    last_err = None
 
     if pinned_host:
-        # Fai fino a 20 tentativi rapidi in sessione HTTP per agganciare ESCLUSIVAMENTE il nodo assegnato
-        # Con HTTP keep-alive 20 tentativi richiedono appena ~0.3s e coprono qualsiasi raffica del Load Balancer
+        # Fino a 20 tentativi rapidi per agganciare ESCLUSIVAMENTE il nodo assegnato
         for _ in range(20):
             try:
                 ts = int(time.time() * 1000)
                 r_redir = s.get(f"{s22_url}?_vegeta_refresh={ts}", headers=s22_headers, allow_redirects=False, timeout=1.0)
                 loc = r_redir.headers.get('Location')
+                h = urlparse(loc).netloc if loc else f"HTTP{r_redir.status_code}"
+                seen_hosts[h] = seen_hosts.get(h, 0) + 1
                 if loc and pinned_host in loc:
                     matched_loc = loc
                     break
-            except Exception:
-                pass
-        # Se in questo ciclo il nodo non ha risposto, NON mischiare segmenti con altri nodi!
+            except Exception as e:
+                last_err = type(e).__name__
         if not matched_loc:
-            return None, pinned_host
+            return None, pinned_host, f"pinned_miss hosts={seen_hosts} err={last_err}"
     else:
         try:
             ts = int(time.time() * 1000)
             r_redir = s.get(f"{s22_url}?_vegeta_refresh={ts}", headers=s22_headers, allow_redirects=False, timeout=3.0)
             matched_loc = r_redir.headers.get('Location') or s22_url
             pinned_host = urlparse(matched_loc).netloc
-        except Exception:
-            return None, None
-
-    if not matched_loc:
-        return None, pinned_host
+        except Exception as e:
+            return None, None, f"redirect_err {type(e).__name__}"
 
     try:
         r_m3u8 = s.get(matched_loc, headers=s22_headers, timeout=3.0)
-        if r_m3u8.status_code == 200:
-            parsed_cdn = urlparse(matched_loc)
-            cdn_host = f"{parsed_cdn.scheme}://{parsed_cdn.netloc}"
-            base_dir = matched_loc.rsplit('/', 1)[0]
-            raw_text = r_m3u8.text
+        if r_m3u8.status_code != 200:
+            return None, pinned_host, f"m3u8_http {r_m3u8.status_code}"
+        parsed_cdn = urlparse(matched_loc)
+        cdn_host = f"{parsed_cdn.scheme}://{parsed_cdn.netloc}"
+        base_dir = matched_loc.rsplit('/', 1)[0]
 
-            segments = []
-            lines = raw_text.splitlines()
-            for i, line in enumerate(lines):
-                line = line.strip()
-                if line.startswith('#EXTINF:'):
-                    inf_line = line
-                    if i + 1 < len(lines):
-                        seg_line = lines[i + 1].strip()
-                        m = re.search(rf'{sid}_(\d+)\.ts', seg_line)
-                        if m:
-                            seq_num = int(m.group(1))
-                            if seg_line.startswith('/'):
-                                full_url = f"{cdn_host}{seg_line}"
-                            elif not seg_line.startswith('http'):
-                                full_url = f"{base_dir}/{seg_line}"
-                            else:
-                                full_url = seg_line
-                            segments.append((seq_num, inf_line, full_url))
-            return segments, pinned_host
-    except Exception:
-        pass
-    return None, pinned_host
+        segments = []
+        lines = r_m3u8.text.splitlines()
+        for i, line in enumerate(lines):
+            line = line.strip()
+            if line.startswith('#EXTINF:') and i + 1 < len(lines):
+                seg_line = lines[i + 1].strip()
+                m = re.search(rf'{sid}_(\d+)\.ts', seg_line)
+                if m:
+                    seq_num = int(m.group(1))
+                    if seg_line.startswith('/'):
+                        full_url = f"{cdn_host}{seg_line}"
+                    elif not seg_line.startswith('http'):
+                        full_url = f"{base_dir}/{seg_line}"
+                    else:
+                        full_url = seg_line
+                    segments.append((seq_num, line, full_url))
+        if not segments:
+            return None, pinned_host, "m3u8_empty"
+        return segments, pinned_host, "ok"
+    except Exception as e:
+        return None, pinned_host, f"m3u8_err {type(e).__name__}"
+
 
 def _s22_render_playlist(sess, window_size=6):
-    """Genera una playlist HLS rigorosamente MONOTONICA: EXT-X-MEDIA-SEQUENCE non può mai decrescere."""
+    """Genera una playlist HLS rigorosamente MONOTONICA: EXT-X-MEDIA-SEQUENCE non può mai decrescere.
+    Le chiavi di sess['segments'] sono numeri di sequenza LOCALI (upstream + seq_offset)."""
     seg_dict = sess.get('segments', {})
     if not seg_dict:
         return None
 
     all_seqs = sorted(seg_dict.keys())
-    # Mantieni fino a window_size segmenti più recenti (allineato ai 6 segmenti dei nodi CDN)
     active_seqs = all_seqs[-window_size:]
-    
-    first_seq = active_seqs[0]
     last_seq = active_seqs[-1]
-    prev_media_seq = sess.get('media_seq', 0)
-
-    # REQUISITO CRITICO HLS: media sequence deve essere sempre >= a quella precedente
-    media_seq = max(prev_media_seq, first_seq)
+    media_seq = max(sess.get('media_seq', 0), active_seqs[0])
     sess['media_seq'] = media_seq
 
-    valid_seqs = [s for s in active_seqs if s >= media_seq]
-    if not valid_seqs:
-        valid_seqs = active_seqs
+    valid_seqs = [s for s in active_seqs if s >= media_seq] or [last_seq]
+    disc = sess.get('disc_seqs', set())
+    # Conta le discontinuità uscite dalla finestra (richiesto da HLS per coerenza)
+    tagged = len([s for s in valid_seqs[1:] if s in disc])
+    disc_seq_num = max(0, sess.get('disc_total', 0) - tagged)
 
     lines = [
         '#EXTM3U',
         '#EXT-X-VERSION:3',
-        f'#EXT-X-MEDIA-SEQUENCE:{media_seq}',
+        f'#EXT-X-MEDIA-SEQUENCE:{valid_seqs[0]}',
+        f'#EXT-X-DISCONTINUITY-SEQUENCE:{disc_seq_num}',
         '#EXT-X-ALLOW-CACHE:YES',
         '#EXT-X-TARGETDURATION:12'
     ]
     for s in valid_seqs:
+        if s in disc and s != valid_seqs[0]:
+            lines.append('#EXT-X-DISCONTINUITY')
         inf, url = seg_dict[s]
         lines.append(inf)
         lines.append(url)
@@ -121,46 +128,76 @@ def _s22_render_playlist(sess, window_size=6):
     sess['max_seq'] = last_seq
     return playlist_body
 
+
 def _s22_worker_loop(sid):
-    """Worker background per mantenere costantemente fresca la playlist sincronizzata sul battito reale dell'encoder."""
+    """Worker background: mantiene fresca la playlist sul nodo pinned.
+    Se il nodo non fornisce segmenti nuovi per S22_STALL_REPIN_SECONDS, si ri-aggancia a un nuovo nodo
+    inserendo #EXT-X-DISCONTINUITY (niente mescolanza di timestamp, niente playlist ferma -> niente EOF)."""
+    _s22_log(f"worker avviato sid={sid}")
+    t_start = time.time()
     while True:
         with S22_LOCK:
             sess = S22_SESSION_CACHE.get(sid)
             if not sess or (time.time() - sess.get('last_seen', 0) > 40):
-                # Nessuna richiesta da oltre 40 secondi: canale chiuso o cambiato
                 S22_SESSION_CACHE.pop(sid, None)
                 S22_WORKERS.pop(sid, None)
+                _s22_log(f"worker terminato sid={sid} (nessuna richiesta da Kodi)")
                 break
             pinned_host = sess.get('pinned_host')
-            current_max_seq = sess.get('max_seq', 0)
+            last_new_ts = sess.setdefault('last_new_ts', time.time())
 
-        # Fetch segmenti ESCLUSIVAMENTE dal nodo pinned_host
-        new_segs, _ = _s22_fetch_manifest(sid, pinned_host)
+        elapsed = int(time.time() - t_start)
+        stalled_for = time.time() - last_new_ts
+        repin = stalled_for > S22_STALL_REPIN_SECONDS
+
+        t0 = time.time()
+        if repin:
+            new_segs, new_host, info = _s22_fetch_manifest(sid, pinned_host=None)
+        else:
+            new_segs, new_host, info = _s22_fetch_manifest(sid, pinned_host)
+        fetch_ms = int((time.time() - t0) * 1000)
+
         has_new_segment = False
         if new_segs:
             with S22_LOCK:
                 sess = S22_SESSION_CACHE.get(sid)
                 if sess:
                     seg_dict = sess.setdefault('segments', {})
+                    offset = sess.get('seq_offset', 0)
+                    if repin:
+                        # Ri-aggancio: mappa gli ultimi 2 segmenti del nuovo nodo subito dopo l'ultimo servito
+                        tail = new_segs[-2:]
+                        offset = sess.get('max_seq', 0) + 1 - tail[0][0]
+                        sess['seq_offset'] = offset
+                        sess['pinned_host'] = new_host
+                        sess.setdefault('disc_seqs', set()).add(tail[0][0] + offset)
+                        sess['disc_total'] = sess.get('disc_total', 0) + 1
+                        new_segs = tail
+                        _s22_log(f"REPIN sid={sid} t={elapsed}s stallo={stalled_for:.0f}s {pinned_host} -> {new_host}", xbmc.LOGWARNING)
+                    max_seq = sess.get('max_seq', 0)
                     for seq, inf, url in new_segs:
-                        seg_dict[seq] = (inf, url)
-                        if seq > current_max_seq:
+                        local = seq + offset
+                        if local > max_seq:
                             has_new_segment = True
-
-                    # Conserva fino a 12 segmenti in memoria per pulizia continua
+                        if local >= sess.get('media_seq', 0):
+                            seg_dict[local] = (inf, url)
+                    if has_new_segment:
+                        sess['last_new_ts'] = time.time()
                     if len(seg_dict) > 12:
                         for old_k in sorted(seg_dict.keys())[:-12]:
                             seg_dict.pop(old_k, None)
-
+                    disc = sess.get('disc_seqs', set())
+                    if disc and seg_dict:
+                        lo = min(seg_dict.keys())
+                        sess['disc_seqs'] = {d for d in disc if d >= lo}
                     _s22_render_playlist(sess, window_size=6)
-
-        # Polling adattivo sul ritmo di generazione dell'encoder:
-        # Se è appena comparso un nuovo segmento, attendi 5 secondi (metà durata segmento).
-        # Se non è ancora comparso il nuovo segmento, ricontrolla tra 2.0 secondi per non accumulare drift!
-        if has_new_segment:
-            time.sleep(5.0)
+                    max_seq = sess.get('max_seq', 0)
+            _s22_log(f"sid={sid} t={elapsed}s host={new_host} {info} up_segs={new_segs[0][0]}-{new_segs[-1][0]} new={has_new_segment} max={max_seq} fetch={fetch_ms}ms")
         else:
-            time.sleep(2.0)
+            _s22_log(f"sid={sid} t={elapsed}s FAIL {info} stallo={stalled_for:.0f}s fetch={fetch_ms}ms", xbmc.LOGWARNING)
+
+        time.sleep(5.0 if has_new_segment else 2.0)
+
 
 class FreeshotProxyHandler(BaseHTTPRequestHandler):
     
@@ -260,14 +297,18 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
                 return
 
             # Primo avvio del canale: fetch iniziale sincrono
-            new_segs, pinned_host = _s22_fetch_manifest(sid, pinned_host=None)
+            new_segs, pinned_host, info = _s22_fetch_manifest(sid, pinned_host=None)
+            _s22_log(f"avvio sid={sid} host={pinned_host} {info}")
             if new_segs:
                 with S22_LOCK:
                     sess = {
                         'pinned_host': pinned_host,
                         'segments': {seq: (inf, url) for seq, inf, url in new_segs},
                         'last_seen': now,
-                        'media_seq': 0
+                        'media_seq': 0,
+                        'seq_offset': 0,
+                        'disc_seqs': set(),
+                        'last_new_ts': now
                     }
                     body = _s22_render_playlist(sess, window_size=6)
                     S22_SESSION_CACHE[sid] = sess
