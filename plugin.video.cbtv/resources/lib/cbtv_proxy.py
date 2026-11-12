@@ -19,6 +19,56 @@ def _s22_log(msg, level=None):
     xbmc.log(f"[CBTV S22] {msg}", level if level is not None else xbmc.LOGINFO)
 
 
+S22_HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (Android TV; VegetaTV/1.0)',
+    'Accept': 'audio/x-mpegurl,application/vnd.apple.mpegurl,text/plain,*/*',
+    'Cache-Control': 'no-cache'
+}
+
+
+def _s22_parse_manifest_from(s, sid, matched_loc):
+    """Scarica e analizza il manifest da un URL di nodo gia' noto. Ritorna (segments|None, info)."""
+    try:
+        r_m3u8 = s.get(matched_loc, headers=S22_HEADERS, timeout=3.0)
+        if r_m3u8.status_code != 200:
+            return None, f"m3u8_http {r_m3u8.status_code}"
+        parsed_cdn = urlparse(matched_loc)
+        # Mai accettare un redirect verso un nodo diverso (timestamp incompatibili)
+        if urlparse(r_m3u8.url).netloc != parsed_cdn.netloc:
+            return None, f"redirected_to {urlparse(r_m3u8.url).netloc}"
+        cdn_host = f"{parsed_cdn.scheme}://{parsed_cdn.netloc}"
+        base_dir = matched_loc.split('?', 1)[0].rsplit('/', 1)[0]
+        segments = []
+        lines = r_m3u8.text.splitlines()
+        for i, line in enumerate(lines):
+            line = line.strip()
+            if line.startswith('#EXTINF:') and i + 1 < len(lines):
+                seg_line = lines[i + 1].strip()
+                m = re.search(rf'{sid}_(\d+)\.ts', seg_line)
+                if m:
+                    seq_num = int(m.group(1))
+                    if seg_line.startswith('/'):
+                        full_url = f"{cdn_host}{seg_line}"
+                    elif not seg_line.startswith('http'):
+                        full_url = f"{base_dir}/{seg_line}"
+                    else:
+                        full_url = seg_line
+                    segments.append((seq_num, line, full_url))
+        if not segments:
+            return None, "m3u8_empty"
+        return segments, "ok"
+    except Exception as e:
+        return None, f"m3u8_err {type(e).__name__}"
+
+
+_S22_DIRECT_SESSION = requests.Session()
+
+
+def _s22_fetch_direct(sid, direct_loc):
+    """Richiede il manifest DIRETTAMENTE al nodo (URL salvato), senza passare dal load balancer."""
+    return _s22_parse_manifest_from(_S22_DIRECT_SESSION, sid, direct_loc)
+
+
 def _s22_fetch_manifest(sid, pinned_host=None):
     """Richiede un nuovo manifest al load balancer.
     Ritorna (segments, host, info) dove info descrive l'esito per i log diagnostici."""
@@ -58,35 +108,9 @@ def _s22_fetch_manifest(sid, pinned_host=None):
         except Exception as e:
             return None, None, f"redirect_err {type(e).__name__}"
 
-    try:
-        r_m3u8 = s.get(matched_loc, headers=s22_headers, timeout=3.0)
-        if r_m3u8.status_code != 200:
-            return None, pinned_host, f"m3u8_http {r_m3u8.status_code}"
-        parsed_cdn = urlparse(matched_loc)
-        cdn_host = f"{parsed_cdn.scheme}://{parsed_cdn.netloc}"
-        base_dir = matched_loc.rsplit('/', 1)[0]
-
-        segments = []
-        lines = r_m3u8.text.splitlines()
-        for i, line in enumerate(lines):
-            line = line.strip()
-            if line.startswith('#EXTINF:') and i + 1 < len(lines):
-                seg_line = lines[i + 1].strip()
-                m = re.search(rf'{sid}_(\d+)\.ts', seg_line)
-                if m:
-                    seq_num = int(m.group(1))
-                    if seg_line.startswith('/'):
-                        full_url = f"{cdn_host}{seg_line}"
-                    elif not seg_line.startswith('http'):
-                        full_url = f"{base_dir}/{seg_line}"
-                    else:
-                        full_url = seg_line
-                    segments.append((seq_num, line, full_url))
-        if not segments:
-            return None, pinned_host, "m3u8_empty"
-        return segments, pinned_host, "ok"
-    except Exception as e:
-        return None, pinned_host, f"m3u8_err {type(e).__name__}"
+    segments, info = _s22_parse_manifest_from(s, sid, matched_loc)
+    _s22_fetch_manifest.last_loc = matched_loc if segments else None
+    return segments, pinned_host, info
 
 
 def _s22_render_playlist(sess, window_size=6):
@@ -150,11 +174,35 @@ def _s22_worker_loop(sid):
         stalled_for = time.time() - last_new_ts
         repin = stalled_for > S22_STALL_REPIN_SECONDS
 
+        with S22_LOCK:
+            direct_loc = sess.get('direct_loc')
+            direct_since = sess.get('direct_since', time.time())
+
         t0 = time.time()
-        if repin:
-            new_segs, new_host, info = _s22_fetch_manifest(sid, pinned_host=None)
-        else:
-            new_segs, new_host, info = _s22_fetch_manifest(sid, pinned_host)
+        new_segs, new_host, info = None, pinned_host, ""
+        if direct_loc and not repin:
+            new_segs, dinfo = _s22_fetch_direct(sid, direct_loc)
+            if new_segs:
+                info = "direct"
+            else:
+                _s22_log(f"sid={sid} t={elapsed}s DIRECT_FAIL {dinfo} url_age={int(time.time() - direct_since)}s -> riserva LB", xbmc.LOGWARNING)
+                direct_loc = None
+        if not new_segs:
+            _s22_fetch_manifest.last_loc = None
+            if repin:
+                new_segs, new_host, info = _s22_fetch_manifest(sid, pinned_host=None)
+            else:
+                new_segs, new_host, info = _s22_fetch_manifest(sid, pinned_host)
+            info = f"LB:{info}"
+            fresh_loc = getattr(_s22_fetch_manifest, 'last_loc', None)
+            if fresh_loc:
+                with S22_LOCK:
+                    sess['direct_loc'] = fresh_loc
+                    sess['direct_since'] = time.time()
+                _s22_log(f"sid={sid} nuovo URL diretto salvato: {fresh_loc}")
+            elif not direct_loc:
+                with S22_LOCK:
+                    sess.pop('direct_loc', None)
         fetch_ms = int((time.time() - t0) * 1000)
 
         has_new_segment = False
@@ -308,7 +356,9 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
                         'media_seq': 0,
                         'seq_offset': 0,
                         'disc_seqs': set(),
-                        'last_new_ts': now
+                        'last_new_ts': now,
+                        'direct_loc': getattr(_s22_fetch_manifest, 'last_loc', None),
+                        'direct_since': now
                     }
                     body = _s22_render_playlist(sess, window_size=6)
                     S22_SESSION_CACHE[sid] = sess
