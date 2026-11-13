@@ -131,8 +131,10 @@ def _s22_render_playlist(sess, window_size=6):
         next_needed = kodi_seq + 1
         if next_needed < active_seqs[0] and next_needed in seg_dict:
             gap = active_seqs[0] - next_needed
-            if gap <= 2:
-                active_seqs = all_seqs[-(window_size + gap):]
+            # Scorri in modo continuo senza gradini: se gap supera max_extra (4),
+            # avanza di 1 segmento alla volta invece di azzerare e saltarne 3+ in blocco.
+            extra = min(gap, 4)
+            active_seqs = all_seqs[-(window_size + extra):]
     last_seq = active_seqs[-1]
     media_seq = max(sess.get('media_seq', 0), active_seqs[0])
     sess['media_seq'] = media_seq
