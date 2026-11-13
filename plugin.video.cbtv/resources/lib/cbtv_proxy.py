@@ -126,6 +126,13 @@ def _s22_render_playlist(sess, window_size=6):
 
     all_seqs = sorted(seg_dict.keys())
     active_seqs = all_seqs[-window_size:]
+    kodi_seq = sess.get('last_kodi_seq', 0)
+    if kodi_seq:
+        next_needed = kodi_seq + 1
+        if next_needed < active_seqs[0] and next_needed in seg_dict:
+            gap = active_seqs[0] - next_needed
+            if gap <= 2:
+                active_seqs = all_seqs[-(window_size + gap):]
     last_seq = active_seqs[-1]
     media_seq = max(sess.get('media_seq', 0), active_seqs[0])
     sess['media_seq'] = media_seq
@@ -275,6 +282,12 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
                 sess = S22_SESSION_CACHE.get(sid)
                 if sess:
                     sess['last_seen'] = time.time()
+                    try:
+                        seq_num = int(seq)
+                        if seq_num > sess.get('last_kodi_seq', 0):
+                            sess['last_kodi_seq'] = seq_num
+                    except (TypeError, ValueError):
+                        pass
 
         s = getattr(_S22_SEG_TLS, 'session', None)
         if s is None:
