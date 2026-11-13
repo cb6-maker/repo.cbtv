@@ -1,6 +1,9 @@
 import threading
-from http.server import HTTPServer, BaseHTTPRequestHandler
-from urllib.parse import urlparse, parse_qsl, urlencode, urljoin
+try:
+    from http.server import ThreadingHTTPServer as _BaseHTTPServer, BaseHTTPRequestHandler
+except ImportError:
+    from http.server import HTTPServer as _BaseHTTPServer, BaseHTTPRequestHandler
+from urllib.parse import urlparse, parse_qsl, urlencode, urljoin, quote
 import requests
 import re
 import time
@@ -62,6 +65,7 @@ def _s22_parse_manifest_from(s, sid, matched_loc):
 
 
 _S22_DIRECT_SESSION = requests.Session()
+_S22_SEG_TLS = threading.local()
 
 
 def _s22_fetch_direct(sid, direct_loc):
@@ -140,12 +144,13 @@ def _s22_render_playlist(sess, window_size=6):
         '#EXT-X-ALLOW-CACHE:YES',
         '#EXT-X-TARGETDURATION:12'
     ]
+    sid = sess.get('sid', '')
     for s in valid_seqs:
         if s in disc and s != valid_seqs[0]:
             lines.append('#EXT-X-DISCONTINUITY')
         inf, url = seg_dict[s]
         lines.append(inf)
-        lines.append(url)
+        lines.append(f"/s22_seg?sid={sid}&seq={s}&u={quote(url, safe='')}")
 
     playlist_body = "\n".join(lines)
     sess['last_body'] = playlist_body
@@ -253,6 +258,57 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
         # Disabilita il log standard di BaseHTTPRequestHandler per non intasare kodi.log
         pass
 
+    def _handle_s22_segment(self, params):
+        seg_url = params.get('u')
+        sid = params.get('sid', '')
+        seq = params.get('seq', '?')
+        if not seg_url:
+            self.send_response(400)
+            self.end_headers()
+            return
+
+        if sid:
+            with S22_LOCK:
+                sess = S22_SESSION_CACHE.get(sid)
+                if sess:
+                    sess['last_seen'] = time.time()
+
+        s = getattr(_S22_SEG_TLS, 'session', None)
+        if s is None:
+            s = requests.Session()
+            _S22_SEG_TLS.session = s
+
+        last_err = ""
+        for attempt in range(1, 4):
+            t0 = time.time()
+            try:
+                r = s.get(seg_url, headers=S22_HEADERS, timeout=6.0)
+                ms = int((time.time() - t0) * 1000)
+                if r.status_code == 200 and r.content:
+                    data = r.content
+                    if attempt > 1 or ms > 2000:
+                        _s22_log(f"SEG_OK sid={sid} seq={seq} bytes={len(data)} ms={ms} try={attempt}", xbmc.LOGWARNING)
+                    else:
+                        _s22_log(f"SEG_OK sid={sid} seq={seq} bytes={len(data)} ms={ms}")
+                    self.send_response(200)
+                    self.send_header("Content-Type", "video/mp2t")
+                    self.send_header("Content-Length", str(len(data)))
+                    self.end_headers()
+                    self.wfile.write(data)
+                    return
+                last_err = f"HTTP {r.status_code} bytes={len(r.content)}"
+                _s22_log(f"SEG_FAIL sid={sid} seq={seq} try={attempt} {last_err} ms={ms}", xbmc.LOGWARNING)
+            except Exception as e:
+                ms = int((time.time() - t0) * 1000)
+                last_err = f"{type(e).__name__}: {e}"
+                _s22_log(f"SEG_FAIL sid={sid} seq={seq} try={attempt} {last_err} ms={ms}", xbmc.LOGWARNING)
+            if attempt < 3:
+                time.sleep(0.3)
+
+        _s22_log(f"SEG_GIVEUP sid={sid} seq={seq} url={seg_url} err={last_err}", xbmc.LOGERROR)
+        self.send_response(502)
+        self.end_headers()
+
     def get_token(self, code, source_type):
         now = time.time()
         # Se abbiamo un token in cache valido per altri 60 secondi, usalo
@@ -309,7 +365,11 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
         params = dict(parse_qsl(parsed.query))
         
         path_base = parsed.path
-        
+
+        if path_base == '/s22_seg':
+            self._handle_s22_segment(params)
+            return
+
         code = params.get('code')
         source_type = params.get('source')
         
@@ -341,6 +401,7 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
                 self.send_header("Content-Type", "application/x-mpegURL")
                 self.send_header("Access-Control-Allow-Origin", "*")
                 self.end_headers()
+                _s22_log(f"M3U8_SERVED sid={sid} media={sess.get('media_seq')} max={sess.get('max_seq')}")
                 self.wfile.write(sess['last_body'].encode('utf-8'))
                 return
 
@@ -350,6 +411,7 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
             if new_segs:
                 with S22_LOCK:
                     sess = {
+                        'sid': sid,
                         'pinned_host': pinned_host,
                         'segments': {seq: (inf, url) for seq, inf, url in new_segs},
                         'last_seen': now,
@@ -487,7 +549,10 @@ class ProxyManager:
 
     def start(self):
         # Binding alla porta 0 assegna una porta random libera
-        self.server = HTTPServer(('127.0.0.1', 0), FreeshotProxyHandler)
+        class _ThreadedServer(_BaseHTTPServer):
+            daemon_threads = True
+            allow_reuse_address = True
+        self.server = _ThreadedServer(('127.0.0.1', 0), FreeshotProxyHandler)
         self.port = self.server.server_port
         
         self.thread = threading.Thread(target=self.server.serve_forever)
