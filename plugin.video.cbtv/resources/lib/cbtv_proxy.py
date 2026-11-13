@@ -218,15 +218,18 @@ def _s22_worker_loop(sid):
                     seg_dict = sess.setdefault('segments', {})
                     offset = sess.get('seq_offset', 0)
                     if repin:
-                        # Ri-aggancio: mappa gli ultimi 2 segmenti del nuovo nodo subito dopo l'ultimo servito
-                        tail = new_segs[-2:]
-                        offset = sess.get('max_seq', 0) + 1 - tail[0][0]
-                        sess['seq_offset'] = offset
-                        sess['pinned_host'] = new_host
-                        sess.setdefault('disc_seqs', set()).add(tail[0][0] + offset)
-                        sess['disc_total'] = sess.get('disc_total', 0) + 1
-                        new_segs = tail
-                        _s22_log(f"REPIN sid={sid} t={elapsed}s stallo={stalled_for:.0f}s {pinned_host} -> {new_host}", xbmc.LOGWARNING)
+                        if new_host == pinned_host:
+                            _s22_log(f"REPIN_SAME sid={sid} t={elapsed}s stallo={stalled_for:.0f}s host={new_host} (continua senza buchi)")
+                        else:
+                            # Cambio nodo reale: mappa gli ultimi 4 segmenti subito dopo l'ultimo servito
+                            tail = new_segs[-4:]
+                            offset = sess.get('max_seq', 0) + 1 - tail[0][0]
+                            sess['seq_offset'] = offset
+                            sess['pinned_host'] = new_host
+                            sess.setdefault('disc_seqs', set()).add(tail[0][0] + offset)
+                            sess['disc_total'] = sess.get('disc_total', 0) + 1
+                            new_segs = tail
+                            _s22_log(f"REPIN sid={sid} t={elapsed}s stallo={stalled_for:.0f}s {pinned_host} -> {new_host}", xbmc.LOGWARNING)
                     max_seq = sess.get('max_seq', 0)
                     for seq, inf, url in new_segs:
                         local = seq + offset
@@ -294,7 +297,10 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
                     self.send_header("Content-Type", "video/mp2t")
                     self.send_header("Content-Length", str(len(data)))
                     self.end_headers()
-                    self.wfile.write(data)
+                    try:
+                        self.wfile.write(data)
+                    except (BrokenPipeError, ConnectionResetError):
+                        pass
                     return
                 last_err = f"HTTP {r.status_code} bytes={len(r.content)}"
                 _s22_log(f"SEG_FAIL sid={sid} seq={seq} try={attempt} {last_err} ms={ms}", xbmc.LOGWARNING)
