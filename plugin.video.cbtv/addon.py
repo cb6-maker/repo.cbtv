@@ -992,12 +992,16 @@ def list_s20_channels(cat):
 
 
 def play_s20_channel(sid, name):
-    """Avvia lo stream HLS (.m3u8) da Server 20 tramite inputstream.ffmpegdirect"""
+    """Risolve e avvia lo stream HLS da Server 20 tramite proxy locale continuo"""
     xbmcgui.Dialog().notification("CBTV", f"Avvio {name}...", xbmcgui.NOTIFICATION_INFO, 1500)
     try:
-        m3u8_url = f"http://brumotto00.zapto.org:80/live/Diegoamiciantoniogennaro/8u%40%402zzQ%40B/{sid}.m3u8"
-        stream_url = f"{m3u8_url}|User-Agent=VLC%2F3.0.18%20LibVLC%2F3.0.18"
-        list_item = xbmcgui.ListItem(path=stream_url)
+        from resources.lib.cbtv_proxy import ProxyManager
+        proxy = ProxyManager()
+        port = proxy.start()
+
+        proxy_url = f"http://127.0.0.1:{port}/proxy.m3u8?code={sid}&source=s20"
+
+        list_item = xbmcgui.ListItem(path=proxy_url)
         list_item.setInfo('video', {'title': name})
         list_item.setProperty('inputstream', 'inputstream.ffmpegdirect')
         list_item.setProperty('inputstream.ffmpegdirect.is_realtime_stream', 'true')
@@ -1005,6 +1009,17 @@ def play_s20_channel(sid, name):
         list_item.setMimeType('application/x-mpegURL')
         list_item.setContentLookup(False)
         xbmcplugin.setResolvedUrl(HANDLE, True, listitem=list_item)
+
+        for _ in range(15):
+            if xbmc.Player().isPlaying():
+                break
+            xbmc.sleep(500)
+
+        while xbmc.Player().isPlaying():
+            xbmc.sleep(1000)
+
+        proxy.stop()
+        return
     except Exception as e:
         xbmc.log(f"[CBTV] Errore play_s20_channel: {e}", xbmc.LOGERROR)
         xbmcplugin.setResolvedUrl(HANDLE, False, xbmcgui.ListItem())
