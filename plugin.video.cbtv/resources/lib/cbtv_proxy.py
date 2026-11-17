@@ -64,19 +64,19 @@ def _s20_parse_manifest_from(s, sid, matched_loc):
         return None, f"m3u8_err {type(e).__name__}"
 
 
-_S20_DIRECT_SESSION = requests.Session()
-_S20_SEG_TLS = threading.local()
+_S20_HTTP_SESSION = requests.Session()
+_S20_HTTP_LOCK = threading.Lock()
 
 
 def _s20_fetch_direct(sid, direct_loc):
     """Richiede il manifest DIRETTAMENTE al nodo (URL salvato), senza passare dal load balancer."""
-    return _s20_parse_manifest_from(_S20_DIRECT_SESSION, sid, direct_loc)
+    with _S20_HTTP_LOCK:
+        return _s20_parse_manifest_from(_S20_HTTP_SESSION, sid, direct_loc)
 
 
 def _s20_fetch_manifest(sid, pinned_host=None):
     """Richiede un nuovo manifest al load balancer.
     Ritorna (segments, host, info) dove info descrive l'esito per i log diagnostici."""
-    s = requests.Session()
     s20_headers = {
         'User-Agent': 'VLC/3.0.18 LibVLC/3.0.18',
         'Accept': 'audio/x-mpegurl,application/vnd.apple.mpegurl,text/plain,*/*',
@@ -87,32 +87,33 @@ def _s20_fetch_manifest(sid, pinned_host=None):
     seen_hosts = {}
     last_err = None
 
-    if pinned_host:
-        # Fino a 20 tentativi rapidi per agganciare ESCLUSIVAMENTE il nodo assegnato
-        for _ in range(20):
+    with _S20_HTTP_LOCK:
+        if pinned_host:
+            # Massimo 3 tentativi per non far scattare rate-limit / 403 sul LB
+            for _ in range(3):
+                try:
+                    ts = int(time.time() * 1000)
+                    r_redir = _S20_HTTP_SESSION.get(f"{s20_url}?_vegeta_refresh={ts}", headers=s20_headers, allow_redirects=False, timeout=2.0)
+                    loc = r_redir.headers.get('Location')
+                    h = urlparse(loc).netloc if loc else f"HTTP{r_redir.status_code}"
+                    seen_hosts[h] = seen_hosts.get(h, 0) + 1
+                    if loc and pinned_host in loc:
+                        matched_loc = loc
+                        break
+                except Exception as e:
+                    last_err = type(e).__name__
+            if not matched_loc:
+                return None, pinned_host, f"pinned_miss hosts={seen_hosts} err={last_err}"
+        else:
             try:
                 ts = int(time.time() * 1000)
-                r_redir = s.get(f"{s20_url}?_vegeta_refresh={ts}", headers=s20_headers, allow_redirects=False, timeout=1.0)
-                loc = r_redir.headers.get('Location')
-                h = urlparse(loc).netloc if loc else f"HTTP{r_redir.status_code}"
-                seen_hosts[h] = seen_hosts.get(h, 0) + 1
-                if loc and pinned_host in loc:
-                    matched_loc = loc
-                    break
+                r_redir = _S20_HTTP_SESSION.get(f"{s20_url}?_vegeta_refresh={ts}", headers=s20_headers, allow_redirects=False, timeout=3.0)
+                matched_loc = r_redir.headers.get('Location') or s20_url
+                pinned_host = urlparse(matched_loc).netloc
             except Exception as e:
-                last_err = type(e).__name__
-        if not matched_loc:
-            return None, pinned_host, f"pinned_miss hosts={seen_hosts} err={last_err}"
-    else:
-        try:
-            ts = int(time.time() * 1000)
-            r_redir = s.get(f"{s20_url}?_vegeta_refresh={ts}", headers=s20_headers, allow_redirects=False, timeout=3.0)
-            matched_loc = r_redir.headers.get('Location') or s20_url
-            pinned_host = urlparse(matched_loc).netloc
-        except Exception as e:
-            return None, None, f"redirect_err {type(e).__name__}"
+                return None, None, f"redirect_err {type(e).__name__}"
 
-    segments, info = _s20_parse_manifest_from(s, sid, matched_loc)
+        segments, info = _s20_parse_manifest_from(_S20_HTTP_SESSION, sid, matched_loc)
     _s20_fetch_manifest.last_loc = matched_loc if segments else None
     return segments, pinned_host, info
 
@@ -261,7 +262,7 @@ def _s20_worker_loop(sid):
         else:
             _s20_log(f"sid={sid} t={elapsed}s FAIL {info} stallo={stalled_for:.0f}s fetch={fetch_ms}ms", xbmc.LOGWARNING)
 
-        time.sleep(5.0 if has_new_segment else 2.0)
+        time.sleep(7.0 if has_new_segment else 4.0)
 
 
 class FreeshotProxyHandler(BaseHTTPRequestHandler):
@@ -291,16 +292,12 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
                     except (TypeError, ValueError):
                         pass
 
-        s = getattr(_S20_SEG_TLS, 'session', None)
-        if s is None:
-            s = requests.Session()
-            _S20_SEG_TLS.session = s
-
         last_err = ""
         for attempt in range(1, 4):
             t0 = time.time()
             try:
-                r = s.get(seg_url, headers=S20_HEADERS, timeout=6.0)
+                with _S20_HTTP_LOCK:
+                    r = _S20_HTTP_SESSION.get(seg_url, headers=S20_HEADERS, timeout=6.0)
                 ms = int((time.time() - t0) * 1000)
                 if r.status_code == 200 and r.content:
                     data = r.content
