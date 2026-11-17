@@ -11,28 +11,28 @@ import xbmc
 
 # Stato globale del proxy (per mantenere i token)
 TOKEN_CACHE = {}
-S20_SESSION_CACHE = {}
-S20_WORKERS = {}
-S20_LOCK = threading.Lock()
+S14_SESSION_CACHE = {}
+S14_WORKERS = {}
+S14_LOCK = threading.Lock()
 
-S20_STALL_REPIN_SECONDS = 25.0
-
-
-def _s20_log(msg, level=None):
-    xbmc.log(f"[CBTV S20] {msg}", level if level is not None else xbmc.LOGINFO)
+S14_STALL_REPIN_SECONDS = 25.0
 
 
-S20_HEADERS = {
-    'User-Agent': 'VLC/3.0.18 LibVLC/3.0.18',
+def _s14_log(msg, level=None):
+    xbmc.log(f"[CBTV S14] {msg}", level if level is not None else xbmc.LOGINFO)
+
+
+S14_HEADERS = {
+    'User-Agent': 'VLC/3.0.20 LibVLC/3.0.20',
     'Accept': 'audio/x-mpegurl,application/vnd.apple.mpegurl,text/plain,*/*',
     'Cache-Control': 'no-cache'
 }
 
 
-def _s20_parse_manifest_from(s, sid, matched_loc):
+def _s14_parse_manifest_from(s, sid, matched_loc):
     """Scarica e analizza il manifest da un URL di nodo gia' noto. Ritorna (segments|None, info)."""
     try:
-        r_m3u8 = s.get(matched_loc, headers=S20_HEADERS, timeout=3.0)
+        r_m3u8 = s.get(matched_loc, headers=S14_HEADERS, timeout=3.0)
         if r_m3u8.status_code != 200:
             return None, f"m3u8_http {r_m3u8.status_code}"
         parsed_cdn = urlparse(matched_loc)
@@ -64,36 +64,36 @@ def _s20_parse_manifest_from(s, sid, matched_loc):
         return None, f"m3u8_err {type(e).__name__}"
 
 
-_S20_HTTP_SESSION = requests.Session()
-_S20_HTTP_LOCK = threading.Lock()
+_S14_HTTP_SESSION = requests.Session()
+_S14_HTTP_LOCK = threading.Lock()
 
 
-def _s20_fetch_direct(sid, direct_loc):
+def _s14_fetch_direct(sid, direct_loc):
     """Richiede il manifest DIRETTAMENTE al nodo (URL salvato), senza passare dal load balancer."""
-    with _S20_HTTP_LOCK:
-        return _s20_parse_manifest_from(_S20_HTTP_SESSION, sid, direct_loc)
+    with _S14_HTTP_LOCK:
+        return _s14_parse_manifest_from(_S14_HTTP_SESSION, sid, direct_loc)
 
 
-def _s20_fetch_manifest(sid, pinned_host=None):
+def _s14_fetch_manifest(sid, pinned_host=None):
     """Richiede un nuovo manifest al load balancer.
     Ritorna (segments, host, info) dove info descrive l'esito per i log diagnostici."""
-    s20_headers = {
-        'User-Agent': 'VLC/3.0.18 LibVLC/3.0.18',
+    s14_headers = {
+        'User-Agent': 'VLC/3.0.20 LibVLC/3.0.20',
         'Accept': 'audio/x-mpegurl,application/vnd.apple.mpegurl,text/plain,*/*',
         'Cache-Control': 'no-cache'
     }
-    s20_url = f"http://brumotto00.zapto.org:80/live/Diegoamiciantoniogennaro/8u%40%402zzQ%40B/{sid}.m3u8"
+    s14_url = f"http://ios.dragonsdog.com/live/peppedent/Rl8HYEmMFn24/{sid}.m3u8"
     matched_loc = None
     seen_hosts = {}
     last_err = None
 
-    with _S20_HTTP_LOCK:
+    with _S14_HTTP_LOCK:
         if pinned_host:
             # Massimo 3 tentativi per non far scattare rate-limit / 403 sul LB
-            for _ in range(3):
+            for _ in range(10):
                 try:
                     ts = int(time.time() * 1000)
-                    r_redir = _S20_HTTP_SESSION.get(f"{s20_url}?_vegeta_refresh={ts}", headers=s20_headers, allow_redirects=False, timeout=2.0)
+                    r_redir = _S14_HTTP_SESSION.get(f"{s14_url}?_vegeta_refresh={ts}", headers=s14_headers, allow_redirects=False, timeout=2.0)
                     loc = r_redir.headers.get('Location')
                     h = urlparse(loc).netloc if loc else f"HTTP{r_redir.status_code}"
                     seen_hosts[h] = seen_hosts.get(h, 0) + 1
@@ -107,18 +107,18 @@ def _s20_fetch_manifest(sid, pinned_host=None):
         else:
             try:
                 ts = int(time.time() * 1000)
-                r_redir = _S20_HTTP_SESSION.get(f"{s20_url}?_vegeta_refresh={ts}", headers=s20_headers, allow_redirects=False, timeout=3.0)
-                matched_loc = r_redir.headers.get('Location') or s20_url
+                r_redir = _S14_HTTP_SESSION.get(f"{s14_url}?_vegeta_refresh={ts}", headers=s14_headers, allow_redirects=False, timeout=3.0)
+                matched_loc = r_redir.headers.get('Location') or s14_url
                 pinned_host = urlparse(matched_loc).netloc
             except Exception as e:
                 return None, None, f"redirect_err {type(e).__name__}"
 
-        segments, info = _s20_parse_manifest_from(_S20_HTTP_SESSION, sid, matched_loc)
-    _s20_fetch_manifest.last_loc = matched_loc if segments else None
+        segments, info = _s14_parse_manifest_from(_S14_HTTP_SESSION, sid, matched_loc)
+    _s14_fetch_manifest.last_loc = matched_loc if segments else None
     return segments, pinned_host, info
 
 
-def _s20_render_playlist(sess, window_size=6):
+def _s14_render_playlist(sess, window_size=6):
     """Genera una playlist HLS rigorosamente MONOTONICA: EXT-X-MEDIA-SEQUENCE non può mai decrescere.
     Le chiavi di sess['segments'] sono numeri di sequenza LOCALI (upstream + seq_offset)."""
     seg_dict = sess.get('segments', {})
@@ -160,7 +160,7 @@ def _s20_render_playlist(sess, window_size=6):
             lines.append('#EXT-X-DISCONTINUITY')
         inf, url = seg_dict[s]
         lines.append(inf)
-        lines.append(f"/s20_seg?sid={sid}&seq={s}&u={quote(url, safe='')}")
+        lines.append(f"/s14_seg?sid={sid}&seq={s}&u={quote(url, safe='')}")
 
     playlist_body = "\n".join(lines)
     sess['last_body'] = playlist_body
@@ -168,68 +168,68 @@ def _s20_render_playlist(sess, window_size=6):
     return playlist_body
 
 
-def _s20_worker_loop(sid):
+def _s14_worker_loop(sid):
     """Worker background: mantiene fresca la playlist sul nodo pinned.
-    Se il nodo non fornisce segmenti nuovi per S20_STALL_REPIN_SECONDS, si ri-aggancia a un nuovo nodo
+    Se il nodo non fornisce segmenti nuovi per S14_STALL_REPIN_SECONDS, si ri-aggancia a un nuovo nodo
     inserendo #EXT-X-DISCONTINUITY (niente mescolanza di timestamp, niente playlist ferma -> niente EOF)."""
-    _s20_log(f"worker avviato sid={sid}")
+    _s14_log(f"worker avviato sid={sid}")
     t_start = time.time()
     while True:
-        with S20_LOCK:
-            sess = S20_SESSION_CACHE.get(sid)
+        with S14_LOCK:
+            sess = S14_SESSION_CACHE.get(sid)
             if not sess or (time.time() - sess.get('last_seen', 0) > 40):
-                S20_SESSION_CACHE.pop(sid, None)
-                S20_WORKERS.pop(sid, None)
-                _s20_log(f"worker terminato sid={sid} (nessuna richiesta da Kodi)")
+                S14_SESSION_CACHE.pop(sid, None)
+                S14_WORKERS.pop(sid, None)
+                _s14_log(f"worker terminato sid={sid} (nessuna richiesta da Kodi)")
                 break
             pinned_host = sess.get('pinned_host')
             last_new_ts = sess.setdefault('last_new_ts', time.time())
 
         elapsed = int(time.time() - t_start)
         stalled_for = time.time() - last_new_ts
-        repin = stalled_for > S20_STALL_REPIN_SECONDS
+        repin = stalled_for > S14_STALL_REPIN_SECONDS
 
-        with S20_LOCK:
+        with S14_LOCK:
             direct_loc = sess.get('direct_loc')
             direct_since = sess.get('direct_since', time.time())
 
         t0 = time.time()
         new_segs, new_host, info = None, pinned_host, ""
         if direct_loc and not repin:
-            new_segs, dinfo = _s20_fetch_direct(sid, direct_loc)
+            new_segs, dinfo = _s14_fetch_direct(sid, direct_loc)
             if new_segs:
                 info = "direct"
             else:
-                _s20_log(f"sid={sid} t={elapsed}s DIRECT_FAIL {dinfo} url_age={int(time.time() - direct_since)}s -> riserva LB", xbmc.LOGWARNING)
+                _s14_log(f"sid={sid} t={elapsed}s DIRECT_FAIL {dinfo} url_age={int(time.time() - direct_since)}s -> riserva LB", xbmc.LOGWARNING)
                 direct_loc = None
         if not new_segs:
-            _s20_fetch_manifest.last_loc = None
+            _s14_fetch_manifest.last_loc = None
             if repin:
-                new_segs, new_host, info = _s20_fetch_manifest(sid, pinned_host=None)
+                new_segs, new_host, info = _s14_fetch_manifest(sid, pinned_host=None)
             else:
-                new_segs, new_host, info = _s20_fetch_manifest(sid, pinned_host)
+                new_segs, new_host, info = _s14_fetch_manifest(sid, pinned_host)
             info = f"LB:{info}"
-            fresh_loc = getattr(_s20_fetch_manifest, 'last_loc', None)
+            fresh_loc = getattr(_s14_fetch_manifest, 'last_loc', None)
             if fresh_loc:
-                with S20_LOCK:
+                with S14_LOCK:
                     sess['direct_loc'] = fresh_loc
                     sess['direct_since'] = time.time()
-                _s20_log(f"sid={sid} nuovo URL diretto salvato: {fresh_loc}")
+                _s14_log(f"sid={sid} nuovo URL diretto salvato: {fresh_loc}")
             elif not direct_loc:
-                with S20_LOCK:
+                with S14_LOCK:
                     sess.pop('direct_loc', None)
         fetch_ms = int((time.time() - t0) * 1000)
 
         has_new_segment = False
         if new_segs:
-            with S20_LOCK:
-                sess = S20_SESSION_CACHE.get(sid)
+            with S14_LOCK:
+                sess = S14_SESSION_CACHE.get(sid)
                 if sess:
                     seg_dict = sess.setdefault('segments', {})
                     offset = sess.get('seq_offset', 0)
                     if repin:
                         if new_host == pinned_host:
-                            _s20_log(f"REPIN_SAME sid={sid} t={elapsed}s stallo={stalled_for:.0f}s host={new_host} (continua senza buchi)")
+                            _s14_log(f"REPIN_SAME sid={sid} t={elapsed}s stallo={stalled_for:.0f}s host={new_host} (continua senza buchi)")
                         else:
                             # Cambio nodo reale: mappa gli ultimi 4 segmenti subito dopo l'ultimo servito
                             tail = new_segs[-4:]
@@ -239,7 +239,7 @@ def _s20_worker_loop(sid):
                             sess.setdefault('disc_seqs', set()).add(tail[0][0] + offset)
                             sess['disc_total'] = sess.get('disc_total', 0) + 1
                             new_segs = tail
-                            _s20_log(f"REPIN sid={sid} t={elapsed}s stallo={stalled_for:.0f}s {pinned_host} -> {new_host}", xbmc.LOGWARNING)
+                            _s14_log(f"REPIN sid={sid} t={elapsed}s stallo={stalled_for:.0f}s {pinned_host} -> {new_host}", xbmc.LOGWARNING)
                     max_seq = sess.get('max_seq', 0)
                     for seq, inf, url in new_segs:
                         local = seq + offset
@@ -256,13 +256,13 @@ def _s20_worker_loop(sid):
                     if disc and seg_dict:
                         lo = min(seg_dict.keys())
                         sess['disc_seqs'] = {d for d in disc if d >= lo}
-                    _s20_render_playlist(sess, window_size=6)
+                    _s14_render_playlist(sess, window_size=6)
                     max_seq = sess.get('max_seq', 0)
-            _s20_log(f"sid={sid} t={elapsed}s host={new_host} {info} up_segs={new_segs[0][0]}-{new_segs[-1][0]} new={has_new_segment} max={max_seq} fetch={fetch_ms}ms")
+            _s14_log(f"sid={sid} t={elapsed}s host={new_host} {info} up_segs={new_segs[0][0]}-{new_segs[-1][0]} new={has_new_segment} max={max_seq} fetch={fetch_ms}ms")
         else:
-            _s20_log(f"sid={sid} t={elapsed}s FAIL {info} stallo={stalled_for:.0f}s fetch={fetch_ms}ms", xbmc.LOGWARNING)
+            _s14_log(f"sid={sid} t={elapsed}s FAIL {info} stallo={stalled_for:.0f}s fetch={fetch_ms}ms", xbmc.LOGWARNING)
 
-        time.sleep(7.0 if has_new_segment else 4.0)
+        time.sleep(5.0 if has_new_segment else 2.0)
 
 
 class FreeshotProxyHandler(BaseHTTPRequestHandler):
@@ -271,7 +271,7 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
         # Disabilita il log standard di BaseHTTPRequestHandler per non intasare kodi.log
         pass
 
-    def _handle_s20_segment(self, params):
+    def _handle_s14_segment(self, params):
         seg_url = params.get('u')
         sid = params.get('sid', '')
         seq = params.get('seq', '?')
@@ -281,8 +281,8 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
             return
 
         if sid:
-            with S20_LOCK:
-                sess = S20_SESSION_CACHE.get(sid)
+            with S14_LOCK:
+                sess = S14_SESSION_CACHE.get(sid)
                 if sess:
                     sess['last_seen'] = time.time()
                     try:
@@ -296,15 +296,15 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
         for attempt in range(1, 4):
             t0 = time.time()
             try:
-                with _S20_HTTP_LOCK:
-                    r = _S20_HTTP_SESSION.get(seg_url, headers=S20_HEADERS, timeout=6.0)
+                with _S14_HTTP_LOCK:
+                    r = _S14_HTTP_SESSION.get(seg_url, headers=S14_HEADERS, timeout=6.0)
                 ms = int((time.time() - t0) * 1000)
                 if r.status_code == 200 and r.content:
                     data = r.content
                     if attempt > 1 or ms > 2000:
-                        _s20_log(f"SEG_OK sid={sid} seq={seq} bytes={len(data)} ms={ms} try={attempt}", xbmc.LOGWARNING)
+                        _s14_log(f"SEG_OK sid={sid} seq={seq} bytes={len(data)} ms={ms} try={attempt}", xbmc.LOGWARNING)
                     else:
-                        _s20_log(f"SEG_OK sid={sid} seq={seq} bytes={len(data)} ms={ms}")
+                        _s14_log(f"SEG_OK sid={sid} seq={seq} bytes={len(data)} ms={ms}")
                     self.send_response(200)
                     self.send_header("Content-Type", "video/mp2t")
                     self.send_header("Content-Length", str(len(data)))
@@ -315,15 +315,15 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
                         pass
                     return
                 last_err = f"HTTP {r.status_code} bytes={len(r.content)}"
-                _s20_log(f"SEG_FAIL sid={sid} seq={seq} try={attempt} {last_err} ms={ms}", xbmc.LOGWARNING)
+                _s14_log(f"SEG_FAIL sid={sid} seq={seq} try={attempt} {last_err} ms={ms}", xbmc.LOGWARNING)
             except Exception as e:
                 ms = int((time.time() - t0) * 1000)
                 last_err = f"{type(e).__name__}: {e}"
-                _s20_log(f"SEG_FAIL sid={sid} seq={seq} try={attempt} {last_err} ms={ms}", xbmc.LOGWARNING)
+                _s14_log(f"SEG_FAIL sid={sid} seq={seq} try={attempt} {last_err} ms={ms}", xbmc.LOGWARNING)
             if attempt < 3:
                 time.sleep(0.3)
 
-        _s20_log(f"SEG_GIVEUP sid={sid} seq={seq} url={seg_url} err={last_err}", xbmc.LOGERROR)
+        _s14_log(f"SEG_GIVEUP sid={sid} seq={seq} url={seg_url} err={last_err}", xbmc.LOGERROR)
         self.send_response(502)
         self.end_headers()
 
@@ -384,8 +384,8 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
         
         path_base = parsed.path
 
-        if path_base == '/s20_seg':
-            self._handle_s20_segment(params)
+        if path_base == '/s14_seg':
+            self._handle_s14_segment(params)
             return
 
         code = params.get('code')
@@ -396,38 +396,38 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
             self.end_headers()
             return
 
-        # ─── GESTIONE SPECIALE SERVER 20 (HLS PROXY) ───
-        if source_type == "s20":
+        # ─── GESTIONE SPECIALE SERVER 14 (HLS PROXY) ───
+        if source_type == "s14":
             sid = code
             now = time.time()
 
-            with S20_LOCK:
-                sess = S20_SESSION_CACHE.get(sid)
+            with S14_LOCK:
+                sess = S14_SESSION_CACHE.get(sid)
                 if sess:
                     sess['last_seen'] = now
 
             # Se abbiamo già un manifest in cache, invialo SUBITO a Kodi (< 1ms)
             if sess and sess.get('last_body'):
                 # Assicurati che il worker thread sia attivo
-                with S20_LOCK:
-                    if sid not in S20_WORKERS or not S20_WORKERS[sid].is_alive():
-                        t = threading.Thread(target=_s20_worker_loop, args=(sid,), daemon=True)
-                        S20_WORKERS[sid] = t
+                with S14_LOCK:
+                    if sid not in S14_WORKERS or not S14_WORKERS[sid].is_alive():
+                        t = threading.Thread(target=_s14_worker_loop, args=(sid,), daemon=True)
+                        S14_WORKERS[sid] = t
                         t.start()
 
                 self.send_response(200)
                 self.send_header("Content-Type", "application/x-mpegURL")
                 self.send_header("Access-Control-Allow-Origin", "*")
                 self.end_headers()
-                _s20_log(f"M3U8_SERVED sid={sid} media={sess.get('media_seq')} max={sess.get('max_seq')}")
+                _s14_log(f"M3U8_SERVED sid={sid} media={sess.get('media_seq')} max={sess.get('max_seq')}")
                 self.wfile.write(sess['last_body'].encode('utf-8'))
                 return
 
             # Primo avvio del canale: fetch iniziale sincrono
-            new_segs, pinned_host, info = _s20_fetch_manifest(sid, pinned_host=None)
-            _s20_log(f"avvio sid={sid} host={pinned_host} {info}")
+            new_segs, pinned_host, info = _s14_fetch_manifest(sid, pinned_host=None)
+            _s14_log(f"avvio sid={sid} host={pinned_host} {info}")
             if new_segs:
-                with S20_LOCK:
+                with S14_LOCK:
                     sess = {
                         'sid': sid,
                         'pinned_host': pinned_host,
@@ -437,15 +437,15 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
                         'seq_offset': 0,
                         'disc_seqs': set(),
                         'last_new_ts': now,
-                        'direct_loc': getattr(_s20_fetch_manifest, 'last_loc', None),
+                        'direct_loc': getattr(_s14_fetch_manifest, 'last_loc', None),
                         'direct_since': now
                     }
-                    body = _s20_render_playlist(sess, window_size=6)
-                    S20_SESSION_CACHE[sid] = sess
+                    body = _s14_render_playlist(sess, window_size=6)
+                    S14_SESSION_CACHE[sid] = sess
 
-                    if sid not in S20_WORKERS or not S20_WORKERS[sid].is_alive():
-                        t = threading.Thread(target=_s20_worker_loop, args=(sid,), daemon=True)
-                        S20_WORKERS[sid] = t
+                    if sid not in S14_WORKERS or not S14_WORKERS[sid].is_alive():
+                        t = threading.Thread(target=_s14_worker_loop, args=(sid,), daemon=True)
+                        S14_WORKERS[sid] = t
                         t.start()
 
                 self.send_response(200)

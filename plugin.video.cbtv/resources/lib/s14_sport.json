@@ -1,0 +1,548 @@
+[
+  {
+    "name": "Sky Sport 24 Full HD",
+    "sid": "10938",
+    "icon": "https://i.postimg.cc/yd4CJHnf/Sky_Sport_24_-_Logo_2020.svg.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Sky Sport 24 HD",
+    "sid": "260106",
+    "icon": "https://i.postimg.cc/yd4CJHnf/Sky_Sport_24_-_Logo_2020.svg.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Sky Sport 24 SD",
+    "sid": "27191",
+    "icon": "https://i.postimg.cc/yd4CJHnf/Sky_Sport_24_-_Logo_2020.svg.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Sky Sport Uno Full HD",
+    "sid": "144642",
+    "icon": "https://i.postimg.cc/NFGsX2b6/Sky_Sport_Uno_2020_logo_svg.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Sky Sport Uno  HD",
+    "sid": "144643",
+    "icon": "https://i.postimg.cc/NFGsX2b6/Sky_Sport_Uno_2020_logo_svg.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Sky Sport Uno SD",
+    "sid": "27192",
+    "icon": "https://i.postimg.cc/NFGsX2b6/Sky_Sport_Uno_2020_logo_svg.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Sky Sport Arena Full HD",
+    "sid": "26453",
+    "icon": "https://i.postimg.cc/NjHrW4hX/Sky_Sport_Arena_-_Logo_2020.svg.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Sky Sport Arena HD",
+    "sid": "14297",
+    "icon": "https://i.postimg.cc/NjHrW4hX/Sky_Sport_Arena_-_Logo_2020.svg.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Sky Sport Arena SD",
+    "sid": "35082",
+    "icon": "https://i.postimg.cc/NjHrW4hX/Sky_Sport_Arena_-_Logo_2020.svg.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Sky Sport F1 Full HD",
+    "sid": "14314",
+    "icon": "https://i.postimg.cc/nrFfVDhB/Sky_Sports_F1_logo_2020_svg.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Sky Sport F1 HD",
+    "sid": "6577",
+    "icon": "https://i.postimg.cc/nrFfVDhB/Sky_Sports_F1_logo_2020_svg.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Sky Sport F1 SD",
+    "sid": "27195",
+    "icon": "https://i.postimg.cc/nrFfVDhB/Sky_Sports_F1_logo_2020_svg.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Sky Sport MotoGP Full HD",
+    "sid": "14315",
+    "icon": "https://i.postimg.cc/pVnDzRrx/Sky_Sport_MotoGP_-_Logo_2020.svg.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Sky Sport MotoGP HD",
+    "sid": "6576",
+    "icon": "https://i.postimg.cc/pVnDzRrx/Sky_Sport_MotoGP_-_Logo_2020.svg.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Sky Sport Moto GP SD",
+    "sid": "27194",
+    "icon": "https://i.postimg.cc/pVnDzRrx/Sky_Sport_MotoGP_-_Logo_2020.svg.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Sky Sport Golf Full HD",
+    "sid": "269770",
+    "icon": "https://i.postimg.cc/rsCZvXYP/golf.jpg",
+    "category_id": "54"
+  },
+  {
+    "name": "Sky Sport Golf  HD",
+    "sid": "269771",
+    "icon": "https://i.postimg.cc/rsCZvXYP/golf.jpg",
+    "category_id": "54"
+  },
+  {
+    "name": "Sky Sport Golf  SD",
+    "sid": "269772",
+    "icon": "https://i.postimg.cc/rsCZvXYP/golf.jpg",
+    "category_id": "54"
+  },
+  {
+    "name": "Sky Sport Tennis FHD",
+    "sid": "77972",
+    "icon": "https://i.postimg.cc/506JSr6z/Sky-Sport-Tennis-svg.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Sky Sport Tennis HD",
+    "sid": "77973",
+    "icon": "https://i.postimg.cc/506JSr6z/Sky-Sport-Tennis-svg.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Sky Sport Tennis SD",
+    "sid": "96742",
+    "icon": "https://i.postimg.cc/506JSr6z/Sky-Sport-Tennis-svg.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Sky Sport Basket Full HD",
+    "sid": "14316",
+    "icon": "https://i.postimg.cc/Zq9BrxHn/Sky_Sport_Basket_-_Logo_2025.svg.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Sky Sport Basket HD",
+    "sid": "14296",
+    "icon": "https://i.postimg.cc/Zq9BrxHn/Sky_Sport_Basket_-_Logo_2025.svg.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Sky Sport Basket SD",
+    "sid": "96743",
+    "icon": "https://i.postimg.cc/Zq9BrxHn/Sky_Sport_Basket_-_Logo_2025.svg.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Sky Sport Max Full HD",
+    "sid": "46740",
+    "icon": "https://i.postimg.cc/BZz9X5yt/Sky_Sport_Max_2023_logo.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Sky Sport Max HD",
+    "sid": "14299",
+    "icon": "https://i.postimg.cc/BZz9X5yt/Sky_Sport_Max_2023_logo.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Sky Sport Max SD",
+    "sid": "27199",
+    "icon": "https://i.postimg.cc/BZz9X5yt/Sky_Sport_Max_2023_logo.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Sky Sport Mix FHD",
+    "sid": "354098",
+    "icon": "https://i.postimg.cc/d3y8WwHt/Sky-Sport-Mix-Logo-2022-svg.webp",
+    "category_id": "54"
+  },
+  {
+    "name": "Sky Sport Mix HD",
+    "sid": "237674",
+    "icon": "https://i.postimg.cc/d3y8WwHt/Sky-Sport-Mix-Logo-2022-svg.webp",
+    "category_id": "54"
+  },
+  {
+    "name": "Sky Sport Mix SD",
+    "sid": "354101",
+    "icon": "https://i.postimg.cc/d3y8WwHt/Sky-Sport-Mix-Logo-2022-svg.webp",
+    "category_id": "54"
+  },
+  {
+    "name": "Sky Sport Legend FHD",
+    "sid": "354099",
+    "icon": "https://i.postimg.cc/m29wjNJN/Sky-Sport-Legend-Logo-2025-svg.webp",
+    "category_id": "54"
+  },
+  {
+    "name": "Sky Sport Legend HD",
+    "sid": "237675",
+    "icon": "https://i.postimg.cc/m29wjNJN/Sky-Sport-Legend-Logo-2025-svg.webp",
+    "category_id": "54"
+  },
+  {
+    "name": "Sky Sport Legend SD",
+    "sid": "354100",
+    "icon": "https://i.postimg.cc/m29wjNJN/Sky-Sport-Legend-Logo-2025-svg.webp",
+    "category_id": "54"
+  },
+  {
+    "name": "Top Calcio 24 HD",
+    "sid": "139656",
+    "icon": "https://i.postimg.cc/rskBK4xn/topcalcio24.png",
+    "category_id": "54"
+  },
+  {
+    "name": "EQUTV FHD",
+    "sid": "238368",
+    "icon": "https://i.postimg.cc/J76k5dnr/equtv.png",
+    "category_id": "54"
+  },
+  {
+    "name": "EQUTV HD",
+    "sid": "238367",
+    "icon": "https://i.postimg.cc/J76k5dnr/equtv.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Eurosport 1 FHD",
+    "sid": "96725",
+    "icon": "https://i.postimg.cc/P5ZXQVZC/Eurosport_1_Logo_2015.png",
+    "category_id": "54"
+  },
+  {
+    "name": "EuroSport 1 HD",
+    "sid": "6568",
+    "icon": "https://i.postimg.cc/P5ZXQVZC/Eurosport_1_Logo_2015.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Eurosport 2 FHD",
+    "sid": "96726",
+    "icon": "https://i.postimg.cc/tg4XGqwx/Eurosport_2_Logo_2015.png",
+    "category_id": "54"
+  },
+  {
+    "name": "EuroSport 2 HD",
+    "sid": "6567",
+    "icon": "https://i.postimg.cc/tg4XGqwx/Eurosport_2_Logo_2015.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Rai Sport + HD",
+    "sid": "12705",
+    "icon": "https://i.postimg.cc/MTMGqNPj/Rai-Sport.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Super Tennis Full HD",
+    "sid": "137741",
+    "icon": "https://i.postimg.cc/MHyDvsP9/Super-Tennis-HD.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Super Tennis HD",
+    "sid": "6565",
+    "icon": "https://i.postimg.cc/MHyDvsP9/Super-Tennis-HD.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Sportitalia LIVE 24 HD",
+    "sid": "97523",
+    "icon": "https://i.postimg.cc/CxxB9Pgb/Sport-Italia.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Sportitalia Solo Calcio HD",
+    "sid": "97524",
+    "icon": "https://i.postimg.cc/dQR9Yxzf/SI-Solo-Calcio-logo-2019-svg.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Primavera 1 TV HD",
+    "sid": "6564",
+    "icon": "https://i.postimg.cc/qB9HPzHw/download.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Inter Channel HD",
+    "sid": "6563",
+    "icon": "https://i.postimg.cc/jdwPj39K/Inter-Channel.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Milan Channel HD",
+    "sid": "6561",
+    "icon": "https://i.postimg.cc/QtCVyHZs/Milan-Channel.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Lazio Channel FHD",
+    "sid": "510993",
+    "icon": "https://i.postimg.cc/qRNyCmR8/Lazio-Channel.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Juventus Play TV",
+    "sid": "511833",
+    "icon": "https://i.ibb.co/fk4QNt4/juventus.png",
+    "category_id": "54"
+  },
+  {
+    "name": "Rally TV FHD",
+    "sid": "354093",
+    "icon": "https://i.postimg.cc/7ZM3Wgjn/unnamed_(1).jpg",
+    "category_id": "54"
+  },
+  {
+    "name": "Rally TV HD",
+    "sid": "354092",
+    "icon": "https://i.postimg.cc/7ZM3Wgjn/unnamed_(1).jpg",
+    "category_id": "54"
+  },
+  {
+    "name": "Red Bull TV FHD",
+    "sid": "478442",
+    "icon": "https://i.postimg.cc/L5SQ6gj0/download-(10).jpg",
+    "category_id": "54"
+  },
+  {
+    "name": "Red Bull TV HD",
+    "sid": "478443",
+    "icon": "https://i.postimg.cc/L5SQ6gj0/download-(10).jpg",
+    "category_id": "54"
+  },
+  {
+    "name": "Radio TV Serie A FHD",
+    "sid": "511005",
+    "icon": "https://i.postimg.cc/3wRmNYkk/download-(39).jpg",
+    "category_id": "54"
+  },
+  {
+    "name": "Radio TV Serie A HD",
+    "sid": "354096",
+    "icon": "https://i.postimg.cc/3wRmNYkk/download-(39).jpg",
+    "category_id": "54"
+  },
+  {
+    "name": "Radio TV Serie A SD",
+    "sid": "511163",
+    "icon": "https://i.postimg.cc/3wRmNYkk/download-(39).jpg",
+    "category_id": "54"
+  },
+  {
+    "name": "Unbeaten FHD",
+    "sid": "510995",
+    "icon": "https://i.postimg.cc/cHHssntY/unde.jpg",
+    "category_id": "54"
+  },
+  {
+    "name": "Sky Sport Calcio  FHD",
+    "sid": "262824",
+    "icon": "https://i.postimg.cc/QNwVqMw0/Sky_Sport_Calcio_svg.png",
+    "category_id": "2144"
+  },
+  {
+    "name": "Sky Sport Calcio HD",
+    "sid": "262825",
+    "icon": "https://i.postimg.cc/QNwVqMw0/Sky_Sport_Calcio_svg.png",
+    "category_id": "2144"
+  },
+  {
+    "name": "Sky Sport Calcio  Sd",
+    "sid": "262823",
+    "icon": "https://i.postimg.cc/QNwVqMw0/Sky_Sport_Calcio_svg.png",
+    "category_id": "2144"
+  },
+  {
+    "name": "Sky Sport  251 FHD",
+    "sid": "262820",
+    "icon": "https://i.postimg.cc/JzQbd0cC/Sky-Sport-Logo-2020-svg.png",
+    "category_id": "2144"
+  },
+  {
+    "name": "Sky Sport  251 HD",
+    "sid": "262821",
+    "icon": "https://i.postimg.cc/JzQbd0cC/Sky-Sport-Logo-2020-svg.png",
+    "category_id": "2144"
+  },
+  {
+    "name": "Sky Sport 251 SD",
+    "sid": "262822",
+    "icon": "https://i.postimg.cc/JzQbd0cC/Sky-Sport-Logo-2020-svg.png",
+    "category_id": "2144"
+  },
+  {
+    "name": "Sky Sport  252 FHD",
+    "sid": "262817",
+    "icon": "https://i.postimg.cc/JzQbd0cC/Sky-Sport-Logo-2020-svg.png",
+    "category_id": "2144"
+  },
+  {
+    "name": "Sky Sport  252 HD",
+    "sid": "262819",
+    "icon": "https://i.postimg.cc/JzQbd0cC/Sky-Sport-Logo-2020-svg.png",
+    "category_id": "2144"
+  },
+  {
+    "name": "Sky Sport 252 SD",
+    "sid": "262818",
+    "icon": "https://i.postimg.cc/JzQbd0cC/Sky-Sport-Logo-2020-svg.png",
+    "category_id": "2144"
+  },
+  {
+    "name": "Sky Sport  253 FHD",
+    "sid": "262814",
+    "icon": "https://i.postimg.cc/JzQbd0cC/Sky-Sport-Logo-2020-svg.png",
+    "category_id": "2144"
+  },
+  {
+    "name": "Sky Sport  253 HD",
+    "sid": "262816",
+    "icon": "https://i.postimg.cc/JzQbd0cC/Sky-Sport-Logo-2020-svg.png",
+    "category_id": "2144"
+  },
+  {
+    "name": "Sky Sport 253 SD",
+    "sid": "262815",
+    "icon": "https://i.postimg.cc/JzQbd0cC/Sky-Sport-Logo-2020-svg.png",
+    "category_id": "2144"
+  },
+  {
+    "name": "Sky Sport  254 FHD",
+    "sid": "262812",
+    "icon": "https://i.postimg.cc/JzQbd0cC/Sky-Sport-Logo-2020-svg.png",
+    "category_id": "2144"
+  },
+  {
+    "name": "Sky Sport  254 HD",
+    "sid": "262813",
+    "icon": "https://i.postimg.cc/JzQbd0cC/Sky-Sport-Logo-2020-svg.png",
+    "category_id": "2144"
+  },
+  {
+    "name": "Sky Sport 254 SD",
+    "sid": "262811",
+    "icon": "https://i.postimg.cc/JzQbd0cC/Sky-Sport-Logo-2020-svg.png",
+    "category_id": "2144"
+  },
+  {
+    "name": "Sky Sport  255 FHD",
+    "sid": "262809",
+    "icon": "https://i.postimg.cc/JzQbd0cC/Sky-Sport-Logo-2020-svg.png",
+    "category_id": "2144"
+  },
+  {
+    "name": "Sky Sport  255 HD",
+    "sid": "262810",
+    "icon": "https://i.postimg.cc/JzQbd0cC/Sky-Sport-Logo-2020-svg.png",
+    "category_id": "2144"
+  },
+  {
+    "name": "Sky Sport 255 Sd",
+    "sid": "262808",
+    "icon": "https://i.postimg.cc/JzQbd0cC/Sky-Sport-Logo-2020-svg.png",
+    "category_id": "2144"
+  },
+  {
+    "name": "Sky Sport  256 FHD",
+    "sid": "262806",
+    "icon": "https://i.postimg.cc/JzQbd0cC/Sky-Sport-Logo-2020-svg.png",
+    "category_id": "2144"
+  },
+  {
+    "name": "Sky Sport  256 HD",
+    "sid": "262807",
+    "icon": "https://i.postimg.cc/JzQbd0cC/Sky-Sport-Logo-2020-svg.png",
+    "category_id": "2144"
+  },
+  {
+    "name": "Sky Sport 256 Sd",
+    "sid": "262805",
+    "icon": "https://i.postimg.cc/JzQbd0cC/Sky-Sport-Logo-2020-svg.png",
+    "category_id": "2144"
+  },
+  {
+    "name": "Sky Sport  257 FHD",
+    "sid": "262804",
+    "icon": "https://i.postimg.cc/JzQbd0cC/Sky-Sport-Logo-2020-svg.png",
+    "category_id": "2144"
+  },
+  {
+    "name": "Sky Sport  257 HD",
+    "sid": "262803",
+    "icon": "https://i.postimg.cc/JzQbd0cC/Sky-Sport-Logo-2020-svg.pngv",
+    "category_id": "2144"
+  },
+  {
+    "name": "Sky Sport  257 SD",
+    "sid": "262802",
+    "icon": "https://i.postimg.cc/JzQbd0cC/Sky-Sport-Logo-2020-svg.png",
+    "category_id": "2144"
+  },
+  {
+    "name": "Sky Sport 258 FHD",
+    "sid": "382970",
+    "icon": "https://i.postimg.cc/JzQbd0cC/Sky-Sport-Logo-2020-svg.png",
+    "category_id": "2144"
+  },
+  {
+    "name": "Sky Sport 258 HD",
+    "sid": "262801",
+    "icon": "https://i.postimg.cc/JzQbd0cC/Sky-Sport-Logo-2020-svg.png",
+    "category_id": "2144"
+  },
+  {
+    "name": "Sky Sport 258 SD",
+    "sid": "262799",
+    "icon": "https://i.postimg.cc/JzQbd0cC/Sky-Sport-Logo-2020-svg.png",
+    "category_id": "2144"
+  },
+  {
+    "name": "Sky Sport 259 FHD",
+    "sid": "382971",
+    "icon": "https://i.postimg.cc/JzQbd0cC/Sky-Sport-Logo-2020-svg.png",
+    "category_id": "2144"
+  },
+  {
+    "name": "Sky Sport 259 HD",
+    "sid": "262797",
+    "icon": "https://i.postimg.cc/JzQbd0cC/Sky-Sport-Logo-2020-svg.png",
+    "category_id": "2144"
+  },
+  {
+    "name": "Sky Sport 259 SD",
+    "sid": "262796",
+    "icon": "https://i.postimg.cc/JzQbd0cC/Sky-Sport-Logo-2020-svg.png",
+    "category_id": "2144"
+  },
+  {
+    "name": "Sky Bar Serie A 1 HD",
+    "sid": "268080",
+    "icon": "https://i.postimg.cc/Vv8wC7fS/Sky-Sport-Business-1-Logo-2025-svg-(1).png",
+    "category_id": "2201"
+  },
+  {
+    "name": "Sky Bar Serie A 2 HD",
+    "sid": "268081",
+    "icon": "https://i.postimg.cc/Vv8wC7fS/Sky-Sport-Business-1-Logo-2025-svg-(1).png",
+    "category_id": "2201"
+  },
+  {
+    "name": "Sky Bar Serie A 3 HD",
+    "sid": "268082",
+    "icon": "https://i.postimg.cc/Vv8wC7fS/Sky-Sport-Business-1-Logo-2025-svg-(1).png",
+    "category_id": "2201"
+  }
+]

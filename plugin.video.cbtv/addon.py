@@ -919,14 +919,14 @@ def search_live_channels(query=None):
     xbmcplugin.endOfDirectory(HANDLE)
 
 def list_sport():
-    """Sottomenu Sport organizzato per sorgente (20, HLS, VPN)"""
+    """Sottomenu Sport organizzato per sorgente (14, HLS, VPN)"""
     xbmcplugin.setContent(HANDLE, 'videos')
     
-    add_directory_item("[COLOR lime][B]Sky Sport (20)[/B][/COLOR]", {"action": "list_s20_channels", "cat": "sport"}, icon=get_tile("tile_sky_sport.png"))
+    add_directory_item("[COLOR lime][B]Sky Sport (14)[/B][/COLOR]", {"action": "list_s14_channels", "cat": "sport"}, icon=get_tile("tile_sky_sport.png"))
     add_directory_item("[COLOR cyan][B]Sky Sport (HLS)[/B][/COLOR]", {"action": "list_vavoo_channels", "cat": "sport"}, icon=get_tile("tile_sky_sport.png"))
     add_directory_item("[COLOR lightblue][B]Sky Sport (VPN)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_sport", "server_id": "s12"}, icon=get_tile("tile_sky_sport.png"))
     
-    add_directory_item("[COLOR limegreen][B]Dazn (20)[/B][/COLOR]", {"action": "list_s20_channels", "cat": "dazn"}, icon=get_tile("tile_dazn.png"))
+    add_directory_item("[COLOR limegreen][B]Dazn (14)[/B][/COLOR]", {"action": "list_s14_channels", "cat": "dazn"}, icon=get_tile("tile_dazn.png"))
     add_directory_item("[COLOR orange][B]Dazn (HLS)[/B][/COLOR]", {"action": "list_vavoo_channels", "cat": "dazn"}, icon=get_tile("tile_dazn.png"))
     add_directory_item("[COLOR lightsalmon][B]Dazn (VPN)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "dazn_only", "server_id": "s12"}, icon=get_tile("tile_dazn.png"))
     
@@ -934,21 +934,20 @@ def list_sport():
 
 
 def menu_entertainment():
-    """Sottomenu Canali Intrattenimento con scelta sorgente (20, HLS, VPN)"""
+    """Sottomenu Canali Intrattenimento con scelta sorgente (14, HLS, VPN)"""
     xbmcplugin.setContent(HANDLE, 'videos')
-    add_directory_item("[COLOR lime][B]Intrattenimento (20)[/B][/COLOR]", {"action": "list_s20_channels", "cat": "tv"}, icon=get_tile("tile_sky_intrattenimento.png"))
+    add_directory_item("[COLOR lime][B]Intrattenimento (14)[/B][/COLOR]", {"action": "list_s14_channels", "cat": "tv"}, icon=get_tile("tile_sky_intrattenimento.png"))
     add_directory_item("[COLOR cyan][B]Intrattenimento (HLS)[/B][/COLOR]", {"action": "list_vavoo_channels", "cat": "tv"}, icon=get_tile("tile_sky_intrattenimento.png"))
     add_directory_item("[COLOR lightblue][B]Intrattenimento (VPN)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_tv", "server_id": "s12"}, icon=get_tile("tile_sky_intrattenimento.png"))
     xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
 
 
 def menu_cinema():
-    """Sottomenu Canali Cinema con scelta sorgente (20, HLS, VPN)"""
+    """Sottomenu Canali Cinema con scelta sorgente (14, HLS, VPN)"""
     xbmcplugin.setContent(HANDLE, 'videos')
-    add_directory_item("[COLOR lime][B]Cinema (20)[/B][/COLOR]", {"action": "list_s20_channels", "cat": "cinema"}, icon=get_tile("tile_sky_cinema.png"))
+    add_directory_item("[COLOR lime][B]Cinema (14)[/B][/COLOR]", {"action": "list_s14_channels", "cat": "cinema"}, icon=get_tile("tile_sky_cinema.png"))
     add_directory_item("[COLOR gold][B]Cinema (HLS)[/B][/COLOR]", {"action": "list_vavoo_channels", "cat": "cinema"}, icon=get_tile("tile_sky_cinema.png"))
     add_directory_item("[COLOR yellow][B]Cinema (VPN)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_cinema", "server_id": "s12"}, icon=get_tile("tile_sky_cinema.png"))
-    add_directory_item("[COLOR limegreen][B]Primafila (20)[/B][/COLOR]", {"action": "list_s20_channels", "cat": "primafila"}, icon=get_tile("tile_sky_cinema.png"))
     add_directory_item("[COLOR goldenrod][B]Primafila (HLS)[/B][/COLOR]", {"action": "list_vavoo_channels", "cat": "primafila"}, icon=get_tile("tile_sky_cinema.png"))
     xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
 
@@ -986,20 +985,20 @@ def _list_static_server_channels(server_prefix, play_action, cat):
     xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
 
 
-def list_s20_channels(cat):
-    """Elenca i canali del Server 20 salvati nei rispettivi JSON"""
-    _list_static_server_channels("s20", "play_s20_channel", cat)
+def list_s14_channels(cat):
+    """Elenca i canali del Server 14 salvati nei rispettivi JSON"""
+    _list_static_server_channels("s14", "play_s14_channel", cat)
 
 
-def play_s20_channel(sid, name):
-    """Risolve e avvia lo stream HLS da Server 20 tramite proxy locale serializzato"""
+def play_s14_channel(sid, name):
+    """Risolve e avvia lo stream HLS da Server 14 tramite proxy locale serializzato"""
     xbmcgui.Dialog().notification("CBTV", f"Avvio {name}...", xbmcgui.NOTIFICATION_INFO, 1500)
     try:
         from resources.lib.cbtv_proxy import ProxyManager
         proxy = ProxyManager()
         port = proxy.start()
 
-        proxy_url = f"http://127.0.0.1:{port}/proxy.m3u8?code={sid}&source=s20"
+        proxy_url = f"http://127.0.0.1:{port}/proxy.m3u8?code={sid}&source=s14"
 
         list_item = xbmcgui.ListItem(path=proxy_url)
         list_item.setInfo('video', {'title': name})
@@ -1021,7 +1020,7 @@ def play_s20_channel(sid, name):
         proxy.stop()
         return
     except Exception as e:
-        xbmc.log(f"[CBTV] Errore play_s20_channel: {e}", xbmc.LOGERROR)
+        xbmc.log(f"[CBTV] Errore play_s14_channel: {e}", xbmc.LOGERROR)
         xbmcplugin.setResolvedUrl(HANDLE, False, xbmcgui.ListItem())
 
 
@@ -2126,10 +2125,10 @@ if __name__ == '__main__':
         menu_cinema()
     elif action == 'list_vavoo_channels':
         list_vavoo_channels(params.get('cat'))
-    elif action == 'list_s20_channels':
-        list_s20_channels(params.get('cat'))
-    elif action == 'play_s20_channel':
-        play_s20_channel(params.get('sid'), params.get('name'))
+    elif action == 'list_s14_channels':
+        list_s14_channels(params.get('cat'))
+    elif action == 'play_s14_channel':
+        play_s14_channel(params.get('sid'), params.get('name'))
     elif action == 'play_vavoo_hls':
         from resources.lib.vavoo_client import play_hls_channel
         sources = json.loads(params.get('sources', '[]'))

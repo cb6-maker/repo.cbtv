@@ -1,0 +1,1874 @@
+[
+  {
+    "name": "DAZN  1 FHD",
+    "sid": "322341",
+    "icon": "https://i.postimg.cc/h4zH1m84/dazn-1.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "DAZN  1 HD",
+    "sid": "279227",
+    "icon": "https://i.postimg.cc/h4zH1m84/dazn-1.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "DAZN 1 SD",
+    "sid": "348301",
+    "icon": "https://i.postimg.cc/h4zH1m84/dazn-1.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "DAZN Zona Gol  FHD",
+    "sid": "262895",
+    "icon": "https://i.postimg.cc/T2z4H1Wg/zona-gol-serie-a-tim-su-dazn-1jjxz72finqrv1qav354031wvu.jpg",
+    "category_id": "2145"
+  },
+  {
+    "name": "DAZN Zona Gol  HD",
+    "sid": "262894",
+    "icon": "https://i.postimg.cc/T2z4H1Wg/zona-gol-serie-a-tim-su-dazn-1jjxz72finqrv1qav354031wvu.jpg",
+    "category_id": "2145"
+  },
+  {
+    "name": "DAZN Zona Gol  SD",
+    "sid": "262893",
+    "icon": "https://i.postimg.cc/T2z4H1Wg/zona-gol-serie-a-tim-su-dazn-1jjxz72finqrv1qav354031wvu.jpg",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Atalanta FHD",
+    "sid": "262889",
+    "icon": "https://i.postimg.cc/bvpL8KBz/Logo-Atalanta-Bergamo-svg.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Atalanta HD",
+    "sid": "262888",
+    "icon": "https://i.postimg.cc/bvpL8KBz/Logo-Atalanta-Bergamo-svg.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Atalanta SD",
+    "sid": "262887",
+    "icon": "https://i.postimg.cc/bvpL8KBz/Logo-Atalanta-Bergamo-svg.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Bologna FHD",
+    "sid": "262886",
+    "icon": "https://i.postimg.cc/C53H2t8p/Logo-Bologna-FC-2018-svg.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Bologna HD",
+    "sid": "262885",
+    "icon": "https://i.postimg.cc/C53H2t8p/Logo-Bologna-FC-2018-svg.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Bologna SD",
+    "sid": "262884",
+    "icon": "https://i.postimg.cc/C53H2t8p/Logo-Bologna-FC-2018-svg.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Cagliari FHD",
+    "sid": "262838",
+    "icon": "https://i.postimg.cc/Sx73W70x/Cagliari-Calcio-2014-svg.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Cagliari HD",
+    "sid": "262837",
+    "icon": "https://i.postimg.cc/Sx73W70x/Cagliari-Calcio-2014-svg.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Cagliari SD",
+    "sid": "262836",
+    "icon": "https://i.postimg.cc/Sx73W70x/Cagliari-Calcio-2014-svg.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Como FHD",
+    "sid": "262847",
+    "icon": "https://i.postimg.cc/2SW7WD0K/calcio-como-1907-logo-BE930-F5-B96-seeklogo-com.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Como HD",
+    "sid": "262846",
+    "icon": "https://i.postimg.cc/2SW7WD0K/calcio-como-1907-logo-BE930-F5-B96-seeklogo-com.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Como SD",
+    "sid": "262845",
+    "icon": "https://i.postimg.cc/2SW7WD0K/calcio-como-1907-logo-BE930-F5-B96-seeklogo-com.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Fiorentina FHD",
+    "sid": "262880",
+    "icon": "https://i.postimg.cc/jSwC25Bc/fiorentina-logo-595-D757-F39-seeklogo-com.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Fiorentina HD",
+    "sid": "262879",
+    "icon": "https://i.postimg.cc/jSwC25Bc/fiorentina-logo-595-D757-F39-seeklogo-com.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Fiorentina SD",
+    "sid": "262878",
+    "icon": "https://i.postimg.cc/jSwC25Bc/fiorentina-logo-595-D757-F39-seeklogo-com.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Frosinone FHD",
+    "sid": "262391",
+    "icon": "https://i.postimg.cc/jSXDWXvk/Frosinonestemma.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Frosinone HD",
+    "sid": "262390",
+    "icon": "https://i.postimg.cc/jSXDWXvk/Frosinonestemma.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Frosinone SD",
+    "sid": "262389",
+    "icon": "https://i.postimg.cc/jSXDWXvk/Frosinonestemma.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Genoa FHD",
+    "sid": "262832",
+    "icon": "https://i.postimg.cc/PqnfqMWf/85px-Genoacfcstemma-svg.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Genoa HD",
+    "sid": "262831",
+    "icon": "https://i.postimg.cc/PqnfqMWf/85px-Genoacfcstemma-svg.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Genoa SD",
+    "sid": "262830",
+    "icon": "https://i.postimg.cc/PqnfqMWf/85px-Genoacfcstemma-svg.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Inter FHD",
+    "sid": "262874",
+    "icon": "https://i.postimg.cc/1zpJJRG4/FC_Internazionale_Milano_2021_svg.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Inter HD",
+    "sid": "262873",
+    "icon": "https://i.postimg.cc/1zpJJRG4/FC_Internazionale_Milano_2021_svg.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Inter SD",
+    "sid": "262872",
+    "icon": "https://i.postimg.cc/1zpJJRG4/FC_Internazionale_Milano_2021_svg.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Juventus FHD",
+    "sid": "262871",
+    "icon": "https://i.ibb.co/fk4QNt4/juventus.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Juventus HD",
+    "sid": "262870",
+    "icon": "https://i.ibb.co/fk4QNt4/juventus.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Juventus SD",
+    "sid": "262869",
+    "icon": "https://i.ibb.co/fk4QNt4/juventus.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Lazio FHD",
+    "sid": "262868",
+    "icon": "https://i.postimg.cc/cH9Nf7nn/120px-Stemma-SS-Lazio-1987-svg.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Lazio HD",
+    "sid": "262867",
+    "icon": "https://i.postimg.cc/cH9Nf7nn/120px-Stemma-SS-Lazio-1987-svg.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Lazio SD",
+    "sid": "262866",
+    "icon": "https://i.postimg.cc/cH9Nf7nn/120px-Stemma-SS-Lazio-1987-svg.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Lecce FHD",
+    "sid": "262865",
+    "icon": "https://i.postimg.cc/MpmZvQdy/Usleccestemma.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Lecce HD",
+    "sid": "262864",
+    "icon": "https://i.postimg.cc/MpmZvQdy/Usleccestemma.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Lecce SD",
+    "sid": "262863",
+    "icon": "https://i.postimg.cc/MpmZvQdy/Usleccestemma.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Milan FHD",
+    "sid": "262862",
+    "icon": "https://i.postimg.cc/wvZgScjd/Milan-AC-1986-1998.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Milan HD",
+    "sid": "262861",
+    "icon": "https://i.postimg.cc/wvZgScjd/Milan-AC-1986-1998.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Milan SD",
+    "sid": "262860",
+    "icon": "https://i.postimg.cc/wvZgScjd/Milan-AC-1986-1998.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Monza FHD",
+    "sid": "262859",
+    "icon": "https://i.postimg.cc/rpYkrCWt/Associazione-Calcio-Monza-2019-svg.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Monza HD",
+    "sid": "262858",
+    "icon": "https://i.postimg.cc/rpYkrCWt/Associazione-Calcio-Monza-2019-svg.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Monza SD",
+    "sid": "262857",
+    "icon": "https://i.postimg.cc/rpYkrCWt/Associazione-Calcio-Monza-2019-svg.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Napoli FHD",
+    "sid": "262856",
+    "icon": "https://i.postimg.cc/W4tRTFKp/Napolistemma1990.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Napoli HD",
+    "sid": "264485",
+    "icon": "https://i.postimg.cc/W4tRTFKp/Napolistemma1990.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Napoli SD",
+    "sid": "262854",
+    "icon": "https://i.postimg.cc/W4tRTFKp/Napolistemma1990.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Parma FHD",
+    "sid": "262850",
+    "icon": "https://i.postimg.cc/DfDGPN4k/parma-calcio-1913-logo-3-CBDEAAFA2-seeklogo-com.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Parma HD",
+    "sid": "262849",
+    "icon": "https://i.postimg.cc/DfDGPN4k/parma-calcio-1913-logo-3-CBDEAAFA2-seeklogo-com.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Parma SD",
+    "sid": "262848",
+    "icon": "https://i.postimg.cc/DfDGPN4k/parma-calcio-1913-logo-3-CBDEAAFA2-seeklogo-com.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Roma FHD",
+    "sid": "262853",
+    "icon": "https://i.postimg.cc/8cYJXrqF/AS-Roma-Logo-2017-svg.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Roma HD",
+    "sid": "262852",
+    "icon": "https://i.postimg.cc/8cYJXrqF/AS-Roma-Logo-2017-svg.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Roma SD",
+    "sid": "262851",
+    "icon": "https://i.postimg.cc/8cYJXrqF/AS-Roma-Logo-2017-svg.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Sassuolo FHD",
+    "sid": "262361",
+    "icon": "https://i.postimg.cc/QN1KC6Qt/Ussassuolostemma_svg.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Sassuolo HD",
+    "sid": "262360",
+    "icon": "https://i.postimg.cc/QN1KC6Qt/Ussassuolostemma_svg.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Sassuolo SD",
+    "sid": "262359",
+    "icon": "https://i.postimg.cc/QN1KC6Qt/Ussassuolostemma_svg.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Torino FHD",
+    "sid": "262844",
+    "icon": "https://i.postimg.cc/zfPyGhGx/Torino-FC-logo-svg.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Torino HD",
+    "sid": "262843",
+    "icon": "https://i.postimg.cc/zfPyGhGx/Torino-FC-logo-svg.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Torino SD",
+    "sid": "262842",
+    "icon": "https://i.postimg.cc/zfPyGhGx/Torino-FC-logo-svg.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Udinese FHD",
+    "sid": "262841",
+    "icon": "https://i.postimg.cc/T1n10Hqs/Logo-Udinese-Calcio-2010-svg.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Udinese HD",
+    "sid": "262840",
+    "icon": "https://i.postimg.cc/T1n10Hqs/Logo-Udinese-Calcio-2010-svg.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Udinese SD",
+    "sid": "262839",
+    "icon": "https://i.postimg.cc/T1n10Hqs/Logo-Udinese-Calcio-2010-svg.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Venezia FHD",
+    "sid": "262835",
+    "icon": "https://i.postimg.cc/BQHCL3Yw/venezia-fc-logo-F5961-EDB5-C-seeklogo-com.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Venezia HD",
+    "sid": "262834",
+    "icon": "https://i.postimg.cc/BQHCL3Yw/venezia-fc-logo-F5961-EDB5-C-seeklogo-com.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "SERIE A Venezia SD",
+    "sid": "262833",
+    "icon": "https://i.postimg.cc/BQHCL3Yw/venezia-fc-logo-F5961-EDB5-C-seeklogo-com.png",
+    "category_id": "2145"
+  },
+  {
+    "name": "Dazn Zona Gol Serie B FHD",
+    "sid": "262352",
+    "icon": "https://i.postimg.cc/nh33t1V0/zona-gol.jpg",
+    "category_id": "2163"
+  },
+  {
+    "name": "Dazn Zona Gol Serie B HD",
+    "sid": "262351",
+    "icon": "https://i.postimg.cc/nh33t1V0/zona-gol.jpg",
+    "category_id": "2163"
+  },
+  {
+    "name": "Dazn Zona Gol Serie B SD",
+    "sid": "262350",
+    "icon": "https://i.postimg.cc/nh33t1V0/zona-gol.jpg",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Arezzo FHD",
+    "sid": "345800",
+    "icon": "https://i.postimg.cc/kMcx75fR/images-(8).png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Arezzo HD",
+    "sid": "345799",
+    "icon": "https://i.postimg.cc/kMcx75fR/images-(8).png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Arezzo SD",
+    "sid": "345798",
+    "icon": "https://i.postimg.cc/kMcx75fR/images-(8).png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Ascoli FHD",
+    "sid": "262397",
+    "icon": "https://i.postimg.cc/sXzhrFSC/Ascoli-Calcio-FC-1898.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Ascoli HD",
+    "sid": "262396",
+    "icon": "https://i.postimg.cc/sXzhrFSC/Ascoli-Calcio-FC-1898.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B AscoliSD",
+    "sid": "262395",
+    "icon": "https://i.postimg.cc/sXzhrFSC/Ascoli-Calcio-FC-1898.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Avellino FHD",
+    "sid": "345806",
+    "icon": "https://i.postimg.cc/nh6vkTq4/US_Avellino_1912_Stemma_svg.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Avellino HD",
+    "sid": "345805",
+    "icon": "https://i.postimg.cc/nh6vkTq4/US_Avellino_1912_Stemma_svg.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Avellino SD",
+    "sid": "345804",
+    "icon": "https://i.postimg.cc/nh6vkTq4/US_Avellino_1912_Stemma_svg.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Benevento FHD",
+    "sid": "262406",
+    "icon": "https://i.postimg.cc/vBGcKrFy/images-(4).jpg",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Benevento HD",
+    "sid": "262405",
+    "icon": "https://i.postimg.cc/vBGcKrFy/images-(4).jpg",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Benevento SD",
+    "sid": "262404",
+    "icon": "https://i.postimg.cc/vBGcKrFy/images-(4).jpg",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Catanzaro FHD",
+    "sid": "262370",
+    "icon": "https://i.postimg.cc/2y0HGdtq/catanzaro.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Catanzaro HD",
+    "sid": "262355",
+    "icon": "https://i.postimg.cc/2y0HGdtq/catanzaro.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Catanzaro SD",
+    "sid": "262354",
+    "icon": "https://i.postimg.cc/2y0HGdtq/catanzaro.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Carrarese FHD",
+    "sid": "262353",
+    "icon": "https://i.postimg.cc/SsrVQ7kZ/carrarese.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Carrarese HD",
+    "sid": "262369",
+    "icon": "https://i.postimg.cc/SsrVQ7kZ/carrarese.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Carrarese SD",
+    "sid": "262368",
+    "icon": "https://i.postimg.cc/SsrVQ7kZ/carrarese.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Cesena FHD",
+    "sid": "262403",
+    "icon": "https://i.postimg.cc/dQHZ64YM/Cesenastemma.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Cesena HD",
+    "sid": "262402",
+    "icon": "https://i.postimg.cc/dQHZ64YM/Cesenastemma.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Cesena SD",
+    "sid": "262401",
+    "icon": "https://i.postimg.cc/dQHZ64YM/Cesenastemma.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Cremonese FHD",
+    "sid": "262412",
+    "icon": "https://i.postimg.cc/gk6RNqQf/cremonese.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Cremonese HD",
+    "sid": "262411",
+    "icon": "https://i.postimg.cc/gk6RNqQf/cremonese.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Cremonese SD",
+    "sid": "262410",
+    "icon": "https://i.postimg.cc/gk6RNqQf/cremonese.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Empoli FHD",
+    "sid": "262883",
+    "icon": "https://i.postimg.cc/sX8NVTWw/Empoli-football-club-logo.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Empoli HD",
+    "sid": "262882",
+    "icon": "https://i.postimg.cc/sX8NVTWw/Empoli-football-club-logo.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Empoli SD",
+    "sid": "262881",
+    "icon": "https://i.postimg.cc/sX8NVTWw/Empoli-football-club-logo.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Juve Stabia FHD",
+    "sid": "262367",
+    "icon": "https://i.postimg.cc/tRs2G68z/juve.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Juve Stabia HD",
+    "sid": "262366",
+    "icon": "https://i.postimg.cc/tRs2G68z/juve.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Juve Stabia SD",
+    "sid": "262365",
+    "icon": "https://i.postimg.cc/tRs2G68z/juve.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Mantova FHD",
+    "sid": "262364",
+    "icon": "https://i.postimg.cc/sgrcWNxn/mantova.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Mantova HD",
+    "sid": "262363",
+    "icon": "https://i.postimg.cc/sgrcWNxn/mantova.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Mantova SD",
+    "sid": "262362",
+    "icon": "https://i.postimg.cc/sgrcWNxn/mantova.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Modena FHD",
+    "sid": "262385",
+    "icon": "https://i.postimg.cc/bvyq6Vks/FC-Modena.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Modena HD",
+    "sid": "262384",
+    "icon": "https://i.postimg.cc/bvyq6Vks/FC-Modena.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Modena SD",
+    "sid": "262383",
+    "icon": "https://i.postimg.cc/bvyq6Vks/FC-Modena.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Padova FHD",
+    "sid": "345803",
+    "icon": "https://i.postimg.cc/q7xz3GwM/Stemma_Padova_Calcio_(2015).png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Padova HD",
+    "sid": "345802",
+    "icon": "https://i.postimg.cc/q7xz3GwM/Stemma_Padova_Calcio_(2015).png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Padova SD",
+    "sid": "345801",
+    "icon": "https://i.postimg.cc/q7xz3GwM/Stemma_Padova_Calcio_(2015).png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Palermo FHD",
+    "sid": "262382",
+    "icon": "https://i.postimg.cc/8zpvNQjV/palermo.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Palermo HD",
+    "sid": "262381",
+    "icon": "https://i.postimg.cc/8zpvNQjV/palermo.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Palermo SD",
+    "sid": "262380",
+    "icon": "https://i.postimg.cc/8zpvNQjV/palermo.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Pisa FHD",
+    "sid": "262373",
+    "icon": "https://i.postimg.cc/br5Sfbxm/a_c_pisa_1909_s_s_d_arl_serie_c_a_s_livorno_calcio_piacenza_calcio_1919_football_removebg_preview.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Pisa HD",
+    "sid": "262372",
+    "icon": "https://i.postimg.cc/br5Sfbxm/a_c_pisa_1909_s_s_d_arl_serie_c_a_s_livorno_calcio_piacenza_calcio_1919_football_removebg_preview.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Pisa SD",
+    "sid": "262371",
+    "icon": "https://i.postimg.cc/br5Sfbxm/a_c_pisa_1909_s_s_d_arl_serie_c_a_s_livorno_calcio_piacenza_calcio_1919_football_removebg_preview.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Sampdoria FHD",
+    "sid": "262409",
+    "icon": "https://i.postimg.cc/FRVm9qY2/sampdoria.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Sampdoria HD",
+    "sid": "262408",
+    "icon": "https://i.postimg.cc/FRVm9qY2/sampdoria.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Sampdoria SD",
+    "sid": "262407",
+    "icon": "https://i.postimg.cc/FRVm9qY2/sampdoria.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Sudtirol FHD",
+    "sid": "262376",
+    "icon": "https://i.postimg.cc/bwShGdG0/sudtirol.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Sudtirol HD",
+    "sid": "262375",
+    "icon": "https://i.postimg.cc/bwShGdG0/sudtirol.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Sudtirol SD",
+    "sid": "262374",
+    "icon": "https://i.postimg.cc/bwShGdG0/sudtirol.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Verona FHD",
+    "sid": "262877",
+    "icon": "https://i.postimg.cc/6QVW4Gcr/Hellas-Verona-FC-1903-Old-1995-1999.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Verona HD",
+    "sid": "262876",
+    "icon": "https://i.postimg.cc/6QVW4Gcr/Hellas-Verona-FC-1903-Old-1995-1999.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Verona SD",
+    "sid": "262875",
+    "icon": "https://i.postimg.cc/6QVW4Gcr/Hellas-Verona-FC-1903-Old-1995-1999.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Vicenza FHD",
+    "sid": "508826",
+    "icon": "https://i.postimg.cc/W1PjS2cS/images-(9).png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Vicenza HD",
+    "sid": "508827",
+    "icon": "https://i.postimg.cc/W1PjS2cS/images-(9).png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B Vicenza SD",
+    "sid": "508828",
+    "icon": "https://i.postimg.cc/W1PjS2cS/images-(9).png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B  Virtus Entella FHD",
+    "sid": "346118",
+    "icon": "https://i.postimg.cc/85d351HB/download-30.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B  Virtus Entella HD",
+    "sid": "346119",
+    "icon": "https://i.postimg.cc/85d351HB/download-30.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "SERIE B  Virtus Entella SD",
+    "sid": "346120",
+    "icon": "https://i.postimg.cc/85d351HB/download-30.png",
+    "category_id": "2163"
+  },
+  {
+    "name": "Evento 1 FHD",
+    "sid": "510615",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 1 HD",
+    "sid": "510614",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 1 SD",
+    "sid": "510613",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 2 FHD",
+    "sid": "510612",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 2 HD",
+    "sid": "510611",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 2 SD",
+    "sid": "510610",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 3 FHD",
+    "sid": "510609",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 3 HD",
+    "sid": "510608",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 3 SD",
+    "sid": "510607",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 4 FHD",
+    "sid": "510606",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 4 HD",
+    "sid": "510605",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 4 SD",
+    "sid": "510604",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 5 FHD",
+    "sid": "510603",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 5 HD",
+    "sid": "510602",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 5 SD",
+    "sid": "510601",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 6 FHD",
+    "sid": "510600",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 6 HD",
+    "sid": "510599",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 6 SD",
+    "sid": "510598",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 7 FHD",
+    "sid": "510597",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 7 HD",
+    "sid": "510596",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 7 SD",
+    "sid": "510595",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 8 FHD",
+    "sid": "510594",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 8 HD",
+    "sid": "510593",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 8 SD",
+    "sid": "510592",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 9 FHD",
+    "sid": "510591",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 9 HD",
+    "sid": "510590",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 9 SD",
+    "sid": "510589",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 10 FHD",
+    "sid": "510588",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 10 HD",
+    "sid": "510587",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 10 SD",
+    "sid": "510586",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 11 FHD",
+    "sid": "510585",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 11 HD",
+    "sid": "510584",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 11 SD",
+    "sid": "510583",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 12 FHD",
+    "sid": "510582",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 12 HD",
+    "sid": "510581",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 12 SD",
+    "sid": "510580",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 13 FHD",
+    "sid": "510579",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 13 HD",
+    "sid": "510578",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 13 SD",
+    "sid": "510577",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 14 FHD",
+    "sid": "510576",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 14 HD",
+    "sid": "510575",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 14 SD",
+    "sid": "510574",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 15 FHD",
+    "sid": "510573",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 15 HD",
+    "sid": "510572",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 15 SD",
+    "sid": "510571",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 16 FHD",
+    "sid": "510570",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 16 HD",
+    "sid": "510569",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 16 SD",
+    "sid": "510568",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 17 FHD",
+    "sid": "510567",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 17 HD",
+    "sid": "510566",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 17 SD",
+    "sid": "510565",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 18 FHD",
+    "sid": "510564",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 18 HD",
+    "sid": "510563",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 18 SD",
+    "sid": "510562",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 19 FHD",
+    "sid": "510561",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 19 HD",
+    "sid": "510560",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 19 SD",
+    "sid": "510559",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 20 FHD",
+    "sid": "510558",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 20 HD",
+    "sid": "510557",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 20 SD",
+    "sid": "510556",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 21 FHD",
+    "sid": "510555",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 21 HD",
+    "sid": "510554",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 21 SD",
+    "sid": "510553",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 22 FHD",
+    "sid": "510552",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 22 HD",
+    "sid": "510551",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 22 SD",
+    "sid": "510550",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 23 FHD",
+    "sid": "510549",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 23 HD",
+    "sid": "510548",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 23 SD",
+    "sid": "510547",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 24 FHD",
+    "sid": "510546",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 24 HD",
+    "sid": "510545",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 24 SD",
+    "sid": "510544",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 25 FHD",
+    "sid": "510543",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 25 HD",
+    "sid": "510542",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 25 SD",
+    "sid": "510541",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 26 FHD",
+    "sid": "510540",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 26 HD",
+    "sid": "510539",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 26 SD",
+    "sid": "510538",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 27 FHD",
+    "sid": "510537",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 27 HD",
+    "sid": "510536",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 27 SD",
+    "sid": "510535",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 28 FHD",
+    "sid": "510534",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 28 HD",
+    "sid": "510533",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 28 SD",
+    "sid": "510532",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 29 FHD",
+    "sid": "510531",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 29 HD",
+    "sid": "510530",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 29 SD",
+    "sid": "510529",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 30 FHD",
+    "sid": "510528",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 30 HD",
+    "sid": "510527",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 30 SD",
+    "sid": "510526",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 31 FHD",
+    "sid": "510525",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 31 HD",
+    "sid": "510524",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 31 SD",
+    "sid": "510523",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 32 FHD",
+    "sid": "510522",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 32 HD",
+    "sid": "510521",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 32 SD",
+    "sid": "510520",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 33 FHD",
+    "sid": "510519",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 33 HD",
+    "sid": "510518",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 33 SD",
+    "sid": "510517",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 34 FHD",
+    "sid": "510516",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 34 HD",
+    "sid": "510515",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 34 SD",
+    "sid": "510514",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 35 FHD",
+    "sid": "510513",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 35 HD",
+    "sid": "510512",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 35 SD",
+    "sid": "510511",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 36 FHD",
+    "sid": "510510",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 36 HD",
+    "sid": "510509",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 36 SD",
+    "sid": "510508",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 37 FHD",
+    "sid": "510507",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 37 HD",
+    "sid": "510506",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 37 SD",
+    "sid": "510505",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 38 FHD",
+    "sid": "510504",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 38 HD",
+    "sid": "510503",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 38 SD",
+    "sid": "510502",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 39 FHD",
+    "sid": "510501",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 39 HD",
+    "sid": "510500",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 39 SD",
+    "sid": "510499",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 40 FHD",
+    "sid": "510498",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 40 HD",
+    "sid": "510497",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 40 SD",
+    "sid": "510496",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 41 FHD",
+    "sid": "510495",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 41 HD",
+    "sid": "510494",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 41 SD",
+    "sid": "510493",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 42 FHD",
+    "sid": "510492",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 42 HD",
+    "sid": "510491",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 42 SD",
+    "sid": "510490",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 43 FHD",
+    "sid": "510489",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 43 HD",
+    "sid": "510488",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 43 SD",
+    "sid": "510487",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 44 FHD",
+    "sid": "510486",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 44 HD",
+    "sid": "510485",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 44 SD",
+    "sid": "510484",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 45 FHD",
+    "sid": "510483",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 45 HD",
+    "sid": "510482",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 45 SD",
+    "sid": "510481",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 46 FHD",
+    "sid": "510480",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 46 HD",
+    "sid": "510479",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 46 SD",
+    "sid": "510478",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 47 FHD",
+    "sid": "510477",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 47 HD",
+    "sid": "510476",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 47 SD",
+    "sid": "510475",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 48 FHD",
+    "sid": "510474",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 48 HD",
+    "sid": "510473",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 48 SD",
+    "sid": "510472",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 49 FHD",
+    "sid": "510471",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 49 HD",
+    "sid": "510470",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 49 SD",
+    "sid": "510469",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 50 FHD",
+    "sid": "510468",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 50 HD",
+    "sid": "510467",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 50 SD",
+    "sid": "510466",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 51 FHD",
+    "sid": "510465",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 51 HD",
+    "sid": "510464",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 51 SD",
+    "sid": "510463",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 52 FHD",
+    "sid": "510462",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 52 HD",
+    "sid": "510461",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 52 SD",
+    "sid": "510460",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 53 FHD",
+    "sid": "510459",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 53 HD",
+    "sid": "510458",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 53 SD",
+    "sid": "510457",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 54 FHD",
+    "sid": "510456",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 54 HD",
+    "sid": "510455",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 54 SD",
+    "sid": "510454",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 55 FHD",
+    "sid": "510453",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 55 HD",
+    "sid": "510452",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 55 SD",
+    "sid": "510451",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 56 FHD",
+    "sid": "510450",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 56 HD",
+    "sid": "510449",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 56 SD",
+    "sid": "510448",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 57 FHD",
+    "sid": "510447",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 57 HD",
+    "sid": "510446",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 57 SD",
+    "sid": "510445",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 58 FHD",
+    "sid": "510444",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 58 HD",
+    "sid": "510443",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 58 SD",
+    "sid": "510442",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 59 FHD",
+    "sid": "510441",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 59 HD",
+    "sid": "510440",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 59 SD",
+    "sid": "510439",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 60 FHD",
+    "sid": "510438",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 60 HD",
+    "sid": "510437",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Evento 60 SD",
+    "sid": "510436",
+    "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
+    "category_id": "2221"
+  },
+  {
+    "name": "Amazon Prime Fhd ( Solo Evento)",
+    "sid": "262546",
+    "icon": "https://i.postimg.cc/kMN9gYJd/prime-video.jpg",
+    "category_id": "1578"
+  },
+  {
+    "name": "Amazon Prime Hd (solo evento)",
+    "sid": "262544",
+    "icon": "https://i.postimg.cc/kMN9gYJd/prime-video.jpg",
+    "category_id": "1578"
+  },
+  {
+    "name": "Amazon Prime Sd ( solo evento )",
+    "sid": "262545",
+    "icon": "https://i.postimg.cc/kMN9gYJd/prime-video.jpg",
+    "category_id": "1578"
+  }
+]

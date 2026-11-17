@@ -1,0 +1,1238 @@
+[
+  {
+    "name": "Rai 1 HD",
+    "sid": "6514",
+    "icon": "https://i.postimg.cc/zfd9w3nK/Rai-1-FHD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Rai 2 HD",
+    "sid": "6513",
+    "icon": "https://i.postimg.cc/c4MkMrWC/Rai-2-HD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Rai 3 HD",
+    "sid": "132363",
+    "icon": "https://i.postimg.cc/43r1TgGj/Rai-3-HD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Rete 4 HD",
+    "sid": "6511",
+    "icon": "https://i.postimg.cc/FHm9Kdrx/Rete-4-HD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Canale 5 HD",
+    "sid": "6510",
+    "icon": "https://i.postimg.cc/4yVgfZjM/Canale-5-HD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Italia 1 HD",
+    "sid": "6509",
+    "icon": "https://i.postimg.cc/fT7N1zcS/Italia-1-HD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "LA7 HD",
+    "sid": "140328",
+    "icon": "https://i.postimg.cc/XYqKGJ7T/LA-7-HD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "LA7d HD",
+    "sid": "332429",
+    "icon": "https://i.postimg.cc/8CGPhrMx/la7d.jpg",
+    "category_id": "1"
+  },
+  {
+    "name": "Tv 8 HD",
+    "sid": "157769",
+    "icon": "https://i.postimg.cc/HkNwQgrj/Tv-8.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Nove HD",
+    "sid": "6494",
+    "icon": "https://i.postimg.cc/T2cntmKz/Nove-HD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Rsi La 1 HD",
+    "sid": "6497",
+    "icon": "https://i.postimg.cc/sx1SBH35/RSI-La-1-HD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Rsi La 2 HD",
+    "sid": "6496",
+    "icon": "https://i.postimg.cc/5t3FsW0w/RSI-La-2-HD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Rai Movie HD",
+    "sid": "6499",
+    "icon": "https://i.postimg.cc/yNQ0VzH7/Rai-Movie.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Cielo HD",
+    "sid": "137599",
+    "icon": "https://i.postimg.cc/KvWzvvKq/Cielo-HD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Iris HD",
+    "sid": "6506",
+    "icon": "https://i.postimg.cc/ryt5LbYL/Iris.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Cine 34 HD",
+    "sid": "119109",
+    "icon": "https://i.postimg.cc/nLH1Fk9G/Cine34.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Rai 4 HD",
+    "sid": "6502",
+    "icon": "https://i.postimg.cc/vB580WXC/Rai-4-HD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Rai 5 HD",
+    "sid": "6501",
+    "icon": "https://i.postimg.cc/0NkD7yfY/Rai-5-HD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Rai Premium HD",
+    "sid": "182597",
+    "icon": "https://i.postimg.cc/x1Fd8jcp/Rai-Premium.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Mediaset 20 HD",
+    "sid": "10619",
+    "icon": "https://i.postimg.cc/qqgbkGY5/Foto-logo-canale-20-mediaset-300x225.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Mediaset Twentyseven HD",
+    "sid": "181343",
+    "icon": "https://i.postimg.cc/kg7jG9kS/Twentyseven-logo-svg.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Mediaset Italia 2 HD",
+    "sid": "27988",
+    "icon": "https://i.postimg.cc/d1GdGZCV/Italia-Due.png",
+    "category_id": "1"
+  },
+  {
+    "name": "La 5 HD",
+    "sid": "6536",
+    "icon": "https://i.postimg.cc/WbTm68XL/La-5.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Top Crime HD",
+    "sid": "6537",
+    "icon": "https://i.postimg.cc/fWKSZNjp/Top-crime.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Giallo HD",
+    "sid": "6540",
+    "icon": "https://i.postimg.cc/ZRjYkTtL/Giallo.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Real Time HD",
+    "sid": "6541",
+    "icon": "https://i.postimg.cc/LXySCNLC/Real-Time-Full-HD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Dmax HD",
+    "sid": "6539",
+    "icon": "https://i.postimg.cc/t4dLvBH3/DMAX-HD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Motor Trend HD",
+    "sid": "65669",
+    "icon": "https://i.postimg.cc/1XsQ3bP3/Motor-Trade.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Food Network HD",
+    "sid": "6542",
+    "icon": "https://i.postimg.cc/C1Vyc9Rs/Food-Network.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Mediaset Extra HD",
+    "sid": "27986",
+    "icon": "https://i.postimg.cc/jdSp3HSm/Mediaset-Extra.png",
+    "category_id": "1"
+  },
+  {
+    "name": "TV 2000",
+    "sid": "6492",
+    "icon": "https://i.postimg.cc/764c37RB/TV-2000.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Padre Pio Tv",
+    "sid": "6491",
+    "icon": "https://i.postimg.cc/sgY56Y4n/padrepio.jpg",
+    "category_id": "1"
+  },
+  {
+    "name": "Rai 1 Full HD",
+    "sid": "28072",
+    "icon": "https://i.postimg.cc/zfd9w3nK/Rai-1-FHD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Rai 2 Full HD",
+    "sid": "28069",
+    "icon": "https://i.postimg.cc/c4MkMrWC/Rai-2-HD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Rai 3 Full HD",
+    "sid": "28066",
+    "icon": "https://i.postimg.cc/43r1TgGj/Rai-3-HD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Rete 4 Full HD",
+    "sid": "29029",
+    "icon": "https://i.postimg.cc/FHm9Kdrx/Rete-4-HD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Canale 5 Full HD",
+    "sid": "28061",
+    "icon": "https://i.postimg.cc/4yVgfZjM/Canale-5-HD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Italia 1 Full HD",
+    "sid": "28059",
+    "icon": "https://i.postimg.cc/fT7N1zcS/Italia-1-HD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "LA7 Full HD",
+    "sid": "140329",
+    "icon": "https://i.postimg.cc/XYqKGJ7T/LA-7-HD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "LA7d Full HD",
+    "sid": "332428",
+    "icon": "https://i.postimg.cc/8CGPhrMx/la7d.jpg",
+    "category_id": "1"
+  },
+  {
+    "name": "Tv 8 FHD",
+    "sid": "6495",
+    "icon": "https://i.postimg.cc/HkNwQgrj/Tv-8.png",
+    "category_id": "1"
+  },
+  {
+    "name": "LA 5 FHD",
+    "sid": "345807",
+    "icon": "https://i.postimg.cc/WbTm68XL/La-5.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Nove Full HD",
+    "sid": "157771",
+    "icon": "https://i.postimg.cc/T2cntmKz/Nove-HD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Iris FHD",
+    "sid": "345808",
+    "icon": "https://i.postimg.cc/ryt5LbYL/Iris.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Rai Premium Full HD",
+    "sid": "6498",
+    "icon": "https://i.postimg.cc/x1Fd8jcp/Rai-Premium.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Mediaset Twentyseven FHD",
+    "sid": "342743",
+    "icon": "https://i.postimg.cc/kg7jG9kS/Twentyseven-logo-svg.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Mediaset 20 Full HD",
+    "sid": "137602",
+    "icon": "https://i.postimg.cc/qqgbkGY5/Foto-logo-canale-20-mediaset-300x225.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Mediaset Extra FHD",
+    "sid": "345810",
+    "icon": "https://i.postimg.cc/jdSp3HSm/Mediaset-Extra.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Mediaset Italia 2 FHD",
+    "sid": "345811",
+    "icon": "https://i.postimg.cc/d1GdGZCV/Italia-Due.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Rai Movie FHD",
+    "sid": "345812",
+    "icon": "https://i.postimg.cc/yNQ0VzH7/Rai-Movie.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Cielo FHD",
+    "sid": "6544",
+    "icon": "https://i.postimg.cc/KvWzvvKq/Cielo-HD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Cine 34 FHD",
+    "sid": "492744",
+    "icon": "https://i.postimg.cc/nLH1Fk9G/Cine34.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Giallo FHD",
+    "sid": "345813",
+    "icon": "https://i.postimg.cc/ZRjYkTtL/Giallo.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Real Time Full HD",
+    "sid": "137604",
+    "icon": "https://i.postimg.cc/LXySCNLC/Real-Time-Full-HD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Dmax Full HD",
+    "sid": "140703",
+    "icon": "https://i.postimg.cc/t4dLvBH3/DMAX-HD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Motor Trend Full HD",
+    "sid": "137605",
+    "icon": "https://i.postimg.cc/1XsQ3bP3/Motor-Trade.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Food Network FHD",
+    "sid": "503829",
+    "icon": "https://i.postimg.cc/C1Vyc9Rs/Food-Network.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Rai 1 SD",
+    "sid": "28071",
+    "icon": "https://i.postimg.cc/zfd9w3nK/Rai-1-FHD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Rai 2 SD",
+    "sid": "28068",
+    "icon": "https://i.postimg.cc/c4MkMrWC/Rai-2-HD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Rai 3 SD",
+    "sid": "28065",
+    "icon": "https://i.postimg.cc/43r1TgGj/Rai-3-HD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Rete 4 SD",
+    "sid": "29030",
+    "icon": "https://i.postimg.cc/FHm9Kdrx/Rete-4-HD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Canale 5 SD",
+    "sid": "27882",
+    "icon": "https://i.postimg.cc/4yVgfZjM/Canale-5-HD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Italia 1 SD",
+    "sid": "27881",
+    "icon": "https://i.postimg.cc/fT7N1zcS/Italia-1-HD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Rai 5 SD",
+    "sid": "478454",
+    "icon": "https://i.postimg.cc/0NkD7yfY/Rai-5-HD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Dmax SD",
+    "sid": "478457",
+    "icon": "https://i.postimg.cc/t4dLvBH3/DMAX-HD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Real Time sd",
+    "sid": "345814",
+    "icon": "https://i.postimg.cc/LXySCNLC/Real-Time-Full-HD.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Rai Premium SD",
+    "sid": "345815",
+    "icon": "https://i.postimg.cc/x1Fd8jcp/Rai-Premium.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Food Network  SD",
+    "sid": "503830",
+    "icon": "https://i.postimg.cc/C1Vyc9Rs/Food-Network.png",
+    "category_id": "1"
+  },
+  {
+    "name": "Grande Fratello - Regia 1 FHD",
+    "sid": "272826",
+    "icon": "https://i.postimg.cc/j5y7XsLB/grande-fratello.png",
+    "category_id": "61"
+  },
+  {
+    "name": "Grande Fratello -  Regia 2 FHD",
+    "sid": "272825",
+    "icon": "https://i.postimg.cc/j5y7XsLB/grande-fratello.png",
+    "category_id": "61"
+  },
+  {
+    "name": "Grande Fratello - Un'ora Fa FHD",
+    "sid": "272824",
+    "icon": "https://i.postimg.cc/j5y7XsLB/grande-fratello.png",
+    "category_id": "61"
+  },
+  {
+    "name": "Sky Uno FULL HD",
+    "sid": "156253",
+    "icon": "https://i.postimg.cc/VkkN9wTY/Sky_Uno_Logo_2021_svg.png",
+    "category_id": "61"
+  },
+  {
+    "name": "Sky Uno HD",
+    "sid": "156252",
+    "icon": "https://i.postimg.cc/VkkN9wTY/Sky_Uno_Logo_2021_svg.png",
+    "category_id": "61"
+  },
+  {
+    "name": "Sky Uno SD",
+    "sid": "156251",
+    "icon": "https://i.postimg.cc/VkkN9wTY/Sky_Uno_Logo_2021_svg.png",
+    "category_id": "61"
+  },
+  {
+    "name": "Sky Uno Plus FHD",
+    "sid": "356398",
+    "icon": "https://i.postimg.cc/FHbzRLhS/resize.png",
+    "category_id": "61"
+  },
+  {
+    "name": "Sky Uno Plus HD",
+    "sid": "356400",
+    "icon": "https://i.postimg.cc/FHbzRLhS/resize.png",
+    "category_id": "61"
+  },
+  {
+    "name": "Sky Uno Plus SD",
+    "sid": "356399",
+    "icon": "https://i.postimg.cc/FHbzRLhS/resize.png",
+    "category_id": "61"
+  },
+  {
+    "name": "Sky Atlantic Full HD",
+    "sid": "27364",
+    "icon": "https://i.postimg.cc/nzbZWfdH/Logo_Sky_Atlantic.png",
+    "category_id": "61"
+  },
+  {
+    "name": "Sky Atlantic HD",
+    "sid": "6555",
+    "icon": "https://i.postimg.cc/nzbZWfdH/Logo_Sky_Atlantic.png",
+    "category_id": "61"
+  },
+  {
+    "name": "Sky Atlantic SD",
+    "sid": "27183",
+    "icon": "https://i.postimg.cc/nzbZWfdH/Logo_Sky_Atlantic.png",
+    "category_id": "61"
+  },
+  {
+    "name": "Sky Investigation Full HD",
+    "sid": "26431",
+    "icon": "https://i.postimg.cc/RZ2z3zx3/Sky_Investigation_television_channel_svg.png",
+    "category_id": "61"
+  },
+  {
+    "name": "Sky Investigation HD",
+    "sid": "6551",
+    "icon": "https://i.postimg.cc/RZ2z3zx3/Sky_Investigation_television_channel_svg.png",
+    "category_id": "61"
+  },
+  {
+    "name": "Sky Investigation SD",
+    "sid": "96737",
+    "icon": "https://i.postimg.cc/RZ2z3zx3/Sky_Investigation_television_channel_svg.png",
+    "category_id": "61"
+  },
+  {
+    "name": "Sky Serie FHD",
+    "sid": "173104",
+    "icon": "https://i.postimg.cc/k5WLB6cP/Sky_Serie_svg.png",
+    "category_id": "61"
+  },
+  {
+    "name": "Sky Serie HD",
+    "sid": "173106",
+    "icon": "https://i.postimg.cc/k5WLB6cP/Sky_Serie_svg.png",
+    "category_id": "61"
+  },
+  {
+    "name": "Sky Serie SD",
+    "sid": "173105",
+    "icon": "https://i.postimg.cc/k5WLB6cP/Sky_Serie_svg.png",
+    "category_id": "61"
+  },
+  {
+    "name": "Sky Collection FHD",
+    "sid": "352412",
+    "icon": "https://i.postimg.cc/52jtY9R9/sky-collection-removebg-preview.png",
+    "category_id": "61"
+  },
+  {
+    "name": "Sky Collection HD",
+    "sid": "352413",
+    "icon": "https://i.postimg.cc/52jtY9R9/sky-collection-removebg-preview.png",
+    "category_id": "61"
+  },
+  {
+    "name": "Sky Collection SD",
+    "sid": "352414",
+    "icon": "https://i.postimg.cc/52jtY9R9/sky-collection-removebg-preview.png",
+    "category_id": "61"
+  },
+  {
+    "name": "Comedy Central Full HD",
+    "sid": "140701",
+    "icon": "https://i.postimg.cc/8k2Zdf95/Comedy-Central.png",
+    "category_id": "61"
+  },
+  {
+    "name": "Comedy Central HD",
+    "sid": "128645",
+    "icon": "https://i.postimg.cc/8k2Zdf95/Comedy-Central.png",
+    "category_id": "61"
+  },
+  {
+    "name": "Comedy Central SD",
+    "sid": "478455",
+    "icon": "https://i.postimg.cc/8k2Zdf95/Comedy-Central.png",
+    "category_id": "61"
+  },
+  {
+    "name": "Alice - Alma TV",
+    "sid": "184628",
+    "icon": "https://i.postimg.cc/L5X2NZGn/Alice.png",
+    "category_id": "61"
+  },
+  {
+    "name": "Warner TV FHD",
+    "sid": "340147",
+    "icon": "https://i.postimg.cc/BvHSh1P7/download-(11).jpg",
+    "category_id": "62"
+  },
+  {
+    "name": "Warner TV  HD",
+    "sid": "340148",
+    "icon": "https://i.postimg.cc/BvHSh1P7/download-(11).jpg",
+    "category_id": "62"
+  },
+  {
+    "name": "Warner TV  SD",
+    "sid": "478492",
+    "icon": "https://i.postimg.cc/BvHSh1P7/download-(11).jpg",
+    "category_id": "62"
+  },
+  {
+    "name": "Sky Adventure HD",
+    "sid": "340029",
+    "icon": "https://i.postimg.cc/SQBLnYRX/Sky-Adventure-Logo-1080p.png",
+    "category_id": "62"
+  },
+  {
+    "name": "Sky Adventure SD",
+    "sid": "478453",
+    "icon": "https://i.postimg.cc/SQBLnYRX/Sky-Adventure-Logo-1080p.png",
+    "category_id": "62"
+  },
+  {
+    "name": "Sky Nature FHD",
+    "sid": "173228",
+    "icon": "https://i.postimg.cc/Lsk0Hd9d/Sky_Nature_2021_svg.png",
+    "category_id": "62"
+  },
+  {
+    "name": "Sky Nature HD",
+    "sid": "173227",
+    "icon": "https://i.postimg.cc/Lsk0Hd9d/Sky_Nature_2021_svg.png",
+    "category_id": "62"
+  },
+  {
+    "name": "Sky Documentaries FHD",
+    "sid": "173107",
+    "icon": "https://i.postimg.cc/d30c8H0z/Sky-Documentaries.png",
+    "category_id": "62"
+  },
+  {
+    "name": "Sky Documentaries HD",
+    "sid": "173109",
+    "icon": "https://i.postimg.cc/d30c8H0z/Sky-Documentaries.png",
+    "category_id": "62"
+  },
+  {
+    "name": "Sky Documentaries SD",
+    "sid": "173108",
+    "icon": "https://i.postimg.cc/d30c8H0z/Sky-Documentaries.png",
+    "category_id": "62"
+  },
+  {
+    "name": "History Full HD",
+    "sid": "140704",
+    "icon": "https://i.postimg.cc/448GQ99p/History-HD.png",
+    "category_id": "62"
+  },
+  {
+    "name": "History HD",
+    "sid": "6608",
+    "icon": "https://i.postimg.cc/448GQ99p/History-HD.png",
+    "category_id": "62"
+  },
+  {
+    "name": "History SD",
+    "sid": "478385",
+    "icon": "https://i.postimg.cc/448GQ99p/History-HD.png",
+    "category_id": "62"
+  },
+  {
+    "name": "HGTV FHD",
+    "sid": "232325",
+    "icon": "https://i.postimg.cc/ncQy6PDK/HGTV_2010.png",
+    "category_id": "62"
+  },
+  {
+    "name": "HGTV HD",
+    "sid": "232324",
+    "icon": "https://i.postimg.cc/ncQy6PDK/HGTV_2010.png",
+    "category_id": "62"
+  },
+  {
+    "name": "Gambero Rosso Full HD",
+    "sid": "137634",
+    "icon": "https://i.postimg.cc/rFqnhn5H/Gambero-Rosso.png",
+    "category_id": "62"
+  },
+  {
+    "name": "Gambero Rosso HD",
+    "sid": "6606",
+    "icon": "https://i.postimg.cc/rFqnhn5H/Gambero-Rosso.png",
+    "category_id": "62"
+  },
+  {
+    "name": "Sky Arte Full HD",
+    "sid": "137692",
+    "icon": "https://i.postimg.cc/QxR61NVC/SKY_ARTE.png",
+    "category_id": "62"
+  },
+  {
+    "name": "Sky Arte HD",
+    "sid": "6605",
+    "icon": "https://i.postimg.cc/QxR61NVC/SKY_ARTE.png",
+    "category_id": "62"
+  },
+  {
+    "name": "Sky Crime Full HD",
+    "sid": "62123",
+    "icon": "https://i.postimg.cc/63fs122h/Sky_Crime_DE_Logo_2021_svg.png",
+    "category_id": "62"
+  },
+  {
+    "name": "Sky Crime HD",
+    "sid": "6614",
+    "icon": "https://i.postimg.cc/63fs122h/Sky_Crime_DE_Logo_2021_svg.png",
+    "category_id": "62"
+  },
+  {
+    "name": "Sky Crime SD",
+    "sid": "29141",
+    "icon": "https://i.postimg.cc/63fs122h/Sky_Crime_DE_Logo_2021_svg.png",
+    "category_id": "62"
+  },
+  {
+    "name": "Focus FHD",
+    "sid": "345809",
+    "icon": "https://i.postimg.cc/2692trm8/Focus.png",
+    "category_id": "62"
+  },
+  {
+    "name": "Focus HD",
+    "sid": "6602",
+    "icon": "https://i.postimg.cc/2692trm8/Focus.png",
+    "category_id": "62"
+  },
+  {
+    "name": "RAI Scuola FHD",
+    "sid": "332446",
+    "icon": "https://i.postimg.cc/sxpGh4nd/Rai-Scuola.png",
+    "category_id": "62"
+  },
+  {
+    "name": "Rai Scuola HD",
+    "sid": "137618",
+    "icon": "https://i.postimg.cc/sxpGh4nd/Rai-Scuola.png",
+    "category_id": "62"
+  },
+  {
+    "name": "RAI Storia FHD",
+    "sid": "332447",
+    "icon": "https://i.postimg.cc/13LSk1mB/Rai-Storia.png",
+    "category_id": "62"
+  },
+  {
+    "name": "Rai Storia HD",
+    "sid": "6600",
+    "icon": "https://i.postimg.cc/13LSk1mB/Rai-Storia.png",
+    "category_id": "62"
+  },
+  {
+    "name": "Caccia FULL HD",
+    "sid": "6598",
+    "icon": "https://i.postimg.cc/MK7r6kmt/CACCIA-Pesca.png",
+    "category_id": "62"
+  },
+  {
+    "name": "Caccia HD",
+    "sid": "140700",
+    "icon": "https://i.postimg.cc/MK7r6kmt/CACCIA-Pesca.png",
+    "category_id": "62"
+  },
+  {
+    "name": "Pesca Full HD",
+    "sid": "140699",
+    "icon": "https://i.postimg.cc/tCc74fRZ/Caccia-e-Pesca-2012.png",
+    "category_id": "62"
+  },
+  {
+    "name": "Pesca HD",
+    "sid": "6597",
+    "icon": "https://i.postimg.cc/tCc74fRZ/Caccia-e-Pesca-2012.png",
+    "category_id": "62"
+  },
+  {
+    "name": "Fishing TV HD",
+    "sid": "65955",
+    "icon": "https://i.postimg.cc/qgVXf7F0/Fishing-TV.png",
+    "category_id": "62"
+  },
+  {
+    "name": "TG Com 24 FHD",
+    "sid": "478444",
+    "icon": "https://i.postimg.cc/RVrcXD4X/images-8.jpg",
+    "category_id": "66"
+  },
+  {
+    "name": "TG Com 24 HD",
+    "sid": "6667",
+    "icon": "https://i.postimg.cc/RVrcXD4X/images-8.jpg",
+    "category_id": "66"
+  },
+  {
+    "name": "TG Com 24 SD",
+    "sid": "478446",
+    "icon": "https://i.postimg.cc/RVrcXD4X/images-8.jpg",
+    "category_id": "66"
+  },
+  {
+    "name": "SKY TG 24 FHD",
+    "sid": "478448",
+    "icon": "https://i.postimg.cc/Z5HpYY3P/download-24.jpg",
+    "category_id": "66"
+  },
+  {
+    "name": "SKY TG 24 HD",
+    "sid": "6669",
+    "icon": "https://i.postimg.cc/Z5HpYY3P/download-24.jpg",
+    "category_id": "66"
+  },
+  {
+    "name": "SKY TG 24 SD",
+    "sid": "478449",
+    "icon": "https://i.postimg.cc/Z5HpYY3P/download-24.jpg",
+    "category_id": "66"
+  },
+  {
+    "name": "Rai News 24 FHD",
+    "sid": "478459",
+    "icon": "https://i.postimg.cc/d00dhMjt/download-25.jpg",
+    "category_id": "66"
+  },
+  {
+    "name": "Rai News 24 hd",
+    "sid": "6670",
+    "icon": "https://i.postimg.cc/d00dhMjt/download-25.jpg",
+    "category_id": "66"
+  },
+  {
+    "name": "Euronews HD",
+    "sid": "173016",
+    "icon": "https://i.postimg.cc/3N20s3Yc/images-9.jpg",
+    "category_id": "66"
+  },
+  {
+    "name": "EuroNews SD",
+    "sid": "478460",
+    "icon": "https://i.postimg.cc/3N20s3Yc/images-9.jpg",
+    "category_id": "66"
+  },
+  {
+    "name": "CNN International FHD",
+    "sid": "478461",
+    "icon": "https://i.postimg.cc/tRf4t0Hw/images-(2).jpg",
+    "category_id": "66"
+  },
+  {
+    "name": "CNN International HD",
+    "sid": "478462",
+    "icon": "https://i.postimg.cc/tRf4t0Hw/images-(2).jpg",
+    "category_id": "66"
+  },
+  {
+    "name": "CNN International SD",
+    "sid": "478463",
+    "icon": "https://i.postimg.cc/tRf4t0Hw/images-(2).jpg",
+    "category_id": "66"
+  },
+  {
+    "name": "Class CNBC",
+    "sid": "209433",
+    "icon": "https://i.postimg.cc/524QrcGL/download-26.jpg",
+    "category_id": "66"
+  },
+  {
+    "name": "Cartoonito FHD",
+    "sid": "342740",
+    "icon": "https://i.postimg.cc/XYTcwRpC/Cartoonito.png",
+    "category_id": "63"
+  },
+  {
+    "name": "Cartoonito HD",
+    "sid": "6630",
+    "icon": "https://i.postimg.cc/XYTcwRpC/Cartoonito.png",
+    "category_id": "63"
+  },
+  {
+    "name": "Cartoon Network FHD",
+    "sid": "516811",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "Cartoon Network HD",
+    "sid": "6631",
+    "icon": "https://i.postimg.cc/gkLxvnRg/Cartoon-Network.png",
+    "category_id": "63"
+  },
+  {
+    "name": "Cartoon Network SD",
+    "sid": "478437",
+    "icon": "https://i.postimg.cc/gkLxvnRg/Cartoon-Network.png",
+    "category_id": "63"
+  },
+  {
+    "name": "Boing FHD",
+    "sid": "332445",
+    "icon": "https://i.postimg.cc/Fzpqn92z/Boing.png",
+    "category_id": "63"
+  },
+  {
+    "name": "Boing HD",
+    "sid": "158039",
+    "icon": "https://i.postimg.cc/Fzpqn92z/Boing.png",
+    "category_id": "63"
+  },
+  {
+    "name": "Boing Plus HD",
+    "sid": "253005",
+    "icon": "https://i.postimg.cc/x16fybNK/download-8.png",
+    "category_id": "63"
+  },
+  {
+    "name": "Super !",
+    "sid": "6619",
+    "icon": "https://i.postimg.cc/LsyGT6Fs/Super.png",
+    "category_id": "63"
+  },
+  {
+    "name": "Rai Yoyo FHD",
+    "sid": "342737",
+    "icon": "https://i.postimg.cc/65Ljc5dN/Rai-YoYo.png",
+    "category_id": "63"
+  },
+  {
+    "name": "Rai Yoyo HD",
+    "sid": "6620",
+    "icon": "https://i.postimg.cc/65Ljc5dN/Rai-YoYo.png",
+    "category_id": "63"
+  },
+  {
+    "name": "Rai Gulp HD",
+    "sid": "6621",
+    "icon": "https://i.postimg.cc/sfpCFzpT/Rai-Gulp.png",
+    "category_id": "63"
+  },
+  {
+    "name": "Sky Nick Jr FHD",
+    "sid": "342741",
+    "icon": "https://i.postimg.cc/HnhTr4BT/Nick-Jr.png",
+    "category_id": "63"
+  },
+  {
+    "name": "Sky Nick Jr HD",
+    "sid": "6624",
+    "icon": "https://i.postimg.cc/HnhTr4BT/Nick-Jr.png",
+    "category_id": "63"
+  },
+  {
+    "name": "Sky Nick Jr SD",
+    "sid": "478458",
+    "icon": "https://i.postimg.cc/HnhTr4BT/Nick-Jr.png",
+    "category_id": "63"
+  },
+  {
+    "name": "Nickelodeon FHD",
+    "sid": "478434",
+    "icon": "https://i.postimg.cc/fWBnWKrd/Nickelodeon-HD.png",
+    "category_id": "63"
+  },
+  {
+    "name": "Nickelodeon HD",
+    "sid": "6622",
+    "icon": "https://i.postimg.cc/fWBnWKrd/Nickelodeon-HD.png",
+    "category_id": "63"
+  },
+  {
+    "name": "Nickelodeon SD",
+    "sid": "478435",
+    "icon": "https://i.postimg.cc/fWBnWKrd/Nickelodeon-HD.png",
+    "category_id": "63"
+  },
+  {
+    "name": "Boomerang FHD",
+    "sid": "342738",
+    "icon": "https://i.postimg.cc/cJLZBb2d/Boomerang-HD.png",
+    "category_id": "63"
+  },
+  {
+    "name": "Boomerang HD",
+    "sid": "6627",
+    "icon": "https://i.postimg.cc/cJLZBb2d/Boomerang-HD.png",
+    "category_id": "63"
+  },
+  {
+    "name": "Boomerang SD",
+    "sid": "478439",
+    "icon": "https://i.postimg.cc/cJLZBb2d/Boomerang-HD.png",
+    "category_id": "63"
+  },
+  {
+    "name": "Dea Kids FHD",
+    "sid": "342742",
+    "icon": "https://i.postimg.cc/y8z0xF5m/Dea-Kids-HD.png",
+    "category_id": "63"
+  },
+  {
+    "name": "Dea Kids HD",
+    "sid": "6633",
+    "icon": "https://i.postimg.cc/y8z0xF5m/Dea-Kids-HD.png",
+    "category_id": "63"
+  },
+  {
+    "name": "Dea Kids SD",
+    "sid": "478438",
+    "icon": "https://i.postimg.cc/y8z0xF5m/Dea-Kids-HD.png",
+    "category_id": "63"
+  },
+  {
+    "name": "Frisbee",
+    "sid": "6625",
+    "icon": "https://i.postimg.cc/vm3k88Ps/Frisbee.png",
+    "category_id": "63"
+  },
+  {
+    "name": "K2 FHD",
+    "sid": "342739",
+    "icon": "https://i.postimg.cc/QtJhhZ2G/K2.png",
+    "category_id": "63"
+  },
+  {
+    "name": "K2 HD",
+    "sid": "6618",
+    "icon": "https://i.postimg.cc/QtJhhZ2G/K2.png",
+    "category_id": "63"
+  },
+  {
+    "name": "Super SIX",
+    "sid": "342744",
+    "icon": "https://i.postimg.cc/5NkZv2c0/supersix.jpg",
+    "category_id": "63"
+  },
+  {
+    "name": "Tartarughe Ninja Channel",
+    "sid": "157851",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "Barbapapa Channel",
+    "sid": "114341",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "Bing Channel",
+    "sid": "114342",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "Cip E Cip Channel",
+    "sid": "114343",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "Doraemon Channel",
+    "sid": "114344",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "Doraemon Channel  2",
+    "sid": "114345",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "DuckTales Channel.",
+    "sid": "114346",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "Futurama Channel",
+    "sid": "114347",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "I Cavalieri Dello Zodiaco Channel",
+    "sid": "114349",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "I Griffin Channel",
+    "sid": "126873",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "IL Corpo Umano Channel",
+    "sid": "114350",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "Ken IL Guerriero Channel",
+    "sid": "114351",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "La Casa  Di Topolino Channel",
+    "sid": "114352",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "Magica Emi Channel",
+    "sid": "114353",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "Masha E Orso Channel",
+    "sid": "114354",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "Paw Patrol 1 Channel",
+    "sid": "114355",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "Paw Patrol 2 Channel",
+    "sid": "162227",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "Paw Patrol 3 Channel",
+    "sid": "162230",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "Paw Patrol 4 Channel",
+    "sid": "162228",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "Paw Patrol 5 Channel",
+    "sid": "162229",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "Paw Patrol 6 Channel",
+    "sid": "162231",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "Peppa Pig Channel 1",
+    "sid": "114356",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "Peppa Pig Channel 2",
+    "sid": "114357",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "Peppa Pig Channel 3",
+    "sid": "114358",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "Peppa Pig Channel 4",
+    "sid": "114359",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "Piccoli Problemi Di Cuore Channel",
+    "sid": "114360",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "Pigiamini Channel",
+    "sid": "114361",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "Pippi Calze Lunghe Channel",
+    "sid": "114362",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "Pokoyo Channel",
+    "sid": "114363",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "ScoobyDoo Channel",
+    "sid": "114364",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "Super Wings Channel",
+    "sid": "114365",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "Timon E Pumbaa Channel",
+    "sid": "114366",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "Tom E Jerry Channel",
+    "sid": "114367",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "Walt Disney Channel",
+    "sid": "114368",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "Yattaman Channel",
+    "sid": "114369",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "Me Contro Te Channel",
+    "sid": "114873",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "Me Contro Te Channel 2",
+    "sid": "114874",
+    "icon": "",
+    "category_id": "63"
+  },
+  {
+    "name": "Me Contro Te Channel 3",
+    "sid": "114875",
+    "icon": "",
+    "category_id": "63"
+  }
+]
