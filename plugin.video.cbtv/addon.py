@@ -1005,7 +1005,6 @@ def play_s20_channel(sid, name):
     except Exception as e:
         xbmc.log(f"[CBTV] Errore play_s20_channel: {e}", xbmc.LOGERROR)
         xbmcplugin.setResolvedUrl(HANDLE, False, xbmcgui.ListItem())
-    xbmcplugin.setResolvedUrl(HANDLE, False, xbmcgui.ListItem())
 
 
 def list_vavoo_channels(category):
