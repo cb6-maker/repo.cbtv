@@ -1,5 +1,77 @@
 [
   {
+    "name": "[Dazn] DAZN 1 HD",
+    "sid": "293075",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 2 FHD",
+    "sid": "293077",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 2 HD",
+    "sid": "293078",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "DAZN-VETRINA-EVENTI",
+    "sid": "292664",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 7 FHD",
+    "sid": "293090",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 8 FHD",
+    "sid": "293093",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 8 HD",
+    "sid": "293094",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 9 FHD",
+    "sid": "293096",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 9 HD",
+    "sid": "293097",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 10 HD",
+    "sid": "293099",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Milan TV FHD",
+    "sid": "273811",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Milan TV HD",
+    "sid": "273812",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
     "name": "[Dazn fonte 2] Evento 1 FHD",
     "sid": "263798",
     "icon": "",
@@ -906,26 +978,8 @@
     "category_id": "2011"
   },
   {
-    "name": "[Dazn] DAZN 1 HD",
-    "sid": "293075",
-    "icon": "",
-    "category_id": "2011"
-  },
-  {
     "name": "[Dazn] DAZN 1 FHD",
     "sid": "293076",
-    "icon": "",
-    "category_id": "2011"
-  },
-  {
-    "name": "[Dazn fonte 2] Dazn 2 FHD",
-    "sid": "293077",
-    "icon": "",
-    "category_id": "2011"
-  },
-  {
-    "name": "[Dazn fonte 2] Dazn 2 HD",
-    "sid": "293078",
     "icon": "",
     "category_id": "2011"
   },
@@ -996,12 +1050,6 @@
     "category_id": "2011"
   },
   {
-    "name": "[Dazn fonte 2] Dazn 7 FHD",
-    "sid": "293090",
-    "icon": "",
-    "category_id": "2011"
-  },
-  {
     "name": "[Dazn fonte 2] Dazn 7 HD",
     "sid": "293091",
     "icon": "",
@@ -1014,44 +1062,14 @@
     "category_id": "2011"
   },
   {
-    "name": "[Dazn fonte 2] Dazn 8 FHD",
-    "sid": "293093",
-    "icon": "",
-    "category_id": "2011"
-  },
-  {
-    "name": "[Dazn fonte 2] Dazn 8 HD",
-    "sid": "293094",
-    "icon": "",
-    "category_id": "2011"
-  },
-  {
     "name": "[Dazn fonte 2] Dazn 8 SD",
     "sid": "293095",
     "icon": "",
     "category_id": "2011"
   },
   {
-    "name": "[Dazn fonte 2] Dazn 9 FHD",
-    "sid": "293096",
-    "icon": "",
-    "category_id": "2011"
-  },
-  {
-    "name": "[Dazn fonte 2] Dazn 9 HD",
-    "sid": "293097",
-    "icon": "",
-    "category_id": "2011"
-  },
-  {
     "name": "[Dazn fonte 2] Dazn 9 SD",
     "sid": "293098",
-    "icon": "",
-    "category_id": "2011"
-  },
-  {
-    "name": "[Dazn fonte 2] Dazn 10 HD",
-    "sid": "293099",
     "icon": "",
     "category_id": "2011"
   },
@@ -1094,18 +1112,6 @@
   {
     "name": "[Dazn] Matchroom Boxing SD",
     "sid": "273810",
-    "icon": "",
-    "category_id": "2011"
-  },
-  {
-    "name": "[Dazn] Milan TV FHD",
-    "sid": "273811",
-    "icon": "",
-    "category_id": "2011"
-  },
-  {
-    "name": "[Dazn] Milan TV HD",
-    "sid": "273812",
     "icon": "",
     "category_id": "2011"
   },
@@ -1782,18 +1788,6 @@
     "category_id": "2011"
   },
   {
-    "name": "---------DAZN-EVENTI--VETRINA------",
-    "sid": "292663",
-    "icon": "",
-    "category_id": "657"
-  },
-  {
-    "name": "DAZN-VETRINA-EVENTI",
-    "sid": "292664",
-    "icon": "",
-    "category_id": "657"
-  },
-  {
     "name": "DAZN EVENTO 1",
     "sid": "292665",
     "icon": "",
@@ -2109,12 +2103,6 @@
     "name": "Amazon Prime SD HERMES",
     "sid": "137637",
     "icon": "https://m.media-amazon.com/images/G/01/support_images/GUID-21C09ED9-332E-4D83-BEAC-2A81E3DC7B9D=1=it-IT=Normal.png",
-    "category_id": "1954"
-  },
-  {
-    "name": "*.*.*.*Champions Hermes *.*.*.*",
-    "sid": "134436",
-    "icon": "https://help.mediasetplay.it/hc/article_attachments/360024542680/positivo_colori.png",
     "category_id": "1954"
   },
   {
