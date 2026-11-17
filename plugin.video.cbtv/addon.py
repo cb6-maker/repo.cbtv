@@ -919,13 +919,15 @@ def search_live_channels(query=None):
     xbmcplugin.endOfDirectory(HANDLE)
 
 def list_sport():
-    """Sottomenu Sport organizzato per sorgente (22, HLS, VPN)"""
+    """Sottomenu Sport organizzato per sorgente (20, 22, HLS, VPN)"""
     xbmcplugin.setContent(HANDLE, 'videos')
     
+    add_directory_item("[COLOR lime][B]Sky Sport (20)[/B][/COLOR]", {"action": "list_s20_channels", "cat": "sport"}, icon=get_tile("tile_sky_sport.png"))
     add_directory_item("[COLOR dodgerblue][B]Sky Sport (22)[/B][/COLOR]", {"action": "list_s22_channels", "cat": "sport"}, icon=get_tile("tile_sky_sport.png"))
     add_directory_item("[COLOR cyan][B]Sky Sport (HLS)[/B][/COLOR]", {"action": "list_vavoo_channels", "cat": "sport"}, icon=get_tile("tile_sky_sport.png"))
     add_directory_item("[COLOR lightblue][B]Sky Sport (VPN)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_sport", "server_id": "s12"}, icon=get_tile("tile_sky_sport.png"))
     
+    add_directory_item("[COLOR limegreen][B]Dazn (20)[/B][/COLOR]", {"action": "list_s20_channels", "cat": "dazn"}, icon=get_tile("tile_dazn.png"))
     add_directory_item("[COLOR coral][B]Dazn (22)[/B][/COLOR]", {"action": "list_s22_channels", "cat": "dazn"}, icon=get_tile("tile_dazn.png"))
     add_directory_item("[COLOR orange][B]Dazn (HLS)[/B][/COLOR]", {"action": "list_vavoo_channels", "cat": "dazn"}, icon=get_tile("tile_dazn.png"))
     add_directory_item("[COLOR lightsalmon][B]Dazn (VPN)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "dazn_only", "server_id": "s12"}, icon=get_tile("tile_dazn.png"))
@@ -934,8 +936,9 @@ def list_sport():
 
 
 def menu_entertainment():
-    """Sottomenu Canali Intrattenimento con scelta sorgente (22, HLS, VPN)"""
+    """Sottomenu Canali Intrattenimento con scelta sorgente (20, 22, HLS, VPN)"""
     xbmcplugin.setContent(HANDLE, 'videos')
+    add_directory_item("[COLOR lime][B]Intrattenimento (20)[/B][/COLOR]", {"action": "list_s20_channels", "cat": "tv"}, icon=get_tile("tile_sky_intrattenimento.png"))
     add_directory_item("[COLOR dodgerblue][B]Intrattenimento (22)[/B][/COLOR]", {"action": "list_s22_channels", "cat": "tv"}, icon=get_tile("tile_sky_intrattenimento.png"))
     add_directory_item("[COLOR cyan][B]Intrattenimento (HLS)[/B][/COLOR]", {"action": "list_vavoo_channels", "cat": "tv"}, icon=get_tile("tile_sky_intrattenimento.png"))
     add_directory_item("[COLOR lightblue][B]Intrattenimento (VPN)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_tv", "server_id": "s12"}, icon=get_tile("tile_sky_intrattenimento.png"))
@@ -943,27 +946,24 @@ def menu_entertainment():
 
 
 def menu_cinema():
-    """Sottomenu Canali Cinema con scelta sorgente (22, HLS, VPN)"""
+    """Sottomenu Canali Cinema con scelta sorgente (20, 22, HLS, VPN)"""
     xbmcplugin.setContent(HANDLE, 'videos')
+    add_directory_item("[COLOR lime][B]Cinema (20)[/B][/COLOR]", {"action": "list_s20_channels", "cat": "cinema"}, icon=get_tile("tile_sky_cinema.png"))
     add_directory_item("[COLOR moccasin][B]Cinema (22)[/B][/COLOR]", {"action": "list_s22_channels", "cat": "cinema"}, icon=get_tile("tile_sky_cinema.png"))
     add_directory_item("[COLOR gold][B]Cinema (HLS)[/B][/COLOR]", {"action": "list_vavoo_channels", "cat": "cinema"}, icon=get_tile("tile_sky_cinema.png"))
     add_directory_item("[COLOR yellow][B]Cinema (VPN)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_cinema", "server_id": "s12"}, icon=get_tile("tile_sky_cinema.png"))
+    add_directory_item("[COLOR limegreen][B]Primafila (20)[/B][/COLOR]", {"action": "list_s20_channels", "cat": "primafila"}, icon=get_tile("tile_sky_cinema.png"))
     add_directory_item("[COLOR peachpuff][B]Primafila (22)[/B][/COLOR]", {"action": "list_s22_channels", "cat": "primafila"}, icon=get_tile("tile_sky_cinema.png"))
     add_directory_item("[COLOR goldenrod][B]Primafila (HLS)[/B][/COLOR]", {"action": "list_vavoo_channels", "cat": "primafila"}, icon=get_tile("tile_sky_cinema.png"))
     xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
 
 
-def list_s22_channels(cat):
-    """Elenca i canali del Server 22 salvati nei rispettivi JSON"""
+def _list_static_server_channels(server_prefix, play_action, cat):
+    """Elenca i canali di un server statico dai rispettivi JSON in resources/lib."""
     xbmcplugin.setContent(HANDLE, 'videos')
-    cat_files = {
-        "sport": "s22_sport.json",
-        "dazn": "s22_dazn.json",
-        "cinema": "s22_cinema.json",
-        "primafila": "s22_primafila.json",
-        "tv": "s22_tv.json"
-    }
-    fname = cat_files.get(cat, "s22_sport.json")
+    valid_cats = ("sport", "dazn", "cinema", "primafila", "tv")
+    safe_cat = cat if cat in valid_cats else "sport"
+    fname = f"{server_prefix}_{safe_cat}.json"
     json_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources", "lib", fname)
     if not os.path.exists(json_path):
         xbmcgui.Dialog().notification("CBTV", f"Lista {cat} non disponibile", xbmcgui.NOTIFICATION_WARNING)
@@ -973,31 +973,48 @@ def list_s22_channels(cat):
     try:
         with open(json_path, 'r', encoding='utf-8') as f:
             channels = json.load(f)
-            
-        color_map = {
-            "sport": "dodgerblue",
-            "dazn": "coral",
-            "cinema": "moccasin",
-            "primafila": "peachpuff",
-            "tv": "dodgerblue"
-        }
-        color = color_map.get(cat, "white")
-        
+
         for ch in channels:
             name = ch.get("name", "")
             sid = ch.get("sid", "")
             icon = ch.get("icon") or get_channel_tile(name, "sky_sport" if cat in ("sport", "dazn") else "sky_cinema")
             add_directory_item(
                 name,
-                {"action": "play_s22_channel", "sid": sid, "name": name},
+                {"action": play_action, "sid": sid, "name": name},
                 is_folder=False,
                 is_playable=True,
                 icon=icon
             )
     except Exception as e:
-        xbmc.log(f"[CBTV] Errore caricamento canali S22 ({cat}): {e}", xbmc.LOGERROR)
+        xbmc.log(f"[CBTV] Errore caricamento canali {server_prefix.upper()} ({cat}): {e}", xbmc.LOGERROR)
 
     xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
+
+
+def list_s22_channels(cat):
+    """Elenca i canali del Server 22 salvati nei rispettivi JSON"""
+    _list_static_server_channels("s22", "play_s22_channel", cat)
+
+
+def list_s20_channels(cat):
+    """Elenca i canali del Server 20 salvati nei rispettivi JSON"""
+    _list_static_server_channels("s20", "play_s20_channel", cat)
+
+
+def play_s20_channel(sid, name):
+    """Avvia lo stream MPEG-TS diretto da Server 20 (singola connessione con UA player)"""
+    xbmcgui.Dialog().notification("CBTV", f"Avvio {name}...", xbmcgui.NOTIFICATION_INFO, 1500)
+    try:
+        ts_url = f"http://brumotto00.zapto.org:80/live/antoniodfr/@DWv@McweZ@/{sid}.ts"
+        stream_url = f"{ts_url}|User-Agent=VLC%2F3.0.18%20LibVLC%2F3.0.18"
+        list_item = xbmcgui.ListItem(path=stream_url)
+        list_item.setInfo('video', {'title': name})
+        list_item.setMimeType('video/mp2t')
+        list_item.setContentLookup(False)
+        xbmcplugin.setResolvedUrl(HANDLE, True, listitem=list_item)
+    except Exception as e:
+        xbmc.log(f"[CBTV] Errore play_s20_channel: {e}", xbmc.LOGERROR)
+        xbmcplugin.setResolvedUrl(HANDLE, False, xbmcgui.ListItem())
 
 
 def play_s22_channel(sid, name):
@@ -2140,6 +2157,10 @@ if __name__ == '__main__':
         menu_cinema()
     elif action == 'list_vavoo_channels':
         list_vavoo_channels(params.get('cat'))
+    elif action == 'list_s20_channels':
+        list_s20_channels(params.get('cat'))
+    elif action == 'play_s20_channel':
+        play_s20_channel(params.get('sid'), params.get('name'))
     elif action == 'list_s22_channels':
         list_s22_channels(params.get('cat'))
     elif action == 'play_s22_channel':

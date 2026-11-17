@@ -1,0 +1,2270 @@
+[
+  {
+    "name": "[Dazn fonte 2] Evento 1 FHD",
+    "sid": "263798",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Evento 1 HD",
+    "sid": "263799",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Evento 1 SD",
+    "sid": "263800",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Evento 2 FHD",
+    "sid": "263801",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Evento 2 HD",
+    "sid": "263802",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Evento 2 SD",
+    "sid": "263803",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Evento 3 FHD",
+    "sid": "263804",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Evento 3 HD",
+    "sid": "263805",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Evento 3 SD",
+    "sid": "263806",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Evento 4 FHD",
+    "sid": "263807",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Evento 4 HD",
+    "sid": "263808",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Evento 4 SD",
+    "sid": "263809",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Evento 5 FHD",
+    "sid": "263810",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Evento 5 HD",
+    "sid": "263811",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Evento 5 SD",
+    "sid": "263812",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Evento 6 FHD",
+    "sid": "263813",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Evento 6 HD",
+    "sid": "263814",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Evento 6 SD",
+    "sid": "263815",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Evento 7 FHD",
+    "sid": "263816",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Evento 7 HD",
+    "sid": "263817",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Evento 7 SD",
+    "sid": "263818",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Evento 8 FHD",
+    "sid": "263819",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Evento 8 HD",
+    "sid": "263820",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Evento 8 SD",
+    "sid": "263821",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Evento 9 FHD",
+    "sid": "263822",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Evento 9 HD",
+    "sid": "263823",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Evento 9 SD",
+    "sid": "263824",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Evento 10 FHD",
+    "sid": "263825",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Evento 10 HD",
+    "sid": "263826",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Evento 10 SD",
+    "sid": "263827",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] BKT 1 FHD",
+    "sid": "263828",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] BKT 1 HD",
+    "sid": "263829",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] BKT 1 SD",
+    "sid": "263830",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] BKT 2 FHD",
+    "sid": "263831",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] BKT 2 HD",
+    "sid": "263832",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] BKT 2 SD",
+    "sid": "263833",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] BKT 3 FHD",
+    "sid": "263834",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] BKT 3 HD",
+    "sid": "263835",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] BKT 3 SD",
+    "sid": "263836",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] BKT 4 FHD",
+    "sid": "263837",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] BKT 4 HD",
+    "sid": "263838",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] BKT 4 SD",
+    "sid": "263839",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] BKT 5 FHD",
+    "sid": "263840",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] BKT 5 HD",
+    "sid": "263841",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] BKT 5 SD",
+    "sid": "263842",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] BKT 6 FHD",
+    "sid": "263843",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] BKT 6 HD",
+    "sid": "263844",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] BKT 6 SD",
+    "sid": "263845",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] BKT 7 FHD",
+    "sid": "263846",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] BKT 7 HD",
+    "sid": "263847",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] BKT 7 SD",
+    "sid": "263848",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] BKT 8 FHD",
+    "sid": "263849",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] BKT 8 HD",
+    "sid": "263850",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] BKT 8 SD",
+    "sid": "263851",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] BKT 9 FHD",
+    "sid": "263852",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] BKT 9 HD",
+    "sid": "263853",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] BKT 9 SD",
+    "sid": "263854",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] BKT 10 FHD",
+    "sid": "263855",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] BKT 10 HD",
+    "sid": "263856",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] BKT 10 SD",
+    "sid": "263857",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 1 FHD",
+    "sid": "263858",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 1 HD",
+    "sid": "263859",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 1 SD",
+    "sid": "263860",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 2 FHD",
+    "sid": "263861",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 2 HD",
+    "sid": "263862",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 2 SD",
+    "sid": "263863",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 3 FHD",
+    "sid": "263864",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 3 HD",
+    "sid": "263865",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 3 SD",
+    "sid": "263866",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 4 FHD",
+    "sid": "263867",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 4 HD",
+    "sid": "263868",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 4 SD",
+    "sid": "263869",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 5 FHD",
+    "sid": "263870",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 5 HD",
+    "sid": "263871",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 5 SD",
+    "sid": "263872",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 6 FHD",
+    "sid": "263873",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 6 HD",
+    "sid": "263874",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 6 SD",
+    "sid": "263875",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 7 FHD",
+    "sid": "263876",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 7 HD",
+    "sid": "263877",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 7 SD",
+    "sid": "263878",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 8 FHD",
+    "sid": "263879",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 8 HD",
+    "sid": "263880",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 8 SD",
+    "sid": "263881",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 9 FHD",
+    "sid": "263882",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 9 HD",
+    "sid": "263883",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 9 SD",
+    "sid": "263884",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 10 FHD",
+    "sid": "263885",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 10 HD",
+    "sid": "263886",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 10 SD",
+    "sid": "263887",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Basket 1 FHD",
+    "sid": "263888",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Basket 1 HD",
+    "sid": "263889",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Basket 1 SD",
+    "sid": "263890",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Basket 2 FHD",
+    "sid": "263891",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Basket 2 HD",
+    "sid": "263892",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Basket 2 SD",
+    "sid": "263893",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Basket 3 FHD",
+    "sid": "263894",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Basket 3 HD",
+    "sid": "263895",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Basket 3 SD",
+    "sid": "263896",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Basket 4 FHD",
+    "sid": "263897",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Basket 4 HD",
+    "sid": "263898",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Basket 4 SD",
+    "sid": "263899",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Basket 5 FHD",
+    "sid": "263900",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Basket 5 HD",
+    "sid": "263901",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Basket 5 SD",
+    "sid": "263902",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Basket 6 FHD",
+    "sid": "263903",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Basket 6 HD",
+    "sid": "263904",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Basket 6 SD",
+    "sid": "263905",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Basket 7 FHD",
+    "sid": "263906",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Basket 7 HD",
+    "sid": "263907",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Basket 7 SD",
+    "sid": "263908",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Basket 8 FHD",
+    "sid": "263909",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Basket 8 HD",
+    "sid": "263910",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Basket 8 SD",
+    "sid": "263911",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Basket 9 FHD",
+    "sid": "263912",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Basket 9 HD",
+    "sid": "263913",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Basket 9 SD",
+    "sid": "263914",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Basket 10 FHD",
+    "sid": "263915",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Basket 10 HD",
+    "sid": "263916",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] Basket 10 SD",
+    "sid": "263917",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] La Liga 1 FHD",
+    "sid": "263918",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] La Liga 1 HD",
+    "sid": "263919",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] La Liga 1 SD",
+    "sid": "263920",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] La Liga 2 FHD",
+    "sid": "263921",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] La Liga 2 HD",
+    "sid": "263922",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] La Liga 2 SD",
+    "sid": "263923",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] La Liga 3 FHD",
+    "sid": "263924",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] La Liga 3 HD",
+    "sid": "263925",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] La Liga 3 SD",
+    "sid": "263926",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] La Liga 4 FHD",
+    "sid": "263927",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] La Liga 4 HD",
+    "sid": "263928",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] La Liga 4 SD",
+    "sid": "263929",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] La Liga 5 FHD",
+    "sid": "263930",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] La Liga 5 HD",
+    "sid": "263931",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] La Liga 5 SD",
+    "sid": "263932",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] La Liga 6 FHD",
+    "sid": "263933",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] La Liga 6 HD",
+    "sid": "263934",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] La Liga 6 SD",
+    "sid": "263935",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] La Liga 7 FHD",
+    "sid": "263936",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] La Liga 7 HD",
+    "sid": "263937",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] La Liga 7 SD",
+    "sid": "263938",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] La Liga 8 FHD",
+    "sid": "263939",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] La Liga 8 HD",
+    "sid": "263940",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] La Liga 8 SD",
+    "sid": "263941",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] La Liga 9 FHD",
+    "sid": "263942",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] La Liga 9 HD",
+    "sid": "263943",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] La Liga 9 SD",
+    "sid": "263944",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] La Liga 10 FHD",
+    "sid": "263945",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] La Liga 10 HD",
+    "sid": "263946",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn fonte 2] La Liga 10 SD",
+    "sid": "263947",
+    "icon": "",
+    "category_id": "2219"
+  },
+  {
+    "name": "[Dazn] DAZN 1 SD",
+    "sid": "293074",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] DAZN 1 HD",
+    "sid": "293075",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] DAZN 1 FHD",
+    "sid": "293076",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 2 FHD",
+    "sid": "293077",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 2 HD",
+    "sid": "293078",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 2 SD",
+    "sid": "293079",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 3 FHD",
+    "sid": "293080",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 3 SD",
+    "sid": "293081",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 4 FHD",
+    "sid": "293082",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 4 HD",
+    "sid": "293083",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 4 SD",
+    "sid": "293084",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 5 FHD",
+    "sid": "293085",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 5 HD",
+    "sid": "293086",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 6 FHD",
+    "sid": "293087",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 6 HD",
+    "sid": "293088",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 6 SD",
+    "sid": "293089",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 7 FHD",
+    "sid": "293090",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 7 HD",
+    "sid": "293091",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 7 SD",
+    "sid": "293092",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 8 FHD",
+    "sid": "293093",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 8 HD",
+    "sid": "293094",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 8 SD",
+    "sid": "293095",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 9 FHD",
+    "sid": "293096",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 9 HD",
+    "sid": "293097",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 9 SD",
+    "sid": "293098",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 10 HD",
+    "sid": "293099",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn fonte 2] Dazn 10 SD",
+    "sid": "293100",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Unbeaten FHD",
+    "sid": "273805",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Unbeaten HD",
+    "sid": "273806",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Unbeaten SD",
+    "sid": "273807",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Matchroom Boxing FHD",
+    "sid": "273808",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Matchroom Boxing HD",
+    "sid": "273809",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Matchroom Boxing SD",
+    "sid": "273810",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Milan TV FHD",
+    "sid": "273811",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Milan TV HD",
+    "sid": "273812",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Milan TV SD",
+    "sid": "273813",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Motorvision TV FHD",
+    "sid": "273814",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Motorvision TV HD",
+    "sid": "273815",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Motorvision TV SD",
+    "sid": "273816",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] PDC Darts FHD",
+    "sid": "273817",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] PDC Darts HD",
+    "sid": "273818",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] PDC Darts SD",
+    "sid": "273819",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] PLL Network FHD",
+    "sid": "273820",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] PLL Network HD",
+    "sid": "273821",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] PLL Network SD",
+    "sid": "273822",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] PowerSports World FHD",
+    "sid": "273823",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] PowerSports World HD",
+    "sid": "273824",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] PowerSports World SD",
+    "sid": "273825",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Radio TV Serie A FHD",
+    "sid": "273826",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Radio TV Serie A HD",
+    "sid": "273827",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Radio TV Serie A SD",
+    "sid": "273828",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Red Bull TV FHD",
+    "sid": "273829",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Red Bull TV HD",
+    "sid": "273830",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Red Bull TV SD",
+    "sid": "273831",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Inter TV FHD",
+    "sid": "273832",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Inter TV HD",
+    "sid": "273833",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Inter TV SD",
+    "sid": "273834",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] ACL Cornhole TV FHD",
+    "sid": "273835",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] ACL Cornhole TV HD",
+    "sid": "273836",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] ACL Cornhole TV SD",
+    "sid": "273837",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Billiard TV FHD",
+    "sid": "273838",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Billiard TV HD",
+    "sid": "273839",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Billiard TV SD",
+    "sid": "273840",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Boxing TV FHD",
+    "sid": "273841",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Boxing TV HD",
+    "sid": "273842",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Boxing TV SD",
+    "sid": "273843",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Eurosport 1 FHD",
+    "sid": "273844",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Eurosport 1 HD",
+    "sid": "273845",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Eurosport 1 SD",
+    "sid": "273846",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Eurosport 2 FHD",
+    "sid": "273847",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Eurosport 2 HD",
+    "sid": "273848",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Eurosport 2 SD",
+    "sid": "273849",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 1 FHD",
+    "sid": "273850",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 1 HD",
+    "sid": "273851",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 1 SD",
+    "sid": "273852",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 10 FHD",
+    "sid": "273853",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 10 HD",
+    "sid": "273854",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 10 SD",
+    "sid": "273855",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 11 FHD",
+    "sid": "273856",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 11 HD",
+    "sid": "273857",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 11 SD",
+    "sid": "273858",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 12 FHD",
+    "sid": "273859",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 12 HD",
+    "sid": "273860",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 12 SD",
+    "sid": "273861",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 13 FHD",
+    "sid": "273862",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 13 HD",
+    "sid": "273863",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 13 SD",
+    "sid": "273864",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 14 FHD",
+    "sid": "273865",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 14 HD",
+    "sid": "273866",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 14 SD",
+    "sid": "273867",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 15 FHD",
+    "sid": "273868",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 15 HD",
+    "sid": "273869",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 15 SD",
+    "sid": "273870",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 16 FHD",
+    "sid": "273871",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 16 HD",
+    "sid": "273872",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 16 SD",
+    "sid": "273873",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 17 FHD",
+    "sid": "273874",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 17 HD",
+    "sid": "273875",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 17 SD",
+    "sid": "273876",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 18 FHD",
+    "sid": "273877",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 18 HD",
+    "sid": "273878",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 18 SD",
+    "sid": "273879",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 19 FHD",
+    "sid": "273880",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 19 HD",
+    "sid": "273881",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 19 SD",
+    "sid": "273882",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 2 FHD",
+    "sid": "273883",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 2 HD",
+    "sid": "273884",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 2 SD",
+    "sid": "273885",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 20 FHD",
+    "sid": "273886",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 20 HD",
+    "sid": "273887",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 20 SD",
+    "sid": "273888",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 21 FHD",
+    "sid": "273889",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 21 HD",
+    "sid": "273890",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 21 SD",
+    "sid": "273891",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 22 FHD",
+    "sid": "273892",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 22 HD",
+    "sid": "273893",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 22 SD",
+    "sid": "273894",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 23 FHD",
+    "sid": "273895",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 23 HD",
+    "sid": "273896",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 23 SD",
+    "sid": "273897",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 24 FHD",
+    "sid": "273898",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 24 HD",
+    "sid": "273899",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 24 SD",
+    "sid": "273900",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 25 FHD",
+    "sid": "273901",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 25 HD",
+    "sid": "273902",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 25 SD",
+    "sid": "273903",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 3 FHD",
+    "sid": "273904",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 3 HD",
+    "sid": "273905",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 3 SD",
+    "sid": "273906",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 4 FHD",
+    "sid": "273907",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 4 HD",
+    "sid": "273908",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 4 SD",
+    "sid": "273909",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 5 FHD",
+    "sid": "273910",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 5 HD",
+    "sid": "273911",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 5 SD",
+    "sid": "273912",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 6 FHD",
+    "sid": "273913",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 6 HD",
+    "sid": "273914",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 6 SD",
+    "sid": "273915",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 7 FHD",
+    "sid": "273916",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 7 HD",
+    "sid": "273917",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 7 SD",
+    "sid": "273918",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 8 FHD",
+    "sid": "273919",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 8 HD",
+    "sid": "273920",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 8 SD",
+    "sid": "273921",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 9 FHD",
+    "sid": "273922",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 9 HD",
+    "sid": "273923",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "[Dazn] Events 9 SD",
+    "sid": "273924",
+    "icon": "",
+    "category_id": "2011"
+  },
+  {
+    "name": "---------DAZN-EVENTI--VETRINA------",
+    "sid": "292663",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN-VETRINA-EVENTI",
+    "sid": "292664",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 1",
+    "sid": "292665",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 2",
+    "sid": "292666",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 3",
+    "sid": "292667",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 4",
+    "sid": "292668",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 5",
+    "sid": "292669",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 6",
+    "sid": "292670",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 7",
+    "sid": "292671",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 8",
+    "sid": "292672",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 9",
+    "sid": "292673",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 10",
+    "sid": "292674",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 11",
+    "sid": "292675",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 12",
+    "sid": "292676",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 13",
+    "sid": "292677",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 14",
+    "sid": "292678",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 15",
+    "sid": "292679",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 16",
+    "sid": "292680",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 17",
+    "sid": "292681",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 18",
+    "sid": "292682",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 19",
+    "sid": "292683",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 20",
+    "sid": "292684",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 21",
+    "sid": "292685",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 22",
+    "sid": "292686",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 23",
+    "sid": "292687",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 24",
+    "sid": "292688",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 25",
+    "sid": "292689",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 26",
+    "sid": "292690",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 27",
+    "sid": "292691",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 28",
+    "sid": "292692",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 29",
+    "sid": "292693",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 30",
+    "sid": "292694",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 31",
+    "sid": "292695",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 32",
+    "sid": "292696",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 33",
+    "sid": "292697",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 34",
+    "sid": "292698",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 35",
+    "sid": "292699",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 36",
+    "sid": "292700",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 37",
+    "sid": "292701",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 38",
+    "sid": "292702",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 39",
+    "sid": "292703",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 40",
+    "sid": "292704",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 41",
+    "sid": "292705",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 42",
+    "sid": "292706",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 43",
+    "sid": "292707",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 44",
+    "sid": "292708",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 45",
+    "sid": "292709",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 46",
+    "sid": "292710",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 47",
+    "sid": "292711",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 48",
+    "sid": "292712",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 49",
+    "sid": "292713",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "DAZN EVENTO 50",
+    "sid": "292714",
+    "icon": "",
+    "category_id": "657"
+  },
+  {
+    "name": "Amazon Prime FULL HD HERMES",
+    "sid": "137631",
+    "icon": "https://m.media-amazon.com/images/G/01/support_images/GUID-21C09ED9-332E-4D83-BEAC-2A81E3DC7B9D=1=it-IT=Normal.png",
+    "category_id": "1954"
+  },
+  {
+    "name": "Amazon Prime HD HERMES",
+    "sid": "137636",
+    "icon": "https://m.media-amazon.com/images/G/01/support_images/GUID-21C09ED9-332E-4D83-BEAC-2A81E3DC7B9D=1=it-IT=Normal.png",
+    "category_id": "1954"
+  },
+  {
+    "name": "Amazon Prime SD HERMES",
+    "sid": "137637",
+    "icon": "https://m.media-amazon.com/images/G/01/support_images/GUID-21C09ED9-332E-4D83-BEAC-2A81E3DC7B9D=1=it-IT=Normal.png",
+    "category_id": "1954"
+  },
+  {
+    "name": "*.*.*.*Champions Hermes *.*.*.*",
+    "sid": "134436",
+    "icon": "https://help.mediasetplay.it/hc/article_attachments/360024542680/positivo_colori.png",
+    "category_id": "1954"
+  },
+  {
+    "name": "Vetrina Champions League",
+    "sid": "134405",
+    "icon": "https://help.mediasetplay.it/hc/article_attachments/360024542680/positivo_colori.png",
+    "category_id": "1954"
+  },
+  {
+    "name": "Champions 1 Hermes",
+    "sid": "133888",
+    "icon": "https://help.mediasetplay.it/hc/article_attachments/360024542680/positivo_colori.png",
+    "category_id": "1954"
+  },
+  {
+    "name": "Champions 2 Hermes",
+    "sid": "133889",
+    "icon": "https://help.mediasetplay.it/hc/article_attachments/360024542680/positivo_colori.png",
+    "category_id": "1954"
+  },
+  {
+    "name": "Champions 3 Hermes",
+    "sid": "133890",
+    "icon": "https://help.mediasetplay.it/hc/article_attachments/360024542680/positivo_colori.png",
+    "category_id": "1954"
+  },
+  {
+    "name": "Champions 4 Hermes",
+    "sid": "133891",
+    "icon": "https://help.mediasetplay.it/hc/article_attachments/360024542680/positivo_colori.png",
+    "category_id": "1954"
+  },
+  {
+    "name": "Champions 5 Hermes",
+    "sid": "133892",
+    "icon": "https://help.mediasetplay.it/hc/article_attachments/360024542680/positivo_colori.png",
+    "category_id": "1954"
+  },
+  {
+    "name": "Champions 6 Hermes",
+    "sid": "133893",
+    "icon": "https://help.mediasetplay.it/hc/article_attachments/360024542680/positivo_colori.png",
+    "category_id": "1954"
+  },
+  {
+    "name": "Champions 7 Hermes",
+    "sid": "133894",
+    "icon": "https://help.mediasetplay.it/hc/article_attachments/360024542680/positivo_colori.png",
+    "category_id": "1954"
+  },
+  {
+    "name": "Champions 8 Hermes",
+    "sid": "133895",
+    "icon": "https://help.mediasetplay.it/hc/article_attachments/360024542680/positivo_colori.png",
+    "category_id": "1954"
+  },
+  {
+    "name": "Champions 9 Hermes",
+    "sid": "133896",
+    "icon": "https://help.mediasetplay.it/hc/article_attachments/360024542680/positivo_colori.png",
+    "category_id": "1954"
+  },
+  {
+    "name": "Champions 10 Hermes",
+    "sid": "133897",
+    "icon": "https://help.mediasetplay.it/hc/article_attachments/360024542680/positivo_colori.png",
+    "category_id": "1954"
+  },
+  {
+    "name": "Champions 11 Hermes",
+    "sid": "133898",
+    "icon": "https://help.mediasetplay.it/hc/article_attachments/360024542680/positivo_colori.png",
+    "category_id": "1954"
+  },
+  {
+    "name": "Champions 12 Hermes",
+    "sid": "133899",
+    "icon": "https://help.mediasetplay.it/hc/article_attachments/360024542680/positivo_colori.png",
+    "category_id": "1954"
+  },
+  {
+    "name": "Amazon Prime Hd (solo evento) HD",
+    "sid": "168463",
+    "icon": "",
+    "category_id": "2018"
+  },
+  {
+    "name": "Champions juventus FHD",
+    "sid": "168464",
+    "icon": "",
+    "category_id": "2018"
+  },
+  {
+    "name": "Champions juventus HD",
+    "sid": "168465",
+    "icon": "",
+    "category_id": "2018"
+  },
+  {
+    "name": "Champions juventus SD",
+    "sid": "168466",
+    "icon": "",
+    "category_id": "2018"
+  },
+  {
+    "name": "Champions Inter FHD",
+    "sid": "168467",
+    "icon": "",
+    "category_id": "2018"
+  },
+  {
+    "name": "Champions Inter HD",
+    "sid": "168468",
+    "icon": "",
+    "category_id": "2018"
+  },
+  {
+    "name": "Champions Inter SD",
+    "sid": "168469",
+    "icon": "",
+    "category_id": "2018"
+  },
+  {
+    "name": "Champions Milan FHD",
+    "sid": "168470",
+    "icon": "",
+    "category_id": "2018"
+  },
+  {
+    "name": "Champions Milan HD",
+    "sid": "168471",
+    "icon": "",
+    "category_id": "2018"
+  },
+  {
+    "name": "Champions Milan SD",
+    "sid": "168472",
+    "icon": "",
+    "category_id": "2018"
+  },
+  {
+    "name": "Champions Napoli FHD",
+    "sid": "168473",
+    "icon": "",
+    "category_id": "2018"
+  },
+  {
+    "name": "Champions Napoli HD",
+    "sid": "168474",
+    "icon": "",
+    "category_id": "2018"
+  }
+]

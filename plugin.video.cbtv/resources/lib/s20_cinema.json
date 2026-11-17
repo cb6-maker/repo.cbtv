@@ -1,0 +1,1436 @@
+[
+  {
+    "name": "*IT: Eagle Leone il Cane Fifone SD",
+    "sid": "165953",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*IT: SKY SPORT AEW / WWE HD",
+    "sid": "165954",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*IT: Discovery Dmax Sport WWE HD",
+    "sid": "165955",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*IT: ===== EAGLE CINEMA FULL HD =====",
+    "sid": "165956",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*IT: Eagle Cinema Comico Cult FHD",
+    "sid": "165957",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*IT: Eagle Super Pigiamini FHD",
+    "sid": "165958",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*IT: Eagle Tom e Jerry FHD",
+    "sid": "165959",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Super Pigiamini ꜰʜᴅ",
+    "sid": "165960",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Fantozzi Channel ᴴᴰ",
+    "sid": "165961",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Scuola di Polizia Channel",
+    "sid": "165962",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Disney Plus Film ᴴᴰ",
+    "sid": "165963",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Disney Plus Animation ᴴᴰ",
+    "sid": "165964",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: =====&gt; EAGLE CINEMA FULL ᴴᴰ &lt;======",
+    "sid": "165965",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Cinema Horror ꜰʜᴅ",
+    "sid": "165966",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Cinema Drammatico ꜰʜᴅ",
+    "sid": "165967",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Cinema Passione ꜰʜᴅ",
+    "sid": "165968",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Cinema Storico ꜰʜᴅ",
+    "sid": "165969",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Cinema Thriller ꜰʜᴅ",
+    "sid": "165970",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Cinema Comico Cult ꜰʜᴅ",
+    "sid": "165971",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Cinema Sorriso ꜰʜᴅ",
+    "sid": "165972",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Cinema Commedia ꜰʜᴅ",
+    "sid": "165973",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Cinema Fantastico ꜰʜᴅ",
+    "sid": "165974",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Cinema Avventura ꜰʜᴅ",
+    "sid": "165975",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Cinema Azione ꜰʜᴅ",
+    "sid": "165976",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Cinema Prima Visione ꜰʜᴅ",
+    "sid": "165977",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Cinema Animazione ꜰʜᴅ",
+    "sid": "165978",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Cinema Film in Sala  ᴴᴰ (qualita camera)",
+    "sid": "165979",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Cinema Mitologia ᴴᴰ",
+    "sid": "165980",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Le Fiabe Disney ᴴᴰ",
+    "sid": "165981",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Masha e Orso ꜰʜᴅ",
+    "sid": "165982",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Fiabe Magiche ᴴᴰ",
+    "sid": "165983",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Peppa Pig ꜰʜᴅ",
+    "sid": "165984",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Disney Topolino Paperino e Pippo ᴴᴰ",
+    "sid": "165985",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Looney Toons ᴴᴰ",
+    "sid": "165986",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Gomorra Stagione 1 ꜰʜᴅ HEVC",
+    "sid": "165987",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Totò Channel ᴴᴰ",
+    "sid": "165988",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Aldo Giovanni e Giacomo Channel",
+    "sid": "165989",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: EAGLE 4ᴷ ᵁᴴᴰ (IT-DE-EN-multilanguage)",
+    "sid": "165990",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Cinema Religion ᴴᴰ",
+    "sid": "165991",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Cinema Western ꜰʜᴅ",
+    "sid": "165992",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Cinema Spaghetti Western ꜰʜᴅ",
+    "sid": "165993",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Cinema 007 ꜰʜᴅ HEVC H265 (dual audio ITA/ENG)",
+    "sid": "165994",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Cinema Bud Spencer ᴴᴰ",
+    "sid": "165995",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: La Casa di Topolino Channel",
+    "sid": "165996",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Dragon Ball Z Channel ꜰʜᴅ  (Audio-1.ITA-2.ENG)",
+    "sid": "165997",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Lupin III Channel",
+    "sid": "165998",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Nature Discovery 4ᴷ ᵁᴴᴰ (double audio)",
+    "sid": "165999",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Nature Explorer ꜰʜᴅ",
+    "sid": "166000",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Brickleberry ꜰʜᴅ 24H",
+    "sid": "166001",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle American Dad 24H",
+    "sid": "166002",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Peter Griffin 24H",
+    "sid": "166003",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle The Cleveland Show 24H",
+    "sid": "166004",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Cinepanettone ᴴᴰ",
+    "sid": "166005",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Cinema Biografico ꜰʜᴅ",
+    "sid": "166006",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Cinema Famiglia ꜰʜᴅ",
+    "sid": "166007",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Cinema Fantascienza ꜰʜᴅ",
+    "sid": "166008",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ:  How i Met You Mother ꜰʜᴅ",
+    "sid": "166009",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: The Big Bang Theory ꜰʜᴅ",
+    "sid": "166010",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Scooby-Doo ꜰʜᴅ",
+    "sid": "166011",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Me-contro-Te Channel ᴴᴰ",
+    "sid": "166012",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Ghost Adventures-Cacciatori di fantasmi channel",
+    "sid": "166013",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Il Trono di Spade Channel ꜰʜᴅ",
+    "sid": "166014",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle 20thCenturyFox ꜰʜᴅ",
+    "sid": "166015",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle MARVEL ꜰʜᴅ",
+    "sid": "166016",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Avengers Grimm Channel ꜰʜᴅ",
+    "sid": "166017",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: G.I.JOE Channel ꜰʜᴅ",
+    "sid": "166018",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Harry Potter Channel ꜰʜᴅ",
+    "sid": "166019",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Hunger Games Channel ꜰʜᴅ",
+    "sid": "166020",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Il Re Scorpione Channel ꜰʜᴅ",
+    "sid": "166021",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: IL Signore Degli Anelli Channel ꜰʜᴅ",
+    "sid": "166022",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Indiana Jones Channel ꜰʜᴅ",
+    "sid": "166023",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: IP MAN Channel ꜰʜᴅ",
+    "sid": "166024",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Karate Kid Channel ꜰʜᴅ",
+    "sid": "166025",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Kung Fu Panda Film Channel ꜰʜᴅ",
+    "sid": "166026",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Men in Black Channel ꜰʜᴅ",
+    "sid": "166027",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Mission impossible Channel ꜰʜᴅ",
+    "sid": "166028",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Pirati dei Caraibi Channel ꜰʜᴅ",
+    "sid": "166029",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Pirati dei Caraibi Channel 4ᴷ ᵁᴴᴰ",
+    "sid": "166030",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Rambo Channel ꜰʜᴅ",
+    "sid": "166031",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Rocky Channel ꜰʜᴅ",
+    "sid": "166032",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Terminator Channel ꜰʜᴅ",
+    "sid": "166033",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: The Bourne Channel ꜰʜᴅ",
+    "sid": "166034",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Transformers Channel ꜰʜᴅ",
+    "sid": "166035",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Twilight Channel ꜰʜᴅ",
+    "sid": "166036",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Star Wars Channel ꜰʜᴅ",
+    "sid": "166037",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Bambini Bing ᴴᴰ",
+    "sid": "166038",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Fast and Furious Channel ꜰʜᴅ",
+    "sid": "166039",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: I Mercenari-The Expendables Channel HEVC",
+    "sid": "166040",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: I Mercenari-The Expendables Channel 4ᴷ ᵁᴴᴰ",
+    "sid": "166041",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Jean Claude Van Damme Channel ꜰʜᴅ",
+    "sid": "166042",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Underworld  Channel ꜰʜᴅ",
+    "sid": "166043",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Kung Fu Panda Series Channel ᴴᴰ",
+    "sid": "166044",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle DC's Legends of Tomorrow Channel ꜰʜᴅ",
+    "sid": "166045",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ:  Lo Hobbit Channel ꜰʜᴅ",
+    "sid": "166046",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Disney Plus Film 2 ᴴᴰ",
+    "sid": "166047",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Disney Plus Nature ᴴᴰ",
+    "sid": "166048",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Louis De Funes Channel ᴴᴰ",
+    "sid": "166049",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Paolo Villagio Channel ᴴᴰ",
+    "sid": "166050",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Nino D'Angelo Channel ᴴᴰ",
+    "sid": "166051",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Massimo Troisi Channel ᴴᴰ",
+    "sid": "166052",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Gigi Proietti Channel ᴴᴰ",
+    "sid": "166053",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Franco e Ciccio Channel ᴴᴰ",
+    "sid": "166054",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Adriano Celentano Channel ᴴᴰ",
+    "sid": "166055",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Alvaro Vitali-Pierino Channel ᴴᴰ",
+    "sid": "166056",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Alessandro Siani Channel ᴴᴰ",
+    "sid": "166057",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Jean Reno Channel ᴴᴰ",
+    "sid": "166058",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Alberto Sordi Channel ᴴᴰ",
+    "sid": "166059",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Diego Abatantuono Channel ᴴᴰ",
+    "sid": "166060",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Carlo Verdone Channel ᴴᴰ",
+    "sid": "166061",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Checco Zalone Channel ᴴᴰ",
+    "sid": "166062",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Christian De Sica Channel ᴴᴰ",
+    "sid": "166063",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Gomorra Stagione 2 ꜰʜᴅ HEVC",
+    "sid": "166064",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Gomorra Stagione 3 ꜰʜᴅ HEVC",
+    "sid": "166065",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Gomorra Stagione 4 ꜰʜᴅ HEVC",
+    "sid": "166066",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Gomorra Stagione 5 ꜰʜᴅ HEVC",
+    "sid": "166067",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Barbapapa 1970 channel ᴴᴰ",
+    "sid": "166068",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Barbapapa 2018 channel ᴴᴰ",
+    "sid": "166069",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Jason Statham Channel ꜰʜᴅ",
+    "sid": "166070",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Elvis Presley Channel ꜰʜᴅ (multi-audio)",
+    "sid": "166071",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Liam Neeson Channel ꜰʜᴅ (multi-audio)",
+    "sid": "166072",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Il capo dei capi Channel ꜰʜᴅ",
+    "sid": "166073",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "*ᴵᵀ: Eagle Dragon Ball Z Channel ꜰʜᴅ  (Audio-1.ITA-2.ENG)",
+    "sid": "166074",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "Sky Cinema Uno FHD",
+    "sid": "167454",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Sky_Cinema_Uno_HD_-_Logo_2021.svg/2560px-Sky_Cinema_Uno_HD_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Uno HD",
+    "sid": "167456",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Sky_Cinema_Uno_HD_-_Logo_2021.svg/2560px-Sky_Cinema_Uno_HD_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Uno SD",
+    "sid": "167455",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Sky_Cinema_Uno_-_Logo_2021.svg/2560px-Sky_Cinema_Uno_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Uno +1 HD",
+    "sid": "167457",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Sky_Cinema_Uno_HD_-_Logo_2021.svg/2560px-Sky_Cinema_Uno_HD_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Uno H265",
+    "sid": "167458",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Sky_Cinema_Uno_HD_-_Logo_2021.svg/2560px-Sky_Cinema_Uno_HD_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Eagle Cinema Uno FHD",
+    "sid": "167459",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "Sky Cinema Due FHD",
+    "sid": "167462",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Sky_Cinema_Due_HD_-_Logo_2019.svg/2560px-Sky_Cinema_Due_HD_-_Logo_2019.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Due HD",
+    "sid": "167460",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Sky_Cinema_Due_HD_-_Logo_2019.svg/2560px-Sky_Cinema_Due_HD_-_Logo_2019.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Due SD",
+    "sid": "167461",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Sky_Cinema_Due_-_Logo_2021.svg/1280px-Sky_Cinema_Due_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Due +1 HD",
+    "sid": "167463",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Sky_Cinema_Due_HD_-_Logo_2019.svg/2560px-Sky_Cinema_Due_HD_-_Logo_2019.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Due H265",
+    "sid": "167464",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Sky_Cinema_Due_HD_-_Logo_2019.svg/2560px-Sky_Cinema_Due_HD_-_Logo_2019.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Eagle Cinema Due FHD",
+    "sid": "167465",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "Sky Cinema Collection FHD",
+    "sid": "167466",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Sky_Cinema_Collection_HD_-_Logo_2021.svg/2560px-Sky_Cinema_Collection_HD_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Collection SD",
+    "sid": "167467",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Sky_Cinema_Collection_-_Logo_2021.svg/2560px-Sky_Cinema_Collection_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Sci-Fi +1 HD",
+    "sid": "167468",
+    "icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUwe3JaBjPWDBNecYCMeLYldH-0JVoP8Kc2A&s",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Sci-Fi H265",
+    "sid": "167469",
+    "icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUwe3JaBjPWDBNecYCMeLYldH-0JVoP8Kc2A&s",
+    "category_id": "38"
+  },
+  {
+    "name": "Eagle Cinema Sci FI FHD",
+    "sid": "167470",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "Sky Cinema Family HD",
+    "sid": "167471",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Sky_Cinema_Action_HD_-_Logo_2021.svg/2560px-Sky_Cinema_Action_HD_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Family SD",
+    "sid": "167472",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Sky_Cinema_Family_-_Logo_2021.svg/2560px-Sky_Cinema_Family_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Family FHD",
+    "sid": "167473",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Sky_Cinema_Action_HD_-_Logo_2021.svg/2560px-Sky_Cinema_Action_HD_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Family +1 HD",
+    "sid": "167474",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Sky_Cinema_Action_HD_-_Logo_2021.svg/2560px-Sky_Cinema_Action_HD_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Family H265",
+    "sid": "167475",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Sky_Cinema_Action_HD_-_Logo_2021.svg/2560px-Sky_Cinema_Action_HD_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Action HD",
+    "sid": "167476",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Sky_Cinema_Action_HD_-_Logo_2021.svg/2560px-Sky_Cinema_Action_HD_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Action SD",
+    "sid": "167477",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Sky_Cinema_Action_-_Logo_2021.svg/2560px-Sky_Cinema_Action_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Action FHD",
+    "sid": "167478",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Sky_Cinema_Action_HD_-_Logo_2021.svg/2560px-Sky_Cinema_Action_HD_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Action +1 HD",
+    "sid": "167479",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Sky_Cinema_Action_HD_-_Logo_2021.svg/2560px-Sky_Cinema_Action_HD_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Action H265",
+    "sid": "167480",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Sky_Cinema_Action_HD_-_Logo_2021.svg/2560px-Sky_Cinema_Action_HD_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Eagle Cinema Action FHD",
+    "sid": "167481",
+    "icon": "",
+    "category_id": "2249"
+  },
+  {
+    "name": "Sky Cinema Suspense HD",
+    "sid": "167482",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Sky_Cinema_Suspense_HD_-_Logo_2021.svg/2560px-Sky_Cinema_Suspense_HD_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Suspense SD",
+    "sid": "167483",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Sky_Cinema_Suspense_-_Logo_2021.svg/2560px-Sky_Cinema_Suspense_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Suspense FHD",
+    "sid": "167484",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Sky_Cinema_Suspense_HD_-_Logo_2021.svg/2560px-Sky_Cinema_Suspense_HD_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Suspense +1 HD",
+    "sid": "167485",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Sky_Cinema_Suspense_HD_-_Logo_2021.svg/2560px-Sky_Cinema_Suspense_HD_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Suspance H265",
+    "sid": "167486",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Sky_Cinema_Suspense_HD_-_Logo_2021.svg/2560px-Sky_Cinema_Suspense_HD_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Romance FHD",
+    "sid": "167487",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Sky_Cinema_Romance_HD_-_Logo_2021.svg/1200px-Sky_Cinema_Romance_HD_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Romance HD",
+    "sid": "167488",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Sky_Cinema_Romance_HD_-_Logo_2021.svg/1200px-Sky_Cinema_Romance_HD_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Romance +1 HD",
+    "sid": "167489",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Sky_Cinema_Romance_HD_-_Logo_2021.svg/1200px-Sky_Cinema_Romance_HD_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Romance Sd",
+    "sid": "167490",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Sky_Cinema_Romance_-_Logo_2021.svg/2560px-Sky_Cinema_Romance_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Romance H265",
+    "sid": "167491",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Sky_Cinema_Romance_HD_-_Logo_2021.svg/1200px-Sky_Cinema_Romance_HD_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Drama HD",
+    "sid": "167492",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Sky_Cinema_Drama_HD_-_Logo_2021.svg/2560px-Sky_Cinema_Drama_HD_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Drama SD",
+    "sid": "167493",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Sky_Cinema_Drama_-_Logo_2021.svg/2560px-Sky_Cinema_Drama_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Drama FHD",
+    "sid": "167494",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Sky_Cinema_Drama_HD_-_Logo_2021.svg/2560px-Sky_Cinema_Drama_HD_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Drama +1 HD",
+    "sid": "167495",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Sky_Cinema_Drama_HD_-_Logo_2021.svg/2560px-Sky_Cinema_Drama_HD_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Drama H265",
+    "sid": "167496",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Sky_Cinema_Drama_HD_-_Logo_2021.svg/2560px-Sky_Cinema_Drama_HD_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Comedy HD",
+    "sid": "167497",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Sky_Cinema_Comedy_HD_-_Logo_2021.svg/2560px-Sky_Cinema_Comedy_HD_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Comedy SD",
+    "sid": "167498",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Sky_Cinema_Comedy_-_Logo_2021.svg/2560px-Sky_Cinema_Comedy_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Comedy FHD",
+    "sid": "167499",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Sky_Cinema_Comedy_HD_-_Logo_2021.svg/2560px-Sky_Cinema_Comedy_HD_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Comedy +1 HD",
+    "sid": "167500",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Sky_Cinema_Comedy_HD_-_Logo_2021.svg/2560px-Sky_Cinema_Comedy_HD_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "Sky Cinema Comedy H265",
+    "sid": "167501",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Sky_Cinema_Comedy_HD_-_Logo_2021.svg/2560px-Sky_Cinema_Comedy_HD_-_Logo_2021.svg.png",
+    "category_id": "38"
+  },
+  {
+    "name": "◢✠◤⭐ ----- SKY-CINEMA----- ⭐◢✠◤",
+    "sid": "254256",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "Sky Cinema Uno 4K",
+    "sid": "254257",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "SKy Cinema Uno HD",
+    "sid": "254258",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "Sky Cinema Uno SD",
+    "sid": "254259",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "Sky Cinema Due FHD",
+    "sid": "254260",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "Sky Cinema Due HD",
+    "sid": "254261",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "Sky Cinema Due SD",
+    "sid": "254262",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "Sky Cinema Action FHD",
+    "sid": "254263",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "Sky Cinema Action HD",
+    "sid": "254264",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "Sky Cinema Action SD",
+    "sid": "254265",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "Sky Cinema Collection FHD",
+    "sid": "254266",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "Sky Cinema Collection HD",
+    "sid": "254267",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "Sky Cinema Collection SD",
+    "sid": "254268",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "Sky Cinema Comedy FHD",
+    "sid": "254269",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "Sky Cinema Comedy HD",
+    "sid": "254270",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "Sky Cinema Comedy SD",
+    "sid": "254271",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "Sky Cinema Drama FHD",
+    "sid": "254272",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "Sky Cinema Drama HD",
+    "sid": "254273",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "Sky Cinema Drama SD",
+    "sid": "254274",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "Sky Cinema Family FHD",
+    "sid": "254275",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "Sky Cinema Family HD",
+    "sid": "254276",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "Sky Cinema Family SD",
+    "sid": "254277",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "Sky Cinema Romance FHD",
+    "sid": "254278",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "Sky Cinema Romance HD",
+    "sid": "254279",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "Sky Cinema Romance SD",
+    "sid": "254280",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "Sky Cinema Suspense FHD",
+    "sid": "254281",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "Sky Cinema Suspense HD",
+    "sid": "254282",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "Sky Cinema Suspense SD",
+    "sid": "254283",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "Pulse  Tv Cinema",
+    "sid": "254284",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "Pulse Cinema animazione",
+    "sid": "254285",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "Pulse TV  CINEMA HORROR",
+    "sid": "254286",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "Pulse Cinema Comedy",
+    "sid": "254287",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "ToTò Channel",
+    "sid": "254288",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "RAMBO-CHANELL",
+    "sid": "254289",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "rocky-channel",
+    "sid": "254290",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "cinema oscar",
+    "sid": "254291",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "cinema-panettone",
+    "sid": "254292",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "CINEMA-007 CHANNEL",
+    "sid": "254293",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "MISSION-IMPOSSIBLE-CHANELL",
+    "sid": "254294",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "Fast & Furious CHANELL",
+    "sid": "254295",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "CINEMA D AUTORE",
+    "sid": "254296",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "CINEMA  WESTERN",
+    "sid": "254297",
+    "icon": "",
+    "category_id": "2311"
+  },
+  {
+    "name": "Sky Cinema Uno (FHD-R)",
+    "sid": "298051",
+    "icon": "",
+    "category_id": "2329"
+  },
+  {
+    "name": "Sky Cinema Uno (HD-R)",
+    "sid": "298050",
+    "icon": "",
+    "category_id": "2329"
+  },
+  {
+    "name": "Sky Cinema Uno (SD-R)",
+    "sid": "298049",
+    "icon": "",
+    "category_id": "2329"
+  },
+  {
+    "name": "Sky Cinema Collection (FHD-R)",
+    "sid": "298054",
+    "icon": "",
+    "category_id": "2329"
+  },
+  {
+    "name": "Sky Cinema Collection (HD-R)",
+    "sid": "298053",
+    "icon": "",
+    "category_id": "2329"
+  },
+  {
+    "name": "Sky Cinema Collection (SD-R)",
+    "sid": "298052",
+    "icon": "",
+    "category_id": "2329"
+  },
+  {
+    "name": "Sky Cinema Comedy (FHD-R)",
+    "sid": "298057",
+    "icon": "",
+    "category_id": "2329"
+  },
+  {
+    "name": "Sky Cinema Comedy (HD-R)",
+    "sid": "298056",
+    "icon": "",
+    "category_id": "2329"
+  },
+  {
+    "name": "Sky Cinema Comedy (SD-R)",
+    "sid": "298055",
+    "icon": "",
+    "category_id": "2329"
+  },
+  {
+    "name": "Sky Cinema Action (FHD-R)",
+    "sid": "298060",
+    "icon": "",
+    "category_id": "2329"
+  },
+  {
+    "name": "Sky Cinema Action (HD-R)",
+    "sid": "298059",
+    "icon": "",
+    "category_id": "2329"
+  },
+  {
+    "name": "Sky Cinema Action (SD-R)",
+    "sid": "298058",
+    "icon": "",
+    "category_id": "2329"
+  },
+  {
+    "name": "Sky Cinema Stories (FHD-R)",
+    "sid": "298063",
+    "icon": "",
+    "category_id": "2329"
+  },
+  {
+    "name": "Sky Cinema Stories (HD-R)",
+    "sid": "298062",
+    "icon": "",
+    "category_id": "2329"
+  },
+  {
+    "name": "Sky Cinema Stories (SD-R)",
+    "sid": "298061",
+    "icon": "",
+    "category_id": "2329"
+  },
+  {
+    "name": "Sky Cinema Illumination (FHD-R)",
+    "sid": "298066",
+    "icon": "",
+    "category_id": "2329"
+  },
+  {
+    "name": "Sky Cinema Illumination (HD-R)",
+    "sid": "298065",
+    "icon": "",
+    "category_id": "2329"
+  },
+  {
+    "name": "Sky Cinema Illumination (SD-R)",
+    "sid": "298064",
+    "icon": "",
+    "category_id": "2329"
+  },
+  {
+    "name": "Sky Cinema Romance (FHD-R)",
+    "sid": "298069",
+    "icon": "",
+    "category_id": "2329"
+  },
+  {
+    "name": "Sky Cinema Romance (HD-R)",
+    "sid": "298068",
+    "icon": "",
+    "category_id": "2329"
+  },
+  {
+    "name": "Sky Cinema Romance (SD-R)",
+    "sid": "298067",
+    "icon": "",
+    "category_id": "2329"
+  },
+  {
+    "name": "Sky Cinema Suspense (FHD-R)",
+    "sid": "298072",
+    "icon": "",
+    "category_id": "2329"
+  },
+  {
+    "name": "Sky Cinema Suspense (HD-R)",
+    "sid": "298071",
+    "icon": "",
+    "category_id": "2329"
+  },
+  {
+    "name": "Sky Cinema Suspense (SD-R)",
+    "sid": "298070",
+    "icon": "",
+    "category_id": "2329"
+  },
+  {
+    "name": "Sky Cinema Drama (FHD-R)",
+    "sid": "298075",
+    "icon": "",
+    "category_id": "2329"
+  },
+  {
+    "name": "Sky Cinema Drama (HD-R)",
+    "sid": "298074",
+    "icon": "",
+    "category_id": "2329"
+  },
+  {
+    "name": "Sky Cinema Drama (SD-R)",
+    "sid": "298073",
+    "icon": "",
+    "category_id": "2329"
+  }
+]

@@ -1,0 +1,1994 @@
+[
+  {
+    "name": "Sky Sport 24 H265",
+    "sid": "167385",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport 24 FHD",
+    "sid": "167383",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport 24 HD",
+    "sid": "167381",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport 24 SD",
+    "sid": "167382",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport 24 +1 HD",
+    "sid": "167384",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport Uno H265",
+    "sid": "167376",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport Uno FHD",
+    "sid": "167377",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport Uno HD",
+    "sid": "167378",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky sport Uno SD",
+    "sid": "167379",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport Uno +1 HD",
+    "sid": "167380",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport Arena H265",
+    "sid": "167390",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport Arena FHD",
+    "sid": "167388",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport Arena HD",
+    "sid": "167386",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport Arena SD",
+    "sid": "167387",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport Arena +1 HD",
+    "sid": "167389",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport Action H265",
+    "sid": "167395",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport Action FHD",
+    "sid": "167392",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport Action HD",
+    "sid": "167391",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport Action SD",
+    "sid": "167393",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport Action +1 HD",
+    "sid": "167394",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport Footbal H265",
+    "sid": "167400",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport Football FHD",
+    "sid": "167398",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport Football HD",
+    "sid": "167396",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport Football SD",
+    "sid": "167397",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport Football +1 HD",
+    "sid": "167399",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Now Tv Extra Fhd",
+    "sid": "184536",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Now Tv Extra Hd",
+    "sid": "184537",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Now Tv Extra Sd",
+    "sid": "184538",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport Tennis H265",
+    "sid": "167405",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky sport Tennis Fhd",
+    "sid": "167402",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport tennis Hd",
+    "sid": "167401",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport Tennis Sd",
+    "sid": "167403",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport tennis +1 HD",
+    "sid": "167404",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport F1 H265",
+    "sid": "167410",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport F1 FHD",
+    "sid": "167408",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport F1 HD",
+    "sid": "167406",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport F1 SD",
+    "sid": "167407",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport F1 +1 HD",
+    "sid": "167409",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport Moto Gp H265",
+    "sid": "167415",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport MotoGp FHD",
+    "sid": "167413",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport MotoGp HD",
+    "sid": "167411",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport MotoGp SD",
+    "sid": "167412",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport MotoGp +1 HD",
+    "sid": "167414",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport NBA FHD",
+    "sid": "167418",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport NBA HD",
+    "sid": "167416",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky sport NBA SD",
+    "sid": "167417",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sky Sport NBA +1 HD",
+    "sid": "167419",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sport Italia HD",
+    "sid": "167420",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sport Italia Solo Calcio",
+    "sid": "167421",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sport Italia Plus",
+    "sid": "167422",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sport Italia Live 24",
+    "sid": "167423",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Sport Italia live",
+    "sid": "167424",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Super Tennis FHD",
+    "sid": "167425",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Super Tennis FHd",
+    "sid": "167426",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Bike Fhd",
+    "sid": "167427",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "UnireSat Fhd",
+    "sid": "167428",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Class Horse TV FHD",
+    "sid": "167429",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Motor Trend FHD",
+    "sid": "167430",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "Motor Trend HD",
+    "sid": "167431",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "top calcio 24",
+    "sid": "167432",
+    "icon": "",
+    "category_id": "2012"
+  },
+  {
+    "name": "⭐ ----- SKY SPORT ----- ⭐",
+    "sid": "254163",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport 24 FHD",
+    "sid": "254164",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport 24 HD",
+    "sid": "254165",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport 24 SD",
+    "sid": "254166",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport uno 4K",
+    "sid": "254167",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport uno FHD",
+    "sid": "254168",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport uno HD",
+    "sid": "254169",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport uno SD",
+    "sid": "254170",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport GOLF FHD",
+    "sid": "254171",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport GOLF HD",
+    "sid": "254172",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport GOLF SD",
+    "sid": "254173",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport Arena FHD",
+    "sid": "254174",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport Arena HD",
+    "sid": "254175",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport Arena SD",
+    "sid": "254176",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport F1 4K",
+    "sid": "254177",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport F1 FHD",
+    "sid": "254178",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport F1 HD",
+    "sid": "254179",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport F1 SD",
+    "sid": "254180",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport Max  FHD",
+    "sid": "254181",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport Max HD",
+    "sid": "254182",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport Max SD",
+    "sid": "254183",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport MotoGP 4K",
+    "sid": "254184",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport MotoGP FHD",
+    "sid": "254185",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport MotoGP HD",
+    "sid": "254186",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport MotoGP SD",
+    "sid": "254187",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport NBA FHD",
+    "sid": "254188",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport NBA HD",
+    "sid": "254189",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport NBA SD",
+    "sid": "254190",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport Tennis FHD",
+    "sid": "254191",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport Tennis HD",
+    "sid": "254192",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport Tennis SD",
+    "sid": "254193",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "EUROSPORT 1 HD",
+    "sid": "254194",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "EUROSPORT 1 SD",
+    "sid": "254195",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "EUROSPORT 2 HD",
+    "sid": "254196",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "EUROSPORT 2 SD",
+    "sid": "254197",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "SI HD PLUS",
+    "sid": "254198",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "SI SPORT ITALIA  SOLO CALCIO",
+    "sid": "254199",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "SI SPORT ITALIA LIVE 24",
+    "sid": "254200",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "SI SPORT ITALIA  HD plus",
+    "sid": "254201",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "RED BULL TV FHD",
+    "sid": "254202",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "SUPER TENNIS FHD",
+    "sid": "254203",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Telecolor-CATANIA",
+    "sid": "254204",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Horse Tv HD",
+    "sid": "254205",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "SKY ACI SPORT TV FHD",
+    "sid": "254206",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Blue Sport 1 HD",
+    "sid": "254207",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Lazio chanell",
+    "sid": "254208",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "BIKE CHANNEL FHD",
+    "sid": "254209",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "SI SPORT ITALIA  PLUS",
+    "sid": "254210",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "EQU TV",
+    "sid": "254211",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "TOP CALCIO 24 HD",
+    "sid": "254212",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Calcio Napoli 24 TV",
+    "sid": "254213",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "MS MOTOR TV",
+    "sid": "254214",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "EUROSPORT 3 HD",
+    "sid": "254215",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "EUROSPORT 4 HD",
+    "sid": "254216",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "EUROSPORT 5 HD",
+    "sid": "254217",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "EUROSPORT 6 HD",
+    "sid": "254218",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "NFL NETWORK FHD",
+    "sid": "254219",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "EUROSPORT 1 FHD",
+    "sid": "254220",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "EUROSPORT 2 FHD",
+    "sid": "254221",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "SUPER TENNIS HD",
+    "sid": "254222",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Onboard mix",
+    "sid": "254223",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Onboard mix 2",
+    "sid": "254224",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Juventus tv",
+    "sid": "254225",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Rai Sport  UNO  PLUS HD",
+    "sid": "254226",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "MOLA TV LIVE",
+    "sid": "254227",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "MOLA TV 2",
+    "sid": "254228",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "MOLA TV 3",
+    "sid": "254229",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "MOLA TV  4",
+    "sid": "254230",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "TOP PLANET",
+    "sid": "254231",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "ATP TENNIS PASS LIVE 1",
+    "sid": "254232",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "ATP TENNIS PASS LIVE 2",
+    "sid": "254233",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "ATP TENNIS PASS LIVE 3",
+    "sid": "254234",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "ATP TENNIS PASS LIVE 4",
+    "sid": "254235",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "ATP TENNIS PASS LIVE 5",
+    "sid": "254236",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "DISCOVERY PLUS   SPORT 1",
+    "sid": "254237",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "DISCOVERY PLUS   2 SPORT",
+    "sid": "254238",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "DISCOVERY PLUS  3 SPORT",
+    "sid": "254239",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "DISCOVERY PLUS   4 SPORT",
+    "sid": "254240",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "DISCOVERY PLUS   5  SPORT",
+    "sid": "254241",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "SERIE A RADIOTV LIVE",
+    "sid": "254242",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "vivo azzurro",
+    "sid": "254243",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "MOLA TV 5",
+    "sid": "254244",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "PULSE LIVE  EVENT  CHANNEL",
+    "sid": "254245",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "SI SPORT ITALIA PRIMAVERA",
+    "sid": "254246",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "MOLA TV  1",
+    "sid": "254247",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "MOLA TV  6",
+    "sid": "254248",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "MOLA TV 7",
+    "sid": "254249",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "MOLA TV 8",
+    "sid": "254250",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Rai Sport + UHD",
+    "sid": "254251",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport Mix HD",
+    "sid": "254252",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport Legend HD",
+    "sid": "254253",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport Legend SD",
+    "sid": "254254",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport Mix SD",
+    "sid": "254255",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "RALLY TV",
+    "sid": "277561",
+    "icon": "",
+    "category_id": "2310"
+  },
+  {
+    "name": "Sky Sport 24 (FHD-R)",
+    "sid": "298015",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport 24 (HD-R)",
+    "sid": "298014",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport 24 (SD-R)",
+    "sid": "298013",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport Uno (FHD-R)",
+    "sid": "298018",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport Uno (HD-R)",
+    "sid": "298017",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport Uno (SD-R)",
+    "sid": "298016",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport F1 (FHD-R)",
+    "sid": "298021",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport F1 (HD-R)",
+    "sid": "298020",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport F1 (SD-R)",
+    "sid": "298019",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport Calcio (FHD-R)",
+    "sid": "298024",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport Calcio (HD-R)",
+    "sid": "298023",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport Calcio (SD-R)",
+    "sid": "298022",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport Tennis (FHD-R)",
+    "sid": "298027",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport Tennis (HD-R)",
+    "sid": "298026",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport Tennis (SD-R)",
+    "sid": "298025",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport MotoGP (FHD-R)",
+    "sid": "298030",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport MotoGP (HD-R)",
+    "sid": "298029",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport MotoGP (SD-R)",
+    "sid": "298028",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport Arena (FHD-R)",
+    "sid": "298033",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport Arena (HD-R)",
+    "sid": "298032",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport Arena (SD-R)",
+    "sid": "298031",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport Max (FHD-R)",
+    "sid": "298036",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport Max (HD-R)",
+    "sid": "298035",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport Max (SD-R)",
+    "sid": "298034",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport Basket (FHD-R)",
+    "sid": "298039",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport Basket (HD-R)",
+    "sid": "298038",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport Basket (SD-R)",
+    "sid": "298037",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport Legend (FHD-R)",
+    "sid": "298042",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport Legend (HD-R)",
+    "sid": "298041",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport Legend (SD-R)",
+    "sid": "298040",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport Mix (FHD-R)",
+    "sid": "298045",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport Mix (HD-R)",
+    "sid": "298044",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport Mix (SD-R)",
+    "sid": "298043",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport Golf (FHD-R)",
+    "sid": "298048",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport Golf (HD-R)",
+    "sid": "298047",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "Sky Sport Golf (SD-R)",
+    "sid": "298046",
+    "icon": "",
+    "category_id": "2330"
+  },
+  {
+    "name": "MOTOGP LIVE TRACKING",
+    "sid": "103010",
+    "icon": "",
+    "category_id": "1905"
+  },
+  {
+    "name": "MOTOGP ON BOARD 1",
+    "sid": "103015",
+    "icon": "",
+    "category_id": "1905"
+  },
+  {
+    "name": "MOTOGP ON BOARD 2",
+    "sid": "103014",
+    "icon": "",
+    "category_id": "1905"
+  },
+  {
+    "name": "MOTOGP ON BOARD 3",
+    "sid": "103013",
+    "icon": "",
+    "category_id": "1905"
+  },
+  {
+    "name": "MOTOGP ON BOARD 4",
+    "sid": "103012",
+    "icon": "",
+    "category_id": "1905"
+  },
+  {
+    "name": "MOTOGP CAMERA  360",
+    "sid": "103016",
+    "icon": "",
+    "category_id": "1905"
+  },
+  {
+    "name": "Formula 1 On Board - Ferrari: CARLOS SAINZ",
+    "sid": "245009",
+    "icon": "",
+    "category_id": "1905"
+  },
+  {
+    "name": "Formula 1 On Board - Ferrari: CHARLES LECLERC",
+    "sid": "245010",
+    "icon": "",
+    "category_id": "1905"
+  },
+  {
+    "name": "Formula 1 On Board - Red Bull: MAX VERSTAPPEN",
+    "sid": "245011",
+    "icon": "",
+    "category_id": "1905"
+  },
+  {
+    "name": "Formula 1 On Board - Red Bull: SERGIO PEREZ",
+    "sid": "245012",
+    "icon": "",
+    "category_id": "1905"
+  },
+  {
+    "name": "Formula 1 On Board - Mercedes: LEWIS HAMILTON",
+    "sid": "245013",
+    "icon": "",
+    "category_id": "1905"
+  },
+  {
+    "name": "Formula 1 On Board - Mercedes: GEORGE RUSSELL",
+    "sid": "245014",
+    "icon": "",
+    "category_id": "1905"
+  },
+  {
+    "name": "Formula 1 On Board - McLaren: LANDO NORRIS",
+    "sid": "245015",
+    "icon": "",
+    "category_id": "1905"
+  },
+  {
+    "name": "Formula 1 On Board - Alpine: PIERRE GASLY",
+    "sid": "245016",
+    "icon": "",
+    "category_id": "1905"
+  },
+  {
+    "name": "Formula 1 On Board - McLaren: OSCAR PIASTRI",
+    "sid": "245017",
+    "icon": "",
+    "category_id": "1905"
+  },
+  {
+    "name": "Formula 1 On Board - Alpine: ESTEBAN OCON",
+    "sid": "245018",
+    "icon": "",
+    "category_id": "1905"
+  },
+  {
+    "name": "Formula 1 On Board -  Aston Martin: LANCE STROLL",
+    "sid": "245019",
+    "icon": "",
+    "category_id": "1905"
+  },
+  {
+    "name": "Formula 1 On Board - Aston Martin: FERNANDO ALONSO",
+    "sid": "245020",
+    "icon": "",
+    "category_id": "1905"
+  },
+  {
+    "name": "Formula 1 On Board - Alfa Romeo: VALTTERI BOTTAS",
+    "sid": "245021",
+    "icon": "",
+    "category_id": "1905"
+  },
+  {
+    "name": "Formula 1 On Board - Alfa Romeo: GUANYU ZHOU",
+    "sid": "245022",
+    "icon": "",
+    "category_id": "1905"
+  },
+  {
+    "name": "Formula 1 On Board - AlphaTauri: YUKI TSUNODA",
+    "sid": "245023",
+    "icon": "",
+    "category_id": "1905"
+  },
+  {
+    "name": "Formula 1 On Board - AlphaTauri: NYCK DE VRIES",
+    "sid": "245024",
+    "icon": "",
+    "category_id": "1905"
+  },
+  {
+    "name": "Formula 1 On Board - Haas: KEVIN MAGNUSSEN",
+    "sid": "245025",
+    "icon": "",
+    "category_id": "1905"
+  },
+  {
+    "name": "Formula 1 On Board - Haas: NICO HULKENBERG",
+    "sid": "245026",
+    "icon": "",
+    "category_id": "1905"
+  },
+  {
+    "name": "Formula 1 On Board - Williams: ALEXANDER ALBON",
+    "sid": "245027",
+    "icon": "",
+    "category_id": "1905"
+  },
+  {
+    "name": "Formula 1 On Board - Williams: LOGAN SARGEANT",
+    "sid": "245028",
+    "icon": "",
+    "category_id": "1905"
+  },
+  {
+    "name": "Formula 1 On Board -DANIEL RICCIARDO ALPHA TAURI",
+    "sid": "245029",
+    "icon": "",
+    "category_id": "1905"
+  },
+  {
+    "name": "FORMULA 1 CHANNEL",
+    "sid": "245030",
+    "icon": "",
+    "category_id": "1905"
+  },
+  {
+    "name": "FORMULA 1 DRIVER TRACKER",
+    "sid": "245031",
+    "icon": "",
+    "category_id": "1905"
+  },
+  {
+    "name": "SKY SPORT BAR UNO FULL HD",
+    "sid": "135396",
+    "icon": "https://www.mondomobileweb.it/wp-content/uploads/2018/07/Dazn-Sky-e1531857777117.png",
+    "category_id": "35"
+  },
+  {
+    "name": "SKY SPORT BAR UNO HD",
+    "sid": "135397",
+    "icon": "https://www.mondomobileweb.it/wp-content/uploads/2018/07/Dazn-Sky-e1531857777117.png",
+    "category_id": "35"
+  },
+  {
+    "name": "SKY SPORT BAR UNO SD",
+    "sid": "135398",
+    "icon": "https://www.mondomobileweb.it/wp-content/uploads/2018/07/Dazn-Sky-e1531857777117.png",
+    "category_id": "35"
+  },
+  {
+    "name": "SKY SPORT BAR DUE FULL HD",
+    "sid": "135399",
+    "icon": "https://www.mondomobileweb.it/wp-content/uploads/2018/07/Dazn-Sky-e1531857777117.png",
+    "category_id": "35"
+  },
+  {
+    "name": "SKY SPORT BAR DUE HD",
+    "sid": "135400",
+    "icon": "https://www.mondomobileweb.it/wp-content/uploads/2018/07/Dazn-Sky-e1531857777117.png",
+    "category_id": "35"
+  },
+  {
+    "name": "SKY SPORT BAR DUE SD",
+    "sid": "135401",
+    "icon": "https://www.mondomobileweb.it/wp-content/uploads/2018/07/Dazn-Sky-e1531857777117.png",
+    "category_id": "35"
+  },
+  {
+    "name": "SPORT BAR PRIMEVIDEO FULL HD",
+    "sid": "135402",
+    "icon": "https://m.media-amazon.com/images/G/01/support_images/GUID-21C09ED9-332E-4D83-BEAC-2A81E3DC7B9D=1=it-IT=Normal.png",
+    "category_id": "35"
+  },
+  {
+    "name": "SPORT BAR PRIMEVIDEO HD",
+    "sid": "135403",
+    "icon": "https://m.media-amazon.com/images/G/01/support_images/GUID-21C09ED9-332E-4D83-BEAC-2A81E3DC7B9D=1=it-IT=Normal.png",
+    "category_id": "35"
+  },
+  {
+    "name": "SPORT BAR PRIMEVIDEO SD",
+    "sid": "135404",
+    "icon": "https://m.media-amazon.com/images/G/01/support_images/GUID-21C09ED9-332E-4D83-BEAC-2A81E3DC7B9D=1=it-IT=Normal.png",
+    "category_id": "35"
+  },
+  {
+    "name": "Sky Sport Calcio  FHD",
+    "sid": "258782",
+    "icon": "",
+    "category_id": "2013"
+  },
+  {
+    "name": "Sky Sport Calcio HD",
+    "sid": "258783",
+    "icon": "",
+    "category_id": "2013"
+  },
+  {
+    "name": "Sky Sport Calcio  Sd",
+    "sid": "258775",
+    "icon": "",
+    "category_id": "2013"
+  },
+  {
+    "name": "Sky Sport  251 HD",
+    "sid": "167433",
+    "icon": "",
+    "category_id": "2013"
+  },
+  {
+    "name": "Sky Sport 251 SD",
+    "sid": "167434",
+    "icon": "",
+    "category_id": "2013"
+  },
+  {
+    "name": "Sky Sport  251 FHD",
+    "sid": "167435",
+    "icon": "",
+    "category_id": "2013"
+  },
+  {
+    "name": "Sky Sport  252 HD",
+    "sid": "167436",
+    "icon": "",
+    "category_id": "2013"
+  },
+  {
+    "name": "Sky Sport 252 SD",
+    "sid": "167437",
+    "icon": "",
+    "category_id": "2013"
+  },
+  {
+    "name": "Sky Sport  252 FHD",
+    "sid": "167438",
+    "icon": "",
+    "category_id": "2013"
+  },
+  {
+    "name": "Sky Sport  253 HD",
+    "sid": "167439",
+    "icon": "",
+    "category_id": "2013"
+  },
+  {
+    "name": "Sky Sport 253 SD",
+    "sid": "167440",
+    "icon": "",
+    "category_id": "2013"
+  },
+  {
+    "name": "Sky Sport  253 FHD",
+    "sid": "167441",
+    "icon": "",
+    "category_id": "2013"
+  },
+  {
+    "name": "Sky Sport  254 HD",
+    "sid": "167442",
+    "icon": "",
+    "category_id": "2013"
+  },
+  {
+    "name": "Sky Sport  254 FHD",
+    "sid": "167443",
+    "icon": "",
+    "category_id": "2013"
+  },
+  {
+    "name": "Sky Sport 254 SD",
+    "sid": "167444",
+    "icon": "",
+    "category_id": "2013"
+  },
+  {
+    "name": "Sky Sport  255 HD",
+    "sid": "167445",
+    "icon": "",
+    "category_id": "2013"
+  },
+  {
+    "name": "Sky Sport  255 FHD",
+    "sid": "167446",
+    "icon": "",
+    "category_id": "2013"
+  },
+  {
+    "name": "Sky Sport 255 Sd",
+    "sid": "167447",
+    "icon": "",
+    "category_id": "2013"
+  },
+  {
+    "name": "Sky Sport  256 HD",
+    "sid": "167448",
+    "icon": "",
+    "category_id": "2013"
+  },
+  {
+    "name": "Sky Sport  256 FHD",
+    "sid": "167449",
+    "icon": "",
+    "category_id": "2013"
+  },
+  {
+    "name": "Sky Sport 256 Sd",
+    "sid": "167450",
+    "icon": "",
+    "category_id": "2013"
+  },
+  {
+    "name": "Sky Sport  257 FHD",
+    "sid": "167451",
+    "icon": "",
+    "category_id": "2013"
+  },
+  {
+    "name": "Sky Sport  257 HD",
+    "sid": "167452",
+    "icon": "",
+    "category_id": "2013"
+  },
+  {
+    "name": "Sky Sport  257 SD",
+    "sid": "167453",
+    "icon": "",
+    "category_id": "2013"
+  },
+  {
+    "name": "Sky Sport 258 FHD",
+    "sid": "258776",
+    "icon": "",
+    "category_id": "2013"
+  },
+  {
+    "name": "Sky Sport 258 HD",
+    "sid": "258777",
+    "icon": "",
+    "category_id": "2013"
+  },
+  {
+    "name": "Sky Sport 258 SD",
+    "sid": "258778",
+    "icon": "",
+    "category_id": "2013"
+  },
+  {
+    "name": "Sky Sport 259 FHD",
+    "sid": "258779",
+    "icon": "",
+    "category_id": "2013"
+  },
+  {
+    "name": "Sky Sport 259 HD",
+    "sid": "258780",
+    "icon": "",
+    "category_id": "2013"
+  },
+  {
+    "name": "Sky Sport 259 SD",
+    "sid": "258781",
+    "icon": "",
+    "category_id": "2013"
+  },
+  {
+    "name": "SKY CALCIO SERIE A FHD",
+    "sid": "276073",
+    "icon": "",
+    "category_id": "2257"
+  },
+  {
+    "name": "SKY CALCIO SERIE A HD",
+    "sid": "276074",
+    "icon": "",
+    "category_id": "2257"
+  },
+  {
+    "name": "SKY CALCIO SERIE A SD",
+    "sid": "276075",
+    "icon": "",
+    "category_id": "2257"
+  },
+  {
+    "name": "Sky Calcio 251 FHD",
+    "sid": "276076",
+    "icon": "",
+    "category_id": "2257"
+  },
+  {
+    "name": "Sky Calcio 251 HD",
+    "sid": "276077",
+    "icon": "",
+    "category_id": "2257"
+  },
+  {
+    "name": "Sky Calcio 1 251 SD",
+    "sid": "276078",
+    "icon": "",
+    "category_id": "2257"
+  },
+  {
+    "name": "Sky Calcio 252 FHD",
+    "sid": "276079",
+    "icon": "",
+    "category_id": "2257"
+  },
+  {
+    "name": "Sky Calcio 252 HD",
+    "sid": "276080",
+    "icon": "",
+    "category_id": "2257"
+  },
+  {
+    "name": "Sky Calcio 2 SD",
+    "sid": "276081",
+    "icon": "",
+    "category_id": "2257"
+  },
+  {
+    "name": "Sky Calcio 253 FHD",
+    "sid": "276082",
+    "icon": "",
+    "category_id": "2257"
+  },
+  {
+    "name": "Sky Calcio 253 HD",
+    "sid": "276083",
+    "icon": "",
+    "category_id": "2257"
+  },
+  {
+    "name": "Sky Calcio 3 SD",
+    "sid": "276084",
+    "icon": "",
+    "category_id": "2257"
+  },
+  {
+    "name": "Sky Calcio 254 FHD",
+    "sid": "276085",
+    "icon": "",
+    "category_id": "2257"
+  },
+  {
+    "name": "Sky Calcio 254 HD",
+    "sid": "276086",
+    "icon": "",
+    "category_id": "2257"
+  },
+  {
+    "name": "Sky Calcio 4 SD",
+    "sid": "276087",
+    "icon": "",
+    "category_id": "2257"
+  },
+  {
+    "name": "Sky Calcio 255 FHD",
+    "sid": "276088",
+    "icon": "",
+    "category_id": "2257"
+  },
+  {
+    "name": "Sky Calcio 255 HD",
+    "sid": "276089",
+    "icon": "",
+    "category_id": "2257"
+  },
+  {
+    "name": "Sky Calcio 255 SD",
+    "sid": "276090",
+    "icon": "",
+    "category_id": "2257"
+  },
+  {
+    "name": "Sky Calcio 256 FHD",
+    "sid": "276091",
+    "icon": "",
+    "category_id": "2257"
+  },
+  {
+    "name": "Sky Calcio 256 HD",
+    "sid": "276092",
+    "icon": "",
+    "category_id": "2257"
+  },
+  {
+    "name": "Sky Calcio 256 SD",
+    "sid": "276093",
+    "icon": "",
+    "category_id": "2257"
+  },
+  {
+    "name": "Sky Calcio 257 FHD",
+    "sid": "276094",
+    "icon": "",
+    "category_id": "2257"
+  },
+  {
+    "name": "Sky Calcio 257 HD",
+    "sid": "276095",
+    "icon": "",
+    "category_id": "2257"
+  },
+  {
+    "name": "Sky Calcio 257 SD",
+    "sid": "276096",
+    "icon": "",
+    "category_id": "2257"
+  },
+  {
+    "name": "Sky Calcio 258 FHD",
+    "sid": "276097",
+    "icon": "",
+    "category_id": "2257"
+  },
+  {
+    "name": "Sky Calcio 259  FHD",
+    "sid": "276098",
+    "icon": "",
+    "category_id": "2257"
+  },
+  {
+    "name": "Sky Calcio 259 SD",
+    "sid": "276099",
+    "icon": "",
+    "category_id": "2257"
+  },
+  {
+    "name": "Sky Calcio Bar A2 FHD",
+    "sid": "276100",
+    "icon": "",
+    "category_id": "2257"
+  },
+  {
+    "name": "Sky Calcio Bar A2 HD",
+    "sid": "276101",
+    "icon": "",
+    "category_id": "2257"
+  },
+  {
+    "name": "Sky Calcio Bar A2 SD",
+    "sid": "276102",
+    "icon": "",
+    "category_id": "2257"
+  },
+  {
+    "name": "Sky Calcio Bar A3 FHD",
+    "sid": "276103",
+    "icon": "",
+    "category_id": "2257"
+  },
+  {
+    "name": "CH: BAR Sport 5 HD",
+    "sid": "276104",
+    "icon": "",
+    "category_id": "2257"
+  },
+  {
+    "name": "SKY: BAR Sport 1 SD",
+    "sid": "276105",
+    "icon": "",
+    "category_id": "2257"
+  },
+  {
+    "name": "Sky Calcio Business FHD",
+    "sid": "289176",
+    "icon": "https://viverediturismofestival.it/wp-content/uploads/2025/10/Sponsor-piccolopartner-2025-10-24T180159.016.png",
+    "category_id": "35"
+  },
+  {
+    "name": "Sky Calcio Business HD",
+    "sid": "289180",
+    "icon": "https://viverediturismofestival.it/wp-content/uploads/2025/10/Sponsor-piccolopartner-2025-10-24T180159.016.png",
+    "category_id": "35"
+  },
+  {
+    "name": "Sky Calcio Business SD",
+    "sid": "289182",
+    "icon": "https://viverediturismofestival.it/wp-content/uploads/2025/10/Sponsor-piccolopartner-2025-10-24T180159.016.png",
+    "category_id": "35"
+  },
+  {
+    "name": "Sky Sport Business K4",
+    "sid": "289443",
+    "icon": "",
+    "category_id": "35"
+  },
+  {
+    "name": "Sky Sport 251 (FHD-R)",
+    "sid": "298148",
+    "icon": "",
+    "category_id": "2339"
+  },
+  {
+    "name": "Sky Sport 251 (HD-R)",
+    "sid": "298147",
+    "icon": "",
+    "category_id": "2339"
+  },
+  {
+    "name": "Sky Sport 251 (SD-R)",
+    "sid": "298146",
+    "icon": "",
+    "category_id": "2339"
+  },
+  {
+    "name": "Sky Sport 252 (FHD-R)",
+    "sid": "298151",
+    "icon": "",
+    "category_id": "2339"
+  },
+  {
+    "name": "Sky Sport 252 (HD-R)",
+    "sid": "298150",
+    "icon": "",
+    "category_id": "2339"
+  },
+  {
+    "name": "Sky Sport 252 (SD-R)",
+    "sid": "298149",
+    "icon": "",
+    "category_id": "2339"
+  },
+  {
+    "name": "Sky Sport 253 (FHD-R)",
+    "sid": "298154",
+    "icon": "",
+    "category_id": "2339"
+  },
+  {
+    "name": "Sky Sport 253 (HD-R)",
+    "sid": "298153",
+    "icon": "",
+    "category_id": "2339"
+  },
+  {
+    "name": "Sky Sport 253 (SD-R)",
+    "sid": "298152",
+    "icon": "",
+    "category_id": "2339"
+  },
+  {
+    "name": "Sky Sport 254 (FHD-R)",
+    "sid": "298157",
+    "icon": "",
+    "category_id": "2339"
+  },
+  {
+    "name": "Sky Sport 254 (HD-R)",
+    "sid": "298156",
+    "icon": "",
+    "category_id": "2339"
+  },
+  {
+    "name": "Sky Sport 254 (SD-R)",
+    "sid": "298155",
+    "icon": "",
+    "category_id": "2339"
+  },
+  {
+    "name": "Sky Sport 255 (FHD-R)",
+    "sid": "298160",
+    "icon": "",
+    "category_id": "2339"
+  },
+  {
+    "name": "Sky Sport 255 (HD-R)",
+    "sid": "298159",
+    "icon": "",
+    "category_id": "2339"
+  },
+  {
+    "name": "Sky Sport 255 (SD-R)",
+    "sid": "298158",
+    "icon": "",
+    "category_id": "2339"
+  },
+  {
+    "name": "Sky Sport 256 (FHD-R)",
+    "sid": "298163",
+    "icon": "",
+    "category_id": "2339"
+  },
+  {
+    "name": "Sky Sport 256 (HD-R)",
+    "sid": "298162",
+    "icon": "",
+    "category_id": "2339"
+  },
+  {
+    "name": "Sky Sport 256 (SD-R)",
+    "sid": "298161",
+    "icon": "",
+    "category_id": "2339"
+  },
+  {
+    "name": "Sky Sport 257 (FHD-R)",
+    "sid": "298166",
+    "icon": "",
+    "category_id": "2339"
+  },
+  {
+    "name": "Sky Sport 257 (HD-R)",
+    "sid": "298165",
+    "icon": "",
+    "category_id": "2339"
+  },
+  {
+    "name": "Sky Sport 257 (SD-R)",
+    "sid": "298164",
+    "icon": "",
+    "category_id": "2339"
+  },
+  {
+    "name": "Sky Sport 258 (FHD-R)",
+    "sid": "298169",
+    "icon": "",
+    "category_id": "2339"
+  },
+  {
+    "name": "Sky Sport 258 (HD-R)",
+    "sid": "298168",
+    "icon": "",
+    "category_id": "2339"
+  },
+  {
+    "name": "Sky Sport 258 (SD-R)",
+    "sid": "298167",
+    "icon": "",
+    "category_id": "2339"
+  },
+  {
+    "name": "Sky Sport 259 (FHD-R)",
+    "sid": "298172",
+    "icon": "",
+    "category_id": "2339"
+  },
+  {
+    "name": "Sky Sport 259 (HD-R)",
+    "sid": "298171",
+    "icon": "",
+    "category_id": "2339"
+  },
+  {
+    "name": "Sky Sport 259 (SD-R)",
+    "sid": "298170",
+    "icon": "",
+    "category_id": "2339"
+  },
+  {
+    "name": "EUROSPORT 01",
+    "sid": "292653",
+    "icon": "",
+    "category_id": "1906"
+  },
+  {
+    "name": "EUROSPORT 02",
+    "sid": "292654",
+    "icon": "",
+    "category_id": "1906"
+  },
+  {
+    "name": "EUROSPORT PLAY 3",
+    "sid": "292655",
+    "icon": "",
+    "category_id": "1906"
+  },
+  {
+    "name": "EUROSPORT PLAY 4",
+    "sid": "292656",
+    "icon": "",
+    "category_id": "1906"
+  },
+  {
+    "name": "EUROSPORT PLAY 5",
+    "sid": "292657",
+    "icon": "",
+    "category_id": "1906"
+  },
+  {
+    "name": "EUROSPORT PLAY 6",
+    "sid": "292658",
+    "icon": "",
+    "category_id": "1906"
+  },
+  {
+    "name": "EUROSPORT PLAY 7",
+    "sid": "292659",
+    "icon": "",
+    "category_id": "1906"
+  },
+  {
+    "name": "EUROSPORT PLAY 8",
+    "sid": "292660",
+    "icon": "",
+    "category_id": "1906"
+  },
+  {
+    "name": "EUROSPORT PLAY 9",
+    "sid": "292661",
+    "icon": "",
+    "category_id": "1906"
+  },
+  {
+    "name": "EUROSPORT PLAY 10",
+    "sid": "292662",
+    "icon": "",
+    "category_id": "1906"
+  }
+]
