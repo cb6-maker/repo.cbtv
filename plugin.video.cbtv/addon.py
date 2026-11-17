@@ -996,12 +996,12 @@ def play_s20_channel(sid, name):
     xbmcgui.Dialog().notification("CBTV", f"Avvio {name}...", xbmcgui.NOTIFICATION_INFO, 1500)
     try:
         m3u8_url = f"http://brumotto00.zapto.org:80/live/Diegoamiciantoniogennaro/8u%40%402zzQ%40B/{sid}.m3u8"
-        list_item = xbmcgui.ListItem(path=m3u8_url)
+        stream_url = f"{m3u8_url}|User-Agent=VLC%2F3.0.18%20LibVLC%2F3.0.18"
+        list_item = xbmcgui.ListItem(path=stream_url)
         list_item.setInfo('video', {'title': name})
         list_item.setProperty('inputstream', 'inputstream.ffmpegdirect')
         list_item.setProperty('inputstream.ffmpegdirect.is_realtime_stream', 'true')
         list_item.setProperty('inputstream.ffmpegdirect.manifest_type', 'hls')
-        list_item.setProperty('inputstream.ffmpegdirect.headers', 'User-Agent=VLC%2F3.0.18%20LibVLC%2F3.0.18')
         list_item.setMimeType('application/x-mpegURL')
         list_item.setContentLookup(False)
         xbmcplugin.setResolvedUrl(HANDLE, True, listitem=list_item)
