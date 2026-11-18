@@ -15,7 +15,7 @@ S14_SESSION_CACHE = {}
 S14_WORKERS = {}
 S14_LOCK = threading.Lock()
 
-S14_STALL_REPIN_SECONDS = 25.0
+S14_STALL_REPIN_SECONDS = 90.0
 
 
 def _s14_log(msg, level=None):
@@ -96,8 +96,8 @@ def _s14_download_segment(seg_url, sid="", seq="?"):
 
 
 def _s14_fetch_manifest(sid, pinned_host=None):
-    """Richiede un nuovo manifest al load balancer (su S14 i token redirect sono monouso).
-    Prova al massimo 2 volte a mantenere pinned_host, poi accetta subito il nodo attivo dal LB."""
+    """Richiede un nuovo manifest al load balancer mantenendo il blocco rigido su pinned_host
+    (fino a 25 tentativi rapidi) ed escludendo load2.sploadbl.date che fallisce il DNS su Firestick."""
     s14_headers = {
         'User-Agent': 'VLC/3.0.20 LibVLC/3.0.20',
         'Accept': 'audio/x-mpegurl,application/vnd.apple.mpegurl,text/plain,*/*',
@@ -105,36 +105,44 @@ def _s14_fetch_manifest(sid, pinned_host=None):
     }
     s14_url = f"http://ios.dragonsdog.com/live/peppedent/Rl8HYEmMFn24/{sid}.m3u8"
     matched_loc = None
-    last_loc = None
-    last_host = None
+    seen_hosts = {}
+    last_err = None
 
-    tries = 2 if pinned_host else 1
-    for _ in range(tries):
-        try:
-            ts = int(time.time() * 1000)
-            r_redir = _S14_MANIFEST_SESSION.get(f"{s14_url}?_vegeta_refresh={ts}", headers=s14_headers, allow_redirects=False, timeout=2.5)
-            loc = r_redir.headers.get('Location') or s14_url
-            h = urlparse(loc).netloc
-            last_loc = loc
-            last_host = h
-            if not pinned_host or pinned_host in loc:
-                matched_loc = loc
-                break
-        except Exception as e:
-            last_err = type(e).__name__
-            if tries == 1:
-                return None, None, f"redirect_err {last_err}"
-
-    if not matched_loc:
-        if not last_loc:
-            return None, pinned_host, "redirect_err empty"
-        matched_loc = last_loc
+    if pinned_host:
+        for _ in range(25):
+            try:
+                ts = int(time.time() * 1000)
+                r_redir = _S14_MANIFEST_SESSION.get(f"{s14_url}?_vegeta_refresh={ts}", headers=s14_headers, allow_redirects=False, timeout=1.5)
+                loc = r_redir.headers.get('Location')
+                h = urlparse(loc).netloc if loc else f"HTTP{r_redir.status_code}"
+                seen_hosts[h] = seen_hosts.get(h, 0) + 1
+                if loc and pinned_host in loc:
+                    matched_loc = loc
+                    break
+            except Exception as e:
+                last_err = type(e).__name__
+        if not matched_loc:
+            return None, pinned_host, f"pinned_miss hosts={seen_hosts} err={last_err}"
     else:
-        last_host = urlparse(matched_loc).netloc
+        for _ in range(15):
+            try:
+                ts = int(time.time() * 1000)
+                r_redir = _S14_MANIFEST_SESSION.get(f"{s14_url}?_vegeta_refresh={ts}", headers=s14_headers, allow_redirects=False, timeout=2.5)
+                loc = r_redir.headers.get('Location') or s14_url
+                h = urlparse(loc).netloc
+                seen_hosts[h] = seen_hosts.get(h, 0) + 1
+                if 'load2.sploadbl.date' not in h:
+                    matched_loc = loc
+                    pinned_host = h
+                    break
+            except Exception as e:
+                last_err = type(e).__name__
+        if not matched_loc:
+            return None, None, f"redirect_err hosts={seen_hosts} err={last_err}"
 
     segments, info = _s14_parse_manifest_from(_S14_MANIFEST_SESSION, sid, matched_loc)
     _s14_fetch_manifest.last_loc = matched_loc if segments else None
-    return segments, last_host, info
+    return segments, pinned_host, info
 
 
 def _s14_render_playlist(sess, window_size=6):
@@ -266,7 +274,7 @@ def _s14_worker_loop(sid):
         else:
             _s14_log(f"sid={sid} t={elapsed}s FAIL {info} stallo={stalled_for:.0f}s fetch={fetch_ms}ms", xbmc.LOGWARNING)
 
-        time.sleep(5.0 if has_new_segment else 2.0)
+        time.sleep(5.0 if has_new_segment else (2.0 if new_segs else 1.0))
 
 
 class FreeshotProxyHandler(BaseHTTPRequestHandler):
