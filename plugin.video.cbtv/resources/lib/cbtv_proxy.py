@@ -124,20 +124,26 @@ def _s14_fetch_manifest(sid, pinned_host=None):
         if not matched_loc:
             return None, pinned_host, f"pinned_miss hosts={seen_hosts} err={last_err}"
     else:
-        for _ in range(15):
+        valid_counts = {}
+        latest_locs = {}
+        for _ in range(9):
             try:
                 ts = int(time.time() * 1000)
-                r_redir = _S14_MANIFEST_SESSION.get(f"{s14_url}?_vegeta_refresh={ts}", headers=s14_headers, allow_redirects=False, timeout=2.5)
+                r_redir = _S14_MANIFEST_SESSION.get(f"{s14_url}?_vegeta_refresh={ts}", headers=s14_headers, allow_redirects=False, timeout=2.0)
                 loc = r_redir.headers.get('Location') or s14_url
                 h = urlparse(loc).netloc
                 seen_hosts[h] = seen_hosts.get(h, 0) + 1
                 if 'load2.sploadbl.date' not in h:
-                    matched_loc = loc
-                    pinned_host = h
-                    break
+                    valid_counts[h] = valid_counts.get(h, 0) + 1
+                    latest_locs[h] = loc
+                    if valid_counts[h] >= 3 or sum(valid_counts.values()) >= 5:
+                        break
             except Exception as e:
                 last_err = type(e).__name__
-        if not matched_loc:
+        if valid_counts:
+            pinned_host = max(valid_counts, key=valid_counts.get)
+            matched_loc = latest_locs[pinned_host]
+        else:
             return None, None, f"redirect_err hosts={seen_hosts} err={last_err}"
 
     segments, info = _s14_parse_manifest_from(_S14_MANIFEST_SESSION, sid, matched_loc)
@@ -211,10 +217,11 @@ def _s14_worker_loop(sid):
                 break
             pinned_host = sess.get('pinned_host')
             last_new_ts = sess.setdefault('last_new_ts', time.time())
+            miss_streak = sess.get('miss_streak', 0)
 
         elapsed = int(time.time() - t_start)
         stalled_for = time.time() - last_new_ts
-        repin = stalled_for > S14_STALL_REPIN_SECONDS
+        repin = (stalled_for > S14_STALL_REPIN_SECONDS) or (miss_streak >= 3)
 
         t0 = time.time()
         _s14_fetch_manifest.last_loc = None
@@ -230,6 +237,7 @@ def _s14_worker_loop(sid):
             with S14_LOCK:
                 sess = S14_SESSION_CACHE.get(sid)
                 if sess:
+                    sess['miss_streak'] = 0
                     seg_dict = sess.setdefault('segments', {})
                     offset = sess.get('seq_offset', 0)
                     max_seq = sess.get('max_seq', 0)
@@ -272,7 +280,14 @@ def _s14_worker_loop(sid):
                     max_seq = sess.get('max_seq', 0)
             _s14_log(f"sid={sid} t={elapsed}s host={new_host} {info} up_segs={new_segs[0][0]}-{new_segs[-1][0]} new={has_new_segment} max={max_seq} fetch={fetch_ms}ms")
         else:
-            _s14_log(f"sid={sid} t={elapsed}s FAIL {info} stallo={stalled_for:.0f}s fetch={fetch_ms}ms", xbmc.LOGWARNING)
+            with S14_LOCK:
+                sess = S14_SESSION_CACHE.get(sid)
+                if sess:
+                    sess['miss_streak'] = sess.get('miss_streak', 0) + 1
+                    streak = sess['miss_streak']
+                else:
+                    streak = 0
+            _s14_log(f"sid={sid} t={elapsed}s FAIL {info} miss={streak}/3 stallo={stalled_for:.0f}s fetch={fetch_ms}ms", xbmc.LOGWARNING)
 
         time.sleep(5.0 if has_new_segment else (2.0 if new_segs else 1.0))
 
