@@ -95,7 +95,7 @@ def _s14_download_segment(seg_url, sid="", seq="?"):
     return None, 3, 0, last_err
 
 
-def _s14_fetch_manifest(sid, pinned_host=None):
+def _s14_fetch_manifest(sid, pinned_host=None, exclude_host=None):
     """Richiede un nuovo manifest al load balancer mantenendo il blocco rigido su pinned_host
     (fino a 25 tentativi rapidi) ed escludendo load2.sploadbl.date che fallisce il DNS su Firestick."""
     s14_headers = {
@@ -141,7 +141,12 @@ def _s14_fetch_manifest(sid, pinned_host=None):
             except Exception as e:
                 last_err = type(e).__name__
         if valid_counts:
-            pinned_host = max(valid_counts, key=valid_counts.get)
+            if exclude_host:
+                others = {k: v for k, v in valid_counts.items() if k != exclude_host}
+                pool = others if others else valid_counts
+            else:
+                pool = valid_counts
+            pinned_host = max(pool, key=pool.get)
             matched_loc = latest_locs[pinned_host]
         else:
             return None, None, f"redirect_err hosts={seen_hosts} err={last_err}"
@@ -159,8 +164,13 @@ def _s14_render_playlist(sess, window_size=6):
         return None
 
     all_seqs = sorted(seg_dict.keys())
-    active_seqs = all_seqs[-window_size:]
     kodi_seq = sess.get('last_kodi_seq', 0)
+    if not kodi_seq and not sess.get('startup_done') and len(all_seqs) >= 5:
+        # Tampone iniziale (+20s di buffer): all'avvio nascondi gli ultimi 2 segmenti
+        # così Kodi parte ~2 segmenti più indietro e li ritrova subito al refresh successivo.
+        active_seqs = all_seqs[:-2][-window_size:]
+    else:
+        active_seqs = all_seqs[-window_size:]
     if kodi_seq:
         next_needed = kodi_seq + 1
         if next_needed < active_seqs[0] and next_needed in seg_dict:
@@ -229,7 +239,7 @@ def _s14_worker_loop(sid, worker_id=None):
         t0 = time.time()
         _s14_fetch_manifest.last_loc = None
         if repin:
-            new_segs, new_host, info = _s14_fetch_manifest(sid, pinned_host=None)
+            new_segs, new_host, info = _s14_fetch_manifest(sid, pinned_host=None, exclude_host=pinned_host)
         else:
             new_segs, new_host, info = _s14_fetch_manifest(sid, pinned_host)
         info = f"LB:{info}"
@@ -461,6 +471,7 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
                         'direct_since': now
                     }
                     body = _s14_render_playlist(sess, window_size=6)
+                    sess['startup_done'] = True
                     S14_SESSION_CACHE[sid] = sess
 
                     t = threading.Thread(target=_s14_worker_loop, args=(sid, wid), daemon=True)
