@@ -64,18 +64,60 @@ def _s14_parse_manifest_from(s, sid, matched_loc):
         return None, f"m3u8_err {type(e).__name__}"
 
 
-_S14_HTTP_SESSION = requests.Session()
-_S14_HTTP_LOCK = threading.Lock()
+_S14_MANIFEST_SESSION = requests.Session()
+_S14_SEG_TLS = threading.local()
 
 
-def _s14_fetch_direct(sid, direct_loc):
-    """Richiede il manifest DIRETTAMENTE al nodo (URL salvato), senza passare dal load balancer."""
-    with _S14_HTTP_LOCK:
-        return _s14_parse_manifest_from(_S14_HTTP_SESSION, sid, direct_loc)
+def _s14_download_segment(seg_url, sid="", seq="?"):
+    """Scarica un segmento .ts con sessione TLS keep-alive e fino a 3 retry.
+    Ritorna (data_bytes|None, attempt, elapsed_ms, last_err)."""
+    s = getattr(_S14_SEG_TLS, 'session', None)
+    if s is None:
+        s = requests.Session()
+        _S14_SEG_TLS.session = s
+
+    last_err = ""
+    for attempt in range(1, 4):
+        t0 = time.time()
+        try:
+            r = s.get(seg_url, headers=S14_HEADERS, timeout=8.0)
+            ms = int((time.time() - t0) * 1000)
+            if r.status_code == 200 and r.content:
+                return r.content, attempt, ms, ""
+            last_err = f"HTTP {r.status_code} bytes={len(r.content)}"
+            _s14_log(f"SEG_FAIL sid={sid} seq={seq} try={attempt} {last_err} ms={ms}", xbmc.LOGWARNING)
+        except Exception as e:
+            ms = int((time.time() - t0) * 1000)
+            last_err = f"{type(e).__name__}: {e}"
+            _s14_log(f"SEG_FAIL sid={sid} seq={seq} try={attempt} {last_err} ms={ms}", xbmc.LOGWARNING)
+        if attempt < 3:
+            time.sleep(0.3)
+    return None, 3, 0, last_err
+
+
+def _s14_prefetch_segment(sid, seq_num, seg_url):
+    """Pre-scarica in background un segmento nella cache RAM della sessione (max 3 segmenti)."""
+    try:
+        data, attempt, ms, _ = _s14_download_segment(seg_url, sid=sid, seq=seq_num)
+        if data:
+            with S14_LOCK:
+                sess = S14_SESSION_CACHE.get(sid)
+                if sess:
+                    cache = sess.setdefault('seg_cache', {})
+                    cache[seq_num] = data
+                    if len(cache) > 3:
+                        for old_k in sorted(cache.keys())[:-3]:
+                            cache.pop(old_k, None)
+            _s14_log(f"PREFETCH_OK sid={sid} seq={seq_num} bytes={len(data)} ms={ms}")
+    finally:
+        with S14_LOCK:
+            sess = S14_SESSION_CACHE.get(sid)
+            if sess:
+                sess.get('prefetch_inflight', set()).discard(seq_num)
 
 
 def _s14_fetch_manifest(sid, pinned_host=None):
-    """Richiede un nuovo manifest al load balancer.
+    """Richiede un nuovo manifest al load balancer (su S14 i token redirect sono monouso).
     Ritorna (segments, host, info) dove info descrive l'esito per i log diagnostici."""
     s14_headers = {
         'User-Agent': 'VLC/3.0.20 LibVLC/3.0.20',
@@ -87,33 +129,31 @@ def _s14_fetch_manifest(sid, pinned_host=None):
     seen_hosts = {}
     last_err = None
 
-    with _S14_HTTP_LOCK:
-        if pinned_host:
-            # Massimo 3 tentativi per non far scattare rate-limit / 403 sul LB
-            for _ in range(10):
-                try:
-                    ts = int(time.time() * 1000)
-                    r_redir = _S14_HTTP_SESSION.get(f"{s14_url}?_vegeta_refresh={ts}", headers=s14_headers, allow_redirects=False, timeout=2.0)
-                    loc = r_redir.headers.get('Location')
-                    h = urlparse(loc).netloc if loc else f"HTTP{r_redir.status_code}"
-                    seen_hosts[h] = seen_hosts.get(h, 0) + 1
-                    if loc and pinned_host in loc:
-                        matched_loc = loc
-                        break
-                except Exception as e:
-                    last_err = type(e).__name__
-            if not matched_loc:
-                return None, pinned_host, f"pinned_miss hosts={seen_hosts} err={last_err}"
-        else:
+    if pinned_host:
+        for _ in range(10):
             try:
                 ts = int(time.time() * 1000)
-                r_redir = _S14_HTTP_SESSION.get(f"{s14_url}?_vegeta_refresh={ts}", headers=s14_headers, allow_redirects=False, timeout=3.0)
-                matched_loc = r_redir.headers.get('Location') or s14_url
-                pinned_host = urlparse(matched_loc).netloc
+                r_redir = _S14_MANIFEST_SESSION.get(f"{s14_url}?_vegeta_refresh={ts}", headers=s14_headers, allow_redirects=False, timeout=2.0)
+                loc = r_redir.headers.get('Location')
+                h = urlparse(loc).netloc if loc else f"HTTP{r_redir.status_code}"
+                seen_hosts[h] = seen_hosts.get(h, 0) + 1
+                if loc and pinned_host in loc:
+                    matched_loc = loc
+                    break
             except Exception as e:
-                return None, None, f"redirect_err {type(e).__name__}"
+                last_err = type(e).__name__
+        if not matched_loc:
+            return None, pinned_host, f"pinned_miss hosts={seen_hosts} err={last_err}"
+    else:
+        try:
+            ts = int(time.time() * 1000)
+            r_redir = _S14_MANIFEST_SESSION.get(f"{s14_url}?_vegeta_refresh={ts}", headers=s14_headers, allow_redirects=False, timeout=3.0)
+            matched_loc = r_redir.headers.get('Location') or s14_url
+            pinned_host = urlparse(matched_loc).netloc
+        except Exception as e:
+            return None, None, f"redirect_err {type(e).__name__}"
 
-        segments, info = _s14_parse_manifest_from(_S14_HTTP_SESSION, sid, matched_loc)
+    segments, info = _s14_parse_manifest_from(_S14_MANIFEST_SESSION, sid, matched_loc)
     _s14_fetch_manifest.last_loc = matched_loc if segments else None
     return segments, pinned_host, info
 
@@ -189,35 +229,13 @@ def _s14_worker_loop(sid):
         stalled_for = time.time() - last_new_ts
         repin = stalled_for > S14_STALL_REPIN_SECONDS
 
-        with S14_LOCK:
-            direct_loc = sess.get('direct_loc')
-            direct_since = sess.get('direct_since', time.time())
-
         t0 = time.time()
-        new_segs, new_host, info = None, pinned_host, ""
-        if direct_loc and not repin:
-            new_segs, dinfo = _s14_fetch_direct(sid, direct_loc)
-            if new_segs:
-                info = "direct"
-            else:
-                _s14_log(f"sid={sid} t={elapsed}s DIRECT_FAIL {dinfo} url_age={int(time.time() - direct_since)}s -> riserva LB", xbmc.LOGWARNING)
-                direct_loc = None
-        if not new_segs:
-            _s14_fetch_manifest.last_loc = None
-            if repin:
-                new_segs, new_host, info = _s14_fetch_manifest(sid, pinned_host=None)
-            else:
-                new_segs, new_host, info = _s14_fetch_manifest(sid, pinned_host)
-            info = f"LB:{info}"
-            fresh_loc = getattr(_s14_fetch_manifest, 'last_loc', None)
-            if fresh_loc:
-                with S14_LOCK:
-                    sess['direct_loc'] = fresh_loc
-                    sess['direct_since'] = time.time()
-                _s14_log(f"sid={sid} nuovo URL diretto salvato: {fresh_loc}")
-            elif not direct_loc:
-                with S14_LOCK:
-                    sess.pop('direct_loc', None)
+        _s14_fetch_manifest.last_loc = None
+        if repin:
+            new_segs, new_host, info = _s14_fetch_manifest(sid, pinned_host=None)
+        else:
+            new_segs, new_host, info = _s14_fetch_manifest(sid, pinned_host)
+        info = f"LB:{info}"
         fetch_ms = int((time.time() - t0) * 1000)
 
         has_new_segment = False
@@ -258,6 +276,16 @@ def _s14_worker_loop(sid):
                         sess['disc_seqs'] = {d for d in disc if d >= lo}
                     _s14_render_playlist(sess, window_size=6)
                     max_seq = sess.get('max_seq', 0)
+                    # Pre-scarica in background gli ultimi 2 segmenti nuovi in RAM
+                    seg_cache = sess.setdefault('seg_cache', {})
+                    inflight = sess.setdefault('prefetch_inflight', set())
+                    to_prefetch = []
+                    for p_seq in sorted(seg_dict.keys())[-2:]:
+                        if p_seq not in seg_cache and p_seq not in inflight:
+                            inflight.add(p_seq)
+                            to_prefetch.append((p_seq, seg_dict[p_seq][1]))
+            for p_seq, p_url in to_prefetch:
+                threading.Thread(target=_s14_prefetch_segment, args=(sid, p_seq, p_url), daemon=True).start()
             _s14_log(f"sid={sid} t={elapsed}s host={new_host} {info} up_segs={new_segs[0][0]}-{new_segs[-1][0]} new={has_new_segment} max={max_seq} fetch={fetch_ms}ms")
         else:
             _s14_log(f"sid={sid} t={elapsed}s FAIL {info} stallo={stalled_for:.0f}s fetch={fetch_ms}ms", xbmc.LOGWARNING)
@@ -280,6 +308,7 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
             self.end_headers()
             return
 
+        seq_num = None
         if sid:
             with S14_LOCK:
                 sess = S14_SESSION_CACHE.get(sid)
@@ -290,38 +319,37 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
                         if seq_num > sess.get('last_kodi_seq', 0):
                             sess['last_kodi_seq'] = seq_num
                     except (TypeError, ValueError):
-                        pass
+                        seq_num = None
+                    cached_data = sess.get('seg_cache', {}).get(seq_num) if seq_num is not None else None
+                else:
+                    cached_data = None
+            if cached_data:
+                _s14_log(f"SEG_CACHE_HIT sid={sid} seq={seq} bytes={len(cached_data)}")
+                self.send_response(200)
+                self.send_header("Content-Type", "video/mp2t")
+                self.send_header("Content-Length", str(len(cached_data)))
+                self.end_headers()
+                try:
+                    self.wfile.write(cached_data)
+                except (BrokenPipeError, ConnectionResetError):
+                    pass
+                return
 
-        last_err = ""
-        for attempt in range(1, 4):
-            t0 = time.time()
+        data, attempt, ms, last_err = _s14_download_segment(seg_url, sid=sid, seq=seq)
+        if data:
+            if attempt > 1 or ms > 2000:
+                _s14_log(f"SEG_OK sid={sid} seq={seq} bytes={len(data)} ms={ms} try={attempt}", xbmc.LOGWARNING)
+            else:
+                _s14_log(f"SEG_OK sid={sid} seq={seq} bytes={len(data)} ms={ms}")
+            self.send_response(200)
+            self.send_header("Content-Type", "video/mp2t")
+            self.send_header("Content-Length", str(len(data)))
+            self.end_headers()
             try:
-                with _S14_HTTP_LOCK:
-                    r = _S14_HTTP_SESSION.get(seg_url, headers=S14_HEADERS, timeout=6.0)
-                ms = int((time.time() - t0) * 1000)
-                if r.status_code == 200 and r.content:
-                    data = r.content
-                    if attempt > 1 or ms > 2000:
-                        _s14_log(f"SEG_OK sid={sid} seq={seq} bytes={len(data)} ms={ms} try={attempt}", xbmc.LOGWARNING)
-                    else:
-                        _s14_log(f"SEG_OK sid={sid} seq={seq} bytes={len(data)} ms={ms}")
-                    self.send_response(200)
-                    self.send_header("Content-Type", "video/mp2t")
-                    self.send_header("Content-Length", str(len(data)))
-                    self.end_headers()
-                    try:
-                        self.wfile.write(data)
-                    except (BrokenPipeError, ConnectionResetError):
-                        pass
-                    return
-                last_err = f"HTTP {r.status_code} bytes={len(r.content)}"
-                _s14_log(f"SEG_FAIL sid={sid} seq={seq} try={attempt} {last_err} ms={ms}", xbmc.LOGWARNING)
-            except Exception as e:
-                ms = int((time.time() - t0) * 1000)
-                last_err = f"{type(e).__name__}: {e}"
-                _s14_log(f"SEG_FAIL sid={sid} seq={seq} try={attempt} {last_err} ms={ms}", xbmc.LOGWARNING)
-            if attempt < 3:
-                time.sleep(0.3)
+                self.wfile.write(data)
+            except (BrokenPipeError, ConnectionResetError):
+                pass
+            return
 
         _s14_log(f"SEG_GIVEUP sid={sid} seq={seq} url={seg_url} err={last_err}", xbmc.LOGERROR)
         self.send_response(502)
