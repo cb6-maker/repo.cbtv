@@ -95,30 +95,9 @@ def _s14_download_segment(seg_url, sid="", seq="?"):
     return None, 3, 0, last_err
 
 
-def _s14_prefetch_segment(sid, seq_num, seg_url):
-    """Pre-scarica in background un segmento nella cache RAM della sessione (max 3 segmenti)."""
-    try:
-        data, attempt, ms, _ = _s14_download_segment(seg_url, sid=sid, seq=seq_num)
-        if data:
-            with S14_LOCK:
-                sess = S14_SESSION_CACHE.get(sid)
-                if sess:
-                    cache = sess.setdefault('seg_cache', {})
-                    cache[seq_num] = data
-                    if len(cache) > 3:
-                        for old_k in sorted(cache.keys())[:-3]:
-                            cache.pop(old_k, None)
-            _s14_log(f"PREFETCH_OK sid={sid} seq={seq_num} bytes={len(data)} ms={ms}")
-    finally:
-        with S14_LOCK:
-            sess = S14_SESSION_CACHE.get(sid)
-            if sess:
-                sess.get('prefetch_inflight', set()).discard(seq_num)
-
-
 def _s14_fetch_manifest(sid, pinned_host=None):
     """Richiede un nuovo manifest al load balancer (su S14 i token redirect sono monouso).
-    Ritorna (segments, host, info) dove info descrive l'esito per i log diagnostici."""
+    Prova al massimo 2 volte a mantenere pinned_host, poi accetta subito il nodo attivo dal LB."""
     s14_headers = {
         'User-Agent': 'VLC/3.0.20 LibVLC/3.0.20',
         'Accept': 'audio/x-mpegurl,application/vnd.apple.mpegurl,text/plain,*/*',
@@ -126,36 +105,36 @@ def _s14_fetch_manifest(sid, pinned_host=None):
     }
     s14_url = f"http://ios.dragonsdog.com/live/peppedent/Rl8HYEmMFn24/{sid}.m3u8"
     matched_loc = None
-    seen_hosts = {}
-    last_err = None
+    last_loc = None
+    last_host = None
 
-    if pinned_host:
-        for _ in range(10):
-            try:
-                ts = int(time.time() * 1000)
-                r_redir = _S14_MANIFEST_SESSION.get(f"{s14_url}?_vegeta_refresh={ts}", headers=s14_headers, allow_redirects=False, timeout=2.0)
-                loc = r_redir.headers.get('Location')
-                h = urlparse(loc).netloc if loc else f"HTTP{r_redir.status_code}"
-                seen_hosts[h] = seen_hosts.get(h, 0) + 1
-                if loc and pinned_host in loc:
-                    matched_loc = loc
-                    break
-            except Exception as e:
-                last_err = type(e).__name__
-        if not matched_loc:
-            return None, pinned_host, f"pinned_miss hosts={seen_hosts} err={last_err}"
-    else:
+    tries = 2 if pinned_host else 1
+    for _ in range(tries):
         try:
             ts = int(time.time() * 1000)
-            r_redir = _S14_MANIFEST_SESSION.get(f"{s14_url}?_vegeta_refresh={ts}", headers=s14_headers, allow_redirects=False, timeout=3.0)
-            matched_loc = r_redir.headers.get('Location') or s14_url
-            pinned_host = urlparse(matched_loc).netloc
+            r_redir = _S14_MANIFEST_SESSION.get(f"{s14_url}?_vegeta_refresh={ts}", headers=s14_headers, allow_redirects=False, timeout=2.5)
+            loc = r_redir.headers.get('Location') or s14_url
+            h = urlparse(loc).netloc
+            last_loc = loc
+            last_host = h
+            if not pinned_host or pinned_host in loc:
+                matched_loc = loc
+                break
         except Exception as e:
-            return None, None, f"redirect_err {type(e).__name__}"
+            last_err = type(e).__name__
+            if tries == 1:
+                return None, None, f"redirect_err {last_err}"
+
+    if not matched_loc:
+        if not last_loc:
+            return None, pinned_host, "redirect_err empty"
+        matched_loc = last_loc
+    else:
+        last_host = urlparse(matched_loc).netloc
 
     segments, info = _s14_parse_manifest_from(_S14_MANIFEST_SESSION, sid, matched_loc)
     _s14_fetch_manifest.last_loc = matched_loc if segments else None
-    return segments, pinned_host, info
+    return segments, last_host, info
 
 
 def _s14_render_playlist(sess, window_size=6):
@@ -245,20 +224,27 @@ def _s14_worker_loop(sid):
                 if sess:
                     seg_dict = sess.setdefault('segments', {})
                     offset = sess.get('seq_offset', 0)
-                    if repin:
-                        if new_host == pinned_host:
-                            _s14_log(f"REPIN_SAME sid={sid} t={elapsed}s stallo={stalled_for:.0f}s host={new_host} (continua senza buchi)")
-                        else:
-                            # Cambio nodo reale: mappa gli ultimi 4 segmenti subito dopo l'ultimo servito
-                            tail = new_segs[-4:]
-                            offset = sess.get('max_seq', 0) + 1 - tail[0][0]
-                            sess['seq_offset'] = offset
-                            sess['pinned_host'] = new_host
-                            sess.setdefault('disc_seqs', set()).add(tail[0][0] + offset)
-                            sess['disc_total'] = sess.get('disc_total', 0) + 1
-                            new_segs = tail
-                            _s14_log(f"REPIN sid={sid} t={elapsed}s stallo={stalled_for:.0f}s {pinned_host} -> {new_host}", xbmc.LOGWARNING)
                     max_seq = sess.get('max_seq', 0)
+                    floor_seq = max(max_seq, sess.get('last_kodi_seq', 0))
+                    if new_host and pinned_host and new_host != pinned_host:
+                        # Cambio nodo immediato senza stallo e senza salti indietro:
+                        # tieni solo segmenti strettamente nuovi rispetto a floor_seq
+                        forward = [x for x in new_segs if (x[0] + offset) > floor_seq]
+                        if forward:
+                            first_local = forward[0][0] + offset
+                            new_segs = forward
+                        else:
+                            tail = new_segs[-2:]
+                            offset = floor_seq + 1 - tail[0][0]
+                            sess['seq_offset'] = offset
+                            first_local = tail[0][0] + offset
+                            new_segs = tail
+                        sess['pinned_host'] = new_host
+                        sess.setdefault('disc_seqs', set()).add(first_local)
+                        sess['disc_total'] = sess.get('disc_total', 0) + 1
+                        _s14_log(f"NODE_SWITCH sid={sid} t={elapsed}s {pinned_host} -> {new_host} from={first_local}", xbmc.LOGWARNING)
+                    elif repin:
+                        _s14_log(f"REPIN_SAME sid={sid} t={elapsed}s stallo={stalled_for:.0f}s host={new_host} (continua senza buchi)")
                     for seq, inf, url in new_segs:
                         local = seq + offset
                         if local > max_seq:
@@ -276,16 +262,6 @@ def _s14_worker_loop(sid):
                         sess['disc_seqs'] = {d for d in disc if d >= lo}
                     _s14_render_playlist(sess, window_size=6)
                     max_seq = sess.get('max_seq', 0)
-                    # Pre-scarica in background gli ultimi 2 segmenti nuovi in RAM
-                    seg_cache = sess.setdefault('seg_cache', {})
-                    inflight = sess.setdefault('prefetch_inflight', set())
-                    to_prefetch = []
-                    for p_seq in sorted(seg_dict.keys())[-2:]:
-                        if p_seq not in seg_cache and p_seq not in inflight:
-                            inflight.add(p_seq)
-                            to_prefetch.append((p_seq, seg_dict[p_seq][1]))
-            for p_seq, p_url in to_prefetch:
-                threading.Thread(target=_s14_prefetch_segment, args=(sid, p_seq, p_url), daemon=True).start()
             _s14_log(f"sid={sid} t={elapsed}s host={new_host} {info} up_segs={new_segs[0][0]}-{new_segs[-1][0]} new={has_new_segment} max={max_seq} fetch={fetch_ms}ms")
         else:
             _s14_log(f"sid={sid} t={elapsed}s FAIL {info} stallo={stalled_for:.0f}s fetch={fetch_ms}ms", xbmc.LOGWARNING)
@@ -308,7 +284,6 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
             self.end_headers()
             return
 
-        seq_num = None
         if sid:
             with S14_LOCK:
                 sess = S14_SESSION_CACHE.get(sid)
@@ -319,21 +294,7 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
                         if seq_num > sess.get('last_kodi_seq', 0):
                             sess['last_kodi_seq'] = seq_num
                     except (TypeError, ValueError):
-                        seq_num = None
-                    cached_data = sess.get('seg_cache', {}).get(seq_num) if seq_num is not None else None
-                else:
-                    cached_data = None
-            if cached_data:
-                _s14_log(f"SEG_CACHE_HIT sid={sid} seq={seq} bytes={len(cached_data)}")
-                self.send_response(200)
-                self.send_header("Content-Type", "video/mp2t")
-                self.send_header("Content-Length", str(len(cached_data)))
-                self.end_headers()
-                try:
-                    self.wfile.write(cached_data)
-                except (BrokenPipeError, ConnectionResetError):
-                    pass
-                return
+                        pass
 
         data, attempt, ms, last_err = _s14_download_segment(seg_url, sid=sid, seq=seq)
         if data:
