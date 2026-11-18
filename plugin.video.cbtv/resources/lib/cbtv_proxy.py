@@ -201,16 +201,19 @@ def _s14_render_playlist(sess, window_size=6):
     return playlist_body
 
 
-def _s14_worker_loop(sid):
+def _s14_worker_loop(sid, worker_id=None):
     """Worker background: mantiene fresca la playlist sul nodo pinned.
-    Se il nodo non fornisce segmenti nuovi per S14_STALL_REPIN_SECONDS, si ri-aggancia a un nuovo nodo
-    inserendo #EXT-X-DISCONTINUITY (niente mescolanza di timestamp, niente playlist ferma -> niente EOF)."""
+    Se il nodo non fornisce segmenti nuovi per S14_STALL_REPIN_SECONDS o l'encoder riparte da zero,
+    rimappa la sequenza in avanti inserendo #EXT-X-DISCONTINUITY."""
     _s14_log(f"worker avviato sid={sid}")
     t_start = time.time()
     while True:
         with S14_LOCK:
             sess = S14_SESSION_CACHE.get(sid)
-            if not sess or (time.time() - sess.get('last_seen', 0) > 40):
+            if not sess or (worker_id is not None and sess.get('worker_id') != worker_id):
+                _s14_log(f"worker sostituito sid={sid}")
+                break
+            if time.time() - sess.get('last_seen', 0) > 40:
                 S14_SESSION_CACHE.pop(sid, None)
                 S14_WORKERS.pop(sid, None)
                 _s14_log(f"worker terminato sid={sid} (nessuna richiesta da Kodi)")
@@ -242,8 +245,9 @@ def _s14_worker_loop(sid):
                     offset = sess.get('seq_offset', 0)
                     max_seq = sess.get('max_seq', 0)
                     floor_seq = max(max_seq, sess.get('last_kodi_seq', 0))
-                    if new_host and pinned_host and new_host != pinned_host:
-                        # Cambio nodo immediato senza stallo e senza salti indietro:
+                    seq_reset = (new_segs[-1][0] + offset) < floor_seq
+                    if (new_host and pinned_host and new_host != pinned_host) or seq_reset:
+                        # Cambio nodo o reset encoder da 0 sullo stesso nodo:
                         # tieni solo segmenti strettamente nuovi rispetto a floor_seq
                         forward = [x for x in new_segs if (x[0] + offset) > floor_seq]
                         if forward:
@@ -255,10 +259,11 @@ def _s14_worker_loop(sid):
                             sess['seq_offset'] = offset
                             first_local = tail[0][0] + offset
                             new_segs = tail
-                        sess['pinned_host'] = new_host
+                        sess['pinned_host'] = new_host or pinned_host
                         sess.setdefault('disc_seqs', set()).add(first_local)
                         sess['disc_total'] = sess.get('disc_total', 0) + 1
-                        _s14_log(f"NODE_SWITCH sid={sid} t={elapsed}s {pinned_host} -> {new_host} from={first_local}", xbmc.LOGWARNING)
+                        tag = "SEQ_RESET" if (new_host == pinned_host and seq_reset) else "NODE_SWITCH"
+                        _s14_log(f"{tag} sid={sid} t={elapsed}s {pinned_host} -> {new_host} from={first_local}", xbmc.LOGWARNING)
                     elif repin:
                         _s14_log(f"REPIN_SAME sid={sid} t={elapsed}s stallo={stalled_for:.0f}s host={new_host} (continua senza buchi)")
                     for seq, inf, url in new_segs:
@@ -423,7 +428,8 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
                 # Assicurati che il worker thread sia attivo
                 with S14_LOCK:
                     if sid not in S14_WORKERS or not S14_WORKERS[sid].is_alive():
-                        t = threading.Thread(target=_s14_worker_loop, args=(sid,), daemon=True)
+                        wid = sess.get('worker_id')
+                        t = threading.Thread(target=_s14_worker_loop, args=(sid, wid), daemon=True)
                         S14_WORKERS[sid] = t
                         t.start()
 
@@ -440,8 +446,10 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
             _s14_log(f"avvio sid={sid} host={pinned_host} {info}")
             if new_segs:
                 with S14_LOCK:
+                    wid = now
                     sess = {
                         'sid': sid,
+                        'worker_id': wid,
                         'pinned_host': pinned_host,
                         'segments': {seq: (inf, url) for seq, inf, url in new_segs},
                         'last_seen': now,
@@ -455,10 +463,9 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
                     body = _s14_render_playlist(sess, window_size=6)
                     S14_SESSION_CACHE[sid] = sess
 
-                    if sid not in S14_WORKERS or not S14_WORKERS[sid].is_alive():
-                        t = threading.Thread(target=_s14_worker_loop, args=(sid,), daemon=True)
-                        S14_WORKERS[sid] = t
-                        t.start()
+                    t = threading.Thread(target=_s14_worker_loop, args=(sid, wid), daemon=True)
+                    S14_WORKERS[sid] = t
+                    t.start()
 
                 self.send_response(200)
                 self.send_header("Content-Type", "application/x-mpegURL")
