@@ -136,10 +136,6 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.ssl_ import create_urllib3_context
 from urllib.parse import urlsplit, parse_qs, quote, quote_plus
 
-LIB_PATH = os.path.join(os.path.dirname(__file__), 'lib')
-if LIB_PATH not in sys.path:
-    sys.path.insert(0, LIB_PATH)
-
 # Global variables
 ADDON = xbmcaddon.Addon()
 ADDON_ID = 'plugin.video.cbtv'
@@ -491,39 +487,39 @@ def get_event_tile(ev):
 
     # 1. Calcio - Competizioni specifiche
     if "SERIE A" in tourn or "SERIE A" in title:
-        return get_tile("tile_event_serie_a.png")
+        return get_tile("tile_event_serie_a.jpg")
     if any(k in tourn or k in title for k in ["CHAMPIONS", "UCL"]):
-        return get_tile("tile_event_champions.png")
+        return get_tile("tile_event_champions.jpg")
     if "EUROPA LEAGUE" in tourn or "EUROPA LEAGUE" in title:
-        return get_tile("tile_event_europa_league.png")
+        return get_tile("tile_event_europa_league.jpg")
     if "CONFERENCE" in tourn or "CONFERENCE" in title:
-        return get_tile("tile_event_europa_league.png")
+        return get_tile("tile_event_europa_league.jpg")
     if sport == "CALCIO" or any(k in tourn or k in title for k in ["CALCIO", "COPPA ITALIA", "NATIONS LEAGUE", "PREMIER LEAGUE", "LALIGA", "LA LIGA", "BUNDESLIGA"]):
-        return get_tile("tile_event_calcio.png")
+        return get_tile("tile_event_calcio.jpg")
 
     # 2. Motorsport
     if any(k in title or k in tourn for k in ["F1", "FORMULA 1", "F2", "FORMULA 2", "BAKU", "AZERBAIJAN", "MONZA", "GP "]):
-        return get_tile("tile_event_f1.png")
+        return get_tile("tile_event_f1.jpg")
     if any(k in title or k in tourn for k in ["MOTOGP", "MOTO GP", "MOTO2", "MOTO3"]):
-        return get_tile("tile_event_motogp.png")
+        return get_tile("tile_event_motogp.jpg")
     if sport == "MOTORSPORT":
-        return get_tile("tile_event_f1.png")
+        return get_tile("tile_event_f1.jpg")
 
     # 3. Tennis
     if sport == "TENNIS" or any(k in title or k in tourn for k in ["TENNIS", "ATP", "WTA", "BJK CUP", "DAVIS", "ROLAND GARROS", "WIMBLEDON", "US OPEN", "AUSTRALIAN OPEN", "SINNER", "PAOLINI", "MUSETTI"]):
-        return get_tile("tile_event_tennis.png")
+        return get_tile("tile_event_tennis.jpg")
 
     # 4. Basket
     if sport == "BASKET" or any(k in title or k in tourn for k in ["BASKET", "EUROLEGA", "EUROLEAGUE", "EUROCUP", "NBA", "LBA", "PALLACANESTRO"]):
-        return get_tile("tile_event_basket.png")
+        return get_tile("tile_event_basket.jpg")
 
     # 5. Volley
     if sport == "VOLLEY" or any(k in title or k in tourn for k in ["VOLLEY", "PALLAVOLO", "SUPERLEGA", "CEV"]):
-        return get_tile("tile_event_volley.png")
+        return get_tile("tile_event_volley.jpg")
 
     # 6. Ciclismo
     if sport == "CICLISMO" or any(k in title or k in tourn for k in ["CICLISMO", "GIRO D'ITALIA", "TOUR DE FRANCE", "VUELTA", "CRO RACE"]):
-        return get_tile("tile_event_ciclismo.png")
+        return get_tile("tile_event_ciclismo.jpg")
 
     # Fallback generale Agenda
     return get_tile("tile_agenda_sportiva.png")
