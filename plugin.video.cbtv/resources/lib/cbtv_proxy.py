@@ -200,9 +200,9 @@ def _s14_render_playlist(sess, window_size=6):
         next_needed = kodi_seq + 1
         if next_needed < active_seqs[0] and next_needed in seg_dict:
             gap = active_seqs[0] - next_needed
-            # Scorri in modo continuo senza gradini: se gap supera max_extra (4),
+            # Scorri in modo continuo senza gradini: se gap supera max_extra (10),
             # avanza di 1 segmento alla volta invece di azzerare e saltarne 3+ in blocco.
-            extra = min(gap, 4)
+            extra = min(gap, 10)
             active_seqs = all_seqs[-(window_size + extra):]
     last_seq = active_seqs[-1]
     media_seq = max(sess.get('media_seq', 0), active_seqs[0])
@@ -309,8 +309,8 @@ def _s14_worker_loop(sid, worker_id=None):
                             seg_dict[local] = (inf, url)
                     if has_new_segment:
                         sess['last_new_ts'] = time.time()
-                    if len(seg_dict) > 12:
-                        for old_k in sorted(seg_dict.keys())[:-12]:
+                    if len(seg_dict) > 18:
+                        for old_k in sorted(seg_dict.keys())[:-18]:
                             seg_dict.pop(old_k, None)
                     disc = sess.get('disc_seqs', set())
                     if disc and seg_dict:
