@@ -5,6 +5,7 @@ except ImportError:
     from http.server import HTTPServer as _BaseHTTPServer, BaseHTTPRequestHandler
 from urllib.parse import urlparse, parse_qsl, urlencode, urljoin, quote
 import requests
+from requests.adapters import HTTPAdapter
 import re
 import time
 import xbmc
@@ -15,7 +16,8 @@ S14_SESSION_CACHE = {}
 S14_WORKERS = {}
 S14_LOCK = threading.Lock()
 
-S14_STALL_REPIN_SECONDS = 90.0
+S14_STALL_REPIN_SECONDS = 45.0
+S14_IDLE_TIMEOUT_SECONDS = 180.0
 
 
 def _s14_log(msg, level=None):
@@ -65,22 +67,45 @@ def _s14_parse_manifest_from(s, sid, matched_loc):
 
 
 _S14_MANIFEST_SESSION = requests.Session()
-_S14_SEG_TLS = threading.local()
+_S14_SEG_SESSION = None
+
+
+def _get_s14_seg_session():
+    """Restituisce una Session condivisa con connection pool keep-alive per i segmenti .ts."""
+    global _S14_SEG_SESSION
+    with S14_LOCK:
+        if _S14_SEG_SESSION is None:
+            s = requests.Session()
+            adapter = HTTPAdapter(pool_connections=4, pool_maxsize=8)
+            s.mount('http://', adapter)
+            s.mount('https://', adapter)
+            _S14_SEG_SESSION = s
+        return _S14_SEG_SESSION
+
+
+def _close_s14_seg_session():
+    """Chiude e azzera la Session condivisa dei segmenti (rilascia subito i socket TCP)."""
+    global _S14_SEG_SESSION
+    with S14_LOCK:
+        s = _S14_SEG_SESSION
+        _S14_SEG_SESSION = None
+    if s is not None:
+        try:
+            s.close()
+        except Exception:
+            pass
 
 
 def _s14_download_segment(seg_url, sid="", seq="?"):
-    """Scarica un segmento .ts con sessione TLS keep-alive e fino a 3 retry.
+    """Scarica un segmento .ts con sessione condivisa keep-alive e fino a 3 retry.
     Ritorna (data_bytes|None, attempt, elapsed_ms, last_err)."""
-    s = getattr(_S14_SEG_TLS, 'session', None)
-    if s is None:
-        s = requests.Session()
-        _S14_SEG_TLS.session = s
+    s = _get_s14_seg_session()
 
     last_err = ""
     for attempt in range(1, 4):
         t0 = time.time()
         try:
-            r = s.get(seg_url, headers=S14_HEADERS, timeout=8.0)
+            r = s.get(seg_url, headers=S14_HEADERS, cookies={}, timeout=8.0)
             ms = int((time.time() - t0) * 1000)
             if r.status_code == 200 and r.content:
                 return r.content, attempt, ms, ""
@@ -223,7 +248,7 @@ def _s14_worker_loop(sid, worker_id=None):
             if not sess or (worker_id is not None and sess.get('worker_id') != worker_id):
                 _s14_log(f"worker sostituito sid={sid}")
                 break
-            if time.time() - sess.get('last_seen', 0) > 40:
+            if time.time() - sess.get('last_seen', 0) > S14_IDLE_TIMEOUT_SECONDS:
                 S14_SESSION_CACHE.pop(sid, None)
                 S14_WORKERS.pop(sid, None)
                 _s14_log(f"worker terminato sid={sid} (nessuna richiesta da Kodi)")
@@ -610,6 +635,10 @@ class ProxyManager:
         return self.port
 
     def stop(self):
+        with S14_LOCK:
+            S14_SESSION_CACHE.clear()
+            S14_WORKERS.clear()
+        _close_s14_seg_session()
         if self.server:
             self.server.shutdown()
             self.server.server_close()
