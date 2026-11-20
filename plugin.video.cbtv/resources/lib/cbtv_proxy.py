@@ -443,26 +443,31 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
         data, attempt, ms, last_err = _s14_download_segment(seg_url, sid=sid, seq=seq, source=source)
         if data and not pin_mode and sess_key and seq_num is not None:
             sig = len(data)
-            next_url = None
+            candidates = []
+            recent_snapshot = set()
             with S14_LOCK:
                 sess = S14_SESSION_CACHE.get(sess_key)
                 if sess:
                     recent = sess.setdefault('recent_sigs', [])
-                    if sig in recent:
-                        nxt = sess.get('segments', {}).get(seq_num + 1)
-                        if nxt and nxt[1] != seg_url:
-                            next_url = nxt[1]
-            if next_url:
-                data2, att2, ms2, _ = _s14_download_segment(next_url, sid=sid, seq=str(seq_num + 1), source=source)
+                    recent_snapshot = set(recent)
+                    if sig in recent_snapshot:
+                        segs_map = sess.get('segments', {})
+                        for step in (1, 2, 3):
+                            nxt = segs_map.get(seq_num + step)
+                            if nxt and nxt[1] != seg_url:
+                                candidates.append((seq_num + step, nxt[1]))
+            for cand_seq, cand_url in candidates:
+                data2, att2, ms2, _ = _s14_download_segment(cand_url, sid=sid, seq=str(cand_seq), source=source)
                 if data2:
                     sig2 = len(data2)
-                    if sig2 != sig:
-                        _s14_log(f"SEG_DEDUP sid={sid} seq={seq} -> {seq_num + 1} bytes={len(data2)} ms={ms2}", xbmc.LOGWARNING, source=source)
+                    if sig2 not in recent_snapshot and sig2 != sig:
+                        _s14_log(f"SEG_DEDUP sid={sid} seq={seq} -> {cand_seq} bytes={len(data2)} ms={ms2}", xbmc.LOGWARNING, source=source)
                         data, attempt, ms, sig = data2, att2, ms2, sig2
                         with S14_LOCK:
                             sess = S14_SESSION_CACHE.get(sess_key)
-                            if sess and (seq_num + 1) > sess.get('last_kodi_seq', 0):
-                                sess['last_kodi_seq'] = seq_num + 1
+                            if sess and cand_seq > sess.get('last_kodi_seq', 0):
+                                sess['last_kodi_seq'] = cand_seq
+                        break
             with S14_LOCK:
                 sess = S14_SESSION_CACHE.get(sess_key)
                 if sess:
