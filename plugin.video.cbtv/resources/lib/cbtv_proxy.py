@@ -20,21 +20,43 @@ S14_STALL_REPIN_SECONDS = 45.0
 S14_IDLE_TIMEOUT_SECONDS = 180.0
 
 
-def _s14_log(msg, level=None):
-    xbmc.log(f"[CBTV S14] {msg}", level if level is not None else xbmc.LOGINFO)
-
-
-S14_HEADERS = {
-    'User-Agent': 'VLC/3.0.20 LibVLC/3.0.20',
-    'Accept': 'audio/x-mpegurl,application/vnd.apple.mpegurl,text/plain,*/*',
-    'Cache-Control': 'no-cache'
+HLS_SERVERS = {
+    's14': {
+        'base_url': 'http://ios.dragonsdog.com/live/peppedent/Rl8HYEmMFn24',
+        'headers': {
+            'User-Agent': 'VLC/3.0.20 LibVLC/3.0.20',
+            'Accept': 'audio/x-mpegurl,application/vnd.apple.mpegurl,text/plain,*/*',
+            'Cache-Control': 'no-cache'
+        },
+        'pin_host': True,
+        'exclude_hosts': ('load2.sploadbl.date',),
+        'tag': 'S14',
+    },
+    's17': {
+        'base_url': 'http://103.205.18.126/live/elettro1/h0cg1VkmhN',
+        'headers': {
+            'User-Agent': 'VegetaTV/1.0',
+            'Accept': 'application/vnd.apple.mpegurl, application/x-mpegURL, */*',
+            'Cache-Control': 'no-cache'
+        },
+        'pin_host': False,
+        'exclude_hosts': (),
+        'tag': 'S17',
+    },
 }
 
+S14_HEADERS = HLS_SERVERS['s14']['headers']
 
-def _s14_parse_manifest_from(s, sid, matched_loc):
+
+def _s14_log(msg, level=None, source='s14'):
+    tag = HLS_SERVERS.get(source, HLS_SERVERS['s14'])['tag']
+    xbmc.log(f"[CBTV {tag}] {msg}", level if level is not None else xbmc.LOGINFO)
+
+
+def _s14_parse_manifest_from(s, sid, matched_loc, headers=None):
     """Scarica e analizza il manifest da un URL di nodo gia' noto. Ritorna (segments|None, info)."""
     try:
-        r_m3u8 = s.get(matched_loc, headers=S14_HEADERS, timeout=3.0)
+        r_m3u8 = s.get(matched_loc, headers=headers or S14_HEADERS, timeout=3.0)
         if r_m3u8.status_code != 200:
             return None, f"m3u8_http {r_m3u8.status_code}"
         parsed_cdn = urlparse(matched_loc)
@@ -96,48 +118,59 @@ def _close_s14_seg_session():
             pass
 
 
-def _s14_download_segment(seg_url, sid="", seq="?"):
+def _s14_download_segment(seg_url, sid="", seq="?", source="s14"):
     """Scarica un segmento .ts con sessione condivisa keep-alive e fino a 3 retry.
     Ritorna (data_bytes|None, attempt, elapsed_ms, last_err)."""
     s = _get_s14_seg_session()
+    headers = HLS_SERVERS.get(source, HLS_SERVERS['s14'])['headers']
 
     last_err = ""
     for attempt in range(1, 4):
         t0 = time.time()
         try:
-            r = s.get(seg_url, headers=S14_HEADERS, cookies={}, timeout=8.0)
+            r = s.get(seg_url, headers=headers, cookies={}, timeout=8.0)
             ms = int((time.time() - t0) * 1000)
             if r.status_code == 200 and r.content:
                 return r.content, attempt, ms, ""
             last_err = f"HTTP {r.status_code} bytes={len(r.content)}"
-            _s14_log(f"SEG_FAIL sid={sid} seq={seq} try={attempt} {last_err} ms={ms}", xbmc.LOGWARNING)
+            _s14_log(f"SEG_FAIL sid={sid} seq={seq} try={attempt} {last_err} ms={ms}", xbmc.LOGWARNING, source=source)
         except Exception as e:
             ms = int((time.time() - t0) * 1000)
             last_err = f"{type(e).__name__}: {e}"
-            _s14_log(f"SEG_FAIL sid={sid} seq={seq} try={attempt} {last_err} ms={ms}", xbmc.LOGWARNING)
+            _s14_log(f"SEG_FAIL sid={sid} seq={seq} try={attempt} {last_err} ms={ms}", xbmc.LOGWARNING, source=source)
         if attempt < 3:
             time.sleep(0.3)
     return None, 3, 0, last_err
 
 
-def _s14_fetch_manifest(sid, pinned_host=None, exclude_host=None):
-    """Richiede un nuovo manifest al load balancer mantenendo il blocco rigido su pinned_host
-    (fino a 25 tentativi rapidi) ed escludendo load2.sploadbl.date che fallisce il DNS su Firestick."""
-    s14_headers = {
-        'User-Agent': 'VLC/3.0.20 LibVLC/3.0.20',
-        'Accept': 'audio/x-mpegurl,application/vnd.apple.mpegurl,text/plain,*/*',
-        'Cache-Control': 'no-cache'
-    }
-    s14_url = f"http://ios.dragonsdog.com/live/peppedent/Rl8HYEmMFn24/{sid}.m3u8"
+def _s14_fetch_manifest(sid, pinned_host=None, exclude_host=None, source="s14"):
+    """Richiede un nuovo manifest al load balancer per il server HLS indicato (s14/s17).
+    Per server con pin_host=True (es. S14) mantiene blocco rigido su pinned_host fino a 25 tentativi.
+    Per server con sequenza condivisa tra i nodi (es. S17) fa una singola chiamata rapida."""
+    cfg = HLS_SERVERS.get(source, HLS_SERVERS['s14'])
+    headers = cfg['headers']
+    s14_url = f"{cfg['base_url']}/{sid}.m3u8"
+    exclude_hosts = cfg.get('exclude_hosts', ())
     matched_loc = None
     seen_hosts = {}
     last_err = None
 
-    if pinned_host:
+    if not cfg.get('pin_host', True):
+        try:
+            ts = int(time.time() * 1000)
+            r_redir = _S14_MANIFEST_SESSION.get(f"{s14_url}?_vegeta_refresh={ts}", headers=headers, allow_redirects=False, timeout=4.0)
+            loc = r_redir.headers.get('Location') or (s14_url if r_redir.status_code == 200 else None)
+            if not loc:
+                return None, None, f"lb_http {r_redir.status_code}"
+            pinned_host = urlparse(loc).netloc
+            matched_loc = loc
+        except Exception as e:
+            return None, None, f"lb_err {type(e).__name__}"
+    elif pinned_host:
         for _ in range(25):
             try:
                 ts = int(time.time() * 1000)
-                r_redir = _S14_MANIFEST_SESSION.get(f"{s14_url}?_vegeta_refresh={ts}", headers=s14_headers, allow_redirects=False, timeout=1.5)
+                r_redir = _S14_MANIFEST_SESSION.get(f"{s14_url}?_vegeta_refresh={ts}", headers=headers, allow_redirects=False, timeout=1.5)
                 loc = r_redir.headers.get('Location')
                 h = urlparse(loc).netloc if loc else f"HTTP{r_redir.status_code}"
                 seen_hosts[h] = seen_hosts.get(h, 0) + 1
@@ -154,11 +187,11 @@ def _s14_fetch_manifest(sid, pinned_host=None, exclude_host=None):
         for _ in range(9):
             try:
                 ts = int(time.time() * 1000)
-                r_redir = _S14_MANIFEST_SESSION.get(f"{s14_url}?_vegeta_refresh={ts}", headers=s14_headers, allow_redirects=False, timeout=2.0)
+                r_redir = _S14_MANIFEST_SESSION.get(f"{s14_url}?_vegeta_refresh={ts}", headers=headers, allow_redirects=False, timeout=2.0)
                 loc = r_redir.headers.get('Location') or s14_url
                 h = urlparse(loc).netloc
                 seen_hosts[h] = seen_hosts.get(h, 0) + 1
-                if 'load2.sploadbl.date' not in h:
+                if not any(ex in h for ex in exclude_hosts):
                     valid_counts[h] = valid_counts.get(h, 0) + 1
                     latest_locs[h] = loc
                     if valid_counts[h] >= 3 or sum(valid_counts.values()) >= 5:
@@ -176,7 +209,7 @@ def _s14_fetch_manifest(sid, pinned_host=None, exclude_host=None):
         else:
             return None, None, f"redirect_err hosts={seen_hosts} err={last_err}"
 
-    segments, info = _s14_parse_manifest_from(_S14_MANIFEST_SESSION, sid, matched_loc)
+    segments, info = _s14_parse_manifest_from(_S14_MANIFEST_SESSION, sid, matched_loc, headers=headers)
     _s14_fetch_manifest.last_loc = matched_loc if segments else None
     return segments, pinned_host, info
 
@@ -223,12 +256,13 @@ def _s14_render_playlist(sess, window_size=6):
         '#EXT-X-TARGETDURATION:12'
     ]
     sid = sess.get('sid', '')
+    source = sess.get('source', 's14')
     for s in valid_seqs:
         if s in disc and s != valid_seqs[0]:
             lines.append('#EXT-X-DISCONTINUITY')
         inf, url = seg_dict[s]
         lines.append(inf)
-        lines.append(f"/s14_seg?sid={sid}&seq={s}&u={quote(url, safe='')}")
+        lines.append(f"/s14_seg?src={source}&sid={sid}&seq={s}&u={quote(url, safe='')}")
 
     playlist_body = "\n".join(lines)
     sess['last_body'] = playlist_body
@@ -236,22 +270,27 @@ def _s14_render_playlist(sess, window_size=6):
     return playlist_body
 
 
-def _s14_worker_loop(sid, worker_id=None):
-    """Worker background: mantiene fresca la playlist sul nodo pinned.
+def _s14_worker_loop(sess_key, worker_id=None):
+    """Worker background: mantiene fresca la playlist per server HLS (S14 / S17).
     Se il nodo non fornisce segmenti nuovi per S14_STALL_REPIN_SECONDS o l'encoder riparte da zero,
     rimappa la sequenza in avanti inserendo #EXT-X-DISCONTINUITY."""
-    _s14_log(f"worker avviato sid={sid}")
+    with S14_LOCK:
+        _init = S14_SESSION_CACHE.get(sess_key) or {}
+        source = _init.get('source', 's14')
+        sid = _init.get('sid', sess_key)
+    pin_mode = HLS_SERVERS.get(source, HLS_SERVERS['s14']).get('pin_host', True)
+    _s14_log(f"worker avviato sid={sid}", source=source)
     t_start = time.time()
     while True:
         with S14_LOCK:
-            sess = S14_SESSION_CACHE.get(sid)
+            sess = S14_SESSION_CACHE.get(sess_key)
             if not sess or (worker_id is not None and sess.get('worker_id') != worker_id):
-                _s14_log(f"worker sostituito sid={sid}")
+                _s14_log(f"worker sostituito sid={sid}", source=source)
                 break
             if time.time() - sess.get('last_seen', 0) > S14_IDLE_TIMEOUT_SECONDS:
-                S14_SESSION_CACHE.pop(sid, None)
-                S14_WORKERS.pop(sid, None)
-                _s14_log(f"worker terminato sid={sid} (nessuna richiesta da Kodi)")
+                S14_SESSION_CACHE.pop(sess_key, None)
+                S14_WORKERS.pop(sess_key, None)
+                _s14_log(f"worker terminato sid={sid} (nessuna richiesta da Kodi)", source=source)
                 break
             pinned_host = sess.get('pinned_host')
             last_new_ts = sess.setdefault('last_new_ts', time.time())
@@ -259,21 +298,21 @@ def _s14_worker_loop(sid, worker_id=None):
 
         elapsed = int(time.time() - t_start)
         stalled_for = time.time() - last_new_ts
-        repin = (stalled_for > S14_STALL_REPIN_SECONDS) or (miss_streak >= 3)
+        repin = pin_mode and ((stalled_for > S14_STALL_REPIN_SECONDS) or (miss_streak >= 3))
 
         t0 = time.time()
         _s14_fetch_manifest.last_loc = None
         if repin:
-            new_segs, new_host, info = _s14_fetch_manifest(sid, pinned_host=None, exclude_host=pinned_host)
+            new_segs, new_host, info = _s14_fetch_manifest(sid, pinned_host=None, exclude_host=pinned_host, source=source)
         else:
-            new_segs, new_host, info = _s14_fetch_manifest(sid, pinned_host)
+            new_segs, new_host, info = _s14_fetch_manifest(sid, pinned_host, source=source)
         info = f"LB:{info}"
         fetch_ms = int((time.time() - t0) * 1000)
 
         has_new_segment = False
         if new_segs:
             with S14_LOCK:
-                sess = S14_SESSION_CACHE.get(sid)
+                sess = S14_SESSION_CACHE.get(sess_key)
                 if sess:
                     sess['miss_streak'] = 0
                     seg_dict = sess.setdefault('segments', {})
@@ -281,8 +320,9 @@ def _s14_worker_loop(sid, worker_id=None):
                     max_seq = sess.get('max_seq', 0)
                     floor_seq = max(max_seq, sess.get('last_kodi_seq', 0))
                     seq_reset = (new_segs[-1][0] + offset) < floor_seq
-                    if (new_host and pinned_host and new_host != pinned_host) or seq_reset:
-                        # Cambio nodo o reset encoder da 0 sullo stesso nodo:
+                    host_switched = pin_mode and bool(new_host and pinned_host and new_host != pinned_host)
+                    if host_switched or seq_reset:
+                        # Cambio nodo (se pin_mode) o reset encoder da 0:
                         # tieni solo segmenti strettamente nuovi rispetto a floor_seq
                         forward = [x for x in new_segs if (x[0] + offset) > floor_seq]
                         if forward:
@@ -297,10 +337,12 @@ def _s14_worker_loop(sid, worker_id=None):
                         sess['pinned_host'] = new_host or pinned_host
                         sess.setdefault('disc_seqs', set()).add(first_local)
                         sess['disc_total'] = sess.get('disc_total', 0) + 1
-                        tag = "SEQ_RESET" if (new_host == pinned_host and seq_reset) else "NODE_SWITCH"
-                        _s14_log(f"{tag} sid={sid} t={elapsed}s {pinned_host} -> {new_host} from={first_local}", xbmc.LOGWARNING)
+                        tag = "SEQ_RESET" if (not host_switched and seq_reset) else "NODE_SWITCH"
+                        _s14_log(f"{tag} sid={sid} t={elapsed}s {pinned_host} -> {new_host} from={first_local}", xbmc.LOGWARNING, source=source)
                     elif repin:
-                        _s14_log(f"REPIN_SAME sid={sid} t={elapsed}s stallo={stalled_for:.0f}s host={new_host} (continua senza buchi)")
+                        _s14_log(f"REPIN_SAME sid={sid} t={elapsed}s stallo={stalled_for:.0f}s host={new_host} (continua senza buchi)", source=source)
+                    elif new_host and not pin_mode:
+                        sess['pinned_host'] = new_host
                     for seq, inf, url in new_segs:
                         local = seq + offset
                         if local > max_seq:
@@ -318,16 +360,16 @@ def _s14_worker_loop(sid, worker_id=None):
                         sess['disc_seqs'] = {d for d in disc if d >= lo}
                     _s14_render_playlist(sess, window_size=6)
                     max_seq = sess.get('max_seq', 0)
-            _s14_log(f"sid={sid} t={elapsed}s host={new_host} {info} up_segs={new_segs[0][0]}-{new_segs[-1][0]} new={has_new_segment} max={max_seq} fetch={fetch_ms}ms")
+            _s14_log(f"sid={sid} t={elapsed}s host={new_host} {info} up_segs={new_segs[0][0]}-{new_segs[-1][0]} new={has_new_segment} max={max_seq} fetch={fetch_ms}ms", source=source)
         else:
             with S14_LOCK:
-                sess = S14_SESSION_CACHE.get(sid)
+                sess = S14_SESSION_CACHE.get(sess_key)
                 if sess:
                     sess['miss_streak'] = sess.get('miss_streak', 0) + 1
                     streak = sess['miss_streak']
                 else:
                     streak = 0
-            _s14_log(f"sid={sid} t={elapsed}s FAIL {info} miss={streak}/3 stallo={stalled_for:.0f}s fetch={fetch_ms}ms", xbmc.LOGWARNING)
+            _s14_log(f"sid={sid} t={elapsed}s FAIL {info} miss={streak}/3 stallo={stalled_for:.0f}s fetch={fetch_ms}ms", xbmc.LOGWARNING, source=source)
 
         time.sleep(5.0 if has_new_segment else (2.0 if new_segs else 1.0))
 
@@ -342,14 +384,16 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
         seg_url = params.get('u')
         sid = params.get('sid', '')
         seq = params.get('seq', '?')
+        source = params.get('src', 's14')
+        sess_key = f"{source}:{sid}" if sid else ""
         if not seg_url:
             self.send_response(400)
             self.end_headers()
             return
 
-        if sid:
+        if sess_key:
             with S14_LOCK:
-                sess = S14_SESSION_CACHE.get(sid)
+                sess = S14_SESSION_CACHE.get(sess_key)
                 if sess:
                     sess['last_seen'] = time.time()
                     try:
@@ -359,12 +403,12 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
                     except (TypeError, ValueError):
                         pass
 
-        data, attempt, ms, last_err = _s14_download_segment(seg_url, sid=sid, seq=seq)
+        data, attempt, ms, last_err = _s14_download_segment(seg_url, sid=sid, seq=seq, source=source)
         if data:
             if attempt > 1 or ms > 2000:
-                _s14_log(f"SEG_OK sid={sid} seq={seq} bytes={len(data)} ms={ms} try={attempt}", xbmc.LOGWARNING)
+                _s14_log(f"SEG_OK sid={sid} seq={seq} bytes={len(data)} ms={ms} try={attempt}", xbmc.LOGWARNING, source=source)
             else:
-                _s14_log(f"SEG_OK sid={sid} seq={seq} bytes={len(data)} ms={ms}")
+                _s14_log(f"SEG_OK sid={sid} seq={seq} bytes={len(data)} ms={ms}", source=source)
             self.send_response(200)
             self.send_header("Content-Type", "video/mp2t")
             self.send_header("Content-Length", str(len(data)))
@@ -375,7 +419,7 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
                 pass
             return
 
-        _s14_log(f"SEG_GIVEUP sid={sid} seq={seq} url={seg_url} err={last_err}", xbmc.LOGERROR)
+        _s14_log(f"SEG_GIVEUP sid={sid} seq={seq} url={seg_url} err={last_err}", xbmc.LOGERROR, source=source)
         self.send_response(502)
         self.end_headers()
 
@@ -448,13 +492,14 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
             self.end_headers()
             return
 
-        # ─── GESTIONE SPECIALE SERVER 14 (HLS PROXY) ───
-        if source_type == "s14":
+        # ─── GESTIONE SPECIALE SERVER HLS (S14 / S17) ───
+        if source_type in HLS_SERVERS:
             sid = code
+            sess_key = f"{source_type}:{sid}"
             now = time.time()
 
             with S14_LOCK:
-                sess = S14_SESSION_CACHE.get(sid)
+                sess = S14_SESSION_CACHE.get(sess_key)
                 if sess:
                     sess['last_seen'] = now
 
@@ -462,28 +507,29 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
             if sess and sess.get('last_body'):
                 # Assicurati che il worker thread sia attivo
                 with S14_LOCK:
-                    if sid not in S14_WORKERS or not S14_WORKERS[sid].is_alive():
+                    if sess_key not in S14_WORKERS or not S14_WORKERS[sess_key].is_alive():
                         wid = sess.get('worker_id')
-                        t = threading.Thread(target=_s14_worker_loop, args=(sid, wid), daemon=True)
-                        S14_WORKERS[sid] = t
+                        t = threading.Thread(target=_s14_worker_loop, args=(sess_key, wid), daemon=True)
+                        S14_WORKERS[sess_key] = t
                         t.start()
 
                 self.send_response(200)
                 self.send_header("Content-Type", "application/x-mpegURL")
                 self.send_header("Access-Control-Allow-Origin", "*")
                 self.end_headers()
-                _s14_log(f"M3U8_SERVED sid={sid} media={sess.get('media_seq')} max={sess.get('max_seq')}")
+                _s14_log(f"M3U8_SERVED sid={sid} media={sess.get('media_seq')} max={sess.get('max_seq')}", source=source_type)
                 self.wfile.write(sess['last_body'].encode('utf-8'))
                 return
 
             # Primo avvio del canale: fetch iniziale sincrono
-            new_segs, pinned_host, info = _s14_fetch_manifest(sid, pinned_host=None)
-            _s14_log(f"avvio sid={sid} host={pinned_host} {info}")
+            new_segs, pinned_host, info = _s14_fetch_manifest(sid, pinned_host=None, source=source_type)
+            _s14_log(f"avvio sid={sid} host={pinned_host} {info}", source=source_type)
             if new_segs:
                 with S14_LOCK:
                     wid = now
                     sess = {
                         'sid': sid,
+                        'source': source_type,
                         'worker_id': wid,
                         'pinned_host': pinned_host,
                         'segments': {seq: (inf, url) for seq, inf, url in new_segs},
@@ -497,10 +543,10 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
                     }
                     body = _s14_render_playlist(sess, window_size=6)
                     sess['startup_done'] = True
-                    S14_SESSION_CACHE[sid] = sess
+                    S14_SESSION_CACHE[sess_key] = sess
 
-                    t = threading.Thread(target=_s14_worker_loop, args=(sid, wid), daemon=True)
-                    S14_WORKERS[sid] = t
+                    t = threading.Thread(target=_s14_worker_loop, args=(sess_key, wid), daemon=True)
+                    S14_WORKERS[sess_key] = t
                     t.start()
 
                 self.send_response(200)

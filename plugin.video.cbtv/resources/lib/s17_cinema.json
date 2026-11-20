@@ -1,0 +1,302 @@
+[
+  {
+    "name": "SKY CINEMA UNO 4K HEVC H265",
+    "sid": "6651",
+    "icon": "http://hulu.oldadventure.org:23000/images/d8edefe749b5ac2d2de572aadccd3cb4.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA UNO FULL HD",
+    "sid": "161",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/Sky%20Cinema%20Uno%20FHD.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA UNO HD",
+    "sid": "160",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/Sky%20Cinema%20Uno%20HD.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA UNO SD",
+    "sid": "159",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/SD%20Sky%20Cinema%201.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA UNO +1",
+    "sid": "5489",
+    "icon": "http://hulu.oldadventure.org:23000/images/7c7466796e12e5ba4c5a8cd8d8537442.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA UNO 24 4K HEVC H265",
+    "sid": "6652",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/4K%20SKY%20CINEMA%20UNO%20%2024.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA UNO  24 FULL HD",
+    "sid": "163",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/Sky%20Cinema%20uno%20+24%20FHD.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA UNO  24 HD",
+    "sid": "162",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/Sky%20Cinema%20Uno%20HD.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA UNO  24 SD",
+    "sid": "33566",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/Sky%20Cinema%20Uno%20+24%20HD.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA UNO  24 +1",
+    "sid": "5490",
+    "icon": "http://hulu.oldadventure.org:23000/images/8207ba2a3447ed05238e5efceb7ca07c.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA STORIES 4K HEVC H265",
+    "sid": "6656",
+    "icon": "http://hulu.oldadventure.org:23000/images/088eb1c01e8c01c92922542dd55953e1.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA STORIES FULL HD",
+    "sid": "175",
+    "icon": "http://hulu.oldadventure.org:23000/images/088eb1c01e8c01c92922542dd55953e1.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA STORIES HD",
+    "sid": "174",
+    "icon": "http://hulu.oldadventure.org:23000/images/088eb1c01e8c01c92922542dd55953e1.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA STORIES SD",
+    "sid": "173",
+    "icon": "http://hulu.oldadventure.org:23000/images/088eb1c01e8c01c92922542dd55953e1.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA STORIES +1",
+    "sid": "5491",
+    "icon": "http://hulu.oldadventure.org:23000/images/bceab78fd5e4714d1bdb025f3801366f.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA COLLECTION 4K HEVC H265",
+    "sid": "6660",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/4K%20SKY%20CINEMA%20COLLECTION.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA COLLECTION FULL HD",
+    "sid": "186",
+    "icon": "http://hulu.oldadventure.org:23000/images/d444e5233877564c17a46388415c9029.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA COLLECTION HD",
+    "sid": "185",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/Sky%20Cinema%20Collection%20HD.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA COLLECTION SD",
+    "sid": "184",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/SD%20Sky%20Cinema%20Collection.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA COLLECTION +1",
+    "sid": "5493",
+    "icon": "http://hulu.oldadventure.org:23000/images/4fc51a36191c6e7dd2a5b938fb8a9ce9.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA FAMILY 4K HEVC H265",
+    "sid": "6655",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/4K%20SKY%20CINEMA%20FAMILY.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA FAMILY FULL HD",
+    "sid": "172",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/Sky%20Cinema%20Family%20FHD.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA FAMILY HD",
+    "sid": "171",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/Cinema%20Family%20HD.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA FAMILY SD",
+    "sid": "170",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/Cinema%20Family%20SD.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA FAMILY +1",
+    "sid": "5494",
+    "icon": "http://hulu.oldadventure.org:23000/images/0991cea1d6661693c54753ac91b1f2c4.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA ACTION 4K HEVC H265",
+    "sid": "6661",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/4K%20SKY%20CINEMA%20ACTION.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA ACTION FULL HD",
+    "sid": "189",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/Sky%20Cinema%20Action%20FHD.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA ACTION HD",
+    "sid": "188",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/Sky%20Cinema%20Action%20HD.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA ACTION SD",
+    "sid": "187",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/SD%20Sky%20Cinema%20Action.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA ACTION +1",
+    "sid": "5495",
+    "icon": "http://hulu.oldadventure.org:23000/images/de188734c561660447340ea231b8851a.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA SUSPENSE 4K HEVC H265",
+    "sid": "6653",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/4K%20SKY%20CINEMA%20SUSPENSE.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA SUSPENSE FULL HD",
+    "sid": "166",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/Sky%20Cinema%20Suspense%20Full-HD.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA SUSPENSE HD",
+    "sid": "165",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/Sky%20Cinema%20Suspense%20HD.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA SUSPENSE SD",
+    "sid": "164",
+    "icon": "http://hulu.oldadventure.org:23000/Picons/SKY%20CINEMA%20SUSPENSE%20HD.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA SUSPENSE +1",
+    "sid": "5496",
+    "icon": "http://hulu.oldadventure.org:23000/images/1bede229192ae8d2a748e6f475b82a3c.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA ROMANCE 4K HEVC H265",
+    "sid": "6654",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/4K%20SKY%20CINEMA%20ROMANCE.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA ROMANCE FULL HD",
+    "sid": "169",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/Sky%20Cinema%20Romance%20FHD.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA ROMANCE HD",
+    "sid": "168",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/Sky%20Cinema%20Romance%20HD.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA ROMANCE SD",
+    "sid": "167",
+    "icon": "http://hulu.oldadventure.org:23000/images/52c2b9ddcc448d77f51a071f0a22ad6a.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA ROMANCE +1",
+    "sid": "5497",
+    "icon": "http://hulu.oldadventure.org:23000/images/2378b947dc6082c61ed52401a576a42b.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA DRAMA 4K HEVC H265",
+    "sid": "6658",
+    "icon": "http://hulu.oldadventure.org:23000/Picons/SKY%20CINEMA%20DRAMA%20FULL%20HD.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA DRAMA FULL HD",
+    "sid": "180",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/Sky%20Cinema%20Drama%20FHD.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA DRAMA HD",
+    "sid": "179",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/Sky%20Cinema%20Drama%20HD.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA DRAMA SD",
+    "sid": "178",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/SD%20Sky%20Cinema%20Drama.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA DRAMA +1",
+    "sid": "5498",
+    "icon": "http://hulu.oldadventure.org:23000/images/9b286ce9ba06dac5be5f987f0b48f805.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA COMEDY 4K HEVC H265",
+    "sid": "6659",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/4K%20SKY%20CINEMA%20COMEDY.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA COMEDY FULL HD",
+    "sid": "183",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/Sky%20Cinema%20Comedy%20FHD.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA COMEDY HD",
+    "sid": "182",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/Sky%20Cinema%20Comedy%20HD.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA COMEDY SD",
+    "sid": "181",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/SD%20Sky%20Cinema%20Comedy.png",
+    "category_id": "4"
+  },
+  {
+    "name": "SKY CINEMA COMEDY +1",
+    "sid": "5499",
+    "icon": "http://hulu.oldadventure.org:23000/images/dd49301392d905759bb87c2145f33d72.png",
+    "category_id": "4"
+  }
+]

@@ -1,0 +1,740 @@
+[
+  {
+    "name": "DAZN SPORT SERIE A 1 FULL HD",
+    "sid": "39290",
+    "icon": "http://hulu.oldadventure.org:23000/images/dzna.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN SPORT SERIE A 1  HD",
+    "sid": "39291",
+    "icon": "http://hulu.oldadventure.org:23000/images/dzna.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN SPORT SERIE A 1 SD",
+    "sid": "39292",
+    "icon": "http://hulu.oldadventure.org:23000/images/dzna.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN SPORT SERIE A 2 FULL HD",
+    "sid": "39293",
+    "icon": "http://hulu.oldadventure.org:23000/images/dzna.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN SPORT SERIE A 2 HD",
+    "sid": "39294",
+    "icon": "http://hulu.oldadventure.org:23000/images/dzna.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN SPORT SERIE A 2 SD",
+    "sid": "39295",
+    "icon": "http://hulu.oldadventure.org:23000/images/dzna.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN 1 4K HEVC H265",
+    "sid": "8981",
+    "icon": "http://hulu.oldadventure.org:23000/images/6f0efa4b89f48ffda521da8edede18fc.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN 1 FULL HD",
+    "sid": "152",
+    "icon": "http://hulu.oldadventure.org:23000/images/6f0efa4b89f48ffda521da8edede18fc.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN 1 HD",
+    "sid": "151",
+    "icon": "http://hulu.oldadventure.org:23000/images/6f0efa4b89f48ffda521da8edede18fc.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN 1 SD",
+    "sid": "150",
+    "icon": "http://hulu.oldadventure.org:23000/images/6f0efa4b89f48ffda521da8edede18fc.png",
+    "category_id": "11"
+  },
+  {
+    "name": "[FLUX] ZONA DAZN SERIE A 1 FHD",
+    "sid": "46826",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "[FLUX] ZONA DAZN SERIE A 1 HD",
+    "sid": "46827",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "[FLUX] ZONA DAZN SERIE A 1 SD",
+    "sid": "46828",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN PGA TOUR FULL HD",
+    "sid": "52614",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN PGA TOUR HD",
+    "sid": "52615",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN PGA TOUR SD",
+    "sid": "52616",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN RADIO TV SERIE A FHD",
+    "sid": "52705",
+    "icon": "http://hulu.oldadventure.org:23000/images/c60af1017f5d0f8fedd64e15ba6b8920.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN RADIO TV SERIE A HD",
+    "sid": "52706",
+    "icon": "http://hulu.oldadventure.org:23000/images/c60af1017f5d0f8fedd64e15ba6b8920.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN NFL NETWORK",
+    "sid": "26951",
+    "icon": "http://hulu.oldadventure.org:23000/images/605d825c9902d4ed8ca92e81954a1838.png",
+    "category_id": "11"
+  },
+  {
+    "name": "VETRINA DAZN",
+    "sid": "26077",
+    "icon": "http://hulu.oldadventure.org:23000/Picons/DAZN%20WEB%201.png",
+    "category_id": "11"
+  },
+  {
+    "name": "RALLY TV FULL HD",
+    "sid": "52644",
+    "icon": "http://hulu.oldadventure.org:23000/images/90628b8ee374d3e190ec8e056d660e10.png",
+    "category_id": "11"
+  },
+  {
+    "name": "RALLY TV HD",
+    "sid": "52645",
+    "icon": "http://hulu.oldadventure.org:23000/images/90628b8ee374d3e190ec8e056d660e10.png",
+    "category_id": "11"
+  },
+  {
+    "name": "RALLY TV SD",
+    "sid": "52646",
+    "icon": "http://hulu.oldadventure.org:23000/images/90628b8ee374d3e190ec8e056d660e10.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN DIRETTA GOL SERIE A FULL HD",
+    "sid": "39393",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN DIRETTA GOL SERIE A HD",
+    "sid": "39619",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN DIRETTA GOL SERIE A SD",
+    "sid": "39620",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN DIRETTA GOL SERIE B FULL HD",
+    "sid": "39394",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN DIRETTA GOL SERIE B HD",
+    "sid": "39621",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN DIRETTA GOL SERIE B SD",
+    "sid": "39622",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN DIRETTA GOL EUROPA LEAGUE FULL HD",
+    "sid": "39396",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN DIRETTA GOL EUROPA LEAGUE HD",
+    "sid": "39623",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN DIRETTA GOL EUROPA LEAGUE SD",
+    "sid": "39624",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 1 FULL HD",
+    "sid": "348",
+    "icon": "http://hulu.oldadventure.org:23000/images/a019ba7ea11ffd974f58097fdb4532bd.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 1 HD",
+    "sid": "39625",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 1 SD",
+    "sid": "39626",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 2 FULL HD",
+    "sid": "346",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/Dazn%20Sport%202%20HD.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 2 HD",
+    "sid": "39627",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 2 SD",
+    "sid": "39628",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 3 FULL HD",
+    "sid": "345",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/Dazn%20Sport%203%20HD.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 3 HD",
+    "sid": "39629",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 3 SD",
+    "sid": "39630",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 4 FULL HD",
+    "sid": "344",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/Dazn%20Sport%204%20HD.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 4 HD",
+    "sid": "39631",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 4 SD",
+    "sid": "39632",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 5 FULL HD",
+    "sid": "343",
+    "icon": "http://hulu.oldadventure.org:23000/images/f77ed2b04af513543482c7068df097d6.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 5 HD",
+    "sid": "39633",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 5 SD",
+    "sid": "39634",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 6 FULL HD",
+    "sid": "342",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/Dazn%20Sport%206%20HD.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 6 HD",
+    "sid": "39635",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 6 SD",
+    "sid": "39636",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 7 FULL HD",
+    "sid": "341",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/Dazn%20Sport%207%20HD.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 7 HD",
+    "sid": "39637",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 7 SD",
+    "sid": "39638",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 8 FULL HD",
+    "sid": "340",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/Dazn%20new%20channel%208.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 8 HD",
+    "sid": "39639",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 8 SD",
+    "sid": "39640",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 9 FULL HD",
+    "sid": "339",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/DAZN%20Group%20Channel%209.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 9 HD",
+    "sid": "39641",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 9 SD",
+    "sid": "39642",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 10 FULL HD",
+    "sid": "347",
+    "icon": "http://hulu.oldadventure.org:23000/Loghi/DAZN%20Group%20Channel%2010.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 10 HD",
+    "sid": "39643",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 10 SD",
+    "sid": "39644",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 11 FULL HD",
+    "sid": "39870",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 11 HD",
+    "sid": "39869",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 11 SD",
+    "sid": "39868",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 12 FULL HD",
+    "sid": "39873",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 12 HD",
+    "sid": "39872",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 12 SD",
+    "sid": "39871",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 13 FULL HD",
+    "sid": "39876",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 13 HD",
+    "sid": "39875",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 13 SD",
+    "sid": "39874",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 14 FULL HD",
+    "sid": "39879",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 14 HD",
+    "sid": "39878",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 14 SD",
+    "sid": "39877",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 15 FULL HD",
+    "sid": "39882",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 15 HD",
+    "sid": "39881",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 15 SD",
+    "sid": "39880",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 16 FULL HD",
+    "sid": "52618",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 16  HD",
+    "sid": "52619",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 16  SD",
+    "sid": "52620",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 17  FULL HD",
+    "sid": "52621",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 17  HD",
+    "sid": "52622",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 17  SD",
+    "sid": "52623",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 18 FULL HD",
+    "sid": "52624",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 18 HD",
+    "sid": "52625",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 18 SD",
+    "sid": "52626",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 19 FULL HD",
+    "sid": "52627",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 19 HD",
+    "sid": "52628",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 19 SD",
+    "sid": "52629",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 20 FULL HD",
+    "sid": "52630",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 20 HD",
+    "sid": "52631",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 20 SD",
+    "sid": "52632",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN SPORT SERIE A 3 FULL HD",
+    "sid": "52876",
+    "icon": "http://hulu.oldadventure.org:23000/images/dzna.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN SPORT SERIE A 3 HD",
+    "sid": "52877",
+    "icon": "http://hulu.oldadventure.org:23000/images/dzna.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN SPORT SERIE A 3 SD",
+    "sid": "52878",
+    "icon": "http://hulu.oldadventure.org:23000/images/dzna.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN SPORT SERIE A 4 FULL HD",
+    "sid": "52879",
+    "icon": "http://hulu.oldadventure.org:23000/images/dzna.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN SPORT SERIE A 4 HD",
+    "sid": "52880",
+    "icon": "http://hulu.oldadventure.org:23000/images/dzna.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN SPORT SERIE A 4 SD",
+    "sid": "52881",
+    "icon": "http://hulu.oldadventure.org:23000/images/dzna.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN NFL 1 FULL HD",
+    "sid": "52886",
+    "icon": "http://hulu.oldadventure.org:23000/images/0914ccab6a147705e8020ec32e983a16.jpg",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN NFL 2 FULL HD",
+    "sid": "52887",
+    "icon": "http://hulu.oldadventure.org:23000/images/0914ccab6a147705e8020ec32e983a16.jpg",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN NFL 4 FULL HD",
+    "sid": "52888",
+    "icon": "http://hulu.oldadventure.org:23000/images/0914ccab6a147705e8020ec32e983a16.jpg",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN NFL 5 FULL HD",
+    "sid": "52889",
+    "icon": "http://hulu.oldadventure.org:23000/images/0914ccab6a147705e8020ec32e983a16.jpg",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN NFL 6 FULL HD",
+    "sid": "52890",
+    "icon": "http://hulu.oldadventure.org:23000/images/0914ccab6a147705e8020ec32e983a16.jpg",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN NFL 7 FULL HD",
+    "sid": "52891",
+    "icon": "http://hulu.oldadventure.org:23000/images/0914ccab6a147705e8020ec32e983a16.jpg",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN NFL 8 FULL HD",
+    "sid": "52892",
+    "icon": "http://hulu.oldadventure.org:23000/images/0914ccab6a147705e8020ec32e983a16.jpg",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN NFL 9 FULL HD",
+    "sid": "52893",
+    "icon": "http://hulu.oldadventure.org:23000/images/0914ccab6a147705e8020ec32e983a16.jpg",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN NFL 10 FULL HD",
+    "sid": "52894",
+    "icon": "http://hulu.oldadventure.org:23000/images/0914ccab6a147705e8020ec32e983a16.jpg",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN NFL 3 FULL HD",
+    "sid": "52896",
+    "icon": "http://hulu.oldadventure.org:23000/images/0914ccab6a147705e8020ec32e983a16.jpg",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 21 FULL HD",
+    "sid": "52900",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 22 FULL HD",
+    "sid": "52901",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 23 FULL HD",
+    "sid": "52902",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 24 FULL HD",
+    "sid": "52903",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 25 FULL HD",
+    "sid": "52904",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 21 HD",
+    "sid": "52905",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 22 HD",
+    "sid": "52906",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 23 HD",
+    "sid": "52907",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 24 HD",
+    "sid": "52908",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 25 HD",
+    "sid": "52909",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 21 SD",
+    "sid": "52910",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 22 SD",
+    "sid": "52911",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 23 SD",
+    "sid": "52912",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 24 SD",
+    "sid": "52913",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  },
+  {
+    "name": "DAZN WEB 25 SD",
+    "sid": "52914",
+    "icon": "http://hulu.oldadventure.org:23000/images/02c9f8415df91d16c2ad56f1ffba8871.png",
+    "category_id": "11"
+  }
+]
