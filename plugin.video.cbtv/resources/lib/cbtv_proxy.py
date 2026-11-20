@@ -321,6 +321,7 @@ def _s14_worker_loop(sess_key, worker_id=None):
         fetch_ms = int((time.time() - t0) * 1000)
 
         has_new_segment = False
+        stale_skip = False
         if new_segs:
             fetched_loc = getattr(_s14_fetch_manifest, 'last_loc', None)
             with S14_LOCK:
@@ -333,51 +334,59 @@ def _s14_worker_loop(sess_key, worker_id=None):
                     offset = sess.get('seq_offset', 0)
                     max_seq = sess.get('max_seq', 0)
                     floor_seq = max(max_seq, sess.get('last_kodi_seq', 0))
-                    seq_reset = (new_segs[-1][0] + offset) < floor_seq
-                    host_switched = pin_mode and bool(new_host and pinned_host and new_host != pinned_host)
-                    if host_switched or seq_reset:
-                        # Cambio nodo (se pin_mode) o reset encoder da 0:
-                        # tieni solo segmenti strettamente nuovi rispetto a floor_seq
-                        forward = [x for x in new_segs if (x[0] + offset) > floor_seq]
-                        if forward:
-                            first_local = forward[0][0] + offset
-                            new_segs = forward
-                        else:
-                            tail = new_segs[-2:]
-                            offset = floor_seq + 1 - tail[0][0]
-                            sess['seq_offset'] = offset
-                            first_local = tail[0][0] + offset
-                            new_segs = tail
-                        sess['pinned_host'] = new_host or pinned_host
-                        sess.setdefault('disc_seqs', set()).add(first_local)
-                        sess['disc_total'] = sess.get('disc_total', 0) + 1
-                        tag = "SEQ_RESET" if (not host_switched and seq_reset) else "NODE_SWITCH"
-                        _s14_log(f"{tag} sid={sid} t={elapsed}s {pinned_host} -> {new_host} from={first_local}", xbmc.LOGWARNING, source=source)
-                    elif repin:
-                        _s14_log(f"REPIN_SAME sid={sid} t={elapsed}s stallo={stalled_for:.0f}s host={new_host} (continua senza buchi)", source=source)
-                    elif new_host and not pin_mode:
-                        sess['pinned_host'] = new_host
-                    for seq, inf, url in new_segs:
-                        local = seq + offset
-                        if local > max_seq:
-                            has_new_segment = True
-                        if local >= sess.get('media_seq', 0):
-                            # Su server multi-IP senza pinning (S17), non sovrascrivere segmenti
-                            # gia' in cache per evitare duplicati da nodi sfasati di +-1.
-                            if pin_mode or local not in seg_dict:
-                                seg_dict[local] = (inf, url)
-                    if has_new_segment:
-                        sess['last_new_ts'] = time.time()
-                    if len(seg_dict) > 18:
-                        for old_k in sorted(seg_dict.keys())[:-18]:
-                            seg_dict.pop(old_k, None)
-                    disc = sess.get('disc_seqs', set())
-                    if disc and seg_dict:
-                        lo = min(seg_dict.keys())
-                        sess['disc_seqs'] = {d for d in disc if d >= lo}
-                    _s14_render_playlist(sess, window_size=6)
-                    max_seq = sess.get('max_seq', 0)
-            _s14_log(f"sid={sid} t={elapsed}s host={new_host} {info} up_segs={new_segs[0][0]}-{new_segs[-1][0]} new={has_new_segment} max={max_seq} fetch={fetch_ms}ms", source=source)
+                    new_max = new_segs[-1][0] + offset
+                    lag = floor_seq - new_max
+                    if not pin_mode and 0 < lag <= 10:
+                        stale_skip = True
+                    else:
+                        seq_reset = (lag > 10) if not pin_mode else (new_max < floor_seq)
+                        host_switched = pin_mode and bool(new_host and pinned_host and new_host != pinned_host)
+                        if host_switched or seq_reset:
+                            # Cambio nodo (se pin_mode) o reset encoder da 0:
+                            # tieni solo segmenti strettamente nuovi rispetto a floor_seq
+                            forward = [x for x in new_segs if (x[0] + offset) > floor_seq]
+                            if forward:
+                                first_local = forward[0][0] + offset
+                                new_segs = forward
+                            else:
+                                tail = new_segs[-2:]
+                                offset = floor_seq + 1 - tail[0][0]
+                                sess['seq_offset'] = offset
+                                first_local = tail[0][0] + offset
+                                new_segs = tail
+                            sess['pinned_host'] = new_host or pinned_host
+                            sess.setdefault('disc_seqs', set()).add(first_local)
+                            sess['disc_total'] = sess.get('disc_total', 0) + 1
+                            tag = "SEQ_RESET" if (not host_switched and seq_reset) else "NODE_SWITCH"
+                            _s14_log(f"{tag} sid={sid} t={elapsed}s {pinned_host} -> {new_host} from={first_local}", xbmc.LOGWARNING, source=source)
+                        elif repin:
+                            _s14_log(f"REPIN_SAME sid={sid} t={elapsed}s stallo={stalled_for:.0f}s host={new_host} (continua senza buchi)", source=source)
+                        elif new_host and not pin_mode:
+                            sess['pinned_host'] = new_host
+                        for seq, inf, url in new_segs:
+                            local = seq + offset
+                            if local > max_seq:
+                                has_new_segment = True
+                            if local >= sess.get('media_seq', 0):
+                                # Su server multi-IP senza pinning (S17), non sovrascrivere segmenti
+                                # gia' in cache per evitare duplicati da nodi sfasati di +-1.
+                                if pin_mode or local not in seg_dict:
+                                    seg_dict[local] = (inf, url)
+                        if has_new_segment:
+                            sess['last_new_ts'] = time.time()
+                        if len(seg_dict) > 18:
+                            for old_k in sorted(seg_dict.keys())[:-18]:
+                                seg_dict.pop(old_k, None)
+                        disc = sess.get('disc_seqs', set())
+                        if disc and seg_dict:
+                            lo = min(seg_dict.keys())
+                            sess['disc_seqs'] = {d for d in disc if d >= lo}
+                        _s14_render_playlist(sess, window_size=6)
+                        max_seq = sess.get('max_seq', 0)
+            if stale_skip:
+                _s14_log(f"sid={sid} t={elapsed}s SKIP stale_manifest host={new_host} up_segs={new_segs[0][0]}-{new_segs[-1][0]} max={max_seq} fetch={fetch_ms}ms", source=source)
+            else:
+                _s14_log(f"sid={sid} t={elapsed}s host={new_host} {info} up_segs={new_segs[0][0]}-{new_segs[-1][0]} new={has_new_segment} max={max_seq} fetch={fetch_ms}ms", source=source)
         elif raw_info == "same_token":
             _s14_log(f"sid={sid} t={elapsed}s SKIP same_token host={new_host} fetch={fetch_ms}ms", source=source)
         else:
