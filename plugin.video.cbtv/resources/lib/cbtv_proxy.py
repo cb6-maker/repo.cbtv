@@ -41,6 +41,9 @@ HLS_SERVERS = {
         },
         'pin_host': False,
         'exclude_hosts': (),
+        'poll_ok': 9.0,
+        'poll_same': 4.0,
+        'poll_fail': 4.0,
         'tag': 'S17',
     },
 }
@@ -143,7 +146,7 @@ def _s14_download_segment(seg_url, sid="", seq="?", source="s14"):
     return None, 3, 0, last_err
 
 
-def _s14_fetch_manifest(sid, pinned_host=None, exclude_host=None, source="s14"):
+def _s14_fetch_manifest(sid, pinned_host=None, exclude_host=None, source="s14", last_loc=None):
     """Richiede un nuovo manifest al load balancer per il server HLS indicato (s14/s17).
     Per server con pin_host=True (es. S14) mantiene blocco rigido su pinned_host fino a 25 tentativi.
     Per server con sequenza condivisa tra i nodi (es. S17) fa una singola chiamata rapida."""
@@ -163,6 +166,8 @@ def _s14_fetch_manifest(sid, pinned_host=None, exclude_host=None, source="s14"):
             if not loc:
                 return None, None, f"lb_http {r_redir.status_code}"
             pinned_host = urlparse(loc).netloc
+            if last_loc and loc == last_loc:
+                return None, pinned_host, "same_token"
             matched_loc = loc
         except Exception as e:
             return None, None, f"lb_err {type(e).__name__}"
@@ -278,7 +283,11 @@ def _s14_worker_loop(sess_key, worker_id=None):
         _init = S14_SESSION_CACHE.get(sess_key) or {}
         source = _init.get('source', 's14')
         sid = _init.get('sid', sess_key)
-    pin_mode = HLS_SERVERS.get(source, HLS_SERVERS['s14']).get('pin_host', True)
+    cfg = HLS_SERVERS.get(source, HLS_SERVERS['s14'])
+    pin_mode = cfg.get('pin_host', True)
+    poll_ok = cfg.get('poll_ok', 5.0)
+    poll_same = cfg.get('poll_same', 2.0)
+    poll_fail = cfg.get('poll_fail', 1.0)
     _s14_log(f"worker avviato sid={sid}", source=source)
     t_start = time.time()
     while True:
@@ -295,6 +304,7 @@ def _s14_worker_loop(sess_key, worker_id=None):
             pinned_host = sess.get('pinned_host')
             last_new_ts = sess.setdefault('last_new_ts', time.time())
             miss_streak = sess.get('miss_streak', 0)
+            last_loc = sess.get('last_loc')
 
         elapsed = int(time.time() - t_start)
         stalled_for = time.time() - last_new_ts
@@ -305,16 +315,20 @@ def _s14_worker_loop(sess_key, worker_id=None):
         if repin:
             new_segs, new_host, info = _s14_fetch_manifest(sid, pinned_host=None, exclude_host=pinned_host, source=source)
         else:
-            new_segs, new_host, info = _s14_fetch_manifest(sid, pinned_host, source=source)
+            new_segs, new_host, info = _s14_fetch_manifest(sid, pinned_host, source=source, last_loc=last_loc)
+        raw_info = info
         info = f"LB:{info}"
         fetch_ms = int((time.time() - t0) * 1000)
 
         has_new_segment = False
         if new_segs:
+            fetched_loc = getattr(_s14_fetch_manifest, 'last_loc', None)
             with S14_LOCK:
                 sess = S14_SESSION_CACHE.get(sess_key)
                 if sess:
                     sess['miss_streak'] = 0
+                    if fetched_loc:
+                        sess['last_loc'] = fetched_loc
                     seg_dict = sess.setdefault('segments', {})
                     offset = sess.get('seq_offset', 0)
                     max_seq = sess.get('max_seq', 0)
@@ -348,7 +362,10 @@ def _s14_worker_loop(sess_key, worker_id=None):
                         if local > max_seq:
                             has_new_segment = True
                         if local >= sess.get('media_seq', 0):
-                            seg_dict[local] = (inf, url)
+                            # Su server multi-IP senza pinning (S17), non sovrascrivere segmenti
+                            # gia' in cache per evitare duplicati da nodi sfasati di +-1.
+                            if pin_mode or local not in seg_dict:
+                                seg_dict[local] = (inf, url)
                     if has_new_segment:
                         sess['last_new_ts'] = time.time()
                     if len(seg_dict) > 18:
@@ -361,6 +378,8 @@ def _s14_worker_loop(sess_key, worker_id=None):
                     _s14_render_playlist(sess, window_size=6)
                     max_seq = sess.get('max_seq', 0)
             _s14_log(f"sid={sid} t={elapsed}s host={new_host} {info} up_segs={new_segs[0][0]}-{new_segs[-1][0]} new={has_new_segment} max={max_seq} fetch={fetch_ms}ms", source=source)
+        elif raw_info == "same_token":
+            _s14_log(f"sid={sid} t={elapsed}s SKIP same_token host={new_host} fetch={fetch_ms}ms", source=source)
         else:
             with S14_LOCK:
                 sess = S14_SESSION_CACHE.get(sess_key)
@@ -371,7 +390,7 @@ def _s14_worker_loop(sess_key, worker_id=None):
                     streak = 0
             _s14_log(f"sid={sid} t={elapsed}s FAIL {info} miss={streak}/3 stallo={stalled_for:.0f}s fetch={fetch_ms}ms", xbmc.LOGWARNING, source=source)
 
-        time.sleep(5.0 if has_new_segment else (2.0 if new_segs else 1.0))
+        time.sleep(poll_ok if has_new_segment else (poll_same if (new_segs or raw_info == "same_token") else poll_fail))
 
 
 class FreeshotProxyHandler(BaseHTTPRequestHandler):
@@ -386,11 +405,13 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
         seq = params.get('seq', '?')
         source = params.get('src', 's14')
         sess_key = f"{source}:{sid}" if sid else ""
+        pin_mode = HLS_SERVERS.get(source, HLS_SERVERS['s14']).get('pin_host', True)
         if not seg_url:
             self.send_response(400)
             self.end_headers()
             return
 
+        seq_num = None
         if sess_key:
             with S14_LOCK:
                 sess = S14_SESSION_CACHE.get(sess_key)
@@ -404,6 +425,36 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
                         pass
 
         data, attempt, ms, last_err = _s14_download_segment(seg_url, sid=sid, seq=seq, source=source)
+        if data and not pin_mode and sess_key and seq_num is not None:
+            sig = (len(data), data[:4096])
+            next_url = None
+            with S14_LOCK:
+                sess = S14_SESSION_CACHE.get(sess_key)
+                if sess:
+                    recent = sess.setdefault('recent_sigs', [])
+                    if sig in recent:
+                        nxt = sess.get('segments', {}).get(seq_num + 1)
+                        if nxt and nxt[1] != seg_url:
+                            next_url = nxt[1]
+            if next_url:
+                data2, att2, ms2, _ = _s14_download_segment(next_url, sid=sid, seq=str(seq_num + 1), source=source)
+                if data2:
+                    sig2 = (len(data2), data2[:4096])
+                    if sig2 != sig:
+                        _s14_log(f"SEG_DEDUP sid={sid} seq={seq} -> {seq_num + 1} bytes={len(data2)} ms={ms2}", xbmc.LOGWARNING, source=source)
+                        data, attempt, ms, sig = data2, att2, ms2, sig2
+                        with S14_LOCK:
+                            sess = S14_SESSION_CACHE.get(sess_key)
+                            if sess and (seq_num + 1) > sess.get('last_kodi_seq', 0):
+                                sess['last_kodi_seq'] = seq_num + 1
+            with S14_LOCK:
+                sess = S14_SESSION_CACHE.get(sess_key)
+                if sess:
+                    recent = sess.setdefault('recent_sigs', [])
+                    recent.append(sig)
+                    if len(recent) > 4:
+                        del recent[:-4]
+
         if data:
             if attempt > 1 or ms > 2000:
                 _s14_log(f"SEG_OK sid={sid} seq={seq} bytes={len(data)} ms={ms} try={attempt}", xbmc.LOGWARNING, source=source)
@@ -538,6 +589,7 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
                         'seq_offset': 0,
                         'disc_seqs': set(),
                         'last_new_ts': now,
+                        'last_loc': getattr(_s14_fetch_manifest, 'last_loc', None),
                         'direct_loc': getattr(_s14_fetch_manifest, 'last_loc', None),
                         'direct_since': now
                     }
