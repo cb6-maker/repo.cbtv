@@ -331,7 +331,11 @@ def _s14_worker_loop(sess_key, worker_id=None):
                     if fetched_loc:
                         sess['last_loc'] = fetched_loc
                     seg_dict = sess.setdefault('segments', {})
-                    offset = sess.get('seq_offset', 0)
+                    host_offsets = sess.setdefault('host_offsets', {})
+                    if not pin_mode and new_host:
+                        offset = host_offsets.get(new_host, 0)
+                    else:
+                        offset = sess.get('seq_offset', 0)
                     max_seq = sess.get('max_seq', 0)
                     floor_seq = max(max_seq, sess.get('last_kodi_seq', 0))
                     new_max = new_segs[-1][0] + offset
@@ -351,7 +355,10 @@ def _s14_worker_loop(sess_key, worker_id=None):
                             else:
                                 tail = new_segs[-2:]
                                 offset = floor_seq + 1 - tail[0][0]
-                                sess['seq_offset'] = offset
+                                if not pin_mode and new_host:
+                                    host_offsets[new_host] = offset
+                                else:
+                                    sess['seq_offset'] = offset
                                 first_local = tail[0][0] + offset
                                 new_segs = tail
                             sess['pinned_host'] = new_host or pinned_host
