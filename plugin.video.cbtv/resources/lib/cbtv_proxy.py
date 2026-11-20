@@ -336,7 +336,7 @@ def _s14_worker_loop(sess_key, worker_id=None):
                     floor_seq = max(max_seq, sess.get('last_kodi_seq', 0))
                     new_max = new_segs[-1][0] + offset
                     lag = floor_seq - new_max
-                    if not pin_mode and 0 < lag <= 10:
+                    if not pin_mode and (lag > 0 or (new_max - floor_seq) > 30) and stalled_for <= 30.0:
                         stale_skip = True
                     else:
                         seq_reset = (lag > 10) if not pin_mode else (new_max < floor_seq)
