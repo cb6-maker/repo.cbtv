@@ -1,0 +1,146 @@
+[
+  {
+    "name": "SKY PRIMAFILA 1",
+    "sids": [
+      "925489",
+      "925471"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925489_"
+  },
+  {
+    "name": "SKY PRIMAFILA 2",
+    "sids": [
+      "925488",
+      "925470"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925488_"
+  },
+  {
+    "name": "SKY PRIMAFILA 3",
+    "sids": [
+      "925487",
+      "925469"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925487_"
+  },
+  {
+    "name": "SKY PRIMAFILA 4",
+    "sids": [
+      "925486",
+      "925468"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925486_"
+  },
+  {
+    "name": "SKY PRIMAFILA 5",
+    "sids": [
+      "925485",
+      "925467"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925485_"
+  },
+  {
+    "name": "SKY PRIMAFILA 6",
+    "sids": [
+      "925484",
+      "925466"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925484_"
+  },
+  {
+    "name": "SKY PRIMAFILA 7",
+    "sids": [
+      "925483",
+      "925465"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925483_"
+  },
+  {
+    "name": "SKY PRIMAFILA 8",
+    "sids": [
+      "925482",
+      "925464"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925482_"
+  },
+  {
+    "name": "SKY PRIMAFILA 9",
+    "sids": [
+      "925481",
+      "925463"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925481_"
+  },
+  {
+    "name": "SKY PRIMAFILA 10",
+    "sids": [
+      "925480",
+      "925462"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925480_"
+  },
+  {
+    "name": "SKY PRIMAFILA 11",
+    "sids": [
+      "925479",
+      "925461"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925479_"
+  },
+  {
+    "name": "SKY PRIMAFILA 12",
+    "sids": [
+      "925478",
+      "925460"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925478_"
+  },
+  {
+    "name": "SKY PRIMAFILA 13",
+    "sids": [
+      "925477",
+      "925459"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925477_"
+  },
+  {
+    "name": "SKY PRIMAFILA 14",
+    "sids": [
+      "925476",
+      "925458"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925476_"
+  },
+  {
+    "name": "SKY PRIMAFILA 15",
+    "sids": [
+      "925475",
+      "925457"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925475_"
+  },
+  {
+    "name": "SKY PRIMAFILA 16",
+    "sids": [
+      "925474",
+      "925456"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925474_"
+  },
+  {
+    "name": "SKY PRIMAFILA 17",
+    "sids": [
+      "925473",
+      "925455"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925473_"
+  },
+  {
+    "name": "SKY PRIMAFILA 18",
+    "sids": [
+      "925472",
+      "925454"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925472_"
+  }
+]

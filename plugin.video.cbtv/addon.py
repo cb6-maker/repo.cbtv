@@ -915,36 +915,36 @@ def search_live_channels(query=None):
     xbmcplugin.endOfDirectory(HANDLE)
 
 def list_sport():
-    """Sottomenu Sport organizzato per sorgente (14, 17, VPN)"""
+    """Sottomenu Sport organizzato per sorgente (14, 18, VPN)"""
     xbmcplugin.setContent(HANDLE, 'videos')
     
     add_directory_item("[COLOR lime][B]Sky Sport (14)[/B][/COLOR]", {"action": "list_s14_channels", "cat": "sport"}, icon=get_tile("tile_sky_sport.png"))
-    add_directory_item("[COLOR cyan][B]Sky Sport (17)[/B][/COLOR]", {"action": "list_s17_channels", "cat": "sport"}, icon=get_tile("tile_sky_sport.png"))
+    add_directory_item("[COLOR cyan][B]Sky Sport (18)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_sport", "server_id": "s18"}, icon=get_tile("tile_sky_sport.png"))
     add_directory_item("[COLOR lightblue][B]Sky Sport (VPN)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_sport", "server_id": "s12"}, icon=get_tile("tile_sky_sport.png"))
     
     add_directory_item("[COLOR limegreen][B]Dazn (14)[/B][/COLOR]", {"action": "list_s14_channels", "cat": "dazn"}, icon=get_tile("tile_dazn.png"))
-    add_directory_item("[COLOR orange][B]Dazn (17)[/B][/COLOR]", {"action": "list_s17_channels", "cat": "dazn"}, icon=get_tile("tile_dazn.png"))
+    add_directory_item("[COLOR orange][B]Dazn (18)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "dazn_only", "server_id": "s18"}, icon=get_tile("tile_dazn.png"))
     add_directory_item("[COLOR lightsalmon][B]Dazn (VPN)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "dazn_only", "server_id": "s12"}, icon=get_tile("tile_dazn.png"))
     
     xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
 
 
 def menu_entertainment():
-    """Sottomenu Canali Intrattenimento con scelta sorgente (14, 17, VPN)"""
+    """Sottomenu Canali Intrattenimento con scelta sorgente (14, 18, VPN)"""
     xbmcplugin.setContent(HANDLE, 'videos')
     add_directory_item("[COLOR lime][B]Intrattenimento (14)[/B][/COLOR]", {"action": "list_s14_channels", "cat": "tv"}, icon=get_tile("tile_sky_intrattenimento.png"))
-    add_directory_item("[COLOR cyan][B]Intrattenimento (17)[/B][/COLOR]", {"action": "list_s17_channels", "cat": "tv"}, icon=get_tile("tile_sky_intrattenimento.png"))
+    add_directory_item("[COLOR cyan][B]Intrattenimento (18)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_tv", "server_id": "s18"}, icon=get_tile("tile_sky_intrattenimento.png"))
     add_directory_item("[COLOR lightblue][B]Intrattenimento (VPN)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_tv", "server_id": "s12"}, icon=get_tile("tile_sky_intrattenimento.png"))
     xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
 
 
 def menu_cinema():
-    """Sottomenu Canali Cinema con scelta sorgente (14, 17, VPN)"""
+    """Sottomenu Canali Cinema con scelta sorgente (14, 18, VPN)"""
     xbmcplugin.setContent(HANDLE, 'videos')
     add_directory_item("[COLOR lime][B]Cinema (14)[/B][/COLOR]", {"action": "list_s14_channels", "cat": "cinema"}, icon=get_tile("tile_sky_cinema.png"))
-    add_directory_item("[COLOR gold][B]Cinema (17)[/B][/COLOR]", {"action": "list_s17_channels", "cat": "cinema"}, icon=get_tile("tile_sky_cinema.png"))
+    add_directory_item("[COLOR gold][B]Cinema (18)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_cinema", "server_id": "s18"}, icon=get_tile("tile_sky_cinema.png"))
     add_directory_item("[COLOR yellow][B]Cinema (VPN)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_cinema", "server_id": "s12"}, icon=get_tile("tile_sky_cinema.png"))
-    add_directory_item("[COLOR goldenrod][B]Primafila (17)[/B][/COLOR]", {"action": "list_s17_channels", "cat": "primafila"}, icon=get_tile("tile_sky_cinema.png"))
+    add_directory_item("[COLOR goldenrod][B]Primafila (18)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "primafila", "server_id": "s18"}, icon=get_tile("tile_sky_cinema.png"))
     xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
 
 
@@ -1814,9 +1814,8 @@ def list_eagle_genres(eb_type, force_refresh=False, server_id="s12"):
         if force_refresh:
             xbmcgui.Dialog().notification("CBTV", "Aggiornamento Sky Primafila...", xbmcgui.NOTIFICATION_INFO, 2000)
         hl_client = HubliveStalkerClient(server_id)
-        from resources.lib.hublive_stalker import HubliveStalkerClient as _HSC
-        # Load primafila fallback for s50
-        pf_channels = hl_client._load_fallback("s50_primafila_fallback.json") or []
+        fb_pf = "s18_primafila_fallback.json" if server_id == "s18" else "s50_primafila_fallback.json"
+        pf_channels = hl_client._load_fallback(fb_pf) or []
         cinema_icon = get_tile("tile_sky_cinema.png")
         for ch in pf_channels:
             title = ch['name']

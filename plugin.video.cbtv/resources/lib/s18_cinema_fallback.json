@@ -1,0 +1,83 @@
+[
+  {
+    "name": "SKY CINEMA UNO",
+    "sids": [
+      "925549",
+      "925548"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925549_"
+  },
+  {
+    "name": "SKY CINEMA UNO +24",
+    "sids": [
+      "925547"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925547_"
+  },
+  {
+    "name": "SKY CINEMA DUE +24",
+    "sids": [
+      "925546"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925546_"
+  },
+  {
+    "name": "SKY CINEMA COLLECTION",
+    "sids": [
+      "925542",
+      "925541",
+      "925540"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925542_"
+  },
+  {
+    "name": "SKY CINEMA ACTION",
+    "sids": [
+      "925545",
+      "925544",
+      "925543"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925545_"
+  },
+  {
+    "name": "SKY CINEMA COMEDY",
+    "sids": [
+      "925539",
+      "925538"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925539_"
+  },
+  {
+    "name": "SKY CINEMA DRAMA",
+    "sids": [
+      "925537",
+      "925536"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925537_"
+  },
+  {
+    "name": "SKY CINEMA FAMILY",
+    "sids": [
+      "925535",
+      "925534",
+      "925533"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925535_"
+  },
+  {
+    "name": "SKY CINEMA ROMANCE",
+    "sids": [
+      "925532",
+      "925531"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925532_"
+  },
+  {
+    "name": "SKY CINEMA SUSPENSE",
+    "sids": [
+      "925530",
+      "925529"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925530_"
+  }
+]

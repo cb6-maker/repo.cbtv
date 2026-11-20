@@ -1,0 +1,47 @@
+[
+  {
+    "name": "SKY UNO",
+    "sids": [
+      "900501",
+      "438640"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/900501_"
+  },
+  {
+    "name": "SKY CRIME",
+    "sids": [
+      "925253",
+      "925252"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925253_"
+  },
+  {
+    "name": "SKY ARTE",
+    "sids": [
+      "925255",
+      "900500",
+      "925254",
+      "925256"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925255_"
+  },
+  {
+    "name": "SKY DOCUMENTARIES",
+    "sids": [
+      "925276",
+      "900499",
+      "925275",
+      "438639"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925276_"
+  },
+  {
+    "name": "SKY NATURE",
+    "sids": [
+      "925258",
+      "900498",
+      "925257"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925258_"
+  }
+]

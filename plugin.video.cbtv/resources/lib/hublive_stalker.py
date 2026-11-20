@@ -91,21 +91,17 @@ class HubliveStalkerClient:
     }
 
     # Server 18 (z1mag - Porta 8080 non soggetta a blocchi AGCOM / Piracy Shield)
-    # Lista rigorosamente filtrata: solo i 46 MAC verificati con streaming continuo > 35s
+    # 30 MAC verificati attivi senza VPN (2026-11-20), ordinati per scadenza (2028 -> 2027 -> 2026)
     PORTAL_18_URL = "http://z1mag.xyz:8080"
     PORTAL_18_MACS = [
-        "00:1A:79:13:57:47", "00:1A:79:13:59:AB", "00:1A:79:14:61:CE", "00:1A:79:14:64:52",
-        "00:1A:79:14:64:A1", "00:1A:79:14:64:AD", "00:1A:79:14:66:26", "00:1A:79:14:6D:47",
-        "00:1A:79:14:DE:DA", "00:1A:79:14:E0:99", "00:1A:79:14:E4:22", "00:1A:79:14:E7:39",
-        "00:1A:79:19:1E:E2", "00:1A:79:19:1F:9C", "00:1A:79:19:20:E5", "00:1A:79:1A:67:A3",
-        "00:1A:79:1A:6C:B4", "00:1A:79:1A:6E:48", "00:1A:79:1F:0F:F3", "00:1A:79:1F:12:7F",
-        "00:1A:79:1F:19:40", "00:1A:79:1F:19:4E", "00:1A:79:1F:1C:7A", "00:1A:79:21:10:70",
-        "00:1A:79:22:AD:79", "00:1A:79:22:AD:EB", "00:1A:79:22:FF:AC", "00:1A:79:22:FF:AE",
-        "00:1A:79:23:00:A7", "00:1A:79:23:00:D0", "00:1A:79:23:01:02", "00:1A:79:23:01:22",
-        "00:1A:79:6E:2C:B6", "00:1A:79:6F:4F:00", "00:1A:79:77:01:2E", "00:1A:79:77:02:4D",
-        "00:1A:79:77:02:5F", "00:1A:79:77:04:6D", "00:1A:79:77:05:98", "00:1A:79:7C:4F:D3",
-        "00:1A:79:7C:69:9C", "00:1A:79:7C:6B:BF", "00:1A:79:A0:E3:ED", "00:1A:79:A0:E4:BF",
-        "00:1A:79:A0:E8:79", "00:1A:79:A1:9D:ED"
+        "00:1A:79:10:DE:C7", "00:1A:79:1F:0F:F3", "00:1A:79:07:C0:F4", "00:1A:79:14:6D:47",
+        "00:1A:79:10:E1:47", "00:1A:79:14:E0:99", "00:1A:79:6E:2C:B6", "00:1A:79:7C:6B:BF",
+        "00:1A:79:14:64:A1", "00:1A:79:C4:06:6D", "00:1A:79:07:C5:88", "00:1A:79:1A:67:A3",
+        "00:1A:79:07:C3:38", "00:1A:79:07:C1:00", "00:1A:79:10:3F:FD", "00:1A:79:14:61:CE",
+        "00:1A:79:13:53:81", "00:1A:79:08:50:D1", "00:1A:79:1F:12:7F", "00:1A:79:A0:E4:BF",
+        "00:1A:79:77:02:4D", "00:1A:79:10:40:CB", "00:1A:79:13:54:CF", "00:1A:79:14:64:52",
+        "00:1A:79:77:01:2E", "00:1A:79:14:64:AD", "00:1A:79:01:70:B5", "00:1A:79:14:E7:39",
+        "00:1A:79:77:04:6D", "00:1A:79:A2:8B:54"
     ]
 
     # Server 12 (Direct IP 204.52.191.254 - Motore primario WebApp, no blocchi AGCOM / Piracy Shield)
@@ -274,7 +270,7 @@ class HubliveStalkerClient:
             for m in base_macs:
                 if m not in combined_macs:
                     combined_macs.append(m)
-            self.mac_pool = [m for m in combined_macs if m not in self.BLACKLISTED_MACS and m not in self.DROPPED_MACS]
+            self.mac_pool = [m for m in combined_macs if (m not in self.BLACKLISTED_MACS or m in base_macs) and m not in self.DROPPED_MACS]
             if target_portal:
                 self.portal_url = target_portal
             xbmc.log(f"[CBTV-HB] Sincronizzati {len(self.mac_pool)} MAC per {self.server_id} da {self.portal_url}", xbmc.LOGINFO)
@@ -628,7 +624,8 @@ class HubliveStalkerClient:
         if not candidate_cmds:
             return None, None
 
-        pool = [m for m in self.mac_pool if m not in self.BLACKLISTED_MACS and m not in self.DROPPED_MACS]
+        verified_base = self.PORTAL_18_MACS if self.server_id == "s18" else ()
+        pool = [m for m in self.mac_pool if (m not in self.BLACKLISTED_MACS or m in verified_base) and m not in self.DROPPED_MACS]
 
         # 0. Quarantena: escludi MAC occupati/bloccati
         busy_macs = self.get_busy_macs()
@@ -780,7 +777,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.4.8"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.5.0"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""
@@ -982,11 +979,11 @@ class HubliveStalkerClient:
     # ---- API pubblica con logica Fallback ----
     def get_sky_tv_channels(self, force_refresh=False):
         """Canali Intrattenimento, Serie TV e Documentari. Caricamento istantaneo con ricarica opzionale."""
+        fb_name = "s50_tv_fallback.json" if self.server_id == "s50" else ("s18_tv_fallback.json" if self.server_id == "s18" else "sky_tv_fallback.json")
         if not force_refresh:
             cached = self._get_cache("sky_tv")
-            if cached and len(cached) > 5:
+            if cached and len(cached) >= (4 if self.server_id == "s18" else 5):
                 return cached
-            fb_name = "s50_tv_fallback.json" if self.server_id == "s50" else "sky_tv_fallback.json"
             fallback = self._load_fallback(fb_name)
             if fallback:
                 self._set_cache("sky_tv", fallback)
@@ -1006,8 +1003,8 @@ class HubliveStalkerClient:
             force=force_refresh)
             
         if not channels:
-            xbmc.log("[CBTV-HB] get_sky_tv_channels vuoto/timeout, carico sky_tv_fallback.json integrato", xbmc.LOGWARNING)
-            channels = self._load_fallback("sky_tv_fallback.json")
+            xbmc.log(f"[CBTV-HB] get_sky_tv_channels vuoto/timeout, carico {fb_name} integrato", xbmc.LOGWARNING)
+            channels = self._load_fallback(fb_name)
             if channels:
                 self._set_cache("sky_tv", channels)
             
@@ -1035,11 +1032,11 @@ class HubliveStalkerClient:
 
     def get_sky_cinema_channels(self, force_refresh=False):
         """Canali Sky Cinema. Caricamento istantaneo con ricarica opzionale."""
+        fb_name = "s50_cinema_fallback.json" if self.server_id == "s50" else ("s18_cinema_fallback.json" if self.server_id == "s18" else "sky_cinema_fallback.json")
         if not force_refresh:
             cached = self._get_cache("sky_cinema")
             if cached and len(cached) > 5:
                 return cached
-            fb_name = "s50_cinema_fallback.json" if self.server_id == "s50" else "sky_cinema_fallback.json"
             fallback = self._load_fallback(fb_name)
             if fallback:
                 self._set_cache("sky_cinema", fallback)
@@ -1057,8 +1054,8 @@ class HubliveStalkerClient:
             force=force_refresh)
             
         if not channels:
-            xbmc.log("[CBTV-HB] get_sky_cinema_channels vuoto/timeout, carico sky_cinema_fallback.json integrato", xbmc.LOGWARNING)
-            channels = self._load_fallback("sky_cinema_fallback.json")
+            xbmc.log(f"[CBTV-HB] get_sky_cinema_channels vuoto/timeout, carico {fb_name} integrato", xbmc.LOGWARNING)
+            channels = self._load_fallback(fb_name)
 
         def cinema_sort_key(c):
             n = c.get('name', '').upper()
@@ -1082,11 +1079,11 @@ class HubliveStalkerClient:
 
     def get_sky_sport_channels(self, force_refresh=False):
         """Canali Sky Sport. Caricamento istantaneo con ricarica opzionale."""
+        fb_name = "s50_sport_fallback.json" if self.server_id == "s50" else ("s18_sport_fallback.json" if self.server_id == "s18" else "sky_sport_fallback.json")
         if not force_refresh:
             cached = self._get_cache("sky_sport")
             if cached and len(cached) > 10:
                 return cached
-            fb_name = "s50_sport_fallback.json" if self.server_id == "s50" else "sky_sport_fallback.json"
             channels = self._load_fallback(fb_name)
             if channels:
                 self._set_cache("sky_sport", channels)
@@ -1105,8 +1102,8 @@ class HubliveStalkerClient:
             force=force_refresh)
             
         if not channels:
-            xbmc.log("[CBTV-HB] get_sky_sport_channels vuoto/timeout, carico sky_sport_fallback.json integrato", xbmc.LOGWARNING)
-            channels = self._load_fallback("sky_sport_fallback.json")
+            xbmc.log(f"[CBTV-HB] get_sky_sport_channels vuoto/timeout, carico {fb_name} integrato", xbmc.LOGWARNING)
+            channels = self._load_fallback(fb_name)
 
         def sky_sport_sort_key(ch):
             n = ch.get('name', '').upper().strip()
@@ -1143,11 +1140,11 @@ class HubliveStalkerClient:
 
     def get_dazn_channels(self, force_refresh=False):
         """Canali DAZN essenziali. Caricamento istantaneo con ricarica opzionale."""
+        fb_name = "s50_dazn_fallback.json" if self.server_id == "s50" else ("s18_dazn_fallback.json" if self.server_id == "s18" else "dazn_fallback.json")
         if not force_refresh:
             cached = self._get_cache("dazn")
             if cached and len(cached) > 5:
                 return cached
-            fb_name = "s50_dazn_fallback.json" if self.server_id == "s50" else "dazn_fallback.json"
             fallback = self._load_fallback(fb_name)
             if fallback:
                 self._set_cache("dazn", fallback)
@@ -1167,8 +1164,8 @@ class HubliveStalkerClient:
             force=force_refresh)
             
         if not channels:
-            xbmc.log("[CBTV-HB] get_dazn_channels vuoto o incompleto, carico dazn_fallback.json integrato", xbmc.LOGINFO)
-            channels = self._load_fallback("dazn_fallback.json")
+            xbmc.log(f"[CBTV-HB] get_dazn_channels vuoto o incompleto, carico {fb_name} integrato", xbmc.LOGINFO)
+            channels = self._load_fallback(fb_name)
 
         if channels:
             import re

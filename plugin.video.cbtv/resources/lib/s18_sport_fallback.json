@@ -1,0 +1,184 @@
+[
+  {
+    "name": "SKY SPORT 24",
+    "sids": [
+      "925689",
+      "925688"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925689_"
+  },
+  {
+    "name": "SKY SPORT UNO",
+    "sids": [
+      "925686",
+      "925685",
+      "925687"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925686_"
+  },
+  {
+    "name": "SKY SPORT CALCIO",
+    "sids": [
+      "925645",
+      "925644"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925645_"
+  },
+  {
+    "name": "SKY SPORT TENNIS",
+    "sids": [
+      "925680",
+      "925679"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925680_"
+  },
+  {
+    "name": "SKY SPORT ARENA",
+    "sids": [
+      "925682",
+      "925681"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925682_"
+  },
+  {
+    "name": "SKY SPORT F1",
+    "sids": [
+      "925678",
+      "925677"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925678_"
+  },
+  {
+    "name": "SKY SPORT MOTOGP",
+    "sids": [
+      "925676",
+      "925675"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925676_"
+  },
+  {
+    "name": "SKY SPORT MAX",
+    "sids": [
+      "925684",
+      "925683"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925684_"
+  },
+  {
+    "name": "SKY SPORT GOLF",
+    "sids": [
+      "925674",
+      "925673"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925674_"
+  },
+  {
+    "name": "SKY SPORT NBA",
+    "sids": [
+      "925672",
+      "925671"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925672_"
+  },
+  {
+    "name": "SKY SPORT MIX",
+    "sids": [
+      "925670"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925670_"
+  },
+  {
+    "name": "SKY SPORT LEGEND",
+    "sids": [
+      "925669"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925669_"
+  },
+  {
+    "name": "SKY SPORT 251",
+    "sids": [
+      "925643",
+      "925642"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925643_"
+  },
+  {
+    "name": "SKY SPORT 252",
+    "sids": [
+      "925641",
+      "925640"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925641_"
+  },
+  {
+    "name": "SKY SPORT 253",
+    "sids": [
+      "925639",
+      "925638"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925639_"
+  },
+  {
+    "name": "SKY SPORT 254",
+    "sids": [
+      "925637",
+      "925636"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925637_"
+  },
+  {
+    "name": "SKY SPORT 255",
+    "sids": [
+      "925635",
+      "925634"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925635_"
+  },
+  {
+    "name": "SKY SPORT 256",
+    "sids": [
+      "925633",
+      "925632"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925633_"
+  },
+  {
+    "name": "SKY SPORT 257",
+    "sids": [
+      "925631",
+      "925630"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925631_"
+  },
+  {
+    "name": "SKY SPORT 258",
+    "sids": [
+      "925629"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925629_"
+  },
+  {
+    "name": "SKY SPORT 259",
+    "sids": [
+      "925628",
+      "925627"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925628_"
+  },
+  {
+    "name": "EUROSPORT 1",
+    "sids": [
+      "925664",
+      "925663"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925664_"
+  },
+  {
+    "name": "EUROSPORT 2",
+    "sids": [
+      "925662",
+      "925661"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925662_"
+  }
+]

@@ -1,0 +1,179 @@
+[
+  {
+    "name": "ZONA DAZN 1",
+    "sids": [
+      "925626",
+      "925625"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925626_"
+  },
+  {
+    "name": "ZONA DAZN 2",
+    "sids": [
+      "925624",
+      "925623"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925624_"
+  },
+  {
+    "name": "ZONA DAZN 3",
+    "sids": [
+      "925622"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925622_"
+  },
+  {
+    "name": "ZONA DAZN 4",
+    "sids": [
+      "925621"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925621_"
+  },
+  {
+    "name": "ZONA DAZN 5",
+    "sids": [
+      "925620"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925620_"
+  },
+  {
+    "name": "DAZN SERIE A 1 (JUVENTUS)",
+    "sids": [
+      "925589"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925589_"
+  },
+  {
+    "name": "DAZN SERIE A 2 (INTER)",
+    "sids": [
+      "925588"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925588_"
+  },
+  {
+    "name": "DAZN SERIE A 3 (MILAN)",
+    "sids": [
+      "925587"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925587_"
+  },
+  {
+    "name": "DAZN SERIE A 4 (NAPOLI)",
+    "sids": [
+      "925586"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925586_"
+  },
+  {
+    "name": "DAZN SERIE A 5 (ROMA)",
+    "sids": [
+      "925585"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925585_"
+  },
+  {
+    "name": "DAZN SERIE A 6 (LAZIO)",
+    "sids": [
+      "925584"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925584_"
+  },
+  {
+    "name": "DAZN SERIE A 7 (COMO)",
+    "sids": [
+      "925583"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925583_"
+  },
+  {
+    "name": "DAZN SERIE A 8 (ATALANTA)",
+    "sids": [
+      "925582"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925582_"
+  },
+  {
+    "name": "DAZN SERIE A 9 (BOLOGNA)",
+    "sids": [
+      "925581"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925581_"
+  },
+  {
+    "name": "DAZN SERIE A 10 (GENOA)",
+    "sids": [
+      "925580"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925580_"
+  },
+  {
+    "name": "DAZN SERIE A 11 (FIORENTINA)",
+    "sids": [
+      "925579"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925579_"
+  },
+  {
+    "name": "DAZN SERIE A 12 (SASSUOLO)",
+    "sids": [
+      "925578"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925578_"
+  },
+  {
+    "name": "DAZN SERIE A 13 (PISA)",
+    "sids": [
+      "925577"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925577_"
+  },
+  {
+    "name": "DAZN SERIE A 14 (UDINESE)",
+    "sids": [
+      "925576"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925576_"
+  },
+  {
+    "name": "DAZN SERIE A 15 (VERONA)",
+    "sids": [
+      "925575"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925575_"
+  },
+  {
+    "name": "DAZN SERIE A 16 (TORINO)",
+    "sids": [
+      "925574"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925574_"
+  },
+  {
+    "name": "DAZN SERIE A 17 (CREMONESE)",
+    "sids": [
+      "925573"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925573_"
+  },
+  {
+    "name": "DAZN SERIE A 18 (LECCE)",
+    "sids": [
+      "925572"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925572_"
+  },
+  {
+    "name": "DAZN SERIE A 19 (CAGLIARI)",
+    "sids": [
+      "925571"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925571_"
+  },
+  {
+    "name": "DAZN SERIE A 20 (PARMA)",
+    "sids": [
+      "925570"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/925570_"
+  }
+]
