@@ -56,6 +56,70 @@ def _s14_log(msg, level=None, source='s14'):
     xbmc.log(f"[CBTV {tag}] {msg}", level if level is not None else xbmc.LOGINFO)
 
 
+def _ts_first_pts(buf):
+    """Estrae il primo PTS (in secondi, clock 90kHz) dai pacchetti MPEG-TS da 188 byte."""
+    i = buf.find(b'\x47')
+    n = len(buf)
+    while i >= 0 and i + 188 <= n:
+        if buf[i] != 0x47:
+            i = buf.find(b'\x47', i + 1)
+            continue
+        pusi = (buf[i + 1] & 0x40) != 0
+        afc = (buf[i + 3] >> 4) & 0x03
+        pos = 4
+        if afc in (2, 3):
+            pos += 1 + buf[i + 4]
+        if pusi and afc in (1, 3) and pos + 14 <= 188:
+            p0 = i + pos
+            if buf[p0] == 0 and buf[p0 + 1] == 0 and buf[p0 + 2] == 1:
+                pts_dts_flags = (buf[p0 + 7] >> 6) & 0x03
+                if pts_dts_flags in (2, 3):
+                    q = p0 + 9
+                    pts = (
+                        (((buf[q] >> 1) & 0x07) << 30)
+                        | (buf[q + 1] << 22)
+                        | (((buf[q + 2] >> 1) & 0x7F) << 15)
+                        | (buf[q + 3] << 7)
+                        | ((buf[q + 4] >> 1) & 0x7F)
+                    )
+                    return pts / 90000.0
+        i += 188
+    return None
+
+
+def _s14_probe_pts(seg_url, source='s17'):
+    """Legge solo i primi 32 KB di un .ts (connessione one-shot) per estrarre il first_pts."""
+    headers = dict(HLS_SERVERS.get(source, HLS_SERVERS['s14'])['headers'])
+    headers['Range'] = 'bytes=0-32767'
+    headers['Connection'] = 'close'
+    t0 = time.time()
+    try:
+        r = requests.get(seg_url, headers=headers, timeout=4.0, stream=True)
+        try:
+            if r.status_code not in (200, 206):
+                return None, int((time.time() - t0) * 1000)
+            chunk = bytearray()
+            for c in r.iter_content(chunk_size=16384):
+                chunk.extend(c)
+                if len(chunk) >= 32768:
+                    break
+            return _ts_first_pts(bytes(chunk)), int((time.time() - t0) * 1000)
+        finally:
+            r.close()
+    except Exception:
+        return None, int((time.time() - t0) * 1000)
+
+
+def _s14_parse_extinf_dur(inf_line, default=10.0):
+    try:
+        val = float(inf_line.split(':', 1)[1].split(',', 1)[0].strip())
+        if 1.0 <= val <= 30.0:
+            return val
+    except Exception:
+        pass
+    return default
+
+
 def _s14_parse_manifest_from(s, sid, matched_loc, headers=None):
     """Scarica e analizza il manifest da un URL di nodo gia' noto. Ritorna (segments|None, info)."""
     try:
@@ -323,14 +387,51 @@ def _s14_worker_loop(sess_key, worker_id=None):
         has_new_segment = False
         if new_segs:
             fetched_loc = getattr(_s14_fetch_manifest, 'last_loc', None)
+            # Per server multi-IP senza pinning (es. S17): se incontriamo un IP nuovo,
+            # fai 1 solo probe da 32 KB (outside lock) per calcolare il suo offset esatto via PTS.
+            probed_offset = None
+            if not pin_mode and new_host:
+                need_probe = False
+                anchor = None
+                with S14_LOCK:
+                    sess = S14_SESSION_CACHE.get(sess_key)
+                    if sess and new_host not in sess.get('host_offsets', {}):
+                        anchor = sess.get('pts_anchor')
+                        need_probe = True
+                if need_probe:
+                    p_seq, p_inf, p_url = new_segs[-1]
+                    p_pts, p_ms = _s14_probe_pts(p_url, source=source)
+                    if p_pts is not None:
+                        if anchor:
+                            a_local, a_pts = anchor
+                            seg_dur = _s14_parse_extinf_dur(p_inf, 10.0)
+                            delta_segs = int(round((p_pts - a_pts) / seg_dur))
+                            if abs(delta_segs) <= 360:
+                                expected_local = a_local + delta_segs
+                                probed_offset = expected_local - p_seq
+                                _s14_log(f"PTS_ALIGN sid={sid} host={new_host} probe_seq={p_seq} pts={p_pts:.2f}s -> local={expected_local} offset={probed_offset:+d} ({p_ms}ms)", source=source)
+                        else:
+                            with S14_LOCK:
+                                sess = S14_SESSION_CACHE.get(sess_key)
+                                if sess:
+                                    sess['pts_anchor'] = (p_seq + sess.get('seq_offset', 0), p_pts)
+                                    sess.setdefault('host_offsets', {})[new_host] = sess.get('seq_offset', 0)
+                            _s14_log(f"PTS_ANCHOR sid={sid} host={new_host} seq={p_seq} pts={p_pts:.2f}s ({p_ms}ms)", source=source)
+
             with S14_LOCK:
                 sess = S14_SESSION_CACHE.get(sess_key)
                 if sess:
                     sess['miss_streak'] = 0
                     if fetched_loc:
                         sess['last_loc'] = fetched_loc
+                    host_offsets = sess.setdefault('host_offsets', {})
+                    if probed_offset is not None and new_host:
+                        host_offsets[new_host] = probed_offset
                     seg_dict = sess.setdefault('segments', {})
-                    offset = sess.get('seq_offset', 0)
+                    if not pin_mode and new_host and new_host in host_offsets:
+                        offset = host_offsets[new_host]
+                    else:
+                        offset = sess.get('seq_offset', 0)
                     max_seq = sess.get('max_seq', 0)
                     floor_seq = max(max_seq, sess.get('last_kodi_seq', 0))
                     seq_reset = (new_segs[-1][0] + offset) < floor_seq
@@ -346,6 +447,11 @@ def _s14_worker_loop(sess_key, worker_id=None):
                             tail = new_segs[-2:]
                             offset = floor_seq + 1 - tail[0][0]
                             sess['seq_offset'] = offset
+                            if not pin_mode:
+                                sess['pts_anchor'] = None
+                                host_offsets.clear()
+                                if new_host:
+                                    host_offsets[new_host] = offset
                             first_local = tail[0][0] + offset
                             new_segs = tail
                         sess['pinned_host'] = new_host or pinned_host
@@ -576,6 +682,15 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
             new_segs, pinned_host, info = _s14_fetch_manifest(sid, pinned_host=None, source=source_type)
             _s14_log(f"avvio sid={sid} host={pinned_host} {info}", source=source_type)
             if new_segs:
+                pts_anchor = None
+                host_offsets = {}
+                if not HLS_SERVERS.get(source_type, HLS_SERVERS['s14']).get('pin_host', True) and pinned_host:
+                    p_seq, _, p_url = new_segs[-1]
+                    p_pts, p_ms = _s14_probe_pts(p_url, source=source_type)
+                    if p_pts is not None:
+                        pts_anchor = (p_seq, p_pts)
+                        host_offsets[pinned_host] = 0
+                        _s14_log(f"PTS_ANCHOR sid={sid} host={pinned_host} seq={p_seq} pts={p_pts:.2f}s ({p_ms}ms)", source=source_type)
                 with S14_LOCK:
                     wid = now
                     sess = {
@@ -587,6 +702,8 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
                         'last_seen': now,
                         'media_seq': 0,
                         'seq_offset': 0,
+                        'pts_anchor': pts_anchor,
+                        'host_offsets': host_offsets,
                         'disc_seqs': set(),
                         'last_new_ts': now,
                         'last_loc': getattr(_s14_fetch_manifest, 'last_loc', None),
