@@ -1962,36 +1962,41 @@ def play_hublive_stalker(cmd, name=None, server_id=None, sids=None):
         return
     
     # Stream risolto e verificato fisicamente (pacchetti MPEG-TS già confermati da resolve_stream)!
-    global _CURRENT_HB_PLAYER
-    _CURRENT_HB_PLAYER = HBPlayer(channel_name=name, mac=mac, server_id=server_id, client=client)
+    resolved_sid = getattr(client, 'last_resolved_sid', None) or ''
+    from resources.lib.cbtv_proxy import ProxyManager
+    proxy = ProxyManager()
+    port = proxy.start()
 
-    list_item = xbmcgui.ListItem(path=final_url)
+    proxy_query = urlencode({
+        "server_id": server_id,
+        "sid": resolved_sid,
+        "sids": sids if isinstance(sids, str) else (",".join(sids) if sids else resolved_sid),
+        "cmd": cmd or "",
+        "name": name or "Live TV",
+        "mac": mac or "",
+        "url": final_url,
+    })
+    proxy_ts_url = f"http://127.0.0.1:{port}/hb_ts?{proxy_query}"
+
+    list_item = xbmcgui.ListItem(path=proxy_ts_url)
     list_item.setArt({'fanart': FANART})
     list_item.setInfo('video', {'title': name or 'Live TV'})
     list_item.setMimeType('video/mp2t')
     list_item.setContentLookup(False)
     
     xbmcplugin.setResolvedUrl(HANDLE, True, list_item)
-    xbmc.log(f"[CBTV-HB] Stream avviato con successo su MAC {mac} -> {final_url[:80]}", xbmc.LOGINFO)
+    xbmc.log(f"[CBTV-HB] Stream avviato tramite proxy TS continuo su MAC {mac} (ID {resolved_sid}) -> {proxy_ts_url[:90]}", xbmc.LOGINFO)
 
-    # Mantieni vivo il riferimento a HBPlayer per monitorare eventuali cadute spontanee (onPlayBackEnded / onPlayBackError)
-    wait_start = time.time()
-    while not monitor.abortRequested() and (time.time() - wait_start < 15.0):
-        if _CURRENT_HB_PLAYER.av_started or _CURRENT_HB_PLAYER.dropped or _CURRENT_HB_PLAYER.stopped_by_user:
+    for _ in range(30):
+        if monitor.abortRequested() or xbmc.Player().isPlaying():
             break
         xbmc.sleep(250)
 
-    if _CURRENT_HB_PLAYER.av_started:
-        while not monitor.abortRequested() and _CURRENT_HB_PLAYER.isPlayingVideo():
-            try:
-                pos = _CURRENT_HB_PLAYER.getTime()
-                if pos != _CURRENT_HB_PLAYER.last_pos:
-                    _CURRENT_HB_PLAYER.last_pos = pos
-                    _CURRENT_HB_PLAYER.last_pos_time = time.time()
-            except Exception:
-                pass
-            if monitor.waitForAbort(1.0):
-                break
+    while not monitor.abortRequested() and xbmc.Player().isPlaying():
+        if monitor.waitForAbort(1.0):
+            break
+
+    proxy.stop()
 
 
 

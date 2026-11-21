@@ -733,6 +733,166 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
         self.send_response(502)
         self.end_headers()
 
+    def _handle_hb_ts(self, params):
+        """
+        Proxy MPEG-TS continuo per Stalker Portal (Server 18 / Server 12).
+        Mantiene una singola connessione HTTP continua verso Kodi e, se il server remoto
+        chiude lo stream (EOF / timeout perché il MAC viene impegnato da un altro utente),
+        mette il MAC in quarantena (600s), risolve trasparentemente un nuovo MAC libero
+        sullo stesso canale (sid) e continua a inviare pacchetti MPEG-TS allineati a 188 byte (0x47)
+        senza mai chiudere il player di Kodi.
+        """
+        from urllib.parse import unquote_plus
+        from resources.lib.hublive_stalker import HubliveStalkerClient
+
+        server_id = params.get('server_id') or 's18'
+        sid = params.get('sid') or ''
+        sids = params.get('sids') or sid
+        cmd = params.get('cmd') or (f"ffmpeg http://localhost/ch/{sid}_" if sid else '')
+        name = params.get('name') or 'Live TV'
+        cur_url_raw = params.get('url') or ''
+        cur_mac = params.get('mac') or ''
+
+        client = HubliveStalkerClient(server_id)
+        failed_macs = set()
+
+        def _split_url_ua(raw_u):
+            if not raw_u:
+                return None, client.UA if server_id == "s18" else client.STREAM_UA
+            if "|User-Agent=" in raw_u:
+                u_part, ua_part = raw_u.split("|User-Agent=", 1)
+                return u_part, unquote_plus(ua_part)
+            return raw_u, (client.UA if server_id == "s18" else client.STREAM_UA)
+
+        stream_url, stream_ua = _split_url_ua(cur_url_raw)
+        if not stream_url:
+            res_u, res_m = client.resolve_stream(cmd, exclude_macs=failed_macs, channel_name=name, max_tries=4, sids=sids)
+            if not res_u:
+                self.send_response(502)
+                self.end_headers()
+                return
+            stream_url, stream_ua = _split_url_ua(res_u)
+            cur_mac = res_m
+            if getattr(client, 'last_resolved_sid', None):
+                sid = str(client.last_resolved_sid)
+
+        headers_sent = False
+        switches = 0
+        max_switches = 25
+
+        while not _S14_STOP_EVENT.is_set() and switches <= max_switches:
+            t_conn_start = time.time()
+            bytes_this_mac = 0
+            residual = b""
+            synced = False
+            sess = requests.Session()
+            sess.trust_env = False
+            try:
+                xbmc.log(f"[CBTV-HB-TS] Apertura stream ({server_id}) '{name}' [ID {sid}] su MAC {cur_mac} (switch #{switches})", xbmc.LOGINFO)
+                with sess.get(
+                    stream_url,
+                    headers={"User-Agent": stream_ua, "Connection": "keep-alive"},
+                    stream=True,
+                    allow_redirects=True,
+                    timeout=(4.0, 7.0)
+                ) as resp:
+                    if resp.status_code >= 400:
+                        xbmc.log(f"[CBTV-HB-TS] HTTP {resp.status_code} su MAC {cur_mac} [ID {sid}]", xbmc.LOGWARNING)
+                    else:
+                        for chunk in resp.iter_content(chunk_size=188 * 174):
+                            if _S14_STOP_EVENT.is_set():
+                                return
+                            if not chunk:
+                                break
+                            buf = residual + chunk
+                            if not synced:
+                                idx = -1
+                                limit = len(buf) - 376
+                                for i in range(max(0, min(limit, 1880))):
+                                    if buf[i] == 0x47 and buf[i + 188] == 0x47 and buf[i + 376] == 0x47:
+                                        idx = i
+                                        break
+                                if idx < 0:
+                                    if len(buf) < 564:
+                                        residual = buf
+                                        continue
+                                    pos47 = buf.find(b'\x47')
+                                    if pos47 < 0:
+                                        residual = b""
+                                        continue
+                                    idx = pos47
+                                buf = buf[idx:]
+                                synced = True
+
+                            n_aligned = (len(buf) // 188) * 188
+                            if n_aligned == 0:
+                                residual = buf
+                                continue
+                            to_send = buf[:n_aligned]
+                            residual = buf[n_aligned:]
+
+                            if not headers_sent:
+                                self.send_response(200)
+                                self.send_header("Content-Type", "video/mp2t")
+                                self.send_header("Cache-Control", "no-cache, no-store")
+                                self.send_header("Connection", "close")
+                                self.end_headers()
+                                headers_sent = True
+
+                            try:
+                                self.wfile.write(to_send)
+                                self.wfile.flush()
+                                bytes_this_mac += len(to_send)
+                            except (BrokenPipeError, ConnectionResetError, OSError):
+                                xbmc.log(f"[CBTV-HB-TS] Connessione chiusa da Kodi per '{name}' (stop utente)", xbmc.LOGINFO)
+                                return
+            except Exception as e:
+                if _S14_STOP_EVENT.is_set():
+                    return
+                xbmc.log(f"[CBTV-HB-TS] Connessione interrotta su MAC {cur_mac} dopo {time.time() - t_conn_start:.1f}s ({bytes_this_mac // 1024} KB): {e}", xbmc.LOGWARNING)
+            finally:
+                try:
+                    sess.close()
+                except Exception:
+                    pass
+
+            if _S14_STOP_EVENT.is_set():
+                return
+
+            elapsed = time.time() - t_conn_start
+            xbmc.log(f"[CBTV-HB-TS] EOF/Drop su MAC {cur_mac} dopo {elapsed:.1f}s ({bytes_this_mac // 1024} KB). Cambio MAC invisibile in corso...", xbmc.LOGWARNING)
+            if cur_mac:
+                failed_macs.add(cur_mac)
+                client.mark_mac_dropped(cur_mac, name, duration_sec=600)
+
+            switches += 1
+            # Risolvi un nuovo MAC mantenendo lo stesso sid (stesso encoder/PID/clock) per continuità perfetta
+            target_sids = sid if (sid and bytes_this_mac > 0) else sids
+            new_u, new_m = None, None
+            for _retry in range(2):
+                if _S14_STOP_EVENT.is_set():
+                    return
+                new_u, new_m = client.resolve_stream(cmd, exclude_macs=failed_macs, channel_name=name, max_tries=4, sids=target_sids)
+                if new_u:
+                    break
+                # Se lo stesso sid ha esaurito i tentativi, allarga a tutti i sids o resetta failed_macs
+                target_sids = sids
+                if len(failed_macs) >= 15:
+                    failed_macs.clear()
+
+            if not new_u:
+                xbmc.log(f"[CBTV-HB-TS] Impossibile trovare un MAC sostitutivo per '{name}'", xbmc.LOGERROR)
+                if not headers_sent:
+                    self.send_response(502)
+                    self.end_headers()
+                return
+
+            stream_url, stream_ua = _split_url_ua(new_u)
+            cur_mac = new_m
+            if getattr(client, 'last_resolved_sid', None):
+                sid = str(client.last_resolved_sid)
+            xbmc.log(f"[CBTV-HB-TS] Switch #{switches} completato: nuovo MAC {cur_mac} su ID {sid}", xbmc.LOGINFO)
+
     def get_token(self, code, source_type):
         now = time.time()
         # Se abbiamo un token in cache valido per altri 60 secondi, usalo
@@ -792,6 +952,10 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
 
         if path_base == '/s14_seg':
             self._handle_s14_segment(params)
+            return
+
+        if path_base == '/hb_ts':
+            self._handle_hb_ts(params)
             return
 
         code = params.get('code')

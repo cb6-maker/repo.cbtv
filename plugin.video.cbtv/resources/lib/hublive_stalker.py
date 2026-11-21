@@ -390,8 +390,8 @@ class HubliveStalkerClient:
             except Exception:
                 pass
 
-    def mark_mac_dropped(self, mac, channel_name=None, duration_sec=45):
-        """Scarta un MAC caduto: lo banna dalla sessione, mette in quarantena breve (45s) ed elimina i salvataggi."""
+    def mark_mac_dropped(self, mac, channel_name=None, duration_sec=600):
+        """Scarta un MAC caduto: lo banna dalla sessione, mette in quarantena (default 600s = 10 min) ed elimina i salvataggi."""
         if not mac:
             return
         self.DROPPED_MACS.add(mac)
@@ -814,6 +814,7 @@ class HubliveStalkerClient:
                     stream_ua = self.UA if self.server_id == "s18" else self.STREAM_UA
 
                 final_url_with_ua = f"{final_target}|User-Agent={quote_plus(stream_ua)}"
+                self.last_resolved_sid = curr_sid
                 xbmc.log(f"[CBTV-HB] Stream risolto con successo usando ID {curr_sid} e MAC {mac} -> {final_target[:80]}", xbmc.LOGINFO)
                 
                 self.remove_busy_mac(mac)
