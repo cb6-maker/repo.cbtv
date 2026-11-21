@@ -1004,7 +1004,6 @@ def _play_hls_proxy_channel(sid, name, source="s14"):
         list_item = xbmcgui.ListItem(path=proxy_url)
         list_item.setInfo('video', {'title': name})
         list_item.setProperty('inputstream', 'inputstream.ffmpegdirect')
-        list_item.setProperty('inputstream.ffmpegdirect.is_realtime_stream', 'true')
         list_item.setProperty('inputstream.ffmpegdirect.manifest_type', 'hls')
         list_item.setMimeType('application/x-mpegURL')
         list_item.setContentLookup(False)

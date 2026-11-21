@@ -148,11 +148,14 @@ def _close_s14_seg_session():
 
 
 def _s14_download_segment(seg_url, sid="", seq="?", source="s14", max_tries=3):
-    """Scarica un segmento .ts con sessione condivisa keep-alive, timeout adeguato a segmenti 8-9 MB
+    """Scarica un segmento .ts con socket TCP pulito (Connection: close per evitare socket Keep-Alive
+    chiusi silenziosamente da Cloudflare dopo 9s di pausa tra segmenti), read timeout rapido (3.5s)
     e serializzazione col worker manifest (_S14_SEG_IDLE).
     Ritorna (data_bytes|None, attempt, elapsed_ms, last_err)."""
     s = _get_s14_seg_session()
-    headers = HLS_SERVERS.get(source, HLS_SERVERS['s14'])['headers']
+    base_headers = HLS_SERVERS.get(source, HLS_SERVERS['s14'])['headers']
+    headers = dict(base_headers)
+    headers['Connection'] = 'close'
 
     last_err = ""
     _S14_SEG_IDLE.clear()
@@ -161,8 +164,9 @@ def _s14_download_segment(seg_url, sid="", seq="?", source="s14", max_tries=3):
             if _S14_STOP_EVENT.is_set():
                 return None, attempt, 0, "stopped"
             t0 = time.time()
+            read_to = 3.5 if attempt == 1 else 5.0
             try:
-                with s.get(seg_url, headers=headers, cookies={}, timeout=(3.0, 8.0), stream=True) as r:
+                with s.get(seg_url, headers=headers, cookies={}, timeout=(2.5, read_to), stream=True) as r:
                     if r.status_code != 200:
                         ms = int((time.time() - t0) * 1000)
                         last_err = f"HTTP {r.status_code}"
@@ -186,8 +190,10 @@ def _s14_download_segment(seg_url, sid="", seq="?", source="s14", max_tries=3):
                 ms = int((time.time() - t0) * 1000)
                 last_err = f"{type(e).__name__}: {e}"
                 _s14_log(f"SEG_FAIL sid={sid} seq={seq} try={attempt} {last_err} ms={ms}", xbmc.LOGWARNING, source=source)
+                _close_s14_seg_session()
+                s = _get_s14_seg_session()
             if attempt < max_tries and not _S14_STOP_EVENT.is_set():
-                time.sleep(0.25)
+                time.sleep(0.15)
     finally:
         _S14_SEG_IDLE.set()
     return None, max_tries, 0, last_err
