@@ -446,10 +446,13 @@ def _s14_worker_loop(sess_key, worker_id=None):
                             _s14_log(f"REPIN_SAME sid={sid} t={elapsed}s stallo={stalled_for:.0f}s host={new_host} (continua senza buchi)", source=source)
                         elif new_host and not pin_mode:
                             sess['pinned_host'] = new_host
+                        kodi_floor = sess.get('last_kodi_seq', 0)
                         for seq, inf, url in new_segs:
                             local = seq + offset
                             if local > max_seq:
                                 has_new_segment = True
+                            if local <= kodi_floor:
+                                continue
                             if local >= sess.get('media_seq', 0):
                                 # Su server multi-IP senza pinning (S17), non sovrascrivere segmenti
                                 # gia' in cache per evitare duplicati da nodi sfasati di +-1.
