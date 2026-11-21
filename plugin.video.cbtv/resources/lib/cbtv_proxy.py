@@ -29,7 +29,7 @@ HLS_SERVERS = {
             'Cache-Control': 'no-cache'
         },
         'pin_host': True,
-        'exclude_hosts': ('load2.sploadbl.date',),
+        'exclude_hosts': ('load2.sploadbl.date', 'load6.sploadbl.org.uk'),
         'tag': 'S14',
     },
     's17': {
@@ -121,39 +121,51 @@ def _close_s14_seg_session():
             pass
 
 
-def _s14_download_segment(seg_url, sid="", seq="?", source="s14"):
-    """Scarica un segmento .ts con sessione condivisa keep-alive e fino a 3 retry.
+def _s14_download_segment(seg_url, sid="", seq="?", source="s14", max_tries=2):
+    """Scarica un segmento .ts con sessione condivisa keep-alive, timeout rapido e tetto wall-clock.
     Ritorna (data_bytes|None, attempt, elapsed_ms, last_err)."""
     s = _get_s14_seg_session()
     headers = HLS_SERVERS.get(source, HLS_SERVERS['s14'])['headers']
 
     last_err = ""
-    for attempt in range(1, 4):
+    for attempt in range(1, max_tries + 1):
         t0 = time.time()
         try:
-            r = s.get(seg_url, headers=headers, cookies={}, timeout=8.0)
-            ms = int((time.time() - t0) * 1000)
-            if r.status_code == 200 and r.content:
-                return r.content, attempt, ms, ""
-            last_err = f"HTTP {r.status_code} bytes={len(r.content)}"
-            _s14_log(f"SEG_FAIL sid={sid} seq={seq} try={attempt} {last_err} ms={ms}", xbmc.LOGWARNING, source=source)
+            with s.get(seg_url, headers=headers, cookies={}, timeout=(2.5, 4.0), stream=True) as r:
+                if r.status_code != 200:
+                    ms = int((time.time() - t0) * 1000)
+                    last_err = f"HTTP {r.status_code}"
+                    _s14_log(f"SEG_FAIL sid={sid} seq={seq} try={attempt} {last_err} ms={ms}", xbmc.LOGWARNING, source=source)
+                else:
+                    chunks = []
+                    for chunk in r.iter_content(chunk_size=65536):
+                        if chunk:
+                            chunks.append(chunk)
+                        if time.time() - t0 > 6.0:
+                            raise requests.exceptions.ReadTimeout("Wall-clock timeout > 6.0s")
+                    data = b"".join(chunks)
+                    ms = int((time.time() - t0) * 1000)
+                    if data:
+                        return data, attempt, ms, ""
+                    last_err = "empty_body"
+                    _s14_log(f"SEG_FAIL sid={sid} seq={seq} try={attempt} {last_err} ms={ms}", xbmc.LOGWARNING, source=source)
         except Exception as e:
             ms = int((time.time() - t0) * 1000)
             last_err = f"{type(e).__name__}: {e}"
             _s14_log(f"SEG_FAIL sid={sid} seq={seq} try={attempt} {last_err} ms={ms}", xbmc.LOGWARNING, source=source)
-        if attempt < 3:
-            time.sleep(0.3)
-    return None, 3, 0, last_err
+        if attempt < max_tries:
+            time.sleep(0.2)
+    return None, max_tries, 0, last_err
 
 
-def _s14_fetch_manifest(sid, pinned_host=None, exclude_host=None, source="s14", last_loc=None):
+def _s14_fetch_manifest(sid, pinned_host=None, exclude_host=None, source="s14", last_loc=None, extra_exclude=()):
     """Richiede un nuovo manifest al load balancer per il server HLS indicato (s14/s17).
     Per server con pin_host=True (es. S14) mantiene blocco rigido su pinned_host fino a 25 tentativi.
     Per server con sequenza condivisa tra i nodi (es. S17) fa una singola chiamata rapida."""
     cfg = HLS_SERVERS.get(source, HLS_SERVERS['s14'])
     headers = cfg['headers']
     s14_url = f"{cfg['base_url']}/{sid}.m3u8"
-    exclude_hosts = cfg.get('exclude_hosts', ())
+    exclude_hosts = tuple(cfg.get('exclude_hosts', ())) + tuple(extra_exclude or ())
     matched_loc = None
     seen_hosts = {}
     last_err = None
@@ -189,7 +201,8 @@ def _s14_fetch_manifest(sid, pinned_host=None, exclude_host=None, source="s14", 
     else:
         valid_counts = {}
         latest_locs = {}
-        for _ in range(9):
+        fallback_locs = {}
+        for _ in range(10):
             try:
                 ts = int(time.time() * 1000)
                 r_redir = _S14_MANIFEST_SESSION.get(f"{s14_url}?_vegeta_refresh={ts}", headers=headers, allow_redirects=False, timeout=2.0)
@@ -197,20 +210,19 @@ def _s14_fetch_manifest(sid, pinned_host=None, exclude_host=None, source="s14", 
                 h = urlparse(loc).netloc
                 seen_hosts[h] = seen_hosts.get(h, 0) + 1
                 if not any(ex in h for ex in exclude_hosts):
-                    valid_counts[h] = valid_counts.get(h, 0) + 1
-                    latest_locs[h] = loc
-                    if valid_counts[h] >= 3 or sum(valid_counts.values()) >= 5:
-                        break
+                    fallback_locs[h] = loc
+                    if not exclude_host or exclude_host not in h:
+                        valid_counts[h] = valid_counts.get(h, 0) + 1
+                        latest_locs[h] = loc
+                        if valid_counts[h] >= 2 or sum(valid_counts.values()) >= 4:
+                            break
             except Exception as e:
                 last_err = type(e).__name__
         if valid_counts:
-            if exclude_host:
-                others = {k: v for k, v in valid_counts.items() if k != exclude_host}
-                pool = others if others else valid_counts
-            else:
-                pool = valid_counts
-            pinned_host = max(pool, key=pool.get)
+            pinned_host = max(valid_counts, key=valid_counts.get)
             matched_loc = latest_locs[pinned_host]
+        elif fallback_locs:
+            pinned_host, matched_loc = next(iter(fallback_locs.items()))
         else:
             return None, None, f"redirect_err hosts={seen_hosts} err={last_err}"
 
@@ -290,6 +302,9 @@ def _s14_worker_loop(sess_key, worker_id=None):
     poll_fail = cfg.get('poll_fail', 1.0)
     _s14_log(f"worker avviato sid={sid}", source=source)
     t_start = time.time()
+    # Pausa iniziale: do_GET ha appena scaricato il manifest a t=0s; attendiamo poll_ok
+    # per non collidere col download del primo segmento .ts su account max_connections=1.
+    time.sleep(poll_ok)
     while True:
         with S14_LOCK:
             sess = S14_SESSION_CACHE.get(sess_key)
@@ -305,17 +320,18 @@ def _s14_worker_loop(sess_key, worker_id=None):
             last_new_ts = sess.setdefault('last_new_ts', time.time())
             miss_streak = sess.get('miss_streak', 0)
             last_loc = sess.get('last_loc')
+            bad_hosts = tuple(sess.get('bad_hosts', ()))
 
         elapsed = int(time.time() - t_start)
         stalled_for = time.time() - last_new_ts
-        repin = pin_mode and ((stalled_for > S14_STALL_REPIN_SECONDS) or (miss_streak >= 3))
+        repin = pin_mode and ((stalled_for > S14_STALL_REPIN_SECONDS) or (miss_streak >= 3) or (pinned_host in bad_hosts))
 
         t0 = time.time()
         _s14_fetch_manifest.last_loc = None
         if repin:
-            new_segs, new_host, info = _s14_fetch_manifest(sid, pinned_host=None, exclude_host=pinned_host, source=source)
+            new_segs, new_host, info = _s14_fetch_manifest(sid, pinned_host=None, exclude_host=pinned_host, source=source, extra_exclude=bad_hosts)
         else:
-            new_segs, new_host, info = _s14_fetch_manifest(sid, pinned_host, source=source, last_loc=last_loc)
+            new_segs, new_host, info = _s14_fetch_manifest(sid, pinned_host, source=source, last_loc=last_loc, extra_exclude=bad_hosts)
         raw_info = info
         info = f"LB:{info}"
         fetch_ms = int((time.time() - t0) * 1000)
@@ -441,6 +457,38 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
                         pass
 
         data, attempt, ms, last_err = _s14_download_segment(seg_url, sid=sid, seq=seq, source=source)
+        if not data and pin_mode and sess_key:
+            bad_host = urlparse(seg_url).netloc
+            bad_hosts = ()
+            with S14_LOCK:
+                sess = S14_SESSION_CACHE.get(sess_key)
+                if sess:
+                    bh_set = sess.setdefault('bad_hosts', set())
+                    if bad_host:
+                        bh_set.add(bad_host)
+                    bad_hosts = tuple(bh_set)
+                    sess['miss_streak'] = max(sess.get('miss_streak', 0), 3)
+            _s14_log(f"SEG_REPIN sid={sid} seq={seq} escludo host={bad_host} (bad_hosts={bad_hosts})", xbmc.LOGWARNING, source=source)
+            new_segs, new_host, info = _s14_fetch_manifest(sid, pinned_host=None, exclude_host=bad_host, source=source, extra_exclude=bad_hosts)
+            if new_segs and new_host:
+                fallback_seg = new_segs[-3] if len(new_segs) >= 3 else new_segs[-1]
+                with S14_LOCK:
+                    sess = S14_SESSION_CACHE.get(sess_key)
+                    if sess:
+                        sess['pinned_host'] = new_host
+                        sess['miss_streak'] = 0
+                        floor_seq = max(sess.get('max_seq', 0), sess.get('last_kodi_seq', 0))
+                        tail = new_segs[-3:] if len(new_segs) >= 3 else new_segs
+                        start_target = seq_num if seq_num is not None else (floor_seq + 1)
+                        offset = start_target - tail[0][0]
+                        sess['seq_offset'] = offset
+                        seg_dict = sess.setdefault('segments', {})
+                        for s_num, s_inf, s_url in tail:
+                            seg_dict[s_num + offset] = (s_inf, s_url)
+                        sess.setdefault('disc_seqs', set()).add(start_target + 1)
+                        sess['disc_total'] = sess.get('disc_total', 0) + 1
+                        _s14_render_playlist(sess, window_size=6)
+                data, attempt, ms, last_err = _s14_download_segment(fallback_seg[2], sid=sid, seq=f"{seq}->repin({new_host})", source=source)
         if data and not pin_mode and sess_key and seq_num is not None:
             sig = len(data)
             candidates = []

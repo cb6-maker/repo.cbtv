@@ -228,6 +228,11 @@ class HubliveStalkerClient:
         if not servers_data or not isinstance(servers_data, list):
             return
 
+        # Per s18 usa esclusivamente i 30 MAC verificati di PORTAL_18_MACS (evita MAC trial/scaduti da staycanuca/hub)
+        if self.server_id == "s18":
+            self.mac_pool = [m for m in self.PORTAL_18_MACS if m not in self.DROPPED_MACS]
+            return
+
         combined_macs = []
         target_portal = None
 
@@ -252,20 +257,8 @@ class HubliveStalkerClient:
                     for m in macs:
                         if m and m not in combined_macs:
                             combined_macs.append(m)
-            else:
-                if "z1mag" in portal or "zeroone" in portal or "zerotv" in portal or name in ["Server 18", "Server 8", "Server 66"]:
-                    if not target_portal and "z1mag" in portal:
-                        target_portal = s.get("portal_url") or s.get("portal") or s.get("url")
-                    for m in macs:
-                        if m and m not in combined_macs:
-                            combined_macs.append(m)
 
-        if self.server_id == "s50":
-            base_macs = self.PORTAL_50_MACS
-        elif self.server_id == "s12":
-            base_macs = self.PORTAL_12_MACS
-        else:
-            base_macs = self.PORTAL_18_MACS
+        base_macs = self.PORTAL_50_MACS if self.server_id == "s50" else self.PORTAL_12_MACS
         if combined_macs:
             for m in base_macs:
                 if m not in combined_macs:
@@ -758,8 +751,26 @@ class HubliveStalkerClient:
                             pass
 
                 # 5. Linea verificata e funzionante al 100%!
-                final_target = final_dest if (final_dest and (("204.52.191.254" in final_url and "204.52" not in final_dest) or ("tvdsz.cc" in final_url and "tvdsz" not in final_dest))) else final_url
-                final_url_with_ua = f"{final_target}|User-Agent={quote_plus(self.STREAM_UA)}"
+                use_direct_cdn = bool(final_dest and (("204.52.191.254" in final_url and "204.52" not in final_dest) or ("tvdsz.cc" in final_url and "tvdsz" not in final_dest)))
+                if use_direct_cdn:
+                    final_target = final_dest
+                    stream_ua = self.STREAM_UA
+                else:
+                    # Su portali Stalker diretti (es. s18 z1mag.xyz:8080), la connessione di verifica (188 byte)
+                    # appena chiusa consuma/invalida il play_token dopo ~15-20s. Richiediamo un play_token vergine
+                    # per Kodi senza aprirlo in Python, mantenendo lo stesso User-Agent STB del portale.
+                    fresh_tok, fresh_sid = self.create_link(mac, token, target_cmd, timeout=4.0)
+                    if fresh_tok:
+                        if fresh_sid is None and fresh_tok.startswith("http"):
+                            final_target = re.sub(r"http[s]?://[^/]+", self.portal_url, fresh_tok)
+                        else:
+                            final_target = (f"{self.portal_url}/play/live.php"
+                                            f"?mac={mac}&stream={fresh_sid}&extension=ts&play_token={fresh_tok}")
+                    else:
+                        final_target = final_url
+                    stream_ua = self.UA if self.server_id == "s18" else self.STREAM_UA
+
+                final_url_with_ua = f"{final_target}|User-Agent={quote_plus(stream_ua)}"
                 xbmc.log(f"[CBTV-HB] Stream risolto con successo usando ID {curr_sid} e MAC {mac} -> {final_target[:80]}", xbmc.LOGINFO)
                 
                 self.remove_busy_mac(mac)
@@ -777,7 +788,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.5.0"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.5.1"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""
