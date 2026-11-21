@@ -59,7 +59,7 @@ def _s14_log(msg, level=None, source='s14'):
 def _s14_parse_manifest_from(s, sid, matched_loc, headers=None):
     """Scarica e analizza il manifest da un URL di nodo gia' noto. Ritorna (segments|None, info)."""
     try:
-        r_m3u8 = s.get(matched_loc, headers=headers or S14_HEADERS, timeout=3.0)
+        r_m3u8 = s.get(matched_loc, headers=headers or S14_HEADERS, cookies={}, timeout=3.0)
         if r_m3u8.status_code != 200:
             return None, f"m3u8_http {r_m3u8.status_code}"
         parsed_cdn = urlparse(matched_loc)
@@ -91,8 +91,32 @@ def _s14_parse_manifest_from(s, sid, matched_loc, headers=None):
         return None, f"m3u8_err {type(e).__name__}"
 
 
-_S14_MANIFEST_SESSION = requests.Session()
+_S14_MANIFEST_SESSION = None
 _S14_SEG_SESSION = None
+_S14_STOP_EVENT = threading.Event()
+
+
+def _get_s14_manifest_session():
+    """Restituisce una Session pulita per i manifest .m3u8 (senza cookie stantii)."""
+    global _S14_MANIFEST_SESSION
+    with S14_LOCK:
+        if _S14_MANIFEST_SESSION is None:
+            _S14_MANIFEST_SESSION = requests.Session()
+        _S14_MANIFEST_SESSION.cookies.clear()
+        return _S14_MANIFEST_SESSION
+
+
+def _close_s14_manifest_session():
+    """Chiude e azzera la Session dei manifest (rilascia socket TCP keep-alive e cookie)."""
+    global _S14_MANIFEST_SESSION
+    with S14_LOCK:
+        s = _S14_MANIFEST_SESSION
+        _S14_MANIFEST_SESSION = None
+    if s is not None:
+        try:
+            s.close()
+        except Exception:
+            pass
 
 
 def _get_s14_seg_session():
@@ -170,10 +194,12 @@ def _s14_fetch_manifest(sid, pinned_host=None, exclude_host=None, source="s14", 
     seen_hosts = {}
     last_err = None
 
+    s = _get_s14_manifest_session()
+
     if not cfg.get('pin_host', True):
         try:
             ts = int(time.time() * 1000)
-            r_redir = _S14_MANIFEST_SESSION.get(f"{s14_url}?_vegeta_refresh={ts}", headers=headers, allow_redirects=False, timeout=4.0)
+            r_redir = s.get(f"{s14_url}?_vegeta_refresh={ts}", headers=headers, cookies={}, allow_redirects=False, timeout=4.0)
             loc = r_redir.headers.get('Location') or (s14_url if r_redir.status_code == 200 else None)
             if not loc:
                 return None, None, f"lb_http {r_redir.status_code}"
@@ -185,9 +211,11 @@ def _s14_fetch_manifest(sid, pinned_host=None, exclude_host=None, source="s14", 
             return None, None, f"lb_err {type(e).__name__}"
     elif pinned_host:
         for _ in range(25):
+            if _S14_STOP_EVENT.is_set():
+                return None, pinned_host, "stopped"
             try:
                 ts = int(time.time() * 1000)
-                r_redir = _S14_MANIFEST_SESSION.get(f"{s14_url}?_vegeta_refresh={ts}", headers=headers, allow_redirects=False, timeout=1.5)
+                r_redir = s.get(f"{s14_url}?_vegeta_refresh={ts}", headers=headers, cookies={}, allow_redirects=False, timeout=1.5)
                 loc = r_redir.headers.get('Location')
                 h = urlparse(loc).netloc if loc else f"HTTP{r_redir.status_code}"
                 seen_hosts[h] = seen_hosts.get(h, 0) + 1
@@ -204,9 +232,11 @@ def _s14_fetch_manifest(sid, pinned_host=None, exclude_host=None, source="s14", 
         last_parse_info = None
         last_parse_host = None
         for idx in range(16):
+            if _S14_STOP_EVENT.is_set():
+                return None, None, "stopped"
             try:
                 ts = int(time.time() * 1000)
-                r_redir = _S14_MANIFEST_SESSION.get(f"{s14_url}?_vegeta_refresh={ts}", headers=headers, allow_redirects=False, timeout=2.0)
+                r_redir = s.get(f"{s14_url}?_vegeta_refresh={ts}", headers=headers, cookies={}, allow_redirects=False, timeout=2.0)
                 loc = r_redir.headers.get('Location') or (s14_url if r_redir.status_code == 200 else None)
                 if not loc:
                     last_err = f"HTTP{r_redir.status_code}"
@@ -214,22 +244,27 @@ def _s14_fetch_manifest(sid, pinned_host=None, exclude_host=None, source="s14", 
                 h = urlparse(loc).netloc
                 seen_hosts[h] = seen_hosts.get(h, 0) + 1
                 if any(ex in h for ex in exclude_hosts) or h in failed_hosts:
+                    # Chiudi keep-alive per forzare una nuova connessione TCP al LB e ruotare nodo
+                    _close_s14_manifest_session()
+                    s = _get_s14_manifest_session()
                     continue
                 fallback_locs[h] = loc
                 if exclude_host and exclude_host in h and idx < 10:
                     continue
-                segs, p_info = _s14_parse_manifest_from(_S14_MANIFEST_SESSION, sid, loc, headers=headers)
+                segs, p_info = _s14_parse_manifest_from(s, sid, loc, headers=headers)
                 if segs:
                     _s14_fetch_manifest.last_loc = loc
                     return segs, h, p_info
                 failed_hosts.add(h)
                 last_parse_info = p_info
                 last_parse_host = h
+                _close_s14_manifest_session()
+                s = _get_s14_manifest_session()
             except Exception as e:
                 last_err = type(e).__name__
-        if exclude_host and exclude_host in fallback_locs and exclude_host not in failed_hosts:
+        if exclude_host and exclude_host in fallback_locs and exclude_host not in failed_hosts and not _S14_STOP_EVENT.is_set():
             loc = fallback_locs[exclude_host]
-            segs, p_info = _s14_parse_manifest_from(_S14_MANIFEST_SESSION, sid, loc, headers=headers)
+            segs, p_info = _s14_parse_manifest_from(s, sid, loc, headers=headers)
             if segs:
                 _s14_fetch_manifest.last_loc = loc
                 return segs, exclude_host, p_info
@@ -240,7 +275,7 @@ def _s14_fetch_manifest(sid, pinned_host=None, exclude_host=None, source="s14", 
             return None, last_parse_host, f"{last_parse_info} hosts={seen_hosts}"
         return None, None, f"redirect_err hosts={seen_hosts} err={last_err}"
 
-    segments, info = _s14_parse_manifest_from(_S14_MANIFEST_SESSION, sid, matched_loc, headers=headers)
+    segments, info = _s14_parse_manifest_from(s, sid, matched_loc, headers=headers)
     _s14_fetch_manifest.last_loc = matched_loc if segments else None
     return segments, pinned_host, info
 
@@ -318,8 +353,10 @@ def _s14_worker_loop(sess_key, worker_id=None):
     t_start = time.time()
     # Pausa iniziale: do_GET ha appena scaricato il manifest a t=0s; attendiamo poll_ok
     # per non collidere col download del primo segmento .ts su account max_connections=1.
-    time.sleep(poll_ok)
-    while True:
+    if _S14_STOP_EVENT.wait(poll_ok):
+        _s14_log(f"worker arrestato sid={sid}", source=source)
+        return
+    while not _S14_STOP_EVENT.is_set():
         with S14_LOCK:
             sess = S14_SESSION_CACHE.get(sess_key)
             if not sess or (worker_id is not None and sess.get('worker_id') != worker_id):
@@ -445,7 +482,9 @@ def _s14_worker_loop(sess_key, worker_id=None):
                     streak = 0
             _s14_log(f"sid={sid} t={elapsed}s FAIL {info} miss={streak}/3 stallo={stalled_for:.0f}s fetch={fetch_ms}ms", xbmc.LOGWARNING, source=source)
 
-        time.sleep(poll_ok if has_new_segment else (poll_same if (new_segs or raw_info == "same_token") else poll_fail))
+        if _S14_STOP_EVENT.wait(poll_ok if has_new_segment else (poll_same if (new_segs or raw_info == "same_token") else poll_fail)):
+            _s14_log(f"worker arrestato sid={sid}", source=source)
+            break
 
 
 class FreeshotProxyHandler(BaseHTTPRequestHandler):
@@ -826,6 +865,7 @@ class ProxyManager:
         self.port = 0
 
     def start(self):
+        _S14_STOP_EVENT.clear()
         # Binding alla porta 0 assegna una porta random libera
         class _ThreadedServer(_BaseHTTPServer):
             daemon_threads = True
@@ -840,10 +880,12 @@ class ProxyManager:
         return self.port
 
     def stop(self):
+        _S14_STOP_EVENT.set()
         with S14_LOCK:
             S14_SESSION_CACHE.clear()
             S14_WORKERS.clear()
         _close_s14_seg_session()
+        _close_s14_manifest_session()
         if self.server:
             self.server.shutdown()
             self.server.server_close()
