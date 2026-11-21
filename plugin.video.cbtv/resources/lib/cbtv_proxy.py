@@ -147,10 +147,10 @@ def _close_s14_seg_session():
             pass
 
 
-def _s14_download_segment(seg_url, sid="", seq="?", source="s14", max_tries=3):
+def _s14_download_segment(seg_url, sid="", seq="?", source="s14", max_tries=3, url_refresh_fn=None):
     """Scarica un segmento .ts con socket TCP pulito (Connection: close per evitare socket Keep-Alive
     chiusi silenziosamente da Cloudflare dopo 9s di pausa tra segmenti), read timeout rapido (3.5s)
-    e serializzazione col worker manifest (_S14_SEG_IDLE).
+    e rinnovo automatico del token URL tra i retry (url_refresh_fn).
     Ritorna (data_bytes|None, attempt, elapsed_ms, last_err)."""
     s = _get_s14_seg_session()
     base_headers = HLS_SERVERS.get(source, HLS_SERVERS['s14'])['headers']
@@ -158,15 +158,23 @@ def _s14_download_segment(seg_url, sid="", seq="?", source="s14", max_tries=3):
     headers['Connection'] = 'close'
 
     last_err = ""
+    curr_url = seg_url
     _S14_SEG_IDLE.clear()
     try:
         for attempt in range(1, max_tries + 1):
             if _S14_STOP_EVENT.is_set():
                 return None, attempt, 0, "stopped"
+            if attempt > 1 and url_refresh_fn is not None:
+                try:
+                    refreshed = url_refresh_fn(attempt)
+                    if refreshed:
+                        curr_url = refreshed
+                except Exception:
+                    pass
             t0 = time.time()
             read_to = 3.5 if attempt == 1 else 5.0
             try:
-                with s.get(seg_url, headers=headers, cookies={}, timeout=(2.5, read_to), stream=True) as r:
+                with s.get(curr_url, headers=headers, cookies={}, timeout=(2.5, read_to), stream=True) as r:
                     if r.status_code != 200:
                         ms = int((time.time() - t0) * 1000)
                         last_err = f"HTTP {r.status_code}"
@@ -470,6 +478,7 @@ def _s14_worker_loop(sess_key, worker_id=None):
                                     first_local = tail[0][0] + offset
                                     new_segs = tail
                             sess['pinned_host'] = new_host or pinned_host
+                            sess['node_min_seq'] = first_local
                             sess.setdefault('disc_seqs', set()).add(first_local)
                             sess['disc_total'] = sess.get('disc_total', 0) + 1
                             tag = "SEQ_RESET" if (not host_switched and seq_reset) else "NODE_SWITCH"
@@ -486,12 +495,21 @@ def _s14_worker_loop(sess_key, worker_id=None):
                             if local <= kodi_floor:
                                 continue
                             if local >= sess.get('media_seq', 0):
-                                # Su server multi-IP senza pinning (S17), non sovrascrivere segmenti
-                                # gia' in cache per evitare duplicati da nodi sfasati di +-1.
+                                # Su server con pin_host (S14) aggiorna SEMPRE l'URL col token fresco per tutti i segmenti
+                                # non ancora completati da Kodi (> kodi_floor).
                                 if pin_mode or local not in seg_dict:
                                     seg_dict[local] = (inf, url)
                         if has_new_segment:
                             sess['last_new_ts'] = time.time()
+                        # Su S14 (stesso nodo), il server upstream mantiene in vita solo i 6 segmenti di new_segs:
+                        # rimuovi i segmenti dello stesso nodo già cancellati dal server (< min_live)
+                        # così Kodi non richiede mai segmenti ormai inesistenti sul server.
+                        if pin_mode and not host_switched and not seq_reset and new_segs:
+                            min_live = new_segs[0][0] + offset
+                            node_min = sess.get('node_min_seq', 0)
+                            for old_k in list(seg_dict.keys()):
+                                if old_k >= node_min and old_k < min_live:
+                                    seg_dict.pop(old_k, None)
                         if len(seg_dict) > 18:
                             for old_k in sorted(seg_dict.keys())[:-18]:
                                 seg_dict.pop(old_k, None)
@@ -541,26 +559,78 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
             return
 
         seq_num = None
-        if sess_key:
-            with S14_LOCK:
-                sess = S14_SESSION_CACHE.get(sess_key)
-                if sess:
-                    sess['last_seen'] = time.time()
-                    try:
-                        seq_num = int(seq)
-                        if seq_num > sess.get('last_kodi_seq', 0):
-                            sess['last_kodi_seq'] = seq_num
-                    except (TypeError, ValueError):
-                        pass
-
+        actual_seq = None
         is_startup_seg = False
         if sess_key:
             with S14_LOCK:
                 sess = S14_SESSION_CACHE.get(sess_key)
                 if sess:
+                    sess['last_seen'] = time.time()
                     is_startup_seg = not sess.get('served_any_seg', False)
+                    try:
+                        seq_num = int(seq)
+                        actual_seq = seq_num
+                    except (TypeError, ValueError):
+                        pass
+                    seg_dict = sess.get('segments', {})
+                    if seq_num is not None and seg_dict:
+                        if seq_num in seg_dict:
+                            # Usa SEMPRE l'URL col token più fresco aggiornato dal worker (non quello vecchio nel parametro &u=)
+                            seg_url = seg_dict[seq_num][1]
+                        else:
+                            min_avail = min(seg_dict.keys())
+                            if seq_num < min_avail:
+                                # Il segmento richiesto è già uscito dalla finestra di 6 segmenti del server:
+                                # servi il primo segmento vivo dello stesso nodo per evitare 502 SEG_GIVEUP / EOF.
+                                actual_seq = min_avail
+                                seg_url = seg_dict[min_avail][1]
+                                _s14_log(f"SEG_FASTFWD sid={sid} seq={seq_num}->{min_avail} (scaduto su server)", xbmc.LOGWARNING, source=source)
 
-        data, attempt, ms, last_err = _s14_download_segment(seg_url, sid=sid, seq=seq, source=source)
+        def _refresh_seg_url(attempt_num):
+            nonlocal actual_seq
+            if not sess_key or seq_num is None:
+                return None
+            pinned_h = None
+            with S14_LOCK:
+                sess = S14_SESSION_CACHE.get(sess_key)
+                if sess:
+                    pinned_h = sess.get('pinned_host')
+                    seg_dict = sess.get('segments', {})
+                    target_s = actual_seq if actual_seq is not None else seq_num
+                    if target_s in seg_dict and seg_dict[target_s][1] != seg_url:
+                        return seg_dict[target_s][1]
+            # Se il token in cache era scaduto, chiedi un manifest fresco allo STESSO nodo (pinned_h)
+            if pin_mode and pinned_h and not _S14_STOP_EVENT.is_set():
+                f_segs, f_host, _ = _s14_fetch_manifest(sid, pinned_host=pinned_h, source=source)
+                if f_segs:
+                    with S14_LOCK:
+                        sess = S14_SESSION_CACHE.get(sess_key)
+                        if sess:
+                            off = sess.get('seq_offset', 0)
+                            seg_dict = sess.setdefault('segments', {})
+                            k_floor = sess.get('last_kodi_seq', 0)
+                            for s_n, s_i, s_u in f_segs:
+                                loc_s = s_n + off
+                                if loc_s > k_floor:
+                                    seg_dict[loc_s] = (s_i, s_u)
+                            min_live = f_segs[0][0] + off
+                            node_min = sess.get('node_min_seq', 0)
+                            for old_k in list(seg_dict.keys()):
+                                if old_k >= node_min and old_k < min_live:
+                                    seg_dict.pop(old_k, None)
+                            _s14_render_playlist(sess, window_size=6)
+                            target_s = actual_seq if actual_seq is not None else seq_num
+                            if target_s in seg_dict:
+                                return seg_dict[target_s][1]
+                            if seg_dict:
+                                min_avail = min(seg_dict.keys())
+                                if min_avail > target_s:
+                                    actual_seq = min_avail
+                                    _s14_log(f"SEG_FASTFWD_RETRY sid={sid} seq={target_s}->{min_avail}", xbmc.LOGWARNING, source=source)
+                                    return seg_dict[min_avail][1]
+            return None
+
+        data, attempt, ms, last_err = _s14_download_segment(seg_url, sid=sid, seq=seq, source=source, url_refresh_fn=_refresh_seg_url)
         if not data and pin_mode and sess_key and not _S14_STOP_EVENT.is_set():
             bad_host = urlparse(seg_url).netloc
             is_net_err = any(k in (last_err or "") for k in ("Timeout", "ConnectionError", "ConnectTimeout", "ReadTimeout"))
@@ -642,6 +712,9 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
                     sess = S14_SESSION_CACHE.get(sess_key)
                     if sess:
                         sess['served_any_seg'] = True
+                        done_seq = actual_seq if actual_seq is not None else seq_num
+                        if done_seq is not None and done_seq > sess.get('last_kodi_seq', 0):
+                            sess['last_kodi_seq'] = done_seq
             if attempt > 1 or ms > 2000:
                 _s14_log(f"SEG_OK sid={sid} seq={seq} bytes={len(data)} ms={ms} try={attempt}", xbmc.LOGWARNING, source=source)
             else:
