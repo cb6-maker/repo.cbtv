@@ -915,35 +915,35 @@ def search_live_channels(query=None):
     xbmcplugin.endOfDirectory(HANDLE)
 
 def list_sport():
-    """Sottomenu Sport organizzato per sorgente (14, 18, VPN)"""
+    """Sottomenu Sport organizzato per sorgente (14, 18, 12)"""
     xbmcplugin.setContent(HANDLE, 'videos')
     
     add_directory_item("[COLOR lime][B]Sky Sport (14)[/B][/COLOR]", {"action": "list_s14_channels", "cat": "sport"}, icon=get_tile("tile_sky_sport.png"))
     add_directory_item("[COLOR cyan][B]Sky Sport (18)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_sport", "server_id": "s18"}, icon=get_tile("tile_sky_sport.png"))
-    add_directory_item("[COLOR lightblue][B]Sky Sport (VPN)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_sport", "server_id": "s12"}, icon=get_tile("tile_sky_sport.png"))
+    add_directory_item("[COLOR lightblue][B]Sky Sport (12)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_sport", "server_id": "s12"}, icon=get_tile("tile_sky_sport.png"))
     
     add_directory_item("[COLOR limegreen][B]Dazn (14)[/B][/COLOR]", {"action": "list_s14_channels", "cat": "dazn"}, icon=get_tile("tile_dazn.png"))
     add_directory_item("[COLOR orange][B]Dazn (18)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "dazn_only", "server_id": "s18"}, icon=get_tile("tile_dazn.png"))
-    add_directory_item("[COLOR lightsalmon][B]Dazn (VPN)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "dazn_only", "server_id": "s12"}, icon=get_tile("tile_dazn.png"))
+    add_directory_item("[COLOR lightsalmon][B]Dazn (12)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "dazn_only", "server_id": "s12"}, icon=get_tile("tile_dazn.png"))
     
     xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
 
 
 def menu_entertainment():
-    """Sottomenu Canali Intrattenimento con scelta sorgente (14, 18, VPN)"""
+    """Sottomenu Canali Intrattenimento con scelta sorgente (14, 18, 12)"""
     xbmcplugin.setContent(HANDLE, 'videos')
     add_directory_item("[COLOR lime][B]Intrattenimento (14)[/B][/COLOR]", {"action": "list_s14_channels", "cat": "tv"}, icon=get_tile("tile_sky_intrattenimento.png"))
     add_directory_item("[COLOR cyan][B]Intrattenimento (18)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_tv", "server_id": "s18"}, icon=get_tile("tile_sky_intrattenimento.png"))
-    add_directory_item("[COLOR lightblue][B]Intrattenimento (VPN)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_tv", "server_id": "s12"}, icon=get_tile("tile_sky_intrattenimento.png"))
+    add_directory_item("[COLOR lightblue][B]Intrattenimento (12)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_tv", "server_id": "s12"}, icon=get_tile("tile_sky_intrattenimento.png"))
     xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
 
 
 def menu_cinema():
-    """Sottomenu Canali Cinema con scelta sorgente (14, 18, VPN)"""
+    """Sottomenu Canali Cinema con scelta sorgente (14, 18, 12)"""
     xbmcplugin.setContent(HANDLE, 'videos')
     add_directory_item("[COLOR lime][B]Cinema (14)[/B][/COLOR]", {"action": "list_s14_channels", "cat": "cinema"}, icon=get_tile("tile_sky_cinema.png"))
     add_directory_item("[COLOR gold][B]Cinema (18)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_cinema", "server_id": "s18"}, icon=get_tile("tile_sky_cinema.png"))
-    add_directory_item("[COLOR yellow][B]Cinema (VPN)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_cinema", "server_id": "s12"}, icon=get_tile("tile_sky_cinema.png"))
+    add_directory_item("[COLOR yellow][B]Cinema (12)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "sky_cinema", "server_id": "s12"}, icon=get_tile("tile_sky_cinema.png"))
     add_directory_item("[COLOR goldenrod][B]Primafila (18)[/B][/COLOR]", {"action": "list_eagle_genres", "eb_type": "primafila", "server_id": "s18"}, icon=get_tile("tile_sky_cinema.png"))
     xbmcplugin.endOfDirectory(HANDLE, cacheToDisc=False)
 
@@ -1776,7 +1776,7 @@ def play_mpd(resolve_data):
         xbmcplugin.setResolvedUrl(HANDLE, False, xbmcgui.ListItem())
 
 def list_eagle_genres(eb_type, force_refresh=False, server_id="s12"):
-    s_label = "(50)" if server_id == "s50" else "(VPN)"
+    s_label = "(50)" if server_id == "s50" else ("(18)" if server_id == "s18" else "(12)")
     """Elenca le categorie o i canali di Hublive con caricamento istantaneo e ricarica a comando"""
     xbmcplugin.setContent(HANDLE, 'videos')
     from resources.lib.hublive_stalker import HubliveStalkerClient
