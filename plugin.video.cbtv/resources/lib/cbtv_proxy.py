@@ -733,14 +733,43 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
         self.send_response(502)
         self.end_headers()
 
+    @staticmethod
+    def _extract_ts_pts(pkt):
+        """Estrae il PTS a 33 bit (90 kHz) da un pacchetto MPEG-TS da 188 byte con PUSI=1, o None."""
+        if len(pkt) < 188 or pkt[0] != 0x47 or not (pkt[1] & 0x40):
+            return None
+        afc = (pkt[3] >> 4) & 0x03
+        if afc == 1:
+            off = 4
+        elif afc == 3:
+            off = 5 + pkt[4]
+        else:
+            return None
+        if off + 14 > 188:
+            return None
+        if pkt[off] != 0x00 or pkt[off + 1] != 0x00 or pkt[off + 2] != 0x01:
+            return None
+        pts_dts_flags = (pkt[off + 7] >> 6) & 0x03
+        if pts_dts_flags < 2:
+            return None
+        b0, b1, b2, b3, b4 = pkt[off + 9], pkt[off + 10], pkt[off + 11], pkt[off + 12], pkt[off + 13]
+        return (
+            ((b0 & 0x0E) << 29)
+            | (b1 << 22)
+            | ((b2 & 0xFE) << 14)
+            | (b3 << 7)
+            | ((b4 & 0xFE) >> 1)
+        )
+
     def _handle_hb_ts(self, params):
         """
         Proxy MPEG-TS continuo per Stalker Portal (Server 18 / Server 12).
         Mantiene una singola connessione HTTP continua verso Kodi e, se il server remoto
         chiude lo stream (EOF / timeout perché il MAC viene impegnato da un altro utente),
         mette il MAC in quarantena (600s), risolve trasparentemente un nuovo MAC libero
-        sullo stesso canale (sid) e continua a inviare pacchetti MPEG-TS allineati a 188 byte (0x47)
-        senza mai chiudere il player di Kodi.
+        sullo stesso canale (sid), scarta il pre-buffer circolare già trasmesso confrontando
+        i timestamp PTS MPEG-TS (90 kHz) così da evitare qualsiasi salto all'indietro,
+        e continua a inviare pacchetti allineati a 188 byte (0x47) senza chiudere il player.
         """
         from urllib.parse import unquote_plus
         from resources.lib.hublive_stalker import HubliveStalkerClient
@@ -779,12 +808,15 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
         headers_sent = False
         switches = 0
         max_switches = 25
+        last_max_pts = None
 
         while not _S14_STOP_EVENT.is_set() and switches <= max_switches:
             t_conn_start = time.time()
             bytes_this_mac = 0
+            skipped_overlap_bytes = 0
             residual = b""
             synced = False
+            pts_caught_up = (switches == 0 or last_max_pts is None)
             sess = requests.Session()
             sess.trust_env = False
             try:
@@ -828,8 +860,52 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
                             if n_aligned == 0:
                                 residual = buf
                                 continue
-                            to_send = buf[:n_aligned]
+                            aligned_chunk = buf[:n_aligned]
                             residual = buf[n_aligned:]
+
+                            # Se siamo in riconnessione (switch > 0), scartiamo il pre-buffer circolare
+                            # del server finché il PTS del nuovo stream non raggiunge last_max_pts
+                            if not pts_caught_up:
+                                cut_offset = None
+                                for p_off in range(0, len(aligned_chunk), 188):
+                                    pts = self._extract_ts_pts(aligned_chunk[p_off:p_off + 188])
+                                    if pts is not None:
+                                        # Differenza modulo 2^33: se delta è indietro di 0..25s (0..2_250_000 tick a 90kHz), scarta
+                                        back_ticks = (last_max_pts - pts) & 0x1FFFFFFFF
+                                        if back_ticks == 0 or back_ticks > 2250000:
+                                            cut_offset = p_off
+                                            pts_caught_up = True
+                                            xbmc.log(
+                                                f"[CBTV-HB-TS] PTS riallineato su switch #{switches}: scartati {skipped_overlap_bytes + p_off} byte di pre-buffer duplicato",
+                                                xbmc.LOGINFO
+                                            )
+                                            break
+                                if not pts_caught_up:
+                                    skipped_overlap_bytes += len(aligned_chunk)
+                                    # Salvaguardia: se dopo 3.5s o 6 MB non ha ancora agganciato (es. cambio encoder), rilascia comunque
+                                    if skipped_overlap_bytes > 6 * 1024 * 1024 or (time.time() - t_conn_start) > 3.5:
+                                        pts_caught_up = True
+                                        xbmc.log(f"[CBTV-HB-TS] Timeout riallineamento PTS ({skipped_overlap_bytes // 1024} KB), riprendo invio", xbmc.LOGWARNING)
+                                    else:
+                                        continue
+                                elif cut_offset:
+                                    aligned_chunk = aligned_chunk[cut_offset:]
+                                    if not aligned_chunk:
+                                        continue
+
+                            # Aggiorna last_max_pts campionando i pacchetti PUSI del blocco corrente
+                            for p_off in range(0, len(aligned_chunk), 188):
+                                if aligned_chunk[p_off + 1] & 0x40:
+                                    pts = self._extract_ts_pts(aligned_chunk[p_off:p_off + 188])
+                                    if pts is not None:
+                                        if last_max_pts is None:
+                                            last_max_pts = pts
+                                        else:
+                                            fwd_ticks = (pts - last_max_pts) & 0x1FFFFFFFF
+                                            if fwd_ticks < 2250000:
+                                                last_max_pts = pts
+
+                            to_send = aligned_chunk
 
                             if not headers_sent:
                                 self.send_response(200)
