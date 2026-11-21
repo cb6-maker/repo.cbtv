@@ -199,32 +199,46 @@ def _s14_fetch_manifest(sid, pinned_host=None, exclude_host=None, source="s14", 
         if not matched_loc:
             return None, pinned_host, f"pinned_miss hosts={seen_hosts} err={last_err}"
     else:
-        valid_counts = {}
-        latest_locs = {}
+        failed_hosts = set()
         fallback_locs = {}
-        for _ in range(10):
+        last_parse_info = None
+        last_parse_host = None
+        for idx in range(16):
             try:
                 ts = int(time.time() * 1000)
                 r_redir = _S14_MANIFEST_SESSION.get(f"{s14_url}?_vegeta_refresh={ts}", headers=headers, allow_redirects=False, timeout=2.0)
-                loc = r_redir.headers.get('Location') or s14_url
+                loc = r_redir.headers.get('Location') or (s14_url if r_redir.status_code == 200 else None)
+                if not loc:
+                    last_err = f"HTTP{r_redir.status_code}"
+                    continue
                 h = urlparse(loc).netloc
                 seen_hosts[h] = seen_hosts.get(h, 0) + 1
-                if not any(ex in h for ex in exclude_hosts):
-                    fallback_locs[h] = loc
-                    if not exclude_host or exclude_host not in h:
-                        valid_counts[h] = valid_counts.get(h, 0) + 1
-                        latest_locs[h] = loc
-                        if valid_counts[h] >= 2 or sum(valid_counts.values()) >= 4:
-                            break
+                if any(ex in h for ex in exclude_hosts) or h in failed_hosts:
+                    continue
+                fallback_locs[h] = loc
+                if exclude_host and exclude_host in h and idx < 10:
+                    continue
+                segs, p_info = _s14_parse_manifest_from(_S14_MANIFEST_SESSION, sid, loc, headers=headers)
+                if segs:
+                    _s14_fetch_manifest.last_loc = loc
+                    return segs, h, p_info
+                failed_hosts.add(h)
+                last_parse_info = p_info
+                last_parse_host = h
             except Exception as e:
                 last_err = type(e).__name__
-        if valid_counts:
-            pinned_host = max(valid_counts, key=valid_counts.get)
-            matched_loc = latest_locs[pinned_host]
-        elif fallback_locs:
-            pinned_host, matched_loc = next(iter(fallback_locs.items()))
-        else:
-            return None, None, f"redirect_err hosts={seen_hosts} err={last_err}"
+        if exclude_host and exclude_host in fallback_locs and exclude_host not in failed_hosts:
+            loc = fallback_locs[exclude_host]
+            segs, p_info = _s14_parse_manifest_from(_S14_MANIFEST_SESSION, sid, loc, headers=headers)
+            if segs:
+                _s14_fetch_manifest.last_loc = loc
+                return segs, exclude_host, p_info
+            last_parse_info = p_info
+            last_parse_host = exclude_host
+        _s14_fetch_manifest.last_loc = None
+        if last_parse_info:
+            return None, last_parse_host, f"{last_parse_info} hosts={seen_hosts}"
+        return None, None, f"redirect_err hosts={seen_hosts} err={last_err}"
 
     segments, info = _s14_parse_manifest_from(_S14_MANIFEST_SESSION, sid, matched_loc, headers=headers)
     _s14_fetch_manifest.last_loc = matched_loc if segments else None
