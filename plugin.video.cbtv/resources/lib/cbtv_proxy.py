@@ -363,20 +363,29 @@ def _s14_worker_loop(sess_key, worker_id=None):
                         host_switched = pin_mode and bool(new_host and pinned_host and new_host != pinned_host)
                         if host_switched or seq_reset:
                             # Cambio nodo (se pin_mode) o reset encoder da 0:
-                            # tieni solo segmenti strettamente nuovi rispetto a floor_seq
-                            forward = [x for x in new_segs if (x[0] + offset) > floor_seq]
-                            if forward:
-                                first_local = forward[0][0] + offset
-                                new_segs = forward
-                            else:
-                                tail = new_segs[-2:]
+                            # su cambio nodo ricalcola SEMPRE l'offset in modo contiguo da floor_seq + 1
+                            # (mai sommare il vecchio seq_offset del nodo precedente!) così EXT-X-MEDIA-SEQUENCE
+                            # non fa salti enormi (es. 449 -> 899) e #EXT-X-DISCONTINUITY resta sempre nella finestra.
+                            if host_switched:
+                                tail = new_segs[-3:] if len(new_segs) >= 3 else new_segs
                                 offset = floor_seq + 1 - tail[0][0]
-                                if not pin_mode and new_host:
-                                    host_offsets[new_host] = offset
-                                else:
-                                    sess['seq_offset'] = offset
+                                sess['seq_offset'] = offset
                                 first_local = tail[0][0] + offset
                                 new_segs = tail
+                            else:
+                                forward = [x for x in new_segs if (x[0] + offset) > floor_seq]
+                                if forward and (forward[0][0] + offset) <= floor_seq + 20:
+                                    first_local = forward[0][0] + offset
+                                    new_segs = forward
+                                else:
+                                    tail = new_segs[-2:]
+                                    offset = floor_seq + 1 - tail[0][0]
+                                    if not pin_mode and new_host:
+                                        host_offsets[new_host] = offset
+                                    else:
+                                        sess['seq_offset'] = offset
+                                    first_local = tail[0][0] + offset
+                                    new_segs = tail
                             sess['pinned_host'] = new_host or pinned_host
                             sess.setdefault('disc_seqs', set()).add(first_local)
                             sess['disc_total'] = sess.get('disc_total', 0) + 1
@@ -456,39 +465,49 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
                     except (TypeError, ValueError):
                         pass
 
+        is_startup_seg = False
+        if sess_key:
+            with S14_LOCK:
+                sess = S14_SESSION_CACHE.get(sess_key)
+                if sess:
+                    is_startup_seg = not sess.get('served_any_seg', False)
+
         data, attempt, ms, last_err = _s14_download_segment(seg_url, sid=sid, seq=seq, source=source)
         if not data and pin_mode and sess_key:
             bad_host = urlparse(seg_url).netloc
+            is_net_err = any(k in (last_err or "") for k in ("Timeout", "ConnectionError", "ConnectTimeout", "ReadTimeout"))
             bad_hosts = ()
             with S14_LOCK:
                 sess = S14_SESSION_CACHE.get(sess_key)
                 if sess:
                     bh_set = sess.setdefault('bad_hosts', set())
-                    if bad_host:
+                    if bad_host and is_net_err:
                         bh_set.add(bad_host)
                     bad_hosts = tuple(bh_set)
                     sess['miss_streak'] = max(sess.get('miss_streak', 0), 3)
-            _s14_log(f"SEG_REPIN sid={sid} seq={seq} escludo host={bad_host} (bad_hosts={bad_hosts})", xbmc.LOGWARNING, source=source)
-            new_segs, new_host, info = _s14_fetch_manifest(sid, pinned_host=None, exclude_host=bad_host, source=source, extra_exclude=bad_hosts)
-            if new_segs and new_host:
-                fallback_seg = new_segs[-3] if len(new_segs) >= 3 else new_segs[-1]
-                with S14_LOCK:
-                    sess = S14_SESSION_CACHE.get(sess_key)
-                    if sess:
-                        sess['pinned_host'] = new_host
-                        sess['miss_streak'] = 0
-                        floor_seq = max(sess.get('max_seq', 0), sess.get('last_kodi_seq', 0))
-                        tail = new_segs[-3:] if len(new_segs) >= 3 else new_segs
-                        start_target = seq_num if seq_num is not None else (floor_seq + 1)
-                        offset = start_target - tail[0][0]
-                        sess['seq_offset'] = offset
-                        seg_dict = sess.setdefault('segments', {})
-                        for s_num, s_inf, s_url in tail:
-                            seg_dict[s_num + offset] = (s_inf, s_url)
-                        sess.setdefault('disc_seqs', set()).add(start_target + 1)
-                        sess['disc_total'] = sess.get('disc_total', 0) + 1
-                        _s14_render_playlist(sess, window_size=6)
-                data, attempt, ms, last_err = _s14_download_segment(fallback_seg[2], sid=sid, seq=f"{seq}->repin({new_host})", source=source)
+            if is_startup_seg:
+                # Solo all'avvio (prima che Kodi abbia agganciato il clock A/V): cambia nodo al volo
+                # per evitare il timeout di OpenInputStream su nodi morti come load6.
+                _s14_log(f"SEG_REPIN_STARTUP sid={sid} seq={seq} escludo host={bad_host} (bad_hosts={bad_hosts})", xbmc.LOGWARNING, source=source)
+                new_segs, new_host, info = _s14_fetch_manifest(sid, pinned_host=None, exclude_host=bad_host, source=source, extra_exclude=bad_hosts)
+                if new_segs and new_host:
+                    tail = new_segs[-3:] if len(new_segs) >= 3 else new_segs
+                    with S14_LOCK:
+                        sess = S14_SESSION_CACHE.get(sess_key)
+                        if sess:
+                            sess['pinned_host'] = new_host
+                            sess['miss_streak'] = 0
+                            start_target = seq_num if seq_num is not None else tail[0][0]
+                            offset = start_target - tail[0][0]
+                            sess['seq_offset'] = offset
+                            sess['segments'] = {s_num + offset: (s_inf, s_url) for s_num, s_inf, s_url in tail}
+                            sess['disc_seqs'] = set()
+                            _s14_render_playlist(sess, window_size=6)
+                    data, attempt, ms, last_err = _s14_download_segment(tail[0][2], sid=sid, seq=f"{seq}->repin({new_host})", source=source)
+            else:
+                # A riproduzione avviata MAI iniettare byte di un altro encoder sullo stesso seq senza #EXT-X-DISCONTINUITY
+                # (causa velocizzazioni video su Firestick/MediaCodec): lasciamo fare NODE_SWITCH pulito al worker.
+                _s14_log(f"SEG_FAIL_TRIGGER_REPIN sid={sid} seq={seq} host={bad_host} err={last_err} (bad_hosts={bad_hosts})", xbmc.LOGWARNING, source=source)
         if data and not pin_mode and sess_key and seq_num is not None:
             sig = len(data)
             candidates = []
@@ -525,6 +544,11 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
                         del recent[:-6]
 
         if data:
+            if sess_key:
+                with S14_LOCK:
+                    sess = S14_SESSION_CACHE.get(sess_key)
+                    if sess:
+                        sess['served_any_seg'] = True
             if attempt > 1 or ms > 2000:
                 _s14_log(f"SEG_OK sid={sid} seq={seq} bytes={len(data)} ms={ms} try={attempt}", xbmc.LOGWARNING, source=source)
             else:
