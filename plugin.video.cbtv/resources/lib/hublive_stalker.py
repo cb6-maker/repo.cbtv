@@ -482,7 +482,7 @@ class HubliveStalkerClient:
         return h
 
     def _cookies(self, mac, token=None):
-        c = {"mac": mac}
+        c = {"mac": mac, "stb_lang": "en", "timezone": "Europe/Rome"}
         if token:
             c["token"] = token
         return c
@@ -498,9 +498,9 @@ class HubliveStalkerClient:
         s.trust_env = False
         return s
 
-    # ---- handshake ----
+    # ---- handshake & get_profile ----
     def _handshake(self, mac, timeout=5):
-        """Esegue l'handshake Stalker e restituisce il token (o None)."""
+        """Esegue l'handshake Stalker + get_profile (auth_second_step) e restituisce il token (o None)."""
         url = f"{self.portal_url}/portal.php"
         params = {"type": "stb", "action": "handshake", "token": "", "JsHttpRequest": "1-xml"}
         headers = self._headers()
@@ -515,7 +515,10 @@ class HubliveStalkerClient:
                 if isinstance(data, dict):
                     js = data.get("js", {})
                     if isinstance(js, dict) and js.get("token"):
-                        return js.get("token")
+                        token = js.get("token")
+                        rnd = js.get("random", "")
+                        self._get_profile(mac, token, rnd, session=s, timeout=timeout)
+                        return token
                     xbmc.log(f"[CBTV-HB] Handshake risposto ma senza token: {str(data)[:100]}", xbmc.LOGWARNING)
             else:
                 xbmc.log(f"[CBTV-HB] Handshake HTTP {r.status_code} per MAC {mac}: {r.text[:100]}", xbmc.LOGWARNING)
@@ -523,6 +526,48 @@ class HubliveStalkerClient:
             xbmc.log(f"[CBTV-HB] Handshake ECCEZIONE per MAC {mac}: {type(e).__name__} - {e}", xbmc.LOGWARNING)
 
         return None
+
+    def _get_profile(self, mac, token, rnd="", session=None, timeout=5):
+        """Esegue get_profile (auth_second_step=1) necessario su portali Stalker v5.1+ (es. s18 z1mag.xyz) per evitare il drop a ~15-20s."""
+        url = f"{self.portal_url}/portal.php"
+        sn = "022019N018723"
+        metrics = json.dumps({
+            "mac": mac,
+            "sn": sn,
+            "model": "MAG250",
+            "type": "STB",
+            "uid": "",
+            "random": rnd or ""
+        })
+        params = {
+            "type": "stb",
+            "action": "get_profile",
+            "hd": "1",
+            "ver": "ImageDescription: 0.2.18-r14-pub-250; ImageDate: Fri Jan 15 15:20:44 EET 2016; PORTAL version: 5.1.0; API Version: JS API version: 328; STB API version: 134; Player Engine version: 0x566",
+            "num_banks": "2",
+            "sn": sn,
+            "stb_type": "MAG250",
+            "image_version": "218",
+            "video_out": "hdmi",
+            "device_id": "",
+            "device_id2": "",
+            "signature": "",
+            "auth_second_step": "1",
+            "hw_version": "1.7-BD-00",
+            "not_valid_token": "0",
+            "metrics": metrics,
+            "hw_version_2": "08e10744713191b42e88a3c4223a29a1",
+            "timestamp": str(int(time.time())),
+            "api_signature": "263",
+            "JsHttpRequest": "1-xml",
+        }
+        headers = self._headers(mac, token)
+        cookies = self._cookies(mac, token)
+        s = session or self._get_session(use_proxy=True)
+        try:
+            s.get(url, params=params, headers=headers, cookies=cookies, timeout=timeout)
+        except Exception as e:
+            xbmc.log(f"[CBTV-HB] get_profile ECCEZIONE per MAC {mac}: {e}", xbmc.LOGWARNING)
 
     # ---- chiamata API generica ----
     def _api_call(self, mac, token, action, extra_params=None, timeout=12):

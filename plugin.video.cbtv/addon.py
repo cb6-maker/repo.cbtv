@@ -1962,6 +1962,9 @@ def play_hublive_stalker(cmd, name=None, server_id=None, sids=None):
         return
     
     # Stream risolto e verificato fisicamente (pacchetti MPEG-TS già confermati da resolve_stream)!
+    global _CURRENT_HB_PLAYER
+    _CURRENT_HB_PLAYER = HBPlayer(channel_name=name, mac=mac, server_id=server_id, client=client)
+
     list_item = xbmcgui.ListItem(path=final_url)
     list_item.setArt({'fanart': FANART})
     list_item.setInfo('video', {'title': name or 'Live TV'})
@@ -1970,6 +1973,25 @@ def play_hublive_stalker(cmd, name=None, server_id=None, sids=None):
     
     xbmcplugin.setResolvedUrl(HANDLE, True, list_item)
     xbmc.log(f"[CBTV-HB] Stream avviato con successo su MAC {mac} -> {final_url[:80]}", xbmc.LOGINFO)
+
+    # Mantieni vivo il riferimento a HBPlayer per monitorare eventuali cadute spontanee (onPlayBackEnded / onPlayBackError)
+    wait_start = time.time()
+    while not monitor.abortRequested() and (time.time() - wait_start < 15.0):
+        if _CURRENT_HB_PLAYER.av_started or _CURRENT_HB_PLAYER.dropped or _CURRENT_HB_PLAYER.stopped_by_user:
+            break
+        xbmc.sleep(250)
+
+    if _CURRENT_HB_PLAYER.av_started:
+        while not monitor.abortRequested() and _CURRENT_HB_PLAYER.isPlayingVideo():
+            try:
+                pos = _CURRENT_HB_PLAYER.getTime()
+                if pos != _CURRENT_HB_PLAYER.last_pos:
+                    _CURRENT_HB_PLAYER.last_pos = pos
+                    _CURRENT_HB_PLAYER.last_pos_time = time.time()
+            except Exception:
+                pass
+            if monitor.waitForAbort(1.0):
+                break
 
 
 
