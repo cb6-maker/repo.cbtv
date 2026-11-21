@@ -18,12 +18,14 @@ WEBSHARE_PROXIES = [
     "http://anjfzzgf:8z4iqw56jbnh@84.247.60.125:6095",   # Poland, Warsaw
     "http://anjfzzgf:8z4iqw56jbnh@191.96.254.138:6185",  # US, Los Angeles
     "http://anjfzzgf:8z4iqw56jbnh@198.46.161.42:5092",   # US, Los Angeles
+    "http://anjfzzgf:8z4iqw56jbnh@64.137.10.153:5803",   # Germany, Frankfurt
     "http://anjfzzgf:8z4iqw56jbnh@104.164.49.38:7693",   # US, Santa Clara
     "http://anjfzzgf:8z4iqw56jbnh@23.26.71.145:5628",    # US, Orem
 ]
 
-# Flag per attivare/disattivare i proxy Webshare (True = attivo per la connessione al portale)
-USE_PROXY = True
+# Flag per attivare/disattivare i proxy Webshare (False = connessione diretta / VPN utente;
+# i server Stalker s12/s18 rispondono 200 OK in diretta ma bannano gli IP datacenter Webshare con 403)
+USE_PROXY = False
 
 def get_random_proxy():
     """Restituisce un proxy casuale dal pool Webshare se abilitato."""

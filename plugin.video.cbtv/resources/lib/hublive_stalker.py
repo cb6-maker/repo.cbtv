@@ -228,9 +228,13 @@ class HubliveStalkerClient:
         if not servers_data or not isinstance(servers_data, list):
             return
 
-        # Per s18 usa esclusivamente i 30 MAC verificati di PORTAL_18_MACS (evita MAC trial/scaduti da staycanuca/hub)
+        # Per s18 e s12 usa esclusivamente i pool selezionati e verificati (PORTAL_18_MACS e PORTAL_12_MACS),
+        # evitando l'inquinamento con MAC non verificati da staycanuca/hub.
         if self.server_id == "s18":
             self.mac_pool = [m for m in self.PORTAL_18_MACS if m not in self.DROPPED_MACS]
+            return
+        if self.server_id == "s12":
+            self.mac_pool = [m for m in self.PORTAL_12_MACS if m not in self.DROPPED_MACS]
             return
 
         combined_macs = []
@@ -244,21 +248,14 @@ class HubliveStalkerClient:
             macs = s.get("macs") or s.get("mac_pool") or []
 
             if self.server_id == "s50":
-                if "tvdsz" in portal or "server50" in s.get("id", "").lower() or name == "Server 50":
+                if "tvdsz" in portal or s.get("id", "").lower() == "server50" or name == "Server 50":
                     if not target_portal and "tvdsz" in portal:
                         target_portal = s.get("portal_url") or s.get("portal") or s.get("url")
                     for m in macs:
                         if m and m not in combined_macs:
                             combined_macs.append(m)
-            elif self.server_id == "s12":
-                if "204.52.191.254" in portal or "server7" in s.get("id", "").lower() or name in ["Server 12", "Server 7"]:
-                    if not target_portal and "204.52" in portal:
-                        target_portal = s.get("portal_url") or s.get("portal") or s.get("url")
-                    for m in macs:
-                        if m and m not in combined_macs:
-                            combined_macs.append(m)
 
-        base_macs = self.PORTAL_50_MACS if self.server_id == "s50" else self.PORTAL_12_MACS
+        base_macs = self.PORTAL_50_MACS
         if combined_macs:
             for m in base_macs:
                 if m not in combined_macs:
@@ -491,13 +488,14 @@ class HubliveStalkerClient:
         return c
 
     def _get_session(self, use_proxy=True):
-        """Restituisce una sessione HTTP preconfigurata, usando il pool Webshare per bypassare i blocchi AGCOM."""
-        if use_proxy and proxy_config:
+        """Restituisce una sessione HTTP preconfigurata (diretta o con proxy Webshare se USE_PROXY=True)."""
+        if use_proxy and proxy_config and getattr(proxy_config, "USE_PROXY", False):
             try:
                 return proxy_config.get_proxy_session()
             except Exception:
                 pass
-        s = self._get_session(use_proxy=True)
+        s = requests.Session()
+        s.trust_env = False
         return s
 
     # ---- handshake ----
@@ -617,7 +615,7 @@ class HubliveStalkerClient:
         if not candidate_cmds:
             return None, None
 
-        verified_base = self.PORTAL_18_MACS if self.server_id == "s18" else ()
+        verified_base = self.PORTAL_18_MACS if self.server_id == "s18" else (self.PORTAL_12_MACS if self.server_id == "s12" else ())
         pool = [m for m in self.mac_pool if (m not in self.BLACKLISTED_MACS or m in verified_base) and m not in self.DROPPED_MACS]
 
         # 0. Quarantena: escludi MAC occupati/bloccati
@@ -788,7 +786,7 @@ class HubliveStalkerClient:
         return None, None
 
     # ---- cache ----
-    CACHE_VERSION = "3.5.1"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
+    CACHE_VERSION = "3.5.2"  # Incrementare ad ogni cambio nella logica di fetch/filtro canali
 
     def _load_fallback(self, filename):
         """Carica la lista canali pre-integrata nel pacchetto addon per apertura istantanea (<0.05s)."""
