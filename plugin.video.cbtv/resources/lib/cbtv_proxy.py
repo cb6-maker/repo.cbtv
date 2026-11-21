@@ -94,6 +94,8 @@ def _s14_parse_manifest_from(s, sid, matched_loc, headers=None):
 _S14_MANIFEST_SESSION = None
 _S14_SEG_SESSION = None
 _S14_STOP_EVENT = threading.Event()
+_S14_SEG_IDLE = threading.Event()
+_S14_SEG_IDLE.set()
 
 
 def _get_s14_manifest_session():
@@ -145,40 +147,49 @@ def _close_s14_seg_session():
             pass
 
 
-def _s14_download_segment(seg_url, sid="", seq="?", source="s14", max_tries=2):
-    """Scarica un segmento .ts con sessione condivisa keep-alive, timeout rapido e tetto wall-clock.
+def _s14_download_segment(seg_url, sid="", seq="?", source="s14", max_tries=3):
+    """Scarica un segmento .ts con sessione condivisa keep-alive, timeout adeguato a segmenti 8-9 MB
+    e serializzazione col worker manifest (_S14_SEG_IDLE).
     Ritorna (data_bytes|None, attempt, elapsed_ms, last_err)."""
     s = _get_s14_seg_session()
     headers = HLS_SERVERS.get(source, HLS_SERVERS['s14'])['headers']
 
     last_err = ""
-    for attempt in range(1, max_tries + 1):
-        t0 = time.time()
-        try:
-            with s.get(seg_url, headers=headers, cookies={}, timeout=(2.5, 4.0), stream=True) as r:
-                if r.status_code != 200:
-                    ms = int((time.time() - t0) * 1000)
-                    last_err = f"HTTP {r.status_code}"
-                    _s14_log(f"SEG_FAIL sid={sid} seq={seq} try={attempt} {last_err} ms={ms}", xbmc.LOGWARNING, source=source)
-                else:
-                    chunks = []
-                    for chunk in r.iter_content(chunk_size=65536):
-                        if chunk:
-                            chunks.append(chunk)
-                        if time.time() - t0 > 6.0:
-                            raise requests.exceptions.ReadTimeout("Wall-clock timeout > 6.0s")
-                    data = b"".join(chunks)
-                    ms = int((time.time() - t0) * 1000)
-                    if data:
-                        return data, attempt, ms, ""
-                    last_err = "empty_body"
-                    _s14_log(f"SEG_FAIL sid={sid} seq={seq} try={attempt} {last_err} ms={ms}", xbmc.LOGWARNING, source=source)
-        except Exception as e:
-            ms = int((time.time() - t0) * 1000)
-            last_err = f"{type(e).__name__}: {e}"
-            _s14_log(f"SEG_FAIL sid={sid} seq={seq} try={attempt} {last_err} ms={ms}", xbmc.LOGWARNING, source=source)
-        if attempt < max_tries:
-            time.sleep(0.2)
+    _S14_SEG_IDLE.clear()
+    try:
+        for attempt in range(1, max_tries + 1):
+            if _S14_STOP_EVENT.is_set():
+                return None, attempt, 0, "stopped"
+            t0 = time.time()
+            try:
+                with s.get(seg_url, headers=headers, cookies={}, timeout=(3.0, 8.0), stream=True) as r:
+                    if r.status_code != 200:
+                        ms = int((time.time() - t0) * 1000)
+                        last_err = f"HTTP {r.status_code}"
+                        _s14_log(f"SEG_FAIL sid={sid} seq={seq} try={attempt} {last_err} ms={ms}", xbmc.LOGWARNING, source=source)
+                    else:
+                        chunks = []
+                        for chunk in r.iter_content(chunk_size=65536):
+                            if _S14_STOP_EVENT.is_set():
+                                return None, attempt, int((time.time() - t0) * 1000), "stopped"
+                            if chunk:
+                                chunks.append(chunk)
+                            if time.time() - t0 > 12.0:
+                                raise requests.exceptions.ReadTimeout("Wall-clock timeout > 12.0s")
+                        data = b"".join(chunks)
+                        ms = int((time.time() - t0) * 1000)
+                        if data:
+                            return data, attempt, ms, ""
+                        last_err = "empty_body"
+                        _s14_log(f"SEG_FAIL sid={sid} seq={seq} try={attempt} {last_err} ms={ms}", xbmc.LOGWARNING, source=source)
+            except Exception as e:
+                ms = int((time.time() - t0) * 1000)
+                last_err = f"{type(e).__name__}: {e}"
+                _s14_log(f"SEG_FAIL sid={sid} seq={seq} try={attempt} {last_err} ms={ms}", xbmc.LOGWARNING, source=source)
+            if attempt < max_tries and not _S14_STOP_EVENT.is_set():
+                time.sleep(0.25)
+    finally:
+        _S14_SEG_IDLE.set()
     return None, max_tries, 0, last_err
 
 
@@ -213,6 +224,10 @@ def _s14_fetch_manifest(sid, pinned_host=None, exclude_host=None, source="s14", 
         for _ in range(25):
             if _S14_STOP_EVENT.is_set():
                 return None, pinned_host, "stopped"
+            if not _S14_SEG_IDLE.is_set():
+                _S14_SEG_IDLE.wait(timeout=8.0)
+                if _S14_STOP_EVENT.is_set():
+                    return None, pinned_host, "stopped"
             try:
                 ts = int(time.time() * 1000)
                 r_redir = s.get(f"{s14_url}?_vegeta_refresh={ts}", headers=headers, cookies={}, allow_redirects=False, timeout=1.5)
@@ -234,6 +249,10 @@ def _s14_fetch_manifest(sid, pinned_host=None, exclude_host=None, source="s14", 
         for idx in range(16):
             if _S14_STOP_EVENT.is_set():
                 return None, None, "stopped"
+            if not _S14_SEG_IDLE.is_set():
+                _S14_SEG_IDLE.wait(timeout=8.0)
+                if _S14_STOP_EVENT.is_set():
+                    return None, None, "stopped"
             try:
                 ts = int(time.time() * 1000)
                 r_redir = s.get(f"{s14_url}?_vegeta_refresh={ts}", headers=headers, cookies={}, allow_redirects=False, timeout=2.0)
@@ -376,6 +395,13 @@ def _s14_worker_loop(sess_key, worker_id=None):
         elapsed = int(time.time() - t_start)
         stalled_for = time.time() - last_new_ts
         repin = pin_mode and ((stalled_for > S14_STALL_REPIN_SECONDS) or (miss_streak >= 3) or (pinned_host in bad_hosts))
+
+        # Serializzazione: attendi l'eventuale download .ts in corso prima di interrogare il LB
+        if not _S14_SEG_IDLE.is_set():
+            _S14_SEG_IDLE.wait(timeout=8.0)
+        if _S14_STOP_EVENT.is_set():
+            _s14_log(f"worker arrestato sid={sid}", source=source)
+            break
 
         t0 = time.time()
         _s14_fetch_manifest.last_loc = None
@@ -529,7 +555,7 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
                     is_startup_seg = not sess.get('served_any_seg', False)
 
         data, attempt, ms, last_err = _s14_download_segment(seg_url, sid=sid, seq=seq, source=source)
-        if not data and pin_mode and sess_key:
+        if not data and pin_mode and sess_key and not _S14_STOP_EVENT.is_set():
             bad_host = urlparse(seg_url).netloc
             is_net_err = any(k in (last_err or "") for k in ("Timeout", "ConnectionError", "ConnectTimeout", "ReadTimeout"))
             bad_hosts = ()
@@ -537,10 +563,15 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
                 sess = S14_SESSION_CACHE.get(sess_key)
                 if sess:
                     bh_set = sess.setdefault('bad_hosts', set())
-                    if bad_host and is_net_err:
+                    # Banna un nodo in bad_hosts SOLO se fallisce all'avvio (es. load6 morto sui .ts),
+                    # MAI un nodo che ha già servito segmenti validi (evita di escludere load2 su un rallentamento Wi-Fi).
+                    if is_startup_seg and bad_host and is_net_err:
                         bh_set.add(bad_host)
                     bad_hosts = tuple(bh_set)
-                    sess['miss_streak'] = max(sess.get('miss_streak', 0), 3)
+                    if is_startup_seg or "HTTP 403" in (last_err or "") or "HTTP 404" in (last_err or ""):
+                        sess['miss_streak'] = max(sess.get('miss_streak', 0), 3)
+                    else:
+                        sess['miss_streak'] = sess.get('miss_streak', 0) + 1
             if is_startup_seg:
                 # Solo all'avvio (prima che Kodi abbia agganciato il clock A/V): cambia nodo al volo
                 # per evitare il timeout di OpenInputStream su nodi morti come load6.
