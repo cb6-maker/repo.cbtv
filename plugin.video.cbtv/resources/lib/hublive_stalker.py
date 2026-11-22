@@ -137,7 +137,12 @@ class HubliveStalkerClient:
         "00:1A:79:17:04:D7", "00:1A:79:17:1B:15", "00:1A:79:17:2E:14", "00:1A:79:18:03:32",
         "00:1A:79:18:12:E8", "00:1A:79:18:1A:57", "00:1A:79:1B:0F:6D", "00:1A:79:1C:0E:C7",
         "00:1A:79:1C:0E:D4", "00:1A:79:1C:0E:D6", "00:1A:79:1C:10:51", "00:1A:79:1E:0B:4C",
-        "00:1A:79:27:9F:14"
+        "00:1A:79:27:9F:14",
+        "A0:BB:3E:00:02:2E", "A0:BB:3E:00:03:A0", "A0:BB:3E:00:03:CD", "A0:BB:3E:00:03:F7",
+        "A0:BB:3E:00:04:E8", "A0:BB:3E:00:05:06", "A0:BB:3E:00:05:14", "A0:BB:3E:00:05:38",
+        "A0:BB:3E:00:07:19", "A0:BB:3E:00:07:63", "A0:BB:3E:00:09:2B", "A0:BB:3E:00:09:33",
+        "A0:BB:3E:00:09:D4", "A0:BB:3E:00:0B:D9", "A0:BB:3E:00:0C:41", "A0:BB:3E:00:0C:46",
+        "A0:BB:3E:00:0C:53", "A0:BB:3E:00:0C:90", "A0:BB:3E:00:0D:3A"
     ]
 
     # Set di sessione condiviso per escludere all'istante qualsiasi MAC caduto spontaneamente durante la riproduzione
@@ -155,6 +160,8 @@ class HubliveStalkerClient:
     # ---- inizializzazione ----
     def __init__(self, server_id="s12"):
         self.server_id = server_id
+        # s46 richiede proxy estero per l'handshake (blocca IP italiani); s18/s12 usano USE_PROXY globale
+        self.use_proxy = (server_id == "s46")
         if server_id == "s50":
             self.portal_url = self.PORTAL_50_URL
             self.mac_pool = list(self.PORTAL_50_MACS)
@@ -519,10 +526,12 @@ class HubliveStalkerClient:
         return c
 
     def _get_session(self, use_proxy=True):
-        """Restituisce una sessione HTTP preconfigurata (diretta o con proxy Webshare se USE_PROXY=True)."""
-        if use_proxy and proxy_config and getattr(proxy_config, "USE_PROXY", False):
+        """Restituisce una sessione HTTP preconfigurata (diretta o con proxy Webshare se USE_PROXY=True).
+        s46 forza sempre il proxy (blocca IP italiani); s18/s12 rispettano USE_PROXY globale."""
+        effective_proxy = use_proxy and (getattr(proxy_config, "USE_PROXY", False) or self.use_proxy)
+        if effective_proxy and proxy_config:
             try:
-                return proxy_config.get_proxy_session()
+                return proxy_config.get_proxy_session(force=self.use_proxy)
             except Exception:
                 pass
         s = requests.Session()

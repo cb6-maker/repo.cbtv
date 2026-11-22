@@ -27,26 +27,26 @@ WEBSHARE_PROXIES = [
 # i server Stalker s12/s18 rispondono 200 OK in diretta ma bannano gli IP datacenter Webshare con 403)
 USE_PROXY = False
 
-def get_random_proxy():
-    """Restituisce un proxy casuale dal pool Webshare se abilitato."""
-    if not USE_PROXY or not WEBSHARE_PROXIES:
+def get_random_proxy(force=False):
+    """Restituisce un proxy casuale dal pool Webshare se abilitato (o se force=True)."""
+    if (not USE_PROXY and not force) or not WEBSHARE_PROXIES:
         return None
     return random.choice(WEBSHARE_PROXIES)
 
-def get_shuffled_proxies():
+def get_shuffled_proxies(force=False):
     """Restituisce una lista casuale di tutti i proxy disponibili per retry."""
-    if not USE_PROXY:
+    if not USE_PROXY and not force:
         return []
     pool = list(WEBSHARE_PROXIES)
     random.shuffle(pool)
     return pool
 
-def get_proxy_session(proxy_url=None):
+def get_proxy_session(proxy_url=None, force=False):
     """Crea una requests.Session con proxy Webshare configurato."""
     session = requests.Session()
     session.trust_env = False
-    if USE_PROXY:
-        p = proxy_url or get_random_proxy()
+    if USE_PROXY or force:
+        p = proxy_url or get_random_proxy(force=force)
         if p:
             session.proxies = {
                 "http": p,
