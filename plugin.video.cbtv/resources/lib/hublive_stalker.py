@@ -90,18 +90,22 @@ class HubliveStalkerClient:
         "00:1A:79:B6:E3:F9", "A0:BB:3E:FF:D1:F6",
     }
 
-    # Server 18 (z1mag - Porta 8080 non soggetta a blocchi AGCOM / Piracy Shield)
-    # 30 MAC verificati attivi senza VPN (2026-11-20), ordinati per scadenza (2028 -> 2027 -> 2026)
+    # Server 18 (z1mag / zerotv - Porta 8080 non soggetta a blocchi AGCOM / Piracy Shield)
+    # 45 MAC verificati attivi senza VPN (30 da S18 + 15 da S66 zerotv.eu, 2026-11-22), ordinati per scadenza (2028 -> 2027 -> 2026)
     PORTAL_18_URL = "http://z1mag.xyz:8080"
     PORTAL_18_MACS = [
         "00:1A:79:10:DE:C7", "00:1A:79:1F:0F:F3", "00:1A:79:07:C0:F4", "00:1A:79:14:6D:47",
         "00:1A:79:10:E1:47", "00:1A:79:14:E0:99", "00:1A:79:6E:2C:B6", "00:1A:79:7C:6B:BF",
+        "00:1A:79:0C:A6:60", "00:1A:79:13:59:AB", "00:1A:79:A1:FA:4A", "00:1A:79:C2:7A:3E",
+        "00:1A:79:C3:C9:95", "00:1A:79:23:01:11", "00:1A:79:BB:F1:74", "00:1A:79:22:FF:AE",
+        "00:1A:79:A0:E6:A7", "00:1A:79:22:AD:EE", "00:1A:79:6F:4F:00", "00:1A:79:34:67:AC",
         "00:1A:79:14:64:A1", "00:1A:79:C4:06:6D", "00:1A:79:07:C5:88", "00:1A:79:1A:67:A3",
         "00:1A:79:07:C3:38", "00:1A:79:07:C1:00", "00:1A:79:10:3F:FD", "00:1A:79:14:61:CE",
         "00:1A:79:13:53:81", "00:1A:79:08:50:D1", "00:1A:79:1F:12:7F", "00:1A:79:A0:E4:BF",
         "00:1A:79:77:02:4D", "00:1A:79:10:40:CB", "00:1A:79:13:54:CF", "00:1A:79:14:64:52",
         "00:1A:79:77:01:2E", "00:1A:79:14:64:AD", "00:1A:79:01:70:B5", "00:1A:79:14:E7:39",
-        "00:1A:79:77:04:6D", "00:1A:79:A2:8B:54"
+        "00:1A:79:77:04:6D", "00:1A:79:A2:8B:54", "00:1A:79:C0:1D:96", "00:1A:79:1F:19:40",
+        "00:1A:79:BA:B6:BF"
     ]
 
     # Server 12 (Direct IP 204.52.191.254 - Motore primario WebApp, no blocchi AGCOM / Piracy Shield)
