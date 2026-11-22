@@ -126,6 +126,20 @@ class HubliveStalkerClient:
         "00:1A:79:F5:CD:F6", "00:1A:79:1D:01:E4", "00:1A:79:F5:CD:49"
     ]
 
+    # Server 46 (mega-cluster Trex/Light-OTT: me.mdmfista.com + light-ott.net + watchtivo-8k.com + nexusconnects.org)
+    # Completamente separato da s18, s12 e s50. Nessun fallback tra server.
+    # MAC iniziali dal pool del cluster (staycanuca/hub), integrati automaticamente dal sync remoto.
+    PORTAL_46_URL = "http://me.mdmfista.com:80"
+    PORTAL_46_MACS = [
+        "00:1A:79:00:00:00", "00:1A:79:00:20:15", "00:1A:79:00:22:D5", "00:1A:79:00:23:04",
+        "00:1A:79:01:6F:45", "00:1A:79:09:1C:05", "00:1A:79:0A:B0:ED", "00:1A:79:0B:B9:9B",
+        "00:1A:79:0B:C1:2A", "00:1A:79:0C:42:DE", "00:1A:79:0E:0E:DA", "00:1A:79:16:C3:C7",
+        "00:1A:79:17:04:D7", "00:1A:79:17:1B:15", "00:1A:79:17:2E:14", "00:1A:79:18:03:32",
+        "00:1A:79:18:12:E8", "00:1A:79:18:1A:57", "00:1A:79:1B:0F:6D", "00:1A:79:1C:0E:C7",
+        "00:1A:79:1C:0E:D4", "00:1A:79:1C:0E:D6", "00:1A:79:1C:10:51", "00:1A:79:1E:0B:4C",
+        "00:1A:79:27:9F:14"
+    ]
+
     # Set di sessione condiviso per escludere all'istante qualsiasi MAC caduto spontaneamente durante la riproduzione
     DROPPED_MACS = set()
 
@@ -144,6 +158,9 @@ class HubliveStalkerClient:
         if server_id == "s50":
             self.portal_url = self.PORTAL_50_URL
             self.mac_pool = list(self.PORTAL_50_MACS)
+        elif server_id == "s46":
+            self.portal_url = self.PORTAL_46_URL
+            self.mac_pool = list(self.PORTAL_46_MACS)
         elif server_id == "s18":
             self.portal_url = self.PORTAL_18_URL
             self.mac_pool = list(self.PORTAL_18_MACS)
@@ -259,7 +276,17 @@ class HubliveStalkerClient:
                         if m and m not in combined_macs:
                             combined_macs.append(m)
 
-        base_macs = self.PORTAL_50_MACS
+            if self.server_id == "s46":
+                if ("mdmfista" in portal or "light-ott" in portal or "watchtivo-8k" in portal or "nexusconnects" in portal
+                        or s.get("id", "").lower() in ("server46", "server31", "server29", "server87")
+                        or name in ("Server 46", "Server 31", "Server 29", "Server 87")):
+                    if not target_portal and "mdmfista" in portal:
+                        target_portal = s.get("portal_url") or s.get("portal") or s.get("url")
+                    for m in macs:
+                        if m and m not in combined_macs:
+                            combined_macs.append(m)
+
+        base_macs = self.PORTAL_50_MACS if self.server_id == "s50" else self.PORTAL_46_MACS
         if combined_macs:
             for m in base_macs:
                 if m not in combined_macs:
@@ -664,7 +691,16 @@ class HubliveStalkerClient:
         if not candidate_cmds:
             return None, None
 
-        verified_base = self.PORTAL_18_MACS if self.server_id == "s18" else (self.PORTAL_12_MACS if self.server_id == "s12" else ())
+        if self.server_id == "s18":
+            verified_base = self.PORTAL_18_MACS
+        elif self.server_id == "s12":
+            verified_base = self.PORTAL_12_MACS
+        elif self.server_id == "s46":
+            verified_base = self.PORTAL_46_MACS
+        elif self.server_id == "s50":
+            verified_base = self.PORTAL_50_MACS
+        else:
+            verified_base = ()
         pool = [m for m in self.mac_pool if (m not in self.BLACKLISTED_MACS or m in verified_base) and m not in self.DROPPED_MACS]
 
         # 0. Quarantena: escludi MAC occupati/bloccati
@@ -684,7 +720,7 @@ class HubliveStalkerClient:
             pool = [m for m in pool if m not in exclude_macs]
         
         # Mescola casualmente per ruotare ed esplorare nuovi MAC
-        priority_base = self.PORTAL_12_MACS if self.server_id == "s12" else self.PORTAL_18_MACS
+        priority_base = verified_base
         priority_macs = [m for m in priority_base if m in pool]
         random.shuffle(priority_macs)
         other_macs = [m for m in pool if m not in priority_macs]
@@ -798,7 +834,9 @@ class HubliveStalkerClient:
                             pass
 
                 # 5. Linea verificata e funzionante al 100%!
-                use_direct_cdn = bool(final_dest and (("204.52.191.254" in final_url and "204.52" not in final_dest) or ("tvdsz.cc" in final_url and "tvdsz" not in final_dest)))
+                cluster_portals = ("mdmfista", "light-ott", "watchtivo-8k", "nexusconnects")
+                is_cluster_portal = any(c in final_url.lower() for c in cluster_portals)
+                use_direct_cdn = bool(final_dest and (("204.52.191.254" in final_url and "204.52" not in final_dest) or ("tvdsz.cc" in final_url and "tvdsz" not in final_dest) or (is_cluster_portal and not any(c in final_dest.lower() for c in cluster_portals))))
                 if use_direct_cdn:
                     final_target = final_dest
                     stream_ua = self.STREAM_UA
@@ -1038,7 +1076,7 @@ class HubliveStalkerClient:
     # ---- API pubblica con logica Fallback ----
     def get_sky_tv_channels(self, force_refresh=False):
         """Canali Intrattenimento, Serie TV e Documentari. Caricamento istantaneo con ricarica opzionale."""
-        fb_name = "s50_tv_fallback.json" if self.server_id == "s50" else ("s18_tv_fallback.json" if self.server_id == "s18" else "sky_tv_fallback.json")
+        fb_name = "s50_tv_fallback.json" if self.server_id in ("s50", "s46") else ("s18_tv_fallback.json" if self.server_id == "s18" else "sky_tv_fallback.json")
         if not force_refresh:
             cached = self._get_cache("sky_tv")
             if cached and len(cached) >= (4 if self.server_id == "s18" else 5):
@@ -1091,7 +1129,7 @@ class HubliveStalkerClient:
 
     def get_sky_cinema_channels(self, force_refresh=False):
         """Canali Sky Cinema. Caricamento istantaneo con ricarica opzionale."""
-        fb_name = "s50_cinema_fallback.json" if self.server_id == "s50" else ("s18_cinema_fallback.json" if self.server_id == "s18" else "sky_cinema_fallback.json")
+        fb_name = "s50_cinema_fallback.json" if self.server_id in ("s50", "s46") else ("s18_cinema_fallback.json" if self.server_id == "s18" else "sky_cinema_fallback.json")
         if not force_refresh:
             cached = self._get_cache("sky_cinema")
             if cached and len(cached) > 5:
@@ -1138,7 +1176,7 @@ class HubliveStalkerClient:
 
     def get_sky_sport_channels(self, force_refresh=False):
         """Canali Sky Sport. Caricamento istantaneo con ricarica opzionale."""
-        fb_name = "s50_sport_fallback.json" if self.server_id == "s50" else ("s18_sport_fallback.json" if self.server_id == "s18" else "sky_sport_fallback.json")
+        fb_name = "s50_sport_fallback.json" if self.server_id in ("s50", "s46") else ("s18_sport_fallback.json" if self.server_id == "s18" else "sky_sport_fallback.json")
         if not force_refresh:
             cached = self._get_cache("sky_sport")
             if cached and len(cached) > 10:
@@ -1199,7 +1237,7 @@ class HubliveStalkerClient:
 
     def get_dazn_channels(self, force_refresh=False):
         """Canali DAZN essenziali. Caricamento istantaneo con ricarica opzionale."""
-        fb_name = "s50_dazn_fallback.json" if self.server_id == "s50" else ("s18_dazn_fallback.json" if self.server_id == "s18" else "dazn_fallback.json")
+        fb_name = "s50_dazn_fallback.json" if self.server_id in ("s50", "s46") else ("s18_dazn_fallback.json" if self.server_id == "s18" else "dazn_fallback.json")
         if not force_refresh:
             cached = self._get_cache("dazn")
             if cached and len(cached) > 5:
