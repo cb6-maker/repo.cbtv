@@ -156,8 +156,8 @@ class HubliveStalkerClient:
     # ---- inizializzazione ----
     def __init__(self, server_id="s12"):
         self.server_id = server_id
-        # s46 richiede proxy estero per l'handshake (blocca IP italiani); s18/s12 usano USE_PROXY globale
-        self.use_proxy = (server_id == "s46")
+        # s46 e s18 richiedono proxy estero per l'handshake (bloccano IP italiani); s12/s50 usano USE_PROXY globale
+        self.use_proxy = (server_id in ("s46", "s18"))
         if server_id == "s50":
             self.portal_url = self.PORTAL_50_URL
             self.mac_pool = list(self.PORTAL_50_MACS)
@@ -851,7 +851,7 @@ class HubliveStalkerClient:
                 else:
                     # Su portali Stalker diretti (es. s18 z1mag.xyz:8080), la connessione di verifica (188 byte)
                     # appena chiusa consuma/invalida il play_token dopo ~15-20s. Richiediamo un play_token vergine
-                    # per Kodi senza aprirlo in Python, mantenendo lo stesso User-Agent STB del portale.
+                    # per Kodi senza aprire la CDN in Python, risolvendo solo il 302 via proxy se richiesto.
                     fresh_tok, fresh_sid = self.create_link(mac, token, target_cmd, timeout=4.0)
                     if fresh_tok:
                         if fresh_sid is None and fresh_tok.startswith("http"):
@@ -859,8 +859,18 @@ class HubliveStalkerClient:
                         else:
                             final_target = (f"{self.portal_url}/play/live.php"
                                             f"?mac={mac}&stream={fresh_sid}&extension=ts&play_token={fresh_tok}")
+                        if self.use_proxy:
+                            try:
+                                r_sess = self._get_session(use_proxy=True)
+                                r_red = r_sess.get(final_target, headers={"User-Agent": self.UA}, allow_redirects=False, timeout=4.0)
+                                loc = r_red.headers.get("Location")
+                                if loc and loc.startswith("http"):
+                                    final_target = loc
+                                r_sess.close()
+                            except Exception as e_red:
+                                xbmc.log(f"[CBTV-HB] Redirect 302 via proxy fallito su {self.server_id}: {e_red}", xbmc.LOGWARNING)
                     else:
-                        final_target = final_url
+                        final_target = final_dest if (self.use_proxy and final_dest) else final_url
                     stream_ua = self.UA if self.server_id == "s18" else self.STREAM_UA
 
                 final_url_with_ua = f"{final_target}|User-Agent={quote_plus(stream_ua)}"
