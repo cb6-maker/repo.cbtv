@@ -128,21 +128,17 @@ class HubliveStalkerClient:
 
     # Server 46 (mega-cluster Trex/Light-OTT: me.mdmfista.com + light-ott.net + watchtivo-8k.com + nexusconnects.org)
     # Completamente separato da s18, s12 e s50. Nessun fallback tra server.
-    # MAC iniziali dal pool del cluster (staycanuca/hub), integrati automaticamente dal sync remoto.
+    # Pool isolato ai 28 MAC verificati funzionanti (sync remoto da staycanuca/hub disabilitato).
     PORTAL_46_URL = "http://me.mdmfista.com:80"
     PORTAL_46_MACS = [
-        "00:1A:79:00:00:00", "00:1A:79:00:20:15", "00:1A:79:00:22:D5", "00:1A:79:00:23:04",
-        "00:1A:79:01:6F:45", "00:1A:79:09:1C:05", "00:1A:79:0A:B0:ED", "00:1A:79:0B:B9:9B",
+        "00:1A:79:00:20:15", "00:1A:79:01:6F:45", "00:1A:79:09:1C:05", "00:1A:79:0A:B0:ED",
         "00:1A:79:0B:C1:2A", "00:1A:79:0C:42:DE", "00:1A:79:0E:0E:DA", "00:1A:79:16:C3:C7",
-        "00:1A:79:17:04:D7", "00:1A:79:17:1B:15", "00:1A:79:17:2E:14", "00:1A:79:18:03:32",
-        "00:1A:79:18:12:E8", "00:1A:79:18:1A:57", "00:1A:79:1B:0F:6D", "00:1A:79:1C:0E:C7",
-        "00:1A:79:1C:0E:D4", "00:1A:79:1C:0E:D6", "00:1A:79:1C:10:51", "00:1A:79:1E:0B:4C",
-        "00:1A:79:27:9F:14",
-        "A0:BB:3E:00:02:2E", "A0:BB:3E:00:03:A0", "A0:BB:3E:00:03:CD", "A0:BB:3E:00:03:F7",
-        "A0:BB:3E:00:04:E8", "A0:BB:3E:00:05:06", "A0:BB:3E:00:05:14", "A0:BB:3E:00:05:38",
+        "00:1A:79:17:04:D7", "00:1A:79:17:1B:15", "00:1A:79:18:12:E8", "00:1A:79:18:1A:57",
+        "00:1A:79:1C:0E:C7", "00:1A:79:1C:0E:D4", "00:1A:79:1C:0E:D6", "00:1A:79:1C:10:51",
+        "00:1A:79:1E:0B:4C",
+        "A0:BB:3E:00:03:A0", "A0:BB:3E:00:03:F7", "A0:BB:3E:00:05:06", "A0:BB:3E:00:05:38",
         "A0:BB:3E:00:07:19", "A0:BB:3E:00:07:63", "A0:BB:3E:00:09:2B", "A0:BB:3E:00:09:33",
-        "A0:BB:3E:00:09:D4", "A0:BB:3E:00:0B:D9", "A0:BB:3E:00:0C:41", "A0:BB:3E:00:0C:46",
-        "A0:BB:3E:00:0C:53", "A0:BB:3E:00:0C:90", "A0:BB:3E:00:0D:3A"
+        "A0:BB:3E:00:0C:41", "A0:BB:3E:00:0C:53", "A0:BB:3E:00:0C:90"
     ]
 
     # Set di sessione condiviso per escludere all'istante qualsiasi MAC caduto spontaneamente durante la riproduzione
@@ -256,13 +252,16 @@ class HubliveStalkerClient:
         if not servers_data or not isinstance(servers_data, list):
             return
 
-        # Per s18 e s12 usa esclusivamente i pool selezionati e verificati (PORTAL_18_MACS e PORTAL_12_MACS),
+        # Per s18, s12 e s46 usa esclusivamente i pool selezionati e verificati (PORTAL_18_MACS, PORTAL_12_MACS, PORTAL_46_MACS),
         # evitando l'inquinamento con MAC non verificati da staycanuca/hub.
         if self.server_id == "s18":
             self.mac_pool = [m for m in self.PORTAL_18_MACS if m not in self.DROPPED_MACS]
             return
         if self.server_id == "s12":
             self.mac_pool = [m for m in self.PORTAL_12_MACS if m not in self.DROPPED_MACS]
+            return
+        if self.server_id == "s46":
+            self.mac_pool = [m for m in self.PORTAL_46_MACS if m not in self.DROPPED_MACS]
             return
 
         combined_macs = []
