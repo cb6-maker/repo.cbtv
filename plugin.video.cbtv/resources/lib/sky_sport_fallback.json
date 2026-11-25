@@ -71,7 +71,7 @@
   },
   {
     "name": "SKY SPORT BAR PRIMEVIDEO",
-    "sids": ["287863", "287864"],
+    "sids": ["287863", "296086", "287864"],
     "cmd": "ffmpeg http://localhost/ch/287863_"
   },
   {

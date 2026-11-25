@@ -101,6 +101,34 @@
     "cmd": "ffmpeg http://localhost/ch/228924_"
   },
   {
+    "name": "AMAZON PRIME 1 HD",
+    "sids": [
+      "1167357"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/1167357_"
+  },
+  {
+    "name": "AMAZON PRIME 2 HD",
+    "sids": [
+      "1167358"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/1167358_"
+  },
+  {
+    "name": "AMAZON PRIME 3 HD",
+    "sids": [
+      "1167359"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/1167359_"
+  },
+  {
+    "name": "AMAZON PRIME 4 HD",
+    "sids": [
+      "1167360"
+    ],
+    "cmd": "ffmpeg http://localhost/ch/1167360_"
+  },
+  {
     "name": "SKY SPORT 251",
     "sids": [
       "177769"

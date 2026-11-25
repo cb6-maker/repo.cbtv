@@ -366,6 +366,24 @@
     "category_id": "2144"
   },
   {
+    "name": "Sky Bar Serie A 1 HD",
+    "sid": "268080",
+    "icon": "https://i.postimg.cc/Vv8wC7fS/Sky-Sport-Business-1-Logo-2025-svg-(1).png",
+    "category_id": "2201"
+  },
+  {
+    "name": "Sky Bar Serie A 2 HD",
+    "sid": "268081",
+    "icon": "https://i.postimg.cc/Vv8wC7fS/Sky-Sport-Business-1-Logo-2025-svg-(1).png",
+    "category_id": "2201"
+  },
+  {
+    "name": "Sky Bar Serie A 3 HD",
+    "sid": "268082",
+    "icon": "https://i.postimg.cc/Vv8wC7fS/Sky-Sport-Business-1-Logo-2025-svg-(1).png",
+    "category_id": "2201"
+  },
+  {
     "name": "Sky Sport  251 FHD",
     "sid": "262820",
     "icon": "https://i.postimg.cc/JzQbd0cC/Sky-Sport-Logo-2020-svg.png",
@@ -526,23 +544,5 @@
     "sid": "262796",
     "icon": "https://i.postimg.cc/JzQbd0cC/Sky-Sport-Logo-2020-svg.png",
     "category_id": "2144"
-  },
-  {
-    "name": "Sky Bar Serie A 1 HD",
-    "sid": "268080",
-    "icon": "https://i.postimg.cc/Vv8wC7fS/Sky-Sport-Business-1-Logo-2025-svg-(1).png",
-    "category_id": "2201"
-  },
-  {
-    "name": "Sky Bar Serie A 2 HD",
-    "sid": "268081",
-    "icon": "https://i.postimg.cc/Vv8wC7fS/Sky-Sport-Business-1-Logo-2025-svg-(1).png",
-    "category_id": "2201"
-  },
-  {
-    "name": "Sky Bar Serie A 3 HD",
-    "sid": "268082",
-    "icon": "https://i.postimg.cc/Vv8wC7fS/Sky-Sport-Business-1-Logo-2025-svg-(1).png",
-    "category_id": "2201"
   }
 ]

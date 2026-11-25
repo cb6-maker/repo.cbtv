@@ -36,6 +36,24 @@
     "category_id": "2145"
   },
   {
+    "name": "Amazon Prime Fhd ( Solo Evento)",
+    "sid": "262546",
+    "icon": "https://i.postimg.cc/kMN9gYJd/prime-video.jpg",
+    "category_id": "1578"
+  },
+  {
+    "name": "Amazon Prime Hd (solo evento)",
+    "sid": "262544",
+    "icon": "https://i.postimg.cc/kMN9gYJd/prime-video.jpg",
+    "category_id": "1578"
+  },
+  {
+    "name": "Amazon Prime Sd ( solo evento )",
+    "sid": "262545",
+    "icon": "https://i.postimg.cc/kMN9gYJd/prime-video.jpg",
+    "category_id": "1578"
+  },
+  {
     "name": "SERIE A Atalanta FHD",
     "sid": "262889",
     "icon": "https://i.postimg.cc/bvpL8KBz/Logo-Atalanta-Bergamo-svg.png",
@@ -1852,23 +1870,5 @@
     "sid": "510436",
     "icon": "https://i.postimg.cc/m22pz1dG/ASSI-DAZN.jpg",
     "category_id": "2221"
-  },
-  {
-    "name": "Amazon Prime Fhd ( Solo Evento)",
-    "sid": "262546",
-    "icon": "https://i.postimg.cc/kMN9gYJd/prime-video.jpg",
-    "category_id": "1578"
-  },
-  {
-    "name": "Amazon Prime Hd (solo evento)",
-    "sid": "262544",
-    "icon": "https://i.postimg.cc/kMN9gYJd/prime-video.jpg",
-    "category_id": "1578"
-  },
-  {
-    "name": "Amazon Prime Sd ( solo evento )",
-    "sid": "262545",
-    "icon": "https://i.postimg.cc/kMN9gYJd/prime-video.jpg",
-    "category_id": "1578"
   }
 ]
