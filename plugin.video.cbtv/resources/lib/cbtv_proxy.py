@@ -322,12 +322,10 @@ def _s14_render_playlist(sess, window_size=6):
 
     all_seqs = sorted(seg_dict.keys())
     kodi_seq = sess.get('last_kodi_seq', 0)
-    if not kodi_seq and not sess.get('startup_done') and len(all_seqs) >= 5:
-        # Tampone iniziale (+20s di buffer): all'avvio nascondi gli ultimi 2 segmenti
-        # così Kodi parte ~2 segmenti più indietro e li ritrova subito al refresh successivo.
-        active_seqs = all_seqs[:-2][-window_size:]
-    else:
-        active_seqs = all_seqs[-window_size:]
+    # Servi sempre la finestra piena (6 segmenti): inputstream.ffmpegdirect parte
+    # automaticamente a max-2 (~20s di tampone sul live e ~30s di margine prima che
+    # i segmenti più vecchi escano dalla finestra upstream del server).
+    active_seqs = all_seqs[-window_size:]
     if kodi_seq:
         next_needed = kodi_seq + 1
         if next_needed < active_seqs[0] and next_needed in seg_dict:
