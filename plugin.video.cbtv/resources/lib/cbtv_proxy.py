@@ -817,6 +817,7 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
             residual = b""
             synced = False
             pts_caught_up = (switches == 0 or last_max_pts is None)
+            t_resync_start = t_conn_start
             sess = requests.Session()
             sess.trust_env = False
             try:
@@ -826,7 +827,7 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
                     headers={"User-Agent": stream_ua, "Connection": "keep-alive"},
                     stream=True,
                     allow_redirects=True,
-                    timeout=(4.0, 7.0)
+                    timeout=(4.0, 4.5)
                 ) as resp:
                     if resp.status_code >= 400:
                         xbmc.log(f"[CBTV-HB-TS] HTTP {resp.status_code} su MAC {cur_mac} [ID {sid}]", xbmc.LOGWARNING)
@@ -863,28 +864,34 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
                             aligned_chunk = buf[:n_aligned]
                             residual = buf[n_aligned:]
 
-                            # Se siamo in riconnessione (switch > 0), scartiamo il pre-buffer circolare
-                            # del server finché il PTS del nuovo stream non raggiunge last_max_pts
+                            # Se siamo in riallineamento (dopo switch o salto indietro mid-stream), scartiamo
+                            # il pre-buffer circolare del server finché il PTS non raggiunge last_max_pts
                             if not pts_caught_up:
                                 cut_offset = None
                                 for p_off in range(0, len(aligned_chunk), 188):
-                                    pts = self._extract_ts_pts(aligned_chunk[p_off:p_off + 188])
-                                    if pts is not None:
-                                        # Differenza modulo 2^33: se delta è indietro di 0..25s (0..2_250_000 tick a 90kHz), scarta
-                                        back_ticks = (last_max_pts - pts) & 0x1FFFFFFFF
-                                        if back_ticks == 0 or back_ticks > 2250000:
-                                            cut_offset = p_off
-                                            pts_caught_up = True
-                                            xbmc.log(
-                                                f"[CBTV-HB-TS] PTS riallineato su switch #{switches}: scartati {skipped_overlap_bytes + p_off} byte di pre-buffer duplicato",
-                                                xbmc.LOGINFO
-                                            )
-                                            break
+                                    if aligned_chunk[p_off + 1] & 0x40:
+                                        pts = self._extract_ts_pts(aligned_chunk[p_off:p_off + 188])
+                                        if pts is not None:
+                                            # Differenza modulo 2^33: se delta è indietro di 0..25s (0..2_250_000 tick a 90kHz), scarta
+                                            back_ticks = (last_max_pts - pts) & 0x1FFFFFFFF
+                                            if back_ticks == 0 or back_ticks > 2250000:
+                                                cut_offset = p_off
+                                                pts_caught_up = True
+                                                fwd_ticks = (pts - last_max_pts) & 0x1FFFFFFFF
+                                                if back_ticks > 2250000 and fwd_ticks > 2250000:
+                                                    # Cambio clock/encoder (>25s): riancora last_max_pts
+                                                    last_max_pts = pts
+                                                xbmc.log(
+                                                    f"[CBTV-HB-TS] PTS riallineato (switch #{switches}): scartati {skipped_overlap_bytes + p_off} byte di buffer duplicato",
+                                                    xbmc.LOGINFO
+                                                )
+                                                break
                                 if not pts_caught_up:
                                     skipped_overlap_bytes += len(aligned_chunk)
-                                    # Salvaguardia: se dopo 3.5s o 6 MB non ha ancora agganciato (es. cambio encoder), rilascia comunque
-                                    if skipped_overlap_bytes > 6 * 1024 * 1024 or (time.time() - t_conn_start) > 3.5:
+                                    # Salvaguardia: se dopo 6.0s o 12 MB non ha ancora agganciato, rilascia e riancora
+                                    if skipped_overlap_bytes > 12 * 1024 * 1024 or (time.time() - t_resync_start) > 6.0:
                                         pts_caught_up = True
+                                        last_max_pts = None
                                         xbmc.log(f"[CBTV-HB-TS] Timeout riallineamento PTS ({skipped_overlap_bytes // 1024} KB), riprendo invio", xbmc.LOGWARNING)
                                     else:
                                         continue
@@ -893,7 +900,8 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
                                     if not aligned_chunk:
                                         continue
 
-                            # Aggiorna last_max_pts campionando i pacchetti PUSI del blocco corrente
+                            # Guardia PTS continua + aggiornamento last_max_pts sui pacchetti PUSI del blocco corrente
+                            mid_cut = None
                             for p_off in range(0, len(aligned_chunk), 188):
                                 if aligned_chunk[p_off + 1] & 0x40:
                                     pts = self._extract_ts_pts(aligned_chunk[p_off:p_off + 188])
@@ -904,6 +912,27 @@ class FreeshotProxyHandler(BaseHTTPRequestHandler):
                                             fwd_ticks = (pts - last_max_pts) & 0x1FFFFFFFF
                                             if fwd_ticks < 2250000:
                                                 last_max_pts = pts
+                                            else:
+                                                back_ticks = (last_max_pts - pts) & 0x1FFFFFFFF
+                                                if 135000 < back_ticks <= 2250000:
+                                                    # Salto PTS indietro mid-stream tra 1.5s e 25s (ripetizione buffer circolare server)
+                                                    pts_caught_up = False
+                                                    t_resync_start = time.time()
+                                                    skipped_overlap_bytes = len(aligned_chunk) - p_off
+                                                    xbmc.log(
+                                                        f"[CBTV-HB-TS] Salto PTS indietro mid-stream (-{back_ticks / 90000.0:.1f}s) su '{name}': scarto buffer duplicato...",
+                                                        xbmc.LOGWARNING
+                                                    )
+                                                    mid_cut = p_off
+                                                    break
+                                                elif back_ticks > 2250000:
+                                                    # Nuovo clock/encoder (>25s di scarto): riancora
+                                                    last_max_pts = pts
+
+                            if mid_cut is not None:
+                                aligned_chunk = aligned_chunk[:mid_cut]
+                                if not aligned_chunk:
+                                    continue
 
                             to_send = aligned_chunk
 
